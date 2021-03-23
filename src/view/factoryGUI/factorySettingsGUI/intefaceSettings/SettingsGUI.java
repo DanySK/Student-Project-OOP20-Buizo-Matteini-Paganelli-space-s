@@ -1,7 +1,7 @@
 package view.factoryGUI.factorySettingsGUI.intefaceSettings;
 
 import utilities.IdGUI;
-import utilities.NameScoreboardGUI;
+import model.factoryGUI.settingsGUI.NameSettigsGUI;
 import view.factoryGUI.GUI;
 
 import java.awt.*;
@@ -14,6 +14,6 @@ public interface SettingsGUI extends GUI {
 
     public void setBtnBackID(final IdGUI intoID);
 
-    public void setNameButtons(List<NameScoreboardGUI> listName);
+    public void setNameButtons(List<NameSettigsGUI> listName);
 
 }

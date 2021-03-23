@@ -1,7 +1,7 @@
 package view.factoryGUI.factoryMenuGUI.intefaceMenu;
 
 import utilities.IdGUI;
-import utilities.NameMenuGUI;
+import model.factoryGUI.menuGUI.NameMenuGUI;
 import view.factoryGUI.GUI;
 
 import java.util.List;

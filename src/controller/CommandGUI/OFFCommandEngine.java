@@ -1,6 +1,6 @@
 package controller.CommandGUI;
 
-import model.factory.GUIEngine;
+import model.factoryGUI.GUIEngine;
 
 public class OFFCommandEngine implements CommandEngine {
     private GUIEngine engine;

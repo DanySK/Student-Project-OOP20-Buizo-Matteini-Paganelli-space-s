@@ -1,6 +1,6 @@
 package controller;
 
-import model.factory.MenuEngine;
+import model.factoryGUI.menuGUI.MenuEngine;
 import view.factoryGUI.factoryMenuGUI.intefaceMenu.MenuGUI;
 
 public class ControllerMenu {

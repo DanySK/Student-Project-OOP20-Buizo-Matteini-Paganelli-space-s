@@ -1,7 +1,7 @@
 package view.factoryGUI.factoryScoreboardGUI.scoreboardGUI;
 
 import utilities.IdGUI;
-import utilities.NameScoreboardGUI;
+import model.factoryGUI.scoreboardGUI.NameScoreboardGUI;
 import view.factoryGUI.AbstractGUI;
 import view.factoryGUI.factoryScoreboardGUI.interfaceScoreboard.ScoreboardGUI;
 import view.utilities.ButtonID;
@@ -52,14 +52,23 @@ public class ConcreteScoreboardGUI extends AbstractGUI implements ScoreboardGUI 
     }
 
     @Override
-    public void setFontAll(final Font font){
+    public void setAllFontNotLbTitle(final Font font){
         this.txtSearchName.setFont(font);
         this.btnSearch.setFont(font);
         this.scoreboard.setFont(font);
         this.btnBack.setFont(font);
     }
+
     @Override
-    public void setFontTitle(final Font font){
+    public void setAllForeground(Color color) {
+        this.lbTitle.setForeground(color);
+        this.btnSearch.setForeground(color);
+        this.scoreboard.setForeground(color);
+        this.btnBack.setForeground(color);
+    }
+
+    @Override
+    public void setFontLbTitle(final Font font){
         this.lbTitle.setFont(font);
     }
 

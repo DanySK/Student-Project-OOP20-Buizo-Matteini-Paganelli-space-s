@@ -1,7 +1,7 @@
 package view.factoryGUI.factoryScoreboardGUI.interfaceScoreboard;
 
 import utilities.IdGUI;
-import utilities.NameScoreboardGUI;
+import model.factoryGUI.scoreboardGUI.NameScoreboardGUI;
 import view.factoryGUI.GUI;
 
 import java.util.List;

@@ -37,13 +37,52 @@ public class FactoryGUIs {
         lim.gridy = 0;
     }
 
-    public static GridBagConstraints getGBConstraints(){
+    public static GridBagConstraints createGBConstraintsWithSpaceTitle(final int separationTitle){
         GridBagConstraints lim = new GridBagConstraints();
         lim.fill = GridBagConstraints.HORIZONTAL;
         lim.insets = new Insets(3,3,3,3);
         lim.gridx = 0;
         lim.gridy = 0;
-        lim.ipady = 80;
+        lim.ipady = separationTitle;
         return lim;
     }
+
+    public static GridBagConstraints createGBConstraintsBase(){
+        GridBagConstraints lim = new GridBagConstraints();
+        lim.fill = GridBagConstraints.HORIZONTAL;
+        lim.insets = new Insets(3,3,3,3);
+        FactoryGUIs.resetGridBagContraints(lim);
+        return lim;
+    }
+
+    public static void resizeImage(final int width, final int height, ImageIcon imageIcon){
+        Image img = imageIcon.getImage();
+        Image resizeImage = img.getScaledInstance(width, height, Image.SCALE_AREA_AVERAGING);
+        imageIcon.setImage(resizeImage);
+    }
+
+    public static void resizeImage(final Dimension dimension, ImageIcon imageIcon){
+        Image img = imageIcon.getImage();
+        Image resizeImage = img.getScaledInstance(dimension.width, dimension.height, Image.SCALE_AREA_AVERAGING);
+        imageIcon.setImage(resizeImage);
+    }
+
+
+    public static void setTransparentDesignJButton(JButton button){
+        button.setOpaque(false);
+        button.setContentAreaFilled(false);
+        button.setFocusable(false);
+    }
+
+    public static void setNotFocusable(Component component){
+        component.setFocusable(false);
+    }
+
+    public static void setIconInJButton(JButton button, final String pathIcon){
+        MyJImage imag = new MyJImage(50, 50, pathIcon);
+        button.setIcon(imag.getImageIcon());
+    }
+
+
+
 }

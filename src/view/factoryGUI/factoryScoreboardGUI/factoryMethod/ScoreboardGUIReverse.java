@@ -1,5 +1,6 @@
 package view.factoryGUI.factoryScoreboardGUI.factoryMethod;
 
+import utilities.DesignSpace;
 import view.factoryGUI.factoryScoreboardGUI.interfaceScoreboard.FactoryScoreboardGUI;
 import view.factoryGUI.factoryScoreboardGUI.interfaceScoreboard.ScoreboardGUI;
 import view.factoryGUI.factoryScoreboardGUI.scoreboardGUI.ConcreteScoreboardGUI;
@@ -13,10 +14,10 @@ public class ScoreboardGUIReverse implements FactoryScoreboardGUI {
 
     @Override
     public ScoreboardGUI createGUI() {
-        this.concreteScoreboardGUI.setBackgroundGUI(Color.PINK);
-        this.concreteScoreboardGUI.getTxtSearchName().setColumns(SIZE_COLUMNS_TEXT);
-        this.concreteScoreboardGUI.setFontTitle(new Font(TYPE_FONT, Font.BOLD, SIZE_FONT_TITLE));
-        this.concreteScoreboardGUI.setFontAll(new Font(TYPE_FONT, Font.BOLD, SIZE_FONT));
+        this.concreteScoreboardGUI.setFontLbTitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
+        this.concreteScoreboardGUI.getTxtSearchName().setColumns(DesignSpace.SIZE_COLUMNS_TEXT);
+        this.concreteScoreboardGUI.setAllFontNotLbTitle(DesignSpace.FONT_MEDIUM_STANDARD);
+        this.concreteScoreboardGUI.setAllForeground(DesignSpace.color3);
 
         this.createGraphics();
         return this.concreteScoreboardGUI;

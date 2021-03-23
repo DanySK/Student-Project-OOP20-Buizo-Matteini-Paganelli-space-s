@@ -3,6 +3,7 @@ package view.utilities;
 import utilities.IdGUI;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class ButtonID extends JButton {
     private IdGUI currentIdGUI;
@@ -35,4 +36,5 @@ public class ButtonID extends JButton {
                 ", intoGUIID=" + commandIdGUI +
                 '}';
     }
+
 }

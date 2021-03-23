@@ -1,5 +1,6 @@
 package view.factoryGUI.factorySettingsGUI.factoryMethod;
 
+import utilities.DesignSpace;
 import view.factoryGUI.factorySettingsGUI.intefaceSettings.FactorySettingsGUI;
 import view.factoryGUI.factorySettingsGUI.intefaceSettings.SettingsGUI;
 import view.factoryGUI.factorySettingsGUI.settingsGUI.ConcreteSettingsGUI;
@@ -7,28 +8,28 @@ import view.utilities.FactoryGUIs;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
 
 public class SettingsGUIStandard implements FactorySettingsGUI {
     private ConcreteSettingsGUI concreteSettingsGUI = new ConcreteSettingsGUI();
 
     @Override
     public SettingsGUI create() {
-        this.concreteSettingsGUI.setTitleGUI("SETTINGS");
-        this.concreteSettingsGUI.setFontTitle(new Font(TYPE_FONT, Font.BOLD, SIZE_FONT_TITLE));
-        this.concreteSettingsGUI.setFontTitlePanel(new Font(TYPE_FONT, Font.BOLD, SIZE_FONT_TITLE_PANEL));
-        this.concreteSettingsGUI.setFontAll(new Font(TYPE_FONT, Font.BOLD, SIZE_FONT));
-        this.concreteSettingsGUI.setBackgroundGUI(Color.GREEN);
-        this.concreteSettingsGUI.setLayoutGUI(new BorderLayout());
+        this.concreteSettingsGUI.setFontLbTitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
+        this.concreteSettingsGUI.setFontTitlePanel(DesignSpace.FONT_BIG_STANDARD);
+        this.concreteSettingsGUI.setAllFontNotLbTitle(DesignSpace.FONT_MEDIUM_STANDARD);
+        this.concreteSettingsGUI.setAllForeground(DesignSpace.color3);
         this.createGraphics();
         this.concreteSettingsGUI.validate();
         return concreteSettingsGUI;
     }
 
     private void createGraphics() {
-        GridBagConstraints lim = FactoryGUIs.getGBConstraints();
+        this.concreteSettingsGUI.setLayoutGUI(new BorderLayout());
+        GridBagConstraints lim = FactoryGUIs.createGBConstraintsWithSpaceTitle(80);
         this.concreteSettingsGUI.add(FactoryGUIs.encapsulatesInPanel_Flow(
                 this.concreteSettingsGUI.getLbTitle()), BorderLayout.NORTH);
+
+        this.concreteSettingsGUI.getPanelDifficult().setFocusable(false);
 
         FactoryGUIs.resetGridBagContraints(lim);
         JPanel panelContainPanel = new JPanel(new GridBagLayout());
@@ -40,9 +41,14 @@ public class SettingsGUIStandard implements FactorySettingsGUI {
         lim.gridy++;
         panelContainPanel.add(this.concreteSettingsGUI.getPanelSound(), lim);
 
+        this.concreteSettingsGUI.getPanelSkin().setTransparentButton();
+
+        FactoryGUIs.setTransparentDesignJButton(this.concreteSettingsGUI.getBtnBack());
+
+        FactoryGUIs.setIconInJButton(this.concreteSettingsGUI.getBtnBack(), "iconButton/iconBack.png");
         this.concreteSettingsGUI.add(panelContainPanel, BorderLayout.CENTER);
-        this.concreteSettingsGUI.setNameButtons(List.of());
-        this.concreteSettingsGUI.add(this.concreteSettingsGUI.getBtnBack(), BorderLayout.SOUTH);
+        this.concreteSettingsGUI.add(FactoryGUIs.encapsulatesInPanel_Flow(this.concreteSettingsGUI.getBtnBack()),
+                BorderLayout.SOUTH);
 
     }
 }

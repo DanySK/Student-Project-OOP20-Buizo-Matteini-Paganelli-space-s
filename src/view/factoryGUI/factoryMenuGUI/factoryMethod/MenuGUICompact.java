@@ -1,5 +1,6 @@
 package view.factoryGUI.factoryMenuGUI.factoryMethod;
 
+import utilities.DesignSpace;
 import view.factoryGUI.factoryMenuGUI.intefaceMenu.FactoryMenuGUI;
 import view.factoryGUI.factoryMenuGUI.intefaceMenu.MenuGUI;
 import view.factoryGUI.factoryMenuGUI.menuGUI.ConcreteMenuGUI;
@@ -13,11 +14,10 @@ public class MenuGUICompact implements FactoryMenuGUI {
 
     @Override
     public MenuGUI createGUI() {
-        this.concreteMenuGUI.addButton(N_BUTTONS);
-        this.concreteMenuGUI.setBackgroundGUI(Color.orange);
+        this.concreteMenuGUI.setFontLbTitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
+        this.concreteMenuGUI.setAllFontNotLbTitle(DesignSpace.FONT_MEDIUM_STANDARD);
         this.concreteMenuGUI.getTxtName().setColumns(SIZE_COLUMNS_TEXT);
-        this.concreteMenuGUI.setFontAll(new Font(TYPE_FONT, Font.BOLD, SIZE_FONT));
-        this.concreteMenuGUI.setFontTitle(new Font(TYPE_FONT, Font.BOLD, SIZE_FONT_TITLE));
+        this.concreteMenuGUI.addButton(N_BUTTONS);
         this.createGraphics();
         this.concreteMenuGUI.validate();
 
@@ -29,7 +29,7 @@ public class MenuGUICompact implements FactoryMenuGUI {
     private void createGraphics() {
         int nBtnUsed = N_BUTTONS;
         this.concreteMenuGUI.setLayoutGUI(new GridBagLayout());
-        GridBagConstraints lim = FactoryGUIs.getGBConstraints();
+        GridBagConstraints lim = FactoryGUIs.createGBConstraintsWithSpaceTitle(80);
 
         this.concreteMenuGUI.add(this.concreteMenuGUI.getLbTitle(), lim);
         FactoryGUIs.resetGridBagContraints(lim);

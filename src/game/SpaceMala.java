@@ -1,17 +1,16 @@
 package game;
 
-import controller.ControllerGUI;
-import controller.ControllerMenu;
-import controller.ControllerScoreboard;
-import model.factory.MenuEngine;
-import model.factory.ScoreboardEngine;
+import controller.*;
+import model.factoryGUI.helpGUI.HelpEngine;
+import model.factoryGUI.menuGUI.MenuEngine;
+import model.factoryGUI.scoreboardGUI.ScoreboardEngine;
+import model.factoryGUI.settingsGUI.SettingsEngine;
 import view.factoryGUI.FactoryGUI;
+import view.factoryGUI.factoryHelpGUI.interfaceHelp.HelpGUI;
 import view.factoryGUI.factoryMenuGUI.intefaceMenu.MenuGUI;
 import view.factoryGUI.factoryScoreboardGUI.interfaceScoreboard.ScoreboardGUI;
-import view.factoryGUI.factorySettingsGUI.intefaceSettings.FactorySettingsGUI;
 import view.factoryGUI.factorySettingsGUI.intefaceSettings.SettingsGUI;
 
-import java.io.IOException;
 import java.util.List;
 
 public class SpaceMala {
@@ -25,15 +24,19 @@ public class SpaceMala {
     private ControllerScoreboard controllerScoreboard = new ControllerScoreboard(scoreboardGUI, scoreboardEngine);
 
     private SettingsGUI settingsGUI = FactoryGUI.createSettingsGUI();
+    private SettingsEngine settingsEngine = new SettingsEngine();
+    private ControllerSettings controllerSettings = new ControllerSettings(settingsGUI, settingsEngine);
 
-    private ControllerGUI controllerGUI = new ControllerGUI(List.of(menuGUI, scoreboardGUI), List.of(menuEngine, scoreboardEngine));
+    private HelpGUI helpGUI = FactoryGUI.creteHelpGUI();
+    private HelpEngine helpEngine = new HelpEngine();
+    private ControllerHelp help = new ControllerHelp(helpGUI, helpEngine);
 
-    public SpaceMala() throws IOException {
+    private ControllerGUI controllerGUI = new ControllerGUI(List.of(menuGUI, scoreboardGUI, settingsGUI, helpGUI),
+            List.of(menuEngine, scoreboardEngine, settingsEngine, helpEngine));
+
+    public SpaceMala(){
 
     }
-
-
-
 
 //    public ControllerMenu getControllerMenu() {
 //        return this.controllerMenu;

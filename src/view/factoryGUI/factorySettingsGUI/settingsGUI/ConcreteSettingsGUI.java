@@ -1,9 +1,12 @@
 package view.factoryGUI.factorySettingsGUI.settingsGUI;
 
 import utilities.IdGUI;
-import utilities.NameScoreboardGUI;
+import model.factoryGUI.settingsGUI.NameSettigsGUI;
 import view.factoryGUI.AbstractGUI;
 import view.factoryGUI.factorySettingsGUI.intefaceSettings.SettingsGUI;
+import view.factoryGUI.factorySettingsGUI.utilities.PanelDifficult;
+import view.factoryGUI.factorySettingsGUI.utilities.PanelSkin;
+import view.factoryGUI.factorySettingsGUI.utilities.PanelSound;
 import view.utilities.*;
 
 import javax.swing.*;
@@ -23,26 +26,33 @@ public class ConcreteSettingsGUI extends AbstractGUI implements SettingsGUI {
         this.lbTitle = new JLabel();
         try {
             // manca la gestione dell'Exception
-            this.panelSkin = new PanelSkin();
+            this.panelSkin = new PanelSkin(150, 160);
         } catch (IOException e) {
             e.printStackTrace();
         }
         this.panelDifficult = new PanelDifficult();
         this.panelSound = new PanelSound();
         this.btnBack = new ButtonID();
-        this.setVisible(true);
-
     }
 
     @Override
-    public void setFontAll(Font font) {
+    public void setAllFontNotLbTitle(Font font) {
         this.panelSound.setFontSliderSound(font);
         this.panelDifficult.setFontGroupRadioButton(font);
         this.panelSkin.setFontButtons(font);
     }
 
     @Override
-    public void setFontTitle(Font font) {
+    public void setAllForeground(Color color) {
+        this.lbTitle.setForeground(color);
+        this.panelSkin.setAllForeground(color);
+        this.panelDifficult.setAllForeground(color);
+        this.panelSound.setAllForeground(color);
+        this.btnBack.setForeground(color);
+    }
+
+    @Override
+    public void setFontLbTitle(Font font) {
         this.lbTitle.setFont(font);
     }
 
@@ -53,7 +63,7 @@ public class ConcreteSettingsGUI extends AbstractGUI implements SettingsGUI {
 
     @Override
     public List<ButtonID> getLinksButtons() {
-        return null;
+        return List.of(this.btnBack);
     }
 
     @Override
@@ -75,8 +85,11 @@ public class ConcreteSettingsGUI extends AbstractGUI implements SettingsGUI {
     }
 
     @Override
-    public void setNameButtons(List<NameScoreboardGUI> listName) {
-        this.btnBack.setText("Back");
+    public void setNameButtons(List<NameSettigsGUI> listName) {
+        int i = 0;
+        this.panelDifficult.setTitle(listName.get(i++).getTitle());
+        this.panelSound.setTitle(listName.get(i++).getTitle());
+        this.btnBack.setText(listName.get(i++).getTitle());
     }
 
     public JLabel getLbTitle(){

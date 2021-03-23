@@ -1,9 +1,9 @@
 package utilities;
 
 public enum SkinSpaceShip {
-    STANDARD("spaceShip.png"),
-    DELUXE("starShip.png"),
-    PRIME("maxShip.png");
+    STANDARD("spaceship/spaceShip.png"),
+    DELUXE("spaceship/starShip.png"),
+    PRIME("spaceship/maxShip.png");
 
     private String path;
 

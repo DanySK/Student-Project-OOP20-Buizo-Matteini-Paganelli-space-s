@@ -3,7 +3,7 @@ package controller;
 import controller.CommandGUI.CommandEngine;
 import controller.CommandGUI.OFFCommandEngine;
 import controller.CommandGUI.ONCommandEngine;
-import model.factory.GUIEngine;
+import model.factoryGUI.GUIEngine;
 import utilities.IdGUI;
 import view.factoryGUI.GUI;
 import view.utilities.ButtonID;
@@ -32,17 +32,26 @@ public class ControllerGUI {
                 btn.addActionListener(e -> {
                     System.out.println("Premuto in: " + btn.getCurrentGUIID() + " Vado in: " + btn.getCommandIdGUI());
 
-                    if(btn.getCommandIdGUI() != IdGUI.ID_BACK){
-                        this.crologia.add(btn.getCommandIdGUI());
-
-                        this.onCommandEngine.execute(this.getEngine(this.lastCrono())).execute(this.getGUI(this.lastCrono()));
-                        this.offCommandEngine.execute(this.getEngine(this.penultimateCrono())).execute(this.getGUI(this.penultimateCrono()));
-
-                    } else{
-                        this.offCommandEngine.execute(this.getEngine(this.lastCrono())).execute(this.getGUI(this.lastCrono()));
-                        this.onCommandEngine.execute(this.getEngine(this.penultimateCrono())).execute(this.getGUI(this.penultimateCrono()));
-
-                        this.crologia.remove(this.lastCrono());
+                    switch (btn.getCommandIdGUI()) {
+                        case ID_QUIT: this.quitAll(); break;
+                        case ID_BACK:
+                            this.offCommandEngine.execute(this.getEngine(this.lastCrono())).execute(this.getGUI(this.lastCrono()));
+                            try {
+                                Thread.sleep(100);
+                            } catch (InterruptedException interruptedException) {
+                                interruptedException.printStackTrace();
+                            }
+                            this.onCommandEngine.execute(this.getEngine(this.penultimateCrono())).execute(this.getGUI(this.penultimateCrono()));
+                            this.crologia.remove(this.lastCrono()); break;
+                        default:
+                            this.crologia.add(btn.getCommandIdGUI());
+                            this.onCommandEngine.execute(this.getEngine(this.lastCrono())).execute(this.getGUI(this.lastCrono()));
+                            try {
+                                Thread.sleep(100);
+                            } catch (InterruptedException interruptedException) {
+                                interruptedException.printStackTrace();
+                            }
+                            this.offCommandEngine.execute(this.getEngine(this.penultimateCrono())).execute(this.getGUI(this.penultimateCrono())); break;
                     }
                     System.out.println("list" + this.crologia);
                 });
@@ -75,5 +84,11 @@ public class ControllerGUI {
             }
         }
         return null;
+    }
+
+    private void quitAll(){
+        for (GUI gui : this.listGUI) {
+            gui.dispose();
+        }
     }
 }

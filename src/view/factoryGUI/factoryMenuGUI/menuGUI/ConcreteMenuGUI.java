@@ -1,7 +1,7 @@
 package view.factoryGUI.factoryMenuGUI.menuGUI;
 
 import utilities.IdGUI;
-import utilities.NameMenuGUI;
+import model.factoryGUI.menuGUI.NameMenuGUI;
 import view.factoryGUI.AbstractGUI;
 import view.factoryGUI.factoryMenuGUI.intefaceMenu.MenuGUI;
 import view.utilities.ButtonID;
@@ -12,15 +12,13 @@ import java.util.*;
 import java.util.List;
 
 public class ConcreteMenuGUI extends AbstractGUI implements MenuGUI {
-    private final JLabel lbTitle;
-    private final JTextField txtName;
-    private final List<ButtonID> buttons;
+    private final JLabel lbTitle = new JLabel();
+    private final JTextField txtName = new JTextField();
+    private final List<ButtonID> buttons = Arrays.asList(new ButtonID(),
+            new ButtonID(), new ButtonID(), new ButtonID(), new ButtonID(),new ButtonID());
 
     public ConcreteMenuGUI(){
         super();
-        this.lbTitle = new JLabel();
-        this.txtName = new JTextField();
-        this.buttons = new ArrayList<>();
     }
 
     @Override
@@ -51,33 +49,38 @@ public class ConcreteMenuGUI extends AbstractGUI implements MenuGUI {
     }
 
     @Override
-    public void setFontAll(final Font font){
+    public void setAllFontNotLbTitle(final Font font){
         this.txtName.setFont(font);
-        for (JComponent btn : this.buttons) {
-            btn.setFont(font);
-        }
+        this.buttons.forEach(button -> button.setFont(font));
     }
+
     @Override
-    public void setFontTitle(final Font font){
+    public void setAllForeground(Color color) {
+        this.lbTitle.setForeground(color);
+        this.buttons.forEach(button -> button.setForeground(color));
+    }
+
+    @Override
+    public void setFontLbTitle(final Font font){
         this.lbTitle.setFont(font);
     }
 
     public JLabel getLbTitle(){
         return this.lbTitle;
     }
+
     public JTextField getTxtName(){
         return this.txtName;
     }
+
     public void addButton(final int nBtn) {
         for (int i = 0; i < nBtn; i++) {
             this.buttons.add(new ButtonID());
         }
     }
+
     public ButtonID getButton(final int id){
         return this.buttons.get(id);
     }
-
-
-
 
 }

@@ -1,6 +1,6 @@
 package controller;
 
-import model.factory.ScoreboardEngine;
+import model.factoryGUI.scoreboardGUI.ScoreboardEngine;
 import view.factoryGUI.factoryScoreboardGUI.interfaceScoreboard.ScoreboardGUI;
 
 public class ControllerScoreboard {
