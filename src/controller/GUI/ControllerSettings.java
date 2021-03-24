@@ -1,7 +1,9 @@
-package controller;
+package controller.GUI;
 
 import model.factoryGUI.settingsGUI.SettingsEngine;
 import view.factoryGUI.factorySettingsGUI.intefaceSettings.SettingsGUI;
+
+import javax.swing.*;
 
 public class ControllerSettings {
     private SettingsGUI settingsGUI;
@@ -18,6 +20,18 @@ public class ControllerSettings {
         this.settingsGUI.setTitleGUI(this.settingsEngine.getTitleGUI());
         this.settingsGUI.setNameButtons(this.settingsEngine.getListName());
         this.settingsGUI.setBtnBackID(this.settingsEngine.getLink());
+        this.settingsGUI.setSkinSpaceShip(this.settingsEngine.getSkinSpaceShip());
+        for (JButton button : this.settingsGUI.getButtons()) {
+            button.addActionListener(e -> {
+                if(button.getText() == "<"){
+                    this.settingsEngine.changeSkinSx();
+                    this.settingsGUI.setSkinSpaceShip(this.settingsEngine.getSkinSpaceShip());
+                } else {
+                    this.settingsEngine.changeSkinDx();
+                    this.settingsGUI.setSkinSpaceShip(this.settingsEngine.getSkinSpaceShip());
+                }
+            });
+        }
         this.settingsGUI.setVisible(this.settingsEngine.getState());
     }
 }

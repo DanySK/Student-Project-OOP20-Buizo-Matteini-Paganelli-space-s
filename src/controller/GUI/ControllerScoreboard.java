@@ -1,4 +1,4 @@
-package controller;
+package controller.GUI;
 
 import model.factoryGUI.scoreboardGUI.ScoreboardEngine;
 import view.factoryGUI.factoryScoreboardGUI.interfaceScoreboard.ScoreboardGUI;

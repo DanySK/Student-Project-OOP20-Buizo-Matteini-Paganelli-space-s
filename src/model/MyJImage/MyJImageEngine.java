@@ -57,4 +57,13 @@ public class MyJImageEngine {
     public void setPath(String path) {
         this.path = path;
     }
+
+    @Override
+    public String toString() {
+        return "MyJImageEngine{" +
+                "width=" + width +
+                ", height=" + height +
+                ", path='" + path + '\'' +
+                '}';
+    }
 }

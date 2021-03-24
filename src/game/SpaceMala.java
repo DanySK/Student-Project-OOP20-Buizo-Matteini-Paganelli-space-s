@@ -1,6 +1,6 @@
 package game;
 
-import controller.*;
+import controller.GUI.*;
 import model.factoryGUI.helpGUI.HelpEngine;
 import model.factoryGUI.menuGUI.MenuEngine;
 import model.factoryGUI.scoreboardGUI.ScoreboardEngine;

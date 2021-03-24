@@ -1,4 +1,4 @@
-package controller;
+package controller.GUI;
 
 import model.factoryGUI.helpGUI.HelpEngine;
 import view.factoryGUI.factoryHelpGUI.interfaceHelp.HelpGUI;

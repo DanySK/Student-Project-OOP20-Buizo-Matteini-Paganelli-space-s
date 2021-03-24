@@ -1,4 +1,4 @@
-package controller;
+package controller.GUI;
 
 import model.factoryGUI.menuGUI.MenuEngine;
 import view.factoryGUI.factoryMenuGUI.intefaceMenu.MenuGUI;

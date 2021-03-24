@@ -78,7 +78,7 @@ public class FactoryGUIs {
         component.setFocusable(false);
     }
 
-    public static void setIconInJButton(JButton button, final String pathIcon){
+    public static void setIconInJButton(JButton button, final String pathIcon) {
         MyJImage imag = new MyJImage(50, 50, pathIcon);
         button.setIcon(imag.getImageIcon());
     }

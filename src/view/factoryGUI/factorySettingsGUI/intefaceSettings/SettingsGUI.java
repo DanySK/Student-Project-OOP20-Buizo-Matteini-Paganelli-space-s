@@ -1,5 +1,6 @@
 package view.factoryGUI.factorySettingsGUI.intefaceSettings;
 
+import model.MyJImage.MyJImageEngine;
 import utilities.IdGUI;
 import model.factoryGUI.settingsGUI.NameSettigsGUI;
 import view.factoryGUI.GUI;
@@ -14,6 +15,8 @@ public interface SettingsGUI extends GUI {
 
     public void setBtnBackID(final IdGUI intoID);
 
-    public void setNameButtons(List<NameSettigsGUI> listName);
+    public void setNameButtons(final List<NameSettigsGUI> listName);
+
+    public void setSkinSpaceShip(final MyJImageEngine imageEngine);
 
 }

@@ -1,5 +1,6 @@
 package view.factoryGUI.factorySettingsGUI.settingsGUI;
 
+import model.MyJImage.MyJImageEngine;
 import utilities.IdGUI;
 import model.factoryGUI.settingsGUI.NameSettigsGUI;
 import view.factoryGUI.AbstractGUI;
@@ -11,28 +12,17 @@ import view.utilities.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 import java.util.List;
 
 public class ConcreteSettingsGUI extends AbstractGUI implements SettingsGUI {
-    private JLabel lbTitle;
-    private PanelSkin panelSkin;
-    private PanelDifficult panelDifficult;
-    private PanelSound panelSound;
-    private ButtonID btnBack;
+    private final JLabel lbTitle = new JLabel();
+    private final PanelSkin panelSkin = new PanelSkin();
+    private final PanelDifficult panelDifficult = new PanelDifficult();
+    private final PanelSound panelSound = new PanelSound();
+    private final ButtonID btnBack = new ButtonID();
 
     public ConcreteSettingsGUI() {
         super();
-        this.lbTitle = new JLabel();
-        try {
-            // manca la gestione dell'Exception
-            this.panelSkin = new PanelSkin(150, 160);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        this.panelDifficult = new PanelDifficult();
-        this.panelSound = new PanelSound();
-        this.btnBack = new ButtonID();
     }
 
     @Override
@@ -58,7 +48,7 @@ public class ConcreteSettingsGUI extends AbstractGUI implements SettingsGUI {
 
     @Override
     public List<? extends JButton> getButtons() {
-        return null;
+        return List.of(this.panelSkin.getBtSX(), this.panelSkin.getBtDX());
     }
 
     @Override
@@ -73,6 +63,7 @@ public class ConcreteSettingsGUI extends AbstractGUI implements SettingsGUI {
 
     @Override
     public void setFontTitlePanel(Font font) {
+        this.panelSkin.setFontLbTitle(font);
         this.panelDifficult.setFontTitleDifficult(font);
         this.panelSound.setFontTitleSound(font);
         this.btnBack.setFont(font);
@@ -87,9 +78,16 @@ public class ConcreteSettingsGUI extends AbstractGUI implements SettingsGUI {
     @Override
     public void setNameButtons(List<NameSettigsGUI> listName) {
         int i = 0;
+        this.panelSkin.setLbTitle(listName.get(i++).getTitle());
         this.panelDifficult.setTitle(listName.get(i++).getTitle());
         this.panelSound.setTitle(listName.get(i++).getTitle());
-        this.btnBack.setText(listName.get(i++).getTitle());
+        this.btnBack.setText(listName.get(i).getTitle());
+    }
+
+    @Override
+    public void setSkinSpaceShip(MyJImageEngine imageEngine) {
+        this.panelSkin.setPnImage(imageEngine.getPath());
+        this.panelSkin.setDimensionImg(imageEngine.getWidth(), imageEngine.getHeight());
     }
 
     public JLabel getLbTitle(){
