@@ -1,0 +1,1 @@
+difficult_01.png.png 39 44, difficult_02.png.png 523 45, difficult_03.png.png 38 277, difficult_04.png.png 521 277, difficult_05.png.png 41 513, difficult_06.png.png 523 513.
