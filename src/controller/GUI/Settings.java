@@ -5,11 +5,11 @@ import view.factoryGUI.factorySettingsGUI.intefaceSettings.SettingsGUI;
 
 import javax.swing.*;
 
-public class ControllerSettings {
+public class Settings {
     private SettingsGUI settingsGUI;
     private SettingsEngine settingsEngine;
 
-    public ControllerSettings(final SettingsGUI settingsGUI, final SettingsEngine settingsEngine){
+    public Settings(final SettingsGUI settingsGUI, final SettingsEngine settingsEngine){
         this.settingsGUI = settingsGUI;
         this.settingsEngine = settingsEngine;
         this.initSettings();
@@ -32,6 +32,7 @@ public class ControllerSettings {
                 }
             });
         }
+        this.settingsGUI.setDifficult(this.settingsEngine.getDifficult());
         this.settingsGUI.setVisible(this.settingsEngine.getState());
     }
 }

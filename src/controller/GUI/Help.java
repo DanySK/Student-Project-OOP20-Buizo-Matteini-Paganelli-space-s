@@ -1,13 +1,13 @@
 package controller.GUI;
 
 import model.factoryGUI.helpGUI.HelpEngine;
-import view.factoryGUI.factoryHelpGUI.interfaceHelp.HelpGUI;
+import view.factoryGUI.factoryHelpGUI.HelpGUI;
 
-public class ControllerHelp {
+public class Help {
     private HelpGUI helpGUI;
     private HelpEngine helpEngine;
 
-    public ControllerHelp(final HelpGUI helpGUI, final HelpEngine helpEngine){
+    public Help(final HelpGUI helpGUI, final HelpEngine helpEngine){
         this.helpEngine = helpEngine;
         this.helpGUI = helpGUI;
         this.initHelp();

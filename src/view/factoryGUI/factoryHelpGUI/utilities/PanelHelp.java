@@ -1,5 +1,6 @@
 package view.factoryGUI.factoryHelpGUI.utilities;
 
+import view.utilities.JImageRate;
 import view.utilities.MyJImage;
 
 import javax.swing.*;
@@ -12,7 +13,7 @@ import java.util.List;
 
 public class PanelHelp extends JPanel {
     protected JLabel lbTitle = new JLabel();
-    private List<MyJImage> listCommandImages = new ArrayList<>();
+    private List<JImageRate> listCommandImages = new ArrayList<>();
 
     public PanelHelp(){
         super(new FlowLayout());
@@ -32,8 +33,8 @@ public class PanelHelp extends JPanel {
         this.lbTitle.setText(title);
     }
 
-    public void addHelpImage(final int width, final int height, final String path){
-        final MyJImage pnImage = new MyJImage(width, height, path);
+    public void addHelpImage(final String path, final int rate){
+        final JImageRate pnImage = new JImageRate(path, rate);
         this.listCommandImages.add(pnImage);
         this.add(pnImage);
     }

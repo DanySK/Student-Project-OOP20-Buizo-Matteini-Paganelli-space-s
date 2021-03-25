@@ -3,11 +3,11 @@ package controller.GUI;
 import model.factoryGUI.scoreboardGUI.ScoreboardEngine;
 import view.factoryGUI.factoryScoreboardGUI.interfaceScoreboard.ScoreboardGUI;
 
-public class ControllerScoreboard {
+public class Scoreboard {
     private ScoreboardGUI scoreboardGUI;
     private ScoreboardEngine scoreboardEngine;
 
-    public ControllerScoreboard(final ScoreboardGUI scoreboardGUI, final ScoreboardEngine scoreboardEngine){
+    public Scoreboard(final ScoreboardGUI scoreboardGUI, final ScoreboardEngine scoreboardEngine){
         this.scoreboardGUI = scoreboardGUI;
         this.scoreboardEngine = scoreboardEngine;
         this.initScoreboard();

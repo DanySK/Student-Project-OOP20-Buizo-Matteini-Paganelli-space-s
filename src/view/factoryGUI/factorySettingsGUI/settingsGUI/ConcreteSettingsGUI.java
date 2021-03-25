@@ -1,6 +1,7 @@
 package view.factoryGUI.factorySettingsGUI.settingsGUI;
 
-import model.MyJImage.MyJImageEngine;
+import model.MyJImage.JImageRateEngine;
+import model.factoryGUI.settingsGUI.Difficult;
 import utilities.IdGUI;
 import model.factoryGUI.settingsGUI.NameSettigsGUI;
 import view.factoryGUI.AbstractGUI;
@@ -85,9 +86,14 @@ public class ConcreteSettingsGUI extends AbstractGUI implements SettingsGUI {
     }
 
     @Override
-    public void setSkinSpaceShip(MyJImageEngine imageEngine) {
-        this.panelSkin.setPnImage(imageEngine.getPath());
-        this.panelSkin.setDimensionImg(imageEngine.getWidth(), imageEngine.getHeight());
+    public void setSkinSpaceShip(JImageRateEngine imageEngine) {
+        this.panelSkin.setPnImage(imageEngine.getPathImg());
+        this.panelSkin.setRateImg(imageEngine.getRate());
+    }
+
+    @Override
+    public void setDifficult(Difficult difficult) {
+        this.panelDifficult.setDifficult(difficult);
     }
 
     public JLabel getLbTitle(){
