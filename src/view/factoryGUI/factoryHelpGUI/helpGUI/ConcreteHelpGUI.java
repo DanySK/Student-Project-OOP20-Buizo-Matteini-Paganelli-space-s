@@ -1,11 +1,13 @@
 package view.factoryGUI.factoryHelpGUI.helpGUI;
 
+import model.MyJImage.JImageRateEngine;
 import model.MyJImage.MyJImageEngine;
 import utilities.IdGUI;
 import view.factoryGUI.AbstractGUI;
-import view.factoryGUI.factoryHelpGUI.interfaceHelp.HelpGUI;
+import view.factoryGUI.factoryHelpGUI.HelpGUI;
 import view.factoryGUI.factoryHelpGUI.utilities.PanelHelp;
 import view.utilities.ButtonID;
+import view.utilities.JImageRate;
 
 import javax.swing.*;
 import java.awt.*;
@@ -66,9 +68,9 @@ public class ConcreteHelpGUI extends AbstractGUI implements HelpGUI {
     }
 
     @Override
-    public void setImageInPanelHelp(String panelName, final List<MyJImageEngine> pathImg) {
+    public void setImageInPanelHelp(String panelName, final List<JImageRateEngine> pathImg) {
         this.helpPanels.stream().filter(panel -> panel.getLbTitle().contains(panelName))
-                .forEach(panel -> pathImg.forEach(img -> panel.addHelpImage(img.getWidth(), img.getHeight(), img.getPath())));
+                .forEach(panel -> pathImg.forEach(img -> panel.addHelpImage(img.getPathImg(), img.getRate())));
     }
 
     @Override

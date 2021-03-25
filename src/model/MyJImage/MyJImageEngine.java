@@ -14,12 +14,10 @@ public class MyJImageEngine {
     }
 
     public MyJImageEngine(final String path){
-        this.width = width;
-        this.height = height;
         this.path = path;
     }
 
-    private MyJImageEngine(final Dimension dimension, final String path){
+    public MyJImageEngine(final Dimension dimension, final String path){
         this.width = dimension.width;
         this.height = dimension.height;
         this.path = path;
