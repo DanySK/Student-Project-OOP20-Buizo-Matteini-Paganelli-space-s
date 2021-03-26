@@ -1,8 +1,8 @@
 package view.factoryGUI.factoryHelpGUI.factoryMethod;
 
 import view.factoryGUI.factoryHelpGUI.helpGUI.ConcreteHelpGUI;
-import view.factoryGUI.factoryHelpGUI.interfaceHelp.FactoryHelpGUI;
-import view.factoryGUI.factoryHelpGUI.interfaceHelp.HelpGUI;
+import view.factoryGUI.factoryHelpGUI.FactoryHelpGUI;
+import view.factoryGUI.factoryHelpGUI.HelpGUI;
 import view.factoryGUI.factoryHelpGUI.utilities.PanelHelp;
 import utilities.DesignSpace;
 import view.utilities.FactoryGUIs;

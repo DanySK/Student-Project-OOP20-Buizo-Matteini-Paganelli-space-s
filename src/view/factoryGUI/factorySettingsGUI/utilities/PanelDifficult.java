@@ -1,10 +1,10 @@
 package view.factoryGUI.factorySettingsGUI.utilities;
 
+import model.factoryGUI.settingsGUI.Difficult;
 import view.utilities.FactoryGUIs;
 
 import javax.swing.*;
 import java.awt.*;
-import java.net.URL;
 import java.util.List;
 
 public class PanelDifficult extends JPanel{
@@ -29,7 +29,6 @@ public class PanelDifficult extends JPanel{
         this.group.add(this.rbtEasy);
         this.group.add(this.rbtMedium);
         this.group.add(this.rbtHard);
-        this.rbtEasy.setSelected(true);
     }
 
     public void setFontTitleDifficult(final Font font){
@@ -58,4 +57,11 @@ public class PanelDifficult extends JPanel{
         this.rbtMedium.setFocusable(focusable);
         this.rbtHard.setFocusable(focusable);
     }
+
+    public void setDifficult(final Difficult difficult) {
+        List.of(this.rbtEasy, this.rbtMedium, this.rbtHard).stream()
+                .filter(rbt -> rbt.getText().contains(difficult.getName()))
+                .forEach(rbt -> rbt.setSelected(true));
+    }
+
 }
