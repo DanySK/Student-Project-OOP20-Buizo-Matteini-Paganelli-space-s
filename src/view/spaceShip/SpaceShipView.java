@@ -1,37 +1,34 @@
 package view.spaceShip;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.GridLayout;
 
 import javax.swing.*;
 
+import model.MyJImage.JImageRateEngine;
 import model.environment.Point2D;
-import view.utilities.MyJImage;
+import view.utilities.JImageRate;
 
 public class SpaceShipView {
 
     private final JFrame frame = new JFrame();
-    private MyJImage shipImage;
+    private JImageRate shipImage;
     
-    public SpaceShipView(final String shipImagePath, Point2D imagePosition) {
+    public SpaceShipView(final JImageRateEngine imageEngine, final Point2D imagePosition) {
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setSize(800, 600);
         
-        JPanel panel = new JPanel();
+        JPanel panel = new JPanel(null);
         this.frame.setContentPane(panel);
         
         
-        this.shipImage = new MyJImage(shipImagePath);
+        this.shipImage = new JImageRate(imageEngine.getPathImg(), imageEngine.getRate());
+        //this.shipImage.setBorder(BorderFactory.createLineBorder(Color.black, 10));
         
-        int shipWidth = this.shipImage.getImageIcon().getIconHeight();
-        int shipHeight = this.shipImage.getImageIcon().getIconHeight();
+        int shipWidth = this.shipImage.getIcon().getIconHeight();
+        int shipHeight = this.shipImage.getIcon().getIconHeight();
         
-        this.shipImage.setDimensionImg(shipWidth / 3, shipHeight / 3);
-        //this.shipImage.setLocation(0, 0);//imagePosition.getY());
-        System.out.println(imagePosition.toString());
         this.shipImage.setBounds(imagePosition.getX(), imagePosition.getY(), shipWidth, shipHeight);
-        //this.shipImage.setSize(shipWidth, shipHeight);
+
         this.shipImage.setOpaque(true);
         this.shipImage.setBackground(Color.BLUE);
         panel.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
@@ -42,6 +39,8 @@ public class SpaceShipView {
         button.addActionListener(event -> {
             this.shipImage.setLocation(this.shipImage.getX() + 10, this.shipImage.getY() + 10);
         });
+        button.setBounds(10, 10, 50, 30);
+
         panel.add(button);
     }
     
@@ -49,7 +48,7 @@ public class SpaceShipView {
         this.frame.setVisible(true);
     }
     
-    public MyJImage getShipImage() {
+    public JImageRate getShipImage() {
         return this.shipImage;
     }
 }

@@ -2,6 +2,7 @@ package model.spaceShip;
 
 import java.awt.Dimension;
 
+import model.MyJImage.JImageRateEngine;
 import model.environment.Point2D;
 import utilities.DesignSpace;
 
@@ -11,16 +12,16 @@ public class SpaceShipSingleton {
     private static SpaceShipSingleton spaceShip = new SpaceShipSingleton(DesignSpace.CENTER_ENVIRONMENT, "spaceShip/maxShip.png");
     
     private Point2D position;
-    private String spaceImagePath;
+    private JImageRateEngine imageEngine;
     private Dimension dimension;
-
     
     /** 
     * Invisible class constructor specifying space ship initial position
     */
-    private SpaceShipSingleton(final Point2D position, final String path) {
+    private SpaceShipSingleton(final Point2D position, final String imagePath) {
         this.position = position;
-        this.spaceImagePath = path;
+        this.imageEngine = new JImageRateEngine(imagePath, 10);
+        //this.imageEngine
     }
     
     /**
@@ -38,10 +39,10 @@ public class SpaceShipSingleton {
     }
     
     /**
-     * @return the current space ship path
+     * @return the current space ship image model
      */
-    public String getSpaceImagePath() {
-        return this.spaceImagePath;
+    public JImageRateEngine getSpaceImageEngine() {
+        return this.imageEngine;
     }
 
     /**
