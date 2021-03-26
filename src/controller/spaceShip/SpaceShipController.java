@@ -5,8 +5,8 @@ import view.spaceShip.SpaceShipView;
 
 public class SpaceShipController {
 
-    private SpaceShipSingleton spaceShipModel;
-    private SpaceShipView spaceShipView;
+    private static SpaceShipSingleton spaceShipModel;
+    private static SpaceShipView spaceShipView;
     
     public SpaceShipController(final SpaceShipSingleton spaceShipModel, final SpaceShipView spaceShipView) {
         this.spaceShipModel = spaceShipModel;
@@ -14,13 +14,13 @@ public class SpaceShipController {
     }
 
     
-    public void main(String[] args){
+    public static void main(String[] args){
     
-        spaceShipModel = SpaceShipSingleton.getSpaceShip();
-        
+        spaceShipModel = SpaceShipSingleton.getSpaceShip();        
         spaceShipView = new SpaceShipView(spaceShipModel.getSpaceImagePath(), spaceShipModel.getPosition());
         
+        spaceShipModel.setDimension(spaceShipView.getShipImage().getSize());
+        
         spaceShipView.show();
-  
     }
 }

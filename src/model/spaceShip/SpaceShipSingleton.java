@@ -1,5 +1,7 @@
 package model.spaceShip;
 
+import java.awt.Dimension;
+
 import model.environment.Point2D;
 import utilities.DesignSpace;
 
@@ -10,8 +12,7 @@ public class SpaceShipSingleton {
     
     private Point2D position;
     private String spaceImagePath;
-    private int spaceHeight;
-    private int spaceWidth;
+    private Dimension dimension;
 
     
     /** 
@@ -43,7 +44,13 @@ public class SpaceShipSingleton {
         return this.spaceImagePath;
     }
 
-
+    /**
+     * @return the current space ship dimension
+     */
+    public Dimension getDimension() {
+        return this.dimension;
+    }
+    
     /**
      * @param newPosition
      *            the new space ship position
@@ -51,4 +58,14 @@ public class SpaceShipSingleton {
     public void setPosition(final Point2D newPosition) {
         this.position = newPosition;
     }
+    
+    /**
+     * @param newDimension
+     *            the new space ship position
+     */
+    public void setDimension(final Dimension newDimension) {
+        this.dimension = newDimension;
+        System.out.println(this.dimension);
+    }
 }
+

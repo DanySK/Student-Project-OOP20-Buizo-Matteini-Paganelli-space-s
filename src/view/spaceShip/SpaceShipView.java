@@ -1,5 +1,9 @@
 package view.spaceShip;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
+
 import javax.swing.*;
 
 import model.environment.Point2D;
@@ -12,7 +16,7 @@ public class SpaceShipView {
     
     public SpaceShipView(final String shipImagePath, Point2D imagePosition) {
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.frame.setSize(600, 600);
+        this.frame.setSize(800, 600);
         
         JPanel panel = new JPanel();
         this.frame.setContentPane(panel);
@@ -24,9 +28,15 @@ public class SpaceShipView {
         int shipHeight = this.shipImage.getImageIcon().getIconHeight();
         
         this.shipImage.setDimensionImg(shipWidth / 3, shipHeight / 3);
-        this.shipImage.setBounds(0, 0, shipWidth, shipHeight);
-        panel.add(this.shipImage);
+        //this.shipImage.setLocation(0, 0);//imagePosition.getY());
+        System.out.println(imagePosition.toString());
+        this.shipImage.setBounds(imagePosition.getX(), imagePosition.getY(), shipWidth, shipHeight);
+        //this.shipImage.setSize(shipWidth, shipHeight);
+        this.shipImage.setOpaque(true);
+        this.shipImage.setBackground(Color.BLUE);
+        panel.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
         
+        panel.add(this.shipImage);
         
         final JButton button = new JButton("prova");
         button.addActionListener(event -> {
@@ -39,9 +49,7 @@ public class SpaceShipView {
         this.frame.setVisible(true);
     }
     
-    public void setShipImageURL(String path) {
-        shipImage.changeIcon(path);
+    public MyJImage getShipImage() {
+        return this.shipImage;
     }
-    
-    
 }

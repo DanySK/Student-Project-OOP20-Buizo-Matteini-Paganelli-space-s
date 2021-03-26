@@ -10,6 +10,11 @@ public class Point2D {
         this.y = y;
     }
     
+    public Point2D(final Point2D point) {
+        this.x = point.x;
+        this.y = point.y;
+    }
+    
     public void setX(final int newX) {
         this.x = newX;
     }
@@ -35,4 +40,7 @@ public class Point2D {
         return this;
     }
 
+    public String toString() {
+        return "Point2D {x : " + this.getX() + ", y : " + this.getY() + "}";
+    }
 }
