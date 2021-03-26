@@ -2,16 +2,16 @@ package controller.GUI.Command;
 
 import model.factoryGUI.GUIEngine;
 
-public class ONCommandEngine implements CommandEngine {
+public class ONCommandGUI implements CommandEngine {
     private GUIEngine engine;
 
-    public ONCommandEngine(){
+    public ONCommandGUI(){
     }
 
     @Override
     public CommandGUI execute(final GUIEngine engine) {
         this.engine = engine;
         this.engine.setState(true);
-        return gui -> gui.setVisible(ONCommandEngine.this.engine.getState());
+        return gui -> gui.setVisible(ONCommandGUI.this.engine.getState());
     }
 }

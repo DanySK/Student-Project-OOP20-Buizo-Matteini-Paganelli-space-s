@@ -2,6 +2,7 @@ package view.factoryGUI.factorySettingsGUI.utilities;
 
 import model.factoryGUI.settingsGUI.SkinSpaceShip;
 import view.utilities.FactoryGUIs;
+import view.utilities.JImageRate;
 import view.utilities.MyJImage;
 
 import javax.swing.*;
@@ -13,7 +14,7 @@ public class PanelSkin extends JPanel {
     private JButton btDX = new JButton(">");;
 
     private SkinSpaceShip skinSpaceShip = SkinSpaceShip.PRIME;
-    private MyJImage pnImage = new MyJImage();
+    private JImageRate pnImage = new JImageRate();
 
     public PanelSkin(final int width, final int height){
         super(new BorderLayout());
@@ -21,11 +22,11 @@ public class PanelSkin extends JPanel {
         this.createGraphics();
     }
 
-    public PanelSkin(final int width, final int height, final String path){
+    public PanelSkin(final String path, final int rate){
         super(new BorderLayout());
         this.setOpaque(false);
-        this.pnImage.setDimensionImg(width, height);
-        this.pnImage.setIconImage(path);
+        this.pnImage.setRate(rate);
+        this.pnImage.setIcon(path);
         this.createGraphics();
     }
 
@@ -68,11 +69,11 @@ public class PanelSkin extends JPanel {
     }
 
     public void setPnImage(final String pathImage){
-        this.pnImage.setIconImage(pathImage);
+        this.pnImage.setIcon(pathImage);
     }
 
-    public void setDimensionImg(final int width, final int height) {
-        this.pnImage.setDimensionImg(width, height);
+    public void setRateImg(final int rate) {
+        this.pnImage.setRate(rate);
     }
 
     public JButton getBtSX() {

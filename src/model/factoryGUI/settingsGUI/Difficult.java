@@ -1,7 +1,17 @@
 package model.factoryGUI.settingsGUI;
 
 public enum Difficult {
-    EASY_DIFFICULT(),
-    MEDIUM_DIFFICULT(),
-    HARD_DIFFICULT();
+    EASY("Easy"),
+    MEDIUM("Medium"),
+    HARD("Hard");
+
+    private String name;
+
+    private Difficult(final String name){
+        this.name = name;
+    }
+
+    public String getName(){
+        return this.name;
+    }
 }

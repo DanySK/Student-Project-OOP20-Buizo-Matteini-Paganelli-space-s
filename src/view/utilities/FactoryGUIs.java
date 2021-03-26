@@ -1,5 +1,7 @@
 package view.utilities;
 
+import utilities.DesignSpace;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -79,8 +81,14 @@ public class FactoryGUIs {
     }
 
     public static void setIconInJButton(JButton button, final String pathIcon) {
-        MyJImage imag = new MyJImage(50, 50, pathIcon);
-        button.setIcon(imag.getImageIcon());
+        JImageRate imag = new JImageRate(pathIcon, 5);
+        button.setIcon(imag.getIcon());
+    }
+
+    public static void rateImage(final int rate, ImageIcon imageIcon){
+        int widthRateImage = DesignSpace.GUI_WIDTH * rate / 100;
+        int heightRateImage = imageIcon.getIconHeight() * widthRateImage / imageIcon.getIconWidth();
+        resizeImage(widthRateImage, heightRateImage, imageIcon);
     }
 
 
