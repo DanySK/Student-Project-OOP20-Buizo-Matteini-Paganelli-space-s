@@ -17,7 +17,7 @@ public class SpaceShipController {
     public static void main(String[] args){
     
         spaceShipModel = SpaceShipSingleton.getSpaceShip();        
-        spaceShipView = new SpaceShipView(spaceShipModel.getSpaceImagePath(), spaceShipModel.getPosition());
+        spaceShipView = new SpaceShipView(spaceShipModel.getSpaceImageEngine(), spaceShipModel.getPosition());
         
         spaceShipModel.setDimension(spaceShipView.getShipImage().getSize());
         
