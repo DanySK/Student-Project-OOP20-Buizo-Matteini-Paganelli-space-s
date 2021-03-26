@@ -1,5 +1,8 @@
 package model.factoryGUI.settingsGUI;
 
+import game.SpaceMala;
+import model.MyJImage.JImageRateEngine;
+import model.MyJImage.MyJImageEngine;
 import model.factoryGUI.GUIEngine;
 import utilities.IdGUI;
 
@@ -9,15 +12,16 @@ import java.util.List;
 
 public class SettingsEngine implements GUIEngine {
     private final String TITLE_SETTINGS = "SETTINGS";
-    private final List<NameSettigsGUI> namesButtons = new ArrayList<>();
-
     private final IdGUI ID = IdGUI.ID_SETTING;
+    private final List<NameSettigsGUI> namesButtons = List.of(NameSettigsGUI.values());
     private final List<IdGUI> linksID = new ArrayList<>();
 
+    private int chooseSkin = 0;
+    private JImageRateEngine skinSpaceShip = new JImageRateEngine(SkinSpaceShip.values()[this.chooseSkin].getPath(), 15);
+    private Difficult difficultState = Difficult.MEDIUM;
     private boolean state = false;
 
     public SettingsEngine(){
-        Collections.addAll(this.namesButtons, NameSettigsGUI.values());
         this.linksID.add(IdGUI.ID_BACK);
     }
 
@@ -59,4 +63,27 @@ public class SettingsEngine implements GUIEngine {
     public List<NameSettigsGUI> getListName(){
         return this.namesButtons;
     }
+
+    public JImageRateEngine getSkinSpaceShip() {
+        return skinSpaceShip;
+    }
+
+    public Difficult getDifficultState() {
+        return difficultState;
+    }
+
+    public void changeSkinDx(){
+        this.chooseSkin = this.chooseSkin + 1 < SkinSpaceShip.values().length ? this.chooseSkin + 1 : 0;
+        this.skinSpaceShip.setPathImg(SkinSpaceShip.values()[this.chooseSkin].getPath());
+    }
+
+    public void changeSkinSx(){
+        this.chooseSkin = this.chooseSkin - 1 > -1 ? this.chooseSkin - 1 : SkinSpaceShip.values().length - 1;
+        this.skinSpaceShip.setPathImg(SkinSpaceShip.values()[this.chooseSkin].getPath());
+    }
+
+    public Difficult getDifficult(){
+        return this.difficultState;
+    }
+
 }

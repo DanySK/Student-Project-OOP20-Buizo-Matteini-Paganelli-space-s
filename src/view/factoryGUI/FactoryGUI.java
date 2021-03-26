@@ -1,13 +1,11 @@
 package view.factoryGUI;
 
 import view.factoryGUI.factoryHelpGUI.factoryMethod.HelpGUIStandard;
-import view.factoryGUI.factoryHelpGUI.interfaceHelp.FactoryHelpGUI;
-import view.factoryGUI.factoryHelpGUI.interfaceHelp.HelpGUI;
-import view.factoryGUI.factoryMenuGUI.factoryMethod.MenuGUICompact;
+import view.factoryGUI.factoryHelpGUI.FactoryHelpGUI;
+import view.factoryGUI.factoryHelpGUI.HelpGUI;
 import view.factoryGUI.factoryMenuGUI.factoryMethod.MenuGUIStandard;
 import view.factoryGUI.factoryMenuGUI.intefaceMenu.FactoryMenuGUI;
 import view.factoryGUI.factoryMenuGUI.intefaceMenu.MenuGUI;
-import view.factoryGUI.factoryScoreboardGUI.factoryMethod.ScoreboardGUIReverse;
 import view.factoryGUI.factoryScoreboardGUI.factoryMethod.ScoreboardGUIStandard;
 import view.factoryGUI.factoryScoreboardGUI.interfaceScoreboard.FactoryScoreboardGUI;
 import view.factoryGUI.factoryScoreboardGUI.interfaceScoreboard.ScoreboardGUI;

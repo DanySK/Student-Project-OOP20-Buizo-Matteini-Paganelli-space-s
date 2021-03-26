@@ -1,4 +1,4 @@
-package utilities;
+package model.factoryGUI.settingsGUI;
 
 public enum SkinSpaceShip {
     STANDARD("spaceship/spaceShip.png"),

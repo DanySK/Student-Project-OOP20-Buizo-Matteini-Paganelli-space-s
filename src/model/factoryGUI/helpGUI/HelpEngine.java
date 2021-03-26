@@ -1,8 +1,10 @@
 package model.factoryGUI.helpGUI;
 
+import model.MyJImage.JImageRateEngine;
 import model.MyJImage.MyJImageEngine;
 import model.factoryGUI.GUIEngine;
 import utilities.IdGUI;
+import view.utilities.JImageRate;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -13,7 +15,7 @@ public class HelpEngine implements GUIEngine {
 
     private final List<HelpPanelsName> listHelpPanelsName = new ArrayList<>();
     private final List<HelpButtonsName> listButtonsName = new ArrayList<>();
-    private final Map<String, List<MyJImageEngine>> listHelpImage = new HashMap<>();
+    private final Map<String, List<JImageRateEngine>> listHelpImage = new HashMap<>();
 
     private final List<IdGUI> linksID = new ArrayList<>();
 
@@ -71,7 +73,7 @@ public class HelpEngine implements GUIEngine {
         return this.listButtonsName.stream().map(p -> p.getName()).collect(Collectors.toList());
     }
 
-    public List<MyJImageEngine> getPathImagePanel(final String panelName){
+    public List<JImageRateEngine> getPathImagePanel(final String panelName){
         return this.listHelpImage.get(panelName);
     }
 

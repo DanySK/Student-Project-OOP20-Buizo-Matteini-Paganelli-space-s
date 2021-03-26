@@ -1,24 +1,23 @@
-package controller;
+package controller.GUI;
 
-import controller.CommandGUI.CommandEngine;
-import controller.CommandGUI.OFFCommandEngine;
-import controller.CommandGUI.ONCommandEngine;
+import controller.GUI.Command.CommandEngine;
+import controller.GUI.Command.OFFCommandGUI;
+import controller.GUI.Command.ONCommandGUI;
 import model.factoryGUI.GUIEngine;
 import utilities.IdGUI;
-import view.factoryGUI.GUI;
 import view.utilities.ButtonID;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ControllerGUI {
+public class GUI {
     private List<IdGUI> crologia = new ArrayList<>();
     private List<GUIEngine> listEngine;
-    private List<GUI> listGUI;
-    private CommandEngine onCommandEngine = new ONCommandEngine();
-    private CommandEngine offCommandEngine = new OFFCommandEngine();
+    private List<view.factoryGUI.GUI> listGUI;
+    private CommandEngine onCommandEngine = new ONCommandGUI();
+    private CommandEngine offCommandEngine = new OFFCommandGUI();
 
-    public ControllerGUI(final List<GUI> listGUI, List<GUIEngine> listEngine){
+    public GUI(final List<view.factoryGUI.GUI> listGUI, List<GUIEngine> listEngine){
         this.listEngine = listEngine;
         this.listGUI = listGUI;
         this.crologia.add(IdGUI.ID_MENU);
@@ -27,7 +26,7 @@ public class ControllerGUI {
 
     private void linksAll(){
 
-        for (GUI gui : this.listGUI) {
+        for (view.factoryGUI.GUI gui : this.listGUI) {
             for (ButtonID btn : gui.getLinksButtons()) {
                 btn.addActionListener(e -> {
                     System.out.println("Premuto in: " + btn.getCurrentGUIID() + " Vado in: " + btn.getCommandIdGUI());
@@ -77,8 +76,8 @@ public class ControllerGUI {
         return null;
     }
 
-    private GUI getGUI(IdGUI id){
-        for (GUI gui : this.listGUI) {
+    private view.factoryGUI.GUI getGUI(IdGUI id){
+        for (view.factoryGUI.GUI gui : this.listGUI) {
             if(gui.getId() == id){
                 return gui;
             }
@@ -87,7 +86,7 @@ public class ControllerGUI {
     }
 
     private void quitAll(){
-        for (GUI gui : this.listGUI) {
+        for (view.factoryGUI.GUI gui : this.listGUI) {
             gui.dispose();
         }
     }
