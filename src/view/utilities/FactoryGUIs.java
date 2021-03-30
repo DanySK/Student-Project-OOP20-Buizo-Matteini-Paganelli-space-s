@@ -1,5 +1,6 @@
 package view.utilities;
 
+import utilities.DesignGUI;
 import utilities.DesignSpace;
 
 import javax.swing.*;
@@ -69,7 +70,6 @@ public class FactoryGUIs {
         imageIcon.setImage(resizeImage);
     }
 
-
     public static void setTransparentDesignJButton(JButton button){
         button.setOpaque(false);
         button.setContentAreaFilled(false);
@@ -85,8 +85,8 @@ public class FactoryGUIs {
         button.setIcon(imag.getIcon());
     }
 
-    public static void rateImage(final int rate, ImageIcon imageIcon){
-        int widthRateImage = DesignSpace.GUI_WIDTH * rate / 100;
+    public static void rateImage(ImageIcon imageIcon, final int rate){
+        int widthRateImage = DesignGUI.GUI_WIDTH * rate / 100;
         int heightRateImage = imageIcon.getIconHeight() * widthRateImage / imageIcon.getIconWidth();
         resizeImage(widthRateImage, heightRateImage, imageIcon);
     }

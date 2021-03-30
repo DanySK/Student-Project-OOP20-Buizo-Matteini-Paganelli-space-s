@@ -8,10 +8,10 @@ import java.net.URL;
 
 public class DesignSpace {
     
-    public static final int GUI_WIDTH = 800;
-    public static final int GUI_HEIGHT = 600;
+
     
-    public static final Point2D CENTER_ENVIRONMENT = new Point2D(GUI_WIDTH / 2, GUI_HEIGHT / 2);
+    public static final Point2D CENTER_ENVIRONMENT = new Point2D(DesignGUI.GUI_WIDTH / 2, DesignGUI.GUI_HEIGHT / 2);
+
 
     public static int SIZE_FONT_MAX = 60;
     public static int SIZE_FONT_BIG = 30;
