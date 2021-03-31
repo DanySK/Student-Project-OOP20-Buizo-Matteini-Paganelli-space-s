@@ -1,8 +1,8 @@
 package controller.GUI;
 
 import controller.GUI.Command.CmdEngine;
-import controller.GUI.Command.CmdOFFGUI;
-import controller.GUI.Command.CmdONGUI;
+import controller.GUI.Command.CmdOFF;
+import controller.GUI.Command.CmdON;
 import model.GUI.EngineGUI;
 import utilities.IdGUI;
 import view.utilities.ButtonID;
@@ -14,8 +14,8 @@ public class CtrlGUI {
     private List<IdGUI> crologia = new ArrayList<>();
     private List<EngineGUI> listEngine;
     private List<view.GUI.GUI> listGUI;
-    private CmdEngine onCmdEngine = new CmdONGUI();
-    private CmdEngine offCmdEngine = new CmdOFFGUI();
+    private CmdEngine onCmdEngine = new CmdON();
+    private CmdEngine offCmdEngine = new CmdOFF();
 
     public CtrlGUI(final List<view.GUI.GUI> listGUI, List<EngineGUI> listEngine){
         this.listEngine = listEngine;

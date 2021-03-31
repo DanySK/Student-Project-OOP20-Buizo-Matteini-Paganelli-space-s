@@ -5,7 +5,7 @@ import model.MyJImage.JImageRateEngine;
 import java.util.ArrayList;
 import java.util.List;
 
-public enum HelpPanelsName {
+public enum HelpNamePanels {
     PANEL_MOVE("Movement", List.of(new JImageRateEngine("iconCommand/wasd.png", 20),
             new JImageRateEngine( "iconCommand/row.png", 20))),
     PANEL_SHOT("Shot", List.of(new JImageRateEngine("iconCommand/spacebar.png", 20),
@@ -17,7 +17,7 @@ public enum HelpPanelsName {
 
     private List<JImageRateEngine> pathFiles = new ArrayList<>();
 
-    private HelpPanelsName(final String name, final List<JImageRateEngine> pathFiles){
+    private HelpNamePanels(final String name, final List<JImageRateEngine> pathFiles){
         this.name = name;
         this.pathFiles.addAll(pathFiles);
     }

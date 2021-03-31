@@ -15,7 +15,6 @@ public class JImageRate extends JPanel {
         this.setOpaque(false);
         this.lbImage.setIcon(this.icon);
         this.add(this.lbImage);
-        //this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
     }
 
     public JImageRate(final String pathImg){

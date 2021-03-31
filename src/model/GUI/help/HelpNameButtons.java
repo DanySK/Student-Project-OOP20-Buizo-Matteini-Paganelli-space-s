@@ -1,11 +1,11 @@
 package model.GUI.help;
 
-public enum HelpButtonsName {
+public enum HelpNameButtons {
     BUTTON_BACK("Back");
 
     private String name;
 
-    private HelpButtonsName(final String name){
+    private HelpNameButtons(final String name){
         this.name = name;
     }
 

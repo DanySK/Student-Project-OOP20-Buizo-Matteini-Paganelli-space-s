@@ -11,8 +11,8 @@ public class EngineHelp implements EngineGUI {
     private final String TITLE_GUI = "HELP";
     private final IdGUI Id = IdGUI.ID_HELP;
 
-    private final List<HelpPanelsName> listHelpPanelsName = new ArrayList<>();
-    private final List<HelpButtonsName> listButtonsName = new ArrayList<>();
+    private final List<HelpNamePanels> listHelpPanelsName = new ArrayList<>();
+    private final List<HelpNameButtons> listButtonsName = new ArrayList<>();
     private final Map<String, List<JImageRateEngine>> listHelpImage = new HashMap<>();
 
     private final List<IdGUI> linksID = new ArrayList<>();
@@ -21,8 +21,8 @@ public class EngineHelp implements EngineGUI {
 
     public EngineHelp(){
         this.linksID.add(IdGUI.ID_BACK);
-        Collections.addAll(this.listHelpPanelsName, HelpPanelsName.values());
-        Collections.addAll(this.listButtonsName, HelpButtonsName.values());
+        Collections.addAll(this.listHelpPanelsName, HelpNamePanels.values());
+        Collections.addAll(this.listButtonsName, HelpNameButtons.values());
 
         this.listHelpPanelsName.forEach(e -> this.listHelpImage.put(e.getName(), e.getPathFiles()));
     }

@@ -2,16 +2,16 @@ package controller.GUI.Command;
 
 import model.GUI.EngineGUI;
 
-public class CmdOFFGUI implements CmdEngine {
+public class CmdON implements CmdEngine {
     private EngineGUI engine;
 
-    public CmdOFFGUI(){
+    public CmdON(){
     }
 
     @Override
     public CmdGUI execute(final EngineGUI engine) {
         this.engine = engine;
-        this.engine.setState(false);
-        return gui -> gui.setVisible(CmdOFFGUI.this.engine.getState());
+        this.engine.setState(true);
+        return gui -> gui.setVisible(CmdON.this.engine.getState());
     }
 }
