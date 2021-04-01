@@ -21,7 +21,7 @@ public class CtrlSettings {
         this.GUISettings.setNameButtons(this.settingsEngine.getListName());
         this.GUISettings.setBtnBackID(this.settingsEngine.getLink());
         this.GUISettings.setSkinSpaceShip(this.settingsEngine.getSkinSpaceShip());
-        for (JButton button : this.GUISettings.getButtons()) {
+        for (JButton button : this.GUISettings.getLinks()) {
             button.addActionListener(e -> {
                 if(button.getText() == "<"){
                     this.settingsEngine.changeSkinSx();

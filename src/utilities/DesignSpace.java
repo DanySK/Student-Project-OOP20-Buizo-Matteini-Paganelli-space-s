@@ -10,7 +10,7 @@ public class DesignSpace {
     
 
     
-    public static final Point2D CENTER_ENVIRONMENT = new Point2D(DesignGUI.GUI_WIDTH / 2, DesignGUI.GUI_HEIGHT / 2);
+    public static final Point2D CENTER_ENVIRONMENT = new Point2D(DesignJFrame.GUI_WIDTH / 2, DesignJFrame.GUI_HEIGHT / 2);
 
 
     public static int SIZE_FONT_MAX = 60;

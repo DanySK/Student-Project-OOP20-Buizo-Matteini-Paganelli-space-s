@@ -1,7 +1,6 @@
 package view.utilities;
 
-import utilities.DesignGUI;
-import utilities.DesignSpace;
+import utilities.DesignJFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -86,7 +85,7 @@ public class FactoryGUIs {
     }
 
     public static void rateImage(ImageIcon imageIcon, final int rate){
-        int widthRateImage = DesignGUI.GUI_WIDTH * rate / 100;
+        int widthRateImage = DesignJFrame.GUI_WIDTH * rate / 100;
         int heightRateImage = imageIcon.getIconHeight() * widthRateImage / imageIcon.getIconWidth();
         resizeImage(widthRateImage, heightRateImage, imageIcon);
     }

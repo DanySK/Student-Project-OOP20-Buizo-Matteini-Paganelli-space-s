@@ -27,11 +27,11 @@ public class GUIScoreboardConcrete extends AbstractGUI implements GUIScoreboard 
     }
 
     @Override
-    public java.util.List<? extends JButton> getButtons() {
+    public java.util.List<? extends JButton> getLinks() {
         return java.util.List.of(this.btnSearch, this.btnBack);
     }
     @Override
-    public java.util.List<ButtonID> getLinksButtons() {
+    public java.util.List<ButtonID> getButtonLinks() {
         return java.util.List.of(this.btnBack);
     }
 
@@ -43,15 +43,14 @@ public class GUIScoreboardConcrete extends AbstractGUI implements GUIScoreboard 
     }
     @Override
     public void setBtnBackID(IdGUI intoID) {
-        this.btnBack.setCurrentGUIID(this.getId());
-        this.btnBack.setCommandIdGUI(intoID);
+        this.btnBack.setIdGUICurrent(this.getId());
+        this.btnBack.setIdGUINext(intoID);
     }
     @Override
     public void setTitleGUI(final String title){
         this.lbTitle.setText(title);
     }
 
-    @Override
     public void setAllFontNotLbTitle(final Font font){
         this.txtSearchName.setFont(font);
         this.btnSearch.setFont(font);
@@ -59,7 +58,6 @@ public class GUIScoreboardConcrete extends AbstractGUI implements GUIScoreboard 
         this.btnBack.setFont(font);
     }
 
-    @Override
     public void setAllForeground(Color color) {
         this.lbTitle.setForeground(color);
         this.btnSearch.setForeground(color);
@@ -67,13 +65,12 @@ public class GUIScoreboardConcrete extends AbstractGUI implements GUIScoreboard 
         this.btnBack.setForeground(color);
     }
 
-    @Override
     public void setFontLbTitle(final Font font){
         this.lbTitle.setFont(font);
     }
 
     public JButton getButton(int ind) {
-        return getButtons().get(ind);
+        return getLinks().get(ind);
     }
     public JLabel getLbTitle() {
         return lbTitle;

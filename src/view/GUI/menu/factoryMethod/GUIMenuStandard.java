@@ -1,8 +1,10 @@
 package view.GUI.menu.factoryMethod;
 
+import utilities.DesignJComponent;
 import utilities.DesignSpace;
 import view.GUI.menu.FactoryGUIMenu;
 import view.GUI.menu.GUIMenu;
+import view.GUI.menu.GraphicsGUIMenu;
 import view.GUI.menu.concrete.GUIMenuConcrete;
 import view.utilities.FactoryGUIs;
 
@@ -11,38 +13,38 @@ import java.awt.*;
 import java.util.List;
 
 public class GUIMenuStandard implements FactoryGUIMenu {
-    private final view.GUI.menu.concrete.GUIMenuConcrete GUIMenuConcrete = new GUIMenuConcrete();
+
 
     @Override
     public GUIMenu createGUI() {
-        this.GUIMenuConcrete.setFontLbTitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
-        this.GUIMenuConcrete.setAllFontNotLbTitle(DesignSpace.FONT_MEDIUM_STANDARD);
-        this.GUIMenuConcrete.getTxtName().setColumns(SIZE_COLUMNS_TEXT);
-        this.GUIMenuConcrete.setAllForeground(DesignSpace.color3);
+        final GUIMenuConcrete menuConcrete = new GUIMenuConcrete();
 
-        this.createGraphics();
-        this.GUIMenuConcrete.validate();
-        return GUIMenuConcrete;
+        menuConcrete.setFontGUI(DesignSpace.FONT_MEDIUM_STANDARD);
+        menuConcrete.setForegroundGUI(DesignSpace.color3);
+        menuConcrete.setFontGUITitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
+        menuConcrete.setColumnsNamePlayer(DesignJComponent.SIZE_COLUMNS_TEXT);
+        this.createGraphics(menuConcrete);
+        return menuConcrete;
     }
 
-    private void createGraphics() {
-        int nBtnUsed = N_BUTTONS;
-        this.GUIMenuConcrete.setLayoutGUI(new GridBagLayout());
-        GridBagConstraints lim = FactoryGUIs.createGBConstraintsWithSpaceTitle(80);
+    private void createGraphics(final GUIMenuConcrete menu) {
+        menu.setLayoutGUI(new GridBagLayout());
+        int nBtnUsed = 0;
 
-        this.GUIMenuConcrete.add(this.GUIMenuConcrete.getLbTitle(), lim);
+        GridBagConstraints lim = FactoryGUIs.createGBConstraintsWithSpaceTitle(DesignJComponent.SIZE_SPACE_TITLE);
+        menu.add(menu.getLbTitle(), lim);
+
         FactoryGUIs.resetGridBagContraints(lim);
         lim.gridy++;
-        FactoryGUIs.setTransparentDesignJButton(this.GUIMenuConcrete.getButtons().get(IND_BUTTON_START));
 
-        this.GUIMenuConcrete.add(FactoryGUIs.getUnionComponents(List.of(GUIMenuConcrete.getTxtName(),
-                GUIMenuConcrete.getButtons().get(IND_BUTTON_START))), lim);
-        nBtnUsed--;
+        menu.getLinks().forEach(FactoryGUIs::setTransparentDesignJButton);
 
-        for (int i = (N_BUTTONS - nBtnUsed); i < nBtnUsed; i++) {
+        menu.add(FactoryGUIs.getUnionComponents(List.of(menu.getTxfNamePlayer(),
+                menu.getLinks().get(nBtnUsed++))), lim);
+
+        while(nBtnUsed < GUIMenuConcrete.N_BUTTONS){
             lim.gridy++;
-            FactoryGUIs.setTransparentDesignJButton(this.GUIMenuConcrete.getButton(i));
-            this.GUIMenuConcrete.add(this.GUIMenuConcrete.getButton(i), lim);
+            menu.add(menu.getButton(nBtnUsed++), lim);
         }
     }
 

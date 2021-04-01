@@ -8,79 +8,90 @@ import view.utilities.ButtonID;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.*;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class GUIMenuConcrete extends AbstractGUI implements GUIMenu {
-    private final JLabel lbTitle = new JLabel();
-    private final JTextField txtName = new JTextField();
-    private final List<ButtonID> buttons = Arrays.asList(new ButtonID(),
-            new ButtonID(), new ButtonID(), new ButtonID(), new ButtonID(),new ButtonID());
+    public static final int N_BUTTONS = 5;
+    private final JLabel lbTitle;
+    private final JTextField txfNamePlayer;
+    private final List<ButtonID> links;
 
     public GUIMenuConcrete(){
         super();
+        this.lbTitle = new JLabel();
+        this.txfNamePlayer = new JTextField();
+        this.links = Stream.generate(ButtonID::new)
+                .limit(N_BUTTONS).collect(Collectors.toList());
     }
 
     @Override
-    public List<? extends JButton> getButtons(){
-        return this.buttons;
+    public List<? extends JButton> getLinks(){
+        return this.links;
     }
+
     @Override
-    public List<ButtonID> getLinksButtons() {
-        return this.buttons;
+    public List<ButtonID> getButtonLinks() {
+        return this.links;
+    }
+
+
+    @Override
+    public void setForegroundGUI(final Color color) {
+        this.lbTitle.setForeground(color);
+        this.links.forEach(button -> button.setForeground(color));
+    }
+
+    @Override
+    public void setFontGUITitle(final Font font){
+        this.lbTitle.setFont(font);
+    }
+
+    @Override
+    public void setFontGUI(final Font font){
+        this.txfNamePlayer.setFont(font);
+        this.links.forEach(button -> button.setFont(font));
     }
 
     @Override
     public void setTitleGUI(final String title){
         this.lbTitle.setText(title);
     }
-    @Override
-    public void setNameButtons(List<NameMenuGUI> listName) {
-        for(int i = 0; i < listName.size(); i++){
-            this.buttons.get(i).setText(listName.get(i).getName());
-        }
-    }
-    @Override
-    public void setIDButtons(List<IdGUI> linksID) {
-        for(int i = 0; i < linksID.size(); i++){
-            this.buttons.get(i).setCurrentGUIID(this.getId());
-            this.buttons.get(i).setCommandIdGUI(linksID.get(i));
-        }
-    }
 
     @Override
-    public void setAllFontNotLbTitle(final Font font){
-        this.txtName.setFont(font);
-        this.buttons.forEach(button -> button.setFont(font));
+    public void setColumnsNamePlayer(final int sizeColumn) {
+        this.txfNamePlayer.setColumns(sizeColumn);
     }
+
 
     @Override
-    public void setAllForeground(Color color) {
-        this.lbTitle.setForeground(color);
-        this.buttons.forEach(button -> button.setForeground(color));
-    }
-
-    @Override
-    public void setFontLbTitle(final Font font){
-        this.lbTitle.setFont(font);
-    }
-
     public JLabel getLbTitle(){
         return this.lbTitle;
     }
 
-    public JTextField getTxtName(){
-        return this.txtName;
+    @Override
+    public JTextField getTxfNamePlayer(){
+        return this.txfNamePlayer;
     }
 
-    public void addButton(final int nBtn) {
-        for (int i = 0; i < nBtn; i++) {
-            this.buttons.add(new ButtonID());
+    @Override
+    public ButtonID getButton(final int ind){
+        return this.links.get(ind);
+    }
+
+    @Override
+    public void setNameButtons(final List<NameMenuGUI> listName) {
+        for(int i = 0; i < listName.size(); i++){
+            this.links.get(i).setText(listName.get(i).getName());
         }
     }
 
-    public ButtonID getButton(final int id){
-        return this.buttons.get(id);
+    @Override
+    public void setIDButtons(final List<IdGUI> linksID) {
+        for(int i = 0; i < N_BUTTONS; i++){
+            this.links.get(i).setIdGUICurrent(this.getId());
+            this.links.get(i).setIdGUINext(linksID.get(i));
+        }
     }
-
 }

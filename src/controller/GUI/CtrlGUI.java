@@ -27,11 +27,11 @@ public class CtrlGUI {
     private void linksAll(){
 
         for (view.GUI.GUI gui : this.listGUI) {
-            for (ButtonID btn : gui.getLinksButtons()) {
+            for (ButtonID btn : gui.getButtonLinks()) {
                 btn.addActionListener(e -> {
-                    System.out.println("Premuto in: " + btn.getCurrentGUIID() + " Vado in: " + btn.getCommandIdGUI());
+                    System.out.println("Premuto in: " + btn.getIdGUICurrent() + " Vado in: " + btn.getIdGUINext());
 
-                    switch (btn.getCommandIdGUI()) {
+                    switch (btn.getIdGUINext()) {
                         case ID_QUIT: this.quitAll(); break;
                         case ID_BACK:
                             this.offCmdEngine.execute(this.getEngine(this.lastCrono())).execute(this.getGUI(this.lastCrono()));
@@ -43,7 +43,7 @@ public class CtrlGUI {
                             this.onCmdEngine.execute(this.getEngine(this.penultimateCrono())).execute(this.getGUI(this.penultimateCrono()));
                             this.crologia.remove(this.lastCrono()); break;
                         default:
-                            this.crologia.add(btn.getCommandIdGUI());
+                            this.crologia.add(btn.getIdGUINext());
                             this.onCmdEngine.execute(this.getEngine(this.lastCrono())).execute(this.getGUI(this.lastCrono()));
                             try {
                                 Thread.sleep(100);

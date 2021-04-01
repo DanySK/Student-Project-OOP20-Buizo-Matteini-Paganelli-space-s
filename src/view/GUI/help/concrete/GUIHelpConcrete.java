@@ -25,19 +25,18 @@ public class GUIHelpConcrete extends AbstractGUI implements GUIHelp {
         super();
     }
 
-    @Override
+
     public void setAllForeground(final Color color){
         this.lbTitle.setForeground(color);
         this.helpPanels.forEach(panel -> panel.setForegroundLbTitle(color));
         this.btnBack.setForeground(color);
     }
 
-    @Override
+
     public void setFontLbTitle(final Font font) {
         this.lbTitle.setFont(font);
     }
 
-    @Override
     public void setAllFontNotLbTitle(final Font font) {
         this.helpPanels.forEach(panel -> panel.setFontLbTitle(font));
         this.btnBack.setFont(font);
@@ -50,7 +49,7 @@ public class GUIHelpConcrete extends AbstractGUI implements GUIHelp {
 
     @Override
     public void setBtnBackID(IdGUI intoID) {
-        this.btnBack.setCommandIdGUI(intoID);
+        this.btnBack.setIdGUINext(intoID);
     }
 
     @Override
@@ -72,12 +71,12 @@ public class GUIHelpConcrete extends AbstractGUI implements GUIHelp {
     }
 
     @Override
-    public List<? extends JButton> getButtons() {
+    public List<? extends JButton> getLinks() {
         return List.of(this.btnBack);
     }
 
     @Override
-    public List<ButtonID> getLinksButtons() {
+    public List<ButtonID> getButtonLinks() {
         return List.of(this.btnBack);
     }
 

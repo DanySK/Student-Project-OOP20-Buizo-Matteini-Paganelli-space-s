@@ -4,7 +4,7 @@ import model.environment.Point2D;
 
 import java.awt.*;
 
-public class DesignGUI {
+public class DesignJFrame {
     private static final float PROPORTION = 1.2F;
 
     private static final Dimension SCREEN = Toolkit.getDefaultToolkit().getScreenSize();

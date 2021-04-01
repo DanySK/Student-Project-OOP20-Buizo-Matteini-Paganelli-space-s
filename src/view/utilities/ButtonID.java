@@ -3,37 +3,36 @@ package view.utilities;
 import utilities.IdGUI;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class ButtonID extends JButton {
-    private IdGUI currentIdGUI;
-    private IdGUI commandIdGUI;
+    private IdGUI idGUICurrent;
+    private IdGUI idGUINext;
 
     public ButtonID(){
         super();
     }
 
-    public IdGUI getCurrentGUIID() {
-        return currentIdGUI;
+    public IdGUI getIdGUICurrent() {
+        return idGUICurrent;
     }
 
-    public void setCurrentGUIID(IdGUI currentGUIID) {
-        this.currentIdGUI = currentGUIID;
+    public void setIdGUICurrent(final IdGUI currentGUIID) {
+        this.idGUICurrent = currentGUIID;
     }
 
-    public IdGUI getCommandIdGUI() {
-        return commandIdGUI;
+    public IdGUI getIdGUINext() {
+        return idGUINext;
     }
 
-    public void setCommandIdGUI(IdGUI commandIdGUI) {
-        this.commandIdGUI = commandIdGUI;
+    public void setIdGUINext(final IdGUI idGUINext) {
+        this.idGUINext = idGUINext;
     }
 
     @Override
     public String toString() {
         return "ButtonID{" +
-                "currentGUIID=" + currentIdGUI +
-                ", intoGUIID=" + commandIdGUI +
+                "currentGUIID=" + idGUICurrent +
+                ", intoGUIID=" + idGUINext +
                 '}';
     }
 

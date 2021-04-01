@@ -3,6 +3,7 @@ package view.GUI;
 import view.GUI.help.factoryMethod.GUIHelpStandard;
 import view.GUI.help.FactoryGUIHelp;
 import view.GUI.help.GUIHelp;
+import view.GUI.menu.factoryMethod.GUIMenuCompact;
 import view.GUI.menu.factoryMethod.GUIMenuStandard;
 import view.GUI.menu.FactoryGUIMenu;
 import view.GUI.menu.GUIMenu;
@@ -13,7 +14,7 @@ import view.GUI.settings.factoryMethod.GUISettingsStandard;
 import view.GUI.settings.FactoryGUISettings;
 import view.GUI.settings.GUISettings;
 
-public class FactoryGUI {
+public class StaticFactoryGUI {
 
     public static GUIMenu createMenuGUI(){
         FactoryGUIMenu menuGUI = new GUIMenuStandard();

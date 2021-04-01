@@ -26,14 +26,12 @@ public class ConcreteGUISettings extends AbstractGUI implements GUISettings {
         super();
     }
 
-    @Override
     public void setAllFontNotLbTitle(Font font) {
         this.panelSound.setFontSliderSound(font);
         this.panelDifficult.setFontGroupRadioButton(font);
         this.panelSkin.setFontButtons(font);
     }
 
-    @Override
     public void setAllForeground(Color color) {
         this.lbTitle.setForeground(color);
         this.panelSkin.setAllForeground(color);
@@ -42,18 +40,17 @@ public class ConcreteGUISettings extends AbstractGUI implements GUISettings {
         this.btnBack.setForeground(color);
     }
 
-    @Override
     public void setFontLbTitle(Font font) {
         this.lbTitle.setFont(font);
     }
 
-    @Override
-    public List<? extends JButton> getButtons() {
+
+    public List<? extends JButton> getLinks() {
         return List.of(this.panelSkin.getBtSX(), this.panelSkin.getBtDX());
     }
 
     @Override
-    public List<ButtonID> getLinksButtons() {
+    public List<ButtonID> getButtonLinks() {
         return List.of(this.btnBack);
     }
 
@@ -72,8 +69,8 @@ public class ConcreteGUISettings extends AbstractGUI implements GUISettings {
 
     @Override
     public void setBtnBackID(IdGUI intoID) {
-        this.btnBack.setCurrentGUIID(this.getId());
-        this.btnBack.setCommandIdGUI(intoID);
+        this.btnBack.setIdGUICurrent(this.getId());
+        this.btnBack.setIdGUINext(intoID);
     }
 
     @Override

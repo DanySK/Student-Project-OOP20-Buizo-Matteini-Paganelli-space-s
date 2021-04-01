@@ -5,7 +5,7 @@ import model.GUI.help.EngineHelp;
 import model.GUI.menu.EngineMenu;
 import model.GUI.scoreboard.EngineScoreboard;
 import model.GUI.settings.EngineSettings;
-import view.GUI.FactoryGUI;
+import view.GUI.StaticFactoryGUI;
 import view.GUI.help.GUIHelp;
 import view.GUI.menu.GUIMenu;
 import view.GUI.scoreboard.GUIScoreboard;
@@ -15,19 +15,19 @@ import java.util.List;
 
 public class SpaceMala {
 
-    private GUIMenu GUIMenu = FactoryGUI.createMenuGUI();
+    private GUIMenu GUIMenu = StaticFactoryGUI.createMenuGUI();
     private EngineMenu menuEngine = new EngineMenu();
     private CtrlMenu ctrlMenu = new CtrlMenu(GUIMenu, menuEngine);
 
-    private GUIScoreboard scoreboardGUI = FactoryGUI.createScoreboardGUI();
+    private GUIScoreboard scoreboardGUI = StaticFactoryGUI.createScoreboardGUI();
     private EngineScoreboard scoreboardEngine = new EngineScoreboard();
     private CtrlScoreboard ctrlScoreboard = new CtrlScoreboard(scoreboardGUI, scoreboardEngine);
 
-    private GUISettings GUISettings = FactoryGUI.createSettingsGUI();
+    private GUISettings GUISettings = StaticFactoryGUI.createSettingsGUI();
     private EngineSettings settingsEngine = new EngineSettings();
     private CtrlSettings ctrlSettings = new CtrlSettings(GUISettings, settingsEngine);
 
-    private GUIHelp GUIHelp = FactoryGUI.creteHelpGUI();
+    private GUIHelp GUIHelp = StaticFactoryGUI.creteHelpGUI();
     private EngineHelp engineHelp = new EngineHelp();
     private CtrlHelp ctrlHelp = new CtrlHelp(GUIHelp, engineHelp);
 
