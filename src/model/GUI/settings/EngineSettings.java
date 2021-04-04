@@ -13,7 +13,8 @@ public class EngineSettings implements EngineGUI {
     private final List<IdGUI> linksID = List.of(IdGUI.ID_BACK);
 
     private int chooseSkin = 0;
-    private JImageRateEngine skinSpaceShip = new JImageRateEngine(SkinSpaceShip.values()[this.chooseSkin].getPath(), 12);
+    private JImageRateEngine skinSpaceShip = new JImageRateEngine(SkinSpaceShip.values()[this.chooseSkin].getPath(),
+            15);
     private Difficult difficultState = Difficult.MEDIUM;
     private boolean state = false;
 

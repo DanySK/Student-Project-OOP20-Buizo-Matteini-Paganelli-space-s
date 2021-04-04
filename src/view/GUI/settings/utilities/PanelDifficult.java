@@ -16,6 +16,7 @@ public class PanelDifficult extends JPanel{
 
     public PanelDifficult(){
         super(new BorderLayout());
+        this.setFocusable(false);
         this.setOpaque(false);
         this.add(FactoryGUIs.encapsulatesInPanel_Flow(this.lbTitle), BorderLayout.NORTH);
         this.add(FactoryGUIs.getUnionComponents(List.of(this.rbtEasy,this.rbtMedium,this.rbtHard)), BorderLayout.CENTER);

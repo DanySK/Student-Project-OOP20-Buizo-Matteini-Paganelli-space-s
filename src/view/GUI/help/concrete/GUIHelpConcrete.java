@@ -71,11 +71,6 @@ public class GUIHelpConcrete extends AbstractGUI implements GUIHelp {
     }
 
     @Override
-    public List<? extends JButton> getLinks() {
-        return List.of(this.btnBack);
-    }
-
-    @Override
     public List<ButtonID> getButtonLinks() {
         return List.of(this.btnBack);
     }

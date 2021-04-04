@@ -15,11 +15,38 @@ public class FactoryGUIs {
         return encapsulate;
     }
 
-    public static JPanel encapsulatesInPanel_Box_Vertical_Center(Component component){
+    public static JPanel encapsulateInPanel_Box_Vertical_Center(Component component){
         JPanel encapsulate = new JPanel();
         encapsulate.setOpaque(false);
         encapsulate.setLayout(new BoxLayout(encapsulate, BoxLayout.X_AXIS));
         encapsulate.add(component);
+        return encapsulate;
+    }
+
+    public static JPanel encapsulatesVertical(List<Component> components, final int inset){
+        JPanel encapsulate = new JPanel(new GridBagLayout()) {{ setOpaque(false); }};
+        GridBagConstraints limit = createGBConstraintsBase();
+        limit.insets = new Insets(inset / 2,inset,inset / 2,inset);
+
+        for (Component component : components) {
+            encapsulate.add(component, limit);
+            limit.gridy++;
+        }
+
+        return encapsulate;
+    }
+
+    public static JPanel encapsulatesHorizontal(List<Component> components, final int inset){
+        JPanel encapsulate = new JPanel(new GridBagLayout()) {{ setOpaque(false); }};
+        GridBagConstraints limit = createGBConstraintsBase();
+        limit.insets = new Insets(inset / 2,inset,inset / 2,inset);
+
+        limit.gridy += 2;
+        for (Component component : components) {
+            encapsulate.add(component, limit);
+            limit.gridx++;
+        }
+
         return encapsulate;
     }
 
@@ -73,10 +100,6 @@ public class FactoryGUIs {
         button.setOpaque(false);
         button.setContentAreaFilled(false);
         button.setFocusable(false);
-    }
-
-    public static void setNotFocusable(Component component){
-        component.setFocusable(false);
     }
 
     public static void setIconInJButton(JButton button, final String pathIcon) {

@@ -11,6 +11,7 @@ import java.awt.*;
 import java.util.List;
 
 public class GUIMenuCompact implements FactoryGUIMenu {
+
     @Override
     public GUIMenu createGUI() {
         final GUIMenuConcrete menuConcrete = new GUIMenuConcrete();
@@ -33,15 +34,15 @@ public class GUIMenuCompact implements FactoryGUIMenu {
         FactoryGUIs.resetGridBagContraints(lim);
         lim.gridy++;
 
-        menu.getLinks().forEach(FactoryGUIs::setTransparentDesignJButton);
+        menu.getButtonLinks().forEach(FactoryGUIs::setTransparentDesignJButton);
 
         menu.add(FactoryGUIs.getUnionComponents(List.of(menu.getTxfNamePlayer(),
-                menu.getLinks().get(nBtnUsed++))), lim);
+                menu.getButtonLinks().get(nBtnUsed++))), lim);
 
         while(nBtnUsed < GUIMenuConcrete.N_BUTTONS){
             lim.gridy++;
-            menu.add(FactoryGUIs.getUnionComponents(List.of(menu.getLinks().get(nBtnUsed++),
-                    menu.getLinks().get(nBtnUsed++))), lim);
+            menu.add(FactoryGUIs.getUnionComponents(List.of(menu.getButtonLinks().get(nBtnUsed++),
+                    menu.getButtonLinks().get(nBtnUsed++))), lim);
         }
     }
 }

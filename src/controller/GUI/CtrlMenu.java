@@ -19,7 +19,6 @@ public class CtrlMenu {
         this.GUIMenu.setNameButtons(this.menuEngine.getListName());
         this.GUIMenu.setIDButtons(this.menuEngine.getLinks());
         this.GUIMenu.setVisible(this.menuEngine.getState());
-
     }
 
 }

@@ -36,10 +36,10 @@ public class PanelSkin extends JPanel {
     }
 
     private void createGraphics(){
-        this.add(FactoryGUIs.encapsulatesInPanel_Box_Vertical_Center(this.btSX), BorderLayout.WEST);
+        this.add(FactoryGUIs.encapsulateInPanel_Box_Vertical_Center(this.btSX), BorderLayout.WEST);
         this.add(FactoryGUIs.encapsulatesInPanel_Flow(this.lbTitle), BorderLayout.NORTH);
         this.add(this.pnImage, BorderLayout.CENTER);
-        this.add(FactoryGUIs.encapsulatesInPanel_Box_Vertical_Center(this.btDX), BorderLayout.EAST);
+        this.add(FactoryGUIs.encapsulateInPanel_Box_Vertical_Center(this.btDX), BorderLayout.EAST);
     }
 
     public void setLbTitle(final String title){

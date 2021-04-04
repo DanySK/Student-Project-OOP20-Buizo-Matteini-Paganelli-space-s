@@ -27,10 +27,6 @@ public class GUIScoreboardConcrete extends AbstractGUI implements GUIScoreboard 
     }
 
     @Override
-    public java.util.List<? extends JButton> getLinks() {
-        return java.util.List.of(this.btnSearch, this.btnBack);
-    }
-    @Override
     public java.util.List<ButtonID> getButtonLinks() {
         return java.util.List.of(this.btnBack);
     }
@@ -70,7 +66,7 @@ public class GUIScoreboardConcrete extends AbstractGUI implements GUIScoreboard 
     }
 
     public JButton getButton(int ind) {
-        return getLinks().get(ind);
+        return this.btnBack;
     }
     public JLabel getLbTitle() {
         return lbTitle;

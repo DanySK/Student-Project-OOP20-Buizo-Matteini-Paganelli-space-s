@@ -35,21 +35,11 @@ public class CtrlGUI {
                         case ID_QUIT: this.quitAll(); break;
                         case ID_BACK:
                             this.offCmdEngine.execute(this.getEngine(this.lastCrono())).execute(this.getGUI(this.lastCrono()));
-                            try {
-                                Thread.sleep(100);
-                            } catch (InterruptedException interruptedException) {
-                                interruptedException.printStackTrace();
-                            }
                             this.onCmdEngine.execute(this.getEngine(this.penultimateCrono())).execute(this.getGUI(this.penultimateCrono()));
                             this.crologia.remove(this.lastCrono()); break;
                         default:
                             this.crologia.add(btn.getIdGUINext());
                             this.onCmdEngine.execute(this.getEngine(this.lastCrono())).execute(this.getGUI(this.lastCrono()));
-                            try {
-                                Thread.sleep(100);
-                            } catch (InterruptedException interruptedException) {
-                                interruptedException.printStackTrace();
-                            }
                             this.offCmdEngine.execute(this.getEngine(this.penultimateCrono())).execute(this.getGUI(this.penultimateCrono())); break;
                     }
                     System.out.println("list" + this.crologia);

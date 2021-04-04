@@ -27,13 +27,33 @@ public class GUIMenuConcrete extends AbstractGUI implements GUIMenu {
     }
 
     @Override
-    public List<? extends JButton> getLinks(){
-        return this.links;
+    public JLabel getLbTitle(){
+        return this.lbTitle;
     }
 
     @Override
-    public List<ButtonID> getButtonLinks() {
-        return this.links;
+    public JTextField getTxfNamePlayer(){
+        return this.txfNamePlayer;
+    }
+
+    @Override
+    public ButtonID getButton(final int ind){
+        return this.links.get(ind);
+    }
+
+    @Override
+    public void setNameButtons(final List<NameMenuGUI> listName) {
+        for(int i = 0; i < listName.size(); i++){
+            this.links.get(i).setText(listName.get(i).getName());
+        }
+    }
+
+    @Override
+    public void setIDButtons(final List<IdGUI> linksID) {
+        for(int i = 0; i < N_BUTTONS; i++){
+            this.links.get(i).setIdGUICurrent(this.getId());
+            this.links.get(i).setIdGUINext(linksID.get(i));
+        }
     }
 
 
@@ -66,32 +86,7 @@ public class GUIMenuConcrete extends AbstractGUI implements GUIMenu {
 
 
     @Override
-    public JLabel getLbTitle(){
-        return this.lbTitle;
-    }
-
-    @Override
-    public JTextField getTxfNamePlayer(){
-        return this.txfNamePlayer;
-    }
-
-    @Override
-    public ButtonID getButton(final int ind){
-        return this.links.get(ind);
-    }
-
-    @Override
-    public void setNameButtons(final List<NameMenuGUI> listName) {
-        for(int i = 0; i < listName.size(); i++){
-            this.links.get(i).setText(listName.get(i).getName());
-        }
-    }
-
-    @Override
-    public void setIDButtons(final List<IdGUI> linksID) {
-        for(int i = 0; i < N_BUTTONS; i++){
-            this.links.get(i).setIdGUICurrent(this.getId());
-            this.links.get(i).setIdGUINext(linksID.get(i));
-        }
+    public List<ButtonID> getButtonLinks() {
+        return this.links;
     }
 }

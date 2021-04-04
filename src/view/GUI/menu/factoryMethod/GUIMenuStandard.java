@@ -4,7 +4,6 @@ import utilities.DesignJComponent;
 import utilities.DesignSpace;
 import view.GUI.menu.FactoryGUIMenu;
 import view.GUI.menu.GUIMenu;
-import view.GUI.menu.GraphicsGUIMenu;
 import view.GUI.menu.concrete.GUIMenuConcrete;
 import view.utilities.FactoryGUIs;
 
@@ -37,10 +36,10 @@ public class GUIMenuStandard implements FactoryGUIMenu {
         FactoryGUIs.resetGridBagContraints(lim);
         lim.gridy++;
 
-        menu.getLinks().forEach(FactoryGUIs::setTransparentDesignJButton);
+        menu.getButtonLinks().forEach(FactoryGUIs::setTransparentDesignJButton);
 
         menu.add(FactoryGUIs.getUnionComponents(List.of(menu.getTxfNamePlayer(),
-                menu.getLinks().get(nBtnUsed++))), lim);
+                menu.getButtonLinks().get(nBtnUsed++))), lim);
 
         while(nBtnUsed < GUIMenuConcrete.N_BUTTONS){
             lim.gridy++;

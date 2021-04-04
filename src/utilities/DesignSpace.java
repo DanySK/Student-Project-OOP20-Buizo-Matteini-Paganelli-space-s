@@ -7,16 +7,13 @@ import java.awt.*;
 import java.net.URL;
 
 public class DesignSpace {
-    
-
-    
     public static final Point2D CENTER_ENVIRONMENT = new Point2D(DesignJFrame.GUI_WIDTH / 2, DesignJFrame.GUI_HEIGHT / 2);
-
 
     public static int SIZE_FONT_MAX = 60;
     public static int SIZE_FONT_BIG = 30;
     public static int SIZE_FONT_MEDIUM = 25;
-    public static int SIZE_FONT_SMALL = 15;
+    public static int SIZE_FONT_MICRO = 20;
+    public static int SIZE_FONT_NANO = 15;
 
     public static final int SIZE_IMAGE_MEDIUM = 70;
     public static final int SIZE_IMAGE_SMALL = 50;
@@ -25,7 +22,7 @@ public class DesignSpace {
 
     public static final Font FONT_BIG_STANDARD = new Font(TYPE_FONT_STANDARD, Font.BOLD, SIZE_FONT_BIG);
     public static final Font FONT_MEDIUM_STANDARD = new Font(TYPE_FONT_STANDARD, Font.BOLD, SIZE_FONT_MEDIUM);
-    public static final Font FONT_SMALL_STANDARD = new Font(TYPE_FONT_STANDARD, Font.BOLD, SIZE_FONT_SMALL);
+    public static final Font FONT_SMALL_STANDARD = new Font(TYPE_FONT_STANDARD, Font.BOLD, SIZE_FONT_NANO);
 
     public static final int SIZE_COLUMNS_TEXT = 10;
 

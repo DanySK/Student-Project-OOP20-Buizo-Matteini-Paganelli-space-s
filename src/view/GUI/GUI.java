@@ -17,7 +17,5 @@ public interface GUI {
 
     public IdGUI getId();
 
-    public List<? extends JButton> getLinks();
-
     public List<ButtonID> getButtonLinks();
 }

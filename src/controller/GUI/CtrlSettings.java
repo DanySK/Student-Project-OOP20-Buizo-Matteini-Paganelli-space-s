@@ -21,15 +21,14 @@ public class CtrlSettings {
         this.GUISettings.setNameButtons(this.settingsEngine.getListName());
         this.GUISettings.setBtnBackID(this.settingsEngine.getLink());
         this.GUISettings.setSkinSpaceShip(this.settingsEngine.getSkinSpaceShip());
-        for (JButton button : this.GUISettings.getLinks()) {
+        for (JButton button : this.GUISettings.getUnitSkin()) {
             button.addActionListener(e -> {
                 if(button.getText() == "<"){
                     this.settingsEngine.changeSkinSx();
-                    this.GUISettings.setSkinSpaceShip(this.settingsEngine.getSkinSpaceShip());
                 } else {
                     this.settingsEngine.changeSkinDx();
-                    this.GUISettings.setSkinSpaceShip(this.settingsEngine.getSkinSpaceShip());
                 }
+                this.GUISettings.setSkinSpaceShip(this.settingsEngine.getSkinSpaceShip());
             });
         }
         this.GUISettings.setDifficult(this.settingsEngine.getDifficult());
