@@ -37,13 +37,4 @@ public class SpaceMala {
     public SpaceMala(){
 
     }
-
-//    public ControllerMenu getControllerMenu() {
-//        return this.controllerMenu;
-//    }
-//
-//    public ControllerScoreboard getControllerScoreboard(){
-//        return this.controllerScoreboard;
-//    }
-
 }

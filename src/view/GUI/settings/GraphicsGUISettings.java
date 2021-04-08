@@ -10,9 +10,9 @@ public interface GraphicsGUISettings {
 
     public void setFontGUITitle(final Font font);
 
-    public void setFontTitlePanel(final Font font);
+    public void setFontTitleUnit(final Font font);
 
-    public void setFontGUI(final Font font);
+    public void setFontUnit(final Font font);
 
     public void setTitleGUI(final String title);
 

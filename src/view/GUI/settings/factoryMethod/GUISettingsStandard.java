@@ -17,8 +17,8 @@ public class GUISettingsStandard implements FactoryGUISettings {
         final ConcreteGUISettings concreteSettings = new ConcreteGUISettings();
 
         concreteSettings.setFontGUITitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
-        concreteSettings.setFontTitlePanel(DesignSpace.FONT_BIG_STANDARD);
-        concreteSettings.setFontGUI(DesignSpace.FONT_MEDIUM_STANDARD);
+        concreteSettings.setFontTitleUnit(DesignSpace.FONT_BIG_STANDARD);
+        concreteSettings.setFontUnit(DesignSpace.FONT_MEDIUM_STANDARD);
         concreteSettings.setForegroundGUI(DesignSpace.color3);
         this.createGraphics(concreteSettings);
         return concreteSettings;

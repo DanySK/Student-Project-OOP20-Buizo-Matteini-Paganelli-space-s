@@ -4,7 +4,11 @@ import model.MyJImage.JImageRateEngine;
 import model.GUI.EngineGUI;
 import utilities.IdGUI;
 
+import java.security.KeyStore;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class EngineSettings implements EngineGUI {
     private final String TITLE_SETTINGS = "SETTINGS";
@@ -12,13 +16,18 @@ public class EngineSettings implements EngineGUI {
     private final List<NameSettingsGUI> namesButtons = List.of(NameSettingsGUI.values());
     private final List<IdGUI> linksID = List.of(IdGUI.ID_BACK);
 
-    private int chooseSkin = 0;
-    private JImageRateEngine skinSpaceShip = new JImageRateEngine(SkinSpaceShip.values()[this.chooseSkin].getPath(),
-            15);
-    private Difficult difficultState = Difficult.MEDIUM;
+    private int soundBackground = 30;
+    private int soundEffect = 50;
+
+    private int chooseSkin = 3;
+    private JImageRateEngine skinSpaceShip = new JImageRateEngine(SkinSpaceShip.values()[this.chooseSkin].getPath(),15);
+    private Map<Difficult, Boolean> difficult = new HashMap<>();
     private boolean state = false;
 
     public EngineSettings(){
+        this.difficult.put(Difficult.EASY, false);
+        this.difficult.put(Difficult.MEDIUM, true);
+        this.difficult.put(Difficult.HARD, false);
     }
 
     @Override
@@ -64,10 +73,6 @@ public class EngineSettings implements EngineGUI {
         return skinSpaceShip;
     }
 
-    public Difficult getDifficultState() {
-        return difficultState;
-    }
-
     public void changeSkinDx(){
         this.chooseSkin = this.chooseSkin + 1 < SkinSpaceShip.values().length ? this.chooseSkin + 1 : 0;
         this.skinSpaceShip.setPathImg(SkinSpaceShip.values()[this.chooseSkin].getPath());
@@ -78,8 +83,37 @@ public class EngineSettings implements EngineGUI {
         this.skinSpaceShip.setPathImg(SkinSpaceShip.values()[this.chooseSkin].getPath());
     }
 
-    public Difficult getDifficult(){
-        return this.difficultState;
+    public Difficult getDifficultActivate(){
+        return this.difficult.entrySet().stream().filter(e -> e.getValue().equals(true))
+                .map(e -> e.getKey())
+                .collect(Collectors.toList()).get(0);
     }
 
+    public Map<Difficult, Boolean> getDifficult() {
+        return this.difficult;
+    }
+
+    public void setDifficult(final Difficult difficultState) {
+        this.difficult.entrySet().forEach(e -> e.setValue(false));
+
+        this.difficult.entrySet().stream()
+                .filter(e -> e.getKey().equals(difficultState))
+                .forEach(e -> e.setValue(true));
+    }
+
+    public int getSoundBackground() {
+        return this.soundBackground;
+    }
+
+    public int getSoundEffect() {
+        return this.soundEffect;
+    }
+
+    public void setSoundBackground(int soundBackground) {
+        this.soundBackground = soundBackground;
+    }
+
+    public void setSoundEffect(int soundEffect) {
+        this.soundEffect = soundEffect;
+    }
 }

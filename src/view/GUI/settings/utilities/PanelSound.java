@@ -4,6 +4,7 @@ import view.utilities.FactoryGUIs;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class PanelSound extends JPanel{
     public static final int MIN_SOUND = 0;
@@ -24,8 +25,11 @@ public class PanelSound extends JPanel{
         this.add(FactoryGUIs.encapsulatesHorizontal(java.util.List.of(this.sliderMainSound, this.sliderEffectSound), 50),
                 BorderLayout.CENTER);
 
-        this.sliderMainSound.setOpaque(false);
+        this.sliderMainSound.setName("main");
 
+        this.sliderEffectSound.setName("effect");
+
+        this.sliderMainSound.setOpaque(false);
         this.sliderEffectSound.setOpaque(false);
 
         this.sliderMainSound.setMajorTickSpacing(20);
@@ -59,4 +63,7 @@ public class PanelSound extends JPanel{
         this.sliderEffectSound.setForeground(color);
     }
 
+    public List<JSlider> getSliders(){
+        return java.util.List.of(this.sliderMainSound, this.sliderEffectSound);
+    }
 }

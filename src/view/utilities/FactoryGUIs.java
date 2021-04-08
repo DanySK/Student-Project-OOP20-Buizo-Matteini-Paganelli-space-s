@@ -15,6 +15,7 @@ public class FactoryGUIs {
         return encapsulate;
     }
 
+
     public static JPanel encapsulateInPanel_Box_Vertical_Center(Component component){
         JPanel encapsulate = new JPanel();
         encapsulate.setOpaque(false);

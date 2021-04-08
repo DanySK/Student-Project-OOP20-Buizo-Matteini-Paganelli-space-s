@@ -65,4 +65,11 @@ public class PanelDifficult extends JPanel{
                 .forEach(rbt -> rbt.setSelected(true));
     }
 
+    public List<JRadioButton> getDifficult(){
+        return  List.of(this.rbtEasy, this.rbtMedium, this.rbtHard);
+    }
+
+
+
+
 }

@@ -32,7 +32,7 @@ public class ConcreteGUISettings extends AbstractGUI implements GUISettings {
     }
 
     @Override
-    public void setNameButtons(final List<NameSettingsGUI> listName) {
+    public void setNameComponent(final List<NameSettingsGUI> listName) {
         int i = 0;
         this.panelSkin.setLbTitle(listName.get(i++).getTitle());
         this.panelDifficult.setTitle(listName.get( i++).getTitle());
@@ -52,8 +52,28 @@ public class ConcreteGUISettings extends AbstractGUI implements GUISettings {
     }
 
     @Override
+    public void setSoundBackground(int value) {
+        this.panelSound.getSliders().get(0).setValue(value);
+    }
+
+    @Override
+    public void setSoundEffect(int value) {
+        this.panelSound.getSliders().get(1).setValue(value);
+    }
+
+    @Override
     public List<JButton> getUnitSkin() {
         return List.of(this.panelSkin.getBtSX(), this.panelSkin.getBtDX());
+    }
+
+    @Override
+    public List<JSlider> getUnitSound() {
+        return this.panelSound.getSliders();
+    }
+
+    @Override
+    public List<JRadioButton> getUnitDifficult() {
+        return this.panelDifficult.getDifficult();
     }
 
     @Override
@@ -78,7 +98,7 @@ public class ConcreteGUISettings extends AbstractGUI implements GUISettings {
     }
 
     @Override
-    public void setFontTitlePanel(Font font) {
+    public void setFontTitleUnit(Font font) {
         this.panelSkin.setFontLbTitle(font);
         this.panelDifficult.setFontTitleDifficult(font);
         this.panelSound.setFontTitleSound(font);
@@ -86,7 +106,7 @@ public class ConcreteGUISettings extends AbstractGUI implements GUISettings {
     }
 
     @Override
-    public void setFontGUI(Font font) {
+    public void setFontUnit(Font font) {
         this.panelSound.setFontSliderSound(font);
         this.panelDifficult.setFontGroupRadioButton(font);
         this.panelSkin.setFontButtons(font);
@@ -124,7 +144,7 @@ public class ConcreteGUISettings extends AbstractGUI implements GUISettings {
         return this.panelSound;
     }
 
-
+    
     @Override
     public List<ButtonID> getButtonLinks() {
         return List.of(this.btnBack);

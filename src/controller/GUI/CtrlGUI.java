@@ -5,6 +5,7 @@ import controller.GUI.Command.CmdOFF;
 import controller.GUI.Command.CmdON;
 import model.GUI.EngineGUI;
 import utilities.IdGUI;
+import view.GUI.GUI;
 import view.utilities.ButtonID;
 
 import java.util.ArrayList;
@@ -25,7 +26,6 @@ public class CtrlGUI {
     }
 
     private void linksAll(){
-
         for (view.GUI.GUI gui : this.listGUI) {
             for (ButtonID btn : gui.getButtonLinks()) {
                 btn.addActionListener(e -> {
@@ -67,7 +67,7 @@ public class CtrlGUI {
     }
 
     private view.GUI.GUI getGUI(IdGUI id){
-        for (view.GUI.GUI gui : this.listGUI) {
+        for (GUI gui : this.listGUI) {
             if(gui.getId() == id){
                 return gui;
             }
@@ -76,7 +76,7 @@ public class CtrlGUI {
     }
 
     private void quitAll(){
-        for (view.GUI.GUI gui : this.listGUI) {
+        for (GUI gui : this.listGUI) {
             gui.dispose();
         }
     }

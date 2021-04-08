@@ -1,37 +1,73 @@
 package controller.GUI;
 
+import model.GUI.settings.Difficult;
 import model.GUI.settings.EngineSettings;
 import view.GUI.settings.GUISettings;
 
 import javax.swing.*;
+import javax.swing.event.ChangeListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class CtrlSettings {
-    private GUISettings GUISettings;
+    private GUISettings settingsGUI;
     private EngineSettings settingsEngine;
 
     public CtrlSettings(final GUISettings GUISettings, final EngineSettings settingsEngine){
-        this.GUISettings = GUISettings;
+        this.settingsGUI = GUISettings;
         this.settingsEngine = settingsEngine;
         this.initSettings();
     }
 
     private void initSettings() {
-        this.GUISettings.setId(this.settingsEngine.getId());
-        this.GUISettings.setTitleGUI(this.settingsEngine.getTitleGUI());
-        this.GUISettings.setNameButtons(this.settingsEngine.getListName());
-        this.GUISettings.setBtnBackID(this.settingsEngine.getLink());
-        this.GUISettings.setSkinSpaceShip(this.settingsEngine.getSkinSpaceShip());
-        for (JButton button : this.GUISettings.getUnitSkin()) {
-            button.addActionListener(e -> {
-                if(button.getText() == "<"){
-                    this.settingsEngine.changeSkinSx();
-                } else {
-                    this.settingsEngine.changeSkinDx();
-                }
-                this.GUISettings.setSkinSpaceShip(this.settingsEngine.getSkinSpaceShip());
-            });
-        }
-        this.GUISettings.setDifficult(this.settingsEngine.getDifficult());
-        this.GUISettings.setVisible(this.settingsEngine.getState());
+        this.settingsGUI.setId(this.settingsEngine.getId());
+        this.settingsGUI.setTitleGUI(this.settingsEngine.getTitleGUI());
+        this.settingsGUI.setNameComponent(this.settingsEngine.getListName());
+        this.settingsGUI.setBtnBackID(this.settingsEngine.getLink());
+        this.settingsGUI.setSkinSpaceShip(this.settingsEngine.getSkinSpaceShip());
+
+        this.settingsGUI.getUnitSkin().forEach(btn -> btn.addActionListener(this.changeSkin(btn)));
+        this.settingsGUI.getUnitDifficult().forEach(radio -> radio.addActionListener(this.changeDifficult(radio)));
+        this.settingsGUI.getUnitSound().forEach(sound -> sound.addChangeListener(this.changeSound(sound)));
+
+        this.settingsGUI.setDifficult(this.settingsEngine.getDifficultActivate());
+        this.settingsGUI.setSoundBackground(this.settingsEngine.getSoundBackground());
+        this.settingsGUI.setSoundEffect(this.settingsEngine.getSoundEffect());
+        this.settingsGUI.setVisible(this.settingsEngine.getState());
+    }
+
+    private ActionListener changeSkin(JButton btn){
+        return e -> {
+            if(btn.getText() == "<"){
+                CtrlSettings.this.settingsEngine.changeSkinSx();
+            } else {
+                CtrlSettings.this.settingsEngine.changeSkinDx();
+            }
+            CtrlSettings.this.settingsGUI.setSkinSpaceShip(CtrlSettings.this.settingsEngine.getSkinSpaceShip());
+        };
+    }
+
+    private ActionListener changeDifficult(JRadioButton rBtn){
+        return e -> {
+            if(rBtn.getText() == "Easy"){
+                CtrlSettings.this.settingsEngine.setDifficult(Difficult.EASY);
+            } else if(rBtn.getText() == "Medium") {
+                CtrlSettings.this.settingsEngine.setDifficult(Difficult.MEDIUM);
+            } else if(rBtn.getText() == "Hard") {
+                CtrlSettings.this.settingsEngine.setDifficult(Difficult.HARD);
+            }
+        };
+    }
+
+    private ChangeListener changeSound(JSlider slider){
+        return e -> {
+            if(slider.getName().contentEquals("main")){
+                CtrlSettings.this.settingsEngine.setSoundBackground(slider.getValue());
+            } else {
+                CtrlSettings.this.settingsEngine.setSoundEffect(slider.getValue());
+            }
+        };
     }
 }
+
+
