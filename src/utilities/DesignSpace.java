@@ -22,6 +22,7 @@ public class DesignSpace {
 
     public static final Font FONT_BIG_STANDARD = new Font(TYPE_FONT_STANDARD, Font.BOLD, SIZE_FONT_BIG);
     public static final Font FONT_MEDIUM_STANDARD = new Font(TYPE_FONT_STANDARD, Font.BOLD, SIZE_FONT_MEDIUM);
+    public static final Font FONT_MICRO_STANDARD = new Font(TYPE_FONT_STANDARD, Font.BOLD, SIZE_FONT_MICRO);
     public static final Font FONT_SMALL_STANDARD = new Font(TYPE_FONT_STANDARD, Font.BOLD, SIZE_FONT_NANO);
 
     public static final int SIZE_COLUMNS_TEXT = 10;
@@ -29,6 +30,7 @@ public class DesignSpace {
     public static Color color1 = new Color(90, 165, 232);
     public static Color color2 = new Color(128, 213, 255);
     public static Color color3 = new Color(148, 233, 255);
+    public static Color color4 = new Color(58, 241, 255);
 
     public static Font getFontForTitle(final int size){
         URL fontUrl = ClassLoader.getSystemResource("font/prova2.ttf");

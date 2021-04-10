@@ -103,8 +103,13 @@ public class FactoryGUIs {
         button.setFocusable(false);
     }
 
-    public static void setIconInJButton(JButton button, final String pathIcon) {
-        JImageRate imag = new JImageRate(pathIcon, 5);
+    public static void setIconInJButtonMini(JButton button, final String pathIcon) {
+        JImageRate imag = new JImageRate(pathIcon, 3);
+        button.setIcon(imag.getIcon());
+    }
+
+    public static void setIconInJButtonMedium(JButton button, final String pathIcon) {
+        JImageRate imag = new JImageRate(pathIcon, 4);
         button.setIcon(imag.getIcon());
     }
 
@@ -113,7 +118,4 @@ public class FactoryGUIs {
         int heightRateImage = imageIcon.getIconHeight() * widthRateImage / imageIcon.getIconWidth();
         resizeImage(widthRateImage, heightRateImage, imageIcon);
     }
-
-
-
 }

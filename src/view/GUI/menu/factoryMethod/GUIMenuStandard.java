@@ -5,6 +5,7 @@ import utilities.DesignSpace;
 import view.GUI.menu.FactoryGUIMenu;
 import view.GUI.menu.GUIMenu;
 import view.GUI.menu.concrete.GUIMenuConcrete;
+import view.GUI.menu.utilities.IconsButton;
 import view.utilities.FactoryGUIs;
 
 import java.awt.*;
@@ -19,7 +20,7 @@ public class GUIMenuStandard implements FactoryGUIMenu {
         final GUIMenuConcrete menuConcrete = new GUIMenuConcrete();
 
         menuConcrete.setFontGUI(DesignSpace.FONT_MEDIUM_STANDARD);
-        menuConcrete.setForegroundGUI(DesignSpace.color3);
+        menuConcrete.setForegroundGUI(DesignSpace.color4);
         menuConcrete.setFontGUITitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
         menuConcrete.setColumnsNamePlayer(DesignJComponent.SIZE_COLUMNS_TEXT);
         this.createGraphics(menuConcrete);
@@ -44,6 +45,11 @@ public class GUIMenuStandard implements FactoryGUIMenu {
         while(nBtnUsed < GUIMenuConcrete.N_BUTTONS){
             lim.gridy++;
             menu.add(menu.getButton(nBtnUsed++), lim);
+        }
+        nBtnUsed = 0;
+        while(nBtnUsed < GUIMenuConcrete.N_BUTTONS){
+            FactoryGUIs.setIconInJButtonMini(menu.getButton(nBtnUsed),
+                    IconsButton.values()[nBtnUsed++].getPath());
         }
     }
 

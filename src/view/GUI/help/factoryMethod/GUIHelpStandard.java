@@ -18,7 +18,7 @@ public class GUIHelpStandard implements FactoryGUIHelp {
     public GUIHelp create(){
         this.GUIHelpConcrete.setFontLbTitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
         this.GUIHelpConcrete.setAllFontNotLbTitle(DesignSpace.FONT_MEDIUM_STANDARD);
-        this.GUIHelpConcrete.setAllForeground(DesignSpace.color3);
+        this.GUIHelpConcrete.setAllForeground(DesignSpace.color4);
         this.createGraphics();
         this.GUIHelpConcrete.validate();
         return this.GUIHelpConcrete;
@@ -40,7 +40,7 @@ public class GUIHelpStandard implements FactoryGUIHelp {
 
         this.GUIHelpConcrete.add(panelContainPanel, BorderLayout.CENTER);
         FactoryGUIs.setTransparentDesignJButton(this.GUIHelpConcrete.getBtnBack());
-        FactoryGUIs.setIconInJButton(this.GUIHelpConcrete.getBtnBack(), "iconButton/iconBack.png");
+        FactoryGUIs.setIconInJButtonMini(this.GUIHelpConcrete.getBtnBack(), "iconButton/back.png");
         this.GUIHelpConcrete.add(FactoryGUIs.encapsulatesInPanel_Flow(this.GUIHelpConcrete.getBtnBack()), BorderLayout.SOUTH);
     }
 

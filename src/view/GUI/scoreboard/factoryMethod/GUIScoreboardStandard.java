@@ -18,7 +18,7 @@ public class GUIScoreboardStandard implements FactoryGUIScoreboard {
         this.GUIScoreboardConcrete.setFontLbTitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
         this.GUIScoreboardConcrete.getTxtSearchName().setColumns(DesignSpace.SIZE_COLUMNS_TEXT);
         this.GUIScoreboardConcrete.setAllFontNotLbTitle(DesignSpace.FONT_MEDIUM_STANDARD);
-        this.GUIScoreboardConcrete.setAllForeground(DesignSpace.color3);
+        this.GUIScoreboardConcrete.setAllForeground(DesignSpace.color4);
 
         this.createGraphics();
         return this.GUIScoreboardConcrete;
@@ -34,7 +34,7 @@ public class GUIScoreboardStandard implements FactoryGUIScoreboard {
         panelScore.setOpaque(false);
 
         FactoryGUIs.setTransparentDesignJButton(this.GUIScoreboardConcrete.getBtnSearch());
-        FactoryGUIs.setIconInJButton(this.GUIScoreboardConcrete.getBtnSearch(), "iconButton/iconSearch.png");
+        FactoryGUIs.setIconInJButtonMini(this.GUIScoreboardConcrete.getBtnSearch(), "iconButton/search.png");
         panelScore.add(FactoryGUIs.getUnionComponents(List.of(this.GUIScoreboardConcrete.getTxtSearchName(),
                 this.GUIScoreboardConcrete.getBtnSearch())), BorderLayout.NORTH);
 
@@ -42,7 +42,7 @@ public class GUIScoreboardStandard implements FactoryGUIScoreboard {
                 this.GUIScoreboardConcrete.getScoreboard()), BorderLayout.CENTER);
 
         FactoryGUIs.setTransparentDesignJButton(this.GUIScoreboardConcrete.getBtnBack());
-        FactoryGUIs.setIconInJButton(this.GUIScoreboardConcrete.getBtnBack(), "iconButton/iconBack.png");
+        FactoryGUIs.setIconInJButtonMini(this.GUIScoreboardConcrete.getBtnBack(), "iconButton/back.png");
 
         FactoryGUIs.setTransparentDesignJButton(this.GUIScoreboardConcrete.getBtnSearch());
         this.GUIScoreboardConcrete.add(panelScore, BorderLayout.CENTER);

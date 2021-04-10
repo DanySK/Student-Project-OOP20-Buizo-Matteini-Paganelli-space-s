@@ -1,7 +1,6 @@
 package view.GUI.menu.concrete;
 
 import utilities.IdGUI;
-import model.GUI.menu.NameMenuGUI;
 import view.GUI.AbstractGUI;
 import view.GUI.menu.GUIMenu;
 import view.utilities.ButtonID;
@@ -13,7 +12,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class GUIMenuConcrete extends AbstractGUI implements GUIMenu {
-    public static final int N_BUTTONS = 5;
+    public static final int N_BUTTONS = 6;
     private final JLabel lbTitle;
     private final JTextField txfNamePlayer;
     private final List<ButtonID> links;
@@ -42,9 +41,9 @@ public class GUIMenuConcrete extends AbstractGUI implements GUIMenu {
     }
 
     @Override
-    public void setNameButtons(final List<NameMenuGUI> listName) {
+    public void setNameButtons(final List<String> listName) {
         for(int i = 0; i < listName.size(); i++){
-            this.links.get(i).setText(listName.get(i).getName());
+            this.links.get(i).setText(listName.get(i));
         }
     }
 

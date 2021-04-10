@@ -12,10 +12,6 @@ public interface EngineGUI {
 
     public void setState(final boolean state);
 
-    public void changeState();
-
-    public String getTitleGUI();
-
     public IdGUI getLink();
 
     public List<IdGUI> getLinks();

@@ -13,6 +13,9 @@ import view.GUI.scoreboard.GUIScoreboard;
 import view.GUI.settings.factoryMethod.GUISettingsStandard;
 import view.GUI.settings.FactoryGUISettings;
 import view.GUI.settings.GUISettings;
+import view.GUI.sound.FactoryGUISound;
+import view.GUI.sound.GUISound;
+import view.GUI.sound.factoryMethod.GUISoundStandard;
 
 public class StaticFactoryGUI {
 
@@ -31,10 +34,14 @@ public class StaticFactoryGUI {
         return settingsGUI.create();
     }
 
-    public static GUIHelp creteHelpGUI(){
+    public static GUIHelp createHelpGUI(){
         FactoryGUIHelp helpGUI = new GUIHelpStandard();
         return helpGUI.create();
     }
 
+    public static GUISound createSoundGUI(){
+        FactoryGUISound soundGUI = new GUISoundStandard();
+        return soundGUI.create();
+    }
 
 }

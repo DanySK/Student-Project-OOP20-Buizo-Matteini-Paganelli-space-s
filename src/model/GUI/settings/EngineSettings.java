@@ -16,9 +16,6 @@ public class EngineSettings implements EngineGUI {
     private final List<NameSettingsGUI> namesButtons = List.of(NameSettingsGUI.values());
     private final List<IdGUI> linksID = List.of(IdGUI.ID_BACK);
 
-    private int soundBackground = 30;
-    private int soundEffect = 50;
-
     private int chooseSkin = 3;
     private JImageRateEngine skinSpaceShip = new JImageRateEngine(SkinSpaceShip.values()[this.chooseSkin].getPath(),15);
     private Map<Difficult, Boolean> difficult = new HashMap<>();
@@ -41,11 +38,6 @@ public class EngineSettings implements EngineGUI {
     }
 
     @Override
-    public void changeState() {
-        this.state = !state;
-    }
-
-    @Override
     public IdGUI getId() {
         return this.ID;
     }
@@ -60,7 +52,7 @@ public class EngineSettings implements EngineGUI {
         return this.linksID;
     }
 
-    @Override
+
     public String getTitleGUI() {
         return TITLE_SETTINGS;
     }
@@ -100,20 +92,20 @@ public class EngineSettings implements EngineGUI {
                 .filter(e -> e.getKey().equals(difficultState))
                 .forEach(e -> e.setValue(true));
     }
-
-    public int getSoundBackground() {
-        return this.soundBackground;
-    }
-
-    public int getSoundEffect() {
-        return this.soundEffect;
-    }
-
-    public void setSoundBackground(int soundBackground) {
-        this.soundBackground = soundBackground;
-    }
-
-    public void setSoundEffect(int soundEffect) {
-        this.soundEffect = soundEffect;
-    }
+//
+//    public int getSoundBackground() {
+//        return this.soundBackground;
+//    }
+//
+//    public int getSoundEffect() {
+//        return this.soundEffect;
+//    }
+//
+//    public void setSoundBackground(int soundBackground) {
+//        this.soundBackground = soundBackground;
+//    }
+//
+//    public void setSoundEffect(int soundEffect) {
+//        this.soundEffect = soundEffect;
+//    }
 }

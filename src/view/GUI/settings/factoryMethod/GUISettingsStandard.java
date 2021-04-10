@@ -19,7 +19,7 @@ public class GUISettingsStandard implements FactoryGUISettings {
         concreteSettings.setFontGUITitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
         concreteSettings.setFontTitleUnit(DesignSpace.FONT_BIG_STANDARD);
         concreteSettings.setFontUnit(DesignSpace.FONT_MEDIUM_STANDARD);
-        concreteSettings.setForegroundGUI(DesignSpace.color3);
+        concreteSettings.setForegroundGUI(DesignSpace.color4);
         this.createGraphics(concreteSettings);
         return concreteSettings;
     }
@@ -34,13 +34,11 @@ public class GUISettingsStandard implements FactoryGUISettings {
 
         panelContainPanel.add(FactoryGUIs.encapsulatesVertical(List.of(concreteSettings.getPanelSkin(),
                 concreteSettings.getPanelDifficult()), 30), lim);
-        lim.gridx += 2;
-        panelContainPanel.add(concreteSettings.getPanelSound(), lim);
 
 
         concreteSettings.add(panelContainPanel, BorderLayout.CENTER);
 
-        FactoryGUIs.setIconInJButton(concreteSettings.getBtnBack(), "iconButton/iconBack.png");
+        FactoryGUIs.setIconInJButtonMini(concreteSettings.getBtnBack(), "iconButton/back.png");
         concreteSettings.add(FactoryGUIs.encapsulatesInPanel_Flow(concreteSettings.getBtnBack()),
                 BorderLayout.SOUTH);
 

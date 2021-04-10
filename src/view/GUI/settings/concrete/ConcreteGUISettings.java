@@ -8,7 +8,6 @@ import view.GUI.AbstractGUI;
 import view.GUI.settings.GUISettings;
 import view.GUI.settings.utilities.PanelDifficult;
 import view.GUI.settings.utilities.PanelSkin;
-import view.GUI.settings.utilities.PanelSound;
 import view.utilities.*;
 
 import javax.swing.*;
@@ -19,7 +18,6 @@ public class ConcreteGUISettings extends AbstractGUI implements GUISettings {
     private final JLabel lbTitle;
     private final PanelSkin panelSkin;
     private final PanelDifficult panelDifficult;
-    private final PanelSound panelSound;
     private final ButtonID btnBack;
 
     public ConcreteGUISettings() {
@@ -27,7 +25,6 @@ public class ConcreteGUISettings extends AbstractGUI implements GUISettings {
         this.lbTitle = new JLabel();
         this.panelSkin = new PanelSkin();
         this.panelDifficult = new PanelDifficult();
-        this.panelSound = new PanelSound();
         this.btnBack = new ButtonID();
     }
 
@@ -36,7 +33,6 @@ public class ConcreteGUISettings extends AbstractGUI implements GUISettings {
         int i = 0;
         this.panelSkin.setLbTitle(listName.get(i++).getTitle());
         this.panelDifficult.setTitle(listName.get( i++).getTitle());
-        this.panelSound.setTitle(listName.get(i++).getTitle());
         this.btnBack.setText(listName.get(i).getTitle());
     }
 
@@ -52,23 +48,8 @@ public class ConcreteGUISettings extends AbstractGUI implements GUISettings {
     }
 
     @Override
-    public void setSoundBackground(int value) {
-        this.panelSound.getSliders().get(0).setValue(value);
-    }
-
-    @Override
-    public void setSoundEffect(int value) {
-        this.panelSound.getSliders().get(1).setValue(value);
-    }
-
-    @Override
     public List<JButton> getUnitSkin() {
         return List.of(this.panelSkin.getBtSX(), this.panelSkin.getBtDX());
-    }
-
-    @Override
-    public List<JSlider> getUnitSound() {
-        return this.panelSound.getSliders();
     }
 
     @Override
@@ -88,7 +69,6 @@ public class ConcreteGUISettings extends AbstractGUI implements GUISettings {
         this.lbTitle.setForeground(color);
         this.panelSkin.setAllForeground(color);
         this.panelDifficult.setAllForeground(color);
-        this.panelSound.setAllForeground(color);
         this.btnBack.setForeground(color);
     }
 
@@ -101,13 +81,11 @@ public class ConcreteGUISettings extends AbstractGUI implements GUISettings {
     public void setFontTitleUnit(Font font) {
         this.panelSkin.setFontLbTitle(font);
         this.panelDifficult.setFontTitleDifficult(font);
-        this.panelSound.setFontTitleSound(font);
         this.btnBack.setFont(font);
     }
 
     @Override
     public void setFontUnit(Font font) {
-        this.panelSound.setFontSliderSound(font);
         this.panelDifficult.setFontGroupRadioButton(font);
         this.panelSkin.setFontButtons(font);
     }
@@ -140,11 +118,7 @@ public class ConcreteGUISettings extends AbstractGUI implements GUISettings {
         return this.panelDifficult;
     }
 
-    public PanelSound getPanelSound() {
-        return this.panelSound;
-    }
 
-    
     @Override
     public List<ButtonID> getButtonLinks() {
         return List.of(this.btnBack);

@@ -28,11 +28,11 @@ public class CtrlSettings {
 
         this.settingsGUI.getUnitSkin().forEach(btn -> btn.addActionListener(this.changeSkin(btn)));
         this.settingsGUI.getUnitDifficult().forEach(radio -> radio.addActionListener(this.changeDifficult(radio)));
-        this.settingsGUI.getUnitSound().forEach(sound -> sound.addChangeListener(this.changeSound(sound)));
+       // this.settingsGUI.getUnitSound().forEach(sound -> sound.addChangeListener(this.changeSound(sound)));
 
         this.settingsGUI.setDifficult(this.settingsEngine.getDifficultActivate());
-        this.settingsGUI.setSoundBackground(this.settingsEngine.getSoundBackground());
-        this.settingsGUI.setSoundEffect(this.settingsEngine.getSoundEffect());
+//        this.settingsGUI.setSoundBackground(this.settingsEngine.getSoundBackground());
+//        this.settingsGUI.setSoundEffect(this.settingsEngine.getSoundEffect());
         this.settingsGUI.setVisible(this.settingsEngine.getState());
     }
 
@@ -61,11 +61,11 @@ public class CtrlSettings {
 
     private ChangeListener changeSound(JSlider slider){
         return e -> {
-            if(slider.getName().contentEquals("main")){
-                CtrlSettings.this.settingsEngine.setSoundBackground(slider.getValue());
-            } else {
-                CtrlSettings.this.settingsEngine.setSoundEffect(slider.getValue());
-            }
+//            if(slider.getName().contentEquals("main")){
+//                CtrlSettings.this.settingsEngine.setSoundBackground(slider.getValue());
+//            } else {
+//                CtrlSettings.this.settingsEngine.setSoundEffect(slider.getValue());
+//            }
         };
     }
 }

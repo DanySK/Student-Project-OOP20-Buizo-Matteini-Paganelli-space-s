@@ -1,7 +1,6 @@
 package view.GUI.menu;
 
 import utilities.IdGUI;
-import model.GUI.menu.NameMenuGUI;
 import view.GUI.GUI;
 import view.utilities.ButtonID;
 
@@ -10,7 +9,7 @@ import java.util.List;
 
 public interface GUIMenu extends GUI, GraphicsGUIMenu{
 
-    public void setNameButtons(final List<NameMenuGUI> listNames);
+    public void setNameButtons(final List<String> listNames);
 
     public void setIDButtons(final List<IdGUI> linksID);
 

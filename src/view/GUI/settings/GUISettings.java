@@ -18,13 +18,7 @@ public interface GUISettings extends GUI, GraphicsGUISettings {
 
     public void setDifficult(final Difficult difficult);
 
-    public void setSoundBackground(final int value);
-
-    public void setSoundEffect(final int value);
-
     public List<JButton> getUnitSkin();
-
-    public List<JSlider> getUnitSound();
 
     public List<JRadioButton> getUnitDifficult();
 

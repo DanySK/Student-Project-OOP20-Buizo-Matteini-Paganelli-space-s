@@ -3,32 +3,21 @@ package model.GUI.menu;
 import model.GUI.EngineGUI;
 import utilities.IdGUI;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class EngineMenu implements EngineGUI {
-    private final String TITLE_MENU = "SPACE-SURVIVAL";
-    private final List<NameMenuGUI> nameButtons = new ArrayList<>();
-
+    public final static String TITLE_MENU = "SPACE-SURVIVAL";
     private final IdGUI ID = IdGUI.ID_MENU;
-    private final List<IdGUI> linksID = new ArrayList<>();
+    private final List<LinksMenu> linkButtons;
 
     private boolean state = true;
 
     public EngineMenu(){
-        Collections.addAll(this.nameButtons, NameMenuGUI.values());
-        this.linksID.add(IdGUI.ID_GAME);
-        this.linksID.add(IdGUI.ID_SETTING);
-        this.linksID.add(IdGUI.ID_SCOREBOARD);
-        this.linksID.add(IdGUI.ID_HELP);
-        this.linksID.add(IdGUI.ID_QUIT);
+        this.linkButtons = Arrays.asList(LinksMenu.values());
     }
 
-    @Override
-    public String getTitleGUI(){
-        return TITLE_MENU;
-    }
     @Override
     public boolean getState(){
         return this.state;
@@ -36,10 +25,6 @@ public class EngineMenu implements EngineGUI {
     @Override
     public void setState(boolean state) {
         this.state = state;
-    }
-    @Override
-    public void changeState(){
-        this.state = !state;
     }
     @Override
     public IdGUI getId() {
@@ -51,11 +36,16 @@ public class EngineMenu implements EngineGUI {
     }
     @Override
     public List<IdGUI> getLinks() {
-        return this.linksID;
+        return this.linkButtons.stream().map(l -> l.getIdGUI()).collect(Collectors.toList());
     }
 
-    public List<NameMenuGUI> getListName(){
-        return this.nameButtons;
+
+    public String getTitleGUI(){
+        return TITLE_MENU;
+    }
+
+    public List<String> getListName(){
+        return this.linkButtons.stream().map(l -> l.getName()).collect(Collectors.toList());
     }
 
 }

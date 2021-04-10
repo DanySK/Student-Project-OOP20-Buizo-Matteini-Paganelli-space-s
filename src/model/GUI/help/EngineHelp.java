@@ -42,12 +42,6 @@ public class EngineHelp implements EngineGUI {
         this.state = state;
     }
 
-    @Override
-    public void changeState() {
-        this.state = !state;
-    }
-
-    @Override
     public String getTitleGUI() {
         return TITLE_GUI;
     }
