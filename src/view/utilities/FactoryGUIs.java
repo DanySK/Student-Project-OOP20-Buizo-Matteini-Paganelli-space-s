@@ -118,4 +118,11 @@ public class FactoryGUIs {
         int heightRateImage = imageIcon.getIconHeight() * widthRateImage / imageIcon.getIconWidth();
         resizeImage(widthRateImage, heightRateImage, imageIcon);
     }
+
+    public static JComponent getJComponentEmpty(){
+        JPanel panel = new JPanel();
+        panel.setOpaque(false);
+        panel.setSize(0,0);
+        return panel;
+    }
 }

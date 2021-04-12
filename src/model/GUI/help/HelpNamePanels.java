@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum HelpNamePanels {
-    PANEL_MOVE("Movement", List.of(new JImageRateEngine("iconCommand/wasd.png", 20),
-            new JImageRateEngine( "iconCommand/row.png", 20))),
-    PANEL_SHOT("Shot", List.of(new JImageRateEngine("iconCommand/spacebar.png", 20),
-            new JImageRateEngine("iconCommand/keyK.png", 10))),
-    PANEL_PAUSE("Pause", List.of(new JImageRateEngine("iconCommand/keyP.png", 10),
-            new JImageRateEngine("iconCommand/pause.png", 10)));
+    PANEL_MOVE("Movement", List.of(new JImageRateEngine("imgHelp/wasd.png", 15),
+            new JImageRateEngine("imgHelp/row.png", 15))),
+    PANEL_SHOT("Shot", List.of(new JImageRateEngine("imgHelp/space.png", 15),
+            new JImageRateEngine("imgHelp/key_K.png", 5))),
+    PANEL_PAUSE("Pause", List.of(new JImageRateEngine("imgHelp/key_P.png", 5),
+            new JImageRateEngine("imgHelp/pause.png", 5)));
 
     private String name;
 

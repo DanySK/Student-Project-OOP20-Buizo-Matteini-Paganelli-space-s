@@ -5,6 +5,7 @@ import utilities.DesignSpace;
 import view.GUI.menu.FactoryGUIMenu;
 import view.GUI.menu.GUIMenu;
 import view.GUI.menu.concrete.GUIMenuConcrete;
+import view.GUI.menu.utilities.IconsButton;
 import view.utilities.FactoryGUIs;
 
 import java.awt.*;
@@ -42,7 +43,13 @@ public class GUIMenuCompact implements FactoryGUIMenu {
         while(nBtnUsed < GUIMenuConcrete.N_BUTTONS){
             lim.gridy++;
             menu.add(FactoryGUIs.getUnionComponents(List.of(menu.getButtonLinks().get(nBtnUsed++),
-                    menu.getButtonLinks().get(nBtnUsed++))), lim);
+                    nBtnUsed + 1 < GUIMenuConcrete.N_BUTTONS ? menu.getButtonLinks().get(nBtnUsed++) : FactoryGUIs.getJComponentEmpty())), lim);
+        }
+
+        nBtnUsed = 0;
+        while(nBtnUsed < GUIMenuConcrete.N_BUTTONS){
+            FactoryGUIs.setIconInJButtonMini(menu.getButton(nBtnUsed),
+                    IconsButton.values()[nBtnUsed++].getPath());
         }
     }
 }
