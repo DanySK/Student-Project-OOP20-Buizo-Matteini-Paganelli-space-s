@@ -18,7 +18,7 @@ public abstract class AbstractGUI extends JFrame{
     }
 
     private void setDefaultJFrame(){
-        super.setBounds(DesignJFrame.GUI_X, DesignJFrame.GUI_Y, DesignJFrame.GUI_WIDTH, DesignJFrame.GUI_HEIGHT);
+        super.setBounds(DesignJFrame.GUI_X_MEDIUM, DesignJFrame.GUI_Y_MEDIUM, DesignJFrame.GUI_WIDTH_MEDIUM, DesignJFrame.GUI_HEIGHT_MEDIUM);
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         super.setUndecorated(true);
         super.setResizable(false);

@@ -85,6 +85,11 @@ public class ConcreteGUISound extends AbstractGUI implements GUISound {
         this.btnBack.setIdGUINext(idGUI);
     }
 
+    @Override
+    public List<JButton> getBtnSwitchs() {
+        return this.mixerSound.getBtnSwitchs();
+    }
+
 
     public JLabel getLbTitle(){
         return this.lbTitle;

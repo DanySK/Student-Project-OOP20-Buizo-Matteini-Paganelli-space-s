@@ -9,8 +9,6 @@ import java.util.List;
 
 public interface GUI {
 
-    public void setBounds(final int x, final int y, final int width, final int height);
-
     public void dispose();
 
     public void setVisible(boolean visible);

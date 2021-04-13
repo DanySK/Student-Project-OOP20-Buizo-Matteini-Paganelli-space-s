@@ -1,31 +1,30 @@
 package view.GUI.sound.utilities;
 
-import utilities.DesignSound;
 import view.utilities.FactoryGUIs;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class UnitSound extends JPanel {
-    private JLabel lbTitle;
-    private JSlider sliderSound;
+    private final JLabel lbTitle;
+    private final JSlider sliderSound;
+    private final JButton btnSwitch;
 
     public UnitSound() {
         super(new BorderLayout());
         super.setOpaque(false);
         this.lbTitle = new JLabel();
         this.sliderSound = new JSlider();
+        this.btnSwitch = new JButton();
         this.graphics();
     }
 
     private void graphics(){
-        this.sliderSound.setOpaque(false);
-        this.sliderSound.setMajorTickSpacing(DesignSound.DEFAULT_MAJOR_TICK_SPACING);
-        this.sliderSound.setMinorTickSpacing(DesignSound.DEFAULT_MINOR_TICK_SPACING);
-        this.sliderSound.setPaintTicks(true);
-        this.sliderSound.setPaintLabels(true);
+        FactoryGUIs.setTransparentDesignJButton(this.btnSwitch);
+        FactoryGUIs.setIconInJButtonMini(this.btnSwitch, "iconButton/volumeON.png");
+        FactoryGUIs.setDefaultJSlider(this.sliderSound);
         super.add(FactoryGUIs.encapsulatesInPanel_Flow(this.lbTitle), BorderLayout.NORTH);
-        super.add(this.sliderSound, BorderLayout.CENTER);
+        super.add(FactoryGUIs.getUnionComponents(java.util.List.of(this.btnSwitch, this.sliderSound)), BorderLayout.CENTER);
     }
 
     public JSlider getSliderSound(){
@@ -55,9 +54,14 @@ public class UnitSound extends JPanel {
 
     public void setName(final String name){
         this.sliderSound.setName(name);
+        this.btnSwitch.setName(name);
     }
 
     public void setValueSliderSound(final int value){
         this.sliderSound.setValue(value);
+    }
+
+    public JButton getBtnSwitch(){
+        return this.btnSwitch;
     }
 }

@@ -1,5 +1,6 @@
 package view.GUI.help.factoryMethod;
 
+import utilities.DesignJFrame;
 import view.GUI.help.concrete.GUIHelpConcrete;
 import view.GUI.help.FactoryGUIHelp;
 import view.GUI.help.GUIHelp;
@@ -12,36 +13,38 @@ import java.awt.*;
 
 
 public class GUIHelpStandard implements FactoryGUIHelp {
-    private GUIHelpConcrete GUIHelpConcrete = new GUIHelpConcrete();
+
 
     @Override
     public GUIHelp create(){
-        this.GUIHelpConcrete.setFontLbTitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
-        this.GUIHelpConcrete.setAllFontNotLbTitle(DesignSpace.FONT_MEDIUM_STANDARD);
-        this.GUIHelpConcrete.setAllForeground(DesignSpace.color4);
-        this.createGraphics();
-        this.GUIHelpConcrete.validate();
-        return this.GUIHelpConcrete;
+        GUIHelpConcrete helpGUIConcrete = new GUIHelpConcrete();
+        helpGUIConcrete.setFontLbTitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
+        helpGUIConcrete.setAllFontNotLbTitle(DesignSpace.FONT_MEDIUM_STANDARD);
+        helpGUIConcrete.setAllForeground(DesignSpace.color4);
+        helpGUIConcrete.setBounds(DesignJFrame.GUI_X_MINI, DesignJFrame.GUI_Y_MINI,
+                DesignJFrame.GUI_WIDTH_MINI, DesignJFrame.GUI_HEIGHT_MINI);
+        this.createGraphics(helpGUIConcrete);
+        return helpGUIConcrete;
     }
 
-    private void createGraphics() {
-        this.GUIHelpConcrete.setLayoutGUI(new BorderLayout());
+    private void createGraphics(final GUIHelpConcrete helpConcrete) {
+        helpConcrete.setLayoutGUI(new BorderLayout());
         GridBagConstraints lim = FactoryGUIs.createGBConstraintsBase();
-        this.GUIHelpConcrete.add(FactoryGUIs.encapsulatesInPanel_Flow(this.GUIHelpConcrete.getLbTitle()),
+        helpConcrete.add(FactoryGUIs.encapsulatesInPanel_Flow(helpConcrete.getLbTitle()),
                 BorderLayout.NORTH);
 
         JPanel panelContainPanel = new JPanel(new GridBagLayout());
         panelContainPanel.setOpaque(false);
 
-        for (HelpPanel panelHelp : this.GUIHelpConcrete.getHelpPanels()) {
+        for (HelpPanel panelHelp : helpConcrete.getHelpPanels()) {
             panelContainPanel.add(panelHelp, lim);
             lim.gridy++;
         }
 
-        this.GUIHelpConcrete.add(panelContainPanel, BorderLayout.CENTER);
-        FactoryGUIs.setTransparentDesignJButton(this.GUIHelpConcrete.getBtnBack());
-        FactoryGUIs.setIconInJButtonMini(this.GUIHelpConcrete.getBtnBack(), "iconButton/back.png");
-        this.GUIHelpConcrete.add(FactoryGUIs.encapsulatesInPanel_Flow(this.GUIHelpConcrete.getBtnBack()), BorderLayout.SOUTH);
+        helpConcrete.add(panelContainPanel, BorderLayout.CENTER);
+        FactoryGUIs.setTransparentDesignJButton(helpConcrete.getBtnBack());
+        FactoryGUIs.setIconInJButtonMini(helpConcrete.getBtnBack(), "iconButton/back.png");
+        helpConcrete.add(FactoryGUIs.encapsulatesInPanel_Flow(helpConcrete.getBtnBack()), BorderLayout.SOUTH);
     }
 
 

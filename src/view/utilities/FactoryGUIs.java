@@ -1,6 +1,7 @@
 package view.utilities;
 
 import utilities.DesignJFrame;
+import utilities.DesignSound;
 
 import javax.swing.*;
 import java.awt.*;
@@ -114,7 +115,7 @@ public class FactoryGUIs {
     }
 
     public static void rateImage(ImageIcon imageIcon, final int rate){
-        int widthRateImage = DesignJFrame.GUI_WIDTH * rate / 100;
+        int widthRateImage = DesignJFrame.GUI_WIDTH_MEDIUM * rate / 100;
         int heightRateImage = imageIcon.getIconHeight() * widthRateImage / imageIcon.getIconWidth();
         resizeImage(widthRateImage, heightRateImage, imageIcon);
     }
@@ -124,5 +125,13 @@ public class FactoryGUIs {
         panel.setOpaque(false);
         panel.setSize(0,0);
         return panel;
+    }
+
+    public static void setDefaultJSlider(final JSlider slider){
+        slider.setOpaque(false);
+        slider.setMajorTickSpacing(DesignSound.DEFAULT_MAJOR_TICK_SPACING);
+        slider.setMinorTickSpacing(DesignSound.DEFAULT_MINOR_TICK_SPACING);
+        slider.setPaintTicks(true);
+        slider.setPaintLabels(true);
     }
 }

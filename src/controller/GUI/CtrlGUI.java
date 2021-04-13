@@ -37,11 +37,18 @@ public class CtrlGUI {
                             this.offCmdEngine.execute(this.getEngine(this.lastCrono())).execute(this.getGUI(this.lastCrono()));
                             this.onCmdEngine.execute(this.getEngine(this.penultimateCrono())).execute(this.getGUI(this.penultimateCrono()));
                             this.crologia.remove(this.lastCrono()); break;
+                        case ID_SOUND, ID_HELP:
+                            this.crologia.add(btn.getIdGUINext());
+                            this.onCmdEngine.execute(this.getEngine(this.lastCrono())).execute(this.getGUI(this.lastCrono())); break;
                         default:
                             this.crologia.add(btn.getIdGUINext());
                             this.onCmdEngine.execute(this.getEngine(this.lastCrono())).execute(this.getGUI(this.lastCrono()));
                             this.offCmdEngine.execute(this.getEngine(this.penultimateCrono())).execute(this.getGUI(this.penultimateCrono())); break;
                     }
+
+
+
+
                     System.out.println("list" + this.crologia);
                 });
             }

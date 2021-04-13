@@ -17,6 +17,8 @@ public class EngineSound implements EngineGUI {
 
     private int valueMainSound = DesignSound.DEFAULT_VALUE_SOUND;
     private int valueEffectSound = DesignSound.DEFAULT_VALUE_SOUND;
+    private boolean stateSoundMain = true;
+    private boolean stateSoundEffect = true;
 
     private boolean state = false;
 
@@ -79,5 +81,21 @@ public class EngineSound implements EngineGUI {
 
     public void setValueEffectSound(int valueEffectSound) {
         this.valueEffectSound = valueEffectSound;
+    }
+
+    public boolean getStateSoundMain() {
+        return stateSoundMain;
+    }
+
+    public void setStateSoundMain(boolean stateSoundMain) {
+        this.stateSoundMain = stateSoundMain;
+    }
+
+    public boolean getStateSoundEffect() {
+        return stateSoundEffect;
+    }
+
+    public void setStateSoundEffect(boolean stateSoundEffect) {
+        this.stateSoundEffect = stateSoundEffect;
     }
 }

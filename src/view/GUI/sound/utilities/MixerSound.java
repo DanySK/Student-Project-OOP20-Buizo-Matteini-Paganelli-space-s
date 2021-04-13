@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 public class MixerSound extends JPanel{
     public static final int N_SOUND = 2;
-    private List<UnitSound> sdlSounds;
+    private final List<UnitSound> sdlSounds;
 
     public MixerSound(){
         super(new GridBagLayout());
@@ -22,13 +22,11 @@ public class MixerSound extends JPanel{
 
     private void graphics(){
         GridBagConstraints limit = FactoryGUIs.createGBConstraintsBase();
+        super.add(FactoryGUIs.getJComponentEmpty());
         for (UnitSound unit : this.sdlSounds) {
-            unit.setOrientation(JSlider.VERTICAL);
             super.add(unit, limit);
-            limit.gridx++;
-            limit.insets = new Insets(40, 80, 40, 80);
+            limit.gridy++;
         }
-
     }
 
     public void setFontTitleSound(final Font font){
@@ -64,5 +62,9 @@ public class MixerSound extends JPanel{
 
     public void setDefaultValueSlidersSound(final int value){
         this.sdlSounds.forEach(sound -> sound.setValueSliderSound(value));
+    }
+
+    public List<JButton> getBtnSwitchs(){
+        return this.sdlSounds.stream().map(s -> s.getBtnSwitch()).collect(Collectors.toList());
     }
 }

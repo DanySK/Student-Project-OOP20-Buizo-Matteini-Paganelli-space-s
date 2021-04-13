@@ -2,10 +2,12 @@ package controller.GUI;
 
 import model.GUI.sound.EngineSound;
 import view.GUI.sound.GUISound;
+import view.utilities.FactoryGUIs;
 
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.SliderUI;
+import java.awt.event.ActionListener;
 
 public class CtrlSound {
     private GUISound soundGUI;
@@ -28,15 +30,40 @@ public class CtrlSound {
         this.soundGUI.setDefaultValueSlidersSound(this.soundEngine.getDefaultValueSound());
         this.soundGUI.getSlidersSound().forEach(slider ->
                 slider.addChangeListener(this.changeListenerSlider(slider)));
+
+        this.soundGUI.getBtnSwitchs().forEach(btn -> btn.addActionListener(this.changeSwitchSound(btn)));
     }
 
     private ChangeListener changeListenerSlider(final JSlider slider){
-        int firstSlider = 0;
         return e -> {
-            if(slider.getName().contentEquals(soundEngine.getListNameSlider().get(firstSlider))){
+            int firstSlider = 0;
+            if(slider.getName().contentEquals(soundEngine.getListNameSlider().get(firstSlider))
+                    && soundEngine.getStateSoundMain()){
                 soundEngine.setValueMainSound(slider.getValue());
-            } else {
+            } else if(slider.getName().contentEquals(soundEngine.getListNameSlider().get(firstSlider + 1))
+                    && soundEngine.getStateSoundEffect()) {
                 soundEngine.setValueEffectSound(slider.getValue());
+            }
+        };
+    }
+
+    private ActionListener changeSwitchSound(final JButton btn){
+        return e -> {
+            int firstUnitSound = 0;
+            if(btn.getName().contentEquals(soundEngine.getListNameSlider().get(firstUnitSound))){
+                this.soundEngine.setStateSoundMain(!this.soundEngine.getStateSoundMain());
+                FactoryGUIs.setIconInJButtonMini(btn, this.soundEngine.getStateSoundMain() ? "iconButton/volumeON.png" :
+                        "iconButton/volumeOFF.png" );
+
+                this.soundGUI.getSlidersSound().get(firstUnitSound).setValue(this.soundEngine.getStateSoundMain() ?
+                        this.soundEngine.getValueMainSound() : 0);
+            } else {
+                this.soundEngine.setStateSoundEffect(!this.soundEngine.getStateSoundEffect());
+                FactoryGUIs.setIconInJButtonMini(btn, this.soundEngine.getStateSoundEffect() ? "iconButton/volumeON.png" :
+                        "iconButton/volumeOFF.png" );
+
+                this.soundGUI.getSlidersSound().get(firstUnitSound + 1).setValue(this.soundEngine.getStateSoundEffect() ?
+                        this.soundEngine.getValueEffectSound() : 0);
             }
         };
     }

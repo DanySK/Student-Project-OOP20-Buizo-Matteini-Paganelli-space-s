@@ -1,5 +1,6 @@
 package view.GUI.sound.factoryMethod;
 
+import utilities.DesignJFrame;
 import utilities.DesignSpace;
 import view.GUI.sound.FactoryGUISound;
 import view.GUI.sound.GUISound;
@@ -17,7 +18,8 @@ public class GUISoundStandard implements FactoryGUISound {
         soundGUI.setFontGUI(DesignSpace.FONT_MEDIUM_STANDARD);
         soundGUI.setFontSpacingSlider(DesignSpace.FONT_MICRO_STANDARD);
         soundGUI.setForegroundGUI(DesignSpace.color4);
-
+        soundGUI.setBounds(DesignJFrame.GUI_X_MINI, DesignJFrame.GUI_Y_MINI,
+                DesignJFrame.GUI_WIDTH_MINI, DesignJFrame.GUI_HEIGHT_MINI);
         this.graphics(soundGUI);
         return soundGUI;
     }
