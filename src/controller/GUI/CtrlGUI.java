@@ -8,6 +8,10 @@ import utilities.IdGUI;
 import view.GUI.GUI;
 import view.utilities.ButtonID;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +27,7 @@ public class CtrlGUI {
         this.listGUI = listGUI;
         this.crologia.add(IdGUI.ID_MENU);
         this.linksAll();
+        this.focusMenu();
     }
 
     private void linksAll(){
@@ -45,16 +50,51 @@ public class CtrlGUI {
                             this.onCmdEngine.execute(this.getEngine(this.lastCrono())).execute(this.getGUI(this.lastCrono()));
                             this.offCmdEngine.execute(this.getEngine(this.penultimateCrono())).execute(this.getGUI(this.penultimateCrono())); break;
                     }
-
-
-
-
                     System.out.println("list" + this.crologia);
                 });
             }
         }
     }
 
+    private void focusMenu(){
+        this.listGUI.forEach(gui -> gui.addMouseListener(this.getMouseListener(gui.getId())));
+    }
+
+    private MouseListener getMouseListener(final IdGUI id){
+        return new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if(lastCrono() != IdGUI.ID_MENU && id == IdGUI.ID_MENU){
+                    int sizeList = crologia.size() - 1;
+                    while(sizeList > 0 && !crologia.get(sizeList).equals(IdGUI.ID_MENU)){
+                        offCmdEngine.execute(getEngine(crologia.get(sizeList)))
+                                .execute(getGUI(crologia.get(sizeList)));
+                        crologia.remove(sizeList--);
+                    }
+                }
+                System.out.println("list" + crologia);
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        };
+    }
 
     private IdGUI lastCrono(){
         return this.crologia.get(this.crologia.size() - 1);

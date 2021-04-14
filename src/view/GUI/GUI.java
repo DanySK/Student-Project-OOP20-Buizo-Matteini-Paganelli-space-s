@@ -5,9 +5,12 @@ import view.utilities.ButtonID;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.FocusListener;
+import java.awt.event.MouseListener;
 import java.util.List;
 
 public interface GUI {
+    public void addMouseListener(final MouseListener mouseListener);
 
     public void dispose();
 
