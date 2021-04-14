@@ -33,12 +33,12 @@ public class DesignSpace {
     public static Color color4 = new Color(58, 241, 255);
 
     public static Font getFontForTitle(final int size){
-        URL fontUrl = ClassLoader.getSystemResource("font/prova2.ttf");
+        URL fontUrl = ClassLoader.getSystemResource("font/mainFont.ttf");
         Font myFont = null;
         try {
             myFont = Font.createFont(Font.TRUETYPE_FONT, fontUrl.openStream());
         } catch (Exception e) {
-            System.err.println("Path del file font non trovato");
+            System.err.println("Path font no found");
         }
         myFont = myFont.deriveFont(Font.PLAIN,size);
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();

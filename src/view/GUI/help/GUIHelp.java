@@ -6,16 +6,15 @@ import view.GUI.GUI;
 
 import java.util.List;
 
-public interface GUIHelp extends GUI {
-    public void setTitleGUI(final String title);
+public interface GUIHelp extends GUI, GraphicsGUIHelp {
 
     public void setBtnBackID(final IdGUI intoID);
 
-    public void setHelpPanelsName(List<String> listName);
+    public void setNameUnitHelps(final List<String> listName);
 
-    public void setButtonsName(List<String> listName);
+    public void setNameButtons(final List<String> listName);
 
-    public void setImageInPanelHelp(final String panelName, final List<JImageRateEngine> pathImg);
+    public void addIconInUnitHelp(final String panelName, final List<JImageRateEngine> pathImg);
 
 
 }

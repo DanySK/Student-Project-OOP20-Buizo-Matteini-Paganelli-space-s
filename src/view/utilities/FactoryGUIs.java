@@ -25,7 +25,20 @@ public class FactoryGUIs {
         return encapsulate;
     }
 
-    public static JPanel encapsulatesVertical(List<Component> components, final int inset){
+//    public static JPanel encapsulatesVertical(List<Component> components, final int inset){
+//        JPanel encapsulate = new JPanel(new GridBagLayout()) {{ setOpaque(false); }};
+//        GridBagConstraints limit = createGBConstraintsBase();
+//        limit.insets = new Insets(inset / 2,inset,inset / 2,inset);
+//
+//        for (Component component : components) {
+//            encapsulate.add(component, limit);
+//            limit.gridy++;
+//        }
+//
+//        return encapsulate;
+//    }
+
+    public static JPanel encapsulatesVertical(final List<? extends JComponent> components, final int inset){
         JPanel encapsulate = new JPanel(new GridBagLayout()) {{ setOpaque(false); }};
         GridBagConstraints limit = createGBConstraintsBase();
         limit.insets = new Insets(inset / 2,inset,inset / 2,inset);

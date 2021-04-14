@@ -1,6 +1,7 @@
 package view.GUI;
 
-import utilities.*;
+import utilities.DesignJFrame;
+import utilities.IdGUI;
 import view.utilities.JPanelImage;
 
 import javax.swing.*;

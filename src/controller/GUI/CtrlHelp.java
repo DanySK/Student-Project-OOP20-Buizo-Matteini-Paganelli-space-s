@@ -17,10 +17,10 @@ public class CtrlHelp {
         this.GUIHelp.setId(this.engineHelp.getId());
         this.GUIHelp.setBtnBackID(this.engineHelp.getLink());
         this.GUIHelp.setTitleGUI(this.engineHelp.getTitleGUI());
-        this.GUIHelp.setHelpPanelsName(this.engineHelp.getListHelpPanelsName());
-        this.GUIHelp.setButtonsName(this.engineHelp.getListButtonsName());
+        this.GUIHelp.setNameUnitHelps(this.engineHelp.getListHelpPanelsName());
+        this.GUIHelp.setNameButtons(this.engineHelp.getListButtonsName());
         this.engineHelp.getListHelpPanelsName().forEach(panel ->
-                this.GUIHelp.setImageInPanelHelp(panel, this.engineHelp.getPathImagePanel(panel)));
+                this.GUIHelp.addIconInUnitHelp(panel, this.engineHelp.getPathImagePanel(panel)));
 
         this.GUIHelp.setVisible(this.engineHelp.getState());
     }
