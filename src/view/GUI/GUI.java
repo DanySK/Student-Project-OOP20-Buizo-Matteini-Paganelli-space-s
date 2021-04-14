@@ -21,4 +21,6 @@ public interface GUI {
     public IdGUI getId();
 
     public List<ButtonID> getButtonLinks();
+
+    public void close();
 }

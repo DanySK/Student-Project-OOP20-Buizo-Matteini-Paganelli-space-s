@@ -18,14 +18,11 @@ public abstract class AbstractGUI extends JFrame{
     }
 
     private void setDefaultJFrame(){
-        super.setBounds(DesignJFrame.GUI_X_MEDIUM, DesignJFrame.GUI_Y_MEDIUM, DesignJFrame.GUI_WIDTH_MEDIUM, DesignJFrame.GUI_HEIGHT_MEDIUM);
+        super.setBounds(DesignJFrame.GUI_X_MEDIUM, DesignJFrame.GUI_Y_MEDIUM,
+                DesignJFrame.GUI_WIDTH_MEDIUM, DesignJFrame.GUI_HEIGHT_MEDIUM);
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         super.setUndecorated(true);
         super.setResizable(false);
-    }
-
-    public void setLayoutGUI(final LayoutManager layoutGUI){
-        this.panelBackground.setLayout(layoutGUI);
     }
 
     public IdGUI getId(){
@@ -34,5 +31,14 @@ public abstract class AbstractGUI extends JFrame{
 
     public void setId(final IdGUI id){
         this.id = id;
+    }
+
+    public void setLayoutGUI(final LayoutManager layoutGUI){
+        this.panelBackground.setLayout(layoutGUI);
+    }
+
+    public void close(){
+        super.dispose();
+        System.exit(0);
     }
 }

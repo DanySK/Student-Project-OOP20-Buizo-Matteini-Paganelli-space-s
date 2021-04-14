@@ -8,49 +8,49 @@ import utilities.IdGUI;
 import view.GUI.GUI;
 import view.utilities.ButtonID;
 
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CtrlGUI {
-    private List<IdGUI> crologia = new ArrayList<>();
-    private List<EngineGUI> listEngine;
-    private List<view.GUI.GUI> listGUI;
-    private CmdEngine onCmdEngine = new CmdON();
-    private CmdEngine offCmdEngine = new CmdOFF();
+    private static final IdGUI FIRST_GUI = IdGUI.ID_MENU;
+    private final List<IdGUI> chronology;
+    private final List<EngineGUI> listEngine;
+    private final List<GUI> listGUI;
 
-    public CtrlGUI(final List<view.GUI.GUI> listGUI, List<EngineGUI> listEngine){
+    public CtrlGUI(final List<GUI> listGUI, final List<EngineGUI> listEngine){
         this.listEngine = listEngine;
         this.listGUI = listGUI;
-        this.crologia.add(IdGUI.ID_MENU);
+        this.chronology = new ArrayList<>(List.of(FIRST_GUI));
         this.linksAll();
         this.focusMenu();
     }
 
     private void linksAll(){
-        for (view.GUI.GUI gui : this.listGUI) {
-            for (ButtonID btn : gui.getButtonLinks()) {
+        for(GUI gui : this.listGUI) {
+            for(ButtonID btn : gui.getButtonLinks()) {
                 btn.addActionListener(e -> {
                     System.out.println("Premuto in: " + btn.getIdGUICurrent() + " Vado in: " + btn.getIdGUINext());
 
                     switch (btn.getIdGUINext()) {
-                        case ID_QUIT: this.quitAll(); break;
-                        case ID_BACK:
-                            this.offCmdEngine.execute(this.getEngine(this.lastCrono())).execute(this.getGUI(this.lastCrono()));
-                            this.onCmdEngine.execute(this.getEngine(this.penultimateCrono())).execute(this.getGUI(this.penultimateCrono()));
-                            this.crologia.remove(this.lastCrono()); break;
-                        case ID_SOUND, ID_HELP:
-                            this.crologia.add(btn.getIdGUINext());
-                            this.onCmdEngine.execute(this.getEngine(this.lastCrono())).execute(this.getGUI(this.lastCrono())); break;
-                        default:
-                            this.crologia.add(btn.getIdGUINext());
-                            this.onCmdEngine.execute(this.getEngine(this.lastCrono())).execute(this.getGUI(this.lastCrono()));
-                            this.offCmdEngine.execute(this.getEngine(this.penultimateCrono())).execute(this.getGUI(this.penultimateCrono())); break;
+                        case ID_QUIT -> this.quitAll();
+                        case ID_BACK -> {
+                            this.turnOnGUI(this.penultimateElementOfList());
+                            this.turnOffGUI(this.lastElementOfList());
+                            this.chronology.remove(this.lastElementOfList());
+                        }
+                        case ID_SOUND, ID_HELP -> {
+                            this.chronology.add(btn.getIdGUINext());
+                            this.turnOnGUI(this.lastElementOfList());
+                        }
+                        default -> {
+                            this.chronology.add(btn.getIdGUINext());
+                            this.turnOnGUI(this.lastElementOfList());
+                            this.turnOffGUI(this.penultimateElementOfList());
+                        }
                     }
-                    System.out.println("list" + this.crologia);
+                    System.out.println("list" + this.chronology);
                 });
             }
         }
@@ -63,45 +63,49 @@ public class CtrlGUI {
     private MouseListener getMouseListener(final IdGUI id){
         return new MouseListener() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-            }
+            public void mouseClicked(MouseEvent e) { }
 
             @Override
             public void mousePressed(MouseEvent e) {
-                if(lastCrono() != IdGUI.ID_MENU && id == IdGUI.ID_MENU){
-                    int sizeList = crologia.size() - 1;
-                    while(sizeList > 0 && !crologia.get(sizeList).equals(IdGUI.ID_MENU)){
-                        offCmdEngine.execute(getEngine(crologia.get(sizeList)))
-                                .execute(getGUI(crologia.get(sizeList)));
-                        crologia.remove(sizeList--);
+                if(lastElementOfList() != IdGUI.ID_MENU && id == IdGUI.ID_MENU){
+                    int sizeList = chronology.size() - 1;
+                    while(sizeList > 0 && !chronology.get(sizeList).equals(IdGUI.ID_MENU)){
+                        turnOffGUI(chronology.get(sizeList));
+                        chronology.remove(sizeList--);
                     }
                 }
-                System.out.println("list" + crologia);
+                System.out.println("list" + chronology);
             }
 
             @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
+            public void mouseReleased(MouseEvent e) { }
 
             @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
+            public void mouseEntered(MouseEvent e) { }
 
             @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
+            public void mouseExited(MouseEvent e) { }
         };
     }
 
-    private IdGUI lastCrono(){
-        return this.crologia.get(this.crologia.size() - 1);
+    public void turnOnGUI(final IdGUI id){
+        CmdEngine onCmdEngine = new CmdON();
+        onCmdEngine.execute(this.getEngine(id))
+                .execute(this.getGUI(id));
     }
 
-    private IdGUI penultimateCrono(){
-        return this.crologia.get(this.crologia.size() - 2);
+    public void turnOffGUI(final IdGUI id){
+        CmdEngine offCmdEngine = new CmdOFF();
+        offCmdEngine.execute(this.getEngine(id))
+                .execute(this.getGUI(id));
+    }
+
+    private IdGUI lastElementOfList(){
+        return this.chronology.get(this.chronology.size() - 1);
+    }
+
+    private IdGUI penultimateElementOfList(){
+        return this.chronology.get(this.chronology.size() - 2);
     }
 
     private EngineGUI getEngine(IdGUI id){
@@ -124,7 +128,7 @@ public class CtrlGUI {
 
     private void quitAll(){
         for (GUI gui : this.listGUI) {
-            gui.dispose();
+            gui.close();
         }
     }
 }
