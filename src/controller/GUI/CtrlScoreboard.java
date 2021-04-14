@@ -17,7 +17,7 @@ public class CtrlScoreboard {
         this.scoreboardGUI.setId(this.scoreboardEngine.getId());
         this.scoreboardGUI.setTitleGUI(this.scoreboardEngine.getTitleGUI());
         this.scoreboardGUI.setNameButtons(this.scoreboardEngine.getListName());
-        this.scoreboardGUI.setBtnBackID(this.scoreboardEngine.getLink());
+        this.scoreboardGUI.setBtnBackID(this.scoreboardEngine.getBackLink());
         this.scoreboardGUI.setVisible(this.scoreboardEngine.getState());
     }
 

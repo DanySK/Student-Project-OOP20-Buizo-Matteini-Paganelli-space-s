@@ -31,10 +31,6 @@ public class EngineMenu implements EngineGUI {
         return ID;
     }
     @Override
-    public IdGUI getLink() {
-        return null;
-    }
-    @Override
     public List<IdGUI> getLinks() {
         return this.linkButtons.stream().map(l -> l.getIdGUI()).collect(Collectors.toList());
     }

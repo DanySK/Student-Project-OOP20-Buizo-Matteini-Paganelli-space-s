@@ -43,13 +43,12 @@ public class EngineSettings implements EngineGUI {
     }
 
     @Override
-    public IdGUI getLink() {
-        return this.linksID.get(0);
-    }
-
-    @Override
     public List<IdGUI> getLinks() {
         return this.linksID;
+    }
+
+    public IdGUI getBackLink(){
+        return this.linksID.get(0);
     }
 
 

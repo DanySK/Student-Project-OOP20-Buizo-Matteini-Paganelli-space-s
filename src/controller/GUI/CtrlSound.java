@@ -24,7 +24,7 @@ public class CtrlSound {
         this.soundGUI.setTitleGUI(this.soundEngine.getTitle());
         this.soundGUI.setNameComponents(this.soundEngine.getListNameComponents());
         this.soundGUI.setNameTypeSlider(this.soundEngine.getListNameSlider());
-        this.soundGUI.setBtnBackID(this.soundEngine.getLink());
+        this.soundGUI.setBtnBackID(this.soundEngine.getBackLink());
         this.soundGUI.setVisible(this.soundEngine.getState());
 
         this.soundGUI.setDefaultValueSlidersSound(this.soundEngine.getDefaultValueSound());

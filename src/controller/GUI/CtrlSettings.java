@@ -23,7 +23,7 @@ public class CtrlSettings {
         this.settingsGUI.setId(this.settingsEngine.getId());
         this.settingsGUI.setTitleGUI(this.settingsEngine.getTitleGUI());
         this.settingsGUI.setNameComponent(this.settingsEngine.getListName());
-        this.settingsGUI.setBtnBackID(this.settingsEngine.getLink());
+        this.settingsGUI.setBtnBackID(this.settingsEngine.getBackLink());
         this.settingsGUI.setSkinSpaceShip(this.settingsEngine.getSkinSpaceShip());
 
         this.settingsGUI.getUnitSkin().forEach(btn -> btn.addActionListener(this.changeSkin(btn)));

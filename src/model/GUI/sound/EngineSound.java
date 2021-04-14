@@ -42,13 +42,12 @@ public class EngineSound implements EngineGUI {
     }
 
     @Override
-    public IdGUI getLink() {
-        return this.idBack;
-    }
-
-    @Override
     public List<IdGUI> getLinks() {
         return List.of(this.idBack);
+    }
+
+    public IdGUI getBackLink(){
+        return this.idBack;
     }
 
     public String getTitle() {

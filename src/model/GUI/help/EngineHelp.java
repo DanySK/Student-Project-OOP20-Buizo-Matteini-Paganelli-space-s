@@ -8,68 +8,60 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class EngineHelp implements EngineGUI {
-    private final String TITLE_GUI = "HELP";
-    private final IdGUI Id = IdGUI.ID_HELP;
+    private static final String TITLE_GUI = "HELP";
+    private static final IdGUI Id = IdGUI.ID_HELP;
+    private static final IdGUI linkBack = IdGUI.ID_BACK;
 
-    private final List<HelpNamePanels> listHelpPanelsName = new ArrayList<>();
-    private final List<HelpNameButtons> listButtonsName = new ArrayList<>();
-    private final Map<String, List<JImageRateEngine>> listHelpImage = new HashMap<>();
-
-    private final List<IdGUI> linksID = new ArrayList<>();
+    private final List<HelpNameButtons> listNameButtons;
+    private final List<UnitsHelp> listNameHelpUnits;
 
     private boolean state = false;
 
     public EngineHelp(){
-        this.linksID.add(IdGUI.ID_BACK);
-        Collections.addAll(this.listHelpPanelsName, HelpNamePanels.values());
-        Collections.addAll(this.listButtonsName, HelpNameButtons.values());
-
-        this.listHelpPanelsName.forEach(e -> this.listHelpImage.put(e.getName(), e.getPathFiles()));
+        this.listNameButtons = Arrays.asList(HelpNameButtons.values());
+        this.listNameHelpUnits =  Arrays.asList(UnitsHelp.values());
     }
 
     @Override
     public IdGUI getId() {
-        return this.Id;
+        return Id;
     }
 
     @Override
     public boolean getState() {
-        return state;
+        return this.state;
     }
 
     @Override
-    public void setState(boolean state) {
+    public void setState(final boolean state) {
         this.state = state;
+    }
+
+    @Override
+    public List<IdGUI> getLinks() {
+        return List.of(linkBack);
     }
 
     public String getTitleGUI() {
         return TITLE_GUI;
     }
 
-    @Override
-    public IdGUI getLink() {
-        return this.linksID.get(0);
+    public IdGUI getBackLink(){
+        return linkBack;
     }
 
-    @Override
-    public List<IdGUI> getLinks() {
-        return this.linksID;
+    public List<String> getListNameHelpUnits() {
+        return this.listNameHelpUnits.stream().map(UnitsHelp::getName).collect(Collectors.toList());
     }
 
-
-    public List<String> getListHelpPanelsName() {
-        return this.listHelpPanelsName.stream().map(p -> p.getName()).collect(Collectors.toList());
+    public List<String> getListNameButtons() {
+        return this.listNameButtons.stream().map(HelpNameButtons::getName).collect(Collectors.toList());
     }
 
-    public List<String> getListButtonsName() {
-        return this.listButtonsName.stream().map(p -> p.getName()).collect(Collectors.toList());
+    public List<JImageRateEngine> getPathIconUnit(final String unitName){
+        return this.listNameHelpUnits.stream().filter(unit -> unit.getName().contentEquals(unitName))
+                .map(UnitsHelp::getPathFiles)
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
     }
-
-    public List<JImageRateEngine> getPathImagePanel(final String panelName){
-        return this.listHelpImage.get(panelName);
-    }
-
-
-
-
 }

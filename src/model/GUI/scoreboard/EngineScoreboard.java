@@ -13,7 +13,7 @@ public class EngineScoreboard implements EngineGUI {
     private final List<NameScoreboardGUI> nameButtons;
 
     private final IdGUI ID = IdGUI.ID_SCOREBOARD;
-    private final IdGUI back = IdGUI.ID_BACK;
+    private final IdGUI linBack = IdGUI.ID_BACK;
 
     private boolean state = false;
 
@@ -39,13 +39,14 @@ public class EngineScoreboard implements EngineGUI {
     public IdGUI getId() {
         return ID;
     }
-    @Override
-    public IdGUI getLink() {
-        return this.back;
-    }
+
     @Override
     public List<IdGUI> getLinks() {
-        return List.of(this.back);
+        return List.of(this.linBack);
+    }
+
+    public IdGUI getBackLink(){
+        return this.linBack;
     }
 
     public List<NameScoreboardGUI> getListName(){

@@ -12,8 +12,6 @@ public interface EngineGUI {
 
     public void setState(final boolean state);
 
-    public IdGUI getLink();
-
     public List<IdGUI> getLinks();
 
 
