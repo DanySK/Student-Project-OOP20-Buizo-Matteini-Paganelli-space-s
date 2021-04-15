@@ -19,9 +19,13 @@ public class CtrlGUI {
     private final List<EngineGUI> listEngine;
     private final List<GUI> listGUI;
 
-    public CtrlGUI(final List<GUI> listGUI, final List<EngineGUI> listEngine){
-        this.listEngine = listEngine;
-        this.listGUI = listGUI;
+    public CtrlGUI(final List<ControlGUI> listControlGUI){
+        this.listGUI = new ArrayList<>();
+        this.listEngine = new ArrayList<>();
+        listControlGUI.forEach(control -> {
+            CtrlGUI.this.listGUI.add(control.getGUI());
+            CtrlGUI.this.listEngine.add(control.getEngine());
+        });
         this.chronology = new ArrayList<>(List.of(FIRST_GUI));
         this.linksAll();
         this.focusMenu();

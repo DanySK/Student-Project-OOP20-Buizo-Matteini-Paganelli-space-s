@@ -1,15 +1,16 @@
 package controller.GUI;
 
+import model.GUI.EngineGUI;
 import model.GUI.sound.EngineSound;
+import view.GUI.GUI;
 import view.GUI.sound.GUISound;
 import view.utilities.FactoryGUIs;
 
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
-import javax.swing.plaf.SliderUI;
 import java.awt.event.ActionListener;
 
-public class CtrlSound {
+public class CtrlSound implements ControlGUI{
     private GUISound soundGUI;
     private EngineSound soundEngine;
 
@@ -68,4 +69,11 @@ public class CtrlSound {
         };
     }
 
+    public GUI getGUI() {
+        return this.soundGUI;
+    }
+
+    public EngineGUI getEngine() {
+        return this.soundEngine;
+    }
 }

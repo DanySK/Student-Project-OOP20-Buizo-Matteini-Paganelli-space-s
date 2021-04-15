@@ -1,9 +1,11 @@
 package controller.GUI;
 
+import model.GUI.EngineGUI;
 import model.GUI.menu.EngineMenu;
+import view.GUI.GUI;
 import view.GUI.menu.GUIMenu;
 
-public class CtrlMenu {
+public class CtrlMenu implements ControlGUI{
     private GUIMenu GUIMenu;
     private EngineMenu menuEngine;
 
@@ -21,4 +23,11 @@ public class CtrlMenu {
         this.GUIMenu.setVisible(this.menuEngine.getState());
     }
 
+    public GUI getGUI() {
+        return this.GUIMenu;
+    }
+
+    public EngineGUI getEngine() {
+        return this.menuEngine;
+    }
 }

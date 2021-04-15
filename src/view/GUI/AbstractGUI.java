@@ -39,7 +39,6 @@ public abstract class AbstractGUI extends JFrame{
     }
 
     public void close(){
-        super.dispose();
         System.exit(0);
     }
 }

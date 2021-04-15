@@ -1,11 +1,13 @@
 package controller.GUI;
 
+import model.GUI.EngineGUI;
 import model.GUI.scoreboard.EngineScoreboard;
+import view.GUI.GUI;
 import view.GUI.scoreboard.GUIScoreboard;
 
-public class CtrlScoreboard {
-    private GUIScoreboard scoreboardGUI;
-    private EngineScoreboard scoreboardEngine;
+public class CtrlScoreboard implements ControlGUI{
+    private final GUIScoreboard scoreboardGUI;
+    private final EngineScoreboard scoreboardEngine;
 
     public CtrlScoreboard(final GUIScoreboard scoreboardGUI, final EngineScoreboard scoreboardEngine){
         this.scoreboardGUI = scoreboardGUI;
@@ -21,4 +23,11 @@ public class CtrlScoreboard {
         this.scoreboardGUI.setVisible(this.scoreboardEngine.getState());
     }
 
+    public GUI getGUI() {
+        return this.scoreboardGUI;
+    }
+
+    public EngineGUI getEngine() {
+        return this.scoreboardEngine;
+    }
 }

@@ -1,7 +1,9 @@
 package controller.GUI;
 
+import model.GUI.EngineGUI;
 import model.GUI.settings.Difficult;
 import model.GUI.settings.EngineSettings;
+import view.GUI.GUI;
 import view.GUI.settings.GUISettings;
 
 import javax.swing.*;
@@ -9,9 +11,9 @@ import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CtrlSettings {
-    private GUISettings settingsGUI;
-    private EngineSettings settingsEngine;
+public class CtrlSettings implements ControlGUI{
+    private final GUISettings settingsGUI;
+    private final EngineSettings settingsEngine;
 
     public CtrlSettings(final GUISettings GUISettings, final EngineSettings settingsEngine){
         this.settingsGUI = GUISettings;
@@ -56,7 +58,13 @@ public class CtrlSettings {
         };
     }
 
+    public GUI getGUI() {
+        return this.settingsGUI;
+    }
 
+    public EngineGUI getEngine() {
+        return this.settingsEngine;
+    }
 }
 
 
