@@ -58,14 +58,12 @@ public class ConcreteGUISound extends AbstractGUI implements GUISound {
 
 
     @Override
-    public void setNameComponents(List<String> listName) {
-        int i = MixerSound.N_SOUND;
-        this.mixerSound.setTitleSlider(listName);
-        this.btnBack.setText(listName.get(i++));
+    public void setNameButtonBack(final String nameBtnBack) {
+        this.btnBack.setText(nameBtnBack);
     }
 
     @Override
-    public void setNameTypeSlider(List<String> listName) {
+    public void setNameTypeSlider(final List<String> listName) {
         this.mixerSound.setNameSlider(listName);
     }
 

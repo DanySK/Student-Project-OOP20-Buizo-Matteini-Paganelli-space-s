@@ -1,7 +1,7 @@
 package controller.GUI;
 
 import model.GUI.EngineGUI;
-import model.GUI.settings.Difficult;
+import model.GUI.settings.Difficulty;
 import model.GUI.settings.EngineSettings;
 import view.GUI.GUI;
 import view.GUI.settings.GUISettings;
@@ -47,11 +47,11 @@ public class CtrlSettings implements ControllerGUI {
     private ActionListener changeDifficult(JRadioButton rBtn){
         return e -> {
             if(rBtn.getText() == "Easy"){
-                CtrlSettings.this.settingsEngine.setDifficult(Difficult.EASY);
+                CtrlSettings.this.settingsEngine.setDifficult(Difficulty.EASY);
             } else if(rBtn.getText() == "Medium") {
-                CtrlSettings.this.settingsEngine.setDifficult(Difficult.MEDIUM);
+                CtrlSettings.this.settingsEngine.setDifficult(Difficulty.MEDIUM);
             } else if(rBtn.getText() == "Hard") {
-                CtrlSettings.this.settingsEngine.setDifficult(Difficult.HARD);
+                CtrlSettings.this.settingsEngine.setDifficult(Difficulty.HARD);
             }
         };
     }

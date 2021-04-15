@@ -2,6 +2,8 @@ package controller.GUI;
 
 import model.GUI.EngineGUI;
 import model.GUI.sound.EngineSound;
+import utilities.DesignSound;
+import utilities.Engines;
 import view.GUI.GUI;
 import view.GUI.sound.GUISound;
 import view.utilities.FactoryGUIs;
@@ -11,8 +13,8 @@ import javax.swing.event.ChangeListener;
 import java.awt.event.ActionListener;
 
 public class CtrlSound implements ControllerGUI {
-    private GUISound soundGUI;
-    private EngineSound soundEngine;
+    private final GUISound soundGUI;
+    private final EngineSound soundEngine;
 
     public CtrlSound(final GUISound soundGUI, final EngineSound soundEngine){
         this.soundEngine = soundEngine;
@@ -23,7 +25,7 @@ public class CtrlSound implements ControllerGUI {
     private void initSound(){
         this.soundGUI.setId(this.soundEngine.getId());
         this.soundGUI.setTitleGUI(this.soundEngine.getTitle());
-        this.soundGUI.setNameComponents(this.soundEngine.getListNameComponents());
+        this.soundGUI.setNameButtonBack(this.soundEngine.getNameBack());
         this.soundGUI.setNameTypeSlider(this.soundEngine.getListNameSlider());
         this.soundGUI.setBtnBackID(this.soundEngine.getBackLink());
         this.soundGUI.setVisible(this.soundEngine.isVisible());
@@ -39,10 +41,10 @@ public class CtrlSound implements ControllerGUI {
         return e -> {
             int firstSlider = 0;
             if(slider.getName().contentEquals(soundEngine.getListNameSlider().get(firstSlider))
-                    && soundEngine.getStateSoundMain()){
+                    && soundEngine.isActiveSoundMain()){
                 soundEngine.setValueMainSound(slider.getValue());
             } else if(slider.getName().contentEquals(soundEngine.getListNameSlider().get(firstSlider + 1))
-                    && soundEngine.getStateSoundEffect()) {
+                    && soundEngine.isActiveSoundEffect()) {
                 soundEngine.setValueEffectSound(slider.getValue());
             }
         };
@@ -51,28 +53,33 @@ public class CtrlSound implements ControllerGUI {
     private ActionListener changeSwitchSound(final JButton btn){
         return e -> {
             int firstUnitSound = 0;
+            int secondUnitSound = 1;
             if(btn.getName().contentEquals(soundEngine.getListNameSlider().get(firstUnitSound))){
-                this.soundEngine.setStateSoundMain(!this.soundEngine.getStateSoundMain());
-                FactoryGUIs.setIconInJButtonMini(btn, this.soundEngine.getStateSoundMain() ? "iconButton/volumeON.png" :
-                        "iconButton/volumeOFF.png" );
+                this.soundEngine.setStateSoundMain(Engines.inverseStateSlider(this.soundEngine.getStateSoundMain()));
+                FactoryGUIs.setIconInJButtonMini(btn, this.soundEngine.isActiveSoundMain() ?
+                        this.soundEngine.actualPathStateSoundMain() :
+                        Engines.getInversePathStateSlider(this.soundEngine.getStateSoundMain()));
 
-                this.soundGUI.getSlidersSound().get(firstUnitSound).setValue(this.soundEngine.getStateSoundMain() ?
-                        this.soundEngine.getValueMainSound() : 0);
+                this.soundGUI.getSlidersSound().get(firstUnitSound).setValue(this.soundEngine.isActiveSoundMain() ?
+                        this.soundEngine.getValueMainSound() : DesignSound.SOUND_ZERO);
             } else {
-                this.soundEngine.setStateSoundEffect(!this.soundEngine.getStateSoundEffect());
-                FactoryGUIs.setIconInJButtonMini(btn, this.soundEngine.getStateSoundEffect() ? "iconButton/volumeON.png" :
-                        "iconButton/volumeOFF.png" );
+                this.soundEngine.setStateSoundEffect(Engines.inverseStateSlider(this.soundEngine.getStateSoundEffect()));
+                FactoryGUIs.setIconInJButtonMini(btn, this.soundEngine.isActiveSoundEffect() ?
+                        this.soundEngine.actualPathStateSoundEffect() :
+                        Engines.getInversePathStateSlider(this.soundEngine.getStateSoundEffect()));
 
-                this.soundGUI.getSlidersSound().get(firstUnitSound + 1).setValue(this.soundEngine.getStateSoundEffect() ?
-                        this.soundEngine.getValueEffectSound() : 0);
+                this.soundGUI.getSlidersSound().get(secondUnitSound).setValue(this.soundEngine.isActiveSoundEffect() ?
+                        this.soundEngine.getValueEffectSound() : DesignSound.SOUND_ZERO);
             }
         };
     }
 
+    @Override
     public GUI getGUI() {
         return this.soundGUI;
     }
 
+    @Override
     public EngineGUI getEngine() {
         return this.soundEngine;
     }

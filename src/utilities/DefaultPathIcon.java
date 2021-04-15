@@ -3,6 +3,9 @@ package utilities;
 public class DefaultPathIcon {
     public static final String ICON_BACK = "iconButton/back.png";
 
+    public static final String ICON_SOUND_OFF = "iconButton/volumeOFF.png";
+    public static final String ICON_SOUND_ON = "iconButton/volumeON.png";
+
     public static final String ICON_WASD = "imgHelp/wasd.png";
     public static final String ICON_ROW = "imgHelp/row.png";
     public static final String ICON_SPACEBAR = "imgHelp/space.png";

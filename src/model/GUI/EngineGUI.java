@@ -12,7 +12,7 @@ public interface EngineGUI {
 
     public void setVisibility(final Visibility state);
 
-    public List<IdGUI> getLinks();
-
     public boolean isVisible();
+
+    public List<IdGUI> getLinks();
 }

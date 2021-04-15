@@ -32,9 +32,9 @@ public class GUIScoreboardConcrete extends AbstractGUI implements GUIScoreboard 
     }
 
     @Override
-    public void setNameButtons(java.util.List<NameScoreboardGUI> listName) {
+    public void setNameButtons(java.util.List<String> listName) {
         for(int i = 0; i < listName.size(); i++){
-            this.getButton().get(i).setText(listName.get(i).getName());
+            this.getButton().get(i).setText(listName.get(i));
         }
     }
     @Override

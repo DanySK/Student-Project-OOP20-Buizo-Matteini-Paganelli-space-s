@@ -3,30 +3,49 @@ package model.GUI.settings;
 import model.GUI.Visibility;
 import model.MyJImage.JImageRateEngine;
 import model.GUI.EngineGUI;
+import utilities.DesignImage;
+import utilities.DesignTitleGUI;
+import utilities.Engines;
 import utilities.IdGUI;
 
-import java.security.KeyStore;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class EngineSettings implements EngineGUI {
-    private final String TITLE_SETTINGS = "SETTINGS";
-    private final IdGUI ID = IdGUI.ID_SETTING;
-    private final List<NameSettingsGUI> namesButtons = List.of(NameSettingsGUI.values());
-    private final List<IdGUI> linksID = List.of(IdGUI.ID_BACK);
+    public static final int INDEX_INIT_SKIN = 0;
+    public static final int STEP_INDEX_SKIN = 1;
+    public static final int FIRST_DIFFICULT_ON = 0;
 
-    private int chooseSkin = 3;
-    private JImageRateEngine skinSpaceShip = new JImageRateEngine(SkinSpaceShip.values()[this.chooseSkin].getPath(),15);
-    private Map<Difficult, Boolean> difficult = new HashMap<>();
+    private final IdGUI id;
+    private final List<NameSettingsGUI> namesButtons;
+    private final IdGUI linkBack;
+
+    private final Map<Difficulty, DifficultActive> difficult;
+    private JImageRateEngine skinSpaceShip;
+    private int chooseSkin;
 
     private Visibility visibility = Visibility.HIDDEN;
 
     public EngineSettings(){
-        this.difficult.put(Difficult.EASY, false);
-        this.difficult.put(Difficult.MEDIUM, true);
-        this.difficult.put(Difficult.HARD, false);
+        this.id = IdGUI.ID_SETTING;
+        this.linkBack = IdGUI.ID_BACK;
+        this.chooseSkin = INDEX_INIT_SKIN;
+        this.skinSpaceShip = new JImageRateEngine(SkinSpaceShip.values()[this.chooseSkin].getPath(),
+                DesignImage.RATE_ICON_SKIN);
+        this.namesButtons = List.of(NameSettingsGUI.values());
+
+        this.difficult = IntStream.range(0, Difficulty.values().length).boxed()
+                .collect(Collectors.toMap(i -> Difficulty.values()[i], Engines.DEFAULT_DIFFICULTLY_ACTIVE::get));
+    }
+
+    @Override
+    public IdGUI getId() {
+        return this.id;
     }
 
     @Override
@@ -40,78 +59,59 @@ public class EngineSettings implements EngineGUI {
     }
 
     @Override
-    public IdGUI getId() {
-        return this.ID;
-    }
-
-    @Override
-    public List<IdGUI> getLinks() {
-        return this.linksID;
-    }
-
-    @Override
     public boolean isVisible() {
         return this.visibility.isVisible();
     }
 
-    public IdGUI getBackLink(){
-        return this.linksID.get(0);
+    @Override
+    public List<IdGUI> getLinks() {
+        return List.of(this.linkBack);
     }
 
+
+    public IdGUI getBackLink(){
+        return this.linkBack;
+    }
 
     public String getTitleGUI() {
-        return TITLE_SETTINGS;
+        return DesignTitleGUI.TITLE_SETTINGS;
     }
 
-    public List<NameSettingsGUI> getListName(){
-        return this.namesButtons;
+    public List<String> getListName(){
+        return this.namesButtons.stream().map(NameSettingsGUI::getTitle).collect(Collectors.toList());
     }
 
     public JImageRateEngine getSkinSpaceShip() {
-        return skinSpaceShip;
+        return this.skinSpaceShip;
     }
 
     public void changeSkinDx(){
-        this.chooseSkin = this.chooseSkin + 1 < SkinSpaceShip.values().length ? this.chooseSkin + 1 : 0;
+        this.chooseSkin = this.chooseSkin + STEP_INDEX_SKIN < SkinSpaceShip.values().length ?
+                this.chooseSkin + STEP_INDEX_SKIN : INDEX_INIT_SKIN;
         this.skinSpaceShip.setPathImg(SkinSpaceShip.values()[this.chooseSkin].getPath());
     }
 
     public void changeSkinSx(){
-        this.chooseSkin = this.chooseSkin - 1 > -1 ? this.chooseSkin - 1 : SkinSpaceShip.values().length - 1;
+        this.chooseSkin = this.chooseSkin - STEP_INDEX_SKIN >= INDEX_INIT_SKIN ?
+                this.chooseSkin - STEP_INDEX_SKIN : SkinSpaceShip.values().length - STEP_INDEX_SKIN;
         this.skinSpaceShip.setPathImg(SkinSpaceShip.values()[this.chooseSkin].getPath());
     }
 
-    public Difficult getDifficultActivate(){
-        return this.difficult.entrySet().stream().filter(e -> e.getValue().equals(true))
-                .map(e -> e.getKey())
-                .collect(Collectors.toList()).get(0);
+    public Difficulty getDifficultActivate(){
+        return this.difficult.entrySet().stream()
+                .filter(e -> e.getValue().equals(DifficultActive.ON))
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList()).get(FIRST_DIFFICULT_ON);
     }
 
-    public Map<Difficult, Boolean> getDifficult() {
-        return this.difficult;
-    }
-
-    public void setDifficult(final Difficult difficultState) {
-        this.difficult.entrySet().forEach(e -> e.setValue(false));
-
+    public void setDifficult(final Difficulty difficultyState) {
+        this.resetDifficultlyOFF();
         this.difficult.entrySet().stream()
-                .filter(e -> e.getKey().equals(difficultState))
-                .forEach(e -> e.setValue(true));
+                .filter(e -> e.getKey().equals(difficultyState))
+                .forEach(e -> e.setValue(DifficultActive.ON));
     }
-//
-//    public int getSoundBackground() {
-//        return this.soundBackground;
-//    }
-//
-//    public int getSoundEffect() {
-//        return this.soundEffect;
-//    }
-//
-//    public void setSoundBackground(int soundBackground) {
-//        this.soundBackground = soundBackground;
-//    }
-//
-//    public void setSoundEffect(int soundEffect) {
-//        this.soundEffect = soundEffect;
-//    }
+
+    private void resetDifficultlyOFF(){
+        this.difficult.entrySet().forEach(e -> e.setValue(DifficultActive.OFF));
+    }
 }

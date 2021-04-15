@@ -2,29 +2,33 @@ package model.GUI.scoreboard;
 
 import model.GUI.EngineGUI;
 import model.GUI.Visibility;
+import utilities.DesignTitleGUI;
 import utilities.IdGUI;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class EngineScoreboard implements EngineGUI {
-    private final String TITLE_SCOREBOARD = "SCOREBOARD";
+    private final IdGUI id;
+    private final IdGUI linkBack;
+
     private final List<NameScoreboardGUI> nameButtons;
 
-    private final IdGUI ID = IdGUI.ID_SCOREBOARD;
-    private final IdGUI linBack = IdGUI.ID_BACK;
-
-    private Visibility visibility = Visibility.HIDDEN;
+    private Visibility visibility;
 
     public EngineScoreboard() {
+        this.id = IdGUI.ID_SCOREBOARD;
+        this.linkBack = IdGUI.ID_BACK;
         this.nameButtons = Arrays.asList(NameScoreboardGUI.values());
+        this.visibility = Visibility.HIDDEN;
     }
 
-
-    public String getTitleGUI(){
-        return this.TITLE_SCOREBOARD;
+    @Override
+    public IdGUI getId() {
+        return this.id;
     }
 
     @Override
@@ -38,25 +42,25 @@ public class EngineScoreboard implements EngineGUI {
     }
 
     @Override
-    public IdGUI getId() {
-        return ID;
-    }
-
-    @Override
-    public List<IdGUI> getLinks() {
-        return List.of(this.linBack);
-    }
-
-    @Override
     public boolean isVisible() {
         return this.visibility.isVisible();
     }
 
-    public IdGUI getBackLink(){
-        return this.linBack;
+    @Override
+    public List<IdGUI> getLinks() {
+        return List.of(this.linkBack);
     }
 
-    public List<NameScoreboardGUI> getListName(){
-        return this.nameButtons;
+
+    public String getTitleGUI(){
+        return DesignTitleGUI.TITLE_SCOREBOARD;
+    }
+
+    public IdGUI getBackLink(){
+        return this.linkBack;
+    }
+
+    public List<String> getListName(){
+        return this.nameButtons.stream().map(NameScoreboardGUI::getName).collect(Collectors.toList());
     }
 }

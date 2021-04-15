@@ -1,7 +1,7 @@
 package view.GUI.settings.concrete;
 
 import model.MyJImage.JImageRateEngine;
-import model.GUI.settings.Difficult;
+import model.GUI.settings.Difficulty;
 import utilities.IdGUI;
 import model.GUI.settings.NameSettingsGUI;
 import view.GUI.AbstractGUI;
@@ -29,11 +29,11 @@ public class ConcreteGUISettings extends AbstractGUI implements GUISettings {
     }
 
     @Override
-    public void setNameComponent(final List<NameSettingsGUI> listName) {
+    public void setNameComponent(final List<String> listName) {
         int i = 0;
-        this.panelSkin.setLbTitle(listName.get(i++).getTitle());
-        this.panelDifficult.setTitle(listName.get( i++).getTitle());
-        this.btnBack.setText(listName.get(i).getTitle());
+        this.panelSkin.setLbTitle(listName.get(i++));
+        this.panelDifficult.setTitle(listName.get(i++));
+        this.btnBack.setText(listName.get(i));
     }
 
     @Override
@@ -43,8 +43,8 @@ public class ConcreteGUISettings extends AbstractGUI implements GUISettings {
     }
 
     @Override
-    public void setDifficult(final Difficult difficult) {
-        this.panelDifficult.setDifficult(difficult);
+    public void setDifficult(final Difficulty difficulty) {
+        this.panelDifficult.setDifficult(difficulty);
     }
 
     @Override

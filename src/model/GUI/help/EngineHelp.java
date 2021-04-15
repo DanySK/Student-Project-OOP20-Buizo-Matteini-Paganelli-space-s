@@ -11,22 +11,25 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class EngineHelp implements EngineGUI {
-    private static final IdGUI Id = IdGUI.ID_HELP;
-    private static final IdGUI linkBack = IdGUI.ID_BACK;
+    private final IdGUI id;
+    private final IdGUI linkBack;
 
     private final List<UnitsHelp> listNameHelpUnits;
     private final List<String> listName;
 
-    private Visibility visibility = Visibility.HIDDEN;
+    private Visibility visibility;
 
     public EngineHelp(){
+        this.id = IdGUI.ID_HELP;
+        this.linkBack = IdGUI.ID_BACK;
         this.listName = List.of(DesignJComponent.STRING_BACK_BUTTON);
         this.listNameHelpUnits = Arrays.asList(UnitsHelp.values());
+        this.visibility = Visibility.HIDDEN;
     }
 
     @Override
     public IdGUI getId() {
-        return Id;
+        return this.id;
     }
 
     @Override
@@ -40,21 +43,22 @@ public class EngineHelp implements EngineGUI {
     }
 
     @Override
-    public List<IdGUI> getLinks() {
-        return List.of(linkBack);
-    }
-
-    @Override
     public boolean isVisible() {
         return this.visibility.isVisible();
     }
 
-    public String getTitleGUI() {
+    @Override
+    public List<IdGUI> getLinks() {
+        return List.of(this.linkBack);
+    }
+
+
+    public String getTitle() {
         return DesignTitleGUI.TITLE_MENU;
     }
 
     public IdGUI getBackLink(){
-        return linkBack;
+        return this.linkBack;
     }
 
     public List<String> getListNameHelpUnits() {

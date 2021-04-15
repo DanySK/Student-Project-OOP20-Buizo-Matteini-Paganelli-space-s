@@ -5,7 +5,6 @@ import utilities.DefaultPathIcon;
 import utilities.DesignImage;
 import utilities.DesignJComponent;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public enum UnitsHelp {

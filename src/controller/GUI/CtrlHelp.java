@@ -19,7 +19,7 @@ public class CtrlHelp implements ControllerGUI {
     }
 
     private void assignmentTitle(){
-        this.gui.setTitleGUI(this.engine.getTitleGUI());
+        this.gui.setTitleGUI(this.engine.getTitle());
     }
 
     private void assignmentsName() {

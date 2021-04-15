@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.util.List;
 
 public interface GUISound extends GUI, GraphicsGUISound {
-    public void setNameComponents(final List<String> listName);
+    public void setNameButtonBack(final String nameBtnBack);
 
     public void setNameTypeSlider(final List<String> listName);
 

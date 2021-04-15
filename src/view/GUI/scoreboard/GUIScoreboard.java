@@ -8,9 +8,7 @@ import java.util.List;
 
 public interface GUIScoreboard extends GUI {
 
-    public void setBounds(int x, int y, int width, int height);
-
-    public void setNameButtons(List<NameScoreboardGUI> listName);
+    public void setNameButtons(List<String> listName);
 
     public void setBtnBackID(final IdGUI intoID);
 

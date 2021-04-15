@@ -1,6 +1,6 @@
 package view.GUI.settings.utilities;
 
-import model.GUI.settings.Difficult;
+import model.GUI.settings.Difficulty;
 import view.utilities.FactoryGUIs;
 
 import javax.swing.*;
@@ -59,9 +59,9 @@ public class PanelDifficult extends JPanel{
         this.rbtHard.setFocusable(focusable);
     }
 
-    public void setDifficult(final Difficult difficult) {
+    public void setDifficult(final Difficulty difficulty) {
         List.of(this.rbtEasy, this.rbtMedium, this.rbtHard).stream()
-                .filter(rbt -> rbt.getText().contains(difficult.getName()))
+                .filter(rbt -> rbt.getText().contains(difficulty.getName()))
                 .forEach(rbt -> rbt.setSelected(true));
     }
 
