@@ -1,6 +1,7 @@
 package model.GUI.sound;
 
 import model.GUI.EngineGUI;
+import model.GUI.Visibility;
 import utilities.DesignSound;
 import utilities.IdGUI;
 
@@ -20,7 +21,7 @@ public class EngineSound implements EngineGUI {
     private boolean stateSoundMain = true;
     private boolean stateSoundEffect = true;
 
-    private boolean state = false;
+    private Visibility visibility = Visibility.HIDDEN;
 
     public EngineSound(){
         this.listNameSoundGUI = Arrays.asList(NameSoundGUI.values());
@@ -32,18 +33,23 @@ public class EngineSound implements EngineGUI {
     }
 
     @Override
-    public boolean getState() {
-        return this.state;
+    public Visibility getVisibility() {
+        return this.visibility;
     }
 
     @Override
-    public void setState(boolean state) {
-        this.state = state;
+    public void setVisibility(final Visibility visibility) {
+        this.visibility = visibility;
     }
 
     @Override
     public List<IdGUI> getLinks() {
         return List.of(this.idBack);
+    }
+
+    @Override
+    public boolean isVisible() {
+        return this.visibility.isVisible();
     }
 
     public IdGUI getBackLink(){

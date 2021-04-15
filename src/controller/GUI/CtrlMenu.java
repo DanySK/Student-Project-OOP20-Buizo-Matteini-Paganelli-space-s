@@ -5,7 +5,7 @@ import model.GUI.menu.EngineMenu;
 import view.GUI.GUI;
 import view.GUI.menu.GUIMenu;
 
-public class CtrlMenu implements ControlGUI{
+public class CtrlMenu implements ControllerGUI {
     private GUIMenu GUIMenu;
     private EngineMenu menuEngine;
 
@@ -20,7 +20,7 @@ public class CtrlMenu implements ControlGUI{
         this.GUIMenu.setTitleGUI(this.menuEngine.getTitleGUI());
         this.GUIMenu.setNameButtons(this.menuEngine.getListName());
         this.GUIMenu.setIDButtons(this.menuEngine.getLinks());
-        this.GUIMenu.setVisible(this.menuEngine.getState());
+        this.GUIMenu.setVisible(this.menuEngine.isVisible());
     }
 
     public GUI getGUI() {

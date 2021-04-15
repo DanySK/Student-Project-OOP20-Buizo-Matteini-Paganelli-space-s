@@ -3,7 +3,7 @@ package controller.GUI;
 import model.GUI.EngineGUI;
 import view.GUI.GUI;
 
-public interface ControlGUI {
+public interface ControllerGUI {
 
     public GUI getGUI();
 

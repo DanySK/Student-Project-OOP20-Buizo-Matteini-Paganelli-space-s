@@ -1,4 +1,4 @@
-package model.GUI;
+package factorys;
 
 import model.GUI.help.EngineHelp;
 import model.GUI.menu.EngineMenu;

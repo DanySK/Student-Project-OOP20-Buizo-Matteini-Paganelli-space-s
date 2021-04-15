@@ -8,12 +8,11 @@ public interface EngineGUI {
 
     public IdGUI getId();
 
-    public boolean getState();
+    public Visibility getVisibility();
 
-    public void setState(final boolean state);
+    public void setVisibility(final Visibility state);
 
     public List<IdGUI> getLinks();
 
-
-
+    public boolean isVisible();
 }

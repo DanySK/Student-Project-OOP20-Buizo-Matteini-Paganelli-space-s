@@ -1,6 +1,12 @@
 package utilities;
 
 public class DesignJComponent {
+    public static final String STRING_BACK_BUTTON = "Back";
+
+    public static final String NAME_UNIT_HELP_MOVEMENT = "Movement";
+    public static final String NAME_UNIT_HELP_SHOT = "Shot";
+    public static final String NAME_UNIT_HELP_PAUSE = "Pause";
+
     public static final int SIZE_COLUMNS_TEXT = 10;
     public static final int SIZE_SPACE_TITLE = 80;
 

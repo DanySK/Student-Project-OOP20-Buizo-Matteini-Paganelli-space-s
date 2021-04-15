@@ -1,8 +1,8 @@
 package game;
 
 import controller.GUI.*;
-import model.GUI.StaticFactoryEngineGUI;
-import view.GUI.StaticFactoryGUI;
+import factorys.StaticFactoryEngineGUI;
+import factorys.StaticFactoryGUI;
 
 import java.util.List;
 

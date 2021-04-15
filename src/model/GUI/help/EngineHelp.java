@@ -1,25 +1,27 @@
 package model.GUI.help;
 
+import model.GUI.Visibility;
+import utilities.DesignTitleGUI;
 import model.MyJImage.JImageRateEngine;
 import model.GUI.EngineGUI;
+import utilities.DesignJComponent;
 import utilities.IdGUI;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class EngineHelp implements EngineGUI {
-    private static final String TITLE_GUI = "HELP";
     private static final IdGUI Id = IdGUI.ID_HELP;
     private static final IdGUI linkBack = IdGUI.ID_BACK;
 
-    private final List<HelpNameButtons> listNameButtons;
     private final List<UnitsHelp> listNameHelpUnits;
+    private final List<String> listName;
 
-    private boolean state = false;
+    private Visibility visibility = Visibility.HIDDEN;
 
     public EngineHelp(){
-        this.listNameButtons = Arrays.asList(HelpNameButtons.values());
-        this.listNameHelpUnits =  Arrays.asList(UnitsHelp.values());
+        this.listName = List.of(DesignJComponent.STRING_BACK_BUTTON);
+        this.listNameHelpUnits = Arrays.asList(UnitsHelp.values());
     }
 
     @Override
@@ -28,13 +30,13 @@ public class EngineHelp implements EngineGUI {
     }
 
     @Override
-    public boolean getState() {
-        return this.state;
+    public Visibility getVisibility() {
+        return this.visibility;
     }
 
     @Override
-    public void setState(final boolean state) {
-        this.state = state;
+    public void setVisibility(final Visibility visibility) {
+        this.visibility = visibility;
     }
 
     @Override
@@ -42,8 +44,13 @@ public class EngineHelp implements EngineGUI {
         return List.of(linkBack);
     }
 
+    @Override
+    public boolean isVisible() {
+        return this.visibility.isVisible();
+    }
+
     public String getTitleGUI() {
-        return TITLE_GUI;
+        return DesignTitleGUI.TITLE_MENU;
     }
 
     public IdGUI getBackLink(){
@@ -55,7 +62,7 @@ public class EngineHelp implements EngineGUI {
     }
 
     public List<String> getListNameButtons() {
-        return this.listNameButtons.stream().map(HelpNameButtons::getName).collect(Collectors.toList());
+        return this.listName;
     }
 
     public List<JImageRateEngine> getPathIconUnit(final String unitName){

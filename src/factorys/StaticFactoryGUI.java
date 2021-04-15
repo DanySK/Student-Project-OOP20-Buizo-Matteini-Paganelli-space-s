@@ -1,4 +1,4 @@
-package view.GUI;
+package factorys;
 
 import view.GUI.help.factoryMethod.GUIHelpStandard;
 import view.GUI.help.FactoryGUIHelp;

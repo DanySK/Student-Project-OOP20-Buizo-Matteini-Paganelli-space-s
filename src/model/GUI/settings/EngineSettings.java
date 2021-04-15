@@ -1,5 +1,6 @@
 package model.GUI.settings;
 
+import model.GUI.Visibility;
 import model.MyJImage.JImageRateEngine;
 import model.GUI.EngineGUI;
 import utilities.IdGUI;
@@ -19,7 +20,8 @@ public class EngineSettings implements EngineGUI {
     private int chooseSkin = 3;
     private JImageRateEngine skinSpaceShip = new JImageRateEngine(SkinSpaceShip.values()[this.chooseSkin].getPath(),15);
     private Map<Difficult, Boolean> difficult = new HashMap<>();
-    private boolean state = false;
+
+    private Visibility visibility = Visibility.HIDDEN;
 
     public EngineSettings(){
         this.difficult.put(Difficult.EASY, false);
@@ -28,13 +30,13 @@ public class EngineSettings implements EngineGUI {
     }
 
     @Override
-    public boolean getState() {
-        return this.state;
+    public Visibility getVisibility() {
+        return this.visibility;
     }
 
     @Override
-    public void setState(boolean state) {
-        this.state = state;
+    public void setVisibility(final Visibility visibility) {
+        this.visibility = visibility;
     }
 
     @Override
@@ -45,6 +47,11 @@ public class EngineSettings implements EngineGUI {
     @Override
     public List<IdGUI> getLinks() {
         return this.linksID;
+    }
+
+    @Override
+    public boolean isVisible() {
+        return this.visibility.isVisible();
     }
 
     public IdGUI getBackLink(){

@@ -1,6 +1,7 @@
 package model.GUI.scoreboard;
 
 import model.GUI.EngineGUI;
+import model.GUI.Visibility;
 import utilities.IdGUI;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class EngineScoreboard implements EngineGUI {
     private final IdGUI ID = IdGUI.ID_SCOREBOARD;
     private final IdGUI linBack = IdGUI.ID_BACK;
 
-    private boolean state = false;
+    private Visibility visibility = Visibility.HIDDEN;
 
     public EngineScoreboard() {
         this.nameButtons = Arrays.asList(NameScoreboardGUI.values());
@@ -25,14 +26,15 @@ public class EngineScoreboard implements EngineGUI {
     public String getTitleGUI(){
         return this.TITLE_SCOREBOARD;
     }
+
     @Override
-    public boolean getState(){
-        return this.state;
+    public Visibility getVisibility(){
+        return this.visibility;
     }
 
     @Override
-    public void setState(boolean state) {
-        this.state = state;
+    public void setVisibility(final Visibility visibility) {
+        this.visibility = visibility;
     }
 
     @Override
@@ -43,6 +45,11 @@ public class EngineScoreboard implements EngineGUI {
     @Override
     public List<IdGUI> getLinks() {
         return List.of(this.linBack);
+    }
+
+    @Override
+    public boolean isVisible() {
+        return this.visibility.isVisible();
     }
 
     public IdGUI getBackLink(){

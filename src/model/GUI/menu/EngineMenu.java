@@ -1,6 +1,7 @@
 package model.GUI.menu;
 
 import model.GUI.EngineGUI;
+import model.GUI.Visibility;
 import utilities.IdGUI;
 
 import java.util.Arrays;
@@ -12,19 +13,19 @@ public class EngineMenu implements EngineGUI {
     private final IdGUI ID = IdGUI.ID_MENU;
     private final List<LinksMenu> linkButtons;
 
-    private boolean state = true;
+    private Visibility visibility = Visibility.VISIBLE;
 
     public EngineMenu(){
         this.linkButtons = Arrays.asList(LinksMenu.values());
     }
 
     @Override
-    public boolean getState(){
-        return this.state;
+    public Visibility getVisibility(){
+        return this.visibility;
     }
     @Override
-    public void setState(boolean state) {
-        this.state = state;
+    public void setVisibility(final Visibility visibility) {
+        this.visibility = visibility;
     }
     @Override
     public IdGUI getId() {
@@ -34,6 +35,11 @@ public class EngineMenu implements EngineGUI {
     public List<IdGUI> getLinks() {
         return this.linkButtons.stream().map(l -> l.getIdGUI()).collect(Collectors.toList());
     }
+    @Override
+    public boolean isVisible() {
+        return this.visibility.isVisible();
+    }
+
 
 
     public String getTitleGUI(){

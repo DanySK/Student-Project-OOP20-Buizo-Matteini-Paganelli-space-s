@@ -5,13 +5,13 @@ import model.GUI.help.EngineHelp;
 import view.GUI.GUI;
 import view.GUI.help.GUIHelp;
 
-public class CtrlHelp implements ControlGUI{
-    private final GUIHelp GUIHelp;
-    private final EngineHelp engineHelp;
+public class CtrlHelp implements ControllerGUI {
+    private final GUIHelp gui;
+    private final EngineHelp engine;
 
     public CtrlHelp(final GUIHelp GUIHelp, final EngineHelp engineHelp){
-        this.engineHelp = engineHelp;
-        this.GUIHelp = GUIHelp;
+        this.engine = engineHelp;
+        this.gui = GUIHelp;
         this.assignmentsId();
         this.assignmentTitle();
         this.assignmentsName();
@@ -19,30 +19,30 @@ public class CtrlHelp implements ControlGUI{
     }
 
     private void assignmentTitle(){
-        this.GUIHelp.setTitleGUI(this.engineHelp.getTitleGUI());
+        this.gui.setTitleGUI(this.engine.getTitleGUI());
     }
 
     private void assignmentsName() {
-        this.GUIHelp.setNameUnitHelps(this.engineHelp.getListNameHelpUnits());
-        this.GUIHelp.setNameButtons(this.engineHelp.getListNameButtons());
-        this.engineHelp.getListNameHelpUnits().forEach(nameUnit ->
-                this.GUIHelp.addIconInUnitHelp(nameUnit, this.engineHelp.getPathIconUnit(nameUnit)));
+        this.gui.setNameUnitHelps(this.engine.getListNameHelpUnits());
+        this.gui.setNameButtons(this.engine.getListNameButtons());
+        this.engine.getListNameHelpUnits().forEach(nameUnit ->
+                this.gui.addIconInUnitHelp(nameUnit, this.engine.getPathIconUnit(nameUnit)));
     }
 
     private void assignmentsId(){
-        this.GUIHelp.setId(this.engineHelp.getId());
-        this.GUIHelp.setIdBtnBack(this.engineHelp.getBackLink());
+        this.gui.setId(this.engine.getId());
+        this.gui.setIdBtnBack(this.engine.getBackLink());
     }
 
     private void assignmentVisibility(){
-        this.GUIHelp.setVisible(this.engineHelp.getState());
+        this.gui.setVisible(this.engine.isVisible());
     }
 
     public GUI getGUI() {
-        return this.GUIHelp;
+        return this.gui;
     }
 
     public EngineGUI getEngine() {
-        return this.engineHelp;
+        return this.engine;
     }
 }

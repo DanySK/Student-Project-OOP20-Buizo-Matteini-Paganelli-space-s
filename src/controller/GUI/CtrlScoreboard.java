@@ -5,7 +5,7 @@ import model.GUI.scoreboard.EngineScoreboard;
 import view.GUI.GUI;
 import view.GUI.scoreboard.GUIScoreboard;
 
-public class CtrlScoreboard implements ControlGUI{
+public class CtrlScoreboard implements ControllerGUI {
     private final GUIScoreboard scoreboardGUI;
     private final EngineScoreboard scoreboardEngine;
 
@@ -20,7 +20,7 @@ public class CtrlScoreboard implements ControlGUI{
         this.scoreboardGUI.setTitleGUI(this.scoreboardEngine.getTitleGUI());
         this.scoreboardGUI.setNameButtons(this.scoreboardEngine.getListName());
         this.scoreboardGUI.setBtnBackID(this.scoreboardEngine.getBackLink());
-        this.scoreboardGUI.setVisible(this.scoreboardEngine.getState());
+        this.scoreboardGUI.setVisible(this.scoreboardEngine.isVisible());
     }
 
     public GUI getGUI() {

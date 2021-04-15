@@ -10,7 +10,7 @@ import javax.swing.*;
 import javax.swing.event.ChangeListener;
 import java.awt.event.ActionListener;
 
-public class CtrlSound implements ControlGUI{
+public class CtrlSound implements ControllerGUI {
     private GUISound soundGUI;
     private EngineSound soundEngine;
 
@@ -26,7 +26,7 @@ public class CtrlSound implements ControlGUI{
         this.soundGUI.setNameComponents(this.soundEngine.getListNameComponents());
         this.soundGUI.setNameTypeSlider(this.soundEngine.getListNameSlider());
         this.soundGUI.setBtnBackID(this.soundEngine.getBackLink());
-        this.soundGUI.setVisible(this.soundEngine.getState());
+        this.soundGUI.setVisible(this.soundEngine.isVisible());
 
         this.soundGUI.setDefaultValueSlidersSound(this.soundEngine.getDefaultValueSound());
         this.soundGUI.getSlidersSound().forEach(slider ->

@@ -19,7 +19,7 @@ public class CtrlGUI {
     private final List<EngineGUI> listEngine;
     private final List<GUI> listGUI;
 
-    public CtrlGUI(final List<ControlGUI> listControlGUI){
+    public CtrlGUI(final List<ControllerGUI> listControlGUI){
         this.listGUI = new ArrayList<>();
         this.listEngine = new ArrayList<>();
         listControlGUI.forEach(control -> {

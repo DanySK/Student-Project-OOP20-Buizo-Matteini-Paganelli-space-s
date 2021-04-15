@@ -7,11 +7,9 @@ import view.GUI.GUI;
 import view.GUI.settings.GUISettings;
 
 import javax.swing.*;
-import javax.swing.event.ChangeListener;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CtrlSettings implements ControlGUI{
+public class CtrlSettings implements ControllerGUI {
     private final GUISettings settingsGUI;
     private final EngineSettings settingsEngine;
 
@@ -32,7 +30,7 @@ public class CtrlSettings implements ControlGUI{
         this.settingsGUI.getUnitDifficult().forEach(radio -> radio.addActionListener(this.changeDifficult(radio)));
 
         this.settingsGUI.setDifficult(this.settingsEngine.getDifficultActivate());
-        this.settingsGUI.setVisible(this.settingsEngine.getState());
+        this.settingsGUI.setVisible(this.settingsEngine.isVisible());
     }
 
     private ActionListener changeSkin(JButton btn){
