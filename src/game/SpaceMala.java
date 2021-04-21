@@ -9,6 +9,8 @@ import java.util.List;
 
 public class SpaceMala {
 
+
+
     private final CtrlMenu ctrlMenu = new CtrlMenu(StaticFactoryGUI.createMenuGUI(),
             StaticFactoryEngineGUI.createEngineMenu());
 

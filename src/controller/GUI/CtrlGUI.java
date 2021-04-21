@@ -4,7 +4,9 @@ import controller.GUI.Command.CmdEngine;
 import controller.GUI.Command.CmdOFF;
 import controller.GUI.Command.CmdON;
 import model.GUI.EngineGUI;
+import model.sound.*;
 import utilities.IdGUI;
+import utilities.SoundType;
 import view.GUI.GUI;
 import view.utilities.ButtonID;
 
@@ -19,6 +21,12 @@ public class CtrlGUI {
     private final List<EngineGUI> listEngine;
     private final List<GUI> listGUI;
 
+    private SoundType soundType;
+
+    private final Logics logics;
+    private final SoundObserver observerSoundLoop;
+
+
     public CtrlGUI(final List<ControllerGUI> listControlGUI){
         this.listGUI = new ArrayList<>();
         this.listEngine = new ArrayList<>();
@@ -27,16 +35,26 @@ public class CtrlGUI {
             CtrlGUI.this.listEngine.add(control.getEngine());
         });
         this.chronology = new ArrayList<>(List.of(FIRST_GUI));
+        this.soundType = FIRST_GUI.getSound();
+        this.logics = new LogicsImpl();
+        this.observerSoundLoop = new SoundLoop();
+
         this.linksAll();
         this.focusMenu();
     }
 
     private void linksAll(){
+        this.observerSoundLoop.update(soundType);
         for(GUI gui : this.listGUI) {
             for(ButtonID btn : gui.getButtonLinks()) {
                 btn.addActionListener(e -> {
                     System.out.println("Premuto in: " + btn.getIdGUICurrent() + " Vado in: " + btn.getIdGUINext());
 
+                    if(this.soundType != btn.getIdGUINext().getSound()){
+                        this.soundType = btn.getIdGUINext().getSound();
+                        this.observerSoundLoop.update(this.soundType);
+                    }
+                    
                     switch (btn.getIdGUINext()) {
                         case ID_QUIT -> this.quitAll();
                         case ID_BACK -> {
@@ -55,6 +73,7 @@ public class CtrlGUI {
                         }
                     }
                     System.out.println("list" + this.chronology);
+
                 });
             }
         }

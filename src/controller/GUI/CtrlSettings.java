@@ -3,6 +3,10 @@ package controller.GUI;
 import model.GUI.EngineGUI;
 import model.GUI.settings.Difficulty;
 import model.GUI.settings.EngineSettings;
+import model.sound.Logics;
+import model.sound.LogicsImpl;
+import model.sound.SoundLoop;
+import model.sound.SoundObserver;
 import view.GUI.GUI;
 import view.GUI.settings.GUISettings;
 
@@ -13,9 +17,11 @@ public class CtrlSettings implements ControllerGUI {
     private final GUISettings settingsGUI;
     private final EngineSettings settingsEngine;
 
+
     public CtrlSettings(final GUISettings GUISettings, final EngineSettings settingsEngine){
         this.settingsGUI = GUISettings;
         this.settingsEngine = settingsEngine;
+
         this.initSettings();
     }
 

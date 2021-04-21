@@ -2,6 +2,7 @@ package controller.GUI;
 
 import model.GUI.EngineGUI;
 import model.GUI.sound.EngineSound;
+import model.sound.*;
 import utilities.DesignSound;
 import utilities.Engines;
 import view.GUI.GUI;
@@ -15,6 +16,7 @@ import java.awt.event.ActionListener;
 public class CtrlSound implements ControllerGUI {
     private final GUISound soundGUI;
     private final EngineSound soundEngine;
+
 
     public CtrlSound(final GUISound soundGUI, final EngineSound soundEngine){
         this.soundEngine = soundEngine;
@@ -34,6 +36,8 @@ public class CtrlSound implements ControllerGUI {
         this.soundGUI.setDefaultValueSlidersSound(this.soundEngine.getDefaultValueSound());
         this.soundGUI.getSlidersSound().forEach(slider ->
                 slider.addChangeListener(this.changeListenerSlider(slider)));
+
+
 
         this.soundGUI.getBtnSwitches().forEach(btn -> btn.addActionListener(this.changeSwitchSound(btn)));
     }
