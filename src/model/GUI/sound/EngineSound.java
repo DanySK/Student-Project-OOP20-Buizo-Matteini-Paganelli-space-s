@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class EngineSound implements EngineGUI {
+    public static int N_UNIT_SOUND = 2;
     private final IdGUI id;
     private final IdGUI idBack;
 
@@ -31,8 +32,10 @@ public class EngineSound implements EngineGUI {
         this.id = IdGUI.ID_SOUND;
         this.idBack = IdGUI.ID_BACK;
 
-        this.listUnitSounds = Stream.generate(EngineUnitSound::new).limit(2)
+        this.listUnitSounds = Stream.generate(EngineUnitSound::new).limit(N_UNIT_SOUND)
                 .collect(Collectors.toList());
+
+
 
         this.valueMainSound = DesignSound.DEFAULT_VALUE_SOUND;
         this.valueEffectSound = DesignSound.DEFAULT_VALUE_SOUND;

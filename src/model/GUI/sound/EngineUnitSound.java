@@ -5,8 +5,9 @@ import utilities.DesignSound;
 public class EngineUnitSound {
     private int valueSound;
     private StateSlider stateSlider;
+    private NameUnitSound nameUnitSound;
 
-    public EngineUnitSound(){
+    public EngineUnitSound() {
         this.valueSound = DesignSound.DEFAULT_VALUE_SOUND;
         this.stateSlider = StateSlider.ON;
     }
@@ -15,7 +16,7 @@ public class EngineUnitSound {
         return this.valueSound;
     }
 
-    public void setValueSound(int valueSound) {
+    public void setValueSound(final int valueSound) {
         this.valueSound = valueSound;
     }
 
@@ -23,7 +24,15 @@ public class EngineUnitSound {
         return this.stateSlider;
     }
 
-    public void setStateSlider(StateSlider stateSlider) {
+    public void setStateSlider(final StateSlider stateSlider) {
         this.stateSlider = stateSlider;
+    }
+
+    public NameUnitSound getNameUnitSound() {
+        return this.nameUnitSound;
+    }
+
+    public void setNameUnitSound(NameUnitSound nameUnitSound) {
+        this.nameUnitSound = nameUnitSound;
     }
 }

@@ -15,6 +15,7 @@ import java.util.stream.IntStream;
 
 public class EngineSettings implements EngineGUI {
     public static final int INDEX_INIT_SKIN = 0;
+    public static final int INDEX_INTI_DIFFICULT = 0;
     public static final int STEP_INDEX_SKIN = 1;
     public static final int FIRST_DIFFICULT_ON = 0;
 
@@ -36,7 +37,7 @@ public class EngineSettings implements EngineGUI {
                 DesignImage.RATE_ICON_SKIN);
         this.namesButtons = List.of(NameSettingsGUI.values());
 
-        this.difficult = IntStream.range(0, Difficulty.values().length).boxed()
+        this.difficult = IntStream.range(INDEX_INTI_DIFFICULT, Difficulty.values().length).boxed()
                 .collect(Collectors.toMap(i -> Difficulty.values()[i], Engines.DEFAULT_DIFFICULTLY_ACTIVE::get));
     }
 
