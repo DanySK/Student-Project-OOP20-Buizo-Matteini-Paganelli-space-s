@@ -5,16 +5,20 @@ import model.GUI.Visibility;
 import utilities.DesignSound;
 import utilities.DesignTitleGUI;
 import utilities.IdGUI;
+import view.GUI.sound.utilities.UnitSound;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class EngineSound implements EngineGUI {
     private final IdGUI id;
     private final IdGUI idBack;
 
     private final List<NameUnitSound> listNameUnitSound;
+
+    private final List<EngineUnitSound> listUnitSounds;
 
     private int valueMainSound;
     private int valueEffectSound;
@@ -26,6 +30,10 @@ public class EngineSound implements EngineGUI {
     public EngineSound(){
         this.id = IdGUI.ID_SOUND;
         this.idBack = IdGUI.ID_BACK;
+
+        this.listUnitSounds = Stream.generate(EngineUnitSound::new).limit(2)
+                .collect(Collectors.toList());
+
         this.valueMainSound = DesignSound.DEFAULT_VALUE_SOUND;
         this.valueEffectSound = DesignSound.DEFAULT_VALUE_SOUND;
         this.stateSoundMain = StateSlider.ON;
@@ -126,5 +134,11 @@ public class EngineSound implements EngineGUI {
 
     public String actualPathStateSoundEffect(){
         return this.stateSoundEffect.getPath();
+    }
+
+    public List<String> getActualIconStateSounds(){
+        return List.of(this.stateSoundMain, this.stateSoundEffect).stream()
+                .map(StateSlider::getPath)
+                .collect(Collectors.toList());
     }
 }

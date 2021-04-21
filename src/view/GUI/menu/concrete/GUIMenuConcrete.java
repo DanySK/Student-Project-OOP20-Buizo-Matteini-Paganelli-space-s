@@ -26,19 +26,10 @@ public class GUIMenuConcrete extends AbstractGUI implements GUIMenu {
     }
 
     @Override
-    public JLabel getLbTitle(){
-        return this.lbTitle;
+    public List<ButtonID> getButtonLinks() {
+        return this.links;
     }
 
-    @Override
-    public JTextField getTxfNamePlayer(){
-        return this.txfNamePlayer;
-    }
-
-    @Override
-    public ButtonID getButton(final int ind){
-        return this.links.get(ind);
-    }
 
     @Override
     public void setNameButtons(final List<String> listName) {
@@ -48,13 +39,17 @@ public class GUIMenuConcrete extends AbstractGUI implements GUIMenu {
     }
 
     @Override
-    public void setIDButtons(final List<IdGUI> linksID) {
+    public void setIdButtons(final List<IdGUI> linksID) {
         for(int i = 0; i < N_BUTTONS; i++){
             this.links.get(i).setIdGUICurrent(this.getId());
             this.links.get(i).setIdGUINext(linksID.get(i));
         }
     }
 
+    @Override
+    public ButtonID getButton(final int ind){
+        return this.links.get(ind);
+    }
 
     @Override
     public void setForegroundGUI(final Color color) {
@@ -63,7 +58,7 @@ public class GUIMenuConcrete extends AbstractGUI implements GUIMenu {
     }
 
     @Override
-    public void setFontGUITitle(final Font font){
+    public void setFontTitleGUI(final Font font){
         this.lbTitle.setFont(font);
     }
 
@@ -84,8 +79,11 @@ public class GUIMenuConcrete extends AbstractGUI implements GUIMenu {
     }
 
 
-    @Override
-    public List<ButtonID> getButtonLinks() {
-        return this.links;
+    public JLabel getLbTitle(){
+        return this.lbTitle;
+    }
+
+    public JTextField getTxfNamePlayer(){
+        return this.txfNamePlayer;
     }
 }

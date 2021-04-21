@@ -11,7 +11,9 @@ import java.util.List;
 
 public interface GUISettings extends GUI, GraphicsGUISettings {
 
-    public void setNameComponent(final List<String> listName);
+    public void setNameUnits(final List<String> listName);
+
+    public void setNameBtnBack(final String nameBtnBack);
 
     public void setSkinSpaceShip(final JImageRateEngine imageEngine);
 

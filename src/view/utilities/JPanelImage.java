@@ -17,7 +17,7 @@ public class JPanelImage extends JPanel {
         super();
         this.imgURL = ClassLoader.getSystemResource(pathImg);
         this.icon = new ImageIcon(this.imgURL);
-        FactoryGUIs.rateImage(this.icon, 100);
+        FactoryGUIs.rateImageFromMediumJFrame(this.icon, 100);
     }
 
     public void paintComponent(Graphics g) {
@@ -28,7 +28,13 @@ public class JPanelImage extends JPanel {
     public void setImage(final String pathImg){
         this.imgURL = ClassLoader.getSystemResource(pathImg);
         this.icon.setImage(new ImageIcon(this.imgURL).getImage());
-        FactoryGUIs.rateImage(this.icon, 100);
+        FactoryGUIs.rateImageFromMediumJFrame(this.icon, 100);
         super.repaint();
     }
+
+    public void resizeImg(final int sizeWidthFrame){
+        FactoryGUIs.rateImageFromFrame(this.icon, sizeWidthFrame);
+        super.repaint();
+    }
+
 }

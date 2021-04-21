@@ -17,5 +17,7 @@ public interface GUISound extends GUI, GraphicsGUISound {
 
     public void setBtnBackID(final IdGUI idGUI);
 
-    public List<JButton> getBtnSwitchs();
+    public List<JButton> getBtnSwitches();
+
+    public void setIconBtnSwitches(final List<String> path);
 }

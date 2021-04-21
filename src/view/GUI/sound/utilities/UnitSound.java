@@ -1,5 +1,6 @@
 package view.GUI.sound.utilities;
 
+import utilities.IconPath;
 import view.utilities.FactoryGUIs;
 
 import javax.swing.*;
@@ -21,8 +22,8 @@ public class UnitSound extends JPanel {
 
     private void graphics(){
         FactoryGUIs.setTransparentDesignJButton(this.btnSwitch);
-        FactoryGUIs.setIconInJButtonMini(this.btnSwitch, "iconButton/volumeON.png");
         FactoryGUIs.setDefaultJSlider(this.sliderSound);
+        //FactoryGUIs.setIconInJButtonMini(this.btnSwitch, IconPath.ICON_SOUND_ON);
         super.add(FactoryGUIs.encapsulatesInPanel_Flow(this.lbTitle), BorderLayout.NORTH);
         super.add(FactoryGUIs.getUnionComponents(java.util.List.of(this.btnSwitch, this.sliderSound)), BorderLayout.CENTER);
     }
@@ -48,10 +49,6 @@ public class UnitSound extends JPanel {
         this.lbTitle.setText(lbTitle);
     }
 
-    public void setOrientation(final int direction){
-        this.sliderSound.setOrientation(direction);
-    }
-
     public void setName(final String name){
         this.sliderSound.setName(name);
         this.btnSwitch.setName(name);
@@ -63,5 +60,9 @@ public class UnitSound extends JPanel {
 
     public JButton getBtnSwitch(){
         return this.btnSwitch;
+    }
+
+    public void setIconBtnSwitch(final String path){
+        FactoryGUIs.setIconInJButtonMini(this.btnSwitch, path);
     }
 }

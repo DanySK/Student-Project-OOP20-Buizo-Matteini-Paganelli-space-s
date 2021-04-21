@@ -5,6 +5,7 @@ import view.utilities.FactoryGUIs;
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -64,7 +65,14 @@ public class MixerSound extends JPanel{
         this.sdlSounds.forEach(sound -> sound.setValueSliderSound(value));
     }
 
-    public List<JButton> getBtnSwitchs(){
+    public List<JButton> getBtnSwitches(){
         return this.sdlSounds.stream().map(s -> s.getBtnSwitch()).collect(Collectors.toList());
+    }
+
+    public void setIconBtnSwitches(final List<String> paths){
+        AtomicInteger i = new AtomicInteger();
+        this.sdlSounds.forEach(sound -> {
+            sound.setIconBtnSwitch(paths.get(i.getAndIncrement()));
+        });
     }
 }

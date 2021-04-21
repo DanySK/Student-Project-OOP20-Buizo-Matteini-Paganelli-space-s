@@ -47,6 +47,22 @@ public class DesignSpace {
         return myFont;
     }
 
+    public static Font getFontForGame(final int size){
+        URL fontUrl = ClassLoader.getSystemResource("font/game.ttf");
+        Font myFont = null;
+        try {
+            myFont = Font.createFont(Font.TRUETYPE_FONT, fontUrl.openStream());
+        } catch (Exception e) {
+            System.err.println("Path font no found");
+        }
+
+        myFont = myFont.deriveFont(Font.PLAIN,size);
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        ge.registerFont(myFont);
+
+        return myFont;
+    }
+
     public static MyJImageEngine modificationSizeMediumImage(final MyJImageEngine image){
         image.setDimensionImage(new Dimension(SIZE_IMAGE_MEDIUM, SIZE_IMAGE_MEDIUM));
         return image;

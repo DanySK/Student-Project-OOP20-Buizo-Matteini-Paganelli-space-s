@@ -25,19 +25,6 @@ public class FactoryGUIs {
         return encapsulate;
     }
 
-//    public static JPanel encapsulatesVertical(List<Component> components, final int inset){
-//        JPanel encapsulate = new JPanel(new GridBagLayout()) {{ setOpaque(false); }};
-//        GridBagConstraints limit = createGBConstraintsBase();
-//        limit.insets = new Insets(inset / 2,inset,inset / 2,inset);
-//
-//        for (Component component : components) {
-//            encapsulate.add(component, limit);
-//            limit.gridy++;
-//        }
-//
-//        return encapsulate;
-//    }
-
     public static JPanel encapsulatesVertical(final List<? extends JComponent> components, final int inset){
         JPanel encapsulate = new JPanel(new GridBagLayout()) {{ setOpaque(false); }};
         GridBagConstraints limit = createGBConstraintsBase();
@@ -51,13 +38,11 @@ public class FactoryGUIs {
         return encapsulate;
     }
 
-    public static JPanel encapsulatesHorizontal(List<Component> components, final int inset){
+    public static JPanel encapsulatesHorizontal(List<JComponent> components, final int inset){
         JPanel encapsulate = new JPanel(new GridBagLayout()) {{ setOpaque(false); }};
         GridBagConstraints limit = createGBConstraintsBase();
-        limit.insets = new Insets(inset / 2,inset,inset / 2,inset);
-
-        limit.gridy += 2;
-        for (Component component : components) {
+        limit.insets = new Insets(inset, inset / 2,inset, inset / 2);
+        for (JComponent component : components) {
             encapsulate.add(component, limit);
             limit.gridx++;
         }
@@ -65,10 +50,10 @@ public class FactoryGUIs {
         return encapsulate;
     }
 
-    public static JPanel getUnionComponents(List<JComponent> list){
+    public static JPanel getUnionComponents(List<Component> list){
         JPanel unionComponent = new JPanel(new FlowLayout());
         unionComponent.setOpaque(false);
-        for (JComponent component : list) {
+        for (Component component : list) {
             unionComponent.add(component);
         }
         return unionComponent;
@@ -127,8 +112,20 @@ public class FactoryGUIs {
         button.setIcon(imag.getIcon());
     }
 
-    public static void rateImage(ImageIcon imageIcon, final int rate){
+    public static void rateImageFromMediumJFrame(ImageIcon imageIcon, final int rate){
         int widthRateImage = DesignJFrame.GUI_WIDTH_MEDIUM * rate / 100;
+        int heightRateImage = imageIcon.getIconHeight() * widthRateImage / imageIcon.getIconWidth();
+        resizeImage(widthRateImage, heightRateImage, imageIcon);
+    }
+
+    public static void rateImageFromFullJFrame(ImageIcon imageIcon, final int rate){
+        int widthRateImage = DesignJFrame.GUI_WIDTH_FULL_SCREEN * rate / 100;
+        int heightRateImage = imageIcon.getIconHeight() * widthRateImage / imageIcon.getIconWidth();
+        resizeImage(widthRateImage, heightRateImage, imageIcon);
+    }
+
+    public static void rateImageFromFrame(ImageIcon imageIcon, final int sizeWidthFrame){
+        int widthRateImage = sizeWidthFrame;
         int heightRateImage = imageIcon.getIconHeight() * widthRateImage / imageIcon.getIconWidth();
         resizeImage(widthRateImage, heightRateImage, imageIcon);
     }
@@ -147,4 +144,5 @@ public class FactoryGUIs {
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
     }
+
 }

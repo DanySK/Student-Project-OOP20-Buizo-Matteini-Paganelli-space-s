@@ -10,37 +10,36 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GUIScoreboardReverse implements FactoryGUIScoreboard {
-    private final GUIScoreboardConcrete GUIScoreboardConcrete = new GUIScoreboardConcrete();
 
     @Override
     public GUIScoreboard createGUI() {
-        this.GUIScoreboardConcrete.setFontLbTitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
-        this.GUIScoreboardConcrete.getTxtSearchName().setColumns(DesignSpace.SIZE_COLUMNS_TEXT);
-        this.GUIScoreboardConcrete.setAllFontNotLbTitle(DesignSpace.FONT_MEDIUM_STANDARD);
-        this.GUIScoreboardConcrete.setAllForeground(DesignSpace.color3);
+        GUIScoreboardConcrete scoreboardConcrete = new GUIScoreboardConcrete();
+        scoreboardConcrete.setFontLbTitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
+        scoreboardConcrete.getTxtSearchName().setColumns(DesignSpace.SIZE_COLUMNS_TEXT);
+        scoreboardConcrete.setFontGUI(DesignSpace.FONT_MEDIUM_STANDARD);
+        scoreboardConcrete.setForegroundGUI(DesignSpace.color4);
 
-        this.createGraphics();
-        return this.GUIScoreboardConcrete;
+        this.createGraphics(scoreboardConcrete);
+        return scoreboardConcrete;
     }
 
-    private void createGraphics() {
-        this.GUIScoreboardConcrete.setLayoutGUI(new BorderLayout());
+    private void createGraphics(final GUIScoreboardConcrete scoreboardConcrete) {
+        scoreboardConcrete.setBackLayoutGUI(new BorderLayout());
 
-        this.GUIScoreboardConcrete.add(FactoryGUIs.encapsulatesInPanel_Flow(
-                this.GUIScoreboardConcrete.getLbTitle()), BorderLayout.NORTH);
+        scoreboardConcrete.add(FactoryGUIs.encapsulatesInPanel_Flow(scoreboardConcrete.getLbTitle()),
+                BorderLayout.NORTH);
+        scoreboardConcrete.add(scoreboardConcrete.getBtnBack(), BorderLayout.SOUTH);
 
+        JPanel panelScore = new JPanel(new BorderLayout()) {{ setOpaque(false); }};
 
-        JPanel panelScore = new JPanel(new BorderLayout());
-        panelScore.setOpaque(false);
-
-        panelScore.add(FactoryGUIs.getUnionComponents(java.util.List.of(this.GUIScoreboardConcrete.getTxtSearchName(),
-                this.GUIScoreboardConcrete.getBtnSearch())), BorderLayout.SOUTH);
+        panelScore.add(FactoryGUIs.getUnionComponents(java.util.List.of(scoreboardConcrete.getTxtSearchName(),
+                scoreboardConcrete.getBtnSearch())), BorderLayout.SOUTH);
 
         panelScore.add(FactoryGUIs.encapsulatesInPanel_Flow(
-                this.GUIScoreboardConcrete.getScoreboard()), BorderLayout.CENTER);
+                scoreboardConcrete.getScoreboard()), BorderLayout.CENTER);
 
-        this.GUIScoreboardConcrete.add(panelScore, BorderLayout.CENTER);
-        this.GUIScoreboardConcrete.add(this.GUIScoreboardConcrete.getBtnBack(), BorderLayout.SOUTH);
+        scoreboardConcrete.add(panelScore, BorderLayout.CENTER);
+
 
     }
 

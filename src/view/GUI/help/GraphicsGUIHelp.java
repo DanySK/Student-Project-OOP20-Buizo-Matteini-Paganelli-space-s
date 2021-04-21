@@ -4,6 +4,8 @@ import java.awt.*;
 
 public interface GraphicsGUIHelp {
 
+    public void setBackLayoutGUI(final LayoutManager layoutGUI);
+
     public void setTitleGUI(final String title);
 
     public void setForegroundGUI(final Color color);

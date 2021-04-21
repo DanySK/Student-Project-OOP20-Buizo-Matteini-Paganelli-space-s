@@ -19,14 +19,14 @@ public class GUIMenuCompact implements FactoryGUIMenu {
 
         menuConcrete.setFontGUI(DesignSpace.FONT_MEDIUM_STANDARD);
         menuConcrete.setForegroundGUI(DesignSpace.color4);
-        menuConcrete.setFontGUITitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
+        menuConcrete.setFontTitleGUI(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
         menuConcrete.setColumnsNamePlayer(DesignJComponent.SIZE_COLUMNS_TEXT);
         this.createGraphics(menuConcrete);
         return menuConcrete;
     }
 
     private void createGraphics(final GUIMenuConcrete menu) {
-        menu.setLayoutGUI(new GridBagLayout());
+        menu.setBackLayoutGUI(new GridBagLayout());
         int nBtnUsed = 0;
 
         GridBagConstraints lim = FactoryGUIs.createGBConstraintsWithSpaceTitle(DesignJComponent.SIZE_SPACE_TITLE);

@@ -31,4 +31,14 @@ public class DesignJFrame {
     public static final int GUI_Y_MINI =  POINT_CENTER_SCREEN.getY() - (GUI_HEIGHT_MINI / 2);
 
     public static final String PATH_MAIN_BACKGROUND = "background/main.png";
+
+    public static final String PATH_GAME_BACKGROUND = "background/game.png";
+
+    public static int findPointXGUI(final int n){
+        return  POINT_CENTER_SCREEN.getX() - (n / 2);
+    }
+
+    public static int findPointYGUI(final int n){
+        return  POINT_CENTER_SCREEN.getY() - (n / 2);
+    }
 }

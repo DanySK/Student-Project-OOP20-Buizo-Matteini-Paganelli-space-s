@@ -22,7 +22,8 @@ public class CtrlSettings implements ControllerGUI {
     private void initSettings() {
         this.settingsGUI.setId(this.settingsEngine.getId());
         this.settingsGUI.setTitleGUI(this.settingsEngine.getTitleGUI());
-        this.settingsGUI.setNameComponent(this.settingsEngine.getListName());
+        this.settingsGUI.setNameUnits(this.settingsEngine.getListNameUnit());
+        this.settingsGUI.setNameBtnBack(this.settingsEngine.getNameBtnBack());
         this.settingsGUI.setBtnBackID(this.settingsEngine.getBackLink());
         this.settingsGUI.setSkinSpaceShip(this.settingsEngine.getSkinSpaceShip());
 

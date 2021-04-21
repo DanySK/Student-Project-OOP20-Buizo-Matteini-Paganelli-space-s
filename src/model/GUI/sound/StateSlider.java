@@ -1,8 +1,8 @@
 package model.GUI.sound;
 
 public enum StateSlider {
-    ON(true, "iconButton/volumeON.png"),
-    OFF(false, "iconButton/volumeOFF.png");
+    ON(true, "icon/volumeON.png"),
+    OFF(false, "icon/volumeOFF.png");
 
     private final boolean state;
 

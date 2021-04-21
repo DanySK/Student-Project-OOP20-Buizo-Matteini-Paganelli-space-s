@@ -1,5 +1,8 @@
 package factorys;
 
+import view.GUI.game.FactoryGUIGame;
+import view.GUI.game.GUIGame;
+import view.GUI.game.factoryMethod.GUIGameStandard;
 import view.GUI.help.factoryMethod.GUIHelpStandard;
 import view.GUI.help.FactoryGUIHelp;
 import view.GUI.help.GUIHelp;
@@ -42,6 +45,11 @@ public class StaticFactoryGUI {
     public static GUISound createSoundGUI(){
         FactoryGUISound soundGUI = new GUISoundStandard();
         return soundGUI.create();
+    }
+
+    public static GUIGame createGameGUI(){
+        FactoryGUIGame gameGUI = new GUIGameStandard();
+        return gameGUI.create();
     }
 
 }

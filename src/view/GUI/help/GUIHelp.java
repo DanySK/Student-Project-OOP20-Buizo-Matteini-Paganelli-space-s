@@ -15,6 +15,4 @@ public interface GUIHelp extends GUI, GraphicsGUIHelp {
     public void setNameButtons(final List<String> listName);
 
     public void addIconInUnitHelp(final String panelName, final List<JImageRateEngine> pathImg);
-
-
 }

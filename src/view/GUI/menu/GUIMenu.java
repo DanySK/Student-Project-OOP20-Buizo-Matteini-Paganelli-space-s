@@ -11,11 +11,7 @@ public interface GUIMenu extends GUI, GraphicsGUIMenu{
 
     public void setNameButtons(final List<String> listNames);
 
-    public void setIDButtons(final List<IdGUI> linksID);
-
-    public JLabel getLbTitle();
-
-    public JTextField getTxfNamePlayer();
+    public void setIdButtons(final List<IdGUI> linksID);
 
     public ButtonID getButton(final int ind);
 }

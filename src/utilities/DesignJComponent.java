@@ -12,6 +12,7 @@ public class DesignJComponent {
 
     public static final int TITLE_INSET = 80;
     public static final int UNIT_TITLE_INSET = 50;
+    public static final int SETTINGS_INSET = 30;
     public static final int MAX_INSET = 10;
     public static final int MEDIUM_INSET = 7;
     public static final int MIN_INSET = 5;

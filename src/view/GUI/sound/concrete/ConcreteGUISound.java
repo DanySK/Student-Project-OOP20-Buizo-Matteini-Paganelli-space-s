@@ -11,9 +11,9 @@ import java.awt.*;
 import java.util.List;
 
 public class ConcreteGUISound extends AbstractGUI implements GUISound {
-    private JLabel lbTitle;
-    private MixerSound mixerSound;
-    private ButtonID btnBack;
+    private final JLabel lbTitle;
+    private final MixerSound mixerSound;
+    private final ButtonID btnBack;
 
     public ConcreteGUISound(){
         super();
@@ -27,35 +27,6 @@ public class ConcreteGUISound extends AbstractGUI implements GUISound {
         return List.of(this.btnBack);
     }
 
-    @Override
-    public void setForegroundGUI(Color color) {
-        this.lbTitle.setForeground(color);
-        this.mixerSound.setAllForeground(color);
-        this.btnBack.setForeground(color);
-    }
-
-    @Override
-    public void setFontGUITitle(Font font) {
-        this.lbTitle.setFont(font);
-    }
-
-    @Override
-    public void setFontGUI(Font font) {
-        this.mixerSound.setFontTitleSound(font);
-        this.btnBack.setFont(font);
-    }
-
-    @Override
-    public void setFontSpacingSlider(Font font) {
-        this.mixerSound.setFontSliderSound(font);
-    }
-
-
-    @Override
-    public void setTitleGUI(String title) {
-        this.lbTitle.setText(title);
-    }
-
 
     @Override
     public void setNameButtonBack(final String nameBtnBack) {
@@ -65,6 +36,7 @@ public class ConcreteGUISound extends AbstractGUI implements GUISound {
     @Override
     public void setNameTypeSlider(final List<String> listName) {
         this.mixerSound.setNameSlider(listName);
+        this.mixerSound.setTitleSlider(listName);
     }
 
     @Override
@@ -78,14 +50,48 @@ public class ConcreteGUISound extends AbstractGUI implements GUISound {
     }
 
     @Override
-    public void setBtnBackID(IdGUI idGUI) {
+    public void setBtnBackID(final IdGUI idGUI) {
         this.btnBack.setIdGUICurrent(this.getId());
         this.btnBack.setIdGUINext(idGUI);
     }
 
     @Override
-    public List<JButton> getBtnSwitchs() {
-        return this.mixerSound.getBtnSwitchs();
+    public List<JButton> getBtnSwitches() {
+        return this.mixerSound.getBtnSwitches();
+    }
+
+    @Override
+    public void setIconBtnSwitches(final List<String> paths) {
+        this.mixerSound.setIconBtnSwitches(paths);
+    }
+
+
+    @Override
+    public void setForegroundGUI(final Color color) {
+        this.lbTitle.setForeground(color);
+        this.mixerSound.setAllForeground(color);
+        this.btnBack.setForeground(color);
+    }
+
+    @Override
+    public void setFontGUITitle(final Font font) {
+        this.lbTitle.setFont(font);
+    }
+
+    @Override
+    public void setFontGUI(final Font font) {
+        this.mixerSound.setFontTitleSound(font);
+        this.btnBack.setFont(font);
+    }
+
+    @Override
+    public void setFontSpacingSlider(final Font font) {
+        this.mixerSound.setFontSliderSound(font);
+    }
+
+    @Override
+    public void setTitleGUI(final String title) {
+        this.lbTitle.setText(title);
     }
 
 

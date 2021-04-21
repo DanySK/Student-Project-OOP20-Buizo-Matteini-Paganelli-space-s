@@ -26,7 +26,7 @@ public class JImageRate extends JPanel {
     public JImageRate(final String path, final int rate){
        this(path);
        this.rate = rate;
-       FactoryGUIs.rateImage(this.icon, this.rate);
+       FactoryGUIs.rateImageFromMediumJFrame(this.icon, this.rate);
     }
 
     public int getRate() {
@@ -43,7 +43,7 @@ public class JImageRate extends JPanel {
 
     public void setRate(int rate) {
         this.rate = rate;
-        FactoryGUIs.rateImage(this.icon, this.rate);
+        FactoryGUIs.rateImageFromMediumJFrame(this.icon, this.rate);
         this.lbImage.repaint();
     }
 

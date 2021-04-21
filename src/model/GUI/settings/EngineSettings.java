@@ -8,13 +8,10 @@ import utilities.DesignTitleGUI;
 import utilities.Engines;
 import utilities.IdGUI;
 
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class EngineSettings implements EngineGUI {
     public static final int INDEX_INIT_SKIN = 0;
@@ -26,7 +23,7 @@ public class EngineSettings implements EngineGUI {
     private final IdGUI linkBack;
 
     private final Map<Difficulty, DifficultActive> difficult;
-    private JImageRateEngine skinSpaceShip;
+    private final JImageRateEngine skinSpaceShip;
     private int chooseSkin;
 
     private Visibility visibility = Visibility.HIDDEN;
@@ -77,8 +74,12 @@ public class EngineSettings implements EngineGUI {
         return DesignTitleGUI.TITLE_SETTINGS;
     }
 
-    public List<String> getListName(){
+    public List<String> getListNameUnit(){
         return this.namesButtons.stream().map(NameSettingsGUI::getTitle).collect(Collectors.toList());
+    }
+
+    public String getNameBtnBack(){
+        return this.linkBack.getIdName();
     }
 
     public JImageRateEngine getSkinSpaceShip() {

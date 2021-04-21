@@ -2,8 +2,7 @@ package model.GUI.settings;
 
 public enum NameSettingsGUI {
     TITLE_UNIT_SKIN("Skin"),
-    TITLE_UNIT_DIFFICULT("Difficult"),
-    BUTTON_BACK("Back");
+    TITLE_UNIT_DIFFICULT("Difficult");
 
     private String title;
 

@@ -54,7 +54,7 @@ public class EngineHelp implements EngineGUI {
 
 
     public String getTitle() {
-        return DesignTitleGUI.TITLE_MENU;
+        return DesignTitleGUI.TITLE_HELP;
     }
 
     public IdGUI getBackLink(){

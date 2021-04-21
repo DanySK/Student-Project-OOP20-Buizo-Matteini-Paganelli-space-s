@@ -19,7 +19,7 @@ public class CtrlMenu implements ControllerGUI {
         this.GUIMenu.setId(this.menuEngine.getId());
         this.GUIMenu.setTitleGUI(this.menuEngine.getTitleGUI());
         this.GUIMenu.setNameButtons(this.menuEngine.getListName());
-        this.GUIMenu.setIDButtons(this.menuEngine.getLinks());
+        this.GUIMenu.setIdButtons(this.menuEngine.getLinks());
         this.GUIMenu.setVisible(this.menuEngine.isVisible());
     }
 

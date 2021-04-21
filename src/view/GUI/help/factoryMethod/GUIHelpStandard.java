@@ -1,6 +1,6 @@
 package view.GUI.help.factoryMethod;
 
-import utilities.DefaultPathIcon;
+import utilities.IconPath;
 import utilities.DesignJComponent;
 import utilities.DesignJFrame;
 import view.GUI.help.concrete.GUIHelpConcrete;
@@ -27,7 +27,7 @@ public class GUIHelpStandard implements FactoryGUIHelp {
     }
 
     private void createGraphics(final GUIHelpConcrete helpConcrete) {
-        helpConcrete.setLayoutGUI(new BorderLayout());
+        helpConcrete.setBackLayoutGUI(new BorderLayout());
 
         helpConcrete.add(FactoryGUIs.encapsulatesInPanel_Flow(helpConcrete.getLbTitle()), BorderLayout.NORTH);
         helpConcrete.add(FactoryGUIs.encapsulatesInPanel_Flow(helpConcrete.getBtnBack()), BorderLayout.SOUTH);
@@ -36,6 +36,6 @@ public class GUIHelpStandard implements FactoryGUIHelp {
                 BorderLayout.CENTER);
 
         FactoryGUIs.setTransparentDesignJButton(helpConcrete.getBtnBack());
-        FactoryGUIs.setIconInJButtonMini(helpConcrete.getBtnBack(), DefaultPathIcon.ICON_BACK);
+        FactoryGUIs.setIconInJButtonMini(helpConcrete.getBtnBack(), IconPath.ICON_BACK);
     }
 }

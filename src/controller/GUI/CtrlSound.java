@@ -27,6 +27,7 @@ public class CtrlSound implements ControllerGUI {
         this.soundGUI.setTitleGUI(this.soundEngine.getTitle());
         this.soundGUI.setNameButtonBack(this.soundEngine.getNameBack());
         this.soundGUI.setNameTypeSlider(this.soundEngine.getListNameSlider());
+        this.soundGUI.setIconBtnSwitches(this.soundEngine.getActualIconStateSounds());
         this.soundGUI.setBtnBackID(this.soundEngine.getBackLink());
         this.soundGUI.setVisible(this.soundEngine.isVisible());
 
@@ -34,7 +35,7 @@ public class CtrlSound implements ControllerGUI {
         this.soundGUI.getSlidersSound().forEach(slider ->
                 slider.addChangeListener(this.changeListenerSlider(slider)));
 
-        this.soundGUI.getBtnSwitchs().forEach(btn -> btn.addActionListener(this.changeSwitchSound(btn)));
+        this.soundGUI.getBtnSwitches().forEach(btn -> btn.addActionListener(this.changeSwitchSound(btn)));
     }
 
     private ChangeListener changeListenerSlider(final JSlider slider){
