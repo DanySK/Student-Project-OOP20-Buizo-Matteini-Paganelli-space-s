@@ -1,6 +1,6 @@
 package view.GUI.sound.utilities;
 
-import utilities.IconPath;
+import model.GUI.sound.TypeUnitSound;
 import view.utilities.FactoryGUIs;
 
 import javax.swing.*;
@@ -8,27 +8,26 @@ import java.awt.*;
 
 public class UnitSound extends JPanel {
     private final JLabel lbTitle;
-    private final JSlider sliderSound;
-    private final JButton btnSwitch;
+    private final SliderType sliderSound;
+    private final ButtonSliderType btnSwitch;
 
     public UnitSound() {
         super(new BorderLayout());
         super.setOpaque(false);
         this.lbTitle = new JLabel();
-        this.sliderSound = new JSlider();
-        this.btnSwitch = new JButton();
+        this.sliderSound = new SliderType();
+        this.btnSwitch = new ButtonSliderType();
         this.graphics();
     }
 
     private void graphics(){
         FactoryGUIs.setTransparentDesignJButton(this.btnSwitch);
         FactoryGUIs.setDefaultJSlider(this.sliderSound);
-        //FactoryGUIs.setIconInJButtonMini(this.btnSwitch, IconPath.ICON_SOUND_ON);
         super.add(FactoryGUIs.encapsulatesInPanel_Flow(this.lbTitle), BorderLayout.NORTH);
         super.add(FactoryGUIs.getUnionComponents(java.util.List.of(this.btnSwitch, this.sliderSound)), BorderLayout.CENTER);
     }
 
-    public JSlider getSliderSound(){
+    public SliderType getSliderSound(){
         return this.sliderSound;
     }
 
@@ -49,20 +48,24 @@ public class UnitSound extends JPanel {
         this.lbTitle.setText(lbTitle);
     }
 
-    public void setName(final String name){
-        this.sliderSound.setName(name);
-        this.btnSwitch.setName(name);
+    public void setType(final TypeUnitSound typeUnitSound){
+        this.sliderSound.setType(typeUnitSound);
+        this.btnSwitch.setTypeSlider(typeUnitSound);
     }
 
     public void setValueSliderSound(final int value){
         this.sliderSound.setValue(value);
     }
 
-    public JButton getBtnSwitch(){
+    public ButtonSliderType getBtnSwitch(){
         return this.btnSwitch;
     }
 
     public void setIconBtnSwitch(final String path){
         FactoryGUIs.setIconInJButtonMini(this.btnSwitch, path);
+    }
+
+    public TypeUnitSound getType(){
+        return this.sliderSound.getType();
     }
 }

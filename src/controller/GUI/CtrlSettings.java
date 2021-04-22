@@ -3,10 +3,6 @@ package controller.GUI;
 import model.GUI.EngineGUI;
 import model.GUI.settings.Difficulty;
 import model.GUI.settings.EngineSettings;
-import model.sound.Logics;
-import model.sound.LogicsImpl;
-import model.sound.SoundLoop;
-import model.sound.SoundObserver;
 import view.GUI.GUI;
 import view.GUI.settings.GUISettings;
 

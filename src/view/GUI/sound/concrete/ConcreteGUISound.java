@@ -1,10 +1,13 @@
 package view.GUI.sound.concrete;
 
+import model.GUI.sound.TypeUnitSound;
 import utilities.IdGUI;
 import view.GUI.AbstractGUI;
 import view.GUI.sound.GUISound;
+import view.GUI.sound.utilities.ButtonSliderType;
 import view.GUI.sound.utilities.MixerSound;
 import view.utilities.ButtonID;
+import view.GUI.sound.utilities.SliderType;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,14 +37,24 @@ public class ConcreteGUISound extends AbstractGUI implements GUISound {
     }
 
     @Override
-    public void setNameTypeSlider(final List<String> listName) {
-        this.mixerSound.setNameSlider(listName);
-        this.mixerSound.setTitleSlider(listName);
+    public void setTypeUnitSound(final List<TypeUnitSound> listName) {
+        this.mixerSound.setTypeUnitSound(listName);
     }
 
     @Override
-    public List<JSlider> getSlidersSound() {
+    public void setTitleUnitSound(List<String> listTitle) {
+        this.mixerSound.setTitleSlider(listTitle);
+    }
+
+
+    @Override
+    public List<SliderType> getSlidersSound() {
         return this.mixerSound.getSliders();
+    }
+
+    @Override
+    public SliderType getSliderTypeofMixer(final TypeUnitSound typeUnitSound){
+        return this.mixerSound.getSliderType(typeUnitSound);
     }
 
     @Override
@@ -56,7 +69,7 @@ public class ConcreteGUISound extends AbstractGUI implements GUISound {
     }
 
     @Override
-    public List<JButton> getBtnSwitches() {
+    public List<ButtonSliderType> getBtnSwitches() {
         return this.mixerSound.getBtnSwitches();
     }
 

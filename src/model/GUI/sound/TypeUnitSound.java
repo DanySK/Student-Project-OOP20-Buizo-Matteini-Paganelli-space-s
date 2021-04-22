@@ -1,12 +1,12 @@
 package model.GUI.sound;
 
-public enum NameUnitSound {
+public enum TypeUnitSound {
     SLIDER_BACKGROUND("Main"),
     SLIDER_EFFECT("Effect");
 
     private final String name;
 
-    private NameUnitSound(final String name){
+    private TypeUnitSound(final String name){
         this.name = name;
     }
 

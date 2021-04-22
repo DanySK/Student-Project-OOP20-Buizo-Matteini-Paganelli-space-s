@@ -1,10 +1,12 @@
 package model.sound;
 
-import utilities.SoundType;
+import model.sound.category.SoundEffect;
+import model.sound.category.SoundLoop;
+import utilities.SoundPath;
 
 public class LogicsImpl implements Logics {
-	Sound backgroundSound;
-	Sound effectSound;
+	private Sound backgroundSound;
+	private Sound effectSound;
 	
     public LogicsImpl(){
     	this.backgroundSound = new SoundLoop();
@@ -12,7 +14,7 @@ public class LogicsImpl implements Logics {
     	
 	}
 
-	public LogicsImpl(SoundType st){
+	public LogicsImpl(SoundPath st){
     	this.backgroundSound = new SoundLoop(st);
     	this.effectSound = new SoundEffect(st);
 	}

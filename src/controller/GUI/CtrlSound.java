@@ -2,21 +2,19 @@ package controller.GUI;
 
 import model.GUI.EngineGUI;
 import model.GUI.sound.EngineSound;
-import model.sound.*;
 import utilities.DesignSound;
-import utilities.Engines;
 import view.GUI.GUI;
 import view.GUI.sound.GUISound;
+import view.GUI.sound.utilities.ButtonSliderType;
 import view.utilities.FactoryGUIs;
+import view.GUI.sound.utilities.SliderType;
 
-import javax.swing.*;
 import javax.swing.event.ChangeListener;
 import java.awt.event.ActionListener;
 
 public class CtrlSound implements ControllerGUI {
     private final GUISound soundGUI;
     private final EngineSound soundEngine;
-
 
     public CtrlSound(final GUISound soundGUI, final EngineSound soundEngine){
         this.soundEngine = soundEngine;
@@ -28,54 +26,36 @@ public class CtrlSound implements ControllerGUI {
         this.soundGUI.setId(this.soundEngine.getId());
         this.soundGUI.setTitleGUI(this.soundEngine.getTitle());
         this.soundGUI.setNameButtonBack(this.soundEngine.getNameBack());
-        this.soundGUI.setNameTypeSlider(this.soundEngine.getListNameSlider());
-        this.soundGUI.setIconBtnSwitches(this.soundEngine.getActualIconStateSounds());
+        this.soundGUI.setTypeUnitSound(this.soundEngine.getListTypeUnitSound());
+        this.soundGUI.setTitleUnitSound(this.soundEngine.getListNameSlider());
+        this.soundGUI.setDefaultValueSlidersSound(this.soundEngine.getDefaultValueSound());
+        this.soundGUI.setIconBtnSwitches(this.soundEngine.getIconStateSounds());
         this.soundGUI.setBtnBackID(this.soundEngine.getBackLink());
         this.soundGUI.setVisible(this.soundEngine.isVisible());
 
-        this.soundGUI.setDefaultValueSlidersSound(this.soundEngine.getDefaultValueSound());
-        this.soundGUI.getSlidersSound().forEach(slider ->
-                slider.addChangeListener(this.changeListenerSlider(slider)));
+        this.soundGUI.getSlidersSound().forEach(slider ->slider.addChangeListener(this.changeListenerSlider()));
 
-
-
-        this.soundGUI.getBtnSwitches().forEach(btn -> btn.addActionListener(this.changeSwitchSound(btn)));
+        this.soundGUI.getBtnSwitches().forEach(btn -> btn.addActionListener(this.changeSwitchSound()));
     }
 
-    private ChangeListener changeListenerSlider(final JSlider slider){
+    private ChangeListener changeListenerSlider(){
         return e -> {
-            int firstSlider = 0;
-            if(slider.getName().contentEquals(soundEngine.getListNameSlider().get(firstSlider))
-                    && soundEngine.isActiveSoundMain()){
-                soundEngine.setValueMainSound(slider.getValue());
-            } else if(slider.getName().contentEquals(soundEngine.getListNameSlider().get(firstSlider + 1))
-                    && soundEngine.isActiveSoundEffect()) {
-                soundEngine.setValueEffectSound(slider.getValue());
-            }
+            final SliderType slider = (SliderType)e.getSource();
+            this.soundEngine.setValueUnitSound(slider.getType(), slider.getValue());
         };
     }
 
-    private ActionListener changeSwitchSound(final JButton btn){
+    private ActionListener changeSwitchSound(){
         return e -> {
-            int firstUnitSound = 0;
-            int secondUnitSound = 1;
-            if(btn.getName().contentEquals(soundEngine.getListNameSlider().get(firstUnitSound))){
-                this.soundEngine.setStateSoundMain(Engines.inverseStateSlider(this.soundEngine.getStateSoundMain()));
-                FactoryGUIs.setIconInJButtonMini(btn, this.soundEngine.isActiveSoundMain() ?
-                        this.soundEngine.actualPathStateSoundMain() :
-                        Engines.getInversePathStateSlider(this.soundEngine.getStateSoundMain()));
+            final ButtonSliderType btnSlider = (ButtonSliderType)e.getSource();
 
-                this.soundGUI.getSlidersSound().get(firstUnitSound).setValue(this.soundEngine.isActiveSoundMain() ?
-                        this.soundEngine.getValueMainSound() : DesignSound.SOUND_ZERO);
-            } else {
-                this.soundEngine.setStateSoundEffect(Engines.inverseStateSlider(this.soundEngine.getStateSoundEffect()));
-                FactoryGUIs.setIconInJButtonMini(btn, this.soundEngine.isActiveSoundEffect() ?
-                        this.soundEngine.actualPathStateSoundEffect() :
-                        Engines.getInversePathStateSlider(this.soundEngine.getStateSoundEffect()));
+            this.soundEngine.changeStateUnitSound(btnSlider.getTypeSlider());
+            FactoryGUIs.setIconInJButtonMini(btnSlider,
+                    this.soundEngine.getPathIconUnitSound((btnSlider.getTypeSlider())));
 
-                this.soundGUI.getSlidersSound().get(secondUnitSound).setValue(this.soundEngine.isActiveSoundEffect() ?
-                        this.soundEngine.getValueEffectSound() : DesignSound.SOUND_ZERO);
-            }
+            this.soundGUI.getSliderTypeofMixer(btnSlider.getTypeSlider()).setValue(
+                    this.soundEngine.isActiveUnitSound(btnSlider.getTypeSlider()) ?
+                            this.soundEngine.getValueUnitSound(btnSlider.getTypeSlider()) : DesignSound.SOUND_ZERO);
         };
     }
 

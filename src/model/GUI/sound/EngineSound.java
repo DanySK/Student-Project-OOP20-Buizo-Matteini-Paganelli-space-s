@@ -5,43 +5,24 @@ import model.GUI.Visibility;
 import utilities.DesignSound;
 import utilities.DesignTitleGUI;
 import utilities.IdGUI;
-import view.GUI.sound.utilities.UnitSound;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class EngineSound implements EngineGUI {
     public static int N_UNIT_SOUND = 2;
     private final IdGUI id;
     private final IdGUI idBack;
 
-    private final List<NameUnitSound> listNameUnitSound;
-
-    private final List<EngineUnitSound> listUnitSounds;
-
-    private int valueMainSound;
-    private int valueEffectSound;
-    private StateSlider stateSoundMain;
-    private StateSlider stateSoundEffect;
+    private final EngineMixerSound mixerSound;
 
     private Visibility visibility;
 
     public EngineSound(){
         this.id = IdGUI.ID_SOUND;
         this.idBack = IdGUI.ID_BACK;
+        this.mixerSound = new EngineMixerSound(Arrays.asList(TypeUnitSound.values()));
 
-        this.listUnitSounds = Stream.generate(EngineUnitSound::new).limit(N_UNIT_SOUND)
-                .collect(Collectors.toList());
-
-
-
-        this.valueMainSound = DesignSound.DEFAULT_VALUE_SOUND;
-        this.valueEffectSound = DesignSound.DEFAULT_VALUE_SOUND;
-        this.stateSoundMain = StateSlider.ON;
-        this.stateSoundEffect = StateSlider.ON;
-        this.listNameUnitSound = Arrays.asList(NameUnitSound.values());
         this.visibility = Visibility.HIDDEN;
     }
 
@@ -84,64 +65,48 @@ public class EngineSound implements EngineGUI {
     }
 
     public List<String> getListNameSlider(){
-        return this.listNameUnitSound.stream().map(NameUnitSound::getNameUnitSound).collect(Collectors.toList());
+        return this.mixerSound.getNameUnitsSound();
+    }
+
+    public List<TypeUnitSound> getListTypeUnitSound(){
+        return this.mixerSound.getListTypeUnitsSound();
     }
 
     public int getDefaultValueSound(){
         return DesignSound.DEFAULT_VALUE_SOUND;
     }
 
-    public int getValueMainSound() {
-        return this.valueMainSound;
+    public int getValueUnitSound(final TypeUnitSound typeUnitSound){
+        return this.mixerSound.getValueSound(typeUnitSound);
     }
 
-    public int getValueEffectSound() {
-        return this.valueEffectSound;
+    public void setValueUnitSound(final TypeUnitSound typeUnitSound, final int value){
+        if( this.mixerSound.getStateSound(typeUnitSound) == StateSlider.ON){
+            this.mixerSound.setValueSound(typeUnitSound, value);
+        }
     }
 
-    public void setValueMainSound(int valueMainSound) {
-        this.valueMainSound = valueMainSound;
+    public StateSlider getStateUnitSound(final TypeUnitSound typeUnitSound){
+        return this.mixerSound.getStateSound(typeUnitSound);
     }
 
-    public void setValueEffectSound(int valueEffectSound) {
-        this.valueEffectSound = valueEffectSound;
+    public void setStateUnitSound(final TypeUnitSound typeUnitSound, final StateSlider stateUnitSound){
+        this.mixerSound.setStateSound(typeUnitSound, stateUnitSound);
     }
 
-    public StateSlider getStateSoundMain() {
-        return this.stateSoundMain;
+    public boolean isActiveUnitSound(final TypeUnitSound typeUnitSound){
+        return this.mixerSound.isActiveSound(typeUnitSound);
     }
 
-    public StateSlider getStateSoundEffect() {
-        return this.stateSoundEffect;
+    public void changeStateUnitSound(final TypeUnitSound typeUnitSound){
+        this.mixerSound.changeStateSound(typeUnitSound);
     }
 
-    public void setStateSoundMain(final StateSlider stateSoundMain) {
-        this.stateSoundMain = stateSoundMain;
+    public String getPathIconUnitSound(final TypeUnitSound typeUnitSound){
+        return this.mixerSound.getPathIconState(typeUnitSound);
     }
 
-    public void setStateSoundEffect(final StateSlider stateSoundEffect) {
-        this.stateSoundEffect = stateSoundEffect;
-    }
-
-    public boolean isActiveSoundMain() {
-        return this.stateSoundMain.isActive();
-    }
-
-    public boolean isActiveSoundEffect() {
-        return this.stateSoundEffect.isActive();
-    }
-
-    public String actualPathStateSoundMain(){
-        return this.stateSoundMain.getPath();
-    }
-
-    public String actualPathStateSoundEffect(){
-        return this.stateSoundEffect.getPath();
-    }
-
-    public List<String> getActualIconStateSounds(){
-        return List.of(this.stateSoundMain, this.stateSoundEffect).stream()
-                .map(StateSlider::getPath)
-                .collect(Collectors.toList());
+    public List<String> getIconStateSounds(){
+        return this.mixerSound.getPathsIconState();
     }
 }

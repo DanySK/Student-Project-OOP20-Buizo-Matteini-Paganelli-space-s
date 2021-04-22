@@ -1,35 +1,36 @@
 package model.sound;
 
-import utilities.SoundType;
+import utilities.SoundPath;
 
 import java.util.Optional;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
 import javax.sound.sampled.FloatControl;
 
 	
-abstract class Sound implements SoundObserver {
+public abstract class Sound implements SoundObserver {
 		private static final double START_VOLUME = 0.50;
-	    private SoundType soundType;
+	    private SoundPath soundPath;
 	    private double volume;
 	    private Optional<Clip> clip = Optional.empty();
 	    
 
-	    public Sound(SoundType sound) {
-	    	this.soundType = sound;
+	    public Sound(SoundPath sound) {
+	    	this.soundPath = sound;
 	    	this.volume = START_VOLUME;
 	    }
 	    
 	    public Sound() {
-	    	this.soundType = null;
+	    	this.soundPath = null;
 	    	this.volume = START_VOLUME;	
 	    }
 	    
-	    public void setSoundType(SoundType sound) {
-	    	this.soundType = sound;
+	    public void setSoundType(SoundPath sound) {
+	    	this.soundPath = sound;
 	    }
 	    
-	    public SoundType getSoundType() {
-	    	return this.soundType;
+	    public SoundPath getSoundType() {
+	    	return this.soundPath;
 	    }
 	    
 	    public void setClip(Clip clip) {
@@ -43,13 +44,7 @@ abstract class Sound implements SoundObserver {
 	    }
 	    
 	    public boolean isPlaying() {
-
-	    	if(this.clip.isPresent()) {
-	    		return this.clip.get().isActive();
-	    	}
-	    	else {
-	    		return false;
-	    	}
+			return this.clip.map(DataLine::isActive).orElse(false);
 	    	
 	    }
 
@@ -60,7 +55,7 @@ abstract class Sound implements SoundObserver {
 
 
 	    public void startClip() {   	
-	    	playSound(this.soundType.getValue(), this.volume);
+	    	playSound(this.soundPath.getValue(), this.volume);
 	    }
 	    
 	    protected abstract void playSound(String fileName, double volume);
@@ -80,12 +75,11 @@ abstract class Sound implements SoundObserver {
 		}	
 		
 		public boolean isLoop() {
-
-			return this.soundType.ordinal() < SoundType.GAME_SOUND.ordinal();
+			return this.soundPath.ordinal() < SoundPath.GAME_SOUND.ordinal();
 		}	
 		
 		
-		public void update(SoundType st) {		
+		public void update(SoundPath st) {
 			setSoundType(st);
 			startClip();		
 		}

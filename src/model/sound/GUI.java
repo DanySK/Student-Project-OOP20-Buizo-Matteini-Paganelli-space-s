@@ -1,5 +1,7 @@
 package model.sound;
-import utilities.SoundType;
+import model.sound.category.SoundEffect;
+import model.sound.category.SoundLoop;
+import utilities.SoundPath;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -63,13 +65,13 @@ public class GUI extends JFrame {
         ActionListener toggleLoopSound = (e)->{
             System.out.println("Faccio partire il suono " + e.getActionCommand());
 
-    		observerLoop.update(SoundType.valueOf(e.getActionCommand()));
+    		observerLoop.update(SoundPath.valueOf(e.getActionCommand()));
         };
         
         ActionListener toggleEffectSound = (e)->{
             System.out.println("Faccio partire il suono " + e.getActionCommand());
             
-    		observerEffects.update(SoundType.valueOf(e.getActionCommand()));		
+    		observerEffects.update(SoundPath.valueOf(e.getActionCommand()));
         };
                
         jslider.addChangeListener(new ChangeListener() {

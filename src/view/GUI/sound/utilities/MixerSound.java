@@ -1,5 +1,7 @@
 package view.GUI.sound.utilities;
 
+import model.GUI.sound.EngineSound;
+import model.GUI.sound.TypeUnitSound;
 import view.utilities.FactoryGUIs;
 
 import javax.swing.*;
@@ -10,14 +12,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class MixerSound extends JPanel{
-    public static final int N_SOUND = 2;
     private final List<UnitSound> sdlSounds;
 
     public MixerSound(){
         super(new GridBagLayout());
         super.setOpaque(false);
         this.sdlSounds = Stream.generate(UnitSound::new)
-                .limit(N_SOUND).collect(Collectors.toList());
+                .limit(EngineSound.N_UNIT_SOUND).collect(Collectors.toList());
         this.graphics();
     }
 
@@ -45,10 +46,10 @@ public class MixerSound extends JPanel{
         }
     }
 
-    public void setNameSlider(final List<String> nameSlider){
+    public void setTypeUnitSound(final List<TypeUnitSound> nameSlider){
         int i = 0;
-        for (UnitSound unit : this.sdlSounds) {
-            unit.setName(nameSlider.get(i++));
+        for (final UnitSound unit : this.sdlSounds) {
+            unit.setType(nameSlider.get(i++));
         }
     }
 
@@ -56,7 +57,7 @@ public class MixerSound extends JPanel{
         this.sdlSounds.forEach(sound -> sound.setForegroundUnit(color));
     }
 
-    public List<JSlider> getSliders(){
+    public List<SliderType> getSliders(){
         return this.sdlSounds.stream().map(UnitSound::getSliderSound)
                 .collect(Collectors.toList());
     }
@@ -65,14 +66,21 @@ public class MixerSound extends JPanel{
         this.sdlSounds.forEach(sound -> sound.setValueSliderSound(value));
     }
 
-    public List<JButton> getBtnSwitches(){
-        return this.sdlSounds.stream().map(s -> s.getBtnSwitch()).collect(Collectors.toList());
+    public List<ButtonSliderType> getBtnSwitches(){
+        return this.sdlSounds.stream().map(UnitSound::getBtnSwitch).collect(Collectors.toList());
     }
 
     public void setIconBtnSwitches(final List<String> paths){
         AtomicInteger i = new AtomicInteger();
-        this.sdlSounds.forEach(sound -> {
-            sound.setIconBtnSwitch(paths.get(i.getAndIncrement()));
-        });
+        this.sdlSounds.forEach(sound -> sound.setIconBtnSwitch(paths.get(i.getAndIncrement())));
+    }
+
+    public SliderType getSliderType(final TypeUnitSound typeUnitSound){
+        for (UnitSound unit : this.sdlSounds) {
+            if(typeUnitSound == unit.getType()){
+                return unit.getSliderSound();
+            }
+        }
+        return null;
     }
 }

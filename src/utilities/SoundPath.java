@@ -1,7 +1,6 @@
 package utilities;
 
-public enum SoundType {
-
+public enum SoundPath {
 	MENU_SOUND	("sounds/menu.wav"),
 	GAME_SOUND	("sounds/game.wav"),
 	MOVEMENT	("sounds/movement.wav"),
@@ -18,7 +17,7 @@ public enum SoundType {
 	private final String path;
 
 
-	SoundType(String path) {
+	SoundPath(String path) {
 		this.path = path;
 	}
 

@@ -1,8 +1,8 @@
 package model.sound;
 
-import utilities.SoundType;
+import utilities.SoundPath;
 
 public interface SoundObserver {
 
-	void update(SoundType st);
+	void update(SoundPath st);
 }
