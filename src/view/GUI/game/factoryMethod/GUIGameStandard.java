@@ -1,5 +1,6 @@
 package view.GUI.game.factoryMethod;
 
+import utilities.DesignJFrame;
 import view.GUI.game.FactoryGUIGame;
 import view.GUI.game.GUIGame;
 import view.GUI.game.concrete.GUIGameConcrete;
