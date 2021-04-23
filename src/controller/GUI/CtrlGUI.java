@@ -63,8 +63,9 @@ public class CtrlGUI {
                     }
 
                     switch (btn.getIdGUINext()) {
-                        case ID_QUIT -> this.quitAll();
-                        case ID_BACK -> {
+                        case ID_QUIT:this.quitAll();
+                        break;
+                        case ID_BACK:
                             this.switchGUI.turnOnGUI(
                                     this.getEngine(this.chronology.penultimateElementOfList()),
                                     this.getGUI(this.chronology.penultimateElementOfList()));
@@ -72,14 +73,15 @@ public class CtrlGUI {
                                     this.getEngine(this.chronology.lastElementOfList()),
                                     this.getGUI(this.chronology.lastElementOfList()));
                             this.chronology.remove(this.chronology.lastElementOfList());
-                        }
-                        case ID_SOUND, ID_HELP -> {
+                            break;
+                        case ID_SOUND :
+                        case ID_HELP:
                             this.chronology.add(btn.getIdGUINext());
                             this.switchGUI.turnOnGUI(
                                     this.getEngine(this.chronology.lastElementOfList()),
                                     this.getGUI(this.chronology.lastElementOfList()));
-                        }
-                        default -> {
+                            break;
+                        default:
                             this.chronology.add(btn.getIdGUINext());
                             this.switchGUI.turnOnGUI(
                                     this.getEngine(this.chronology.lastElementOfList()),
@@ -87,7 +89,8 @@ public class CtrlGUI {
                             this.switchGUI.turnOffGUI(
                                     this.getEngine(this.chronology.penultimateElementOfList()),
                                     this.getGUI(this.chronology.penultimateElementOfList()));
-                        }
+                            break;
+                        
                     }
                     System.out.println("list" + this.chronology);
 
