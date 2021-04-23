@@ -1,6 +1,7 @@
 package view.utilities;
 
-import utilities.DesignSpace;
+import utilities.DesignJFrame;
+import utilities.DesignSound;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +16,8 @@ public class FactoryGUIs {
         return encapsulate;
     }
 
-    public static JPanel encapsulatesInPanel_Box_Vertical_Center(Component component){
+
+    public static JPanel encapsulateInPanel_Box_Vertical_Center(Component component){
         JPanel encapsulate = new JPanel();
         encapsulate.setOpaque(false);
         encapsulate.setLayout(new BoxLayout(encapsulate, BoxLayout.X_AXIS));
@@ -23,10 +25,35 @@ public class FactoryGUIs {
         return encapsulate;
     }
 
-    public static JPanel getUnionComponents(List<JComponent> list){
+    public static JPanel encapsulatesVertical(final List<? extends JComponent> components, final int inset){
+        JPanel encapsulate = new JPanel(new GridBagLayout()) {{ setOpaque(false); }};
+        GridBagConstraints limit = createGBConstraintsBase();
+        limit.insets = new Insets(inset / 2,inset,inset / 2,inset);
+
+        for (Component component : components) {
+            encapsulate.add(component, limit);
+            limit.gridy++;
+        }
+
+        return encapsulate;
+    }
+
+    public static JPanel encapsulatesHorizontal(List<JComponent> components, final int inset){
+        JPanel encapsulate = new JPanel(new GridBagLayout()) {{ setOpaque(false); }};
+        GridBagConstraints limit = createGBConstraintsBase();
+        limit.insets = new Insets(inset, inset / 2,inset, inset / 2);
+        for (JComponent component : components) {
+            encapsulate.add(component, limit);
+            limit.gridx++;
+        }
+
+        return encapsulate;
+    }
+
+    public static JPanel getUnionComponents(List<Component> list){
         JPanel unionComponent = new JPanel(new FlowLayout());
         unionComponent.setOpaque(false);
-        for (JComponent component : list) {
+        for (Component component : list) {
             unionComponent.add(component);
         }
         return unionComponent;
@@ -69,28 +96,53 @@ public class FactoryGUIs {
         imageIcon.setImage(resizeImage);
     }
 
-
     public static void setTransparentDesignJButton(JButton button){
         button.setOpaque(false);
         button.setContentAreaFilled(false);
         button.setFocusable(false);
     }
 
-    public static void setNotFocusable(Component component){
-        component.setFocusable(false);
-    }
-
-    public static void setIconInJButton(JButton button, final String pathIcon) {
-        JImageRate imag = new JImageRate(pathIcon, 5);
+    public static void setIconInJButtonMini(JButton button, final String pathIcon) {
+        JImageRate imag = new JImageRate(pathIcon, 3);
         button.setIcon(imag.getIcon());
     }
 
-    public static void rateImage(final int rate, ImageIcon imageIcon){
-        int widthRateImage = DesignSpace.GUI_WIDTH * rate / 100;
+    public static void setIconInJButtonMedium(JButton button, final String pathIcon) {
+        JImageRate imag = new JImageRate(pathIcon, 4);
+        button.setIcon(imag.getIcon());
+    }
+
+    public static void rateImageFromMediumJFrame(ImageIcon imageIcon, final int rate){
+        int widthRateImage = DesignJFrame.GUI_WIDTH_MEDIUM * rate / 100;
         int heightRateImage = imageIcon.getIconHeight() * widthRateImage / imageIcon.getIconWidth();
         resizeImage(widthRateImage, heightRateImage, imageIcon);
     }
 
+    public static void rateImageFromFullJFrame(ImageIcon imageIcon, final int rate){
+        int widthRateImage = DesignJFrame.GUI_WIDTH_FULL_SCREEN * rate / 100;
+        int heightRateImage = imageIcon.getIconHeight() * widthRateImage / imageIcon.getIconWidth();
+        resizeImage(widthRateImage, heightRateImage, imageIcon);
+    }
 
+    public static void rateImageFromFrame(ImageIcon imageIcon, final int sizeWidthFrame){
+        int widthRateImage = sizeWidthFrame;
+        int heightRateImage = imageIcon.getIconHeight() * widthRateImage / imageIcon.getIconWidth();
+        resizeImage(widthRateImage, heightRateImage, imageIcon);
+    }
+
+    public static JComponent getJComponentEmpty(){
+        JPanel panel = new JPanel();
+        panel.setOpaque(false);
+        panel.setSize(0,0);
+        return panel;
+    }
+
+    public static void setDefaultJSlider(final JSlider slider){
+        slider.setOpaque(false);
+        slider.setMajorTickSpacing(DesignSound.DEFAULT_MAJOR_TICK_SPACING);
+        slider.setMinorTickSpacing(DesignSound.DEFAULT_MINOR_TICK_SPACING);
+        slider.setPaintTicks(true);
+        slider.setPaintLabels(true);
+    }
 
 }

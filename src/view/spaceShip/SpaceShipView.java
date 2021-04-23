@@ -1,54 +1,47 @@
 package view.spaceShip;
 
-import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-import javax.swing.*;
 
-import model.MyJImage.JImageRateEngine;
 import model.environment.Point2D;
-import view.utilities.JImageRate;
+import view.utilities.MyJImage;
 
-public class SpaceShipView {
+public class SpaceShipView extends MyJImage {
 
-    private final JFrame frame = new JFrame();
-    private JImageRate shipImage;
-    
-    public SpaceShipView(final JImageRateEngine imageEngine, final Point2D imagePosition) {
-        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.frame.setSize(800, 600);
-        
-        JPanel panel = new JPanel(null);
-        this.frame.setContentPane(panel);
-        
-        
-        this.shipImage = new JImageRate(imageEngine.getPathImg(), imageEngine.getRate());
-        //this.shipImage.setBorder(BorderFactory.createLineBorder(Color.black, 10));
-        
-        int shipWidth = this.shipImage.getIcon().getIconHeight();
-        int shipHeight = this.shipImage.getIcon().getIconHeight();
-        
-        this.shipImage.setBounds(imagePosition.getX(), imagePosition.getY(), shipWidth, shipHeight);
+	private static final long serialVersionUID = 1L;
 
-        this.shipImage.setOpaque(true);
-        this.shipImage.setBackground(Color.BLUE);
-        panel.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+	public SpaceShipView(final String shipImagePath, Point2D imagePosition) { 
+        super();
         
-        panel.add(this.shipImage);
+//        super.setOpaque(true);
+//        super.setBackground(Color.BLUE);
+//        super.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
         
-        final JButton button = new JButton("prova");
-        button.addActionListener(event -> {
-            this.shipImage.setLocation(this.shipImage.getX() + 10, this.shipImage.getY() + 10);
-        });
-        button.setBounds(10, 10, 50, 30);
+        super.addKeyListener(new KeyListener() {
+        	public void keyTyped(KeyEvent e) {
+			}
+			public void keyReleased(KeyEvent e) {
+			}
+			public void keyPressed(KeyEvent e) {
+				System.out.println("premuto");
+			}
+		});
 
-        panel.add(button);
+        
+        super.setLocation(super.getX() + 10, super.getY() + 10);
     }
     
-    public void show() {
-        this.frame.setVisible(true);
+    public MyJImage getShipImage() {
+        return this;
     }
     
-    public JImageRate getShipImage() {
-        return this.shipImage;
-    }
+    public void setPosition(Point2D point) {
+		this.setLocation(point.getX(), point.getY());
+	}
+    
+    public void setDimension(Dimension dimension) {
+		this.setDimension(dimension);
+	}
 }

@@ -1,49 +1,38 @@
 package game;
 
 import controller.GUI.*;
-import model.factoryGUI.helpGUI.HelpEngine;
-import model.factoryGUI.menuGUI.MenuEngine;
-import model.factoryGUI.scoreboardGUI.ScoreboardEngine;
-import model.factoryGUI.settingsGUI.SettingsEngine;
-import view.factoryGUI.FactoryGUI;
-import view.factoryGUI.factoryHelpGUI.HelpGUI;
-import view.factoryGUI.factoryMenuGUI.intefaceMenu.MenuGUI;
-import view.factoryGUI.factoryScoreboardGUI.interfaceScoreboard.ScoreboardGUI;
-import view.factoryGUI.factorySettingsGUI.intefaceSettings.SettingsGUI;
+import factorys.StaticFactoryEngineGUI;
+import factorys.StaticFactoryGUI;
+import view.GUI.game.GUIGame;
 
 import java.util.List;
 
 public class SpaceMala {
 
-    private MenuGUI menuGUI = FactoryGUI.createMenuGUI();
-    private MenuEngine menuEngine = new MenuEngine();
-    private Menu menu = new Menu(menuGUI, menuEngine);
 
-    private ScoreboardGUI scoreboardGUI = FactoryGUI.createScoreboardGUI();
-    private ScoreboardEngine scoreboardEngine = new ScoreboardEngine();
-    private Scoreboard scoreboard = new Scoreboard(scoreboardGUI, scoreboardEngine);
 
-    private SettingsGUI settingsGUI = FactoryGUI.createSettingsGUI();
-    private SettingsEngine settingsEngine = new SettingsEngine();
-    private Settings settings = new Settings(settingsGUI, settingsEngine);
+    private final CtrlMenu ctrlMenu = new CtrlMenu(StaticFactoryGUI.createMenuGUI(),
+            StaticFactoryEngineGUI.createEngineMenu());
 
-    private HelpGUI helpGUI = FactoryGUI.creteHelpGUI();
-    private HelpEngine helpEngine = new HelpEngine();
-    private Help help = new Help(helpGUI, helpEngine);
+    private final CtrlGame ctrlGame = new CtrlGame( StaticFactoryEngineGUI.createEngineGame(),
+            StaticFactoryGUI.createGameGUI());
 
-    private GUI GUI = new GUI(List.of(menuGUI, scoreboardGUI, settingsGUI, helpGUI),
-            List.of(menuEngine, scoreboardEngine, settingsEngine, helpEngine));
+    private final CtrlScoreboard ctrlScoreboard = new CtrlScoreboard(StaticFactoryGUI.createScoreboardGUI(),
+            StaticFactoryEngineGUI.createEngineScoreboard());
+
+    private final CtrlSettings ctrlSettings = new CtrlSettings(StaticFactoryGUI.createSettingsGUI(),
+            StaticFactoryEngineGUI.createEngineSettings());
+
+    private final CtrlHelp ctrlHelp = new CtrlHelp(StaticFactoryGUI.createHelpGUI(),
+            StaticFactoryEngineGUI.createEngineHelp());
+
+    private final CtrlSound ctrlSound = new CtrlSound(StaticFactoryGUI.createSoundGUI(),
+            StaticFactoryEngineGUI.createEngineSound());
+
+    private GUIGame game = StaticFactoryGUI.createGameGUI();
+
+    private final CtrlGUI CtrlGUI = new CtrlGUI(List.of(ctrlMenu, ctrlGame, ctrlSettings, ctrlScoreboard, ctrlSound, ctrlHelp));
 
     public SpaceMala(){
-
     }
-
-//    public ControllerMenu getControllerMenu() {
-//        return this.controllerMenu;
-//    }
-//
-//    public ControllerScoreboard getControllerScoreboard(){
-//        return this.controllerScoreboard;
-//    }
-
 }

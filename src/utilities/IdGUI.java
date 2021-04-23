@@ -1,21 +1,24 @@
 package utilities;
 
 public enum IdGUI {
-    ID_MENU(0, "Menu"),
-    ID_GAME(1, "Game"),
-    ID_SETTING(2, "Settings"),
-    ID_SCOREBOARD(3, "Scoreboard"),
-    ID_HELP(4, "Help"),
-    ID_QUIT(5, "Quit"),
-    ID_PAUSE(6, "Pause"),
-    ID_BACK(7, "Back");
+    ID_MENU(0, "Menu", SoundPath.MENU_SOUND),
+    ID_GAME(1, "Game", SoundPath.GAME_SOUND),
+    ID_SETTING(2, "Settings", SoundPath.MENU_SOUND),
+    ID_SCOREBOARD(3, "Scoreboard", SoundPath.MENU_SOUND),
+    ID_SOUND(4, "Sound", SoundPath.MENU_SOUND),
+    ID_HELP(5, "Help", SoundPath.MENU_SOUND),
+    ID_QUIT(6, "Quit", SoundPath.MENU_SOUND),
+    ID_PAUSE(7, "Pause", SoundPath.MENU_SOUND),
+    ID_BACK(8, "Back", SoundPath.MENU_SOUND);
 
     private final int id;
     private final String name;
+    private final SoundPath sound;
 
-    private IdGUI(final int id, final String name){
+    private IdGUI(final int id, final String name, final SoundPath sound){
         this.id = id;
         this.name = name;
+        this.sound = sound;
     }
 
     public int getIdInt(){
@@ -24,6 +27,10 @@ public enum IdGUI {
 
     public String getIdName(){
         return this.name;
+    }
+
+    public SoundPath getSound() {
+        return this.sound;
     }
 
     @Override

@@ -26,7 +26,7 @@ public class JImageRate extends JPanel {
     public JImageRate(final String path, final int rate){
        this(path);
        this.rate = rate;
-       FactoryGUIs.rateImage(this.rate, this.icon);
+       FactoryGUIs.rateImageFromMediumJFrame(this.icon, this.rate);
     }
 
     public int getRate() {
@@ -43,7 +43,7 @@ public class JImageRate extends JPanel {
 
     public void setRate(int rate) {
         this.rate = rate;
-        FactoryGUIs.rateImage(this.rate, this.icon);
+        FactoryGUIs.rateImageFromMediumJFrame(this.icon, this.rate);
         this.lbImage.repaint();
     }
 
@@ -58,7 +58,12 @@ public class JImageRate extends JPanel {
         this.setRate(rate);
     }
 
-
-
+//    @Override
+//    protected void paintComponent(Graphics g) {
+//        super.paintComponent(g);
+//        g.drawImage(this.icon.getImage(), 0, 0, this); // draw image
+//        g.setColor(new Color(9, 49, 98));
+//       // g.fillRect(x, y, 50, 30);
+//    }
 
 }
