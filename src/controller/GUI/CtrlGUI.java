@@ -1,8 +1,7 @@
 package controller.GUI;
 
-import controller.GUI.Command.CmdEngine;
-import controller.GUI.Command.CmdOFF;
-import controller.GUI.Command.CmdON;
+import controller.GUI.command.SwitchGUI;
+import controller.utilities.ListGUI;
 import model.GUI.EngineGUI;
 import model.sound.*;
 import model.sound.category.SoundLoop;
@@ -18,12 +17,13 @@ import java.util.List;
 
 public class CtrlGUI {
     private static final IdGUI FIRST_GUI = IdGUI.ID_MENU;
-    private final List<IdGUI> chronology;
+    private final ListGUI<IdGUI> chronology;
     private final List<EngineGUI> listEngine;
     private final List<GUI> listGUI;
 
-    private SoundPath soundPath;
+    private final SwitchGUI switchGUI;
 
+    private SoundPath soundPath;
     private final Logics logics;
     private final SoundObserver observerSoundLoop;
 
@@ -31,18 +31,24 @@ public class CtrlGUI {
     public CtrlGUI(final List<ControllerGUI> listControlGUI){
         this.listGUI = new ArrayList<>();
         this.listEngine = new ArrayList<>();
+        this.switchGUI = new SwitchGUI();
+
         listControlGUI.forEach(control -> {
             CtrlGUI.this.listGUI.add(control.getGUI());
             CtrlGUI.this.listEngine.add(control.getEngine());
         });
-        this.chronology = new ArrayList<>(List.of(FIRST_GUI));
+
+        this.chronology = new ListGUI<>() {{ add(FIRST_GUI); }};
         this.soundPath = FIRST_GUI.getSound();
         this.logics = new LogicsImpl();
-        this.observerSoundLoop = new SoundLoop();
 
-        this.observerSoundLoop.update(this.soundPath);
+
+        this.observerSoundLoop = new SoundLoop() {{ update(CtrlGUI.this.soundPath); }};
+
         this.linksAll();
         this.focusMenu();
+
+        this.switchGUI.turnOnGUI(this.getEngine(FIRST_GUI), this.getGUI(FIRST_GUI));
     }
 
     private void linksAll(){
@@ -59,18 +65,28 @@ public class CtrlGUI {
                     switch (btn.getIdGUINext()) {
                         case ID_QUIT -> this.quitAll();
                         case ID_BACK -> {
-                            this.turnOnGUI(this.penultimateElementOfList());
-                            this.turnOffGUI(this.lastElementOfList());
-                            this.chronology.remove(this.lastElementOfList());
+                            this.switchGUI.turnOnGUI(
+                                    this.getEngine(this.chronology.penultimateElementOfList()),
+                                    this.getGUI(this.chronology.penultimateElementOfList()));
+                            this.switchGUI.turnOffGUI(
+                                    this.getEngine(this.chronology.lastElementOfList()),
+                                    this.getGUI(this.chronology.lastElementOfList()));
+                            this.chronology.remove(this.chronology.lastElementOfList());
                         }
                         case ID_SOUND, ID_HELP -> {
                             this.chronology.add(btn.getIdGUINext());
-                            this.turnOnGUI(this.lastElementOfList());
+                            this.switchGUI.turnOnGUI(
+                                    this.getEngine(this.chronology.lastElementOfList()),
+                                    this.getGUI(this.chronology.lastElementOfList()));
                         }
                         default -> {
                             this.chronology.add(btn.getIdGUINext());
-                            this.turnOnGUI(this.lastElementOfList());
-                            this.turnOffGUI(this.penultimateElementOfList());
+                            this.switchGUI.turnOnGUI(
+                                    this.getEngine(this.chronology.lastElementOfList()),
+                                    this.getGUI(this.chronology.lastElementOfList()));
+                            this.switchGUI.turnOffGUI(
+                                    this.getEngine(this.chronology.penultimateElementOfList()),
+                                    this.getGUI(this.chronology.penultimateElementOfList()));
                         }
                     }
                     System.out.println("list" + this.chronology);
@@ -91,10 +107,11 @@ public class CtrlGUI {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                if(lastElementOfList() != IdGUI.ID_MENU && id == IdGUI.ID_MENU){
+                if(chronology.lastElementOfList() != IdGUI.ID_MENU && id == IdGUI.ID_MENU){
                     int sizeList = chronology.size() - 1;
                     while(sizeList > 0 && !chronology.get(sizeList).equals(IdGUI.ID_MENU)){
-                        turnOffGUI(chronology.get(sizeList));
+                        switchGUI.turnOffGUI(getEngine(chronology.get(sizeList)),
+                                getGUI(chronology.get(sizeList)));
                         chronology.remove(sizeList--);
                     }
                 }
@@ -112,30 +129,10 @@ public class CtrlGUI {
         };
     }
 
-    public void turnOnGUI(final IdGUI id){
-        CmdEngine onCmdEngine = new CmdON();
-        onCmdEngine.execute(this.getEngine(id))
-                .execute(this.getGUI(id));
-    }
-
-    public void turnOffGUI(final IdGUI id){
-        CmdEngine offCmdEngine = new CmdOFF();
-        offCmdEngine.execute(this.getEngine(id))
-                .execute(this.getGUI(id));
-    }
-
-    private IdGUI lastElementOfList(){
-        return this.chronology.get(this.chronology.size() - 1);
-    }
-
-    private IdGUI penultimateElementOfList(){
-        return this.chronology.get(this.chronology.size() - 2);
-    }
-
     private EngineGUI getEngine(IdGUI id){
-        for (EngineGUI enigne : this.listEngine) {
-            if(enigne.getId() == id){
-                return enigne;
+        for (EngineGUI engine : this.listEngine) {
+            if(engine.getId() == id){
+                return engine;
             }
         }
         return null;

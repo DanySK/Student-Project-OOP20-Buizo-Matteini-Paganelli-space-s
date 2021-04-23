@@ -1,4 +1,4 @@
-package controller.GUI.Command;
+package controller.GUI.command;
 
 import view.GUI.GUI;
 

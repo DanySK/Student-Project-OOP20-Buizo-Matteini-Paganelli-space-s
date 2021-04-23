@@ -18,7 +18,7 @@ public class EngineMenu implements EngineGUI {
     public EngineMenu(){
         this.id = IdGUI.ID_MENU;
         this.linkButtons = Arrays.asList(LinksMenu.values());
-        this.visibility = Visibility.VISIBLE;
+        this.visibility = Visibility.HIDDEN;
     }
 
     @Override
