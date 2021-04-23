@@ -1,7 +1,5 @@
 package view.GUI.game.factoryMethod;
 
-import utilities.DesignJFrame;
-import utilities.DesignSpace;
 import view.GUI.game.FactoryGUIGame;
 import view.GUI.game.GUIGame;
 import view.GUI.game.concrete.GUIGameConcrete;
@@ -57,6 +55,7 @@ public class GUIGameStandard implements FactoryGUIGame {
 
 
         concreteGame.visibleFrontPanel(true);
+        concreteGame.add(concreteGame.getSpaceShip());
         concreteGame.addFront(panelNorth, BorderLayout.NORTH);
         concreteGame.addFront(panelSouth, BorderLayout.SOUTH);
     }

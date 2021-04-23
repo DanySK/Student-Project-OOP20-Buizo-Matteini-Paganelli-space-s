@@ -1,9 +1,14 @@
 package view.GUI.game.concrete;
 
+import model.GUI.settings.SkinSpaceShip;
+import model.environment.Point2D;
+import utilities.DesignJFrame;
+import utilities.DesignSpace;
 import utilities.IconPath;
 import view.GUI.AbstractGUI;
 import view.GUI.game.GUIGame;
 import view.GUI.game.utilities.*;
+import view.spaceShip.SpaceShipView;
 import view.utilities.ButtonID;
 import view.utilities.JImageRate;
 
@@ -20,6 +25,8 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
     private final LifeBar life;
     private final Bullet bullet;
 
+    private final SpaceShipView spaceShip;
+
     public GUIGameConcrete(){
         super();
         this.life = new LifeBar();
@@ -29,6 +36,8 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
         this.roundTimer = new RoundTimer();
         this.btnPause = new BtnPauseID();
         this.counterEnemies = new CounterEnemies();
+        this.spaceShip = new SpaceShipView(SkinSpaceShip.GNEGNE.getPath(),
+                DesignSpace.CENTER_ENVIRONMENT);
     }
 
     @Override
@@ -62,5 +71,9 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
 
     public BtnPauseID getBtnPause() {
         return btnPause;
+    }
+
+    public SpaceShipView getSpaceShip() {
+        return this.spaceShip;
     }
 }

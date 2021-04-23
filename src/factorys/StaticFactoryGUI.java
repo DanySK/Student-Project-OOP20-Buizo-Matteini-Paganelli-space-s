@@ -23,7 +23,7 @@ import view.GUI.sound.factoryMethod.GUISoundStandard;
 public class StaticFactoryGUI {
 
     public static GUIMenu createMenuGUI(){
-        FactoryGUIMenu menuGUI = new GUIMenuCompact();
+        FactoryGUIMenu menuGUI = new GUIMenuStandard();
         return menuGUI.createGUI();
     }
 
