@@ -74,7 +74,7 @@ public class CtrlGUI {
                                     this.getGUI(this.chronology.lastElementOfList()));
                             this.chronology.remove(this.chronology.lastElementOfList());
                             break;
-                        case ID_SOUND :
+                        case ID_SOUND:
                         case ID_HELP:
                             this.chronology.add(btn.getIdGUINext());
                             this.switchGUI.turnOnGUI(

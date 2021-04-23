@@ -39,23 +39,23 @@ public class CtrlGame implements ControllerGUI{
             @Override
             public void keyPressed(KeyEvent e) {
                 System.out.println("ccccaaaaaaa" + 2345);
-                if(e.getKeyCode() == 37){
+                if(e.getKeyCode() == 38){
 
                     controllerSpace.getSPaceShipView().setLocation(
                             controllerSpace.getSPaceShipView().getX(),
                             controllerSpace.getSPaceShipView().getY() - 10);
                 }
-                if(e.getKeyCode() == 38) {
+                if(e.getKeyCode() == 39) {
                     controllerSpace.getSPaceShipView().setLocation(
                             controllerSpace.getSPaceShipView().getX() + 10,
                             controllerSpace.getSPaceShipView().getY());
                 }
-                if(e.getKeyCode() == 39){
+                if(e.getKeyCode() == 40){
                     controllerSpace.getSPaceShipView().setLocation(
                             controllerSpace.getSPaceShipView().getX(),
                             controllerSpace.getSPaceShipView().getY() + 10);
                 }
-                if(e.getKeyCode() == 40) {
+                if(e.getKeyCode() == 37) {
                     controllerSpace.getSPaceShipView().setLocation(
                             controllerSpace.getSPaceShipView().getX() - 10,
                             controllerSpace.getSPaceShipView().getY());
