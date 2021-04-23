@@ -13,6 +13,7 @@ import view.utilities.ButtonID;
 import view.utilities.JImageRate;
 
 import javax.swing.*;
+import java.awt.event.KeyListener;
 import java.util.List;
 
 public class GUIGameConcrete extends AbstractGUI implements GUIGame {
@@ -36,8 +37,7 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
         this.roundTimer = new RoundTimer();
         this.btnPause = new BtnPauseID();
         this.counterEnemies = new CounterEnemies();
-        this.spaceShip = new SpaceShipView(SkinSpaceShip.GNEGNE.getPath(),
-                DesignSpace.CENTER_ENVIRONMENT);
+        this.spaceShip = new SpaceShipView();
     }
 
     @Override
@@ -75,5 +75,15 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
 
     public SpaceShipView getSpaceShip() {
         return this.spaceShip;
+    }
+
+    @Override
+    public SpaceShipView getSpaceship() {
+        return this.spaceShip;
+    }
+
+    @Override
+    public void addKeyListenerSpaceship(KeyListener keyListener) {
+        this.addKeyListener(keyListener);
     }
 }

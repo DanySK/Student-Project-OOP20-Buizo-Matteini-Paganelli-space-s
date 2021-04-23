@@ -2,6 +2,7 @@ package model.spaceShip;
 
 import java.awt.Dimension;
 
+import model.GUI.settings.SkinSpaceShip;
 import model.MyJImage.JImageRateEngine;
 import model.MyJImage.MyJImageEngine;
 import model.environment.Point2D;
@@ -11,12 +12,11 @@ public class SpaceShipSingleton {
     
     // Eager and unique instance of this class for Threadsafing
     private static SpaceShipSingleton spaceShip = new SpaceShipSingleton(
-    		DesignSpace.CENTER_ENVIRONMENT, 
-    		"spaceShip/maxShip.png");
+    		DesignSpace.CENTER_ENVIRONMENT,
+            SkinSpaceShip.GNEGNE.getPath());
     
     private Point2D position;
     private MyJImageEngine imageEngine;
-    private Dimension dimension;
     
     /** 
     * Invisible class constructor specifying space ship initial position and image path
@@ -24,6 +24,7 @@ public class SpaceShipSingleton {
     private SpaceShipSingleton(final Point2D position, final String imagePath) {
         this.position = position;
         this.imageEngine = new MyJImageEngine(imagePath);
+        this.imageEngine.setDimensionImage(new Dimension(250, 140));
     }
     
     /**
@@ -51,7 +52,7 @@ public class SpaceShipSingleton {
      * @return the current space ship dimension
      */
     public Dimension getDimension() {
-        return this.dimension;
+        return this.imageEngine.getDimensionImage();
     }
     
     /**
@@ -67,8 +68,7 @@ public class SpaceShipSingleton {
      *            the new space ship position
      */
     public void setDimension(final Dimension newDimension) {
-        this.dimension = newDimension;
-        System.out.println(this.dimension);
+        this.imageEngine.setDimensionImage(newDimension);
     }
 }
 
