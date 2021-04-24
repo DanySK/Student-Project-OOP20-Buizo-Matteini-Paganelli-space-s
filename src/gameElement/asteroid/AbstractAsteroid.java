@@ -1,9 +1,9 @@
-package difficulty.asteroid;
+package gameElement.asteroid;
 
 import java.awt.Dimension;
 
-import difficulty.Movement;
-import gameElements.Velocity;
+import gameElement.Movement;
+import gameElement.Velocity;
 import model.environment.Point2D;
 
 public abstract class AbstractAsteroid {

@@ -1,6 +1,6 @@
-package difficulty.chaseEnemy;
+package gameElement.chaseEnemy;
 
-import gameElements.AbstractEnemy;
+import gameElement.AbstractEnemy;
 
 public abstract class AbstractChaseEnemy extends AbstractEnemy {
 

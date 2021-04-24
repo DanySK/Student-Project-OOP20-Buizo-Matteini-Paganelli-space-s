@@ -1,4 +1,4 @@
-package difficulty.boss;
+package gameElement.boss;
 
 public class BossEasy extends AbstractBoss {
 

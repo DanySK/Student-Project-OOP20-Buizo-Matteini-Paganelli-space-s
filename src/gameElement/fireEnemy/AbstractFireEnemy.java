@@ -1,6 +1,6 @@
-package difficulty.FireEnemy;
+package gameElement.fireEnemy;
 
-import gameElements.AbstractEnemy;
+import gameElement.AbstractEnemy;
 
 public abstract class AbstractFireEnemy extends AbstractEnemy {
 

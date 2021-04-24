@@ -1,4 +1,4 @@
-package difficulty.FireEnemy;
+package gameElement.fireEnemy;
 
 public class FireEnemyHard extends AbstractFireEnemy {
 

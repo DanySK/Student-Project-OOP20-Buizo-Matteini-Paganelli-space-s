@@ -1,11 +1,11 @@
-package difficulty.factories;
+package gameElement.factories;
 
 import java.util.ArrayList;
 
-import difficulty.FireEnemy.AbstractFireEnemy;
-import difficulty.asteroid.AbstractAsteroid;
-import difficulty.boss.AbstractBoss;
-import difficulty.chaseEnemy.AbstractChaseEnemy;
+import gameElement.fireEnemy.AbstractFireEnemy;
+import gameElement.asteroid.AbstractAsteroid;
+import gameElement.boss.AbstractBoss;
+import gameElement.chaseEnemy.AbstractChaseEnemy;
 
 public abstract class AbstractFactoryDifficulty {
 	

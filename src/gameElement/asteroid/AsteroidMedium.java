@@ -1,4 +1,4 @@
-package difficulty.asteroid;
+package gameElement.asteroid;
 
 public class AsteroidMedium extends AbstractAsteroid {
 

@@ -1,9 +1,10 @@
-package difficulty.factories;
+package gameElement.factories;
 
-import difficulty.FireEnemy.FireEnemyEasy;
-import difficulty.asteroid.AsteroidEasy;
-import difficulty.boss.BossEasy;
-import difficulty.chaseEnemy.ChaseEnemyEasy;
+import gameElement.asteroid.AsteroidEasy;
+import gameElement.boss.BossEasy;
+import gameElement.chaseEnemy.ChaseEnemyEasy;
+import gameElement.fireEnemy.FireEnemyEasy;
+
 
 public class ConcreteFactoryEasy extends AbstractFactoryDifficulty {
 
