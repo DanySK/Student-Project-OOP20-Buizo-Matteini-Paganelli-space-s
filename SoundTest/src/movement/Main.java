@@ -3,8 +3,9 @@ package movement;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JFrame;
-import command.Client;
-import input.MyKeyListener;
+
+import OLD_input.MyKeyListener;
+import physics.Client;
 
 /**
  * Execution class to test the command pattern.

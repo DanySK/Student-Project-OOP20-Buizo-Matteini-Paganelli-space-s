@@ -1,37 +1,38 @@
 package CommandProva;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import CommandProva.Caller.CallerAudio;
 
 
-
+/**
+ * A client class which uses the command controllers.
+ * @author alberto paga
+ *
+ */
 public class Client {
+	
+	CallerAudio manageAudio = new CallerAudio();
+	MovementKeyListener manageMovement = new MovementKeyListener();
+	
+	public CallerAudio getManageAudio() {
+		return this.manageAudio;
+	}
 
+	public void setManageAudio(CallerAudio manageAudio) {
+		this.manageAudio = manageAudio;
+	}
+
+
+	public MovementKeyListener getManageMovement() {
+		return this.manageMovement;
+	}
+
+	public void setManageMovement(MovementKeyListener manageMovement) {
+		this.manageMovement = manageMovement;
+	}
 	
 	
-	
-	public static void main (String[] args) {
-		
-		MovementKeyListener mkl = new MovementKeyListener();
-		JFrame frame = new JFrame("Key Listener Demo, patternata per bene");
-		frame.setSize(500, 500);
+	public Client(){		
+	}
 
-
-		JPanel panel = new JPanel();
-
-		  
-		panel.setBackground(Color.LIGHT_GRAY);
-		panel.setVisible(true);
-
-
-		frame.getContentPane().add(BorderLayout.CENTER, panel);
-	    frame.addKeyListener(mkl);
-	    frame.setVisible(true);
-		
-		}
-	
 	
 }

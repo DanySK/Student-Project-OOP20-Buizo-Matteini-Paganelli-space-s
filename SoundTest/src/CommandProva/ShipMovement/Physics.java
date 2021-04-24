@@ -1,4 +1,4 @@
-package movement;
+package CommandProva.ShipMovement;
 
 import java.util.concurrent.TimeUnit;
 

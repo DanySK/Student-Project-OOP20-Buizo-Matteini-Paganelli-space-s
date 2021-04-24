@@ -3,16 +3,19 @@ package CommandProva;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import CommandProva.Caller.CallerMovement;
+import CommandProva.CmdType.CmdMovementType;
+
 public class MovementKeyListener implements KeyListener {
 
     private static final int LEFT_KEY_CODE 	= 37;
 //    private static final int UP_KEY_CODE 	= 38;
 //    private static final int RIGHT_KEY_CODE = 39;
     private static final int DOWN_KEY_CODE  = 40;
-    Caller caller;
+    CallerMovement caller;
 
     public MovementKeyListener() {
-    	caller = new Caller();
+    	caller = new CallerMovement();
     }
         
     public void keyTyped(KeyEvent e) {
