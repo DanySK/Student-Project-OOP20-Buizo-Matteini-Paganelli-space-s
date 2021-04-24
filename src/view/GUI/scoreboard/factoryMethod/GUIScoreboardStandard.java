@@ -1,5 +1,6 @@
 package view.GUI.scoreboard.factoryMethod;
 
+import utilities.DimensionScreen;
 import utilities.IconPath;
 import utilities.DesignSpace;
 import view.GUI.scoreboard.FactoryGUIScoreboard;
@@ -20,6 +21,7 @@ public class GUIScoreboardStandard implements FactoryGUIScoreboard {
         scoreboardConcrete.getTxtSearchName().setColumns(DesignSpace.SIZE_COLUMNS_TEXT);
         scoreboardConcrete.setFontGUI(DesignSpace.FONT_MEDIUM_STANDARD);
         scoreboardConcrete.setForegroundGUI(DesignSpace.color4);
+        scoreboardConcrete.setBounds(DimensionScreen.RECTANGLE_MEDIUM);
 
         this.createGraphics(scoreboardConcrete);
         return scoreboardConcrete;

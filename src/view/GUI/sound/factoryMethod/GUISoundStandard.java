@@ -19,9 +19,7 @@ public class GUISoundStandard implements FactoryGUISound {
         soundGUI.setFontGUI(DesignSpace.FONT_MEDIUM_STANDARD);
         soundGUI.setFontSpacingSlider(DesignSpace.FONT_MICRO_STANDARD);
         soundGUI.setForegroundGUI(DesignSpace.color4);
-
-        soundGUI.setBounds(DimensionScreen.CENTER_X_MEDIUM, DimensionScreen.CENTER_Y_MEDIUM,
-                DimensionScreen.WIDTH_MEDIUM, DimensionScreen.HEIGHT_MEDIUM);
+        soundGUI.setBounds(DimensionScreen.RECTANGLE_MEDIUM);
         this.graphics(soundGUI);
         return soundGUI;
     }

@@ -24,7 +24,6 @@ public class CtrlGUI {
     private final SwitchGUI switchGUI;
 
     private SoundPath soundPath;
-    private final Logics logics;
     private final SoundObserver observerSoundLoop;
 
 
@@ -40,7 +39,6 @@ public class CtrlGUI {
 
         this.chronology = new ListGUI<>() {{ add(FIRST_GUI); }};
         this.soundPath = FIRST_GUI.getSound();
-        this.logics = new LogicsImpl();
 
         this.observerSoundLoop = new SoundLoop() {{ update(CtrlGUI.this.soundPath); }};
 
@@ -62,25 +60,14 @@ public class CtrlGUI {
                     }
 
                     switch (btn.getIdGUINext()) {
-                        case ID_QUIT: this.quitAll();
-                        break;
+                        case ID_QUIT: this.quitAll(); break;
                         case ID_BACK:
-                            this.switchGUI.turnOnGUI(
-                                    this.getEngine(this.chronology.penultimateElementOfList()),
-                                    this.getGUI(this.chronology.penultimateElementOfList()));
                             this.switchGUI.turnOffGUI(
                                     this.getEngine(this.chronology.lastElementOfList()),
                                     this.getGUI(this.chronology.lastElementOfList()));
                             this.chronology.remove(this.chronology.lastElementOfList());
                             break;
-                        case ID_SOUND:
-                        case ID_HELP:
-                            this.chronology.add(btn.getIdGUINext());
-                            this.switchGUI.turnOnGUI(
-                                    this.getEngine(this.chronology.lastElementOfList()),
-                                    this.getGUI(this.chronology.lastElementOfList()));
-                            break;
-                        default:
+                        case ID_GAME:
                             this.chronology.add(btn.getIdGUINext());
                             this.switchGUI.turnOnGUI(
                                     this.getEngine(this.chronology.lastElementOfList()),
@@ -88,6 +75,11 @@ public class CtrlGUI {
                             this.switchGUI.turnOffGUI(
                                     this.getEngine(this.chronology.penultimateElementOfList()),
                                     this.getGUI(this.chronology.penultimateElementOfList()));
+                        default:
+                            this.chronology.add(btn.getIdGUINext());
+                            this.switchGUI.turnOnGUI(
+                                    this.getEngine(this.chronology.lastElementOfList()),
+                                    this.getGUI(this.chronology.lastElementOfList()));
                             break;
 
                     }
@@ -116,8 +108,8 @@ public class CtrlGUI {
                                 getGUI(chronology.get(sizeList)));
                         chronology.remove(sizeList--);
                     }
+                    System.out.println("list" + chronology);
                 }
-                System.out.println("list" + chronology);
             }
 
             @Override

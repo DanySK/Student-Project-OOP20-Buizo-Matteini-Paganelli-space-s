@@ -20,8 +20,7 @@ public class GUIHelpStandard implements FactoryGUIHelp {
         helpGUIConcrete.setFontTitleGUI(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
         helpGUIConcrete.setFontGUI(DesignSpace.FONT_MEDIUM_STANDARD);
         helpGUIConcrete.setForegroundGUI(DesignSpace.color4);
-        helpGUIConcrete.setBounds(DimensionScreen.CENTER_X_MEDIUM, DimensionScreen.CENTER_Y_MEDIUM,
-                DimensionScreen.WIDTH_MEDIUM, DimensionScreen.HEIGHT_MEDIUM);
+        helpGUIConcrete.setBounds(DimensionScreen.RECTANGLE_MEDIUM);
         this.createGraphics(helpGUIConcrete);
         return helpGUIConcrete;
     }

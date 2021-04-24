@@ -13,8 +13,7 @@ public class GUIGameStandard implements FactoryGUIGame {
     public GUIGame create() {
         final GUIGameConcrete concreteGame = new GUIGameConcrete();
 
-        concreteGame.setBackground("background/game3.jpg");
-        //concreteGame.setBounds(DesignJFrame.GUI_WIDTH_FULL_SCREEN, DesignJFrame.GUI_HEIGHT_FULL_SCREEN);
+        concreteGame.setBackgroundImage("background/game3.jpg");
         this.graphics(concreteGame);
         concreteGame.validate();
         return concreteGame;

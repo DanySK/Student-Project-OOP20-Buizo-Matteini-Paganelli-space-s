@@ -52,13 +52,13 @@ public abstract class AbstractGUI extends JFrame{
         this.panelForeground.setVisible(visible);
     }
 
-    public void setBounds(final int widthFrame, final int heightFrame){
-        super.setBounds(DimensionScreen.findPointXGUI(widthFrame), DimensionScreen.findPointYGUI(heightFrame),
-                widthFrame, heightFrame);
-        this.panelBackground.resizeImg(widthFrame);
+    public void setBounds(final Rectangle screen){
+        super.setBounds(screen);
+        this.panelBackground.setBounds(screen);
+        this.panelForeground.setBounds(screen);
     }
 
-    public void setBackground(final String path){
+    public void setBackgroundImage(final String path){
         this.panelBackground.setImage(path);
     }
 

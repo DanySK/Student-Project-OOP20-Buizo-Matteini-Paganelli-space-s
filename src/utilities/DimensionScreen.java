@@ -22,7 +22,7 @@ public class DimensionScreen {
 
     public static final Dimension DIMENSION_BIG = new Dimension(WIDTH_BIG, HEIGHT_BIG);
     public static final Point POINT_CENTER_BIG = new Point(CENTER_X_BIG, CENTER_Y_BIG);
-    public static final Rectangle RECTANGLE_BIG = new Rectangle(POINT_ZERO, DIMENSION_BIG);
+    public static final Rectangle RECTANGLE_BIG = new Rectangle(POINT_CENTER_BIG, DIMENSION_BIG);
 
 
     public static final int WIDTH_MEDIUM = (int) (FULLSCREEN.width / PROPORTION_MEDIUM);
@@ -32,7 +32,7 @@ public class DimensionScreen {
 
     public static final Dimension DIMENSION_MEDIUM = new Dimension(WIDTH_MEDIUM, HEIGHT_MEDIUM);
     public static final Point POINT_CENTER_MEDIUM = new Point(CENTER_X_MEDIUM, CENTER_Y_MEDIUM);
-    public static final Rectangle RECTANGLE_MEDIUM = new Rectangle(POINT_ZERO, DIMENSION_MEDIUM);
+    public static final Rectangle RECTANGLE_MEDIUM = new Rectangle(POINT_CENTER_MEDIUM, DIMENSION_MEDIUM);
 
 
     public static final int WIDTH_MINI = (int) (FULLSCREEN.width / PROPORTION_MINI);
@@ -42,7 +42,7 @@ public class DimensionScreen {
 
     public static final Dimension DIMENSION_MINI = new Dimension(WIDTH_MINI, HEIGHT_MINI);
     public static final Point POINT_CENTER_MINI = new Point(CENTER_X_MINI, CENTER_Y_MINI);
-    public static final Rectangle RECTANGLE_MINI = new Rectangle(POINT_ZERO, DIMENSION_MINI);
+    public static final Rectangle RECTANGLE_MINI = new Rectangle(POINT_CENTER_MINI, DIMENSION_MINI);
 
     public static final String PATH_MAIN_BACKGROUND = "background/main.png";
     public static final String PATH_GAME_BACKGROUND = "background/game.png";

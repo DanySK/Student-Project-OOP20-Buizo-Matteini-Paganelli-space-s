@@ -1,5 +1,6 @@
 package view.GUI.settings.factoryMethod;
 
+import utilities.DimensionScreen;
 import utilities.IconPath;
 import utilities.DesignJComponent;
 import utilities.DesignSpace;
@@ -21,6 +22,7 @@ public class GUISettingsStandard implements FactoryGUISettings {
         concreteSettings.setFontTitleUnit(DesignSpace.FONT_BIG_STANDARD);
         concreteSettings.setFontUnit(DesignSpace.FONT_MEDIUM_STANDARD);
         concreteSettings.setForegroundGUI(DesignSpace.color4);
+        concreteSettings.setBounds(DimensionScreen.RECTANGLE_MEDIUM);
         this.createGraphics(concreteSettings);
         return concreteSettings;
     }

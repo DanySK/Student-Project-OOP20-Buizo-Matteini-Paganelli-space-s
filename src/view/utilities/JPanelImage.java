@@ -35,14 +35,16 @@ public class JPanelImage extends JPanel {
     }
 
     public void setImage(final String pathImg){
+        final Dimension dimension = new Dimension(this.icon.getIconWidth(), this.icon.getIconHeight());
         this.imgURL = ClassLoader.getSystemResource(pathImg);
         this.icon.setImage(new ImageIcon(this.imgURL).getImage());
-        FactoryGUIs.sizeImageFromScreen(DimensionScreen.RECTANGLE_FULLSCREEN, this.icon);
+        FactoryGUIs.resizeImage(dimension, this.icon);
         super.repaint();
     }
 
-    public void resizeImg(final int sizeWidthFrame){
-        FactoryGUIs.rateImageFromFrame(this.icon, sizeWidthFrame);
+    public void setBounds(final Rectangle screen){
+        super.setBounds(screen);
+        FactoryGUIs.sizeImageFromScreen(screen, this.icon);
         super.repaint();
     }
 
