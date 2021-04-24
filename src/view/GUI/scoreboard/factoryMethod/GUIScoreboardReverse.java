@@ -24,7 +24,7 @@ public class GUIScoreboardReverse implements FactoryGUIScoreboard {
     }
 
     private void createGraphics(final GUIScoreboardConcrete scoreboardConcrete) {
-        scoreboardConcrete.setBackLayoutGUI(new BorderLayout());
+        scoreboardConcrete.setBackgroundLayout(new BorderLayout());
 
         scoreboardConcrete.add(FactoryGUIs.encapsulatesInPanel_Flow(scoreboardConcrete.getLbTitle()),
                 BorderLayout.NORTH);

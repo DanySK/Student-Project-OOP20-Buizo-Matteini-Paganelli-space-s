@@ -7,7 +7,7 @@ import java.awt.*;
 import java.net.URL;
 
 public class DesignSpace {
-    public static final Point2D CENTER_ENVIRONMENT = new Point2D(DesignJFrame.GUI_WIDTH_MEDIUM / 2, DesignJFrame.GUI_HEIGHT_MEDIUM / 2);
+    public static final Point2D CENTER_ENVIRONMENT = new Point2D(DimensionScreen.WIDTH_MEDIUM / 2, DimensionScreen.HEIGHT_MEDIUM / 2);
 
     public static int SIZE_FONT_MAX = 60;
     public static int SIZE_FONT_BIG = 30;

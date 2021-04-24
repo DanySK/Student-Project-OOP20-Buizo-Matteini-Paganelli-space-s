@@ -1,7 +1,5 @@
 package utilities;
 
-import controller.GUI.state.StateLevelGUI;
-
 public enum IdGUI {
     ID_MENU(0, "Menu", SoundPath.MENU_SOUND, StateLevelGUI.FOREGROUND),
     ID_GAME(1, "Game", SoundPath.GAME_SOUND, StateLevelGUI.FOREGROUND),

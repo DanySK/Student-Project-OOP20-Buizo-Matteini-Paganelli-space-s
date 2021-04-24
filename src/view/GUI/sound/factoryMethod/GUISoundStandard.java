@@ -1,7 +1,7 @@
 package view.GUI.sound.factoryMethod;
 
 import utilities.IconPath;
-import utilities.DesignJFrame;
+import utilities.DimensionScreen;
 import utilities.DesignSpace;
 import view.GUI.sound.FactoryGUISound;
 import view.GUI.sound.GUISound;
@@ -20,14 +20,14 @@ public class GUISoundStandard implements FactoryGUISound {
         soundGUI.setFontSpacingSlider(DesignSpace.FONT_MICRO_STANDARD);
         soundGUI.setForegroundGUI(DesignSpace.color4);
 
-        soundGUI.setBounds(DesignJFrame.GUI_X_MINI, DesignJFrame.GUI_Y_MINI,
-                DesignJFrame.GUI_WIDTH_MINI, DesignJFrame.GUI_HEIGHT_MINI);
+        soundGUI.setBounds(DimensionScreen.CENTER_X_MEDIUM, DimensionScreen.CENTER_Y_MEDIUM,
+                DimensionScreen.WIDTH_MEDIUM, DimensionScreen.HEIGHT_MEDIUM);
         this.graphics(soundGUI);
         return soundGUI;
     }
 
     private void graphics(ConcreteGUISound soundGUI) {
-        soundGUI.setBackLayoutGUI(new BorderLayout());
+        soundGUI.setBackgroundLayout(new BorderLayout());
         FactoryGUIs.setTransparentDesignJButton(soundGUI.getBtnBack());
         soundGUI.add(FactoryGUIs.encapsulatesInPanel_Flow(soundGUI.getLbTitle()), BorderLayout.NORTH);
         soundGUI.add(soundGUI.getMixerSound(), BorderLayout.CENTER);

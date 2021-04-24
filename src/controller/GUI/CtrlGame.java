@@ -20,7 +20,9 @@ public class CtrlGame implements ControllerGUI{
         this.gui = gui;
         this.controllerSpace = new SpaceShipController(this.engine.getSpaceShipSingleton(),
                 this.gui.getSpaceship());
+
         this.gui.addKeyListenerSpaceship(this.getKeyListener());
+
         this.init();
     }
 

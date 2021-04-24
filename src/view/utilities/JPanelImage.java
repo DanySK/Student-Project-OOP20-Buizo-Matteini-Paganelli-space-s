@@ -1,12 +1,14 @@
 package view.utilities;
 
+import utilities.DimensionScreen;
+
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
 
 public class JPanelImage extends JPanel {
     private URL imgURL;
-    private ImageIcon icon;
+    private final ImageIcon icon;
 
     public JPanelImage(){
         super();
@@ -17,7 +19,14 @@ public class JPanelImage extends JPanel {
         super();
         this.imgURL = ClassLoader.getSystemResource(pathImg);
         this.icon = new ImageIcon(this.imgURL);
-        FactoryGUIs.rateImageFromMediumJFrame(this.icon, 100);
+        FactoryGUIs.sizeImageFromScreen(DimensionScreen.RECTANGLE_FULLSCREEN, this.icon);
+    }
+
+    public JPanelImage(final Rectangle rectangleGUI, final String pathImg){
+        super();
+        this.imgURL = ClassLoader.getSystemResource(pathImg);
+        this.icon = new ImageIcon(this.imgURL);
+        FactoryGUIs.sizeImageFromScreen(rectangleGUI, this.icon);
     }
 
     public void paintComponent(Graphics g) {
@@ -28,7 +37,7 @@ public class JPanelImage extends JPanel {
     public void setImage(final String pathImg){
         this.imgURL = ClassLoader.getSystemResource(pathImg);
         this.icon.setImage(new ImageIcon(this.imgURL).getImage());
-        FactoryGUIs.rateImageFromMediumJFrame(this.icon, 100);
+        FactoryGUIs.sizeImageFromScreen(DimensionScreen.RECTANGLE_FULLSCREEN, this.icon);
         super.repaint();
     }
 

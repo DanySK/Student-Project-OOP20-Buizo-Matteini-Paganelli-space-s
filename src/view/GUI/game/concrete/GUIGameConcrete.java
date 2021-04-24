@@ -1,16 +1,10 @@
 package view.GUI.game.concrete;
 
-import model.GUI.settings.SkinSpaceShip;
-import model.environment.Point2D;
-import utilities.DesignJFrame;
-import utilities.DesignSpace;
-import utilities.IconPath;
 import view.GUI.AbstractGUI;
 import view.GUI.game.GUIGame;
 import view.GUI.game.utilities.*;
 import view.spaceShip.SpaceShipView;
 import view.utilities.ButtonID;
-import view.utilities.JImageRate;
 
 import javax.swing.*;
 import java.awt.event.KeyListener;

@@ -26,7 +26,7 @@ public class GUISettingsStandard implements FactoryGUISettings {
     }
 
     private void createGraphics(final ConcreteGUISettings concreteSettings) {
-        concreteSettings.setBackLayoutGUI(new BorderLayout());
+        concreteSettings.setBackgroundLayout(new BorderLayout());
 
         concreteSettings.add(FactoryGUIs.encapsulatesInPanel_Flow(concreteSettings.getLbTitle()), BorderLayout.NORTH);
         concreteSettings.add(FactoryGUIs.encapsulatesInPanel_Flow(concreteSettings.getBtnBack()), BorderLayout.SOUTH);

@@ -1,8 +1,7 @@
 package view.GUI;
 
-import utilities.DesignJFrame;
+import utilities.DimensionScreen;
 import utilities.IdGUI;
-import view.utilities.FactoryGUIs;
 import view.utilities.JPanelImage;
 
 import javax.swing.*;
@@ -10,22 +9,23 @@ import java.awt.*;
 
 public abstract class AbstractGUI extends JFrame{
     private final JPanelImage panelBackground;
-    private final JPanel frontPanel;
+    private final JPanel panelForeground;
 
     private IdGUI id;
 
     public AbstractGUI() {
         super();
-        this.frontPanel = new JPanel(new BorderLayout()) {{ setOpaque(false); }};
-        this.panelBackground = new JPanelImage(DesignJFrame.PATH_MAIN_BACKGROUND);
-        super.setGlassPane(this.frontPanel);
+        this.panelBackground = new JPanelImage(DimensionScreen.PATH_MAIN_BACKGROUND);
+        this.panelForeground = new JPanel(new BorderLayout()) {{ setOpaque(false); setVisible(false); }};
+
         super.setContentPane(this.panelBackground);
+        super.setGlassPane(this.panelForeground);
+
         this.setDefaultJFrame();
     }
 
     private void setDefaultJFrame(){
-        super.setBounds(DesignJFrame.GUI_X_MEDIUM, DesignJFrame.GUI_Y_MEDIUM,
-                DesignJFrame.GUI_WIDTH_MEDIUM, DesignJFrame.GUI_HEIGHT_MEDIUM);
+        super.setBounds(DimensionScreen.RECTANGLE_FULLSCREEN);
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         super.setUndecorated(true);
         super.setResizable(false);
@@ -39,20 +39,21 @@ public abstract class AbstractGUI extends JFrame{
         this.id = id;
     }
 
-    public void setBackLayoutGUI(final LayoutManager layoutGUI){
+
+    public void setBackgroundLayout(final LayoutManager layoutGUI){
         this.panelBackground.setLayout(layoutGUI);
     }
 
-    public void addFront(final Component component, final String index){
-        this.frontPanel.add(component, index);
+    public void addForegroundPanel(final Component component, final String index){
+        this.panelForeground.add(component, index);
     }
 
-    public void visibleFrontPanel(final boolean visible){
-        this.frontPanel.setVisible(visible);
+    public void visibleForegroundPanel(final boolean visible){
+        this.panelForeground.setVisible(visible);
     }
 
     public void setBounds(final int widthFrame, final int heightFrame){
-        super.setBounds(DesignJFrame.findPointXGUI(widthFrame), DesignJFrame.findPointYGUI(heightFrame),
+        super.setBounds(DimensionScreen.findPointXGUI(widthFrame), DimensionScreen.findPointYGUI(heightFrame),
                 widthFrame, heightFrame);
         this.panelBackground.resizeImg(widthFrame);
     }

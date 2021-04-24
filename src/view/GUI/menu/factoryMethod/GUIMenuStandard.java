@@ -28,7 +28,7 @@ public class GUIMenuStandard implements FactoryGUIMenu {
     }
 
     private void createGraphics(final GUIMenuConcrete menu) {
-        menu.setBackLayoutGUI(new GridBagLayout());
+        menu.setBackgroundLayout(new GridBagLayout());
         int nBtnUsed = 0;
 
         GridBagConstraints lim = FactoryGUIs.createGBConstraintsWithSpaceTitle(DesignJComponent.SIZE_SPACE_TITLE);

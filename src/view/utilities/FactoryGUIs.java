@@ -1,6 +1,6 @@
 package view.utilities;
 
-import utilities.DesignJFrame;
+import utilities.DimensionScreen;
 import utilities.DesignSound;
 
 import javax.swing.*;
@@ -113,13 +113,13 @@ public class FactoryGUIs {
     }
 
     public static void rateImageFromMediumJFrame(ImageIcon imageIcon, final int rate){
-        int widthRateImage = DesignJFrame.GUI_WIDTH_MEDIUM * rate / 100;
+        int widthRateImage = DimensionScreen.WIDTH_MEDIUM * rate / 100;
         int heightRateImage = imageIcon.getIconHeight() * widthRateImage / imageIcon.getIconWidth();
         resizeImage(widthRateImage, heightRateImage, imageIcon);
     }
 
     public static void rateImageFromFullJFrame(ImageIcon imageIcon, final int rate){
-        int widthRateImage = DesignJFrame.GUI_WIDTH_FULL_SCREEN * rate / 100;
+        int widthRateImage = DimensionScreen.WIDTH_FULL_SCREEN * rate / 100;
         int heightRateImage = imageIcon.getIconHeight() * widthRateImage / imageIcon.getIconWidth();
         resizeImage(widthRateImage, heightRateImage, imageIcon);
     }
@@ -143,6 +143,11 @@ public class FactoryGUIs {
         slider.setMinorTickSpacing(DesignSound.DEFAULT_MINOR_TICK_SPACING);
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
+    }
+
+    public static void sizeImageFromScreen(final Rectangle rectangleGUI, final ImageIcon image){
+        final Dimension dimension = new Dimension(rectangleGUI.width, rectangleGUI.height);
+        resizeImage(dimension, image);
     }
 
 }
