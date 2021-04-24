@@ -1,5 +1,7 @@
 package view.utilities;
 
+import utilities.DesignSpace;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -81,6 +83,10 @@ public class MyJImage extends JPanel{
     public void setIconImage(final String pathImg){
         this.imgURL = ClassLoader.getSystemResource(pathImg);
         this.imageIcon.setImage(new ImageIcon(this.imgURL).getImage());
+    }
+
+    public void setBorder(final int thickness){
+        super.setBorder(BorderFactory.createLineBorder(DesignSpace.color4, 5));
     }
 
 

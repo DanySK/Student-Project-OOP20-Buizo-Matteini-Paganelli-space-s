@@ -23,6 +23,7 @@ public class GUISettingsStandard implements FactoryGUISettings {
         concreteSettings.setFontUnit(DesignSpace.FONT_MEDIUM_STANDARD);
         concreteSettings.setForegroundGUI(DesignSpace.color4);
         concreteSettings.setBounds(DimensionScreen.RECTANGLE_MEDIUM);
+        concreteSettings.setBorder(3);
         this.createGraphics(concreteSettings);
         return concreteSettings;
     }

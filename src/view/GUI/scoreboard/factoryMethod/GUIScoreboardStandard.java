@@ -22,7 +22,7 @@ public class GUIScoreboardStandard implements FactoryGUIScoreboard {
         scoreboardConcrete.setFontGUI(DesignSpace.FONT_MEDIUM_STANDARD);
         scoreboardConcrete.setForegroundGUI(DesignSpace.color4);
         scoreboardConcrete.setBounds(DimensionScreen.RECTANGLE_MEDIUM);
-
+        scoreboardConcrete.setBorder(3);
         this.createGraphics(scoreboardConcrete);
         return scoreboardConcrete;
     }

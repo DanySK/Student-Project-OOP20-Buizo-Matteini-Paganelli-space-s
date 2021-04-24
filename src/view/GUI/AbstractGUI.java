@@ -1,11 +1,14 @@
 package view.GUI;
 
+import utilities.DesignSpace;
 import utilities.DimensionScreen;
 import utilities.IdGUI;
 import view.utilities.JPanelImage;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
 public abstract class AbstractGUI extends JFrame{
     private final JPanelImage panelBackground;
@@ -64,5 +67,9 @@ public abstract class AbstractGUI extends JFrame{
 
     public void close(){
         System.exit(0);
+    }
+
+    public void setBorder(final int thickness){
+        this.panelBackground.setBorder(BorderFactory.createLineBorder(DesignSpace.color4, thickness));
     }
 }

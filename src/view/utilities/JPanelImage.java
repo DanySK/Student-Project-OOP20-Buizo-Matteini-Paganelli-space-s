@@ -48,4 +48,9 @@ public class JPanelImage extends JPanel {
         super.repaint();
     }
 
+    public void setProvaDimension(final Dimension dimension){
+        FactoryGUIs.resizeImage(dimension, this.icon);
+        super.setSize(dimension);
+    }
+
 }
