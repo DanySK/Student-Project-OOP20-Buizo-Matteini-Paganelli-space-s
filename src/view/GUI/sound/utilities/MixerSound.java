@@ -70,9 +70,9 @@ public class MixerSound extends JPanel{
         return this.sdlSounds.stream().map(UnitSound::getBtnSwitch).collect(Collectors.toList());
     }
 
-    public void setIconBtnSwitches(final List<String> paths){
+    public void setIconBtnSwitches(final List<String> paths, final int widthScreen){
         AtomicInteger i = new AtomicInteger();
-        this.sdlSounds.forEach(sound -> sound.setIconBtnSwitch(paths.get(i.getAndIncrement())));
+        this.sdlSounds.forEach(sound -> sound.setIconBtnSwitch(paths.get(i.getAndIncrement()), widthScreen));
     }
 
     public SliderType getSliderType(final TypeUnitSound typeUnitSound){

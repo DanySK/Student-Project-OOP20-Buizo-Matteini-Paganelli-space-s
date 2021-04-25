@@ -1,6 +1,6 @@
 package view.GUI.help;
 
-import model.MyJImage.JImageRateEngine;
+import model.image.EngineImage;
 import utilities.IdGUI;
 import view.GUI.GUI;
 
@@ -14,5 +14,5 @@ public interface GUIHelp extends GUI, GraphicsGUIHelp {
 
     public void setNameButtons(final List<String> listName);
 
-    public void addIconInUnitHelp(final String panelName, final List<JImageRateEngine> pathImg);
+    public void addIconInUnitHelp(final String panelName, final List<EngineImage> pathImg);
 }

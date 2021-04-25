@@ -1,14 +1,11 @@
 package view.spaceShip;
 
 import java.awt.Dimension;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 
 import model.environment.Point2D;
-import view.utilities.MyJImage;
+import view.utilities.JImage;
 
-public class SpaceShipView extends MyJImage {
+public class SpaceShipView extends JImage {
 	private static final long serialVersionUID = 1L;
 
 	public SpaceShipView() {
@@ -21,7 +18,7 @@ public class SpaceShipView extends MyJImage {
         super.setLocation(super.getX() + 10, super.getY() + 10);
     }
     
-    public MyJImage getShipImage() {
+    public JImage getShipImage() {
         return this;
     }
     
@@ -29,7 +26,8 @@ public class SpaceShipView extends MyJImage {
 		this.setLocation(point.getX(), point.getY());
 	}
     
-    public void setDimension(final Dimension dimension) {
-		super.setDimensionImg(dimension);
+    public void setSize(final Dimension dimension) {
+		super.setSize(dimension);
 	}
+
 }

@@ -36,6 +36,7 @@ public class GUIHelpStandard implements FactoryGUIHelp {
                 BorderLayout.CENTER);
 
         FactoryGUIs.setTransparentDesignJButton(helpConcrete.getBtnBack());
-        FactoryGUIs.setIconInJButtonMini(helpConcrete.getBtnBack(), IconPath.ICON_BACK);
+        FactoryGUIs.setIconJButtonFromRate(helpConcrete.getBtnBack(), IconPath.ICON_BACK,
+                30, helpConcrete.getWidth());
     }
 }

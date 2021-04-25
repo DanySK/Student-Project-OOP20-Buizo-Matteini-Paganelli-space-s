@@ -1,7 +1,7 @@
 package utilities;
 
-import model.MyJImage.MyJImageEngine;
 import model.environment.Point2D;
+import model.image.EngineImage;
 
 import java.awt.*;
 import java.net.URL;
@@ -61,11 +61,6 @@ public class DesignSpace {
         ge.registerFont(myFont);
 
         return myFont;
-    }
-
-    public static MyJImageEngine modificationSizeMediumImage(final MyJImageEngine image){
-        image.setDimensionImage(new Dimension(SIZE_IMAGE_MEDIUM, SIZE_IMAGE_MEDIUM));
-        return image;
     }
 
 }

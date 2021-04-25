@@ -1,7 +1,7 @@
 package model.GUI.settings;
 
 import model.GUI.Visibility;
-import model.MyJImage.JImageRateEngine;
+import model.image.EngineImage;
 import model.GUI.EngineGUI;
 import utilities.DesignImage;
 import utilities.DesignTitleGUI;
@@ -24,7 +24,7 @@ public class EngineSettings implements EngineGUI {
     private final IdGUI linkBack;
 
     private final Map<Difficulty, DifficultActive> difficult;
-    private final JImageRateEngine skinSpaceShip;
+    private final EngineImage skinSpaceShip;
     private int chooseSkin;
 
     private Visibility visibility = Visibility.HIDDEN;
@@ -33,7 +33,7 @@ public class EngineSettings implements EngineGUI {
         this.id = IdGUI.ID_SETTING;
         this.linkBack = IdGUI.ID_BACK;
         this.chooseSkin = INDEX_INIT_SKIN;
-        this.skinSpaceShip = new JImageRateEngine(SkinSpaceShip.values()[this.chooseSkin].getPath(),
+        this.skinSpaceShip = new EngineImage(SkinSpaceShip.values()[this.chooseSkin].getPath(),
                 DesignImage.RATE_ICON_SKIN);
         this.namesButtons = List.of(NameSettingsGUI.values());
 
@@ -83,20 +83,20 @@ public class EngineSettings implements EngineGUI {
         return this.linkBack.getIdName();
     }
 
-    public JImageRateEngine getSkinSpaceShip() {
+    public EngineImage getSkinSpaceShip() {
         return this.skinSpaceShip;
     }
 
     public void changeSkinDx(){
         this.chooseSkin = this.chooseSkin + STEP_INDEX_SKIN < SkinSpaceShip.values().length ?
                 this.chooseSkin + STEP_INDEX_SKIN : INDEX_INIT_SKIN;
-        this.skinSpaceShip.setPathImg(SkinSpaceShip.values()[this.chooseSkin].getPath());
+        this.skinSpaceShip.setPath(SkinSpaceShip.values()[this.chooseSkin].getPath());
     }
 
     public void changeSkinSx(){
         this.chooseSkin = this.chooseSkin - STEP_INDEX_SKIN >= INDEX_INIT_SKIN ?
                 this.chooseSkin - STEP_INDEX_SKIN : SkinSpaceShip.values().length - STEP_INDEX_SKIN;
-        this.skinSpaceShip.setPathImg(SkinSpaceShip.values()[this.chooseSkin].getPath());
+        this.skinSpaceShip.setPath(SkinSpaceShip.values()[this.chooseSkin].getPath());
     }
 
     public Difficulty getDifficultActivate(){

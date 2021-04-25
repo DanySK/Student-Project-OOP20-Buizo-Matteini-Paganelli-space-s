@@ -75,7 +75,7 @@ public class ConcreteGUISound extends AbstractGUI implements GUISound {
 
     @Override
     public void setIconBtnSwitches(final List<String> paths) {
-        this.mixerSound.setIconBtnSwitches(paths);
+        this.mixerSound.setIconBtnSwitches(paths, super.getWidth());
     }
 
 

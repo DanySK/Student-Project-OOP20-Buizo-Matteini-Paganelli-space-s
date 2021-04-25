@@ -40,7 +40,6 @@ public class CtrlGame implements ControllerGUI{
 
             @Override
             public void keyPressed(KeyEvent e) {
-                System.out.println(e);
                 if(e.getKeyCode() == 38){
 
                     controllerSpace.getSPaceShipView().setLocation(

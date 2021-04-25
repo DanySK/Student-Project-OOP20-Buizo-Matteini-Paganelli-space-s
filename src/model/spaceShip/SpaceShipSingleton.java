@@ -3,9 +3,8 @@ package model.spaceShip;
 import java.awt.Dimension;
 
 import model.GUI.settings.SkinSpaceShip;
-import model.MyJImage.JImageRateEngine;
-import model.MyJImage.MyJImageEngine;
 import model.environment.Point2D;
+import model.image.EngineImage;
 import utilities.DesignSpace;
 
 public class SpaceShipSingleton {
@@ -16,15 +15,15 @@ public class SpaceShipSingleton {
             SkinSpaceShip.GNEGNE.getPath());
     
     private Point2D position;
-    private MyJImageEngine imageEngine;
+    private EngineImage imageEngine;
     
     /** 
     * Invisible class constructor specifying space ship initial position and image path
     */
     private SpaceShipSingleton(final Point2D position, final String imagePath) {
         this.position = position;
-        this.imageEngine = new MyJImageEngine(imagePath);
-        this.imageEngine.setDimensionImage(new Dimension(250, 140));
+        this.imageEngine = new EngineImage(imagePath);
+        this.imageEngine.setSize(new Dimension(250, 140));
     }
     
     /**
@@ -44,7 +43,7 @@ public class SpaceShipSingleton {
     /**
      * @return the current space ship image model
      */
-    public MyJImageEngine getSpaceImageEngine() {
+    public EngineImage getSpaceImageEngine() {
         return this.imageEngine;
     }
 
@@ -52,7 +51,7 @@ public class SpaceShipSingleton {
      * @return the current space ship dimension
      */
     public Dimension getDimension() {
-        return this.imageEngine.getDimensionImage();
+        return this.imageEngine.getSize();
     }
     
     /**
@@ -68,7 +67,7 @@ public class SpaceShipSingleton {
      *            the new space ship position
      */
     public void setDimension(final Dimension newDimension) {
-        this.imageEngine.setDimensionImage(newDimension);
+        this.imageEngine.setSize(newDimension);
     }
 }
 

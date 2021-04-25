@@ -39,8 +39,10 @@ public class GUIScoreboardStandard implements FactoryGUIScoreboard {
         FactoryGUIs.setTransparentDesignJButton(scoreboardConcrete.getBtnSearch());
         FactoryGUIs.setTransparentDesignJButton(scoreboardConcrete.getBtnBack());
 
-        FactoryGUIs.setIconInJButtonMini(scoreboardConcrete.getBtnSearch(), IconPath.ICON_SEARCH);
-        FactoryGUIs.setIconInJButtonMini(scoreboardConcrete.getBtnBack(), IconPath.ICON_BACK);
+        FactoryGUIs.setIconJButtonFromRate(scoreboardConcrete.getBtnSearch(), IconPath.ICON_SEARCH,
+                30, scoreboardConcrete.getWidth());
+        FactoryGUIs.setIconJButtonFromRate(scoreboardConcrete.getBtnBack(), IconPath.ICON_BACK,
+                30, scoreboardConcrete.getWidth());
 
         JPanel panelScore = new JPanel(new BorderLayout()) {{ setOpaque(false); }};
 

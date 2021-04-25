@@ -3,9 +3,7 @@ package controller.spaceShip;
 import model.spaceShip.SpaceShipSingleton;
 import view.spaceShip.SpaceShipView;
 
-import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.security.Key;
 
 public class SpaceShipController {
 
@@ -15,14 +13,16 @@ public class SpaceShipController {
     public SpaceShipController(final SpaceShipSingleton spaceShipModel, final SpaceShipView spaceShipView) {
         this.spaceShipModel = spaceShipModel;
         this.spaceShipView = spaceShipView;
-        init();
+        this.init();
     }
 
     private void init() {
-        this.spaceShipView.setIconImage(this.spaceShipModel.getSpaceImageEngine().getPath());
 
-        this.spaceShipView.setDimension(
+        this.spaceShipView.setImage(this.spaceShipModel.getSpaceImageEngine().getPath());
+
+        this.spaceShipView.setSize(
                 this.spaceShipModel.getDimension());
+
 
 		this.spaceShipView.setPosition(
 				this.spaceShipModel.getPosition());

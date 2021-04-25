@@ -7,7 +7,6 @@ import java.awt.*;
 import java.net.URL;
 
 public class JPanelImage extends JPanel {
-    private URL imgURL;
     private final ImageIcon icon;
 
     public JPanelImage(){
@@ -15,18 +14,29 @@ public class JPanelImage extends JPanel {
         this.icon = new ImageIcon();
     }
 
-    public JPanelImage(final String pathImg){
-        super();
-        this.imgURL = ClassLoader.getSystemResource(pathImg);
-        this.icon = new ImageIcon(this.imgURL);
-        FactoryGUIs.sizeImageFromScreen(DimensionScreen.RECTANGLE_FULLSCREEN, this.icon);
+    public JPanelImage(final String path){
+        this();
+        this.icon.setImage(JImage.getImageFromPath(path));
+        JPanelImage.setSizeFromScreen(this.icon, DimensionScreen.RECTANGLE_FULLSCREEN);
     }
 
-    public JPanelImage(final Rectangle rectangleGUI, final String pathImg){
-        super();
-        this.imgURL = ClassLoader.getSystemResource(pathImg);
-        this.icon = new ImageIcon(this.imgURL);
-        FactoryGUIs.sizeImageFromScreen(rectangleGUI, this.icon);
+    public JPanelImage(final String path, final Rectangle rectangleGUI){
+        this(path);
+        JPanelImage.setSizeFromScreen(this.icon, rectangleGUI);
+    }
+
+    public void setImage(final String path){
+        final Dimension dimension = new Dimension(this.icon.getIconWidth(), this.icon.getIconHeight());
+        this.icon.setImage(JImage.getImageFromPath(path));
+        JImage.resizeImage(this.icon, dimension);
+        super.repaint();
+    }
+
+
+    public void setBounds(final Rectangle screen){
+        super.setBounds(screen);
+        JPanelImage.setSizeFromScreen(this.icon, screen);
+        super.repaint();
     }
 
     public void paintComponent(Graphics g) {
@@ -34,23 +44,8 @@ public class JPanelImage extends JPanel {
         g.drawImage(this.icon.getImage(), 0, 0, null);
     }
 
-    public void setImage(final String pathImg){
-        final Dimension dimension = new Dimension(this.icon.getIconWidth(), this.icon.getIconHeight());
-        this.imgURL = ClassLoader.getSystemResource(pathImg);
-        this.icon.setImage(new ImageIcon(this.imgURL).getImage());
-        FactoryGUIs.resizeImage(dimension, this.icon);
-        super.repaint();
-    }
-
-    public void setBounds(final Rectangle screen){
-        super.setBounds(screen);
-        FactoryGUIs.sizeImageFromScreen(screen, this.icon);
-        super.repaint();
-    }
-
-    public void setProvaDimension(final Dimension dimension){
-        FactoryGUIs.resizeImage(dimension, this.icon);
-        super.setSize(dimension);
+    public static void setSizeFromScreen(final ImageIcon image, final Rectangle rectangleGUI){
+        JImage.resizeImage(image, rectangleGUI.getSize());
     }
 
 }

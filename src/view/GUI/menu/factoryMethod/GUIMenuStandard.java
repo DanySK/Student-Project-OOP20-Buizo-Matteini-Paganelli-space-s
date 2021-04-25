@@ -49,8 +49,8 @@ public class GUIMenuStandard implements FactoryGUIMenu {
 
         nBtnUsed = 0;
         while(nBtnUsed < GUIMenuConcrete.N_BUTTONS){
-            FactoryGUIs.setIconInJButtonMini(menu.getButton(nBtnUsed),
-                    IconsButton.values()[nBtnUsed++].getPath());
+            FactoryGUIs.setIconJButtonFromRate(menu.getButton(nBtnUsed),
+                    IconsButton.values()[nBtnUsed++].getPath(), 25, menu.getWidth());
         }
     }
 

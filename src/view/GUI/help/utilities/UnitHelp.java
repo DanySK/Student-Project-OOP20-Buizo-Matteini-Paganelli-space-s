@@ -1,18 +1,17 @@
 package view.GUI.help.utilities;
 
-import view.utilities.JImageRate;
+import model.image.EngineImage;
+import view.utilities.JImage;
 
 import javax.swing.*;
 
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Color;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UnitHelp extends JPanel {
     private final JLabel lbTitle;
-    private final List<JImageRate> listIconCommand;
+    private final List<JImage> listIconCommand;
 
     public UnitHelp(){
         super(new FlowLayout());
@@ -38,8 +37,8 @@ public class UnitHelp extends JPanel {
         this.lbTitle.setForeground(color);
     }
 
-    public void addIconUnit(final String path, final int rate) {
-        final JImageRate pnImage = new JImageRate(path, rate);
+    public void addIconUnit(final EngineImage engineImage) {
+        final JImage pnImage = new JImage(engineImage.getPath(), engineImage.getSize());
         this.listIconCommand.add(pnImage);
         super.add(pnImage);
     }

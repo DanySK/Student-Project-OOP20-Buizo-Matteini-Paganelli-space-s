@@ -34,7 +34,8 @@ public class GUISettingsStandard implements FactoryGUISettings {
         concreteSettings.add(FactoryGUIs.encapsulatesInPanel_Flow(concreteSettings.getLbTitle()), BorderLayout.NORTH);
         concreteSettings.add(FactoryGUIs.encapsulatesInPanel_Flow(concreteSettings.getBtnBack()), BorderLayout.SOUTH);
 
-        FactoryGUIs.setIconInJButtonMini(concreteSettings.getBtnBack(), IconPath.ICON_BACK);
+        FactoryGUIs.setIconJButtonFromRate(concreteSettings.getBtnBack(), IconPath.ICON_BACK,
+                30, concreteSettings.getWidth());
         concreteSettings.setTransparentComponent();
 
         GridBagConstraints lim = FactoryGUIs.createGBConstraintsBase();

@@ -32,6 +32,7 @@ public class GUISoundStandard implements FactoryGUISound {
         soundGUI.add(soundGUI.getMixerSound(), BorderLayout.CENTER);
         soundGUI.add(FactoryGUIs.encapsulatesInPanel_Flow(soundGUI.getBtnBack()), BorderLayout.SOUTH);
 
-        FactoryGUIs.setIconInJButtonMini(soundGUI.getBtnBack(), IconPath.ICON_BACK);
+        FactoryGUIs.setIconJButtonFromRate(soundGUI.getBtnBack(), IconPath.ICON_BACK,
+                30, soundGUI.getWidth());
     }
 }

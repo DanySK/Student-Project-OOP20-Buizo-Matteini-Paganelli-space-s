@@ -1,6 +1,6 @@
 package view.GUI.help.concrete;
 
-import model.MyJImage.JImageRateEngine;
+import model.image.EngineImage;
 import utilities.IdGUI;
 import view.GUI.AbstractGUI;
 import view.GUI.help.GUIHelp;
@@ -52,9 +52,12 @@ public class GUIHelpConcrete extends AbstractGUI implements GUIHelp {
     }
 
     @Override
-    public void addIconInUnitHelp(final String panelName, final List<JImageRateEngine> pathImg) {
+    public void addIconInUnitHelp(final String panelName, final List<EngineImage> engineImages) {
         this.unitHelps.stream().filter(unit -> unit.getTitleUnit().contentEquals(panelName))
-                .forEach(unit -> pathImg.forEach(img -> unit.addIconUnit(img.getPathImg(), img.getRate())));
+                .forEach(unit -> engineImages.forEach(engine -> {
+                    engine.setSizeFromRate(engine.getRate(), super.getWidth());
+                    unit.addIconUnit(engine);
+                }));
     }
 
 

@@ -2,6 +2,7 @@ package view.GUI.menu.factoryMethod;
 
 import utilities.DesignJComponent;
 import utilities.DesignSpace;
+import utilities.DimensionScreen;
 import view.GUI.menu.FactoryGUIMenu;
 import view.GUI.menu.GUIMenu;
 import view.GUI.menu.concrete.GUIMenuConcrete;
@@ -48,8 +49,8 @@ public class GUIMenuCompact implements FactoryGUIMenu {
 
         nBtnUsed = 0;
         while(nBtnUsed < GUIMenuConcrete.N_BUTTONS){
-            FactoryGUIs.setIconInJButtonMini(menu.getButton(nBtnUsed),
-                    IconsButton.values()[nBtnUsed++].getPath());
+            FactoryGUIs.setIconJButtonFromRate(menu.getButton(nBtnUsed),
+                    IconsButton.values()[nBtnUsed++].getPath(), 25, menu.getWidth());
         }
     }
 }

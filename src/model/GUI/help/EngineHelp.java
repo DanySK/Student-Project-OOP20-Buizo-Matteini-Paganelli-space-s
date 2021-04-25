@@ -1,11 +1,12 @@
 package model.GUI.help;
 
 import model.GUI.Visibility;
+import model.image.EngineImage;
 import utilities.DesignTitleGUI;
-import model.MyJImage.JImageRateEngine;
 import model.GUI.EngineGUI;
 import utilities.DesignJComponent;
 import utilities.IdGUI;
+import view.utilities.JImage;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -69,7 +70,7 @@ public class EngineHelp implements EngineGUI {
         return this.listName;
     }
 
-    public List<JImageRateEngine> getPathIconUnit(final String unitName){
+    public List<EngineImage> getPathIconUnit(final String unitName){
         return this.listNameHelpUnits.stream().filter(unit -> unit.getName().contentEquals(unitName))
                 .map(UnitsHelp::getPathFiles)
                 .flatMap(List::stream)
