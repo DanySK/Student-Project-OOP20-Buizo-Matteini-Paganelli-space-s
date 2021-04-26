@@ -1,5 +1,5 @@
 package gameElement;
 
 public enum Movement {
-	RANDOM, CHASE
+	RANDOM, CHASE, CONTROLLED, FIXED
 }
