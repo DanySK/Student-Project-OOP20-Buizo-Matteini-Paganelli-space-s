@@ -4,7 +4,6 @@ import utilities.DimensionScreen;
 
 import javax.swing.*;
 import java.awt.*;
-import java.net.URL;
 
 public class JPanelImage extends JPanel {
     private final ImageIcon icon;

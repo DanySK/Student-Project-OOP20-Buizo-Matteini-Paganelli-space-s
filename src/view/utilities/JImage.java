@@ -4,19 +4,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
 
-public class JImage extends JPanel{
-    private int width = 0;
-    private int height = 0;
-
+public class JImage extends JComponent{
+    private int width, height;
     private String path = "";
+
     private final ImageIcon imageIcon;
     private final JLabel lbImage;
 
     public JImage(){
-        super(new FlowLayout()); {{ setOpaque(false); }}
+        super(); {{ setOpaque(false);}}
+        super.setLayout(new BorderLayout());
         this.imageIcon = new ImageIcon();
         this.lbImage = new JLabel(this.imageIcon);
-        super.add(this.lbImage);
+
+        super.add(this.lbImage, BorderLayout.CENTER );
     }
 
     public JImage(final String path){
@@ -25,9 +26,11 @@ public class JImage extends JPanel{
         this.imageIcon.setImage(JImage.getImageFromPath(path));
     }
 
-    public JImage(final String path, final int width, final int height){
+    public JImage(final String path, final int w, final int h){
         this(path);
-        this.setSize(width, height);
+        this.width = w;
+        this.height = h;
+        this.setSize(w, h);
     }
 
     public JImage(final String path, final Dimension dimension){
@@ -42,25 +45,25 @@ public class JImage extends JPanel{
         return this.imageIcon;
     }
 
-    public void setSize(final int width, final int height){
-        super.setSize(width, height);
-        this.lbImage.setSize(width, height);
-        JImage.resizeImage(this.imageIcon, width, height);
-        super.repaint();
+    public void setSize(final int w, final int h){
+        super.setSize(w, h);
+        this.lbImage.setSize(w, h);
+        this.width = w;
+        this.height = h;
+        JImage.resizeImage(this.imageIcon, w, h);
+        System.out.println(this.width + "setsize" + this.height);
     }
 
     public void setSize(final Dimension dimension){
-        super.setSize(dimension.width, dimension.height);
+        this.setSize(dimension.width, dimension.height);
     }
 
     public void setImage(final String path){
         this.path = path;
         this.imageIcon.setImage(JImage.getImageFromPath(path));
-
-        if(this.width != 0){
-            JImage.resizeImage(this.imageIcon, this.width, this.height);
-        }
-        super.repaint();
+        if(this.width != 0)
+        this.setSize(this.width, this.height);
+        //System.out.println(this.width + "setImage" + this.height);
     }
 
     public void setImageAndSize(final String path, final int width, final int height){
@@ -77,7 +80,17 @@ public class JImage extends JPanel{
         super.setBounds(rectangle);
         this.lbImage.setBounds(rectangle);
         this.setSize(rectangle.getSize());
-        super.repaint();
+    }
+
+    @Override
+    public String toString() {
+        return "JImage{" +
+                "width=" + width +
+                ", height=" + height +
+                ", path='" + path + '\'' +
+                ", imageIcon=" + imageIcon +
+                ", lbImage=" + lbImage +
+                '}';
     }
 
     public static void resizeImage(final ImageIcon imageIcon, final int width, final int height){
@@ -92,16 +105,5 @@ public class JImage extends JPanel{
     public static Image getImageFromPath(final String path){
         final URL imgURI = ClassLoader.getSystemResource(path);
         return new ImageIcon(imgURI).getImage();
-    }
-
-    @Override
-    public String toString() {
-        return "JImage{" +
-                "width=" + width +
-                ", height=" + height +
-                ", path='" + path + '\'' +
-                ", imageIcon=" + imageIcon +
-                ", lbImage=" + lbImage +
-                '}';
     }
 }

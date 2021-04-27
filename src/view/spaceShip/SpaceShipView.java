@@ -1,6 +1,6 @@
 package view.spaceShip;
 
-import java.awt.Dimension;
+import java.awt.*;
 
 import model.environment.Point2D;
 import view.utilities.JImage;

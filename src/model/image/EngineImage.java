@@ -1,26 +1,25 @@
 package model.image;
 
-import utilities.DimensionScreen;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class EngineImage {
-    private int width = 0;
-    private int height = 0;
-    private int rate = 0;
+    private int width;
+    private int height;
+    private int rate;
     private String path;
 
-    public EngineImage(){
-        this.width = DimensionScreen.WIDTH_FULL_SCREEN;
-        this.height = DimensionScreen.HEIGHT_FULL_SCREEN;
-    }
+    public EngineImage(){ }
 
     public EngineImage(final String path){
-        this();
         this.path = path;
+    }
+
+    public EngineImage(final String path, final int rate){
+        this(path);
+        this.rate = rate;
     }
 
     public EngineImage(final String path, final int width, final int height){
@@ -39,16 +38,12 @@ public class EngineImage {
         this.setSizeFromRate(widthScreen, this.rate);
     }
 
-    public EngineImage(final String path, final int rate){
-        this(path);
-        this.rate = rate;
-    }
 
     public int getWidth() {
         return this.width;
     }
 
-    public void setWidth(int width) {
+    public void setWidth(final int width) {
         this.width = width;
     }
 
@@ -56,7 +51,7 @@ public class EngineImage {
         return this.height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(final int height) {
         this.height = height;
     }
 
@@ -68,25 +63,29 @@ public class EngineImage {
         this.rate = rate;
     }
 
-    public void setSize(final Dimension dimension){
-        this.width = dimension.width;
-        this.height = dimension.height;
+    public String getPath() {
+        return this.path;
+    }
+
+    public void setPath(final String path) {
+        this.path = path;
     }
 
     public Dimension getSize(){
         return new Dimension(this.width, this.height);
     }
 
-    public String getPath() {
-        return this.path;
+    public void setSize(final int width, final int height){
+        this.width = width;
+        this.height = height;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public void setSize(final Dimension dimension) {
+        this.setSize(dimension.width, dimension.height);
     }
 
     public void setSizeFromRate(final int rate, final int widthScreen){
-        final Dimension dimension = EngineImage.getSizeFromRate(this.path, rate, widthScreen);
+        final Dimension dimension = EngineImage.getSizeImageFromRate(this.path, rate, widthScreen);
         this.width = dimension.width;;
         this.height = dimension.height;
     }
@@ -94,19 +93,16 @@ public class EngineImage {
     @Override
     public String toString() {
         return "EngineImage{" +
-                "width=" + width +
-                ", height=" + height +
-                ", path='" + path + '\'' +
-                '}';
+                "width=" + width + ", height=" + height +
+                ", path='" + path + '\'' + '}';
     }
 
-
-    public static Dimension getSizeFromRate(final String path, final int rate, final int widthScreen){
+    public static Dimension getSizeImageFromRate(final String path, final int rate, final int widthScreen){
         final Dimension dimension = new Dimension();
         try{
             final BufferedImage img = ImageIO.read(ClassLoader.getSystemResource(path));
-            dimension.width = widthScreen * rate / 1000;
-            dimension.height = img.getHeight() * dimension.width / img.getWidth();
+            dimension.width = (widthScreen * rate) / 1000;
+            dimension.height = (img.getHeight() * dimension.width) / img.getWidth();
         } catch (IOException e) {
             e.printStackTrace();
         }
