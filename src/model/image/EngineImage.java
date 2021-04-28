@@ -15,11 +15,7 @@ public class EngineImage {
 
     public EngineImage(final String path){
         this.path = path;
-    }
-
-    public EngineImage(final String path, final int rate){
-        this(path);
-        this.rate = rate;
+        this.setSize();
     }
 
     public EngineImage(final String path, final int width, final int height){
@@ -35,7 +31,19 @@ public class EngineImage {
     public EngineImage(final int widthScreen, final int rate, final String path){
         this(path);
         this.rate = rate;
-        this.setSizeFromRate(widthScreen, this.rate);
+        this.setSizeFromRate(widthScreen, rate);
+    }
+
+    private void setSize(){
+        if(this.path != null) {
+            try {
+                final BufferedImage img = ImageIO.read(ClassLoader.getSystemResource(path));
+                this.width = img.getWidth();
+                this.height = img.getHeight();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 

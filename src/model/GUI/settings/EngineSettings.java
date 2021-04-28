@@ -3,10 +3,7 @@ package model.GUI.settings;
 import model.GUI.Visibility;
 import model.image.EngineImage;
 import model.GUI.EngineGUI;
-import utilities.DesignImage;
-import utilities.DesignTitleGUI;
-import utilities.Engines;
-import utilities.IdGUI;
+import utilities.*;
 
 import java.util.List;
 import java.util.Map;
@@ -33,8 +30,8 @@ public class EngineSettings implements EngineGUI {
         this.id = IdGUI.ID_SETTING;
         this.linkBack = IdGUI.ID_BACK;
         this.chooseSkin = INDEX_INIT_SKIN;
-        this.skinSpaceShip = new EngineImage(SkinSpaceShip.values()[this.chooseSkin].getPath(),
-                DesignImage.RATE_ICON_SKIN);
+        this.skinSpaceShip = new EngineImage(DimensionScreen.WIDTH_FULL_SCREEN, DesignImage.RATE_ICON_SKIN,
+                SkinSpaceShip.values()[this.chooseSkin].getPath());
         this.namesButtons = List.of(NameSettingsGUI.values());
 
         this.difficult = IntStream.range(INDEX_INTI_DIFFICULT, Difficulty.values().length).boxed()

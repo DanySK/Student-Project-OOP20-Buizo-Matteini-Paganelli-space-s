@@ -50,7 +50,7 @@ public class JImage extends JComponent{
         this.lbImage.setSize(w, h);
         this.width = w;
         this.height = h;
-        JImage.resizeImage(this.imageIcon, w, h);
+        JImage.resizeImageIcon(this.imageIcon, w, h);
         System.out.println(this.width + "setsize" + this.height);
     }
 
@@ -93,13 +93,13 @@ public class JImage extends JComponent{
                 '}';
     }
 
-    public static void resizeImage(final ImageIcon imageIcon, final int width, final int height){
+    public static void resizeImageIcon(final ImageIcon imageIcon, final int width, final int height){
         Image img = imageIcon.getImage();
         imageIcon.setImage(img.getScaledInstance(width, height, Image.SCALE_AREA_AVERAGING));
     }
 
-    public static void resizeImage(final ImageIcon imageIcon, final Dimension dimension){
-        JImage.resizeImage(imageIcon, dimension.width, dimension.height);
+    public static void resizeImageIcon(final ImageIcon imageIcon, final Dimension dimension){
+        JImage.resizeImageIcon(imageIcon, dimension.width, dimension.height);
     }
 
     public static Image getImageFromPath(final String path){

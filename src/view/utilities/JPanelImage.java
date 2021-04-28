@@ -27,10 +27,9 @@ public class JPanelImage extends JPanel {
     public void setImage(final String path){
         final Dimension dimension = new Dimension(this.icon.getIconWidth(), this.icon.getIconHeight());
         this.icon.setImage(JImage.getImageFromPath(path));
-        JImage.resizeImage(this.icon, dimension);
+        JImage.resizeImageIcon(this.icon, dimension);
         super.repaint();
     }
-
 
     public void setBounds(final Rectangle screen){
         super.setBounds(screen);
@@ -38,13 +37,14 @@ public class JPanelImage extends JPanel {
         super.repaint();
     }
 
+    @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(this.icon.getImage(), 0, 0, null);
     }
 
     public static void setSizeFromScreen(final ImageIcon image, final Rectangle rectangleGUI){
-        JImage.resizeImage(image, rectangleGUI.getSize());
+        JImage.resizeImageIcon(image, rectangleGUI.getSize());
     }
 
 }

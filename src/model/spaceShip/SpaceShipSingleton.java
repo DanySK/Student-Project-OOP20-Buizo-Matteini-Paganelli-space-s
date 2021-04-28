@@ -6,6 +6,7 @@ import model.GUI.settings.SkinSpaceShip;
 import model.environment.Point2D;
 import model.image.EngineImage;
 import utilities.DesignSpace;
+import utilities.DimensionScreen;
 
 public class SpaceShipSingleton {
     
@@ -22,8 +23,7 @@ public class SpaceShipSingleton {
     */
     private SpaceShipSingleton(final Point2D position, final String imagePath) {
         this.position = position;
-        this.imageEngine = new EngineImage(imagePath);
-        this.imageEngine.setSize(new Dimension(250, 140));
+        this.imageEngine = new EngineImage(DimensionScreen.WIDTH_FULL_SCREEN, 100, imagePath);
     }
     
     /**
