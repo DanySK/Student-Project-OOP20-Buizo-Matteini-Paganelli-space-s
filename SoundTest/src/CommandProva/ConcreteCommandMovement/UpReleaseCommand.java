@@ -10,8 +10,9 @@ public class UpReleaseCommand implements CommandMovement {
 	public void execute(GameObject ship) {
 		System.out.println("Release Up");
 		
-		V2d vel = ship.getCurrentVel();
-		ship.setVel(vel.sum(new V2d(0,-15)));
+//		V2d vel = ship.getCurrentVel();
+//		ship.setVel(vel.sum(new V2d(0,-30)));
+//		//ship.setVel(new V2d(0,0));
 
 	}
 

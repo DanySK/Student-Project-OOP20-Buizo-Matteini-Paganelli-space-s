@@ -12,8 +12,7 @@ public interface Logics{
      */
     void changeVolume(int currentVolume);
     
-    
-    
+      
     Sound getSoundLoop();
     
     Sound getSoundEffect();

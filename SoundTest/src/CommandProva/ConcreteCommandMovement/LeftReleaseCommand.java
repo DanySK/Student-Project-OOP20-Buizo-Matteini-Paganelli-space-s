@@ -13,9 +13,10 @@ public class LeftReleaseCommand implements CommandMovement {
 //
 //		ship.setVel(vel.sum(new V2d(0,0)));	
 		
-		V2d vel = ship.getCurrentVel();
-//
-		ship.setVel(vel.sum(new V2d(15,0)));
+//		V2d vel = ship.getCurrentVel();
+////
+//		ship.setVel(vel.sum(new V2d(30,0)));
+		//ship.setVel(new V2d(0,0));
 
 	}
 

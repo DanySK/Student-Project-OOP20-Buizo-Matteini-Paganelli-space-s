@@ -12,7 +12,7 @@ public class RightCommand implements CommandMovement{
 	public void execute(GameObject ship) {
 		System.out.println("Right");
 		V2d vel = ship.getCurrentVel();
-		ship.setVel(vel.sum(new V2d(15,0)));
+		ship.setVel(vel.sum(new V2d(30,0)));
 
 		//ship.setVel(vel.sum(new V2d(2,0)));
 		

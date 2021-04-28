@@ -13,7 +13,7 @@ public class LeftCommand implements CommandMovement{
 		System.out.println("Left");
 		V2d vel = ship.getCurrentVel();
 //
-		ship.setVel(vel.sum(new V2d(-15,0)));
+		ship.setVel(vel.sum(new V2d(-30,0)));
 
 		
 //		if (ctrl.isMoveUp()){

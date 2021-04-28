@@ -7,7 +7,7 @@ import CommandProva.input.*;
 
 public class GameEngine implements WorldEventListener {
 
-	private long period = 20; 	
+	private long period = 10; 	
 	private Scene view;
 	private LinkedList<WorldEvent> eventQueue;
 	private GameState gameState;
