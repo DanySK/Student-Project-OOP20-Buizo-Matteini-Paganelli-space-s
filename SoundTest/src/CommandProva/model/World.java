@@ -9,40 +9,42 @@ import physics.ShipCollision;
 
 public class World {
 	
-	private List<GameObject> picks;
-	private GameObject ball;
-	private RectBoundingBox mainBBox;
+	private List<GameObject> asteroids;
+	private GameObject ship;
+	private RectBoundingBox mainBoundingBox;
 	private WorldEventListener evListener;
 	
-	public World(RectBoundingBox bbox){
-		picks = new ArrayList<GameObject>();
-		mainBBox = bbox;
+	public World(RectBoundingBox boundingBox){
+		asteroids = new ArrayList<GameObject>();
+		mainBoundingBox = boundingBox;
 	}
 
 	public void setEventListener(WorldEventListener l){
 		evListener = l;
 	}
 	
-	public void setBall(GameObject ball){
-		this.ball = ball;
+	public void setShip(GameObject ship){
+		this.ship = ship;
 	}
 	
 	public void addPickUp(GameObject obj){
-		picks.add(obj);
+		asteroids.add(obj);
 	}
 
 	public void removePickUp(GameObject obj){
-		picks.remove(obj);
+		asteroids.remove(obj);
 	}
 	
 	public void updateState(int dt){
-		ball.updatePhysics(dt, this);
+		ship.updatePhysics(dt, this);
 	}
 
 	public Optional<ShipCollision> checkCollisionWithBoundaries(P2d pos, PerkBoundingBox box){
-		P2d ul = mainBBox.getULCorner();
-		P2d br = mainBBox.getBRCorner();
+		P2d ul = mainBoundingBox.getULCorner();
+		P2d br = mainBoundingBox.getBRCorner();
+		
 		double r = box.getRadius();
+		
 		if (pos.y + r> ul.y){
 			return Optional.of(new ShipCollision(ShipCollision.CollisionEdge.TOP, new P2d(pos.x,ul.y)));
 		} else if (pos.y - r < br.y){
@@ -58,7 +60,7 @@ public class World {
 
 	public Optional<GameObject> checkCollisionWithPickUpObj(P2d pos, PerkBoundingBox box){
 		double radius = box.getRadius();
-		for (GameObject obj: picks){
+		for (GameObject obj: asteroids){
 			if (obj.getBBox().isCollidingWith(pos,radius)){
 				return Optional.of(obj);
 			}
@@ -71,21 +73,21 @@ public class World {
 	}
 	
 	public RectBoundingBox getBBox(){
-		return mainBBox;
+		return mainBoundingBox;
 	}
 	
-	public GameObject getBall(){
-		return ball;
+	public GameObject getShip(){
+		return ship;
 	}
 
-	public List<GameObject> getPickableObj(){
-		return picks;
+	public List<GameObject> getPickablePerk(){
+		return asteroids;
 	}
 
 	public List<GameObject> getSceneEntities(){
 		List<GameObject> entities = new ArrayList<GameObject>();
-		entities.addAll(picks);
-		entities.add(ball);
+		entities.addAll(asteroids);
+		entities.add(ship);
 		return entities;
 	}
 	

@@ -1,4 +1,4 @@
-package CommandProva.input;
+package OLD_input;
 
 public interface InputController {
 

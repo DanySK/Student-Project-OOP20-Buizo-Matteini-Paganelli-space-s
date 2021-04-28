@@ -18,6 +18,6 @@ public class PerkBoundingBox implements BoundingWall{
 	}
 	
 	public boolean isCollidingWith(P2d p, double radius){
-		return new V2d(p,center).module() <= radius+this.radius;		
+		return new V2d(p,center).module() <= radius + this.radius;		
 	}
 }

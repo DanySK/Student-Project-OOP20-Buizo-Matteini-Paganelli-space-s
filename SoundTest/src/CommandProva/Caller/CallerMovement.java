@@ -10,6 +10,7 @@ import CommandProva.ConcreteCommandMovement.RightCommand;
 import CommandProva.ConcreteCommandMovement.RightReleaseCommand;
 import CommandProva.ConcreteCommandMovement.UpCommand;
 import CommandProva.ConcreteCommandMovement.UpReleaseCommand;
+import CommandProva.model.GameObject;
 
 public class CallerMovement {
 	
@@ -24,7 +25,11 @@ public class CallerMovement {
 	private final CommandMovement cmdReleaseRight;
 	private final CommandMovement cmdReleaseDown;
 	
-	public CallerMovement() {
+	private final GameObject ship;
+	
+	
+	
+	public CallerMovement(GameObject ship) {
 		
 		this.cmdLeft  = new LeftCommand();
 		this.cmdUp    = new UpCommand();
@@ -35,21 +40,23 @@ public class CallerMovement {
 		this.cmdReleaseUp    = new UpReleaseCommand();
 		this.cmdReleaseRight = new RightReleaseCommand();
 		this.cmdReleaseDown  = new DownReleaseCommand();
+		
+		this.ship = ship;
 	}
 	
 	public void execute(CmdMovementType cmd) {
 		 switch(cmd) {
 		 case KEY_LEFT:
-			 cmdLeft.execute();
+			 cmdLeft.execute(ship);
 			 break;
 		 case KEY_RIGHT:
-			 cmdRight.execute();
+			 cmdRight.execute(ship);
 			 break;
 		 case KEY_UP:
-			 cmdUp.execute();
+			 cmdUp.execute(ship);
 			 break;
 		 case KEY_DOWN:
-			 cmdDown.execute();
+			 cmdDown.execute(ship);
 			 break;
 		 }
 	}
@@ -57,16 +64,16 @@ public class CallerMovement {
 	public void release(CmdMovementType cmd) {
 		 switch(cmd) {
 		 case KEY_LEFT:
-			 cmdReleaseLeft.execute();
+			 cmdReleaseLeft.execute(ship);
 			 break;
 		 case KEY_RIGHT:
-			 cmdReleaseRight.execute();
+			 cmdReleaseRight.execute(ship);
 			 break;
 		 case KEY_UP:
-			 cmdReleaseUp.execute();
+			 cmdReleaseUp.execute(ship);
 			 break;
 		 case KEY_DOWN:
-			 cmdReleaseDown.execute();
+			 cmdReleaseDown.execute(ship);
 			 break;
 		 }
 	}

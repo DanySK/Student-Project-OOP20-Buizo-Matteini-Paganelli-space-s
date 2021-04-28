@@ -11,7 +11,7 @@ public class GameEngine implements WorldEventListener {
 	private Scene view;
 	private LinkedList<WorldEvent> eventQueue;
 	private GameState gameState;
-	private KeyboardInputController controller;
+	private MovementKeyListener controller;
 	
 	public GameEngine(){
 		eventQueue = new LinkedList<WorldEvent>();
@@ -19,7 +19,7 @@ public class GameEngine implements WorldEventListener {
 	
 	public void initGame(){
 		gameState = new GameState(this);
-		controller = new KeyboardInputController();
+		controller =  new MovementKeyListener(gameState.getWorld().getShip());
 		view = new SwingScene(gameState, controller, 600, 600, 20,20);
 	}
 	
@@ -28,7 +28,7 @@ public class GameEngine implements WorldEventListener {
 		while (!gameState.isGameOver()) {
 			long current = System.currentTimeMillis();
 			int elapsed = (int)(current - lastTime);
-			processInput();
+			//processInput();
 			updateGame(elapsed);
 			render();
 			waitForNextFrame(current);
@@ -46,9 +46,9 @@ public class GameEngine implements WorldEventListener {
 		}
 	}
 	
-	protected void processInput(){
-		gameState.getWorld().getBall().updateInput(controller);
-	}
+//	protected void processInput(){
+//		gameState.getWorld().getShip().updateInput(controller);
+//	}
 	
 	protected void updateGame(int elapsed){
 		gameState.getWorld().updateState(elapsed);

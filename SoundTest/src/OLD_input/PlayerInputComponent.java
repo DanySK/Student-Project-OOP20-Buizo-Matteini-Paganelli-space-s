@@ -1,4 +1,4 @@
-package CommandProva.input;
+package OLD_input;
 
 import common.V2d;
 import CommandProva.model.*;

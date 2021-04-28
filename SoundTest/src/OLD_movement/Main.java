@@ -1,11 +1,11 @@
-package movement;
+package OLD_movement;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JFrame;
 
-import OLD_input.MyKeyListener;
-import physics.Client;
+
+//import physics.Client;
 
 /**
  * Execution class to test the command pattern.
@@ -16,13 +16,13 @@ public class Main {
 	public static void main(String[] args) {
 		
 	  Physics phisics = new Physics();
-	  Client client = new Client(new MyKeyListener(phisics));
+	  //Client client = new Client(new MyKeyListener(phisics));
 
 	  JFrame frame = new JFrame("Movement Demo");
 	  frame.setSize(500, 500);
 	  
 	  ShipSurvPanel panel = new ShipSurvPanel(phisics);
-	  client.startGame();
+//	  client.startGame();
 
 	  
 	  panel.setBackground(Color.LIGHT_GRAY);
@@ -30,7 +30,7 @@ public class Main {
 
 
 	  frame.getContentPane().add(BorderLayout.CENTER, panel);
-      frame.addKeyListener(client.getKeyListener());
+     //frame.addKeyListener(client.getKeyListener());
       frame.setVisible(true);
 	}
 }

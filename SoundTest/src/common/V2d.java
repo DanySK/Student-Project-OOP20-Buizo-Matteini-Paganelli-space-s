@@ -17,7 +17,11 @@ package common;
  */
 public class V2d implements java.io.Serializable {
 
-    public double x,y;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public double x,y;
     
     public V2d(double x,double y){
         this.x=x;

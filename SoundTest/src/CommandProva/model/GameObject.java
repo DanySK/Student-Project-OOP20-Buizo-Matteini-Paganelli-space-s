@@ -1,34 +1,53 @@
 package CommandProva.model;
 
 import CommandProva.graphics.*;
-import CommandProva.input.*;
+import CommandProva.input.MovementKeyListener;
 import common.*;
-
 import physics.*;
 
 public class GameObject {
 
-	public static enum Type { BALL, PICKABLE_OBJ }
+	public static enum Type { SHIP, ASTEROID }
 
 	private Type type;
 	private P2d position;
 	private V2d velocity;
 	private BoundingWall bbox;
 	
-	private InputComponent input;
+	//private MovementKeyListener input;
 	private GraphicsComponent graphic;
 	private PhysicsComponent physics;
 	
-	public GameObject(Type type, P2d pos, V2d vel, BoundingWall box, InputComponent input, GraphicsComponent graph, PhysicsComponent phys){
+	public GameObject(Type type, P2d pos, V2d vel, BoundingWall box, GraphicsComponent graph, PhysicsComponent phys){
 		this.type = type;
 		this.position = pos;
 		this.velocity = vel;
 		this.bbox = box;
-		this.input = input;
 		this.graphic = graph;
 		this.physics = phys;
 	}
 	
+	public GameObject(Type type, P2d pos, V2d vel, BoundingWall box, MovementKeyListener input, GraphicsComponent graph, PhysicsComponent phys){
+		this.type = type;
+		this.position = pos;
+		this.velocity = vel;
+		this.bbox = box;
+		//this.input = input;
+		this.graphic = graph;
+		this.physics = phys;
+	}
+
+
+	public GameObject(Type ship, P2d pos, V2d vel, PerkBoundingBox perkBoundingBox,
+			ShipGraphicsComponent ballGraphicsComponent, ShipPhysicsComponent shipPhysicsComponent) {
+		this.type = ship;
+		this.position = pos;
+		this.velocity = vel;
+		this.bbox = perkBoundingBox;
+		this.graphic = ballGraphicsComponent;
+		this.physics = shipPhysicsComponent;
+	}
+
 	public Type getType(){
 		return type;
 	}
@@ -61,9 +80,9 @@ public class GameObject {
 		return velocity;
 	}
 
-	public void updateInput(InputController c){
-		input.update(this, c);
-	}
+//	public void updateInput(InputController c){
+//		input.update(this, c);
+//	}
 
 	public void updatePhysics(int dt, World w){
 		physics.update(dt, this, w);
@@ -72,5 +91,6 @@ public class GameObject {
 	public void updateGraphics(Graphics g){
 		graphic.update(this, g);
 	}
+
 	
 }

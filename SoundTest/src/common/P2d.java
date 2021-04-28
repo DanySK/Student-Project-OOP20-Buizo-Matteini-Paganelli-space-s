@@ -8,7 +8,11 @@ package common;
  */
 public class P2d implements java.io.Serializable {
 
-    public double x,y;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public double x,y;
 
     public P2d(double x,double y){
         this.x=x;

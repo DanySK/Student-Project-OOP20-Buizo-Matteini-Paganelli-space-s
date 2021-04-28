@@ -1,4 +1,4 @@
-package CommandProva.ShipMovement;
+package OLD_ShipMovement;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
