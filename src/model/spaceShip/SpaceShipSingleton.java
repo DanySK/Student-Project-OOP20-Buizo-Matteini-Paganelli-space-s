@@ -1,74 +1,44 @@
 package model.spaceShip;
 
-import java.awt.Dimension;
+import java.util.Optional;
 
+import gameElement.AbstractGameObject;
+import gameElement.GameObjectUtils;
+import gameElement.Movement;
+import gameElement.V2d;
+import gameElement.weapon.Weapon;
 import model.GUI.settings.SkinSpaceShip;
-import model.MyJImage.JImageRateEngine;
-import model.MyJImage.MyJImageEngine;
 import model.environment.Point2D;
 import utilities.DesignSpace;
 
-public class SpaceShipSingleton {
+public class SpaceShipSingleton extends AbstractGameObject {
     
     // Eager and unique instance of this class for Threadsafing
     private static SpaceShipSingleton spaceShip = new SpaceShipSingleton(
+    		SkinSpaceShip.GNEGNE.getPath(),
+    		GameObjectUtils.SPACESHIP_LIFE,
+    		GameObjectUtils.SPACESHIP_DAMAGE,
     		DesignSpace.CENTER_ENVIRONMENT,
-            SkinSpaceShip.GNEGNE.getPath());
-    
-    private Point2D position;
-    private MyJImageEngine imageEngine;
+    		Movement.CONTROLLED,
+    		new V2d(),
+    		Optional.of(new Weapon())
+            );
     
     /** 
     * Invisible class constructor specifying space ship initial position and image path
     */
-    private SpaceShipSingleton(final Point2D position, final String imagePath) {
-        this.position = position;
-        this.imageEngine = new MyJImageEngine(imagePath);
-        this.imageEngine.setDimensionImage(new Dimension(250, 140));
+    private SpaceShipSingleton(final String imagePath, final int life, final int damage,
+    						   final Point2D position, final Movement movement, final V2d velocity,
+    						   final Optional<Weapon> weapon) {
+    	super(imagePath, life, damage, position, movement, velocity, weapon);
     }
     
     /**
-     * @return space ship static istance
+     * @return space ship static instance
      */
     public static SpaceShipSingleton getSpaceShip() {
         return spaceShip;
     }
     
-    /**
-     * @return the current space ship position
-     */
-    public Point2D getPosition() {
-        return this.position;
-    }
-    
-    /**
-     * @return the current space ship image model
-     */
-    public MyJImageEngine getSpaceImageEngine() {
-        return this.imageEngine;
-    }
-
-    /**
-     * @return the current space ship dimension
-     */
-    public Dimension getDimension() {
-        return this.imageEngine.getDimensionImage();
-    }
-    
-    /**
-     * @param newPosition
-     *            the new space ship position
-     */
-    public void setPosition(final Point2D newPosition) {
-        this.position = newPosition;
-    }
-    
-    /**
-     * @param newDimension
-     *            the new space ship position
-     */
-    public void setDimension(final Dimension newDimension) {
-        this.imageEngine.setDimensionImage(newDimension);
-    }
 }
 

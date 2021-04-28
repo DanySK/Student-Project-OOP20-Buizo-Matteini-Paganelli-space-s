@@ -6,25 +6,25 @@ import java.util.Optional;
 import gameElement.GameObjectUtils;
 import gameElement.Movement;
 import gameElement.V2d;
-import gameElement.boss.Boss;
+import gameElement.fireEnemy.FireEnemy;
 import gameElement.weapon.Weapon;
 import model.environment.Point2D;
 import utilities.IconPath;
 
-public class ConcreteFactoryBoss extends AbstractFactoryGameObject {
+public class ConcreteFactoryFireEnemy extends AbstractFactoryGameObject {
 
 	@Override
-	public Boss createObject() {
+	public FireEnemy createObject() {
 		String path = IconPath.ICON_BULLET;
-		int life = GameObjectUtils.BOSS_LIFE;
-		int damage = GameObjectUtils.BOSS_DAMAGE;
+		int life = GameObjectUtils.FIRE_ENEMY_LIFE;
+		int damage = GameObjectUtils.FIRE_ENEMY_DAMAGE;
 		Dimension dimension = new Dimension();
 		Point2D point = GameObjectUtils.generateSpawnPoint(dimension);
 		Movement movement = Movement.RANDOM;
-		V2d velocity = GameObjectUtils.BOSS_VEL;
+		V2d velocity = GameObjectUtils.FIRE_ENEMY_VEL;
 		Optional<Weapon> weapon = Optional.of(new Weapon());
 		
-		return new Boss(path, life, damage, dimension, point, movement, velocity, weapon);
+		return new FireEnemy(path, life, damage, dimension, point, movement, velocity, weapon);
 	}
 
 }

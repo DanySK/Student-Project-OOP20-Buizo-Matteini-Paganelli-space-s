@@ -1,5 +1,7 @@
 package gameElement.weapon;
 
 public enum WeaponType {
-	FIRE, ELECTRIC, ICE
+	FIRE,
+	ELECTRIC,
+	ICE
 }

@@ -1,58 +1,53 @@
 package gameElement;
 
-import java.awt.Dimension;
+import java.util.Optional;
 
+import gameElement.weapon.Weapon;
+import model.MyJImage.MyJImageEngine;
 import model.environment.Point2D;
 
 public abstract class AbstractGameObject {
-	private String pathImage;
-	private Integer life;
-	private Integer damage;
-	private Dimension dimension;
+	private MyJImageEngine pathImage;
+	private int life;
+	private int damage;
 	private Point2D position;
 	private Movement movement;
 	private V2d velocity;
+	private Optional<Weapon> weapon;
+
 	
-	public AbstractGameObject(String path, Integer life, Integer damage, Dimension dim, Point2D point, Movement movement, V2d vel) {
+	public AbstractGameObject(String path, int life, int damage, Point2D point, Movement movement, V2d vel, Optional<Weapon> weapon) {
 		this.life = life;
 		this.movement = movement;
 		this.damage = damage;
 		this.velocity = vel;
 		this.position = point;
-		this.dimension = dim;
-		this.pathImage = path;
+		this.pathImage = new MyJImageEngine(path);
+		this.weapon = weapon;
 	}
 
-	public String getPathImage() {
+	public MyJImageEngine getImageEngine() {
 		return pathImage;
 	}
 
-	public void setPathImage(String pathImage) {
-		this.pathImage = pathImage;
+	public void setImageEngine(String pathImage) {
+		this.pathImage = new MyJImageEngine(pathImage);
 	}
 
-	public Integer getLife() {
+	public int getLife() {
 		return life;
 	}
 
-	public void setLife(Integer life) {
+	public void setLife(int life) {
 		this.life = life;
 	}
 
-	public Integer getDamage() {
+	public int getDamage() {
 		return damage;
 	}
 
-	public void setDamage(Integer damage) {
+	public void setDamage(int damage) {
 		this.damage = damage;
-	}
-
-	public Dimension getDimension() {
-		return dimension;
-	}
-
-	public void setDimension(Dimension dimension) {
-		this.dimension = dimension;
 	}
 
 	public Point2D getPosition() {
@@ -78,5 +73,13 @@ public abstract class AbstractGameObject {
 	public void setVelocity(V2d velocity) {
 		this.velocity = velocity;
 	}
-	
+
+	public Optional<Weapon> getWeapon() {
+		return weapon;
+	}
+
+	public void setWeapon(Optional<Weapon> weapon) {
+		this.weapon = weapon;
+	}
+
 }

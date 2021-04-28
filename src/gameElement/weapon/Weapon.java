@@ -3,6 +3,9 @@ package gameElement.weapon;
 public class Weapon {
 	private WeaponType type;
 	
+	public Weapon() {
+	}
+	
 	public Weapon(WeaponType type) {
 		this.type = type;
 	}
