@@ -8,6 +8,7 @@ import view.GUI.menu.concrete.GUIMenuConcrete;
 import view.GUI.menu.utilities.IconsButton;
 import view.utilities.FactoryGUIs;
 
+import javax.swing.*;
 import java.awt.*;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class GUIMenuStandard implements FactoryGUIMenu {
         menuConcrete.setForegroundGUI(DesignSpace.color4);
         menuConcrete.setFontTitleGUI(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
         menuConcrete.setColumnsNamePlayer(DesignJComponent.SIZE_COLUMNS_TEXT);
+        menuConcrete.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.createGraphics(menuConcrete);
         return menuConcrete;
     }

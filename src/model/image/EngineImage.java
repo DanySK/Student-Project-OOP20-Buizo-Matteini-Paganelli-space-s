@@ -128,9 +128,4 @@ public class EngineImage {
                 ", width=" + width + ", height=" + height +
                 ", scaleOf=" + scaleOf + ", respectTo=" + respectTo + '}';
     }
-
-    public static void main(String[] args) {
-        EngineImage engineImage = new EngineImage(IconPath.ICON_HEART);
-        System.out.println(engineImage);
-    }
 }
