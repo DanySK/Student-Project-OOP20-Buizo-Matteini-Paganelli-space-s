@@ -23,8 +23,7 @@ public class EngineImage {
 
     public EngineImage(final String path, final int width, final int height){
         this(path);
-        this.width = width;
-        this.height = height;
+        this.setSize(width, height);
     }
 
     public EngineImage(final String path, final Dimension dimension){
@@ -33,8 +32,6 @@ public class EngineImage {
 
     public EngineImage(final int scaleOf, final int respectTo, final String path){
         this(path);
-        this.scaleOf = scaleOf;
-        this.respectTo = respectTo;
         this.setScale(respectTo, scaleOf);
     }
 

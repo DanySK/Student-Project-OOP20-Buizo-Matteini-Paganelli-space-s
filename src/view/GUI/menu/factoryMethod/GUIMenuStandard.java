@@ -19,12 +19,10 @@ public class GUIMenuStandard implements FactoryGUIMenu {
     @Override
     public GUIMenu createGUI() {
         final GUIMenuConcrete menuConcrete = new GUIMenuConcrete();
-
         menuConcrete.setFontGUI(DesignSpace.FONT_MEDIUM_STANDARD);
         menuConcrete.setForegroundGUI(DesignSpace.color4);
         menuConcrete.setFontTitleGUI(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
         menuConcrete.setColumnsNamePlayer(DesignJComponent.SIZE_COLUMNS_TEXT);
-        menuConcrete.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.createGraphics(menuConcrete);
         return menuConcrete;
     }

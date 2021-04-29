@@ -34,6 +34,7 @@ public abstract class AbstractGUI extends JFrame{
         super.setResizable(false);
     }
 
+
     public IdGUI getId(){
         return this.id;
     }

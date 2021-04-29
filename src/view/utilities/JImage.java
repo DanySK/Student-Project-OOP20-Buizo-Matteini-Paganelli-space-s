@@ -65,18 +65,9 @@ public class JImage extends JComponent{
     public void setImage(final String path){
         this.path = path;
         this.imageIcon.setImage(JImage.getImageFromPath(path));
-        if(this.width != 0)
-        this.setSize(this.width, this.height);
-    }
-
-    public void setImageAndSize(final String path, final int width, final int height){
-        this.setSize(width, height);
-        this.setImage(path);
-    }
-
-    public void setImageAndSize(final String path, final Dimension dimension){
-        this.setSize(dimension.width, dimension.height);
-        this.setImage(path);
+        if(this.width != 0){
+            this.setSize(this.width, this.height);
+        }
     }
 
     public void setBounds(final Rectangle rectangle){
