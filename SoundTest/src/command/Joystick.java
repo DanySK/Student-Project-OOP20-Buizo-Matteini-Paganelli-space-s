@@ -27,6 +27,10 @@ public class Joystick implements CommandController{
 	public static final String RELEASE_KEY_RIGHT = "RELEASE_KEY_RIGHT";
 	public static final String EXIT = "EXIT";
 	
+	public static final String KEY_SOUND_ON = "KEY_SOUND_ON";
+	public static final String KEY_SOUND_OFF = "KEY_SOUND_OFF";
+	
+	
 	@Override
 	public void execute(final String command) {
 		Iterator<CommandController> commandIterator = this.commandControls.iterator();
