@@ -2,14 +2,13 @@ package model.spaceShip;
 
 import java.util.Optional;
 
-import gameElement.AbstractGameObject;
-import gameElement.GameObjectUtils;
-import gameElement.Movement;
-import gameElement.V2d;
-import gameElement.weapon.Weapon;
+import model.gameElement.AbstractGameObject;
+import model.gameElement.GameObjectUtils;
+import model.gameElement.Movement;
+import model.gameElement.V2d;
+import model.gameElement.weapon.Weapon;
 import model.GUI.settings.SkinSpaceShip;
 import model.environment.Point2D;
-import model.image.EngineImage;
 import utilities.DesignSpace;
 import utilities.DimensionScreen;
 
@@ -23,7 +22,9 @@ public class SpaceShipSingleton extends AbstractGameObject {
     		DesignSpace.CENTER_ENVIRONMENT,
     		Movement.CONTROLLED,
     		new V2d(),
-    		Optional.of(new Weapon())
+    		Optional.of(new Weapon()),
+            100,
+            DimensionScreen.WIDTH_FULL_SCREEN
             );
 
     /** 
@@ -31,7 +32,7 @@ public class SpaceShipSingleton extends AbstractGameObject {
     */
     private SpaceShipSingleton(final String imagePath, final int life, final int damage,
     						   final Point2D position, final Movement movement, final V2d velocity,
-    						   final Optional<Weapon> weapon) {
+    						   final Optional<Weapon> weapon, final int scaleOf, final int respectTo) {
     	super(imagePath, life, damage, position, movement, velocity, weapon);
     }
     

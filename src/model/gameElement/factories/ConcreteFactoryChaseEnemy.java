@@ -1,13 +1,13 @@
-package gameElement.factories;
+package model.gameElement.factories;
 
 import java.awt.Dimension;
 import java.util.Optional;
 
-import gameElement.GameObjectUtils;
-import gameElement.Movement;
-import gameElement.V2d;
-import gameElement.chaseEnemy.ChaseEnemy;
-import gameElement.weapon.Weapon;
+import model.gameElement.GameObjectUtils;
+import model.gameElement.Movement;
+import model.gameElement.V2d;
+import model.gameElement.chaseEnemy.ChaseEnemy;
+import model.gameElement.weapon.Weapon;
 import model.environment.Point2D;
 import utilities.IconPath;
 

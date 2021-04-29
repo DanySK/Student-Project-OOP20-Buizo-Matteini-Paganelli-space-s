@@ -1,5 +1,7 @@
 package view.utilities;
 
+import model.image.EngineImage;
+
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
@@ -12,11 +14,9 @@ public class JImage extends JComponent{
     private final JLabel lbImage;
 
     public JImage(){
-        super(); {{ setOpaque(false);}}
-        super.setLayout(new BorderLayout());
+        super(); {{ setOpaque(false); setLayout(new BorderLayout()); }}
         this.imageIcon = new ImageIcon();
         this.lbImage = new JLabel(this.imageIcon);
-
         super.add(this.lbImage, BorderLayout.CENTER );
     }
 
@@ -24,18 +24,18 @@ public class JImage extends JComponent{
         this();
         this.path = path;
         this.imageIcon.setImage(JImage.getImageFromPath(path));
+        this.setSize(EngineImage.getSizeFromImage(path));
     }
 
-    public JImage(final String path, final int w, final int h){
+    public JImage(final String path, final int width, final int height){
         this(path);
-        this.width = w;
-        this.height = h;
-        this.setSize(w, h);
+        this.setSize(width, height);
     }
 
     public JImage(final String path, final Dimension dimension){
         this(path, dimension.width, dimension.height);
     }
+
 
     public String getPath() {
         return this.path;
@@ -45,13 +45,17 @@ public class JImage extends JComponent{
         return this.imageIcon;
     }
 
-    public void setSize(final int w, final int h){
-        super.setSize(w, h);
-        this.lbImage.setSize(w, h);
-        this.width = w;
-        this.height = h;
-        JImage.resizeImageIcon(this.imageIcon, w, h);
-        System.out.println(this.width + "setsize" + this.height);
+    public Dimension getSize(){
+        return new Dimension(this.width, this.height);
+    }
+
+
+    public void setSize(final int width, final int height){
+        super.setSize(width, height);
+        this.lbImage.setSize(width, height);
+        this.width = width;
+        this.height = height;
+        JImage.resizeImageIcon(this.imageIcon, width, height);
     }
 
     public void setSize(final Dimension dimension){
@@ -63,7 +67,6 @@ public class JImage extends JComponent{
         this.imageIcon.setImage(JImage.getImageFromPath(path));
         if(this.width != 0)
         this.setSize(this.width, this.height);
-        //System.out.println(this.width + "setImage" + this.height);
     }
 
     public void setImageAndSize(final String path, final int width, final int height){
@@ -80,6 +83,11 @@ public class JImage extends JComponent{
         super.setBounds(rectangle);
         this.lbImage.setBounds(rectangle);
         this.setSize(rectangle.getSize());
+    }
+
+    public void setScaleOfRespect(final int scaleOf, final int respectTo){
+        final Dimension dimension = EngineImage.getSizeImageFromRate(this.path, scaleOf, respectTo);
+        this.setSize(dimension);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package gameElement.weapon;
+package model.gameElement.weapon;
 
 public enum WeaponType {
 	FIRE,

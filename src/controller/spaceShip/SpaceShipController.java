@@ -18,11 +18,9 @@ public class SpaceShipController {
 
     private void init() {
 
-        this.spaceShipView.setImage(this.spaceShipModel.getSpaceImageEngine().getPath());
+        this.spaceShipView.setImage(this.spaceShipModel.getPath());
 
-        this.spaceShipView.setSize(
-                this.spaceShipModel.getDimension());
-
+        this.spaceShipView.setScaleOfRespect(this.spaceShipModel.getScaleOf(), this.spaceShipModel.getRespectTo());
 
 		this.spaceShipView.setPosition(
 				this.spaceShipModel.getPosition());

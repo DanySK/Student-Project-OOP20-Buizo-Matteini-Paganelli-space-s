@@ -1,9 +1,9 @@
-package gameElement.factories;
+package model.gameElement.factories;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import gameElement.AbstractGameObject;
+import model.gameElement.AbstractGameObject;
 
 public abstract class AbstractFactoryGameObject {
 	

@@ -1,4 +1,4 @@
-package gameElement.weapon;
+package model.gameElement.weapon;
 
 public class Weapon {
 	private WeaponType type;

@@ -1,13 +1,13 @@
-package gameElement.asteroid;
+package model.gameElement.asteroid;
 
 
 import java.awt.Dimension;
 import java.util.Optional;
 
-import gameElement.AbstractGameObject;
-import gameElement.Movement;
-import gameElement.V2d;
-import gameElement.weapon.Weapon;
+import model.gameElement.AbstractGameObject;
+import model.gameElement.Movement;
+import model.gameElement.V2d;
+import model.gameElement.weapon.Weapon;
 import model.environment.Point2D;
 
 public class Asteroid extends AbstractGameObject {

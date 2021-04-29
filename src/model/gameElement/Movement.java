@@ -1,4 +1,4 @@
-package gameElement;
+package model.gameElement;
 
 public enum Movement {
 	RANDOM,

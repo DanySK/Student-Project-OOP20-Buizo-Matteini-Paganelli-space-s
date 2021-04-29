@@ -55,7 +55,7 @@ public class GUIHelpConcrete extends AbstractGUI implements GUIHelp {
     public void addIconInUnitHelp(final String panelName, final List<EngineImage> engineImages) {
         this.unitHelps.stream().filter(unit -> unit.getTitleUnit().contentEquals(panelName))
                 .forEach(unit -> engineImages.forEach(engine -> {
-                    engine.setSizeFromRate(engine.getRate(), super.getWidth());
+                    engine.setScaleOfRespect(engine.getScaleOf(), super.getWidth());
                     unit.addIconUnit(engine);
                 }));
     }

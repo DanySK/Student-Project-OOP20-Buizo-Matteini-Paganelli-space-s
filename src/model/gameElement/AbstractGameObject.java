@@ -1,13 +1,14 @@
-package gameElement;
+package model.gameElement;
 
 import java.util.Optional;
 
-import gameElement.weapon.Weapon;
-import model.MyJImage.MyJImageEngine;
+import model.gameElement.weapon.Weapon;
 import model.environment.Point2D;
+import model.image.EngineImage;
+import utilities.DimensionScreen;
 
 public abstract class AbstractGameObject {
-	private MyJImageEngine pathImage;
+	private EngineImage engineImage;
 	private int life;
 	private int damage;
 	private Point2D position;
@@ -16,22 +17,24 @@ public abstract class AbstractGameObject {
 	private Optional<Weapon> weapon;
 
 	
-	public AbstractGameObject(String path, int life, int damage, Point2D point, Movement movement, V2d vel, Optional<Weapon> weapon) {
+	public AbstractGameObject(int life, int damage, Point2D point,
+							  Movement movement, V2d vel, Optional<Weapon> weapon,
+							  EngineImage engineImage) {
 		this.life = life;
 		this.movement = movement;
 		this.damage = damage;
 		this.velocity = vel;
 		this.position = point;
-		this.pathImage = new MyJImageEngine(path);
+		this.engineImage = engineImage;
 		this.weapon = weapon;
 	}
 
-	public MyJImageEngine getImageEngine() {
-		return pathImage;
+	public EngineImage getImageEngine() {
+		return engineImage;
 	}
 
 	public void setImageEngine(String pathImage) {
-		this.pathImage = new MyJImageEngine(pathImage);
+		this.engineImage = new EngineImage(pathImage);
 	}
 
 	public int getLife() {
@@ -81,5 +84,19 @@ public abstract class AbstractGameObject {
 	public void setWeapon(Optional<Weapon> weapon) {
 		this.weapon = weapon;
 	}
+
+	public int getScaleOf(){
+		return this.engineImage.getScaleOf();
+	}
+
+	public String getPath(){
+		return this.engineImage.getPath();
+	}
+
+	public int getRespectTo(){
+		return this.engineImage.getRespectTo();
+	}
+
+
 
 }

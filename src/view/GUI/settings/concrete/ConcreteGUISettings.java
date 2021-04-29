@@ -48,7 +48,7 @@ public class ConcreteGUISettings extends AbstractGUI implements GUISettings {
     @Override
     public void setSkinSpaceShip(final EngineImage imageEngine) {
         this.panelSkin.setPnImage(imageEngine.getPath());
-        this.panelSkin.setRateImg(imageEngine.getRate(), super.getWidth());
+        this.panelSkin.setRateImg(imageEngine.getScaleOf(), super.getWidth());
     }
 
     @Override
