@@ -9,6 +9,7 @@ import view.GUI.menu.utilities.IconsButton;
 import view.utilities.FactoryGUIs;
 
 import javax.swing.*;
+
 import java.awt.*;
 
 import java.util.List;
@@ -25,6 +26,16 @@ public class GUIMenuStandard implements FactoryGUIMenu {
         menuConcrete.setFontTitleGUI(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
         menuConcrete.setColumnsNamePlayer(DesignJComponent.SIZE_COLUMNS_TEXT);
         menuConcrete.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+//        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+//    	System.out.println(gd.isFullScreenSupported());
+//
+//        if (gd.isFullScreenSupported()) {
+//            gd.setFullScreenWindow(menuConcrete);;
+//        } else {
+//            System.err.println("Full screen not supported");
+//        }
+//        
         this.createGraphics(menuConcrete);
         return menuConcrete;
     }
