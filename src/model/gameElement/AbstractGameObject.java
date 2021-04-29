@@ -102,11 +102,11 @@ public abstract class AbstractGameObject {
 	}
 	
 	public void setScale(int scaleOf, int respectTo) {
-		this.engineImage.setScaleOfRespect(scaleOf, respectTo);
+		this.engineImage.setScale(scaleOf, respectTo);
 	}
 	
 	public void setScaleOf(int scaleOf) {
-		this.engineImage.setScaleToRespect(scaleOf);
+		this.engineImage.setScaleOf(scaleOf);
 	}
 	
 //	public void setScale(int scaleOf, int respectTo) {
