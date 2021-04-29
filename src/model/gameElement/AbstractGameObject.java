@@ -1,5 +1,6 @@
 package model.gameElement;
 
+import java.awt.Dimension;
 import java.util.Optional;
 
 import model.gameElement.weapon.Weapon;
@@ -17,15 +18,14 @@ public abstract class AbstractGameObject {
 	private Optional<Weapon> weapon;
 
 	
-	public AbstractGameObject(int life, int damage, Point2D point,
-							  Movement movement, V2d vel, Optional<Weapon> weapon,
-							  EngineImage engineImage) {
-		this.life = life;
-		this.movement = movement;
-		this.damage = damage;
-		this.velocity = vel;
-		this.position = point;
+	public AbstractGameObject(EngineImage engineImage, int life, int damage, Point2D point,
+							  Movement movement, V2d vel, Optional<Weapon> weapon) {
 		this.engineImage = engineImage;
+		this.life = life;
+		this.damage = damage;
+		this.position = point;
+		this.movement = movement;
+		this.velocity = vel;
 		this.weapon = weapon;
 	}
 
@@ -85,6 +85,10 @@ public abstract class AbstractGameObject {
 		this.weapon = weapon;
 	}
 
+	public Dimension getSize() {
+		return this.engineImage.getSize();
+	}
+	
 	public int getScaleOf(){
 		return this.engineImage.getScaleOf();
 	}
@@ -96,7 +100,16 @@ public abstract class AbstractGameObject {
 	public int getRespectTo(){
 		return this.engineImage.getRespectTo();
 	}
-
-
-
+	
+	public void setScale(int scaleOf, int respectTo) {
+		this.engineImage.setScaleOfRespect(scaleOf, respectTo);
+	}
+	
+	public void setScaleOf(int scaleOf) {
+		this.engineImage.setScaleToRespect(scaleOf);
+	}
+	
+//	public void setScale(int scaleOf, int respectTo) {
+//		this.engineImage.setScaleOfRespect(scaleOf, respectTo);
+//	}
 }
