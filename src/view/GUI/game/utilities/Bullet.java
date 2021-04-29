@@ -17,7 +17,7 @@ public class Bullet extends JPanel {
         super.setOpaque(false);
 
         this.nBullet = new JLabel();
-        final Dimension dimension = EngineImage.getSizeImageFromRate(
+        final Dimension dimension = EngineImage.getSizeImageFromScale(
                 IconPath.ICON_HEART, 30, DimensionScreen.WIDTH_FULL_SCREEN);
 
         this.icon = new JImage(IconPath.ICON_BULLET, dimension);

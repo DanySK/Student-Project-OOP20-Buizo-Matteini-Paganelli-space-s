@@ -17,7 +17,7 @@ public class JImage extends JComponent{
         super(); {{ setOpaque(false); setLayout(new BorderLayout()); }}
         this.imageIcon = new ImageIcon();
         this.lbImage = new JLabel(this.imageIcon);
-        super.add(this.lbImage, BorderLayout.CENTER );
+        super.add(this.lbImage, BorderLayout.CENTER);
     }
 
     public JImage(final String path){
@@ -86,7 +86,7 @@ public class JImage extends JComponent{
     }
 
     public void setScaleOfRespect(final int scaleOf, final int respectTo){
-        final Dimension dimension = EngineImage.getSizeImageFromRate(this.path, scaleOf, respectTo);
+        final Dimension dimension = EngineImage.getSizeImageFromScale(this.path, scaleOf, respectTo);
         this.setSize(dimension);
     }
 

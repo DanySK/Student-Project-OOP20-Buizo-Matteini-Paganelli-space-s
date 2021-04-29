@@ -65,7 +65,7 @@ public class PanelSkin extends JPanel {
     }
 
     public void setRateImg(final int rate, final int widthScreen) {
-         final Dimension dimension = EngineImage.getSizeImageFromRate(
+         final Dimension dimension = EngineImage.getSizeImageFromScale(
                  this.pnImage.getPath(), rate, widthScreen);
         this.pnImage.setSize(dimension);
     }
