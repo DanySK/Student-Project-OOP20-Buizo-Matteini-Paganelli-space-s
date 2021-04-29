@@ -21,10 +21,11 @@ public class MovementKeyListener implements KeyListener {
         
 
 	public void keyTyped(KeyEvent e) {
-
+		//System.out.println(e.getKeyCode());
     }
 
     public void keyPressed(KeyEvent e) {
+    	System.out.println(e.getKeyCode());
     	int pressedKeyCode = e.getKeyCode(); 	
     	if(canHandleKey(pressedKeyCode)) {
     		final CmdMovementType cmd = translateKeyCode(pressedKeyCode);
@@ -35,6 +36,7 @@ public class MovementKeyListener implements KeyListener {
     }
 
     public void keyReleased(KeyEvent e) {
+    	System.out.println(e.getKeyCode());
     	int pressedKeyCode = e.getKeyCode();
     	if(canHandleKey(pressedKeyCode)) {
     		final CmdMovementType cmd = translateKeyCode(pressedKeyCode);
@@ -45,11 +47,18 @@ public class MovementKeyListener implements KeyListener {
     }
     
     private boolean canHandleKey(int currentKeyCode) {
-    	return currentKeyCode >= LEFT_KEY_CODE && currentKeyCode <= DOWN_KEY_CODE;
+    	return (currentKeyCode >= LEFT_KEY_CODE && currentKeyCode <= DOWN_KEY_CODE) || isWASD(currentKeyCode);
     }
     
     
-    public CmdMovementType translateKeyCode(Integer keyCode) {
+    private boolean isWASD(int keyCode) {
+    	//69 = E, 81 = Q
+    	return keyCode == 69 || keyCode == 81;
+
+	}
+
+
+	public CmdMovementType translateKeyCode(Integer keyCode) {
     	if(canHandleKey(keyCode)) {
     		return CmdMovementType.getValue(keyCode);
     	}

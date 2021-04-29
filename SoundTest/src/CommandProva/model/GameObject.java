@@ -79,6 +79,15 @@ public class GameObject {
 	public V2d getCurrentVel(){
 		return velocity;
 	}
+	
+	public GraphicsComponent getGraphic() {
+		return graphic;
+	}
+
+	public void setGraphic(GraphicsComponent graphic) {
+		this.graphic = graphic;
+	}
+	
 
 //	public void updateInput(InputController c){
 //		input.update(this, c);

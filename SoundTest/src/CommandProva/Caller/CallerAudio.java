@@ -60,16 +60,16 @@ public class CallerAudio {
 	public void execute(CmdAudioType cmd) {
 		 switch(cmd) {
 		 case AUDIO_ON:
-			 cmdAudioOn.execute(sound);
+			 cmdAudioOn.execute(this.sound);
 			 break;
 		 case AUDIO_OFF:
-			 cmdAudioOff.execute(sound);
+			 cmdAudioOff.execute(this.sound);
 			 break;
 		 case TURN_UP_VOLUME:
-			 cmdTurnUpVol.execute(sound);
+			 cmdTurnUpVol.execute(this.sound);
 			 break;
 		 case TURN_DOWN_VOLUME:
-			 cmdTurnDownVol.execute(sound);
+			 cmdTurnDownVol.execute(this.sound);
 			 break;
 		 }
 	}

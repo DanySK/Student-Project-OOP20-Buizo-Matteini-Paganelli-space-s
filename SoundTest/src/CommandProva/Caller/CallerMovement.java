@@ -8,6 +8,8 @@ import CommandProva.ConcreteCommandMovement.LeftCommand;
 import CommandProva.ConcreteCommandMovement.LeftReleaseCommand;
 import CommandProva.ConcreteCommandMovement.RightCommand;
 import CommandProva.ConcreteCommandMovement.RightReleaseCommand;
+import CommandProva.ConcreteCommandMovement.RotateLeftCommand;
+import CommandProva.ConcreteCommandMovement.RotateRightCommand;
 import CommandProva.ConcreteCommandMovement.UpCommand;
 import CommandProva.ConcreteCommandMovement.UpReleaseCommand;
 import CommandProva.model.GameObject;
@@ -25,6 +27,9 @@ public class CallerMovement {
 	private final CommandMovement cmdReleaseRight;
 	private final CommandMovement cmdReleaseDown;
 	
+	private final CommandMovement cmdRotateLeft;
+	private final CommandMovement cmdRotateRight;
+	
 	private final GameObject ship;
 	
 	
@@ -40,6 +45,9 @@ public class CallerMovement {
 		this.cmdReleaseUp    = new UpReleaseCommand();
 		this.cmdReleaseRight = new RightReleaseCommand();
 		this.cmdReleaseDown  = new DownReleaseCommand();
+		
+		this.cmdRotateLeft = new RotateLeftCommand();
+		this.cmdRotateRight  = new RotateRightCommand();
 		
 		this.ship = ship;
 	}
@@ -57,6 +65,12 @@ public class CallerMovement {
 			 break;
 		 case KEY_DOWN:
 			 cmdDown.execute(ship);
+			 break;		 
+		 case KEY_ROTATE_LEFT:
+			 cmdRotateLeft.execute(ship);
+			 break;
+		 case KEY_ROTATE_RIGHT:
+			 cmdRotateRight.execute(ship);
 			 break;
 		 }
 	}
