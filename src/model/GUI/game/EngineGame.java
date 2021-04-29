@@ -2,17 +2,19 @@ package model.GUI.game;
 
 import model.GUI.EngineGUI;
 import model.GUI.Visibility;
+import model.spaceShip.SpaceShipSingleton;
 import utilities.IdGUI;
 
 import java.util.List;
 
 public class EngineGame implements EngineGUI {
     private final IdGUI id = IdGUI.ID_GAME;
+    private final SpaceShipSingleton spaceShipSingleton;
 
     private Visibility visibility = Visibility.HIDDEN;
 
     public EngineGame(){
-
+        this.spaceShipSingleton = SpaceShipSingleton.getSpaceShip();
     }
 
     @Override
@@ -38,5 +40,9 @@ public class EngineGame implements EngineGUI {
     @Override
     public List<IdGUI> getLinks() {
         return null;
+    }
+
+    public SpaceShipSingleton getSpaceShipSingleton() {
+        return spaceShipSingleton;
     }
 }

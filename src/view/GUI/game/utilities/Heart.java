@@ -1,20 +1,25 @@
 package view.GUI.game.utilities;
 
+import model.image.EngineImage;
 import utilities.DesignSpace;
+import utilities.DimensionScreen;
 import utilities.IconPath;
-import view.utilities.JImageRate;
+import view.utilities.JImage;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Heart extends JPanel {
-    private final JImageRate iconHeart;
+    private final JImage iconHeart;
     private final JLabel nHeart;
 
     public Heart(){
         super(new FlowLayout());
         super.setOpaque(false);
-        this.iconHeart = new JImageRate(IconPath.ICON_HEART, 6);
+        final Dimension dimension = EngineImage.getSizeImageFromScale(
+                IconPath.ICON_HEART, 30, DimensionScreen.WIDTH_FULL_SCREEN);
+
+        this.iconHeart = new JImage(IconPath.ICON_HEART, dimension);
         this.nHeart = new JLabel("x3");
         this.add(this.iconHeart);
         this.add(this.nHeart);

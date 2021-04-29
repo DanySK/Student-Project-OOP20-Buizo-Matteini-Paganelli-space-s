@@ -1,23 +1,27 @@
 package view.GUI.game.utilities;
 
+import model.image.EngineImage;
+import utilities.DimensionScreen;
 import utilities.IconPath;
-import view.utilities.JImageRate;
+import view.utilities.JImage;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Bullet extends JPanel {
     private final JLabel nBullet;
-    private final JImageRate icon;
+    private final JImage icon;
 
     public Bullet(){
         super(new FlowLayout());
         super.setOpaque(false);
 
         this.nBullet = new JLabel();
-        this.icon = new JImageRate(IconPath.ICON_BULLET, 5);
+        final Dimension dimension = EngineImage.getSizeImageFromScale(
+                IconPath.ICON_HEART, 30, DimensionScreen.WIDTH_FULL_SCREEN);
 
-        this.nBullet.setIcon(new JImageRate(IconPath.ICON_WEAPON, 5).getIcon());
+        this.icon = new JImage(IconPath.ICON_BULLET, dimension);
+        this.nBullet.setIcon(new JImage(IconPath.ICON_WEAPON, dimension).getImageIcon());
 
         super.add(this.nBullet);
         super.add(this.icon);

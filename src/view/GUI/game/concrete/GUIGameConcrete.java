@@ -1,13 +1,13 @@
 package view.GUI.game.concrete;
 
-import utilities.IconPath;
 import view.GUI.AbstractGUI;
 import view.GUI.game.GUIGame;
 import view.GUI.game.utilities.*;
+import view.spaceShip.SpaceShipView;
 import view.utilities.ButtonID;
-import view.utilities.JImageRate;
 
 import javax.swing.*;
+import java.awt.event.KeyListener;
 import java.util.List;
 
 public class GUIGameConcrete extends AbstractGUI implements GUIGame {
@@ -20,6 +20,8 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
     private final LifeBar life;
     private final Bullet bullet;
 
+    private final SpaceShipView spaceShip;
+
     public GUIGameConcrete(){
         super();
         this.life = new LifeBar();
@@ -29,6 +31,7 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
         this.roundTimer = new RoundTimer();
         this.btnPause = new BtnPauseID();
         this.counterEnemies = new CounterEnemies();
+        this.spaceShip = new SpaceShipView();
     }
 
     @Override
@@ -62,5 +65,19 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
 
     public BtnPauseID getBtnPause() {
         return btnPause;
+    }
+
+    public SpaceShipView getSpaceShip() {
+        return this.spaceShip;
+    }
+
+    @Override
+    public SpaceShipView getSpaceship() {
+        return this.spaceShip;
+    }
+
+    @Override
+    public void addKeyListenerSpaceship(KeyListener keyListener) {
+        this.addKeyListener(keyListener);
     }
 }

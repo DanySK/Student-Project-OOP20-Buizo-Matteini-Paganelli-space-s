@@ -1,6 +1,7 @@
 package view.GUI.sound.utilities;
 
 import model.GUI.sound.TypeUnitSound;
+import utilities.DimensionScreen;
 import view.utilities.FactoryGUIs;
 
 import javax.swing.*;
@@ -61,8 +62,8 @@ public class UnitSound extends JPanel {
         return this.btnSwitch;
     }
 
-    public void setIconBtnSwitch(final String path){
-        FactoryGUIs.setIconInJButtonMini(this.btnSwitch, path);
+    public void setIconBtnSwitch(final String path, final int widthScreen){
+        FactoryGUIs.setIconJButtonFromRate(this.btnSwitch, path, 30, widthScreen);
     }
 
     public TypeUnitSound getType(){

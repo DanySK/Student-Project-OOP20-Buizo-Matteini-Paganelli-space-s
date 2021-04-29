@@ -1,9 +1,8 @@
 package view.GUI.settings;
 
-import model.MyJImage.JImageRateEngine;
+import model.image.EngineImage;
 import model.GUI.settings.Difficulty;
 import utilities.IdGUI;
-import model.GUI.settings.NameSettingsGUI;
 import view.GUI.GUI;
 
 import javax.swing.*;
@@ -15,7 +14,7 @@ public interface GUISettings extends GUI, GraphicsGUISettings {
 
     public void setNameBtnBack(final String nameBtnBack);
 
-    public void setSkinSpaceShip(final JImageRateEngine imageEngine);
+    public void setSkinSpaceShip(final EngineImage imageEngine);
 
     public void setDifficult(final Difficulty difficulty);
 

@@ -1,40 +1,50 @@
 package view.utilities;
 
+import utilities.DimensionScreen;
+
 import javax.swing.*;
 import java.awt.*;
-import java.net.URL;
 
 public class JPanelImage extends JPanel {
-    private URL imgURL;
-    private ImageIcon icon;
+    private final ImageIcon icon;
 
     public JPanelImage(){
         super();
         this.icon = new ImageIcon();
     }
 
-    public JPanelImage(final String pathImg){
-        super();
-        this.imgURL = ClassLoader.getSystemResource(pathImg);
-        this.icon = new ImageIcon(this.imgURL);
-        FactoryGUIs.rateImageFromMediumJFrame(this.icon, 100);
+    public JPanelImage(final String path){
+        this();
+        this.icon.setImage(JImage.getImageFromPath(path));
+        JPanelImage.setSizeFromScreen(this.icon, DimensionScreen.RECTANGLE_FULLSCREEN);
     }
 
+    public JPanelImage(final String path, final Rectangle rectangleGUI){
+        this(path);
+        JPanelImage.setSizeFromScreen(this.icon, rectangleGUI);
+    }
+
+    public void setImage(final String path){
+        final Dimension dimension = new Dimension(this.icon.getIconWidth(), this.icon.getIconHeight());
+        this.icon.setImage(JImage.getImageFromPath(path));
+        JImage.resizeImageIcon(this.icon, dimension);
+        super.repaint();
+    }
+
+    public void setBounds(final Rectangle screen){
+        super.setBounds(screen);
+        JPanelImage.setSizeFromScreen(this.icon, screen);
+        super.repaint();
+    }
+
+    @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(this.icon.getImage(), 0, 0, null);
     }
 
-    public void setImage(final String pathImg){
-        this.imgURL = ClassLoader.getSystemResource(pathImg);
-        this.icon.setImage(new ImageIcon(this.imgURL).getImage());
-        FactoryGUIs.rateImageFromMediumJFrame(this.icon, 100);
-        super.repaint();
-    }
-
-    public void resizeImg(final int sizeWidthFrame){
-        FactoryGUIs.rateImageFromFrame(this.icon, sizeWidthFrame);
-        super.repaint();
+    public static void setSizeFromScreen(final ImageIcon image, final Rectangle rectangleGUI){
+        JImage.resizeImageIcon(image, rectangleGUI.getSize());
     }
 
 }

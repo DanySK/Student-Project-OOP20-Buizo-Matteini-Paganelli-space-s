@@ -1,5 +1,6 @@
 package view.GUI.scoreboard.factoryMethod;
 
+import utilities.DimensionScreen;
 import utilities.IconPath;
 import utilities.DesignSpace;
 import view.GUI.scoreboard.FactoryGUIScoreboard;
@@ -20,13 +21,14 @@ public class GUIScoreboardStandard implements FactoryGUIScoreboard {
         scoreboardConcrete.getTxtSearchName().setColumns(DesignSpace.SIZE_COLUMNS_TEXT);
         scoreboardConcrete.setFontGUI(DesignSpace.FONT_MEDIUM_STANDARD);
         scoreboardConcrete.setForegroundGUI(DesignSpace.color4);
-
+        scoreboardConcrete.setBounds(DimensionScreen.RECTANGLE_MEDIUM);
+        scoreboardConcrete.setBorder(3);
         this.createGraphics(scoreboardConcrete);
         return scoreboardConcrete;
     }
 
     private void createGraphics(final GUIScoreboardConcrete scoreboardConcrete) {
-        scoreboardConcrete.setBackLayoutGUI(new BorderLayout());
+        scoreboardConcrete.setBackgroundLayout(new BorderLayout());
 
         scoreboardConcrete.add(FactoryGUIs.encapsulatesInPanel_Flow(scoreboardConcrete.getLbTitle()),
                 BorderLayout.NORTH);
@@ -37,8 +39,10 @@ public class GUIScoreboardStandard implements FactoryGUIScoreboard {
         FactoryGUIs.setTransparentDesignJButton(scoreboardConcrete.getBtnSearch());
         FactoryGUIs.setTransparentDesignJButton(scoreboardConcrete.getBtnBack());
 
-        FactoryGUIs.setIconInJButtonMini(scoreboardConcrete.getBtnSearch(), IconPath.ICON_SEARCH);
-        FactoryGUIs.setIconInJButtonMini(scoreboardConcrete.getBtnBack(), IconPath.ICON_BACK);
+        FactoryGUIs.setIconJButtonFromRate(scoreboardConcrete.getBtnSearch(), IconPath.ICON_SEARCH,
+                30, scoreboardConcrete.getWidth());
+        FactoryGUIs.setIconJButtonFromRate(scoreboardConcrete.getBtnBack(), IconPath.ICON_BACK,
+                30, scoreboardConcrete.getWidth());
 
         JPanel panelScore = new JPanel(new BorderLayout()) {{ setOpaque(false); }};
 

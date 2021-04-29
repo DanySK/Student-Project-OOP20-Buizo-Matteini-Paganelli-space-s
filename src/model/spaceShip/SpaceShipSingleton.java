@@ -1,71 +1,44 @@
 package model.spaceShip;
 
-import java.awt.Dimension;
+import java.util.Optional;
 
+import model.gameElement.AbstractGameObject;
+import model.gameElement.GameObjectUtils;
+import model.gameElement.Movement;
+import model.gameElement.V2d;
+import model.gameElement.weapon.Weapon;
+import model.image.EngineImage;
+import model.GUI.settings.SkinSpaceShip;
 import model.environment.Point2D;
 import utilities.DesignSpace;
+import utilities.DimensionScreen;
 
-public class SpaceShipSingleton {
+public class SpaceShipSingleton extends AbstractGameObject {
     
-    // Eager and unique istance of this class for Threadsafing
-    private static SpaceShipSingleton spaceShip = new SpaceShipSingleton(DesignSpace.CENTER_ENVIRONMENT, "spaceShip/maxShip.png");
-    
-    private Point2D position;
-    private String spaceImagePath;
-    private Dimension dimension;
+    // Eager and unique instance of this class for Threadsafing
+    private static SpaceShipSingleton spaceShip = new SpaceShipSingleton(
+    		new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, DimensionScreen.WIDTH_FULL_SCREEN, SkinSpaceShip.GNEGNE.getPath()),
+    		GameObjectUtils.SPACESHIP_LIFE,
+    		GameObjectUtils.SPACESHIP_DAMAGE,
+    		DesignSpace.CENTER_ENVIRONMENT,
+    		Movement.CONTROLLED,
+    		new V2d(),
+    		Optional.of(new Weapon()));
 
-    
     /** 
-    * Invisible class constructor specifying space ship initial position
+    * Invisible class constructor specifying space ship initial position and image path
     */
-    private SpaceShipSingleton(final Point2D position, final String path) {
-        this.position = position;
-        this.spaceImagePath = path;
+    private SpaceShipSingleton(final EngineImage engineImage, final int life, final int damage,
+    						   final Point2D position, final Movement movement, final V2d velocity,
+    						   final Optional<Weapon> weapon) {
+    	super(engineImage, life, damage, position, movement, velocity, weapon);
     }
     
     /**
-     * @return space ship static istance
+     * @return space ship static instance
      */
     public static SpaceShipSingleton getSpaceShip() {
         return spaceShip;
-    }
-    
-    /**
-     * @return the current space ship position
-     */
-    public Point2D getPosition() {
-        return this.position;
-    }
-    
-    /**
-     * @return the current space ship path
-     */
-    public String getSpaceImagePath() {
-        return this.spaceImagePath;
-    }
-
-    /**
-     * @return the current space ship dimension
-     */
-    public Dimension getDimension() {
-        return this.dimension;
-    }
-    
-    /**
-     * @param newPosition
-     *            the new space ship position
-     */
-    public void setPosition(final Point2D newPosition) {
-        this.position = newPosition;
-    }
-    
-    /**
-     * @param newDimension
-     *            the new space ship position
-     */
-    public void setDimension(final Dimension newDimension) {
-        this.dimension = newDimension;
-        System.out.println(this.dimension);
     }
 }
 

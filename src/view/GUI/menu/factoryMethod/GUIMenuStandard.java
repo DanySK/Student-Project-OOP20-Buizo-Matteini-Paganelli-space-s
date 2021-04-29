@@ -8,6 +8,7 @@ import view.GUI.menu.concrete.GUIMenuConcrete;
 import view.GUI.menu.utilities.IconsButton;
 import view.utilities.FactoryGUIs;
 
+import javax.swing.*;
 import java.awt.*;
 
 import java.util.List;
@@ -18,7 +19,6 @@ public class GUIMenuStandard implements FactoryGUIMenu {
     @Override
     public GUIMenu createGUI() {
         final GUIMenuConcrete menuConcrete = new GUIMenuConcrete();
-
         menuConcrete.setFontGUI(DesignSpace.FONT_MEDIUM_STANDARD);
         menuConcrete.setForegroundGUI(DesignSpace.color4);
         menuConcrete.setFontTitleGUI(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
@@ -28,7 +28,7 @@ public class GUIMenuStandard implements FactoryGUIMenu {
     }
 
     private void createGraphics(final GUIMenuConcrete menu) {
-        menu.setBackLayoutGUI(new GridBagLayout());
+        menu.setBackgroundLayout(new GridBagLayout());
         int nBtnUsed = 0;
 
         GridBagConstraints lim = FactoryGUIs.createGBConstraintsWithSpaceTitle(DesignJComponent.SIZE_SPACE_TITLE);
@@ -49,8 +49,8 @@ public class GUIMenuStandard implements FactoryGUIMenu {
 
         nBtnUsed = 0;
         while(nBtnUsed < GUIMenuConcrete.N_BUTTONS){
-            FactoryGUIs.setIconInJButtonMini(menu.getButton(nBtnUsed),
-                    IconsButton.values()[nBtnUsed++].getPath());
+            FactoryGUIs.setIconJButtonFromRate(menu.getButton(nBtnUsed),
+                    IconsButton.values()[nBtnUsed++].getPath(), 25, menu.getWidth());
         }
     }
 

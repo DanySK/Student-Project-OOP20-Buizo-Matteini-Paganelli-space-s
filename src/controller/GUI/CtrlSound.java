@@ -3,6 +3,7 @@ package controller.GUI;
 import model.GUI.EngineGUI;
 import model.GUI.sound.EngineSound;
 import utilities.DesignSound;
+import utilities.DimensionScreen;
 import view.GUI.GUI;
 import view.GUI.sound.GUISound;
 import view.GUI.sound.utilities.ButtonSliderType;
@@ -50,8 +51,8 @@ public class CtrlSound implements ControllerGUI {
             final ButtonSliderType btnSlider = (ButtonSliderType)e.getSource();
 
             this.soundEngine.changeStateUnitSound(btnSlider.getTypeSlider());
-            FactoryGUIs.setIconInJButtonMini(btnSlider,
-                    this.soundEngine.getPathIconUnitSound((btnSlider.getTypeSlider())));
+            FactoryGUIs.setIconJButtonFromRate(btnSlider,
+                    this.soundEngine.getPathIconUnitSound((btnSlider.getTypeSlider())), 30, DimensionScreen.WIDTH_MEDIUM);
 
             this.soundGUI.getSliderTypeofMixer(btnSlider.getTypeSlider()).setValue(
                     this.soundEngine.isActiveUnitSound(btnSlider.getTypeSlider()) ?

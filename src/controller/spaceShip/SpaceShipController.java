@@ -3,24 +3,35 @@ package controller.spaceShip;
 import model.spaceShip.SpaceShipSingleton;
 import view.spaceShip.SpaceShipView;
 
+import java.awt.event.KeyListener;
+
 public class SpaceShipController {
 
-    private static SpaceShipSingleton spaceShipModel;
-    private static SpaceShipView spaceShipView;
+    private final SpaceShipSingleton spaceShipModel;
+    private final SpaceShipView spaceShipView;
     
     public SpaceShipController(final SpaceShipSingleton spaceShipModel, final SpaceShipView spaceShipView) {
         this.spaceShipModel = spaceShipModel;
         this.spaceShipView = spaceShipView;
+        this.init();
     }
 
-    
-    public static void main(String[] args){
-    
-        spaceShipModel = SpaceShipSingleton.getSpaceShip();        
-        spaceShipView = new SpaceShipView(spaceShipModel.getSpaceImagePath(), spaceShipModel.getPosition());
-        
-        spaceShipModel.setDimension(spaceShipView.getShipImage().getSize());
-        
-        spaceShipView.show();
+    private void init() {
+
+        this.spaceShipView.setImage(this.spaceShipModel.getPath());
+
+        this.spaceShipView.setScaleOfRespect(this.spaceShipModel.getScaleOf(), this.spaceShipModel.getRespectTo());
+
+		this.spaceShipView.setPosition(
+				this.spaceShipModel.getPosition());
+	}
+
+	public void setKeyListenerSpaceship(final KeyListener keyListener){
+        this.spaceShipView.addKeyListener(keyListener);
     }
+
+    public SpaceShipView getSPaceShipView(){
+        return this.spaceShipView;
+    }
+
 }

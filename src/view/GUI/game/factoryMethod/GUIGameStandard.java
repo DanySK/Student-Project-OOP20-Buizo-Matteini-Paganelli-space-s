@@ -1,7 +1,5 @@
 package view.GUI.game.factoryMethod;
 
-import utilities.DesignJFrame;
-import utilities.DesignSpace;
 import view.GUI.game.FactoryGUIGame;
 import view.GUI.game.GUIGame;
 import view.GUI.game.concrete.GUIGameConcrete;
@@ -15,8 +13,7 @@ public class GUIGameStandard implements FactoryGUIGame {
     public GUIGame create() {
         final GUIGameConcrete concreteGame = new GUIGameConcrete();
 
-        concreteGame.setBackground("background/game3.jpg");
-        //concreteGame.setBounds(DesignJFrame.GUI_WIDTH_FULL_SCREEN, DesignJFrame.GUI_HEIGHT_FULL_SCREEN);
+        concreteGame.setBackgroundImage("background/game3.jpg");
         this.graphics(concreteGame);
         concreteGame.validate();
         return concreteGame;
@@ -56,8 +53,9 @@ public class GUIGameStandard implements FactoryGUIGame {
                 concreteGame.getBtnPause(), concreteGame.getCounterEnemies()), 5), BorderLayout.EAST);
 
 
-        concreteGame.visibleFrontPanel(true);
-        concreteGame.addFront(panelNorth, BorderLayout.NORTH);
-        concreteGame.addFront(panelSouth, BorderLayout.SOUTH);
+        concreteGame.visibleForegroundPanel(true);
+        concreteGame.add(concreteGame.getSpaceShip());
+        concreteGame.addForegroundPanel(panelNorth, BorderLayout.NORTH);
+        concreteGame.addForegroundPanel(panelSouth, BorderLayout.SOUTH);
     }
 }

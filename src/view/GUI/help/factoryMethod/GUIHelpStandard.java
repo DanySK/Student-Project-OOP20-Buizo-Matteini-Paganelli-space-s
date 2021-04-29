@@ -2,7 +2,7 @@ package view.GUI.help.factoryMethod;
 
 import utilities.IconPath;
 import utilities.DesignJComponent;
-import utilities.DesignJFrame;
+import utilities.DimensionScreen;
 import view.GUI.help.concrete.GUIHelpConcrete;
 import view.GUI.help.FactoryGUIHelp;
 import view.GUI.help.GUIHelp;
@@ -20,14 +20,14 @@ public class GUIHelpStandard implements FactoryGUIHelp {
         helpGUIConcrete.setFontTitleGUI(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
         helpGUIConcrete.setFontGUI(DesignSpace.FONT_MEDIUM_STANDARD);
         helpGUIConcrete.setForegroundGUI(DesignSpace.color4);
-        helpGUIConcrete.setBounds(DesignJFrame.GUI_X_MINI, DesignJFrame.GUI_Y_MINI,
-                DesignJFrame.GUI_WIDTH_MINI, DesignJFrame.GUI_HEIGHT_MINI);
+        helpGUIConcrete.setBounds(DimensionScreen.RECTANGLE_MEDIUM);
+        helpGUIConcrete.setBorder(3);
         this.createGraphics(helpGUIConcrete);
         return helpGUIConcrete;
     }
 
     private void createGraphics(final GUIHelpConcrete helpConcrete) {
-        helpConcrete.setBackLayoutGUI(new BorderLayout());
+        helpConcrete.setBackgroundLayout(new BorderLayout());
 
         helpConcrete.add(FactoryGUIs.encapsulatesInPanel_Flow(helpConcrete.getLbTitle()), BorderLayout.NORTH);
         helpConcrete.add(FactoryGUIs.encapsulatesInPanel_Flow(helpConcrete.getBtnBack()), BorderLayout.SOUTH);
@@ -36,6 +36,7 @@ public class GUIHelpStandard implements FactoryGUIHelp {
                 BorderLayout.CENTER);
 
         FactoryGUIs.setTransparentDesignJButton(helpConcrete.getBtnBack());
-        FactoryGUIs.setIconInJButtonMini(helpConcrete.getBtnBack(), IconPath.ICON_BACK);
+        FactoryGUIs.setIconJButtonFromRate(helpConcrete.getBtnBack(), IconPath.ICON_BACK,
+                30, helpConcrete.getWidth());
     }
 }

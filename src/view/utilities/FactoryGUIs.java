@@ -1,6 +1,6 @@
 package view.utilities;
 
-import utilities.DesignJFrame;
+import model.image.EngineImage;
 import utilities.DesignSound;
 
 import javax.swing.*;
@@ -84,50 +84,17 @@ public class FactoryGUIs {
         return lim;
     }
 
-    public static void resizeImage(final int width, final int height, ImageIcon imageIcon){
-        Image img = imageIcon.getImage();
-        Image resizeImage = img.getScaledInstance(width, height, Image.SCALE_AREA_AVERAGING);
-        imageIcon.setImage(resizeImage);
-    }
-
-    public static void resizeImage(final Dimension dimension, ImageIcon imageIcon){
-        Image img = imageIcon.getImage();
-        Image resizeImage = img.getScaledInstance(dimension.width, dimension.height, Image.SCALE_AREA_AVERAGING);
-        imageIcon.setImage(resizeImage);
-    }
-
     public static void setTransparentDesignJButton(JButton button){
         button.setOpaque(false);
         button.setContentAreaFilled(false);
         button.setFocusable(false);
     }
 
-    public static void setIconInJButtonMini(JButton button, final String pathIcon) {
-        JImageRate imag = new JImageRate(pathIcon, 3);
-        button.setIcon(imag.getIcon());
-    }
-
-    public static void setIconInJButtonMedium(JButton button, final String pathIcon) {
-        JImageRate imag = new JImageRate(pathIcon, 4);
-        button.setIcon(imag.getIcon());
-    }
-
-    public static void rateImageFromMediumJFrame(ImageIcon imageIcon, final int rate){
-        int widthRateImage = DesignJFrame.GUI_WIDTH_MEDIUM * rate / 100;
-        int heightRateImage = imageIcon.getIconHeight() * widthRateImage / imageIcon.getIconWidth();
-        resizeImage(widthRateImage, heightRateImage, imageIcon);
-    }
-
-    public static void rateImageFromFullJFrame(ImageIcon imageIcon, final int rate){
-        int widthRateImage = DesignJFrame.GUI_WIDTH_FULL_SCREEN * rate / 100;
-        int heightRateImage = imageIcon.getIconHeight() * widthRateImage / imageIcon.getIconWidth();
-        resizeImage(widthRateImage, heightRateImage, imageIcon);
-    }
-
-    public static void rateImageFromFrame(ImageIcon imageIcon, final int sizeWidthFrame){
-        int widthRateImage = sizeWidthFrame;
-        int heightRateImage = imageIcon.getIconHeight() * widthRateImage / imageIcon.getIconWidth();
-        resizeImage(widthRateImage, heightRateImage, imageIcon);
+    public static void setIconJButtonFromRate(final JButton button, final String pathIcon,
+                                              final int rate, final int widthScreen) {
+        EngineImage engineImage = new EngineImage(widthScreen, rate, pathIcon);
+        JImage imag = new JImage(pathIcon, engineImage.getSize());
+        button.setIcon(imag.getImageIcon());
     }
 
     public static JComponent getJComponentEmpty(){

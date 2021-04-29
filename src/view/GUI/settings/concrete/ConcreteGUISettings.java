@@ -1,6 +1,6 @@
 package view.GUI.settings.concrete;
 
-import model.MyJImage.JImageRateEngine;
+import model.image.EngineImage;
 import model.GUI.settings.Difficulty;
 import utilities.IdGUI;
 import view.GUI.AbstractGUI;
@@ -46,9 +46,9 @@ public class ConcreteGUISettings extends AbstractGUI implements GUISettings {
     }
 
     @Override
-    public void setSkinSpaceShip(final JImageRateEngine imageEngine) {
-        this.panelSkin.setPnImage(imageEngine.getPathImg());
-        this.panelSkin.setRateImg(imageEngine.getRate());
+    public void setSkinSpaceShip(final EngineImage imageEngine) {
+        this.panelSkin.setPnImage(imageEngine.getPath());
+        this.panelSkin.setRateImg(imageEngine.getScaleOf(), super.getWidth());
     }
 
     @Override

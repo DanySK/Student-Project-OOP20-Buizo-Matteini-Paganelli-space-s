@@ -1,13 +1,13 @@
 package utilities;
 
-import model.MyJImage.MyJImageEngine;
 import model.environment.Point2D;
+import model.image.EngineImage;
 
 import java.awt.*;
 import java.net.URL;
 
 public class DesignSpace {
-    public static final Point2D CENTER_ENVIRONMENT = new Point2D(DesignJFrame.GUI_WIDTH_MEDIUM / 2, DesignJFrame.GUI_HEIGHT_MEDIUM / 2);
+    public static final Point2D CENTER_ENVIRONMENT = new Point2D(DimensionScreen.WIDTH_MEDIUM / 2, DimensionScreen.HEIGHT_MEDIUM / 2);
 
     public static int SIZE_FONT_MAX = 60;
     public static int SIZE_FONT_BIG = 30;
@@ -61,11 +61,6 @@ public class DesignSpace {
         ge.registerFont(myFont);
 
         return myFont;
-    }
-
-    public static MyJImageEngine modificationSizeMediumImage(final MyJImageEngine image){
-        image.setDimensionImage(new Dimension(SIZE_IMAGE_MEDIUM, SIZE_IMAGE_MEDIUM));
-        return image;
     }
 
 }
