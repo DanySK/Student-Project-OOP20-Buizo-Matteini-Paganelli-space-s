@@ -16,15 +16,19 @@ public abstract class AbstractFactoryGameObject {
 		AbstractFactoryGameObject factoryBoss = new ConcreteFactoryBoss();
 		
 		List<AbstractGameObject> asteroidList = new ArrayList<AbstractGameObject>();
-		List<AbstractGameObject> enemyList = new ArrayList<AbstractGameObject>();
+		List<AbstractGameObject> chaseEnemyList = new ArrayList<AbstractGameObject>();
 		List<AbstractGameObject> bossList = new ArrayList<AbstractGameObject>();
 
 		
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 2; i++) {
 			asteroidList.add(factoryAsteroid.createObject());
-			enemyList.add(factoryChaseEnemy.createObject());
+			chaseEnemyList.add(factoryChaseEnemy.createObject());
 			bossList.add(factoryBoss.createObject());
 		}
+		
+		System.out.println(asteroidList.get(0));
+		System.out.println(chaseEnemyList.get(0));
+		System.out.println(bossList.get(0));
 
 	}
 }

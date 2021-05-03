@@ -18,13 +18,7 @@ public class Boss extends AbstractGameObject {
 
 	@Override
 	public String toString() {
-		return "Asteroid [getImageEngine()=" + getImageEngine() + ", getLife()=" + getLife() + ", getDamage()="
-				+ getDamage() + ", getPosition()=" + getPosition() + ", getMovement()=" + getMovement()
-				+ ", getVelocity()=" + getVelocity() + ", getWeapon()=" + getWeapon() + ", getSize()=" + getSize()
-				+ ", getScaleOf()=" + getScaleOf() + ", getPath()=" + getPath() + ", getRespectTo()=" + getRespectTo()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
-				+ "]";
+		return "Boss { " + super.toString() + " }";
 	}
-	
 
 }

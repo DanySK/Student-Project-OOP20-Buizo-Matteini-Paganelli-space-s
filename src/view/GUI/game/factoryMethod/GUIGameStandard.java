@@ -54,7 +54,7 @@ public class GUIGameStandard implements FactoryGUIGame {
 
 
         concreteGame.visibleForegroundPanel(true);
-        concreteGame.add(concreteGame.getSpaceShip());
+        //concreteGame.add(concreteGame.getSpaceShip());
         concreteGame.addForegroundPanel(panelNorth, BorderLayout.NORTH);
         concreteGame.addForegroundPanel(panelSouth, BorderLayout.SOUTH);
     }

@@ -1,33 +1,76 @@
 package view.spaceShip;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+
+import javax.swing.ImageIcon;
 
 import model.environment.Point2D;
 import view.utilities.JImage;
 
-public class SpaceShipView extends JImage {
-	private static final long serialVersionUID = 1L;
-
+public class SpaceShipView {
+	private Graphics2D graphics;
+	private ImageIcon shipImage;
+	private AffineTransform transform;
+	
 	public SpaceShipView() {
-        super();
-        
-//        super.setOpaque(true);
-//        super.setBackground(Color.BLUE);
-//        super.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-        
-        super.setLocation(super.getX() + 10, super.getY() + 10);
+    }
+	
+	public SpaceShipView(Graphics2D graphics, ImageIcon img, AffineTransform transform) {
+		this.graphics = graphics;
+		this.shipImage= img;
+		this.transform = transform;
+    }
+	
+	public Graphics2D getGraphics() {
+		return graphics;
+	}
+
+	public void setGraphics(Graphics2D graphics) {
+		this.graphics = graphics;
+	}
+
+	public AffineTransform getTransform() {
+		return transform;
+	}
+
+	public void setTransform(AffineTransform transform) {
+		this.transform = transform;
+	}
+
+	public void setShipImage(ImageIcon shipImage) {
+		this.shipImage = shipImage;
+	}
+	
+    public Image getShipImage() {
+        return this.shipImage.getImage();
     }
     
-    public JImage getShipImage() {
-        return this;
-    }
+    public void draw(ImageIcon img, AffineTransform transform) {
+    	graphics.drawImage(img.getImage(), transform, null);
+	}
+    
+    public void draw(ImageIcon img, Point2D point) {
+    	graphics.drawImage(img.getImage(), point.getX(), point.getY(), null);
+	}
+    
+    public void draw(ImageIcon img, int x, int y) {
+    	graphics.drawImage(img.getImage(), x, y, null);
+	}
     
     public void setPosition(Point2D point) {
-		this.setLocation(point.getX(), point.getY());
+    	graphics.drawImage(getShipImage(), point.getX(), point.getY(), null);
 	}
     
-    public void setSize(final Dimension dimension) {
-		super.setSize(dimension);
+    public void setPosition(final int x, final int y) {
+    	graphics.drawImage(getShipImage(), x, y, null);
+	}
+    
+    public void setSize(final int width, final int height) {
+    	JImage.resizeImageIcon(this.shipImage, width, height);
 	}
 
+    public void setSize(final Dimension dimension) {
+    	JImage.resizeImageIcon(this.shipImage, dimension);
+	}
 }
