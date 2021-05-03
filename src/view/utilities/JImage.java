@@ -11,10 +11,10 @@ public class JImage extends JComponent{
     private String path = "";
 
     private final ImageIcon imageIcon;
-    private final JLabel lbImage;
+    private JLabel lbImage;
 
     public JImage(){
-        super(); {{ setOpaque(false); setLayout(new BorderLayout()); }}
+        super(); {{ setLayout(new BorderLayout()); }}
         this.imageIcon = new ImageIcon();
         this.lbImage = new JLabel(this.imageIcon);
         super.add(this.lbImage, BorderLayout.CENTER);

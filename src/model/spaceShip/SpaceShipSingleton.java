@@ -2,11 +2,11 @@ package model.spaceShip;
 
 import java.util.Optional;
 
-import model.gameElement.AbstractGameObject;
-import model.gameElement.GameObjectUtils;
-import model.gameElement.Movement;
-import model.gameElement.V2d;
-import model.gameElement.weapon.Weapon;
+import model.gameObject.AbstractGameObject;
+import model.gameObject.GameObjectUtils;
+import model.gameObject.Movement;
+import model.gameObject.V2d;
+import model.gameObject.weapon.Weapon;
 import model.image.EngineImage;
 import model.GUI.settings.SkinSpaceShip;
 import model.environment.Point2D;

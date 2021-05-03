@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.util.Arrays;
 
 public abstract class AbstractGUI extends JFrame{
     private final JPanelImage panelBackground;
@@ -32,6 +33,7 @@ public abstract class AbstractGUI extends JFrame{
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         super.setUndecorated(true);
         super.setResizable(false);
+
     }
 
 

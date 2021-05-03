@@ -12,8 +12,8 @@ public class GUIGameStandard implements FactoryGUIGame {
     @Override
     public GUIGame create() {
         final GUIGameConcrete concreteGame = new GUIGameConcrete();
-
         concreteGame.setBackgroundImage("background/game3.jpg");
+
         this.graphics(concreteGame);
         concreteGame.validate();
         return concreteGame;
@@ -54,7 +54,6 @@ public class GUIGameStandard implements FactoryGUIGame {
 
 
         concreteGame.visibleForegroundPanel(true);
-        concreteGame.add(concreteGame.getSpaceShip());
         concreteGame.addForegroundPanel(panelNorth, BorderLayout.NORTH);
         concreteGame.addForegroundPanel(panelSouth, BorderLayout.SOUTH);
     }

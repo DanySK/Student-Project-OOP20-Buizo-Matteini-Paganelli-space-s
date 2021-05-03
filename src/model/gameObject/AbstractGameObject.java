@@ -1,12 +1,11 @@
-package model.gameElement;
+package model.gameObject;
 
 import java.awt.Dimension;
 import java.util.Optional;
 
-import model.gameElement.weapon.Weapon;
+import model.gameObject.weapon.Weapon;
 import model.environment.Point2D;
 import model.image.EngineImage;
-import utilities.DimensionScreen;
 
 public abstract class AbstractGameObject {
 	private EngineImage engineImage;

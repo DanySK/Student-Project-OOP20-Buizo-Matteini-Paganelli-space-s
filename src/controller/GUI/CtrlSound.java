@@ -1,9 +1,12 @@
 package controller.GUI;
 
+import controller.sound.CallerAudio;
 import model.GUI.EngineGUI;
 import model.GUI.sound.EngineSound;
+import model.sound.CmdAudioType;
 import utilities.DesignSound;
 import utilities.DimensionScreen;
+import utilities.SoundPath;
 import view.GUI.GUI;
 import view.GUI.sound.GUISound;
 import view.GUI.sound.utilities.ButtonSliderType;
@@ -12,8 +15,9 @@ import view.GUI.sound.utilities.SliderType;
 
 import javax.swing.event.ChangeListener;
 import java.awt.event.ActionListener;
+import java.util.stream.Collectors;
 
-public class CtrlSound implements ControllerGUI {
+public class CtrlSound implements ControllerGUI{
     private final GUISound soundGUI;
     private final EngineSound soundEngine;
 
@@ -35,8 +39,6 @@ public class CtrlSound implements ControllerGUI {
         this.soundGUI.setVisible(this.soundEngine.isVisible());
 
         this.soundGUI.getSlidersSound().forEach(slider ->slider.addChangeListener(this.changeListenerSlider()));
-
-        this.soundGUI.getBtnSwitches().forEach(btn -> btn.addActionListener(this.changeSwitchSound()));
     }
 
     private ChangeListener changeListenerSlider(){
@@ -46,18 +48,25 @@ public class CtrlSound implements ControllerGUI {
         };
     }
 
-    private ActionListener changeSwitchSound(){
-        return e -> {
-            final ButtonSliderType btnSlider = (ButtonSliderType)e.getSource();
+    public void setChangeListenerSlider(final CallerAudio remoteControlAudio){
+        this.soundGUI.getSlidersSound().forEach(slider ->{
+            remoteControlAudio.changeVolume(slider.getValue());
+        });
+    }
 
-            this.soundEngine.changeStateUnitSound(btnSlider.getTypeSlider());
-            FactoryGUIs.setIconJButtonFromRate(btnSlider,
-                    this.soundEngine.getPathIconUnitSound((btnSlider.getTypeSlider())), 30, DimensionScreen.WIDTH_MEDIUM);
+    public void setActionListenerChangeSwitchSound(final CallerAudio remoteControlAudio){
+        this.soundGUI.getBtnSwitches().forEach(btn -> {
+            this.soundEngine.changeStateUnitSound(btn.getTypeSlider());
+            FactoryGUIs.setIconJButtonFromRate(btn,
+                    this.soundEngine.getPathIconUnitSound((btn.getTypeSlider())), 30, DimensionScreen.WIDTH_MEDIUM);
 
-            this.soundGUI.getSliderTypeofMixer(btnSlider.getTypeSlider()).setValue(
-                    this.soundEngine.isActiveUnitSound(btnSlider.getTypeSlider()) ?
-                            this.soundEngine.getValueUnitSound(btnSlider.getTypeSlider()) : DesignSound.SOUND_ZERO);
-        };
+            this.soundGUI.getSliderTypeofMixer(btn.getTypeSlider()).setValue(
+                    this.soundEngine.isActiveUnitSound(btn.getTypeSlider()) ?
+                            this.soundEngine.getValueUnitSound(btn.getTypeSlider()) : DesignSound.SOUND_ZERO);
+
+            remoteControlAudio.execute(this.soundEngine.isActiveUnitSound(btn.getTypeSlider()) ?
+                    CmdAudioType.AUDIO_ON : CmdAudioType.AUDIO_OFF);
+        });
     }
 
     @Override

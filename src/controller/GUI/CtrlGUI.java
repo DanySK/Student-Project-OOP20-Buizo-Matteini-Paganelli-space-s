@@ -1,6 +1,7 @@
 package controller.GUI;
 
 import controller.GUI.command.SwitchGUI;
+import controller.sound.CallerAudio;
 import controller.utilities.ListGUI;
 import model.GUI.EngineGUI;
 import model.sound.*;
@@ -16,15 +17,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CtrlGUI {
-    private static final IdGUI FIRST_GUI = IdGUI.ID_MENU;
+    public static final IdGUI FIRST_GUI = IdGUI.ID_MENU;
     private final ListGUI<IdGUI> chronology;
     private final List<EngineGUI> listEngine;
     private final List<GUI> listGUI;
 
     private final SwitchGUI switchGUI;
-
     private SoundPath soundPath;
-    private final SoundObserver observerSoundLoop;
 
 
     public CtrlGUI(final List<ControllerGUI> listControlGUI){
@@ -40,12 +39,11 @@ public class CtrlGUI {
         this.chronology = new ListGUI<>() {{ add(FIRST_GUI); }};
         this.soundPath = FIRST_GUI.getSound();
 
-        this.observerSoundLoop = new SoundLoop() {{ update(CtrlGUI.this.soundPath); }};
-
         this.linksAll();
         this.focusMenu();
 
         this.switchGUI.turnOnGUI(this.getEngine(FIRST_GUI), this.getGUI(FIRST_GUI));
+
     }
 
     private void linksAll(){
@@ -56,7 +54,6 @@ public class CtrlGUI {
 
                     if(this.soundPath != btn.getIdGUINext().getSound()){
                         this.soundPath = btn.getIdGUINext().getSound();
-                        this.observerSoundLoop.update(this.soundPath);
                     }
 
                     switch (btn.getIdGUINext()) {
@@ -121,6 +118,10 @@ public class CtrlGUI {
             @Override
             public void mouseExited(MouseEvent e) { }
         };
+    }
+
+    public SoundPath getSoundPath(){
+        return this.soundPath;
     }
 
     private EngineGUI getEngine(IdGUI id){

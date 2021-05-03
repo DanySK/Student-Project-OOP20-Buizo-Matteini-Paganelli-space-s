@@ -8,7 +8,7 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.FloatControl;
 
 	
-public abstract class Sound implements SoundObserver {
+public abstract class Sound {
 		private static final double START_VOLUME = 0.50;
 	    private SoundPath soundPath;
 	    private double volume;
@@ -47,7 +47,6 @@ public abstract class Sound implements SoundObserver {
 			return this.clip.map(DataLine::isActive).orElse(false);
 	    	
 	    }
-
 	    
 	    public void stopClip() {
 	    	this.clip.get().stop();
@@ -72,16 +71,6 @@ public abstract class Sound implements SoundObserver {
 			float dB = (float) (Math.log(volume) / Math.log(10) * 20);
 			gain.setValue(dB);
 			
-		}	
-		
-		public boolean isLoop() {
-			return this.soundPath.ordinal() < SoundPath.GAME_SOUND.ordinal();
-		}	
-		
-		
-		public void update(SoundPath st) {
-			setSoundType(st);
-			startClip();		
 		}
-	
+
 }

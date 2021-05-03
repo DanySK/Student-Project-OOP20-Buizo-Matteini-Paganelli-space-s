@@ -1,4 +1,4 @@
-package model.gameElement;
+package model.gameObject;
 
 import java.awt.Dimension;
 import java.util.Random;

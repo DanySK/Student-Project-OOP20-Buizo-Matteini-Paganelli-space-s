@@ -1,18 +1,18 @@
-package model.gameElement.fireEnemy;
+package model.gameObject.boss;
 
 import java.awt.Dimension;
 import java.util.Optional;
 
-import model.gameElement.AbstractGameObject;
-import model.gameElement.Movement;
-import model.gameElement.V2d;
-import model.gameElement.weapon.Weapon;
+import model.gameObject.AbstractGameObject;
+import model.gameObject.Movement;
+import model.gameObject.V2d;
+import model.gameObject.weapon.Weapon;
 import model.image.EngineImage;
 import model.environment.Point2D;
 
-public class FireEnemy extends AbstractGameObject {
+public class Boss extends AbstractGameObject {
 
-	public FireEnemy(EngineImage engineImage, Integer life,Integer damage, Dimension dim, Point2D point, Movement movement, V2d vel, Optional<Weapon> weapon) {
+	public Boss(EngineImage engineImage, Integer life,Integer damage, Dimension dim, Point2D point, Movement movement, V2d vel, Optional<Weapon> weapon) {
 		super(engineImage, life, damage, point, movement, vel, weapon);
 	}
 
@@ -26,4 +26,5 @@ public class FireEnemy extends AbstractGameObject {
 				+ "]";
 	}
 	
+
 }
