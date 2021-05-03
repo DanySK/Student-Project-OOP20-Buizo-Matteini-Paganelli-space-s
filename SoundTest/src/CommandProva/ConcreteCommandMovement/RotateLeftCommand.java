@@ -1,6 +1,7 @@
 package CommandProva.ConcreteCommandMovement;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import CommandProva.CommandInterfaces.CommandMovement;
 import CommandProva.graphics.GraphicsComponent;
@@ -23,14 +24,35 @@ public class RotateLeftCommand implements CommandMovement{
 		//ship.updateGraphics(ship.getGraphic());
 		
 		//Graphics graph = ship.getGraphic();
-		ShipGraphicsComponent graph;// = new ShipGraphicsComponent();
-		//graph = (ShipGraphicsComponent) ship.getGraphic();
+		//ShipGraphicsComponent graph;// = new ShipGraphicsComponent();
+		//Graphics2D = ship.getGraphic()
+		Graphics2D g2d = (Graphics2D) ship.getGraphic();
+		g2d.rotate(15);
 		
-		graph = (ShipGraphicsComponent) ship.getGraphic();
-		//graph.getG2().rotate(15);
-		//graph.update(ship, g);
 		
-		ship.setGraphic((GraphicsComponent) graph);
+		
+		
+		//AnimationPanel ap = ship.
+		
+		//SwingGraphics sg = new SwingGraphics(ship.getGraphic(), 0, 0, 0, 0);
+		
+		//g2d.rotate(15);
+		//ship.setGraphic(g2d);
+		
+		
+//		graph = (ShipGraphicsComponent) ship.getGraphic();
+//				
+//				ship.getGraphic().update(ship, ship.getGraphic() + ship.getGraphic());
+//		
+//		
+//		
+//		graph = (ShipGraphicsComponent) ship.getGraphic();
+//		//graph.getG2().rotate(15);
+//		//graph.update(ship, g);
+//		
+//		
+//		
+//		ship.setGraphic((GraphicsComponent) graph);
 		
 		
 		//graph.update(ship, new ShipGraphicsComponent());

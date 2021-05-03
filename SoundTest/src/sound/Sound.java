@@ -8,7 +8,7 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.FloatControl;
 
 	
-public abstract class Sound implements SoundObserver {
+public abstract class Sound  {
 		private static final double START_VOLUME = 0.50;
 	    private SoundPath soundPath;
 	    private double volume;
@@ -115,9 +115,9 @@ public abstract class Sound implements SoundObserver {
 		}	
 		
 		
-		public void update(SoundPath st) {
-			setSoundType(st);
-			startClip();		
-		}
+//		public void update(SoundPath st) {
+//			setSoundType(st);
+//			startClip();		
+//		}
 	
 }

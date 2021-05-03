@@ -12,6 +12,7 @@ public class ShipGraphicsComponent implements GraphicsComponent {
 		 * select the proper sprite according to the ship state
 		 */
 		g.drawBall(obj);
+		
 	}
 
 }
