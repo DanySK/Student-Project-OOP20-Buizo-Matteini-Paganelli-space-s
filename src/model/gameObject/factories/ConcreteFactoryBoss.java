@@ -1,14 +1,13 @@
-package model.gameElement.factories;
+package model.gameObject.factories;
 
 import java.awt.Dimension;
 import java.util.Optional;
 
-import model.gameElement.GameObjectUtils;
-import model.gameElement.Movement;
-import model.gameElement.V2d;
-import model.gameElement.asteroid.Asteroid;
-import model.gameElement.boss.Boss;
-import model.gameElement.weapon.Weapon;
+import model.gameObject.GameObjectUtils;
+import model.gameObject.Movement;
+import model.gameObject.V2d;
+import model.gameObject.boss.Boss;
+import model.gameObject.weapon.Weapon;
 import model.image.EngineImage;
 import model.environment.Point2D;
 import utilities.IconPath;

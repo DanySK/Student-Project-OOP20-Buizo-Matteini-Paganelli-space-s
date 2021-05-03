@@ -1,4 +1,4 @@
-package model.gameElement;
+package model.gameObject;
 
 public enum Velocity {
 	VERY_SLOW,

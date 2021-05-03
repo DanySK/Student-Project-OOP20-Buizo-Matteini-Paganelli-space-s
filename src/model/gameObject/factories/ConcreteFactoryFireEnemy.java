@@ -1,18 +1,15 @@
-package model.gameElement.factories;
+package model.gameObject.factories;
 
 import java.awt.Dimension;
 import java.util.Optional;
 
-import model.GUI.settings.SkinSpaceShip;
-import model.gameElement.GameObjectUtils;
-import model.gameElement.Movement;
-import model.gameElement.V2d;
-import model.gameElement.boss.Boss;
-import model.gameElement.fireEnemy.FireEnemy;
-import model.gameElement.weapon.Weapon;
+import model.gameObject.GameObjectUtils;
+import model.gameObject.Movement;
+import model.gameObject.V2d;
+import model.gameObject.fireEnemy.FireEnemy;
+import model.gameObject.weapon.Weapon;
 import model.environment.Point2D;
 import model.image.EngineImage;
-import utilities.DimensionScreen;
 import utilities.IconPath;
 
 public class ConcreteFactoryFireEnemy extends AbstractFactoryGameObject {
