@@ -22,8 +22,6 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
 
     private PanelGame panelGame = new PanelGame();
 
-    private final SpaceShipView spaceShip;
-
     public GUIGameConcrete(){
         super();
         this.life = new LifeBar();
@@ -33,7 +31,6 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
         this.roundTimer = new RoundTimer();
         this.btnPause = new BtnPauseID();
         this.counterEnemies = new CounterEnemies();
-        this.spaceShip = new SpaceShipView();
 
         panelGame.setBounds(super.getBounds());
     }
@@ -71,18 +68,19 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
         return btnPause;
     }
 
-    public SpaceShipView getSpaceShip() {
-        return this.spaceShip;
-    }
-
     @Override
-    public SpaceShipView getSpaceship() {
-        return this.spaceShip;
+    public PanelGame getPanelGame() {
+        return this.panelGame;
     }
 
     @Override
     public void addKeyListenerSpaceship(KeyListener keyListener) {
         this.addKeyListener(keyListener);
+    }
+
+    @Override
+    public void repaintGameObjects(){
+        this.panelGame.repaint();
     }
 
     public PanelGame getGameCanvas() {

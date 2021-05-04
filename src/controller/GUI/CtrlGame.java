@@ -1,6 +1,5 @@
 package controller.GUI;
 
-import controller.spaceShip.SpaceShipController;
 import model.GUI.EngineGUI;
 import model.GUI.game.EngineGame;
 import view.GUI.GUI;
@@ -13,13 +12,10 @@ public class CtrlGame implements ControllerGUI{
     private final EngineGame engine;
     private final GUIGame gui;
 
-    private final SpaceShipController controllerSpace;
 
     public CtrlGame(final EngineGame engine, final GUIGame gui){
         this.engine = engine;
         this.gui = gui;
-        this.controllerSpace = new SpaceShipController(this.engine.getSpaceShipSingleton(),
-                this.gui.getSpaceship());
 
         this.gui.addKeyListenerSpaceship(this.getKeyListener());
 
@@ -32,6 +28,7 @@ public class CtrlGame implements ControllerGUI{
     }
 
     private KeyListener getKeyListener(){
+
 //        return new KeyListener() {
 //            @Override
 //            public void keyTyped(KeyEvent e) {
@@ -69,6 +66,7 @@ public class CtrlGame implements ControllerGUI{
 //            }
 //        };
     	return this.engine.getMovementKeyListener();
+
     }
 
     @Override
