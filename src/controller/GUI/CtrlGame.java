@@ -1,6 +1,5 @@
 package controller.GUI;
 
-import controller.spaceShip.SpaceShipController;
 import model.GUI.EngineGUI;
 import model.GUI.game.EngineGame;
 import view.GUI.GUI;
@@ -13,13 +12,10 @@ public class CtrlGame implements ControllerGUI{
     private final EngineGame engine;
     private final GUIGame gui;
 
-    private final SpaceShipController controllerSpace;
 
     public CtrlGame(final EngineGame engine, final GUIGame gui){
         this.engine = engine;
         this.gui = gui;
-        this.controllerSpace = new SpaceShipController(this.engine.getSpaceShipSingleton(),
-                this.gui.getSpaceship());
 
         this.gui.addKeyListenerSpaceship(this.getKeyListener());
 
@@ -40,27 +36,7 @@ public class CtrlGame implements ControllerGUI{
 
             @Override
             public void keyPressed(KeyEvent e) {
-                if(e.getKeyCode() == 38){
 
-                    controllerSpace.getSPaceShipView().setLocation(
-                            controllerSpace.getSPaceShipView().getX(),
-                            controllerSpace.getSPaceShipView().getY() - 10);
-                }
-                if(e.getKeyCode() == 39) {
-                    controllerSpace.getSPaceShipView().setLocation(
-                            controllerSpace.getSPaceShipView().getX() + 10,
-                            controllerSpace.getSPaceShipView().getY());
-                }
-                if(e.getKeyCode() == 40){
-                    controllerSpace.getSPaceShipView().setLocation(
-                            controllerSpace.getSPaceShipView().getX(),
-                            controllerSpace.getSPaceShipView().getY() + 10);
-                }
-                if(e.getKeyCode() == 37) {
-                    controllerSpace.getSPaceShipView().setLocation(
-                            controllerSpace.getSPaceShipView().getX() - 10,
-                            controllerSpace.getSPaceShipView().getY());
-                }
             }
 
             @Override
