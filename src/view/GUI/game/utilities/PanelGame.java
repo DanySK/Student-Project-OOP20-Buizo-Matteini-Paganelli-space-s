@@ -28,8 +28,8 @@ public class PanelGame extends JPanel {
                 50,50, new Dimension(30, 30), new P2d(200, 200), null, null,
                 null), transform);
 
-        transform.translate(asteroid.getPosition().getX(), asteroid.getPosition().getY());
-        this.addGameObject(asteroid, transform);
+//        transform.translate(asteroid.getPosition().getX(), asteroid.getPosition().getY());
+//        this.addGameObject(asteroid, transform);
 
 
         this.repaint();
