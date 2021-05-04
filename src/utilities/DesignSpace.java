@@ -1,13 +1,12 @@
 package utilities;
 
-import model.environment.Point2D;
-import model.image.EngineImage;
-
 import java.awt.*;
 import java.net.URL;
 
+import model.common.P2d;
+
 public class DesignSpace {
-    public static final Point2D CENTER_ENVIRONMENT = new Point2D(DimensionScreen.WIDTH_MEDIUM / 2, DimensionScreen.HEIGHT_MEDIUM / 2);
+    public static final P2d CENTER_ENVIRONMENT = new P2d(DimensionScreen.WIDTH_MEDIUM / 2, DimensionScreen.HEIGHT_MEDIUM / 2);
 
     public static int SIZE_FONT_MAX = 60;
     public static int SIZE_FONT_BIG = 30;

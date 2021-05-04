@@ -5,11 +5,10 @@ import java.util.Optional;
 
 import model.gameObject.GameObjectUtils;
 import model.gameObject.Movement;
-import model.common.V2d;
+import model.common.*;
 import model.gameObject.boss.Boss;
 import model.gameObject.weapon.Weapon;
 import model.image.EngineImage;
-import model.environment.Point2D;
 import utilities.IconPath;
 
 public class ConcreteFactoryBoss extends AbstractFactoryGameObject {
@@ -20,7 +19,7 @@ public class ConcreteFactoryBoss extends AbstractFactoryGameObject {
 		Dimension size = engineImage.getSize();
 		int life = GameObjectUtils.BOSS_LIFE;
 		int damage = GameObjectUtils.BOSS_DAMAGE;		
-		Point2D point = GameObjectUtils.generateSpawnPoint(size);
+		P2d point = GameObjectUtils.generateSpawnPoint(size);
 		Movement movement = Movement.RANDOM;
 		V2d velocity = GameObjectUtils.BOSS_VEL;
 		Optional<Weapon> weapon = Optional.of(new Weapon());

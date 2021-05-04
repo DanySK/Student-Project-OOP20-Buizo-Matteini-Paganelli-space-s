@@ -1,6 +1,6 @@
 package controller.GUI;
 
-import controller.GUI.Command.SwitchGUI;
+import controller.GUI.command.SwitchGUI;
 import controller.utilities.ListGUI;
 import model.GUI.EngineGUI;
 import utilities.IdGUI;

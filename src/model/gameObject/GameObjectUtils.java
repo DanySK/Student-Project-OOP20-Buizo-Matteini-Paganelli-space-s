@@ -2,8 +2,8 @@ package model.gameObject;
 
 import java.awt.Dimension;
 import java.util.Random;
-import model.environment.Point2D;
 import utilities.DimensionScreen;
+import model.common.P2d;
 import model.common.V2d;
 
 public class GameObjectUtils {
@@ -49,7 +49,7 @@ public class GameObjectUtils {
     public static final int AXIS_NUMBER = Edge.values().length;
 
     
-    public static Point2D generateSpawnPoint(Dimension objectDim) {
+    public static P2d generateSpawnPoint(Dimension objectDim) {
     	Random random = new Random();
     	int xAxis = 0;
     	int yAxis = 0;
@@ -73,7 +73,7 @@ public class GameObjectUtils {
 		break;
 		}
 
-    	return new Point2D(xAxis, yAxis);
+    	return new P2d(xAxis, yAxis);
     }
     
     public static void main(String[] args) {

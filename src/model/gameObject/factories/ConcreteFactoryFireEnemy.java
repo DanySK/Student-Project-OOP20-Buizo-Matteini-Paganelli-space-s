@@ -5,10 +5,9 @@ import java.util.Optional;
 
 import model.gameObject.GameObjectUtils;
 import model.gameObject.Movement;
-import model.common.V2d;
+import model.common.*;
 import model.gameObject.fireEnemy.FireEnemy;
 import model.gameObject.weapon.Weapon;
-import model.environment.Point2D;
 import model.image.EngineImage;
 import utilities.IconPath;
 
@@ -20,7 +19,7 @@ public class ConcreteFactoryFireEnemy extends AbstractFactoryGameObject {
 		Dimension size = engineImage.getSize();
 		int life = GameObjectUtils.FIRE_ENEMY_LIFE;
 		int damage = GameObjectUtils.FIRE_ENEMY_DAMAGE;		
-		Point2D point = GameObjectUtils.generateSpawnPoint(size);
+		P2d point = GameObjectUtils.generateSpawnPoint(size);
 		Movement movement = Movement.RANDOM;
 		V2d velocity = GameObjectUtils.FIRE_ENEMY_VEL;
 		Optional<Weapon> weapon = Optional.of(new Weapon());

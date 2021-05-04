@@ -5,11 +5,10 @@ import java.util.Optional;
 import model.gameObject.AbstractGameObject;
 import model.gameObject.GameObjectUtils;
 import model.gameObject.Movement;
-import model.common.V2d;
+import model.common.*;
 import model.gameObject.weapon.Weapon;
 import model.image.EngineImage;
 import model.GUI.settings.SkinSpaceShip;
-import model.environment.Point2D;
 import utilities.DesignSpace;
 import utilities.DimensionScreen;
 
@@ -29,7 +28,7 @@ public class SpaceShipSingleton extends AbstractGameObject {
     * Invisible class constructor specifying space ship initial position and image path
     */
     private SpaceShipSingleton(final EngineImage engineImage, final int life, final int damage,
-    						   final Point2D position, final Movement movement, final V2d velocity,
+    						   final P2d position, final Movement movement, final V2d velocity,
     						   final Optional<Weapon> weapon) {
     	super(engineImage, life, damage, position, movement, velocity, weapon);
     }
