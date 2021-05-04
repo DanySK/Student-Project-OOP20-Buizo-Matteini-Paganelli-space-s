@@ -1,11 +1,8 @@
 package controller.GUI;
 
 import controller.GUI.command.SwitchGUI;
-import controller.sound.CallerAudio;
 import controller.utilities.ListGUI;
 import model.GUI.EngineGUI;
-import model.sound.*;
-import model.sound.category.SoundLoop;
 import utilities.IdGUI;
 import utilities.SoundPath;
 import view.GUI.GUI;

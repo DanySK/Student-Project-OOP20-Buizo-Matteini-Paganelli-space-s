@@ -10,8 +10,11 @@ import javax.swing.event.ChangeListener;
 import CommandProva.Caller.CallerAudio;
 import CommandProva.CmdType.CmdAudioType;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+
+
 
 
 public class GUI extends JFrame {
@@ -61,35 +64,53 @@ public class GUI extends JFrame {
         };
         
  
-        //jslider.setMinorTickSpacing(10); 
-        //jslider.setSnapToTicks(true);
+        jslider.setMinorTickSpacing(10); 
+        jslider.setSnapToTicks(true);
              
         jslider.addChangeListener(new ChangeListener() {
         
         	//Integer currentVolume = 50;
-        	//Integer diff = 0;
+        	//Integer step = 0;
 			public void stateChanged(ChangeEvent event) { 	
 				
 				telecomando.changeVolume(jslider.getValue());
         		 
+				
 //        		  List<Integer> accepted = Arrays.asList(0,10,20,30,40,50,60,70,80,90,100);
 //        		  Integer sValue = jslider.getValue();
 //        		
 //        		  
 //        		  if(accepted.contains(sValue) && currentVolume != sValue) {
-//        			  //Integer diff = (sValue + 50)/100;
-//        			  diff = -(currentVolume - sValue)/10;
+        			  //Integer diff = (sValue + 50)/100;
+        			  //step = -(currentVolume - sValue)/10;
 //        			  if(diff > 0) {
 //        				  telecomando.execute(CmdAudioType.TURN_UP_VOLUME);
 //        			  }
 //        			  else {
 //        				  telecomando.execute(CmdAudioType.TURN_DOWN_VOLUME);
 //        			  }
-//
+//        			  step = -(currentVolume - sValue)/10;
 //        			  currentVolume = sValue;
-//        			  System.out.println(sValue);
+//        			  //System.out.println("Value jslider: " + sValue);
+//        			  System.out.println("Value diff: " + step);
 //        			  
-//        		  }
+//        			  if(step > 0) {
+//        				  for(int i = 0; i < step; i++) {
+//        					  System.out.println(i);
+//        					  telecomando.execute(CmdAudioType.TURN_UP_VOLUME);
+//        				  }
+//    				  //telecomando.execute(CmdAudioType.TURN_UP_VOLUME);
+//	    			  }
+//	    			  else {
+//	    				  //telecomando.execute(CmdAudioType.TURN_DOWN_VOLUME);
+//	    				  for(int i = step; i <= 0; i++) {
+//	    					  System.out.println(i);
+//        					  telecomando.execute(CmdAudioType.TURN_DOWN_VOLUME);
+//        				  }
+//	    			  }
+        			  
+        			  
+        		  //}
 	  
         	  }
 

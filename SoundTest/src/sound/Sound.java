@@ -8,7 +8,7 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.FloatControl;
 
 	
-public abstract class Sound implements SoundObserver {
+public abstract class Sound  {
 		private static final double START_VOLUME = 0.50;
 	    private SoundPath soundPath;
 	    private double volume;
@@ -65,7 +65,7 @@ public abstract class Sound implements SoundObserver {
 		public void setVol(double volume) {
 			FloatControl gain = null;
 
-			System.out.println(getClip().get());
+			//System.out.println(getClip().get());
 			
 			gain = (FloatControl) getClip().get().getControl(FloatControl.Type.MASTER_GAIN);
 		
@@ -78,13 +78,14 @@ public abstract class Sound implements SoundObserver {
 		public void turnUpVol() {
 			
 			//10 = step slider volume.
-			this.volume += 10;
-			setVol(this.volume);
+			this.volume += 0.1;
+			System.out.println("turn up:" + this.volume);
+			this.setVol(this.volume);
 //			FloatControl gain = null;
 //			
 //			gain = (FloatControl) getClip().get().getControl(FloatControl.Type.MASTER_GAIN);
 //		
-//			float dB = (float) (Math.log(volume + 10) / Math.log(10) * 20);
+//			float dB = (float) (Math.log(volume + 0.1) / Math.log(10) * 20);
 //			
 //			//il Range di deciBel va da -40 a 0;
 //			System.out.println(dB);
@@ -93,13 +94,15 @@ public abstract class Sound implements SoundObserver {
 		}	
 		
 		public void turnDownVol() {
-			this.volume -= 10;
-			setVol(this.volume);
+			this.volume -= 0.1;
+			System.out.println("turn down:" + this.volume);
+			this.setVol(this.volume);
+			//double parsedVolume = currentVolume / 100.0f;
 //			FloatControl gain = null;
 //			
 //			gain = (FloatControl) getClip().get().getControl(FloatControl.Type.MASTER_GAIN);
 //		
-//			float dB = (float) (Math.log(volume - 10) / Math.log(10) * 20);
+//			float dB = (float) (Math.log(volume - 0.1) / Math.log(10) * 20);
 //			
 //			//il Range di deciBel va da -40 a 0;
 //			System.out.println(dB);
@@ -112,9 +115,9 @@ public abstract class Sound implements SoundObserver {
 		}	
 		
 		
-		public void update(SoundPath st) {
-			setSoundType(st);
-			startClip();		
-		}
+//		public void update(SoundPath st) {
+//			setSoundType(st);
+//			startClip();		
+//		}
 	
 }

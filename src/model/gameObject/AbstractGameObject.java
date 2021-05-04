@@ -4,19 +4,22 @@ import java.awt.Dimension;
 import java.util.Optional;
 
 import model.gameObject.weapon.Weapon;
-import model.environment.Point2D;
+import model.common.*;
 import model.image.EngineImage;
+import model.worldEcollisioni.physics.BoundingBox;
+
 
 public abstract class AbstractGameObject {
 	private EngineImage engineImage;
 	private int life;
 	private int damage;
-	private Point2D position;
+	private P2d position;
 	private Movement movement;
 	private V2d velocity;
 	private Optional<Weapon> weapon;
+	private BoundingBox boundingBox;
 
-	public AbstractGameObject(EngineImage engineImage, int life, int damage, Point2D point,
+	public AbstractGameObject(EngineImage engineImage, int life, int damage, P2d point,
 							  Movement movement, V2d vel, Optional<Weapon> weapon) {
 		this.engineImage = engineImage;
 		this.life = life;
@@ -51,11 +54,11 @@ public abstract class AbstractGameObject {
 		this.damage = damage;
 	}
 
-	public Point2D getPosition() {
+	public P2d getPosition() {
 		return position;
 	}
 
-	public void setPosition(Point2D position) {
+	public void setPosition(P2d position) {
 		this.position = position;
 	}
 
@@ -94,6 +97,10 @@ public abstract class AbstractGameObject {
 	public String getPath(){
 		return this.engineImage.getPath();
 	}
+		
+	public BoundingBox getBBox(){
+		return this.boundingBox;
+	}
 
 	public int getRespectTo(){
 		return this.engineImage.getRespectTo();
@@ -117,5 +124,8 @@ public abstract class AbstractGameObject {
 				+ ", position=" + position + ", movement=" + movement + ", velocity=" + velocity + ", weapon=" + weapon
 				+ "]";
 	}
+
+	
+
 
 }

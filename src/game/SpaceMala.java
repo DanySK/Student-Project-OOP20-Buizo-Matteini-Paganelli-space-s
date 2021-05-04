@@ -6,8 +6,6 @@ import factorys.StaticFactoryEngineGUI;
 import factorys.StaticFactoryGUI;
 import model.sound.category.SoundLoop;
 import utilities.SoundPath;
-import view.GUI.game.GUIGame;
-
 import java.util.List;
 
 public class SpaceMala {

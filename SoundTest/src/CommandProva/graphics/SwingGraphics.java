@@ -35,7 +35,7 @@ public class SwingGraphics implements Graphics {
 		g2.setColor(Color.BLUE);
 		g2.setStroke(strokeBall);
 		int rad = getDeltaXinPixel(((PerkBoundingBox)(obj.getBBox())).getRadius());
-		g2.drawOval(x-rad, y-rad, rad*2, rad*2);
+		g2.drawRect(x-rad, y-rad, rad*2, rad*2);
 	}
 
 	@Override
@@ -59,5 +59,13 @@ public class SwingGraphics implements Graphics {
 
 	private int getDeltaXinPixel(double dx){
 		return (int)  Math.round(dx * ratioX);
+	}
+	
+	public Graphics2D getG2() {
+		return g2;
+	}
+
+	public void setG2(Graphics2D g2) {
+		this.g2 = g2;
 	}
 }
