@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.util.Optional;
 
 import model.gameObject.weapon.Weapon;
+import model.common.V2d;
 import model.environment.Point2D;
 import model.image.EngineImage;
 

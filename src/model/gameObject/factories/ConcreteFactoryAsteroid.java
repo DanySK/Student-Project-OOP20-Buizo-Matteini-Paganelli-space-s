@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import model.gameObject.GameObjectUtils;
 import model.gameObject.Movement;
-import model.gameObject.V2d;
+import model.common.V2d;
 import model.gameObject.asteroid.Asteroid;
 import model.gameObject.weapon.Weapon;
 import model.image.EngineImage;

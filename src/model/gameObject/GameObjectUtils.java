@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.util.Random;
 import model.environment.Point2D;
 import utilities.DimensionScreen;
+import model.common.V2d;
 
 public class GameObjectUtils {
 

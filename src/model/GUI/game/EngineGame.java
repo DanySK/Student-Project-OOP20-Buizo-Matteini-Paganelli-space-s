@@ -2,6 +2,7 @@ package model.GUI.game;
 
 import model.GUI.EngineGUI;
 import model.GUI.Visibility;
+import model.input.MovementKeyListener;
 import model.spaceShip.SpaceShipSingleton;
 import utilities.IdGUI;
 
@@ -10,11 +11,13 @@ import java.util.List;
 public class EngineGame implements EngineGUI {
     private final IdGUI id = IdGUI.ID_GAME;
     private final SpaceShipSingleton spaceShipSingleton;
+    private final MovementKeyListener movementKeyListener;
 
-    private Visibility visibility = Visibility.HIDDEN;
+	private Visibility visibility = Visibility.HIDDEN;
 
     public EngineGame(){
         this.spaceShipSingleton = SpaceShipSingleton.getSpaceShip();
+        this.movementKeyListener = new MovementKeyListener(this.spaceShipSingleton);
     }
 
     @Override
@@ -43,6 +46,10 @@ public class EngineGame implements EngineGUI {
     }
 
     public SpaceShipSingleton getSpaceShipSingleton() {
-        return spaceShipSingleton;
+        return this.spaceShipSingleton;
     }
+    
+    public MovementKeyListener getMovementKeyListener() {
+		return this.movementKeyListener;
+	}
 }

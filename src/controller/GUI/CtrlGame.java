@@ -32,42 +32,43 @@ public class CtrlGame implements ControllerGUI{
     }
 
     private KeyListener getKeyListener(){
-        return new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if(e.getKeyCode() == 38){
-
-                    controllerSpace.getSPaceShipView().setLocation(
-                            controllerSpace.getSPaceShipView().getX(),
-                            controllerSpace.getSPaceShipView().getY() - 10);
-                }
-                if(e.getKeyCode() == 39) {
-                    controllerSpace.getSPaceShipView().setLocation(
-                            controllerSpace.getSPaceShipView().getX() + 10,
-                            controllerSpace.getSPaceShipView().getY());
-                }
-                if(e.getKeyCode() == 40){
-                    controllerSpace.getSPaceShipView().setLocation(
-                            controllerSpace.getSPaceShipView().getX(),
-                            controllerSpace.getSPaceShipView().getY() + 10);
-                }
-                if(e.getKeyCode() == 37) {
-                    controllerSpace.getSPaceShipView().setLocation(
-                            controllerSpace.getSPaceShipView().getX() - 10,
-                            controllerSpace.getSPaceShipView().getY());
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-
-            }
-        };
+//        return new KeyListener() {
+//            @Override
+//            public void keyTyped(KeyEvent e) {
+//
+//            }
+//
+//            @Override
+//            public void keyPressed(KeyEvent e) {
+//                if(e.getKeyCode() == 38){
+//
+//                    controllerSpace.getSPaceShipView().setLocation(
+//                            controllerSpace.getSPaceShipView().getX(),
+//                            controllerSpace.getSPaceShipView().getY() - 10);
+//                }
+//                if(e.getKeyCode() == 39) {
+//                    controllerSpace.getSPaceShipView().setLocation(
+//                            controllerSpace.getSPaceShipView().getX() + 10,
+//                            controllerSpace.getSPaceShipView().getY());
+//                }
+//                if(e.getKeyCode() == 40){
+//                    controllerSpace.getSPaceShipView().setLocation(
+//                            controllerSpace.getSPaceShipView().getX(),
+//                            controllerSpace.getSPaceShipView().getY() + 10);
+//                }
+//                if(e.getKeyCode() == 37) {
+//                    controllerSpace.getSPaceShipView().setLocation(
+//                            controllerSpace.getSPaceShipView().getX() - 10,
+//                            controllerSpace.getSPaceShipView().getY());
+//                }
+//            }
+//
+//            @Override
+//            public void keyReleased(KeyEvent e) {
+//
+//            }
+//        };
+    	return this.engine.getMovementKeyListener();
     }
 
     @Override
