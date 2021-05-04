@@ -49,6 +49,10 @@ public class JImage extends JComponent{
         return new Dimension(this.width, this.height);
     }
 
+    public Image getImage(){
+        return this.imageIcon.getImage();
+    }
+
 
     public void setSize(final int width, final int height){
         super.setSize(width, height);
