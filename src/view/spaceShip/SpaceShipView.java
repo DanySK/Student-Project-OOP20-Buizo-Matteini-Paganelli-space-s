@@ -5,72 +5,54 @@ import java.awt.geom.AffineTransform;
 
 import javax.swing.ImageIcon;
 
+import model.GUI.settings.SkinSpaceShip;
 import model.environment.Point2D;
+import utilities.IconPath;
 import view.utilities.JImage;
+import javax.swing.*;
 
-public class SpaceShipView {
-	private Graphics2D graphics;
-	private ImageIcon shipImage;
-	private AffineTransform transform;
-	
+public class SpaceShipView extends JComponent {
+	private static final long serialVersionUID = 1L;
+
 	public SpaceShipView() {
+        super();
+        
+        super.setOpaque(true);
+        super.setBackground(Color.BLUE);
+        super.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+        super.setBounds(200, 200, 200, 200);
+        super.setLocation(super.getX() + 10, super.getY() + 10);
     }
-	
-	public SpaceShipView(Graphics2D graphics, ImageIcon img, AffineTransform transform) {
-		this.graphics = graphics;
-		this.shipImage= img;
-		this.transform = transform;
-    }
-	
-	public Graphics2D getGraphics() {
-		return graphics;
+
+
+    @Override
+	public void paintComponent(final Graphics g){
+//		super.paintComponent(g);
+		final Graphics2D g2d = (Graphics2D) g;
+
+		Image img = JImage.getImageFromPath(SkinSpaceShip.MALA.getPath());
+		g2d.drawImage(img, 50, 50, null);
+
+
+
+		System.out.println("sssss" + img);
+
+
 	}
 
-	public void setGraphics(Graphics2D graphics) {
-		this.graphics = graphics;
-	}
-
-	public AffineTransform getTransform() {
-		return transform;
-	}
-
-	public void setTransform(AffineTransform transform) {
-		this.transform = transform;
-	}
-
-	public void setShipImage(ImageIcon shipImage) {
-		this.shipImage = shipImage;
-	}
-	
-    public Image getShipImage() {
-        return this.shipImage.getImage();
-    }
-    
-    public void draw(ImageIcon img, AffineTransform transform) {
-    	graphics.drawImage(img.getImage(), transform, null);
-	}
-    
-    public void draw(ImageIcon img, Point2D point) {
-    	graphics.drawImage(img.getImage(), point.getX(), point.getY(), null);
-	}
-    
-    public void draw(ImageIcon img, int x, int y) {
-    	graphics.drawImage(img.getImage(), x, y, null);
-	}
-    
-    public void setPosition(Point2D point) {
-    	graphics.drawImage(getShipImage(), point.getX(), point.getY(), null);
-	}
-    
-    public void setPosition(final int x, final int y) {
-    	graphics.drawImage(getShipImage(), x, y, null);
-	}
-    
-    public void setSize(final int width, final int height) {
-    	JImage.resizeImageIcon(this.shipImage, width, height);
-	}
-
-    public void setSize(final Dimension dimension) {
-    	JImage.resizeImageIcon(this.shipImage, dimension);
-	}
+//    public void setPosition(Point2D point) {
+//    	graphics.drawImage(getShipImage(), point.getX(), point.getY(), null);
+//	}
+//
+//    public void setPosition(final int x, final int y) {
+//    	graphics.drawImage(getShipImage(), x, y, null);
+//	}
+//
+//    public void setSize(final int width, final int height) {
+//    	JImage.resizeImageIcon(this.shipImage, width, height);
+//	}
+//
+//    public void setSize(final Dimension dimension) {
+//    	JImage.resizeImageIcon(this.shipImage, dimension);
+//	}
 }

@@ -7,9 +7,6 @@ import view.utilities.JPanelImage;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-import java.util.Arrays;
 
 public abstract class AbstractGUI extends JFrame{
     private final JPanelImage panelBackground;
@@ -21,7 +18,6 @@ public abstract class AbstractGUI extends JFrame{
         super();
         this.panelBackground = new JPanelImage(DimensionScreen.PATH_MAIN_BACKGROUND);
         this.panelForeground = new JPanel(new BorderLayout()) {{ setOpaque(false); setVisible(false); }};
-
         super.setContentPane(this.panelBackground);
         super.setGlassPane(this.panelForeground);
 
@@ -33,7 +29,6 @@ public abstract class AbstractGUI extends JFrame{
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         super.setUndecorated(true);
         super.setResizable(false);
-
     }
 
 
@@ -52,6 +47,10 @@ public abstract class AbstractGUI extends JFrame{
 
     public void addForegroundPanel(final Component component, final String index){
         this.panelForeground.add(component, index);
+    }
+
+    public void addBackPanel(final Component component){
+        this.panelBackground.add(component);
     }
 
     public void visibleForegroundPanel(final boolean visible){
@@ -75,4 +74,5 @@ public abstract class AbstractGUI extends JFrame{
     public void setBorder(final int thickness){
         this.panelBackground.setBorder(BorderFactory.createLineBorder(DesignSpace.color4, thickness));
     }
+
 }

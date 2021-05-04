@@ -13,9 +13,11 @@ import model.environment.Point2D;
 
 public class Asteroid extends AbstractGameObject {
 	
-	public Asteroid(EngineImage engineImage, Integer life,Integer damage, Dimension dim, Point2D point, Movement movement, V2d vel, Optional<Weapon> weapon) {
+	public Asteroid(EngineImage engineImage, Integer life,Integer damage, Dimension dim,
+					Point2D point, Movement movement, V2d vel, Optional<Weapon> weapon) {
 		super(engineImage, life, damage, point, movement, vel, weapon);
 	}
+
 
 	@Override
 	public String toString() {
