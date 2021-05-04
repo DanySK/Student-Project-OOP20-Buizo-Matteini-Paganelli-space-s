@@ -10,5 +10,7 @@ public interface GUIGame extends GUI, GraphicsGUIGame {
 
     public PanelGame getPanelGame();
 
+    public void repaintGameObjects();
+
     public void addKeyListenerSpaceship(final KeyListener keyListener);
 }

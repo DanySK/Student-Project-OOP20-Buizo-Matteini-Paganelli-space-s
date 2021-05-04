@@ -78,6 +78,10 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
         this.addKeyListener(keyListener);
     }
 
+    @Override
+    public void repaintGameObjects(){
+        this.panelGame.repaint();
+    }
 
     public PanelGame getGameCanvas() {
         return panelGame;
