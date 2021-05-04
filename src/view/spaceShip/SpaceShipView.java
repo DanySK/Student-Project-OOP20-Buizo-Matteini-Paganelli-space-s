@@ -9,8 +9,6 @@ import model.GUI.settings.SkinSpaceShip;
 import model.environment.Point2D;
 import utilities.IconPath;
 import view.utilities.JImage;
-
-<<<<<<< HEAD
 import javax.swing.*;
 
 public class SpaceShipView extends JComponent {
@@ -41,20 +39,20 @@ public class SpaceShipView extends JComponent {
 
 
 	}
-	
-    public void setPosition(Point2D point) {
-    	graphics.drawImage(getShipImage(), point.getX(), point.getY(), null);
-	}
-    
-    public void setPosition(final int x, final int y) {
-    	graphics.drawImage(getShipImage(), x, y, null);
-	}
-    
-    public void setSize(final int width, final int height) {
-    	JImage.resizeImageIcon(this.shipImage, width, height);
-	}
 
-    public void setSize(final Dimension dimension) {
-    	JImage.resizeImageIcon(this.shipImage, dimension);
-	}
+//    public void setPosition(Point2D point) {
+//    	graphics.drawImage(getShipImage(), point.getX(), point.getY(), null);
+//	}
+//
+//    public void setPosition(final int x, final int y) {
+//    	graphics.drawImage(getShipImage(), x, y, null);
+//	}
+//
+//    public void setSize(final int width, final int height) {
+//    	JImage.resizeImageIcon(this.shipImage, width, height);
+//	}
+//
+//    public void setSize(final Dimension dimension) {
+//    	JImage.resizeImageIcon(this.shipImage, dimension);
+//	}
 }
