@@ -11,11 +11,13 @@ public class Score extends JPanel {
     private final JLabel score;
 
     public Score(){
-        super(new FlowLayout());
-        super.setOpaque(false);
+        super(new FlowLayout()); {{ setOpaque(false); }}
 
         this.stringScore = new JLabel("Score: ");
         this.score = new JLabel("2345800");
+
+        this.stringScore.setOpaque(false);
+        this.score.setOpaque(false);
 
         this.stringScore.setFont(DesignSpace.getFontForGame(35));
         this.stringScore.setForeground(DesignSpace.color4);

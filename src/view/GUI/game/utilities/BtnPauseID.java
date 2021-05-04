@@ -14,7 +14,7 @@ public class BtnPauseID extends ButtonID {
 
     public BtnPauseID(){
         super();
-        FactoryGUIs.setIconJButtonFromRate(this, IconPath.ICON_PAUSE, 5, DimensionScreen.WIDTH_FULL_SCREEN);
+        FactoryGUIs.setIconJButtonFromRate(this, IconPath.ICON_PAUSE, 30, DimensionScreen.WIDTH_FULL_SCREEN);
         super.addMouseListener(this.mouseListener());
     }
 
@@ -31,12 +31,12 @@ public class BtnPauseID extends ButtonID {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                FactoryGUIs.setIconJButtonFromRate(BtnPauseID.this, IconPath.ICON_PAUSE_2FACE, 3, DimensionScreen.WIDTH_FULL_SCREEN);
+                FactoryGUIs.setIconJButtonFromRate(BtnPauseID.this, IconPath.ICON_PAUSE_2FACE, 30, DimensionScreen.WIDTH_FULL_SCREEN);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                FactoryGUIs.setIconJButtonFromRate(BtnPauseID.this, IconPath.ICON_PAUSE, 3, DimensionScreen.WIDTH_FULL_SCREEN);
+                FactoryGUIs.setIconJButtonFromRate(BtnPauseID.this, IconPath.ICON_PAUSE, 30, DimensionScreen.WIDTH_FULL_SCREEN);
             }
         };
     }

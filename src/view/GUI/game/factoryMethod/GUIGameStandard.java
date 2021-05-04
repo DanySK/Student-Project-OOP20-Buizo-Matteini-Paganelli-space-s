@@ -46,15 +46,22 @@ public class GUIGameStandard implements FactoryGUIGame {
 
         JPanel panelNorth = new JPanel(new BorderLayout()) {{ setOpaque(false); }};
 
-
         panelNorth.add(concreteGame.getScore(), BorderLayout.WEST);
         panelNorth.add(FactoryGUIs.encapsulatesInPanel_Flow(concreteGame.getRoundTimer()), BorderLayout.CENTER);
         panelNorth.add(FactoryGUIs.encapsulatesHorizontal(java.util.List.of(
                 concreteGame.getBtnPause(), concreteGame.getCounterEnemies()), 5), BorderLayout.EAST);
 
 
+        concreteGame.setBackgroundLayout(null);
         concreteGame.visibleForegroundPanel(true);
+
+
+
         concreteGame.addForegroundPanel(panelNorth, BorderLayout.NORTH);
         concreteGame.addForegroundPanel(panelSouth, BorderLayout.SOUTH);
+
+        concreteGame.addBackPanel(concreteGame.getGameCanvas());
+
+        panelNorth.setOpaque(false);
     }
 }
