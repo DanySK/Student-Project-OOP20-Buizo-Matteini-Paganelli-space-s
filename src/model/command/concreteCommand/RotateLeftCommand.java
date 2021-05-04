@@ -1,8 +1,5 @@
 package model.command.concreteCommand;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-
 import model.command.commandInterfaces.CommandMovement;
 import model.gameObject.AbstractGameObject;
 import model.common.V2d;
@@ -14,6 +11,8 @@ public class RotateLeftCommand implements CommandMovement{
 	@Override
 	public void execute(AbstractGameObject ship) {
 		System.out.println("Rotate Left");
+		
+	
 		//ship.getGraphic().getClass().cast(ship.getGraphic());
 		
 		//System.out.println()
