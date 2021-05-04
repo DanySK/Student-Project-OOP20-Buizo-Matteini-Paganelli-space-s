@@ -21,10 +21,6 @@ public class Asteroid extends AbstractGameObject {
 
 	@Override
 	public String toString() {
-		return "Asteroid [getLife()=" + getLife() + ", getMovement()=" + getMovement() + ", getDamage()=" + getDamage()
-				+ ", getVelocity()=" + getVelocity() + ", getPosition()=" + getPosition() + ", getDimension()="
-				+ getSize() + ", getPathImage()=" + getImageEngine() + ", getClass()=" + getClass() + ", hashCode()="
-				+ hashCode() + ", toString()=" + super.toString() + "]";
+		return "Asteroid { " + super.toString() + " }";
 	}
-	
 }

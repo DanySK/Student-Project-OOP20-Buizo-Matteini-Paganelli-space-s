@@ -16,7 +16,6 @@ public abstract class AbstractGameObject {
 	private V2d velocity;
 	private Optional<Weapon> weapon;
 
-	
 	public AbstractGameObject(EngineImage engineImage, int life, int damage, Point2D point,
 							  Movement movement, V2d vel, Optional<Weapon> weapon) {
 		this.engineImage = engineImage;
@@ -109,6 +108,14 @@ public abstract class AbstractGameObject {
 	}
 	
 //	public void setScale(int scaleOf, int respectTo) {
-//		this.engineImage.setScaleOfRespect(scaleOf, respectTo);
-//	}
+//	this.engineImage.setScaleOfRespect(scaleOf, respectTo);
+//}
+	
+	@Override
+	public String toString() {
+		return "AbstractGameObject [engineImage=" + engineImage + ", life=" + life + ", damage=" + damage
+				+ ", position=" + position + ", movement=" + movement + ", velocity=" + velocity + ", weapon=" + weapon
+				+ "]";
+	}
+
 }
