@@ -19,27 +19,12 @@ public class PanelGame extends JPanel {
     public PanelGame() {
         super(); {{ setOpaque(false); }}
         this.gameObject = new HashMap<>();
-
-        super.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
-        final AffineTransform transform = new AffineTransform();
-
-
-        this.addGameObject(new Asteroid(new EngineImage(30, DimensionScreen.WIDTH_FULL_SCREEN, IconPath.ICON_BULLET),
-                50,50, new Dimension(30, 30), new P2d(200, 200), null, null,
-                null), transform);
-
-//        transform.translate(asteroid.getPosition().getX(), asteroid.getPosition().getY());
-//        this.addGameObject(asteroid, transform);
-
-
-        this.repaint();
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-
         this.gameObject.forEach((key, value) -> g2d.drawImage(
                 this.getImageFromPath(key.getImageEngine()), value, null));
     }
@@ -49,9 +34,13 @@ public class PanelGame extends JPanel {
         this.repaint();
     }
 
+    public void deleteGameObject(final AbstractGameObject gameObject){
+        this.gameObject.remove(gameObject);
+        this.repaint();
+    }
+
     private Image getImageFromPath(final EngineImage image){
         JImage icon = new JImage(image.getPath(), image.getSize());
         return icon.getImage();
     }
-
 }

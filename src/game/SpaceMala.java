@@ -28,6 +28,7 @@ public class SpaceMala {
             StaticFactoryEngineGUI.createEngineHelp());
 
     private SoundPath soundPath = CtrlGUI.FIRST_GUI.getSound();
+
     private final CallerAudio remoteControllerAudio = new CallerAudio(new SoundLoop(soundPath));
 
     private final CtrlSound ctrlSound = new CtrlSound(StaticFactoryGUI.createSoundGUI(),
