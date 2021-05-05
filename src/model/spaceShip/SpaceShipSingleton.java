@@ -1,5 +1,6 @@
 package model.spaceShip;
 
+import java.awt.geom.AffineTransform;
 import java.util.Optional;
 
 import model.gameObject.AbstractGameObject;
@@ -22,15 +23,16 @@ public class SpaceShipSingleton extends AbstractGameObject {
     		DesignSpace.CENTER_ENVIRONMENT,
     		Movement.CONTROLLED,
     		new V2d(),
+    		new AffineTransform(),
     		Optional.of(new Weapon()));
 
     /** 
     * Invisible class constructor specifying space ship initial position and image path
     */
     private SpaceShipSingleton(final EngineImage engineImage, final int life, final int damage,
-    						   final P2d position, final Movement movement, final V2d velocity,
+    						   final P2d position, final Movement movement, final V2d velocity, final AffineTransform trasform,
     						   final Optional<Weapon> weapon) {
-    	super(engineImage, life, damage, position, movement, velocity, weapon);
+    	super(engineImage, life, damage, position, movement, velocity, trasform, weapon);
     }
     
     /**

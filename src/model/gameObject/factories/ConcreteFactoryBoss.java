@@ -1,6 +1,7 @@
 package model.gameObject.factories;
 
 import java.awt.Dimension;
+import java.awt.geom.AffineTransform;
 import java.util.Optional;
 
 import model.gameObject.GameObjectUtils;
@@ -22,9 +23,10 @@ public class ConcreteFactoryBoss extends AbstractFactoryGameObject {
 		P2d point = GameObjectUtils.generateSpawnPoint(size);
 		Movement movement = Movement.RANDOM;
 		V2d velocity = GameObjectUtils.BOSS_VEL;
+		AffineTransform transform = new AffineTransform();  
 		Optional<Weapon> weapon = Optional.of(new Weapon());
 		
-		return new Boss(engineImage, life, damage, size, point, movement, velocity, weapon);
+		return new Boss(engineImage, life, damage, size, point, movement, velocity, transform, weapon);
 	}
 
 }

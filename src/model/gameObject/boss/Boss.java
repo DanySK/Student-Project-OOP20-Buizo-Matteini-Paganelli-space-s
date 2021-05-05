@@ -1,6 +1,7 @@
 package model.gameObject.boss;
 
 import java.awt.Dimension;
+import java.awt.geom.AffineTransform;
 import java.util.Optional;
 import model.gameObject.AbstractGameObject;
 import model.gameObject.Movement;
@@ -11,8 +12,8 @@ import model.image.EngineImage;
 
 public class Boss extends AbstractGameObject {
 
-	public Boss(EngineImage engineImage, Integer life,Integer damage, Dimension dim, P2d point, Movement movement, V2d vel, Optional<Weapon> weapon) {
-		super(engineImage, life, damage, point, movement, vel, weapon);
+	public Boss(EngineImage engineImage, Integer life,Integer damage, Dimension dim, P2d point, Movement movement, V2d vel, AffineTransform transform, Optional<Weapon> weapon) {
+		super(engineImage, life, damage, point, movement, vel, transform, weapon);
 	}
 
 	@Override

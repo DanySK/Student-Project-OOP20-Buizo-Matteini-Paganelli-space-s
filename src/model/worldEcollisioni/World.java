@@ -7,6 +7,7 @@ import java.util.Optional;
 import model.gameObject.AbstractGameObject;
 import model.worldEcollisioni.physics.BoundaryCollision;
 import model.worldEcollisioni.physics.CircleBoundingBox;
+import model.worldEcollisioni.physics.RectBoundingBox;
 import model.common.*;
 //import rollball.physics.BoundaryCollision;
 
