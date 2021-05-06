@@ -1,7 +1,7 @@
 package model.worldEcollisioni.physics;
 
 import model.gameObject.*;
-import model.worldEcollisioni.World;
+import model.world.World;
 
 public class AsteroidObjPhysicsComponent extends PhysicsComponent {
 	

@@ -8,7 +8,6 @@ import model.sound.CmdAudioType;
 import model.sound.Sound;
 
 public class CallerAudio {
-	
 	private final CommandAudio cmdAudioOn;
 	private final CommandAudio cmdAudioOff;
 	

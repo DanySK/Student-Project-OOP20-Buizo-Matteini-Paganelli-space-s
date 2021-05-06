@@ -1,8 +1,11 @@
 package controller.GUI;
 
+import controller.GUI.command.SwitchGUI;
 import model.GUI.EngineGUI;
+import model.GUI.Visibility;
 import model.GUI.settings.Difficulty;
 import model.GUI.settings.EngineSettings;
+import utilities.IdGUI;
 import view.GUI.GUI;
 import view.GUI.settings.GUISettings;
 
@@ -10,61 +13,82 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 
 public class CtrlSettings implements ControllerGUI {
-    private final GUISettings settingsGUI;
-    private final EngineSettings settingsEngine;
+    private final GUISettings gui;
+    private final EngineSettings engine;
 
+    private final SwitchGUI switchGUI;
 
-    public CtrlSettings(final GUISettings GUISettings, final EngineSettings settingsEngine){
-        this.settingsGUI = GUISettings;
-        this.settingsEngine = settingsEngine;
+    public CtrlSettings(final EngineSettings engine, final GUISettings gui){
+        this.gui = gui;
+        this.engine = engine;
+        this.switchGUI = new SwitchGUI(this.engine, this.gui);
 
-        this.initSettings();
+        this.assignId();
+        this.assignStrings();
+        this.assignSettings();
+
     }
 
-    private void initSettings() {
-        this.settingsGUI.setId(this.settingsEngine.getId());
-        this.settingsGUI.setTitleGUI(this.settingsEngine.getTitleGUI());
-        this.settingsGUI.setNameUnits(this.settingsEngine.getListNameUnit());
-        this.settingsGUI.setNameBtnBack(this.settingsEngine.getNameBtnBack());
-        this.settingsGUI.setBtnBackID(this.settingsEngine.getBackLink());
-        this.settingsGUI.setSkinSpaceShip(this.settingsEngine.getSkinSpaceShip());
+    private void assignId() {
+        this.gui.setId(this.engine.getId());
+        this.gui.setBtnBackID(this.engine.getBackLink());
+    }
 
-        this.settingsGUI.getUnitSkin().forEach(btn -> btn.addActionListener(this.changeSkin(btn)));
-        this.settingsGUI.getUnitDifficult().forEach(radio -> radio.addActionListener(this.changeDifficult(radio)));
+    private void assignStrings() {
+        this.gui.setTitleGUI(this.engine.getTitleGUI());
+        this.gui.setNameUnits(this.engine.getListNameUnit());
+        this.gui.setNameBtnBack(this.engine.getNameBtnBack());
+    }
 
-        this.settingsGUI.setDifficult(this.settingsEngine.getDifficultActivate());
-        this.settingsGUI.setVisible(this.settingsEngine.isVisible());
+    private void assignSettings() {
+        this.gui.setSkinSpaceShip(this.engine.getSkinSpaceShip());
+        this.gui.getUnitSkin().forEach(btn -> btn.addActionListener(this.changeSkin(btn)));
+        this.gui.getUnitDifficult().forEach(radio -> radio.addActionListener(this.changeDifficult(radio)));
+        this.gui.setDifficult(this.engine.getDifficultActivate());
     }
 
     private ActionListener changeSkin(JButton btn){
         return e -> {
-            if(btn.getText() == "<"){
-                CtrlSettings.this.settingsEngine.changeSkinSx();
+            if(btn.getText().equals("<")){
+                CtrlSettings.this.engine.changeSkinSx();
             } else {
-                CtrlSettings.this.settingsEngine.changeSkinDx();
+                CtrlSettings.this.engine.changeSkinDx();
             }
-            CtrlSettings.this.settingsGUI.setSkinSpaceShip(CtrlSettings.this.settingsEngine.getSkinSpaceShip());
+            CtrlSettings.this.gui.setSkinSpaceShip(CtrlSettings.this.engine.getSkinSpaceShip());
         };
     }
 
     private ActionListener changeDifficult(JRadioButton rBtn){
         return e -> {
-            if(rBtn.getText() == "Easy"){
-                CtrlSettings.this.settingsEngine.setDifficult(Difficulty.EASY);
-            } else if(rBtn.getText() == "Medium") {
-                CtrlSettings.this.settingsEngine.setDifficult(Difficulty.MEDIUM);
-            } else if(rBtn.getText() == "Hard") {
-                CtrlSettings.this.settingsEngine.setDifficult(Difficulty.HARD);
+            switch (rBtn.getText()) {
+                case "Easy":
+                    CtrlSettings.this.engine.setDifficult(Difficulty.EASY); break;
+                case "Medium":
+                    CtrlSettings.this.engine.setDifficult(Difficulty.MEDIUM); break;
+                case "Hard":
+                    CtrlSettings.this.engine.setDifficult(Difficulty.HARD); break;
             }
         };
     }
 
-    public GUI getGUI() {
-        return this.settingsGUI;
+    @Override
+    public IdGUI getId() {
+        return this.engine.getId();
     }
 
+    @Override
+    public GUI getGUI() {
+        return this.gui;
+    }
+
+    @Override
     public EngineGUI getEngine() {
-        return this.settingsEngine;
+        return this.engine;
+    }
+
+    @Override
+    public void turn(final Visibility visibility) {
+        this.switchGUI.turn(visibility);
     }
 }
 
