@@ -1,9 +1,10 @@
 package controller.spaceShip;
 
-import model.spaceShip.SpaceShipSingleton;
 import view.spaceShip.SpaceShipView;
 
 import java.awt.event.KeyListener;
+
+import model.gameObject.spaceShip.SpaceShipSingleton;
 
 public class SpaceShipController {
 

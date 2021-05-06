@@ -1,20 +1,17 @@
 package model.gameObject.weapon;
 
 public class Weapon {
-	private WeaponType type;
+	
+	private Bullet bulletType;
+	private Magazine magazine;
+	private int munitions;
+	private int damage;
 	
 	public Weapon() {
+		// TODO Auto-generated constructor stub
 	}
 	
-	public Weapon(WeaponType type) {
-		this.type = type;
-	}
-
-	public WeaponType getType() {
-		return type;
-	}
-
-	public void setType(WeaponType type) {
-		this.type = type;
+	public void shot() {
+		
 	}
 }

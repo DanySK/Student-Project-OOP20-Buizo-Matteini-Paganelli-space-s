@@ -1,6 +1,7 @@
 package model.gameObject.weapon;
 
-public enum WeaponType {
+public enum AmmoType {
+	NORMAL,
 	FIRE,
 	ELECTRIC,
 	ICE

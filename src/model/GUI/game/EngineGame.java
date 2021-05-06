@@ -2,8 +2,8 @@ package model.GUI.game;
 
 import model.GUI.EngineGUI;
 import model.GUI.Visibility;
+import model.gameObject.spaceShip.SpaceShipSingleton;
 import model.input.MovementKeyListener;
-import model.spaceShip.SpaceShipSingleton;
 import utilities.IdGUI;
 
 import java.util.List;

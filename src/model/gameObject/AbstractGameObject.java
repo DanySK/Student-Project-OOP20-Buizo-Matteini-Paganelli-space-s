@@ -9,24 +9,20 @@ import model.image.EngineImage;
 import model.worldEcollisioni.physics.BoundingBox;
 
 
-public abstract class AbstractGameObject {
+public abstract class AbstractGameObject extends Movable {
 	private EngineImage engineImage;
 	private int life;
 	private int damage;
-	private P2d position;
-	private Movement movement;
-	private V2d velocity;
+	
 	private Optional<Weapon> weapon;
 	private BoundingBox boundingBox;
 
 	public AbstractGameObject(EngineImage engineImage, int life, int damage, P2d point,
 							  Movement movement, V2d vel, Optional<Weapon> weapon) {
+		super(point, vel, movement);
 		this.engineImage = engineImage;
 		this.life = life;
 		this.damage = damage;
-		this.position = point;
-		this.movement = movement;
-		this.velocity = vel;
 		this.weapon = weapon;
 	}
 
@@ -52,30 +48,6 @@ public abstract class AbstractGameObject {
 
 	public void setDamage(int damage) {
 		this.damage = damage;
-	}
-
-	public P2d getPosition() {
-		return position;
-	}
-
-	public void setPosition(P2d position) {
-		this.position = position;
-	}
-
-	public Movement getMovement() {
-		return movement;
-	}
-
-	public void setMovement(Movement movement) {
-		this.movement = movement;
-	}
-
-	public V2d getVelocity() {
-		return velocity;
-	}
-
-	public void setVelocity(V2d velocity) {
-		this.velocity = velocity;
 	}
 
 	public Optional<Weapon> getWeapon() {
@@ -113,18 +85,16 @@ public abstract class AbstractGameObject {
 	public void setScaleOf(int scaleOf) {
 		this.engineImage.setScaleOf(scaleOf);
 	}
+
+	@Override
+	public String toString() {
+		return "AbstractGameObject [engineImage=" + engineImage + ", life=" + life + ", damage=" + damage + ", weapon="
+				+ weapon + ", boundingBox=" + boundingBox + "], " + super.toString();
+	}
 	
 //	public void setScale(int scaleOf, int respectTo) {
 //	this.engineImage.setScaleOfRespect(scaleOf, respectTo);
 //}
-	
-	@Override
-	public String toString() {
-		return "AbstractGameObject [engineImage=" + engineImage + ", life=" + life + ", damage=" + damage
-				+ ", position=" + position + ", movement=" + movement + ", velocity=" + velocity + ", weapon=" + weapon
-				+ "]";
-	}
-
 	
 
 

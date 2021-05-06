@@ -1,4 +1,4 @@
-package model.spaceShip;
+package model.gameObject.spaceShip;
 
 import java.util.Optional;
 
