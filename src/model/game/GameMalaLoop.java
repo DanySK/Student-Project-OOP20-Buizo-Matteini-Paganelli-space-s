@@ -3,6 +3,8 @@ package model.game;
 import controller.GUI.CtrlGUI;
 import controller.sound.CallerAudio;
 import model.input.MovementKeyListener;
+import model.sound.CmdAudioType;
+import model.sound.category.SoundLoop;
 import model.worldEcollisioni.WorldEvent;
 import view.GUI.game.GUIGame;
 
@@ -27,17 +29,24 @@ public class GameMalaLoop {
         this.controlGUI = new CtrlGUI();
         this.panelGame = this.controlGUI.getPanelGame();
         this.controller = new MovementKeyListener(this.gameState.getSpaceship());
+
         this.panelGame.addKeyListenerSpaceship(controller);
+        this.callerAudio = new CallerAudio(new SoundLoop(this.controlGUI.getCurrentSound()));
+
     }
 
     public void mainLoop(){
         long lastTime = System.currentTimeMillis();
+        this.callerAudio.execute(CmdAudioType.AUDIO_ON);
         while (!gameState.isGameOver()) {
             long current = System.currentTimeMillis();
             int elapsed = (int)(current - lastTime);
             processInput();
             updateGame(elapsed);
+
             render();
+            renderSound();
+
             waitForNextFrame(current);
             lastTime = current;
             System.out.println("LoopMala -> "+ elapsed +" FPS");
@@ -56,6 +65,7 @@ public class GameMalaLoop {
 
     protected void processInput(){
 //        gameState.getWorld().getShip().updateInput(controller);
+
     }
 
     protected void updateGame(int elapsed){
@@ -85,6 +95,11 @@ public class GameMalaLoop {
 
     protected void renderGameOver(){
 //        view.renderGameOver();
+    }
+
+    protected void renderSound(){
+        this.callerAudio.setSound(new SoundLoop(this.controlGUI.getCurrentSound()));
+        this.callerAudio.execute(CmdAudioType.AUDIO_ON);
     }
 
     public void notifyEvent(WorldEvent ev) {

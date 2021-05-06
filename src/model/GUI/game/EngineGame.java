@@ -44,10 +44,6 @@ public class EngineGame implements EngineGUI {
     public List<IdGUI> getLinks() {
         return null;
     }
-
-    public SpaceShipSingleton getSpaceShipSingleton() {
-        return this.spaceShipSingleton;
-    }
     
     public MovementKeyListener getMovementKeyListener() {
 		return this.movementKeyListener;

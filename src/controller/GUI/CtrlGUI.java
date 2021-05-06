@@ -15,6 +15,7 @@ import model.GUI.settings.EngineSettings;
 import model.GUI.sound.EngineSound;
 import utilities.Engines;
 import utilities.IdGUI;
+import utilities.SoundPath;
 import view.GUI.GUI;
 import view.GUI.game.GUIGame;
 import view.GUI.game.utilities.PanelGame;
@@ -122,12 +123,10 @@ public class CtrlGUI {
                         case ID_GAME:
                             this.chronology.add(btn.getIdGUINext());
                             this.managerGui.get(btn.getIdGUINext()).turn(Visibility.VISIBLE);
-                            this.managerGui.get(btn.getIdGUICurrent()).turn(Visibility.HIDDEN);
+                            this.managerGui.get(btn.getIdGUICurrent()).turn(Visibility.HIDDEN); break;
                         default:
                             this.chronology.add(btn.getIdGUINext());
-                            this.managerGui.get(btn.getIdGUINext()).turn(Visibility.VISIBLE);
-                            break;
-
+                            this.managerGui.get(btn.getIdGUINext()).turn(Visibility.VISIBLE); break;
                     }
                     System.out.println("list" + this.chronology);
 
@@ -181,13 +180,17 @@ public class CtrlGUI {
         return null;
     }
 
-    private view.GUI.GUI getGUI(IdGUI id){
+    private GUI getGUI(IdGUI id){
         for (ControllerGUI ctrlGUI : this.managerGui.values()) {
             if(ctrlGUI.getId() == id){
                 return ctrlGUI.getGUI();
             }
         }
         return null;
+    }
+
+    public SoundPath getCurrentSound(){
+        return this.chronology.lastElementOfList().getSound();
     }
 
     private void quitAll(){

@@ -21,7 +21,6 @@ public class SoundLoop extends Sound {
 
 	@Override
 	protected void playSound(String fileName, double volume) {
-
 		Thread thread = new Thread(() -> {
 				URL soundFile = ClassLoader.getSystemResource(fileName);
 				AudioInputStream audioInputStream = null;
