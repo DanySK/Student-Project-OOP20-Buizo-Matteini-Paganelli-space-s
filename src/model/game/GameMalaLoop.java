@@ -98,8 +98,11 @@ public class GameMalaLoop {
     }
 
     protected void renderSound(){
-        this.callerAudio.setSound(new SoundLoop(this.controlGUI.getCurrentSound()));
-        this.callerAudio.execute(CmdAudioType.AUDIO_ON);
+        if(this.callerAudio.isNewSound(this.controlGUI.getCurrentSound())){
+            this.callerAudio.execute(CmdAudioType.AUDIO_OFF);
+            this.callerAudio.setSound(new SoundLoop(this.controlGUI.getCurrentSound()));
+            this.callerAudio.execute(CmdAudioType.AUDIO_ON);
+        }
     }
 
     public void notifyEvent(WorldEvent ev) {

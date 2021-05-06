@@ -6,6 +6,7 @@ import controller.sound.command.PlaySoundCommand;
 import controller.sound.command.StopSoundCommand;
 import model.sound.CmdAudioType;
 import model.sound.Sound;
+import utilities.SoundPath;
 
 public class CallerAudio {
 	private final CommandAudio cmdAudioOn;
@@ -28,10 +29,7 @@ public class CallerAudio {
 	}
 	
 	public void setSound(final Sound sound) {
-		if(this.isNewSound(sound)){
-			this.execute(CmdAudioType.AUDIO_OFF);
-			this.sound = sound;
-		}
+		this.sound = sound;
 	}
 
 	public void changeVolume(int currentVolume) {
@@ -41,8 +39,8 @@ public class CallerAudio {
 		this.sound.setVol(parsedVolume);
 	}
 
-	public boolean isNewSound(final Sound sound){
-		return this.sound.getSoundType() != sound.getSoundType();
+	public boolean isNewSound(final SoundPath sound){
+		return this.sound.getSoundType() != sound;
 	}
 	
 	public void execute(CmdAudioType cmd) {
