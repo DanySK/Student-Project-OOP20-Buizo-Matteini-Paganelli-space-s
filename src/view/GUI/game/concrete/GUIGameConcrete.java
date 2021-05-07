@@ -83,7 +83,4 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
         this.panelGame.repaint();
     }
 
-    public PanelGame getGameCanvas() {
-        return panelGame;
-    }
 }

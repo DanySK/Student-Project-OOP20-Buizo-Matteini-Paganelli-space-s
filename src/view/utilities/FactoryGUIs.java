@@ -16,6 +16,13 @@ public class FactoryGUIs {
         return encapsulate;
     }
 
+    public static JPanel encapsulatesInPanelFlowOrientation(final int orientation, final Component component){
+        JPanel encapsulate = new JPanel(new FlowLayout() {{ setAlignment(orientation); }})
+        {{ setOpaque(false); }};
+        encapsulate.add(component);
+        return encapsulate;
+    }
+
 
     public static JPanel encapsulateInPanel_Box_Vertical_Center(Component component){
         JPanel encapsulate = new JPanel();
