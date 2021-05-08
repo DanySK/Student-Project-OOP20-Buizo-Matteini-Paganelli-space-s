@@ -25,7 +25,7 @@ public class Score extends JPanel {
         this.score.setForeground(DesignSpace.color4);
 
 
-        super.add(FactoryGUIs.encapsulatesHorizontal(java.util.List.of(
+        super.add(FactoryGUIs.createPanelGridBagUnionComponentsHorizontal(java.util.List.of(
                 this.stringScore, this.score), 10));
 
 

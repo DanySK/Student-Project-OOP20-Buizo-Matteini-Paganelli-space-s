@@ -1,7 +1,6 @@
 package view.GUI.sound.utilities;
 
 import model.GUI.sound.TypeUnitSound;
-import utilities.DimensionScreen;
 import view.utilities.FactoryGUIs;
 
 import javax.swing.*;
@@ -24,8 +23,8 @@ public class UnitSound extends JPanel {
     private void graphics(){
         FactoryGUIs.setTransparentDesignJButton(this.btnSwitch);
         FactoryGUIs.setDefaultJSlider(this.sliderSound);
-        super.add(FactoryGUIs.encapsulatesInPanel_Flow(this.lbTitle), BorderLayout.NORTH);
-        super.add(FactoryGUIs.getUnionComponents(java.util.List.of(this.btnSwitch, this.sliderSound)), BorderLayout.CENTER);
+        super.add(FactoryGUIs.encapsulatesInPanelFlow(this.lbTitle), BorderLayout.NORTH);
+        super.add(FactoryGUIs.createPanelFlowUnionComponents(java.util.List.of(this.btnSwitch, this.sliderSound)), BorderLayout.CENTER);
     }
 
     public SliderType getSliderSound(){

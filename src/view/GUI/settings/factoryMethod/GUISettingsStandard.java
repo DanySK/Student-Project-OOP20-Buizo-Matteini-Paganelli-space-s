@@ -31,8 +31,8 @@ public class GUISettingsStandard implements FactoryGUISettings {
     private void createGraphics(final ConcreteGUISettings concreteSettings) {
         concreteSettings.setBackgroundLayout(new BorderLayout());
 
-        concreteSettings.add(FactoryGUIs.encapsulatesInPanel_Flow(concreteSettings.getLbTitle()), BorderLayout.NORTH);
-        concreteSettings.add(FactoryGUIs.encapsulatesInPanel_Flow(concreteSettings.getBtnBack()), BorderLayout.SOUTH);
+        concreteSettings.add(FactoryGUIs.encapsulatesInPanelFlow(concreteSettings.getLbTitle()), BorderLayout.NORTH);
+        concreteSettings.add(FactoryGUIs.encapsulatesInPanelFlow(concreteSettings.getBtnBack()), BorderLayout.SOUTH);
 
         FactoryGUIs.setIconJButtonFromRate(concreteSettings.getBtnBack(), IconPath.ICON_BACK,
                 30, concreteSettings.getWidth());
@@ -41,8 +41,8 @@ public class GUISettingsStandard implements FactoryGUISettings {
         GridBagConstraints lim = FactoryGUIs.createGBConstraintsBase();
         JPanel panelContainPanel = new JPanel(new GridBagLayout()) {{ setOpaque(false); }};
 
-        panelContainPanel.add(FactoryGUIs.encapsulatesVertical(List.of(
-                FactoryGUIs.encapsulatesInPanel_Flow(concreteSettings.getPanelSkin()),
+        panelContainPanel.add(FactoryGUIs.createPanelGridBagUnionComponentsVertical(List.of(
+                FactoryGUIs.encapsulatesInPanelFlow(concreteSettings.getPanelSkin()),
                 concreteSettings.getPanelDifficult()), DesignJComponent.SETTINGS_INSET), lim);
 
         concreteSettings.add(panelContainPanel, BorderLayout.CENTER);

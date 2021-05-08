@@ -28,9 +28,9 @@ public class GUISoundStandard implements FactoryGUISound {
     private void graphics(ConcreteGUISound soundGUI) {
         soundGUI.setBackgroundLayout(new BorderLayout());
         FactoryGUIs.setTransparentDesignJButton(soundGUI.getBtnBack());
-        soundGUI.add(FactoryGUIs.encapsulatesInPanel_Flow(soundGUI.getLbTitle()), BorderLayout.NORTH);
+        soundGUI.add(FactoryGUIs.encapsulatesInPanelFlow(soundGUI.getLbTitle()), BorderLayout.NORTH);
         soundGUI.add(soundGUI.getMixerSound(), BorderLayout.CENTER);
-        soundGUI.add(FactoryGUIs.encapsulatesInPanel_Flow(soundGUI.getBtnBack()), BorderLayout.SOUTH);
+        soundGUI.add(FactoryGUIs.encapsulatesInPanelFlow(soundGUI.getBtnBack()), BorderLayout.SOUTH);
 
         FactoryGUIs.setIconJButtonFromRate(soundGUI.getBtnBack(), IconPath.ICON_BACK,
                 30, soundGUI.getWidth());

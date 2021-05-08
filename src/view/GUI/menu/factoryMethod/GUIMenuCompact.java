@@ -2,7 +2,6 @@ package view.GUI.menu.factoryMethod;
 
 import utilities.DesignJComponent;
 import utilities.DesignSpace;
-import utilities.DimensionScreen;
 import view.GUI.menu.FactoryGUIMenu;
 import view.GUI.menu.GUIMenu;
 import view.GUI.menu.concrete.GUIMenuConcrete;
@@ -33,17 +32,17 @@ public class GUIMenuCompact implements FactoryGUIMenu {
         GridBagConstraints lim = FactoryGUIs.createGBConstraintsWithSpaceTitle(DesignJComponent.SIZE_SPACE_TITLE);
         menu.add(menu.getLbTitle(), lim);
 
-        FactoryGUIs.resetGridBagContraints(lim);
+        FactoryGUIs.resetGridBagConstraints(lim);
         lim.gridy++;
 
         menu.getButtonLinks().forEach(FactoryGUIs::setTransparentDesignJButton);
 
-        menu.add(FactoryGUIs.getUnionComponents(List.of(menu.getTxfNamePlayer(),
+        menu.add(FactoryGUIs.createPanelFlowUnionComponents(List.of(menu.getTxfNamePlayer(),
                 menu.getButtonLinks().get(nBtnUsed++))), lim);
 
         while(nBtnUsed < GUIMenuConcrete.N_BUTTONS){
             lim.gridy++;
-            menu.add(FactoryGUIs.getUnionComponents(List.of(menu.getButtonLinks().get(nBtnUsed++),
+            menu.add(FactoryGUIs.createPanelFlowUnionComponents(List.of(menu.getButtonLinks().get(nBtnUsed++),
                     nBtnUsed + 1 < GUIMenuConcrete.N_BUTTONS ? menu.getButtonLinks().get(nBtnUsed++) : FactoryGUIs.getJComponentEmpty())), lim);
         }
 

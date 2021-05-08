@@ -48,12 +48,12 @@ public class GUIMenuStandard implements FactoryGUIMenu {
         GridBagConstraints lim = FactoryGUIs.createGBConstraintsWithSpaceTitle(DesignJComponent.SIZE_SPACE_TITLE);
         menu.add(menu.getLbTitle(), lim);
 
-        FactoryGUIs.resetGridBagContraints(lim);
+        FactoryGUIs.resetGridBagConstraints(lim);
         lim.gridy++;
 
         menu.getButtonLinks().forEach(FactoryGUIs::setTransparentDesignJButton);
 
-        menu.add(FactoryGUIs.getUnionComponents(List.of(menu.getTxfNamePlayer(),
+        menu.add(FactoryGUIs.createPanelFlowUnionComponents(List.of(menu.getTxfNamePlayer(),
                 menu.getButtonLinks().get(nBtnUsed++))), lim);
 
         while(nBtnUsed < GUIMenuConcrete.N_BUTTONS){

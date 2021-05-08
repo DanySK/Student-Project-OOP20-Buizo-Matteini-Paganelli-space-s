@@ -26,16 +26,16 @@ public class GUIScoreboardReverse implements FactoryGUIScoreboard {
     private void createGraphics(final GUIScoreboardConcrete scoreboardConcrete) {
         scoreboardConcrete.setBackgroundLayout(new BorderLayout());
 
-        scoreboardConcrete.add(FactoryGUIs.encapsulatesInPanel_Flow(scoreboardConcrete.getLbTitle()),
+        scoreboardConcrete.add(FactoryGUIs.encapsulatesInPanelFlow(scoreboardConcrete.getLbTitle()),
                 BorderLayout.NORTH);
         scoreboardConcrete.add(scoreboardConcrete.getBtnBack(), BorderLayout.SOUTH);
 
         JPanel panelScore = new JPanel(new BorderLayout()) {{ setOpaque(false); }};
 
-        panelScore.add(FactoryGUIs.getUnionComponents(java.util.List.of(scoreboardConcrete.getTxtSearchName(),
+        panelScore.add(FactoryGUIs.createPanelFlowUnionComponents(java.util.List.of(scoreboardConcrete.getTxtSearchName(),
                 scoreboardConcrete.getBtnSearch())), BorderLayout.SOUTH);
 
-        panelScore.add(FactoryGUIs.encapsulatesInPanel_Flow(
+        panelScore.add(FactoryGUIs.encapsulatesInPanelFlow(
                 scoreboardConcrete.getScoreboard()), BorderLayout.CENTER);
 
         scoreboardConcrete.add(panelScore, BorderLayout.CENTER);

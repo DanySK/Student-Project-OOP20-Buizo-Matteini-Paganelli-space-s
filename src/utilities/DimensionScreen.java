@@ -47,11 +47,16 @@ public class DimensionScreen {
     public static final String PATH_MAIN_BACKGROUND = "background/main.png";
     public static final String PATH_GAME_BACKGROUND = "background/game.png";
 
+
     public static int findPointXGUI(final int n){
         return (int) (POINT_CENTER_FULLSCREEN.getX() - (n / 2));
     }
 
     public static int findPointYGUI(final int n){
         return (int) (POINT_CENTER_FULLSCREEN.getY() - (n / 2));
+    }
+
+    public static int scaleRespectTo(final int scaleOf, final int respectTo){
+        return scaleOf * respectTo / 1000;
     }
 }
