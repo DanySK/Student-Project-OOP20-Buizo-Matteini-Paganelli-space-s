@@ -4,8 +4,8 @@ import java.awt.*;
 
 public class DimensionScreen {
     private static final float PROPORTION_BIG= 1.1F;
-    private static final float PROPORTION_MEDIUM = 1.3F;
-    private static final float PROPORTION_MINI = 2F;
+    private static final float PROPORTION_MEDIUM = 1.6F;
+    private static final float PROPORTION_MINI = 3F;
 
     public static final Point POINT_ZERO = new Point(0, 0);
 

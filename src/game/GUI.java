@@ -1,14 +1,13 @@
-package sound;
-import sound.category.SoundEffect;
-import sound.category.SoundLoop;
+package game;
+import controller.sound.CallerAudio;
+import model.sound.CmdAudioType;
+import model.sound.category.SoundEffect;
+import model.sound.category.SoundLoop;
 import utilities.SoundPath;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
-import CommandProva.Caller.CallerAudio;
-import CommandProva.CmdType.CmdAudioType;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -45,41 +44,36 @@ public class GUI extends JFrame {
         
         ActionListener toggleLoopSound = (e)->{
             System.out.println("Faccio partire il suono " + e.getActionCommand());
-            
-            
-
-            
-            
     		//observerLoop.update(SoundPath.valueOf(e.getActionCommand()));
             this.telecomando = new CallerAudio(new SoundLoop(SoundPath.valueOf(e.getActionCommand())));
             this.telecomando.execute(CmdAudioType.AUDIO_ON);
         };
         
-        ActionListener toggleEffectSound = (e)->{
-            System.out.println("Faccio partire il suono " + e.getActionCommand());
-            
-    		//observerEffects.update(SoundPath.valueOf(e.getActionCommand()));
-            this.telecomando = new CallerAudio(new SoundEffect(SoundPath.valueOf(e.getActionCommand())));
-            this.telecomando.execute(CmdAudioType.AUDIO_ON);
-        };
+//        ActionListener toggleEffectSound = (e)->{
+//            System.out.println("Faccio partire il suono " + e.getActionCommand());
+//
+//    		//observerEffects.update(SoundPath.valueOf(e.getActionCommand()));
+//            this.telecomando = new CallerAudio(new SoundEffect(SoundPath.valueOf(e.getActionCommand())));
+//            this.telecomando.execute(CmdAudioType.AUDIO_ON);
+//        };
         
  
         jslider.setMinorTickSpacing(10); 
         jslider.setSnapToTicks(true);
-             
+
         jslider.addChangeListener(new ChangeListener() {
-        
+
         	//Integer currentVolume = 50;
         	//Integer step = 0;
-			public void stateChanged(ChangeEvent event) { 	
-				
+			public void stateChanged(ChangeEvent event) {
+
 				telecomando.changeVolume(jslider.getValue());
-        		 
-				
+
+
 //        		  List<Integer> accepted = Arrays.asList(0,10,20,30,40,50,60,70,80,90,100);
 //        		  Integer sValue = jslider.getValue();
-//        		
-//        		  
+//
+//
 //        		  if(accepted.contains(sValue) && currentVolume != sValue) {
         			  //Integer diff = (sValue + 50)/100;
         			  //step = -(currentVolume - sValue)/10;
@@ -93,7 +87,7 @@ public class GUI extends JFrame {
 //        			  currentVolume = sValue;
 //        			  //System.out.println("Value jslider: " + sValue);
 //        			  System.out.println("Value diff: " + step);
-//        			  
+//
 //        			  if(step > 0) {
 //        				  for(int i = 0; i < step; i++) {
 //        					  System.out.println(i);
@@ -108,13 +102,13 @@ public class GUI extends JFrame {
 //        					  telecomando.execute(CmdAudioType.TURN_DOWN_VOLUME);
 //        				  }
 //	    			  }
-        			  
-        			  
+
+
         		  //}
-	  
+
         	  }
 
-			
+
         });
 
 	    final JButton jbMenu = new JButton("GAME_SOUND");
@@ -125,11 +119,11 @@ public class GUI extends JFrame {
 	    final JButton jbLifeDown = new JButton("LIFE_DOWN");
 	    
 	    jbMenu.addActionListener(toggleLoopSound);
-	    jbGame.addActionListener(toggleLoopSound);
-	    jbShoot.addActionListener(toggleEffectSound);
-	    jbMovement.addActionListener(toggleEffectSound);
-	    jbLifeUp.addActionListener(toggleEffectSound);
-	    jbLifeDown.addActionListener(toggleEffectSound);
+//	    jbGame.addActionListener(toggleLoopSound);
+//	    jbShoot.addActionListener(toggleEffectSound);
+//	    jbMovement.addActionListener(toggleEffectSound);
+//	    jbLifeUp.addActionListener(toggleEffectSound);
+//	    jbLifeDown.addActionListener(toggleEffectSound);
 	    
 	    
 	    panel.add(jbMenu);
@@ -144,6 +138,10 @@ public class GUI extends JFrame {
 
         this.setVisible(true);
     }
+
+	public static void main(String[] args) {
+		new GUI();
+	}
 
     
 }

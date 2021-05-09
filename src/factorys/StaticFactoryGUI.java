@@ -10,6 +10,9 @@ import view.GUI.menu.factoryMethod.GUIMenuCompact;
 import view.GUI.menu.factoryMethod.GUIMenuStandard;
 import view.GUI.menu.FactoryGUIMenu;
 import view.GUI.menu.GUIMenu;
+import view.GUI.pause.FactoryGUIPause;
+import view.GUI.pause.GUIPause;
+import view.GUI.pause.factoryMethod.GUIPauseStandard;
 import view.GUI.scoreboard.factoryMethod.GUIScoreboardStandard;
 import view.GUI.scoreboard.FactoryGUIScoreboard;
 import view.GUI.scoreboard.GUIScoreboard;
@@ -19,6 +22,7 @@ import view.GUI.settings.GUISettings;
 import view.GUI.sound.FactoryGUISound;
 import view.GUI.sound.GUISound;
 import view.GUI.sound.factoryMethod.GUISoundStandard;
+import view.utilities.FactoryGUIs;
 
 public class StaticFactoryGUI {
 
@@ -52,4 +56,8 @@ public class StaticFactoryGUI {
         return gameGUI.create();
     }
 
+    public static GUIPause createPauseGUI(){
+        FactoryGUIPause pauseGUI = new GUIPauseStandard();
+        return pauseGUI.create();
+    }
 }

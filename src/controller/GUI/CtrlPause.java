@@ -1,36 +1,41 @@
 package controller.GUI;
 
 import controller.GUI.command.SwitchGUI;
+import factorys.StaticFactoryEngineGUI;
+import factorys.StaticFactoryGUI;
 import model.GUI.EngineGUI;
 import model.GUI.Visibility;
-import model.GUI.game.EngineGame;
+import model.GUI.pause.EnginePause;
 import utilities.IdGUI;
 import view.GUI.GUI;
-import view.GUI.game.GUIGame;
+import view.GUI.pause.GUIPause;
 
-public class CtrlGame implements ControllerGUI{
-    private final EngineGame engine;
-    private final GUIGame gui;
+public class CtrlPause implements ControllerGUI{
+    private final EnginePause engine;
+    private final GUIPause gui;
 
     private final SwitchGUI switchGUI;
 
-    public CtrlGame(final EngineGame engine, final GUIGame gui){
+    public CtrlPause(final EnginePause engine, final GUIPause gui){
         this.engine = engine;
         this.gui = gui;
+
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
 
-        this.init();
-        this.assignListener();
+        this.assignId();
+        this.assignStrings();
+
         this.switchGUI.turn(this.engine.getVisibility());
     }
 
-    private void init(){
+    private void assignId(){
         this.gui.setId(this.engine.getId());
         this.gui.setIdButtons(this.engine.getLinks());
     }
 
-    private void assignListener(){
-        this.gui.addKeyListenerSpaceship(this.engine.getMovementKeyListener());
+    private void assignStrings(){
+        this.gui.setTitleGUI(this.engine.getTitleGUI());
+        this.gui.setNameButtons(this.engine.getListName());
     }
 
     @Override
@@ -49,7 +54,7 @@ public class CtrlGame implements ControllerGUI{
     }
 
     @Override
-    public void turn(final Visibility visibility) {
+    public void turn(Visibility visibility) {
         this.switchGUI.turn(visibility);
     }
 }

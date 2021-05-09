@@ -3,6 +3,7 @@ package factorys;
 import model.GUI.game.EngineGame;
 import model.GUI.help.EngineHelp;
 import model.GUI.menu.EngineMenu;
+import model.GUI.pause.EnginePause;
 import model.GUI.scoreboard.EngineScoreboard;
 import model.GUI.settings.EngineSettings;
 import model.GUI.sound.EngineSound;
@@ -31,5 +32,9 @@ public class StaticFactoryEngineGUI {
 
     public static EngineHelp createEngineHelp(){
         return new EngineHelp();
+    }
+
+    public static EnginePause creEnginePause(){
+        return new EnginePause();
     }
 }

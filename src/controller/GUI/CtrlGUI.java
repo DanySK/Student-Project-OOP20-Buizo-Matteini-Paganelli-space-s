@@ -1,6 +1,7 @@
 package controller.GUI;
 
 import controller.GUI.command.SwitchGUI;
+import controller.sound.CallerAudio;
 import controller.utilities.ListGUI;
 import factorys.StaticFactoryEngineGUI;
 import factorys.StaticFactoryGUI;
@@ -9,6 +10,7 @@ import model.GUI.Visibility;
 import model.GUI.game.EngineGame;
 import model.GUI.help.EngineHelp;
 import model.GUI.menu.EngineMenu;
+import model.GUI.pause.EnginePause;
 import model.GUI.scoreboard.EngineScoreboard;
 import model.GUI.settings.Difficulty;
 import model.GUI.settings.EngineSettings;
@@ -16,11 +18,13 @@ import model.GUI.sound.EngineSound;
 import utilities.Engines;
 import utilities.IdGUI;
 import utilities.SoundPath;
+import utilities.StateLevelGUI;
 import view.GUI.GUI;
 import view.GUI.game.GUIGame;
 import view.GUI.game.utilities.PanelGame;
 import view.GUI.help.GUIHelp;
 import view.GUI.menu.GUIMenu;
+import view.GUI.pause.GUIPause;
 import view.GUI.scoreboard.GUIScoreboard;
 import view.GUI.settings.GUISettings;
 import view.GUI.sound.GUISound;
@@ -43,6 +47,7 @@ public class CtrlGUI {
     private final GUIScoreboard guiScoreboard;
     private final GUISound guiSound;
     private final GUIHelp guiHelp;
+    private final GUIPause guiPause;
 
     private final EngineMenu engineMenu;
     private final EngineGame engineGame;
@@ -50,6 +55,7 @@ public class CtrlGUI {
     private final EngineScoreboard engineScoreboard;
     private final EngineSound engineSound;
     private final EngineHelp engineHelp;
+    private final EnginePause enginePause;
 
     private final CtrlMenu ctrlMenu;
     private final CtrlGame ctrlGame;
@@ -57,6 +63,7 @@ public class CtrlGUI {
     private final CtrlScoreboard ctrlScoreboard;
     private final CtrlSound ctrlSound;
     private final CtrlHelp ctrlHelp;
+    private final CtrlPause ctrlPause;
 
     private final Map<IdGUI, ControllerGUI> managerGui;
 
@@ -71,6 +78,7 @@ public class CtrlGUI {
         this.engineScoreboard = StaticFactoryEngineGUI.createEngineScoreboard();
         this.engineSound = StaticFactoryEngineGUI.createEngineSound();
         this.engineHelp = StaticFactoryEngineGUI.createEngineHelp();
+        this.enginePause = StaticFactoryEngineGUI.creEnginePause();
 
         this.guiMenu = StaticFactoryGUI.createMenuGUI();
         this.guiGame = StaticFactoryGUI.createGameGUI();
@@ -78,6 +86,7 @@ public class CtrlGUI {
         this.guiScoreboard = StaticFactoryGUI.createScoreboardGUI();
         this.guiSound = StaticFactoryGUI.createSoundGUI();
         this.guiHelp = StaticFactoryGUI.createHelpGUI();
+        this.guiPause = StaticFactoryGUI.createPauseGUI();
 
         this.ctrlMenu = new CtrlMenu(this.engineMenu, this.guiMenu);
         this.ctrlGame = new CtrlGame(this.engineGame, this.guiGame);
@@ -85,6 +94,7 @@ public class CtrlGUI {
         this.ctrlScoreboard = new CtrlScoreboard(this.engineScoreboard, this.guiScoreboard);
         this.ctrlSound = new CtrlSound(this.engineSound, this.guiSound);
         this.ctrlHelp = new CtrlHelp(this.engineHelp, this.guiHelp);
+        this.ctrlPause = new CtrlPause(this.enginePause, this.guiPause);
 
         this.managerGui = new HashMap<>(){{
             put(CtrlGUI.this.ctrlMenu.getId(), CtrlGUI.this.ctrlMenu);
@@ -93,13 +103,12 @@ public class CtrlGUI {
             put(CtrlGUI.this.ctrlScoreboard.getId(), CtrlGUI.this.ctrlScoreboard);
             put(CtrlGUI.this.ctrlSound.getId(), CtrlGUI.this.ctrlSound);
             put(CtrlGUI.this.ctrlHelp.getId(), CtrlGUI.this.ctrlHelp);
+            put(CtrlGUI.this.ctrlPause.getId(), CtrlGUI.this.ctrlPause);
         }};
 
         this.listGUI = new ArrayList<>();
 
-        this.managerGui.values().forEach(control -> {
-            CtrlGUI.this.listGUI.add(control.getGUI());
-        });
+        this.managerGui.values().forEach(control -> CtrlGUI.this.listGUI.add(control.getGUI()));
 
         this.chronology = new ListGUI<>() {{ add(FIRST_GUI); }};
 
@@ -146,9 +155,11 @@ public class CtrlGUI {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                if(chronology.lastElementOfList() != IdGUI.ID_MENU && id == IdGUI.ID_MENU){
+                if(id.getStateLevel().equals(StateLevelGUI.FOREGROUND) &&
+                        chronology.lastElementOfList().getStateLevel().equals(StateLevelGUI.OVERLAY)){
+
                     int sizeList = chronology.size() - 1;
-                    while(sizeList > 0 && !chronology.get(sizeList).equals(IdGUI.ID_MENU)){
+                    while(chronology.get(sizeList).getStateLevel().equals(StateLevelGUI.OVERLAY) ){
                         CtrlGUI.this.managerGui.get(chronology.get(sizeList)).turn(Visibility.HIDDEN);
                         chronology.remove(sizeList--);
                     }
@@ -191,6 +202,11 @@ public class CtrlGUI {
 
     public SoundPath getCurrentSound(){
         return this.chronology.lastElementOfList().getSound();
+    }
+
+    public void linksCallerAudioWith(final CallerAudio callerAudio){
+        this.ctrlSound.setCallerAudio(callerAudio);
+        this.ctrlSound.linksCallerWithListener();
     }
 
     private void quitAll(){

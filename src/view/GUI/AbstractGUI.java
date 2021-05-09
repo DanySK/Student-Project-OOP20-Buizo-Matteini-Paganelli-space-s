@@ -29,6 +29,7 @@ public abstract class AbstractGUI extends JFrame{
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         super.setUndecorated(true);
         super.setResizable(false);
+        super.setBackground(new Color(0,0,0,200));
     }
 
 

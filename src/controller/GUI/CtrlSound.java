@@ -1,20 +1,25 @@
 package controller.GUI;
 
 import controller.GUI.command.SwitchGUI;
+import controller.sound.CallerAudio;
 import model.GUI.EngineGUI;
 import model.GUI.Visibility;
 import model.GUI.sound.EngineSound;
+import model.GUI.sound.TypeUnitSound;
+import model.sound.CmdAudioType;
+import utilities.DesignSound;
+import utilities.DimensionScreen;
 import utilities.IdGUI;
 import view.GUI.GUI;
 import view.GUI.sound.GUISound;
-import view.GUI.sound.utilities.SliderType;
-import javax.swing.event.ChangeListener;
+import view.utilities.FactoryGUIs;
 
 public class CtrlSound implements ControllerGUI{
     private final GUISound gui;
     private final EngineSound engine;
 
     private final SwitchGUI switchGUI;
+    private CallerAudio callerAudio;
 
     public CtrlSound(final EngineSound engine, final GUISound gui){
         this.engine = engine;
@@ -42,36 +47,42 @@ public class CtrlSound implements ControllerGUI{
         this.gui.setTitleUnitSound(this.engine.getListNameSlider());
         this.gui.setDefaultValueSlidersSound(this.engine.getDefaultValueSound());
         this.gui.setIconBtnSwitches(this.engine.getIconStateSounds());
-        this.gui.getSlidersSound().forEach(slider ->slider.addChangeListener(this.changeListenerSlider()));
+
     }
 
-    private ChangeListener changeListenerSlider(){
-        return e -> {
-            final SliderType slider = (SliderType)e.getSource();
+    public void setCallerAudio(final CallerAudio callerAudio){
+        this.callerAudio = callerAudio;
+    }
+
+    public void linksCallerWithListener(){
+        this.setChangeListenerSlider();
+        this.setActionListenerChangeSwitchSound();
+    }
+
+    public void setChangeListenerSlider(){
+        this.gui.getSlidersSound().forEach(slider -> {
             this.engine.setValueUnitSound(slider.getType(), slider.getValue());
-        };
+
+            if(this.engine.isActiveUnitSound(TypeUnitSound.SLIDER_BACKGROUND)){
+                this.callerAudio.changeVolume(this.engine.getValueUnitSound(TypeUnitSound.SLIDER_BACKGROUND));
+            }
+        });
     }
 
-//    public void setChangeListenerSlider(final CallerAudio remoteControlAudio){
-//        this.gui.getSlidersSound().forEach(slider ->{
-//            remoteControlAudio.changeVolume(slider.getValue());
-//        });
-//    }
-//
-//    public void setActionListenerChangeSwitchSound(final CallerAudio remoteControlAudio){
-//        this.gui.getBtnSwitches().forEach(btn -> {
-//            this.engine.changeStateUnitSound(btn.getTypeSlider());
-//            FactoryGUIs.setIconJButtonFromRate(btn,
-//                    this.engine.getPathIconUnitSound((btn.getTypeSlider())), 30, DimensionScreen.WIDTH_MEDIUM);
-//
-//            this.gui.getSliderTypeofMixer(btn.getTypeSlider()).setValue(
-//                    this.engine.isActiveUnitSound(btn.getTypeSlider()) ?
-//                            this.engine.getValueUnitSound(btn.getTypeSlider()) : DesignSound.SOUND_ZERO);
-//
-//            remoteControlAudio.execute(this.engine.isActiveUnitSound(btn.getTypeSlider()) ?
+    public void setActionListenerChangeSwitchSound(){
+        this.gui.getBtnSwitches().forEach(btn -> {
+            this.engine.changeStateUnitSound(btn.getTypeSlider());
+            FactoryGUIs.setIconJButtonFromRate(btn,
+                    this.engine.getPathIconUnitSound((btn.getTypeSlider())), 30, DimensionScreen.WIDTH_MEDIUM);
+
+            this.gui.getSliderTypeofMixer(btn.getTypeSlider()).setValue(
+                    this.engine.isActiveUnitSound(btn.getTypeSlider()) ?
+                            this.engine.getValueUnitSound(btn.getTypeSlider()) : DesignSound.SOUND_ZERO);
+
+//            this.callerAudio.execute(this.engine.isActiveUnitSound(btn.getTypeSlider()) ?
 //                    CmdAudioType.AUDIO_ON : CmdAudioType.AUDIO_OFF);
-//        });
-//    }
+        });
+    }
 
     @Override
     public IdGUI getId() {

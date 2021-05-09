@@ -30,14 +30,20 @@ public class GameMalaLoop {
         this.panelGame = this.controlGUI.getPanelGame();
         this.controller = new MovementKeyListener(this.gameState.getSpaceship());
 
-        this.panelGame.addKeyListenerSpaceship(controller);
         this.callerAudio = new CallerAudio(new SoundLoop(this.controlGUI.getCurrentSound()));
+
+
+
+
+        this.panelGame.addKeyListenerSpaceship(controller);
 
     }
 
     public void mainLoop(){
         long lastTime = System.currentTimeMillis();
         this.callerAudio.execute(CmdAudioType.AUDIO_ON);
+//        this.controlGUI.linksCallerAudioWith(this.callerAudio);
+
         while (!gameState.isGameOver()) {
             long current = System.currentTimeMillis();
             int elapsed = (int)(current - lastTime);
