@@ -11,4 +11,6 @@ public interface GraphicsGUIPause {
     public void setForegroundGUI(final Color color);
 
     public void setFontButtons(final Font font);
+
+    public void setBackgroundButtons(final Color color);
 }

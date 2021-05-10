@@ -23,7 +23,7 @@ public class GUIMenuStandard implements FactoryGUIMenu {
         final GUIMenuConcrete menuConcrete = new GUIMenuConcrete();
         menuConcrete.setFontGUI(DesignSpace.FONT_MEDIUM_STANDARD);
         menuConcrete.setForegroundGUI(DesignSpace.color4);
-        menuConcrete.setFontTitleGUI(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
+        menuConcrete.setFontTitleGUI(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_H1));
         menuConcrete.setColumnsNamePlayer(DesignJComponent.SIZE_COLUMNS_TEXT);
 
 

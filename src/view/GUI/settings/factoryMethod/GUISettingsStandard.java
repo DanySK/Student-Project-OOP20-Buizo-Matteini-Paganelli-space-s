@@ -18,7 +18,7 @@ public class GUISettingsStandard implements FactoryGUISettings {
     @Override
     public GUISettings create() {
         final ConcreteGUISettings concreteSettings = new ConcreteGUISettings();
-        concreteSettings.setFontGUITitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
+        concreteSettings.setFontGUITitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_H1));
         concreteSettings.setFontTitleUnit(DesignSpace.FONT_BIG_STANDARD);
         concreteSettings.setFontUnit(DesignSpace.FONT_MEDIUM_STANDARD);
         concreteSettings.setForegroundGUI(DesignSpace.color4);

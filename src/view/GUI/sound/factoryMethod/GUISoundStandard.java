@@ -15,7 +15,7 @@ public class GUISoundStandard implements FactoryGUISound {
     @Override
     public GUISound create() {
         ConcreteGUISound soundGUI = new ConcreteGUISound();
-        soundGUI.setFontGUITitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
+        soundGUI.setFontGUITitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_H1));
         soundGUI.setFontGUI(DesignSpace.FONT_MEDIUM_STANDARD);
         soundGUI.setFontSpacingSlider(DesignSpace.FONT_MICRO_STANDARD);
         soundGUI.setForegroundGUI(DesignSpace.color4);

@@ -17,7 +17,7 @@ public class GUIHelpStandard implements FactoryGUIHelp {
     @Override
     public GUIHelp create(){
         GUIHelpConcrete helpGUIConcrete = new GUIHelpConcrete();
-        helpGUIConcrete.setFontTitleGUI(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
+        helpGUIConcrete.setFontTitleGUI(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_H1));
         helpGUIConcrete.setFontGUI(DesignSpace.FONT_MEDIUM_STANDARD);
         helpGUIConcrete.setForegroundGUI(DesignSpace.color4);
         helpGUIConcrete.setBounds(DimensionScreen.RECTANGLE_MEDIUM);

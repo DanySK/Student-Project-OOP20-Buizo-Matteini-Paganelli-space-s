@@ -17,7 +17,7 @@ public class GUIScoreboardStandard implements FactoryGUIScoreboard {
     @Override
     public GUIScoreboard createGUI() {
         GUIScoreboardConcrete scoreboardConcrete = new GUIScoreboardConcrete();
-        scoreboardConcrete.setFontLbTitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
+        scoreboardConcrete.setFontLbTitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_H1));
         scoreboardConcrete.getTxtSearchName().setColumns(DesignSpace.SIZE_COLUMNS_TEXT);
         scoreboardConcrete.setFontGUI(DesignSpace.FONT_MEDIUM_STANDARD);
         scoreboardConcrete.setForegroundGUI(DesignSpace.color4);

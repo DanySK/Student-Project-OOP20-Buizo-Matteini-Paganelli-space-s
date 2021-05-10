@@ -1,7 +1,6 @@
 package view.GUI.pause.concrete;
 
 import model.GUI.pause.EnginePause;
-import utilities.DesignSpace;
 import utilities.IdGUI;
 import view.GUI.AbstractGUI;
 import view.GUI.pause.GUIPause;
@@ -64,11 +63,17 @@ public class GUIPauseConcrete extends AbstractGUI implements GUIPause {
     @Override
     public void setForegroundGUI(final Color color) {
         this.lbTitle.setForeground(color);
+        this.links.forEach(btn -> btn.setForeground(color));
     }
 
     @Override
     public void setFontButtons(final Font font) {
         this.links.forEach(link -> link.setFont(font));
+    }
+
+    @Override
+    public void setBackgroundButtons(final Color color) {
+        this.links.forEach(btn -> btn.setBackground(color));
     }
 
     public JLabel getLbTitle(){

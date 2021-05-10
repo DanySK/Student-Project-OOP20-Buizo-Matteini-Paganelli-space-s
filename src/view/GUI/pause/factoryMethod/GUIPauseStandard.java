@@ -16,13 +16,16 @@ public class GUIPauseStandard implements FactoryGUIPause {
     public GUIPause create() {
         final GUIPauseConcrete concrete = new GUIPauseConcrete();
 
-        concrete.setFontGUITitle(DesignSpace.getFontForTitle(55));
+        concrete.setFontGUITitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_H1));
+
         concrete.setForegroundGUI(DesignSpace.color4);
         concrete.setFontButtons(DesignSpace.FONT_MEDIUM_STANDARD);
+        concrete.setBackgroundButtons(Color.WHITE);
 
-        concrete.setBackgroundImage("background/transparent.png");
+
         concrete.setBorder(3);
         concrete.setBounds(DimensionScreen.RECTANGLE_MINI);
+        concrete.setBackgroundImage("background/transparent.png");
 
         this.createGraphics(concrete);
 
@@ -33,7 +36,9 @@ public class GUIPauseStandard implements FactoryGUIPause {
     private void createGraphics(final GUIPauseConcrete concrete){
         concrete.setLayout(new BorderLayout());
 
-        concrete.getButtonLinks().forEach(FactoryGUIs::setTransparentDesignJButton);
+        concrete.getButtonLinks().forEach(btn -> btn.setFocusable(false));
+
+
 
         concrete.add(FactoryGUIs.encapsulatesInPanelFlow(concrete.getLbTitle()), BorderLayout.NORTH);
 
