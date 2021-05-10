@@ -6,7 +6,6 @@ import model.GUI.EngineGUI;
 import model.GUI.Visibility;
 import model.GUI.sound.EngineSound;
 import model.GUI.sound.TypeUnitSound;
-import model.sound.CmdAudioType;
 import utilities.DesignSound;
 import utilities.DimensionScreen;
 import utilities.IdGUI;
@@ -100,7 +99,17 @@ public class CtrlSound implements ControllerGUI{
     }
 
     @Override
+    public boolean isVisibility() {
+        return this.engine.isVisible();
+    }
+
+    @Override
     public void turn(final Visibility visibility) {
         this.switchGUI.turn(visibility);
+    }
+
+    @Override
+    public void changeVisibility() {
+        this.switchGUI.changeVisibility();
     }
 }

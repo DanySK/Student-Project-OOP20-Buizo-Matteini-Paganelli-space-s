@@ -87,8 +87,18 @@ public class CtrlSettings implements ControllerGUI {
     }
 
     @Override
+    public boolean isVisibility() {
+        return this.engine.isVisible();
+    }
+
+    @Override
     public void turn(final Visibility visibility) {
         this.switchGUI.turn(visibility);
+    }
+
+    @Override
+    public void changeVisibility() {
+        this.switchGUI.changeVisibility();
     }
 }
 

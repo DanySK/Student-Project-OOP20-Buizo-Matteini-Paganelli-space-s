@@ -12,5 +12,9 @@ public interface ControllerGUI {
 
     public EngineGUI getEngine();
 
+    public boolean isVisibility();
+
     public void turn(final Visibility visibility);
+
+    public void changeVisibility();
 }

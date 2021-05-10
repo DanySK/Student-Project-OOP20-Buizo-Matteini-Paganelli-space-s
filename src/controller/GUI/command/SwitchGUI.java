@@ -36,6 +36,14 @@ public class SwitchGUI {
         }
     }
 
+    public void changeVisibility(){
+        if(this.engine.isVisible()){
+            this.offCmdEngine.execute(engine).execute(gui);
+        } else {
+            this.onCmdEngine.execute(engine).execute(gui);
+        }
+    }
+
     public void turnOnGUI(final EngineGUI engine, final GUI gui){
         this.onCmdEngine.execute(engine).execute(gui);
     }

@@ -8,6 +8,7 @@ import view.GUI.pause.GUIPause;
 import view.utilities.ButtonID;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -49,10 +50,25 @@ public class GUIPauseConcrete extends AbstractGUI implements GUIPause {
         return this.links.get(ind);
     }
 
+
+    @Override
+    public void setFontGUITitle(final Font font) {
+        this.lbTitle.setFont(font);
+    }
+
     @Override
     public void setTitleGUI(final String title) {
-        this.lbTitle.setForeground(DesignSpace.color4);
         this.lbTitle.setText(title);
+    }
+
+    @Override
+    public void setForegroundGUI(final Color color) {
+        this.lbTitle.setForeground(color);
+    }
+
+    @Override
+    public void setFontButtons(final Font font) {
+        this.links.forEach(link -> link.setFont(font));
     }
 
     public JLabel getLbTitle(){

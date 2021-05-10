@@ -1,6 +1,5 @@
 package controller.GUI;
 
-import controller.GUI.command.SwitchGUI;
 import controller.sound.CallerAudio;
 import controller.utilities.ListGUI;
 import factorys.StaticFactoryEngineGUI;
@@ -12,16 +11,13 @@ import model.GUI.help.EngineHelp;
 import model.GUI.menu.EngineMenu;
 import model.GUI.pause.EnginePause;
 import model.GUI.scoreboard.EngineScoreboard;
-import model.GUI.settings.Difficulty;
 import model.GUI.settings.EngineSettings;
 import model.GUI.sound.EngineSound;
-import utilities.Engines;
 import utilities.IdGUI;
 import utilities.SoundPath;
 import utilities.StateLevelGUI;
 import view.GUI.GUI;
 import view.GUI.game.GUIGame;
-import view.GUI.game.utilities.PanelGame;
 import view.GUI.help.GUIHelp;
 import view.GUI.menu.GUIMenu;
 import view.GUI.pause.GUIPause;
@@ -30,7 +26,6 @@ import view.GUI.settings.GUISettings;
 import view.GUI.sound.GUISound;
 import view.utilities.ButtonID;
 
-import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -125,14 +120,25 @@ public class CtrlGUI {
                     System.out.println("Premuto in: " + btn.getIdGUICurrent() + " Vado in: " + btn.getIdGUINext());
 
                     switch (btn.getIdGUINext()) {
-                        case ID_QUIT: this.quitAll(); break;
-                        case ID_BACK:
-                            this.managerGui.get(btn.getIdGUICurrent()).turn(Visibility.HIDDEN);
-                            this.chronology.remove(this.chronology.lastElementOfList()); break;
                         case ID_GAME:
                             this.chronology.add(btn.getIdGUINext());
                             this.managerGui.get(btn.getIdGUINext()).turn(Visibility.VISIBLE);
                             this.managerGui.get(btn.getIdGUICurrent()).turn(Visibility.HIDDEN); break;
+
+                        case ID_PAUSE:
+                            if(this.chronology.lastElementOfList() != IdGUI.ID_PAUSE){
+                                this.chronology.add(btn.getIdGUINext());
+                            } else {
+                                this.chronology.remove(btn.getIdGUINext());
+                            }
+                            this.managerGui.get(btn.getIdGUINext()).changeVisibility(); break;
+
+                        case ID_BACK:
+                            this.managerGui.get(btn.getIdGUICurrent()).turn(Visibility.HIDDEN);
+                            this.chronology.remove(this.chronology.lastElementOfList()); break;
+
+                        case ID_QUIT: this.quitAll(); break;
+
                         default:
                             this.chronology.add(btn.getIdGUINext());
                             this.managerGui.get(btn.getIdGUINext()).turn(Visibility.VISIBLE); break;

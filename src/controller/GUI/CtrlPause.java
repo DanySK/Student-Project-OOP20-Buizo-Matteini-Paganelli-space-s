@@ -1,8 +1,6 @@
 package controller.GUI;
 
 import controller.GUI.command.SwitchGUI;
-import factorys.StaticFactoryEngineGUI;
-import factorys.StaticFactoryGUI;
 import model.GUI.EngineGUI;
 import model.GUI.Visibility;
 import model.GUI.pause.EnginePause;
@@ -54,7 +52,17 @@ public class CtrlPause implements ControllerGUI{
     }
 
     @Override
+    public boolean isVisibility() {
+        return this.engine.isVisible();
+    }
+
+    @Override
     public void turn(Visibility visibility) {
         this.switchGUI.turn(visibility);
+    }
+
+    @Override
+    public void changeVisibility() {
+        this.switchGUI.changeVisibility();
     }
 }
