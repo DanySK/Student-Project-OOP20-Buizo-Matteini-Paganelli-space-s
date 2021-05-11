@@ -32,9 +32,6 @@ public class GameMalaLoop {
 
         this.callerAudio = new CallerAudio(new SoundLoop(this.controlGUI.getCurrentSound()));
 
-
-
-
         this.panelGame.addKeyListenerSpaceship(controller);
 
     }
