@@ -35,8 +35,9 @@ public class GUIHelpConcrete extends AbstractGUI implements GUIHelp {
 
 
     @Override
-    public void setIdBtnBack(final IdGUI intoID) {
-        this.btnBack.setIdGUINext(intoID);
+    public void setIdBtnBack(final IdGUI idBtnBack) {
+        this.btnBack.setIdGUICurrent(super.getId());
+        this.btnBack.setIdGUINext(idBtnBack);
     }
 
     @Override

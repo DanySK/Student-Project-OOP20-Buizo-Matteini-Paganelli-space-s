@@ -4,8 +4,8 @@ import java.awt.*;
 
 public class DimensionScreen {
     private static final float PROPORTION_BIG= 1.1F;
-    private static final float PROPORTION_MEDIUM = 1.3F;
-    private static final float PROPORTION_MINI = 2F;
+    private static final float PROPORTION_MEDIUM = 1.6F;
+    private static final float PROPORTION_MINI = 3F;
 
     public static final Point POINT_ZERO = new Point(0, 0);
 
@@ -47,11 +47,16 @@ public class DimensionScreen {
     public static final String PATH_MAIN_BACKGROUND = "background/main.png";
     public static final String PATH_GAME_BACKGROUND = "background/game.png";
 
+
     public static int findPointXGUI(final int n){
         return (int) (POINT_CENTER_FULLSCREEN.getX() - (n / 2));
     }
 
     public static int findPointYGUI(final int n){
         return (int) (POINT_CENTER_FULLSCREEN.getY() - (n / 2));
+    }
+
+    public static int scaleRespectTo(final int scaleOf, final int respectTo){
+        return scaleOf * respectTo / 1000;
     }
 }

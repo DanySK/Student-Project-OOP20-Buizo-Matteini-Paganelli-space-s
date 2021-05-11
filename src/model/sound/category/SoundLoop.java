@@ -17,31 +17,35 @@ public class SoundLoop extends Sound {
 	
 	public SoundLoop(SoundPath st) {
 		super(st);
+
 	}
 
 	@Override
 	protected void playSound(String fileName, double volume) {
-
 		Thread thread = new Thread(() -> {
-				URL soundFile = ClassLoader.getSystemResource(fileName);
+				final URL soundFile = ClassLoader.getSystemResource(fileName);
 				AudioInputStream audioInputStream = null;
-		        try {
-					if(isPlaying()){
+
+			try {
+				if (isPlaying()) {
 					stopClip();
 					System.out.println(isPlaying());
-					}
-		            audioInputStream = AudioSystem.getAudioInputStream(soundFile);
+				}
 
-		            setClip(AudioSystem.getClip());
-		            getClip().get().open(audioInputStream);
-		            getClip().get().loop(Clip.LOOP_CONTINUOUSLY);
+				audioInputStream = AudioSystem.getAudioInputStream(soundFile);
 
-		            setVol(volume);
-		            getClip().get().start();
-		        }
-		        catch (Exception e){
-		            e.printStackTrace();
-		        }
+				setClip(AudioSystem.getClip());
+
+				getClip().get().open(audioInputStream);
+				getClip().get().loop(Clip.LOOP_CONTINUOUSLY);
+
+				setVol(volume);
+				getClip().get().start();
+
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+
 		});
 	thread.start();
 	}

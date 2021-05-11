@@ -15,7 +15,7 @@ public class GUISoundStandard implements FactoryGUISound {
     @Override
     public GUISound create() {
         ConcreteGUISound soundGUI = new ConcreteGUISound();
-        soundGUI.setFontGUITitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
+        soundGUI.setFontGUITitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_H1));
         soundGUI.setFontGUI(DesignSpace.FONT_MEDIUM_STANDARD);
         soundGUI.setFontSpacingSlider(DesignSpace.FONT_MICRO_STANDARD);
         soundGUI.setForegroundGUI(DesignSpace.color4);
@@ -28,9 +28,9 @@ public class GUISoundStandard implements FactoryGUISound {
     private void graphics(ConcreteGUISound soundGUI) {
         soundGUI.setBackgroundLayout(new BorderLayout());
         FactoryGUIs.setTransparentDesignJButton(soundGUI.getBtnBack());
-        soundGUI.add(FactoryGUIs.encapsulatesInPanel_Flow(soundGUI.getLbTitle()), BorderLayout.NORTH);
+        soundGUI.add(FactoryGUIs.encapsulatesInPanelFlow(soundGUI.getLbTitle()), BorderLayout.NORTH);
         soundGUI.add(soundGUI.getMixerSound(), BorderLayout.CENTER);
-        soundGUI.add(FactoryGUIs.encapsulatesInPanel_Flow(soundGUI.getBtnBack()), BorderLayout.SOUTH);
+        soundGUI.add(FactoryGUIs.encapsulatesInPanelFlow(soundGUI.getBtnBack()), BorderLayout.SOUTH);
 
         FactoryGUIs.setIconJButtonFromRate(soundGUI.getBtnBack(), IconPath.ICON_BACK,
                 30, soundGUI.getWidth());

@@ -1,5 +1,6 @@
 package view.GUI.game.factoryMethod;
 
+import utilities.DimensionScreen;
 import view.GUI.game.FactoryGUIGame;
 import view.GUI.game.GUIGame;
 import view.GUI.game.concrete.GUIGameConcrete;
@@ -20,9 +21,6 @@ public class GUIGameStandard implements FactoryGUIGame {
     }
 
     private void graphics(final GUIGameConcrete concreteGame) {
-        JPanel panelSouth = new JPanel(new BorderLayout(){{ setHgap(250); setVgap(0);}})
-        {{ setOpaque(false); }};
-
         FactoryGUIs.setTransparentDesignJButton(concreteGame.getBtnPause());
         concreteGame.getBtnPause().setBorder(null);
 
@@ -32,36 +30,30 @@ public class GUIGameStandard implements FactoryGUIGame {
         concreteGame.getLife().setForeground(Color.green);
         concreteGame.getLife().setBackground(Color.black);
 
-        panelSouth.add(FactoryGUIs.encapsulateInPanel_Box_Vertical_Center(concreteGame.getLife()),
-                BorderLayout.CENTER);
-        JPanel panel = new JPanel(new BorderLayout() {{setVgap(10); setHgap(10);}} ) {{ setOpaque(false); }};
-        panel.add(concreteGame.getHeartLife(), BorderLayout.CENTER);
+        final JPanel panelNorth = new JPanel(new GridLayout()) {{ setOpaque(false); }};
 
+        panelNorth.add(FactoryGUIs.encapsulatesInPanelFlowOrientation(FlowLayout.LEFT, concreteGame.getScore()));
+        panelNorth.add(FactoryGUIs.encapsulatesInPanelFlow(concreteGame.getRoundTimer()));
+        panelNorth.add(FactoryGUIs.encapsulatesInPanelFlowOrientation(FlowLayout.RIGHT,
+                FactoryGUIs.createPanelGridBagUnionComponentsHorizontal(
+                        java.util.List.of(concreteGame.getBtnPause(), concreteGame.getCounterEnemies()),
+                        5)));
 
-        panelSouth.add(panel,
+        final JPanel panelSouth = new JPanel(new BorderLayout()
+        {{ setHgap(DimensionScreen.scaleRespectTo(50, DimensionScreen.WIDTH_FULL_SCREEN)); }})
+        {{ setOpaque(false); }};
+
+        panelSouth.add(FactoryGUIs.encapsulatesInPanelFlowOrientation(FlowLayout.LEFT,concreteGame.getHeartLife()),
                 BorderLayout.WEST);
-        panelSouth.add(concreteGame.getBullet(), BorderLayout.EAST);
-
-
-
-        JPanel panelNorth = new JPanel(new BorderLayout()) {{ setOpaque(false); }};
-
-        panelNorth.add(concreteGame.getScore(), BorderLayout.WEST);
-        panelNorth.add(FactoryGUIs.encapsulatesInPanel_Flow(concreteGame.getRoundTimer()), BorderLayout.CENTER);
-        panelNorth.add(FactoryGUIs.encapsulatesHorizontal(java.util.List.of(
-                concreteGame.getBtnPause(), concreteGame.getCounterEnemies()), 5), BorderLayout.EAST);
-
-
-        concreteGame.setBackgroundLayout(null);
-        concreteGame.visibleForegroundPanel(true);
-
-
+        panelSouth.add(FactoryGUIs.encapsulateInPanelVerticalCenter(concreteGame.getLife()), BorderLayout.CENTER);
+        panelSouth.add(FactoryGUIs.encapsulatesInPanelFlowOrientation(FlowLayout.RIGHT,concreteGame.getBullet()),
+                BorderLayout.EAST);
 
         concreteGame.addForegroundPanel(panelNorth, BorderLayout.NORTH);
         concreteGame.addForegroundPanel(panelSouth, BorderLayout.SOUTH);
+        concreteGame.visibleForegroundPanel(true);
 
-        concreteGame.addBackPanel(concreteGame.getGameCanvas());
-
-        panelNorth.setOpaque(false);
+        concreteGame.setBackgroundLayout(null);
+        concreteGame.addBackPanel(concreteGame.getPanelGame());
     }
 }

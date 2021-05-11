@@ -3,24 +3,26 @@ package controller.GUI;
 import controller.GUI.command.SwitchGUI;
 import model.GUI.EngineGUI;
 import model.GUI.Visibility;
-import model.GUI.menu.EngineMenu;
+import model.GUI.pause.EnginePause;
 import utilities.IdGUI;
 import view.GUI.GUI;
-import view.GUI.menu.GUIMenu;
+import view.GUI.pause.GUIPause;
 
-public class CtrlMenu implements ControllerGUI {
-    private GUIMenu gui;
-    private EngineMenu engine;
+public class CtrlPause implements ControllerGUI{
+    private final EnginePause engine;
+    private final GUIPause gui;
 
     private final SwitchGUI switchGUI;
 
-    public CtrlMenu(final EngineMenu menuEngine, final GUIMenu menuGUI){
-        this.gui = menuGUI;
-        this.engine = menuEngine;
+    public CtrlPause(final EnginePause engine, final GUIPause gui){
+        this.engine = engine;
+        this.gui = gui;
+
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
 
         this.assignId();
         this.assignStrings();
+
         this.switchGUI.turn(this.engine.getVisibility());
     }
 
@@ -55,7 +57,7 @@ public class CtrlMenu implements ControllerGUI {
     }
 
     @Override
-    public void turn(final Visibility visibility){
+    public void turn(Visibility visibility) {
         this.switchGUI.turn(visibility);
     }
 

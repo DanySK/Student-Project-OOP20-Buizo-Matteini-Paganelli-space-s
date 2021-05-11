@@ -13,16 +13,15 @@ public abstract class Sound {
 	    private SoundPath soundPath;
 	    private double volume;
 	    private Optional<Clip> clip = Optional.empty();
-	    
 
-	    public Sound(SoundPath sound) {
+		public Sound() {
+			this.soundPath = null;
+			this.volume = START_VOLUME;
+		}
+
+	    public Sound(final SoundPath sound) {
 	    	this.soundPath = sound;
 	    	this.volume = START_VOLUME;
-	    }
-	    
-	    public Sound() {
-	    	this.soundPath = null;
-	    	this.volume = START_VOLUME;	
 	    }
 	    
 	    public void setSoundType(SoundPath sound) {
@@ -58,11 +57,14 @@ public abstract class Sound {
 	    }
 	    
 	    protected abstract void playSound(String fileName, double volume);
-
 	   
 	    
 		public void setVol(double volume) {
+			System.out.println("Sono entrato");
+
 			FloatControl gain = null;
+
+			System.out.println(this.clip);
 
 			System.out.println(getClip().get());
 			

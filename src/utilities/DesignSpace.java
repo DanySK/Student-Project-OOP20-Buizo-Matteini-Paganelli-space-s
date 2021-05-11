@@ -8,21 +8,22 @@ import model.common.P2d;
 public class DesignSpace {
     public static final P2d CENTER_ENVIRONMENT = new P2d(DimensionScreen.WIDTH_MEDIUM / 2, DimensionScreen.HEIGHT_MEDIUM / 2);
 
-    public static int SIZE_FONT_MAX = 60;
-    public static int SIZE_FONT_BIG = 30;
-    public static int SIZE_FONT_MEDIUM = 25;
-    public static int SIZE_FONT_MICRO = 20;
-    public static int SIZE_FONT_NANO = 15;
+    public static int SIZE_FONT_H1 = 60;
+    public static int SIZE_FONT_H2 = 55;
+    public static int SIZE_FONT_H3 = 30;
+    public static int SIZE_FONT_H4 = 25;
+    public static int SIZE_FONT_H5 = 20;
+    public static int SIZE_FONT_H6 = 15;
 
     public static final int SIZE_IMAGE_MEDIUM = 70;
     public static final int SIZE_IMAGE_SMALL = 50;
 
     public static final String TYPE_FONT_STANDARD = "Helvetica";
 
-    public static final Font FONT_BIG_STANDARD = new Font(TYPE_FONT_STANDARD, Font.BOLD, SIZE_FONT_BIG);
-    public static final Font FONT_MEDIUM_STANDARD = new Font(TYPE_FONT_STANDARD, Font.BOLD, SIZE_FONT_MEDIUM);
-    public static final Font FONT_MICRO_STANDARD = new Font(TYPE_FONT_STANDARD, Font.BOLD, SIZE_FONT_MICRO);
-    public static final Font FONT_SMALL_STANDARD = new Font(TYPE_FONT_STANDARD, Font.BOLD, SIZE_FONT_NANO);
+    public static final Font FONT_BIG_STANDARD = new Font(TYPE_FONT_STANDARD, Font.BOLD, SIZE_FONT_H3);
+    public static final Font FONT_MEDIUM_STANDARD = new Font(TYPE_FONT_STANDARD, Font.BOLD, SIZE_FONT_H4);
+    public static final Font FONT_MICRO_STANDARD = new Font(TYPE_FONT_STANDARD, Font.BOLD, SIZE_FONT_H5);
+    public static final Font FONT_SMALL_STANDARD = new Font(TYPE_FONT_STANDARD, Font.BOLD, SIZE_FONT_H6);
 
     public static final int SIZE_COLUMNS_TEXT = 10;
 
@@ -30,6 +31,7 @@ public class DesignSpace {
     public static Color color2 = new Color(128, 213, 255);
     public static Color color3 = new Color(148, 233, 255);
     public static Color color4 = new Color(58, 241, 255);
+    public static Color colorOpacityBlack = new Color(0,0,0,200);
 
     public static Font getFontForTitle(final int size){
         URL fontUrl = ClassLoader.getSystemResource("font/mainFont.ttf");

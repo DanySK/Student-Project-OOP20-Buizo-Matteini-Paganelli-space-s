@@ -23,8 +23,8 @@ public class CounterEnemies extends JPanel {
         this.stringEnemies.setForeground(DesignSpace.color4);
         this.counter.setForeground(DesignSpace.color4);
 
-        super.add(FactoryGUIs.encapsulatesVertical(java.util.List.of(
-                this.stringEnemies, FactoryGUIs.encapsulatesInPanel_Flow(this.counter)), 5));
+        super.add(FactoryGUIs.createPanelGridBagUnionComponentsVertical(java.util.List.of(
+                this.stringEnemies, FactoryGUIs.encapsulatesInPanelFlow(this.counter)), 5));
 
     }
 }

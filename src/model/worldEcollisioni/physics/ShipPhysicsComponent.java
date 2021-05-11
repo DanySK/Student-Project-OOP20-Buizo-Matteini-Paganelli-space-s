@@ -3,7 +3,7 @@ package model.worldEcollisioni.physics;
 import java.util.Optional;
 
 import model.gameObject.AbstractGameObject;
-import model.worldEcollisioni.World;
+import model.world.World;
 
 import model.common.P2d;
 

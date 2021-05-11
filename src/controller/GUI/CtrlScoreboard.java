@@ -1,33 +1,66 @@
 package controller.GUI;
 
+import controller.GUI.command.SwitchGUI;
 import model.GUI.EngineGUI;
+import model.GUI.Visibility;
 import model.GUI.scoreboard.EngineScoreboard;
+import utilities.IdGUI;
 import view.GUI.GUI;
 import view.GUI.scoreboard.GUIScoreboard;
 
 public class CtrlScoreboard implements ControllerGUI {
-    private final GUIScoreboard scoreboardGUI;
-    private final EngineScoreboard scoreboardEngine;
+    private final GUIScoreboard gui;
+    private final EngineScoreboard engine;
 
-    public CtrlScoreboard(final GUIScoreboard scoreboardGUI, final EngineScoreboard scoreboardEngine){
-        this.scoreboardGUI = scoreboardGUI;
-        this.scoreboardEngine = scoreboardEngine;
-        this.initScoreboard();
+    private final SwitchGUI switchGUI;
+
+    public CtrlScoreboard(final EngineScoreboard engine, final GUIScoreboard gui){
+        this.gui = gui;
+        this.engine = engine;
+        this.switchGUI = new SwitchGUI(this.engine, this.gui);
+
+        this.assignId();
+        this.assignStrings();
+        this.switchGUI.turn(this.engine.getVisibility());
     }
 
-    private void initScoreboard(){
-        this.scoreboardGUI.setId(this.scoreboardEngine.getId());
-        this.scoreboardGUI.setTitleGUI(this.scoreboardEngine.getTitleGUI());
-        this.scoreboardGUI.setNameButtons(this.scoreboardEngine.getListName());
-        this.scoreboardGUI.setBtnBackID(this.scoreboardEngine.getBackLink());
-        this.scoreboardGUI.setVisible(this.scoreboardEngine.isVisible());
+    private void assignId(){
+        this.gui.setId(this.engine.getId());
+        this.gui.setBtnBackID(this.engine.getBackLink());
     }
 
+    private void assignStrings(){
+        this.gui.setTitleGUI(this.engine.getTitleGUI());
+        this.gui.setNameButtons(this.engine.getListName());
+    }
+
+    @Override
+    public IdGUI getId() {
+        return this.engine.getId();
+    }
+
+    @Override
     public GUI getGUI() {
-        return this.scoreboardGUI;
+        return this.gui;
     }
 
+    @Override
     public EngineGUI getEngine() {
-        return this.scoreboardEngine;
+        return this.engine;
+    }
+
+    @Override
+    public boolean isVisibility() {
+        return this.engine.isVisible();
+    }
+
+    @Override
+    public void turn(final Visibility visibility) {
+        this.switchGUI.turn(visibility);
+    }
+
+    @Override
+    public void changeVisibility() {
+        this.switchGUI.changeVisibility();
     }
 }

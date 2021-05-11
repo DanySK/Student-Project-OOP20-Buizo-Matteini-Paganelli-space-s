@@ -17,7 +17,7 @@ public class GUIHelpStandard implements FactoryGUIHelp {
     @Override
     public GUIHelp create(){
         GUIHelpConcrete helpGUIConcrete = new GUIHelpConcrete();
-        helpGUIConcrete.setFontTitleGUI(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
+        helpGUIConcrete.setFontTitleGUI(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_H1));
         helpGUIConcrete.setFontGUI(DesignSpace.FONT_MEDIUM_STANDARD);
         helpGUIConcrete.setForegroundGUI(DesignSpace.color4);
         helpGUIConcrete.setBounds(DimensionScreen.RECTANGLE_MEDIUM);
@@ -29,10 +29,10 @@ public class GUIHelpStandard implements FactoryGUIHelp {
     private void createGraphics(final GUIHelpConcrete helpConcrete) {
         helpConcrete.setBackgroundLayout(new BorderLayout());
 
-        helpConcrete.add(FactoryGUIs.encapsulatesInPanel_Flow(helpConcrete.getLbTitle()), BorderLayout.NORTH);
-        helpConcrete.add(FactoryGUIs.encapsulatesInPanel_Flow(helpConcrete.getBtnBack()), BorderLayout.SOUTH);
+        helpConcrete.add(FactoryGUIs.encapsulatesInPanelFlow(helpConcrete.getLbTitle()), BorderLayout.NORTH);
+        helpConcrete.add(FactoryGUIs.encapsulatesInPanelFlow(helpConcrete.getBtnBack()), BorderLayout.SOUTH);
 
-        helpConcrete.add(FactoryGUIs.encapsulatesVertical(helpConcrete.getUnitHelps(), DesignJComponent.MIN_INSET),
+        helpConcrete.add(FactoryGUIs.createPanelGridBagUnionComponentsVertical(helpConcrete.getUnitHelps(), DesignJComponent.MIN_INSET),
                 BorderLayout.CENTER);
 
         FactoryGUIs.setTransparentDesignJButton(helpConcrete.getBtnBack());

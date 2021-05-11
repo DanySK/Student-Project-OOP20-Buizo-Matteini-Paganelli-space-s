@@ -1,5 +1,6 @@
 package view.GUI.game.concrete;
 
+import utilities.IdGUI;
 import view.GUI.AbstractGUI;
 import view.GUI.game.GUIGame;
 import view.GUI.game.utilities.*;
@@ -69,6 +70,12 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
     }
 
     @Override
+    public void setIdButtons(List<IdGUI> linksID) {
+        this.btnPause.setIdGUICurrent(super.getId());
+        this.btnPause.setIdGUINext(linksID.get(0));
+    }
+
+    @Override
     public PanelGame getPanelGame() {
         return this.panelGame;
     }
@@ -83,7 +90,4 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
         this.panelGame.repaint();
     }
 
-    public PanelGame getGameCanvas() {
-        return panelGame;
-    }
 }

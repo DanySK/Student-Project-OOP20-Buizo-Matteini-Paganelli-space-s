@@ -2,7 +2,7 @@ package model.worldEcollisioni.physics;
 
 import model.common.*;
 import model.gameObject.AbstractGameObject;
-import model.worldEcollisioni.World;
+import model.world.World;
 
 public abstract class PhysicsComponent {
 

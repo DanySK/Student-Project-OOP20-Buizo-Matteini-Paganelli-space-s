@@ -17,7 +17,7 @@ public class GUIScoreboardStandard implements FactoryGUIScoreboard {
     @Override
     public GUIScoreboard createGUI() {
         GUIScoreboardConcrete scoreboardConcrete = new GUIScoreboardConcrete();
-        scoreboardConcrete.setFontLbTitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_MAX));
+        scoreboardConcrete.setFontLbTitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_H1));
         scoreboardConcrete.getTxtSearchName().setColumns(DesignSpace.SIZE_COLUMNS_TEXT);
         scoreboardConcrete.setFontGUI(DesignSpace.FONT_MEDIUM_STANDARD);
         scoreboardConcrete.setForegroundGUI(DesignSpace.color4);
@@ -30,10 +30,10 @@ public class GUIScoreboardStandard implements FactoryGUIScoreboard {
     private void createGraphics(final GUIScoreboardConcrete scoreboardConcrete) {
         scoreboardConcrete.setBackgroundLayout(new BorderLayout());
 
-        scoreboardConcrete.add(FactoryGUIs.encapsulatesInPanel_Flow(scoreboardConcrete.getLbTitle()),
+        scoreboardConcrete.add(FactoryGUIs.encapsulatesInPanelFlow(scoreboardConcrete.getLbTitle()),
                 BorderLayout.NORTH);
 
-        scoreboardConcrete.add(FactoryGUIs.encapsulatesInPanel_Flow(scoreboardConcrete.getBtnBack()),
+        scoreboardConcrete.add(FactoryGUIs.encapsulatesInPanelFlow(scoreboardConcrete.getBtnBack()),
                 BorderLayout.SOUTH);
 
         FactoryGUIs.setTransparentDesignJButton(scoreboardConcrete.getBtnSearch());
@@ -46,10 +46,10 @@ public class GUIScoreboardStandard implements FactoryGUIScoreboard {
 
         JPanel panelScore = new JPanel(new BorderLayout()) {{ setOpaque(false); }};
 
-        panelScore.add(FactoryGUIs.getUnionComponents(List.of(scoreboardConcrete.getTxtSearchName(),
+        panelScore.add(FactoryGUIs.createPanelFlowUnionComponents(List.of(scoreboardConcrete.getTxtSearchName(),
                 scoreboardConcrete.getBtnSearch())), BorderLayout.NORTH);
 
-        panelScore.add(FactoryGUIs.encapsulatesInPanel_Flow(scoreboardConcrete.getScoreboard()),
+        panelScore.add(FactoryGUIs.encapsulatesInPanelFlow(scoreboardConcrete.getScoreboard()),
                 BorderLayout.CENTER);
 
         scoreboardConcrete.add(panelScore, BorderLayout.CENTER);

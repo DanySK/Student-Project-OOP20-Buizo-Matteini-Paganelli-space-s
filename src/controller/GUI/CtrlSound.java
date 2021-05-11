@@ -1,81 +1,115 @@
 package controller.GUI;
 
+import controller.GUI.command.SwitchGUI;
 import controller.sound.CallerAudio;
 import model.GUI.EngineGUI;
+import model.GUI.Visibility;
 import model.GUI.sound.EngineSound;
-import model.sound.CmdAudioType;
+import model.GUI.sound.TypeUnitSound;
 import utilities.DesignSound;
 import utilities.DimensionScreen;
-import utilities.SoundPath;
+import utilities.IdGUI;
 import view.GUI.GUI;
 import view.GUI.sound.GUISound;
-import view.GUI.sound.utilities.ButtonSliderType;
 import view.utilities.FactoryGUIs;
-import view.GUI.sound.utilities.SliderType;
-
-import javax.swing.event.ChangeListener;
-import java.awt.event.ActionListener;
-import java.util.stream.Collectors;
 
 public class CtrlSound implements ControllerGUI{
-    private final GUISound soundGUI;
-    private final EngineSound soundEngine;
+    private final GUISound gui;
+    private final EngineSound engine;
 
-    public CtrlSound(final GUISound soundGUI, final EngineSound soundEngine){
-        this.soundEngine = soundEngine;
-        this.soundGUI = soundGUI;
-        this.initSound();
+    private final SwitchGUI switchGUI;
+    private CallerAudio callerAudio;
+
+    public CtrlSound(final EngineSound engine, final GUISound gui){
+        this.engine = engine;
+        this.gui = gui;
+        this.switchGUI = new SwitchGUI(this.engine, this.gui);
+
+        this.assignId();
+        this.assignStrings();
+        this.assignSound();
+        this.switchGUI.turn(this.engine.getVisibility());
     }
 
-    private void initSound(){
-        this.soundGUI.setId(this.soundEngine.getId());
-        this.soundGUI.setTitleGUI(this.soundEngine.getTitle());
-        this.soundGUI.setNameButtonBack(this.soundEngine.getNameBack());
-        this.soundGUI.setTypeUnitSound(this.soundEngine.getListTypeUnitSound());
-        this.soundGUI.setTitleUnitSound(this.soundEngine.getListNameSlider());
-        this.soundGUI.setDefaultValueSlidersSound(this.soundEngine.getDefaultValueSound());
-        this.soundGUI.setIconBtnSwitches(this.soundEngine.getIconStateSounds());
-        this.soundGUI.setBtnBackID(this.soundEngine.getBackLink());
-        this.soundGUI.setVisible(this.soundEngine.isVisible());
-
-        this.soundGUI.getSlidersSound().forEach(slider ->slider.addChangeListener(this.changeListenerSlider()));
+    private void assignId() {
+        this.gui.setId(this.engine.getId());
+        this.gui.setBtnBackID(this.engine.getBackLink());
     }
 
-    private ChangeListener changeListenerSlider(){
-        return e -> {
-            final SliderType slider = (SliderType)e.getSource();
-            this.soundEngine.setValueUnitSound(slider.getType(), slider.getValue());
-        };
+    private void assignStrings() {
+        this.gui.setTitleGUI(this.engine.getTitle());
+        this.gui.setNameButtonBack(this.engine.getNameBack());
     }
 
-    public void setChangeListenerSlider(final CallerAudio remoteControlAudio){
-        this.soundGUI.getSlidersSound().forEach(slider ->{
-            remoteControlAudio.changeVolume(slider.getValue());
+    private void assignSound(){
+        this.gui.setTypeUnitSound(this.engine.getListTypeUnitSound());
+        this.gui.setTitleUnitSound(this.engine.getListNameSlider());
+        this.gui.setDefaultValueSlidersSound(this.engine.getDefaultValueSound());
+        this.gui.setIconBtnSwitches(this.engine.getIconStateSounds());
+
+    }
+
+    public void setCallerAudio(final CallerAudio callerAudio){
+        this.callerAudio = callerAudio;
+    }
+
+    public void linksCallerWithListener(){
+        this.setChangeListenerSlider();
+        this.setActionListenerChangeSwitchSound();
+    }
+
+    public void setChangeListenerSlider(){
+        this.gui.getSlidersSound().forEach(slider -> {
+            this.engine.setValueUnitSound(slider.getType(), slider.getValue());
+
+            if(this.engine.isActiveUnitSound(TypeUnitSound.SLIDER_BACKGROUND)){
+                this.callerAudio.changeVolume(this.engine.getValueUnitSound(TypeUnitSound.SLIDER_BACKGROUND));
+            }
         });
     }
 
-    public void setActionListenerChangeSwitchSound(final CallerAudio remoteControlAudio){
-        this.soundGUI.getBtnSwitches().forEach(btn -> {
-            this.soundEngine.changeStateUnitSound(btn.getTypeSlider());
+    public void setActionListenerChangeSwitchSound(){
+        this.gui.getBtnSwitches().forEach(btn -> {
+            this.engine.changeStateUnitSound(btn.getTypeSlider());
             FactoryGUIs.setIconJButtonFromRate(btn,
-                    this.soundEngine.getPathIconUnitSound((btn.getTypeSlider())), 30, DimensionScreen.WIDTH_MEDIUM);
+                    this.engine.getPathIconUnitSound((btn.getTypeSlider())), 30, DimensionScreen.WIDTH_MEDIUM);
 
-            this.soundGUI.getSliderTypeofMixer(btn.getTypeSlider()).setValue(
-                    this.soundEngine.isActiveUnitSound(btn.getTypeSlider()) ?
-                            this.soundEngine.getValueUnitSound(btn.getTypeSlider()) : DesignSound.SOUND_ZERO);
+            this.gui.getSliderTypeofMixer(btn.getTypeSlider()).setValue(
+                    this.engine.isActiveUnitSound(btn.getTypeSlider()) ?
+                            this.engine.getValueUnitSound(btn.getTypeSlider()) : DesignSound.SOUND_ZERO);
 
-            remoteControlAudio.execute(this.soundEngine.isActiveUnitSound(btn.getTypeSlider()) ?
-                    CmdAudioType.AUDIO_ON : CmdAudioType.AUDIO_OFF);
+//            this.callerAudio.execute(this.engine.isActiveUnitSound(btn.getTypeSlider()) ?
+//                    CmdAudioType.AUDIO_ON : CmdAudioType.AUDIO_OFF);
         });
+    }
+
+    @Override
+    public IdGUI getId() {
+        return this.engine.getId();
     }
 
     @Override
     public GUI getGUI() {
-        return this.soundGUI;
+        return this.gui;
     }
 
     @Override
     public EngineGUI getEngine() {
-        return this.soundEngine;
+        return this.engine;
+    }
+
+    @Override
+    public boolean isVisibility() {
+        return this.engine.isVisible();
+    }
+
+    @Override
+    public void turn(final Visibility visibility) {
+        this.switchGUI.turn(visibility);
+    }
+
+    @Override
+    public void changeVisibility() {
+        this.switchGUI.changeVisibility();
     }
 }

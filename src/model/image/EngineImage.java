@@ -1,11 +1,7 @@
 package model.image;
 
-import game.SpaceMala;
-import utilities.IconPath;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.desktop.SystemEventListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 

@@ -1,11 +1,7 @@
 package view.GUI.game.utilities;
 
-import model.common.P2d;
 import model.gameObject.AbstractGameObject;
-import model.gameObject.asteroid.Asteroid;
 import model.image.EngineImage;
-import utilities.DimensionScreen;
-import utilities.IconPath;
 import view.utilities.JImage;
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +13,7 @@ public class PanelGame extends JPanel {
     private final Map<AbstractGameObject, AffineTransform> gameObject;
 
     public PanelGame() {
-        super(); {{ setOpaque(false); }}
+        super(); {{ setOpaque(false); setBorder(BorderFactory.createLineBorder(Color.GREEN, 5));}}
         this.gameObject = new HashMap<>();
     }
 

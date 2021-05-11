@@ -1,5 +1,6 @@
 package view.GUI.menu.concrete;
 
+import model.GUI.game.EngineGame;
 import utilities.IdGUI;
 import view.GUI.AbstractGUI;
 import view.GUI.menu.GUIMenu;
@@ -12,7 +13,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class GUIMenuConcrete extends AbstractGUI implements GUIMenu {
-    public static final int N_BUTTONS = 6;
     private final JLabel lbTitle;
     private final JTextField txfNamePlayer;
     private final List<ButtonID> links;
@@ -22,7 +22,7 @@ public class GUIMenuConcrete extends AbstractGUI implements GUIMenu {
         this.lbTitle = new JLabel();
         this.txfNamePlayer = new JTextField();
         this.links = Stream.generate(ButtonID::new)
-                .limit(N_BUTTONS).collect(Collectors.toList());
+                .limit(EngineGame.N_BUTTONS).collect(Collectors.toList());
     }
 
     @Override
@@ -40,7 +40,7 @@ public class GUIMenuConcrete extends AbstractGUI implements GUIMenu {
 
     @Override
     public void setIdButtons(final List<IdGUI> linksID) {
-        for(int i = 0; i < N_BUTTONS; i++){
+        for(int i = 0; i < linksID.size(); i++){
             this.links.get(i).setIdGUICurrent(this.getId());
             this.links.get(i).setIdGUINext(linksID.get(i));
         }

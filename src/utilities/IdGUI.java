@@ -3,8 +3,8 @@ package utilities;
 public enum IdGUI {
     ID_MENU(0, "Menu", SoundPath.MENU_SOUND, StateLevelGUI.FOREGROUND),
     ID_GAME(1, "Game", SoundPath.GAME_SOUND, StateLevelGUI.FOREGROUND),
-    ID_SETTING(2, "Settings", SoundPath.MENU_SOUND, StateLevelGUI.FOREGROUND),
-    ID_SCOREBOARD(3, "Scoreboard", SoundPath.MENU_SOUND, StateLevelGUI.FOREGROUND),
+    ID_SETTING(2, "Settings", SoundPath.MENU_SOUND, StateLevelGUI.OVERLAY),
+    ID_SCOREBOARD(3, "Scoreboard", SoundPath.MENU_SOUND, StateLevelGUI.OVERLAY),
     ID_SOUND(4, "Sound", SoundPath.MENU_SOUND, StateLevelGUI.OVERLAY),
     ID_HELP(5, "Help", SoundPath.MENU_SOUND, StateLevelGUI.OVERLAY),
     ID_QUIT(6, "Quit", SoundPath.MENU_SOUND, StateLevelGUI.NOTHING),

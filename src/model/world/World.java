@@ -1,10 +1,13 @@
-package model.worldEcollisioni;
+package model.world;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import model.gameObject.AbstractGameObject;
+import model.worldEcollisioni.RectBoundingBox;
+import model.worldEcollisioni.WorldEvent;
+import model.worldEcollisioni.WorldEventListener;
 import model.worldEcollisioni.physics.BoundaryCollision;
 import model.worldEcollisioni.physics.CircleBoundingBox;
 import model.worldEcollisioni.physics.RectBoundingBox;
@@ -12,7 +15,6 @@ import model.common.*;
 //import rollball.physics.BoundaryCollision;
 
 public class World {
-	
 	private List<AbstractGameObject> asteroids;
 	private AbstractGameObject ship;
 	private RectBoundingBox mainBBox;
