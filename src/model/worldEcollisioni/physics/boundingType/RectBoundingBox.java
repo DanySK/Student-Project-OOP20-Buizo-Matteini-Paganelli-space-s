@@ -1,4 +1,4 @@
-package model.worldEcollisioni.physics;
+package model.worldEcollisioni.physics.boundingType;
 
 import model.common.P2d;
 import model.common.V2d;
@@ -51,6 +51,10 @@ public class RectBoundingBox implements BoundingBox {
 
 			return false;
 	}
+	
+	
+	
+	//TEST
 	
 	public static void main (String[] args) {
 		System.out.println("Ciao collisioni");

@@ -5,23 +5,25 @@ import java.util.List;
 import java.util.Optional;
 
 import model.gameObject.AbstractGameObject;
-import model.worldEcollisioni.RectBoundingBox;
 import model.worldEcollisioni.WorldEvent;
 import model.worldEcollisioni.WorldEventListener;
 import model.worldEcollisioni.physics.BoundaryCollision;
-import model.worldEcollisioni.physics.CircleBoundingBox;
-import model.worldEcollisioni.physics.RectBoundingBox;
+import model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
+import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import model.common.*;
 //import rollball.physics.BoundaryCollision;
 
 public class World {
 	private List<AbstractGameObject> asteroids;
+	private List<AbstractGameObject> perks;
 	private AbstractGameObject ship;
 	private RectBoundingBox mainBBox;
 	private WorldEventListener evListener;
 	
 	public World(RectBoundingBox bbox){
 		asteroids = new ArrayList<AbstractGameObject>();
+		perks = new ArrayList<AbstractGameObject>();
+		
 		mainBBox = bbox;
 	}
 
@@ -33,22 +35,31 @@ public class World {
 		this.ship = ship;
 	}
 	
-	public void addPickUp(AbstractGameObject obj){
+	public void addPickablePerk(AbstractGameObject obj){
+		perks.add(obj);
+	}
+
+	public void removePickablePerk(AbstractGameObject obj){
+		perks.remove(obj);
+	}
+	
+	public void addAsteroid(AbstractGameObject obj){
 		asteroids.add(obj);
 	}
 
-	public void removePickUp(AbstractGameObject obj){
+	public void removeAsteroid(AbstractGameObject obj){
 		asteroids.remove(obj);
 	}
 	
 	public void updateState(int dt){
-		//ship.updatePhysics(dt, this);
+		ship.updatePhysics(dt, this);
+		asteroids.forEach(a -> a.updatePhysics(dt, this));
 	}
 
-	public Optional<BoundaryCollision> checkCollisionWithBoundaries(P2d pos, CircleBoundingBox box){
+	public Optional<BoundaryCollision> checkCollisionWithBoundaries(P2d pos, RectBoundingBox box){
 		P2d ul = mainBBox.getULCorner();
 		P2d br = mainBBox.getBRCorner();
-		double r = box.getRadius();
+		double r = box.getWidth();
 		if (pos.y + r> ul.y){
 			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.TOP, new P2d(pos.x,ul.y)));
 		} else if (pos.y - r < br.y){
@@ -62,9 +73,19 @@ public class World {
 		}
 	}
 
-	public Optional<AbstractGameObject> checkCollisionWithAsteroids(P2d pos, CircleBoundingBox box){
-		double radius = box.getRadius();
+	public Optional<AbstractGameObject> checkCollisionWithAsteroids(P2d pos, RectBoundingBox box){
+		double radius = box.getWidth();
 		for (AbstractGameObject obj: asteroids){
+			if (obj.getBBox().isCollidingWith(pos,radius)){
+				return Optional.of(obj);
+			}
+		}
+		return Optional.empty();
+	}
+	
+	public Optional<AbstractGameObject> checkCollisionWithPerks(P2d pos, RectBoundingBox box){
+		double radius = box.getWidth();
+		for (AbstractGameObject obj: perks){
 			if (obj.getBBox().isCollidingWith(pos,radius)){
 				return Optional.of(obj);
 			}
@@ -84,7 +105,11 @@ public class World {
 		return this.ship;
 	}
 
-	public List<AbstractGameObject> getPickableObj(){
+	public List<AbstractGameObject> getPickablePerks(){
+		return this.perks;
+	}
+	
+	public List<AbstractGameObject> getAsteroids(){
 		return this.asteroids;
 	}
 

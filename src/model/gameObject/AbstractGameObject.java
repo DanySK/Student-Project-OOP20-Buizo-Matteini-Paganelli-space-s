@@ -7,7 +7,9 @@ import java.util.Optional;
 import model.gameObject.weapon.Weapon;
 import model.common.*;
 import model.image.EngineImage;
-import model.worldEcollisioni.physics.BoundingBox;
+import model.worldEcollisioni.physics.boundingType.BoundingBox;
+import model.worldEcollisioni.physics.components.PhysicsComponent;
+import model.world.World;
 
 
 public abstract class AbstractGameObject {
@@ -20,6 +22,10 @@ public abstract class AbstractGameObject {
 	private Optional<Weapon> weapon;
 	private BoundingBox boundingBox;
 	private AffineTransform transform;
+	
+	private PhysicsComponent phys;
+	//DA CAMBIARE, SARà L'ENUM DEGLI STATI DELLA SPACESHIP
+	private String state = "NORMAL";
 
 	public AbstractGameObject(EngineImage engineImage, int life, int damage, P2d point,
 							  Movement movement, V2d vel, AffineTransform transform, Optional<Weapon> weapon) {
@@ -139,6 +145,18 @@ public abstract class AbstractGameObject {
 //	public void setScale(int scaleOf, int respectTo) {
 //	this.engineImage.setScaleOfRespect(scaleOf, respectTo);
 //}
+	
+	public void updatePhysics(int dt, World w){
+		phys.update(dt, this, w);
+	}
+	
+	public String getState(){
+		return this.state;
+	}
+	
+	public void setState(String state){
+		this.state = state;
+	}
 	
 	@Override
 	public String toString() {

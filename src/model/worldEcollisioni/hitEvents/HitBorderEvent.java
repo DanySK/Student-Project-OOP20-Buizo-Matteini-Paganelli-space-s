@@ -1,4 +1,4 @@
-package model.worldEcollisioni.physics;
+package model.worldEcollisioni.hitEvents;
 
 import model.common.*;
 import model.worldEcollisioni.WorldEvent;
