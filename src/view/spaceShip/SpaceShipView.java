@@ -30,7 +30,7 @@ public class SpaceShipView extends JComponent {
 //		super.paintComponent(g);
 		final Graphics2D g2d = (Graphics2D) g;
 
-		Image img = JImage.getImageFromPath(SkinSpaceShip.MALA.getPath());
+		Image img = JImage.getImageFromPath(SkinSpaceShip.DELUXE.getPath());
 		g2d.drawImage(img, 50, 50, null);
 
 

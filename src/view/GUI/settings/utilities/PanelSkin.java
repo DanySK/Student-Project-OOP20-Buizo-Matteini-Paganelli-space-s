@@ -13,7 +13,7 @@ public class PanelSkin extends JPanel {
     private JButton btSX = new JButton("<");
     private JButton btDX = new JButton(">");;
 
-    private SkinSpaceShip skinSpaceShip = SkinSpaceShip.PRIME;
+    private SkinSpaceShip skinSpaceShip = SkinSpaceShip.DELUXE;
     private JImage pnImage = new JImage();
 
     public PanelSkin(final int width, final int height){

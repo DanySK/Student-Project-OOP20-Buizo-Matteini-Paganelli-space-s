@@ -28,9 +28,7 @@ import view.utilities.ButtonID;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class CtrlGUI {
@@ -63,8 +61,6 @@ public class CtrlGUI {
     private final Map<IdGUI, ControllerGUI> managerGui;
 
     private final ListGUI<IdGUI> chronology;
-
-    private final List<GUI> listGUI;
 
     public CtrlGUI(){
         this.engineMenu = StaticFactoryEngineGUI.createEngineMenu();
@@ -101,10 +97,6 @@ public class CtrlGUI {
             put(CtrlGUI.this.ctrlPause.getId(), CtrlGUI.this.ctrlPause);
         }};
 
-        this.listGUI = new ArrayList<>();
-
-        this.managerGui.values().forEach(control -> CtrlGUI.this.listGUI.add(control.getGUI()));
-
         this.chronology = new ListGUI<>() {{ add(FIRST_GUI); }};
 
         this.linksAll();
@@ -114,44 +106,44 @@ public class CtrlGUI {
     }
 
     private void linksAll(){
-        for(final GUI gui : this.listGUI) {
-            for(ButtonID btn : gui.getButtonLinks()) {
-                btn.addActionListener(e -> {
-                    System.out.println("Premuto in: " + btn.getIdGUICurrent() + " Vado in: " + btn.getIdGUINext());
+        this.managerGui.values().forEach(managerGui -> managerGui.getGUI().getButtonLinks().forEach(btn -> {
+            btn.addActionListener(e -> {
+                System.out.println("Premuto in: " + btn.getIdGUICurrent() + " Vado in: " + btn.getIdGUINext());
 
-                    switch (btn.getIdGUINext()) {
-                        case ID_GAME:
+                switch (btn.getIdGUINext()) {
+                    case ID_GAME:
+                        this.chronology.add(btn.getIdGUINext());
+                        this.managerGui.get(btn.getIdGUINext()).turn(Visibility.VISIBLE);
+                        this.managerGui.get(btn.getIdGUICurrent()).turn(Visibility.HIDDEN); break;
+
+                    case ID_PAUSE:
+                        if (this.chronology.lastElementOfList() != IdGUI.ID_PAUSE) {
                             this.chronology.add(btn.getIdGUINext());
-                            this.managerGui.get(btn.getIdGUINext()).turn(Visibility.VISIBLE);
-                            this.managerGui.get(btn.getIdGUICurrent()).turn(Visibility.HIDDEN); break;
+                        } else {
+                            this.chronology.remove(btn.getIdGUINext());
+                        }
 
-                        case ID_PAUSE:
-                            if(this.chronology.lastElementOfList() != IdGUI.ID_PAUSE){
-                                this.chronology.add(btn.getIdGUINext());
-                            } else {
-                                this.chronology.remove(btn.getIdGUINext());
-                            }
-                            this.managerGui.get(btn.getIdGUINext()).changeVisibility(); break;
+                        this.managerGui.get(btn.getIdGUINext()).changeVisibility(); break;
 
-                        case ID_BACK:
-                            this.managerGui.get(btn.getIdGUICurrent()).turn(Visibility.HIDDEN);
-                            this.chronology.remove(this.chronology.lastElementOfList()); break;
+                    case ID_BACK:
+                        this.managerGui.get(btn.getIdGUICurrent()).turn(Visibility.HIDDEN);
+                        this.chronology.remove(this.chronology.lastElementOfList()); break;
 
-                        case ID_QUIT: this.quitAll(); break;
+                    case ID_QUIT: this.quitAll(); break;
 
-                        default:
-                            this.chronology.add(btn.getIdGUINext());
-                            this.managerGui.get(btn.getIdGUINext()).turn(Visibility.VISIBLE); break;
-                    }
-                    System.out.println("list" + this.chronology);
+                    default:
+                        this.chronology.add(btn.getIdGUINext());
+                        this.managerGui.get(btn.getIdGUINext()).turn(Visibility.VISIBLE); break;
+                }
+                System.out.println("list" + this.chronology);
 
-                });
-            }
-        }
+            });
+        }));
     }
 
     private void focusMenu(){
-        this.listGUI.forEach(gui -> gui.addMouseListener(this.getMouseListener(gui.getId())));
+        this.managerGui.values().forEach(managerGui ->
+                managerGui.getGUI().addMouseListener(this.getMouseListener(managerGui.getId())));
     }
 
     private MouseListener getMouseListener(final IdGUI id){
@@ -216,8 +208,6 @@ public class CtrlGUI {
     }
 
     private void quitAll(){
-        for (GUI gui : this.listGUI) {
-            gui.close();
-        }
+        this.managerGui.values().forEach(managerGui -> managerGui.getGUI().close());
     }
 }

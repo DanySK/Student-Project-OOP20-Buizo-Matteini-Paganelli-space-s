@@ -17,7 +17,7 @@ public class SpaceShipSingleton extends AbstractGameObject {
     
     // Eager and unique instance of this class for Threadsafing
     private static SpaceShipSingleton spaceShip = new SpaceShipSingleton(
-    		new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, DimensionScreen.WIDTH_FULL_SCREEN, SkinSpaceShip.GNEGNE.getPath()),
+    		new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, DimensionScreen.WIDTH_FULL_SCREEN, SkinSpaceShip.NORMAL.getPath()),
     		GameObjectUtils.SPACESHIP_LIFE,
     		GameObjectUtils.SPACESHIP_DAMAGE,
     		DesignSpace.CENTER_ENVIRONMENT,

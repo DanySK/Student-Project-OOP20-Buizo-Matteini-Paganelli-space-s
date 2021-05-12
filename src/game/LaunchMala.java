@@ -5,7 +5,9 @@ import model.game.GameMalaLoop;
 public class LaunchMala {
 
     public static void main(String[] args){
-        new GameMalaLoop();
+        final GameMalaLoop gameMala = new GameMalaLoop();
+        gameMala.initGame();
+        gameMala.mainLoop();
     }
 }
 
