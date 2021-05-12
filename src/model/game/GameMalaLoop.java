@@ -36,19 +36,19 @@ public class GameMalaLoop {
 
         this.callerAudio = new CallerAudio(new SoundLoop(this.controlGUI.getCurrentSound()));
         this.panelGame.addKeyListenerSpaceship(controller);
-//        this.controlGUI.linksCallerAudioWith(this.callerAudio);
     }
 
     public void mainLoop(){
         long lastTime = System.currentTimeMillis();
         this.callerAudio.execute(CmdAudioType.AUDIO_ON);
 
+        this.controlGUI.linksCallerAudioWith(this.callerAudio);
 
         while (!gameState.isGameOver()) {
             long current = System.currentTimeMillis();
             int elapsed = (int)(current - lastTime);
             processInput();
-            updateGame(elapsed);
+            //updateGame(elapsed);
 
             render();
             renderSound();
@@ -75,8 +75,8 @@ public class GameMalaLoop {
     }
 
     protected void updateGame(int elapsed){
-//        gameState.getWorld().updateState(elapsed);
-//        checkEvents();
+        //gameState.getWorld().updateState(elapsed);
+        checkEvents();
     }
 
     protected void checkEvents(){

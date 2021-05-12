@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import model.gameObject.AbstractGameObject;
+import model.spaceShip.SpaceShipSingleton;
 import model.worldEcollisioni.WorldEvent;
 import model.worldEcollisioni.WorldEventListener;
 import model.worldEcollisioni.physics.BoundaryCollision;
@@ -21,6 +22,7 @@ public class World {
 	private WorldEventListener evListener;
 	
 	public World(RectBoundingBox bbox){
+		ship = SpaceShipSingleton.getSpaceShip();
 		asteroids = new ArrayList<AbstractGameObject>();
 		perks = new ArrayList<AbstractGameObject>();
 		

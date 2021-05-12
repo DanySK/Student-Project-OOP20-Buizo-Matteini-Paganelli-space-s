@@ -204,6 +204,7 @@ public class CtrlGUI {
 
     public void linksCallerAudioWith(final CallerAudio callerAudio){
         this.ctrlSound.setCallerAudio(callerAudio);
+        this.ctrlSound.getCallerAudio().setSound(callerAudio.getSound());
         this.ctrlSound.linksCallerWithListener();
     }
 
