@@ -1,5 +1,9 @@
 package controller.GUI;
 
+import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import controller.GUI.command.SwitchGUI;
 import controller.sound.CallerAudio;
 import model.GUI.EngineGUI;
@@ -29,6 +33,7 @@ public class CtrlSound implements ControllerGUI{
         this.assignStrings();
         this.assignSound();
         this.switchGUI.turn(this.engine.getVisibility());
+        
     }
 
     private void assignId() {
@@ -48,9 +53,15 @@ public class CtrlSound implements ControllerGUI{
         this.gui.setIconBtnSwitches(this.engine.getIconStateSounds());
 
     }
+    
+    
 
     public void setCallerAudio(final CallerAudio callerAudio){
         this.callerAudio = callerAudio;
+    }
+    
+    public CallerAudio getCallerAudio(){
+        return this.callerAudio;
     }
 
     public void linksCallerWithListener(){
@@ -60,12 +71,18 @@ public class CtrlSound implements ControllerGUI{
 
     public void setChangeListenerSlider(){
         this.gui.getSlidersSound().forEach(slider -> {
-            this.engine.setValueUnitSound(slider.getType(), slider.getValue());
-
-            if(this.engine.isActiveUnitSound(TypeUnitSound.SLIDER_BACKGROUND)){
-                this.callerAudio.changeVolume(this.engine.getValueUnitSound(TypeUnitSound.SLIDER_BACKGROUND));
-            }
+            //this.engine.setValueUnitSound(slider.getType(), slider.getValue());
+        	if(this.engine.isActiveUnitSound(TypeUnitSound.SLIDER_BACKGROUND)){
+           	slider.addChangeListener(new ChangeListener() {
+                @Override
+                public void stateChanged(ChangeEvent ce) {
+                    System.out.println(((JSlider) ce.getSource()).getValue());
+                    getCallerAudio().changeVolume(((JSlider) ce.getSource()).getValue());
+                }
+            });
+          }
         });
+
     }
 
     public void setActionListenerChangeSwitchSound(){

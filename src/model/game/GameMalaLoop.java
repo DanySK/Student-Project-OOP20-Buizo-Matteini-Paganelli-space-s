@@ -26,7 +26,6 @@ public class GameMalaLoop {
 
     public GameMalaLoop(){
         this.eventQueue = new LinkedList<>();
-        this.initGame();
     }
 
     public void initGame(){
@@ -44,13 +43,13 @@ public class GameMalaLoop {
     public void mainLoop(){
         long lastTime = System.currentTimeMillis();
         this.callerAudio.execute(CmdAudioType.AUDIO_ON);
-//        this.controlGUI.linksCallerAudioWith(this.callerAudio);
+        this.controlGUI.linksCallerAudioWith(this.callerAudio);
 
         while (!gameState.isGameOver()) {
             long current = System.currentTimeMillis();
             int elapsed = (int)(current - lastTime);
             processInput();
-            updateGame(elapsed);
+            //updateGame(elapsed);
 
             render();
             renderSound();
@@ -77,7 +76,7 @@ public class GameMalaLoop {
     }
 
     protected void updateGame(int elapsed){
-        gameState.getWorld().updateState(elapsed);
+        //gameState.getWorld().updateState(elapsed);
         checkEvents();
     }
 
