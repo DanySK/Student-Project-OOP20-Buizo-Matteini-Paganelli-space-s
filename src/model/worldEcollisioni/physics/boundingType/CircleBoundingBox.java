@@ -1,4 +1,4 @@
-package model.worldEcollisioni.physics;
+package model.worldEcollisioni.physics.boundingType;
 
 import model.common.*;
 

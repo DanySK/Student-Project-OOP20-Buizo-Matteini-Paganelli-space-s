@@ -5,7 +5,11 @@ import controller.sound.CallerAudio;
 import model.input.MovementKeyListener;
 import model.sound.CmdAudioType;
 import model.sound.category.SoundLoop;
+import model.world.World;
 import model.worldEcollisioni.WorldEvent;
+import model.worldEcollisioni.hitEvents.HitAsteroidEvent;
+import model.worldEcollisioni.hitEvents.HitBorderEvent;
+import model.worldEcollisioni.hitEvents.HitPerkEvent;
 import view.GUI.game.GUIGame;
 
 import java.util.LinkedList;
@@ -16,8 +20,9 @@ public class GameMalaLoop {
     private GameState gameState;
     private CallerAudio callerAudio;
     private GUIGame panelGame;
-    private LinkedList<WorldEvent> eventQueue;
     private MovementKeyListener controller;
+    
+    private LinkedList<WorldEvent> eventQueue;
 
     public GameMalaLoop(){
         this.eventQueue = new LinkedList<>();
@@ -77,18 +82,22 @@ public class GameMalaLoop {
     }
 
     protected void checkEvents(){
-//        World scene = gameState.getWorld();
-//        eventQueue.stream().forEach(ev -> {
-//            if (ev instanceof HitPickUpEvent){
-//                HitPickUpEvent cev = (HitPickUpEvent) ev;
-//                scene.removePickUp(cev.getCollisionObj());
-//                gameState.incScore();
-//            } else if (ev instanceof HitBorderEvent){
-//                // HitBorderEvent bev = (HitBorderEvent) ev;
-//                gameState.decScore();
-//            }
-//        });
-//        eventQueue.clear();
+        World scene = gameState.getWorld();
+        eventQueue.stream().forEach(ev -> {
+            if (ev instanceof HitAsteroidEvent){
+            	HitAsteroidEvent aEv = (HitAsteroidEvent) ev;
+                scene.removeAsteroid(aEv.getCollisionObj());
+                gameState.decreaseLife();
+            } else if (ev instanceof HitPerkEvent){
+                HitPerkEvent pEv = (HitPerkEvent) ev;
+                //stato = pEv.getCollisionObj().getType(???):
+                //gameState.getSpaceship().setState(stato);
+            } else if (ev instanceof HitBorderEvent){
+                // HitBorderEvent bEv = (HitBorderEvent) ev;
+                gameState.decreaseLife();
+            }
+        });
+        eventQueue.clear();
     }
 
     protected void render(){

@@ -1,6 +1,7 @@
 package model.gameObject.factories;
 
 import java.awt.Dimension;
+import java.awt.geom.AffineTransform;
 import java.util.Optional;
 
 import model.gameObject.GameObjectUtils;
@@ -23,8 +24,8 @@ public class ConcreteFactoryFireEnemy extends AbstractFactoryGameObject {
 		Movement movement = Movement.RANDOM;
 		V2d velocity = GameObjectUtils.FIRE_ENEMY_VEL;
 		Optional<Weapon> weapon = Optional.of(new Weapon());
-		
-		return new FireEnemy(engineImage, life, damage, size, point, movement, velocity, weapon);
+		AffineTransform transform = new AffineTransform();
+		return new FireEnemy(engineImage, life, damage, size, point, movement, velocity, transform, weapon);
 		
 	}
 

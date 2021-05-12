@@ -1,12 +1,15 @@
 package model.gameObject;
 
 import java.awt.Dimension;
+import java.awt.geom.AffineTransform;
 import java.util.Optional;
 
 import model.gameObject.weapon.Weapon;
 import model.common.*;
 import model.image.EngineImage;
-import model.worldEcollisioni.physics.BoundingBox;
+import model.worldEcollisioni.physics.boundingType.BoundingBox;
+import model.worldEcollisioni.physics.components.PhysicsComponent;
+import model.world.World;
 
 
 public abstract class AbstractGameObject {
@@ -18,9 +21,14 @@ public abstract class AbstractGameObject {
 	private V2d velocity;
 	private Optional<Weapon> weapon;
 	private BoundingBox boundingBox;
+	private AffineTransform transform;
+	
+	private PhysicsComponent phys;
+	//DA CAMBIARE, SARà L'ENUM DEGLI STATI DELLA SPACESHIP
+	private String state = "NORMAL";
 
 	public AbstractGameObject(EngineImage engineImage, int life, int damage, P2d point,
-							  Movement movement, V2d vel, Optional<Weapon> weapon) {
+							  Movement movement, V2d vel, AffineTransform transform, Optional<Weapon> weapon) {
 		this.engineImage = engineImage;
 		this.life = life;
 		this.damage = damage;
@@ -28,7 +36,9 @@ public abstract class AbstractGameObject {
 		this.movement = movement;
 		this.velocity = vel;
 		this.weapon = weapon;
+		this.transform = transform;
 	}
+
 
 	public EngineImage getImageEngine() {
 		return engineImage;
@@ -61,6 +71,15 @@ public abstract class AbstractGameObject {
 	public void setPosition(P2d position) {
 		this.position = position;
 	}
+	
+	public BoundingBox getBoundingBox() {
+		return boundingBox;
+	}
+
+
+	public void setBoundingBox(BoundingBox boundingBox) {
+		this.boundingBox = boundingBox;
+	}
 
 	public Movement getMovement() {
 		return movement;
@@ -85,6 +104,15 @@ public abstract class AbstractGameObject {
 	public void setWeapon(Optional<Weapon> weapon) {
 		this.weapon = weapon;
 	}
+	
+	public AffineTransform getTransform() {
+		return transform;
+	}
+
+	public void setTransform(AffineTransform transform) {
+		this.transform = transform;
+	}
+
 
 	public Dimension getSize() {
 		return this.engineImage.getSize();
@@ -118,11 +146,22 @@ public abstract class AbstractGameObject {
 //	this.engineImage.setScaleOfRespect(scaleOf, respectTo);
 //}
 	
+	public void updatePhysics(int dt, World w){
+		phys.update(dt, this, w);
+	}
+	
+	public String getState(){
+		return this.state;
+	}
+	
+	public void setState(String state){
+		this.state = state;
+	}
+	
 	@Override
 	public String toString() {
 		return "AbstractGameObject [engineImage=" + engineImage + ", life=" + life + ", damage=" + damage
-				+ ", position=" + position + ", movement=" + movement + ", velocity=" + velocity + ", weapon=" + weapon
-				+ "]";
+				+ ", position=" + position + ", movement=" + movement + ", velocity=" + velocity + ", weapon=" + ", trasform=" + transform + "]";
 	}
 
 	

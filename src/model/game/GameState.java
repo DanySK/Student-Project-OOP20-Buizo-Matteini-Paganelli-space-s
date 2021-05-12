@@ -3,7 +3,7 @@ package model.game;
 import controller.GUI.CtrlGUI;
 import model.gameObject.AbstractGameObject;
 import model.world.World;
-import model.worldEcollisioni.RectBoundingBox;
+import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import view.GUI.game.GUIGame;
 
 import java.util.Timer;
@@ -14,6 +14,7 @@ public class GameState {
     private int round;
     private World world;
     private CtrlGUI controllerGUI;
+    private int life;
 
     public GameState(){
         this.world = new World(new RectBoundingBox(null, null));
@@ -30,4 +31,16 @@ public class GameState {
     public boolean isGameOver(){
         return false;
     }
+    
+	public void increaseLife(){
+		this.life++;
+	}
+
+	public void decreaseLife(){
+		this.life--;
+	}
+	
+	public void resetLife(){
+		this.life = 5;
+	}
 }

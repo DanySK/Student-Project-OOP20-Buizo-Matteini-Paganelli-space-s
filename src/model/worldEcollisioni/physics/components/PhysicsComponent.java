@@ -1,4 +1,4 @@
-package model.worldEcollisioni.physics;
+package model.worldEcollisioni.physics.components;
 
 import model.common.*;
 import model.gameObject.AbstractGameObject;

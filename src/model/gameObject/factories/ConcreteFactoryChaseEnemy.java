@@ -1,6 +1,7 @@
 package model.gameObject.factories;
 
 import java.awt.Dimension;
+import java.awt.geom.AffineTransform;
 import java.util.Optional;
 import model.gameObject.GameObjectUtils;
 import model.gameObject.Movement;
@@ -21,9 +22,10 @@ public class ConcreteFactoryChaseEnemy extends AbstractFactoryGameObject {
 		P2d point = GameObjectUtils.generateSpawnPoint(size);
 		Movement movement = Movement.CHASE;
 		V2d velocity = GameObjectUtils.CHASE_ENEMY_VEL;
+		AffineTransform transform = new AffineTransform();
 		Optional<Weapon> weapon = Optional.empty();
 		
-		return new ChaseEnemy(engineImage, life, damage, size, point, movement, velocity, weapon);
+		return new ChaseEnemy(engineImage, life, damage, size, point, movement, velocity, transform, weapon);
 	}
 
 }

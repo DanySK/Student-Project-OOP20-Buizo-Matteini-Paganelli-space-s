@@ -1,17 +1,17 @@
-package model.worldEcollisioni.physics;
+package model.worldEcollisioni.hitEvents;
 
 import model.gameObject.AbstractGameObject;
 import model.worldEcollisioni.WorldEvent;
 
 public class HitAsteroidEvent implements WorldEvent {
 
-	private AbstractGameObject obj;
+	private AbstractGameObject asteroid;
 	
 	public HitAsteroidEvent(AbstractGameObject obj){
-		this.obj = obj;
+		this.asteroid = obj;
 	}
 	
 	public AbstractGameObject getCollisionObj(){
-		return this.obj;
+		return this.asteroid;
 	}
 }
