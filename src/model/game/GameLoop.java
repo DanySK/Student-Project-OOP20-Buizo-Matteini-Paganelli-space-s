@@ -14,7 +14,7 @@ import view.GUI.game.GUIGame;
 
 import java.util.LinkedList;
 
-public class GameMalaLoop {
+public class GameLoop {
     private long period = 20L;
     private CtrlGUI controlGUI;
     private GameState gameState;
@@ -24,7 +24,7 @@ public class GameMalaLoop {
     
     private LinkedList<WorldEvent> eventQueue;
 
-    public GameMalaLoop(){
+    public GameLoop(){
         this.eventQueue = new LinkedList<>();
         this.initGame();
     }
@@ -87,14 +87,14 @@ public class GameMalaLoop {
             if (ev instanceof HitAsteroidEvent){
             	HitAsteroidEvent aEv = (HitAsteroidEvent) ev;
                 scene.removeAsteroid(aEv.getCollisionObj());
-                gameState.decreaseLife();
+                gameState.decreaseLives();
             } else if (ev instanceof HitPerkEvent){
                 HitPerkEvent pEv = (HitPerkEvent) ev;
                 //stato = pEv.getCollisionObj().getType(???):
                 //gameState.getSpaceship().setState(stato);
             } else if (ev instanceof HitBorderEvent){
                 // HitBorderEvent bEv = (HitBorderEvent) ev;
-                gameState.decreaseLife();
+                gameState.decreaseLives();
             }
         });
         eventQueue.clear();

@@ -8,13 +8,12 @@ import model.gameObject.AbstractGameObject;
 import model.worldEcollisioni.WorldEvent;
 import model.worldEcollisioni.WorldEventListener;
 import model.worldEcollisioni.physics.BoundaryCollision;
-import model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
 import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import model.common.*;
-//import rollball.physics.BoundaryCollision;
 
 public class World {
 	private List<AbstractGameObject> asteroids;
+	private List<AbstractGameObject> enemies;
 	private List<AbstractGameObject> perks;
 	private AbstractGameObject ship;
 	private RectBoundingBox mainBBox;
@@ -23,7 +22,8 @@ public class World {
 	public World(RectBoundingBox bbox){
 		asteroids = new ArrayList<AbstractGameObject>();
 		perks = new ArrayList<AbstractGameObject>();
-		
+		enemies = new ArrayList<AbstractGameObject>();
+
 		mainBBox = bbox;
 	}
 
@@ -49,6 +49,14 @@ public class World {
 
 	public void removeAsteroid(AbstractGameObject obj){
 		asteroids.remove(obj);
+	}
+	
+	public void addEnemy(AbstractGameObject obj){
+		enemies.add(obj);
+	}
+	
+	public void removeEnemy(AbstractGameObject obj){
+		enemies.remove(obj);
 	}
 	
 	public void updateState(int dt){
@@ -112,10 +120,15 @@ public class World {
 	public List<AbstractGameObject> getAsteroids(){
 		return this.asteroids;
 	}
+	
+	public List<AbstractGameObject> getEnemies(){
+		return this.enemies;
+	}
 
 	public List<AbstractGameObject> getSceneEntities(){
 		List<AbstractGameObject> entities = new ArrayList<AbstractGameObject>();
 		entities.addAll(asteroids);
+		entities.addAll(enemies);
 		entities.add(ship);
 		return entities;
 	}
