@@ -71,8 +71,7 @@ public class CtrlSound implements ControllerGUI{
     public void setActionListenerChangeSwitchSound(){
         this.gui.getBtnSwitches().forEach(btn -> {
             this.engine.changeStateUnitSound(btn.getTypeSlider());
-            FactoryGUIs.setIconJButtonFromRate(btn,
-                    this.engine.getPathIconUnitSound((btn.getTypeSlider())), 30, DimensionScreen.WIDTH_MEDIUM);
+            FactoryGUIs.setIconJButtonFromRate(btn, this.engine.getPathIconUnitSound((btn.getTypeSlider())), 50, DimensionScreen.WIDTH_MEDIUM);
 
             this.gui.getSliderTypeofMixer(btn.getTypeSlider()).setValue(
                     this.engine.isActiveUnitSound(btn.getTypeSlider()) ?

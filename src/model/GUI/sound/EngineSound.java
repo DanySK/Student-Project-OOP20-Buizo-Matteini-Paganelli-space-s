@@ -4,13 +4,16 @@ import model.GUI.EngineGUI;
 import model.GUI.Visibility;
 import utilities.DesignSound;
 import utilities.DesignTitleGUI;
+import utilities.DimensionScreen;
 import utilities.IdGUI;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class EngineSound implements EngineGUI {
+    public static int GUI_WIDTH = DimensionScreen.WIDTH_MEDIUM;
     public static int N_UNIT_SOUND = 2;
+
     private final IdGUI id;
     private final IdGUI idBack;
 

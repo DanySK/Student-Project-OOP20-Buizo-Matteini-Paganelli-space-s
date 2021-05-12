@@ -28,7 +28,7 @@ public class EngineUnitSound {
     }
 
     public String getPathIconState() {
-        return this.stateSlider.getPath();
+        return this.stateSlider.getEngineImage().getPath();
     }
 
     public boolean isActiveSlider(){
