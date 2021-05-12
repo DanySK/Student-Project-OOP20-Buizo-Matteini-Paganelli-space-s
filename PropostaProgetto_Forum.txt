@@ -1,0 +1,65 @@
+Il gruppo si pone come obiettivo quello di realizzare un videogioco ambientato nello spazio, nel quale una navicella dovrà sconfiggere dei nemici e superare più round possibili.
+
+Il gioco è ispirato all'arcade Asteroids, con aspetti e funzionalità aggiuntive. L'utente, che controllerà la navicella, avrà lo scopo di distruggere vari tipi di nemici per superare i round, ogni 5 round ci sarà un boss.
+La vita e i danni dei nemici andranno crescendo col passare dei round, ci sarà anche la possibilità di raccogliere diversi tipi di munizioni per l'arma, raccogliendole quando vengono droppate dai nemici(o dagli asteroidi).
+
+Funzionalità minimali ritenute obbligatorie:
+
+* Creazione del menu con le varie sezioni principali :
+- Start (con scelta del nickname)
+- Settings (comandi navicella , audio)
+- Help
+
+* Creazione dell ambiente di gioco, tra cui HUD, griglia di posizione.
+
+* Creazione degli elementi principali del gioco, tra cui:
+- Navicella
+- Nemici Semplici
+- Boss (Almeno 1)
+- Asteroidi
+- Fire System
+
+* Gestione del movimento e delle collisione degli oggetti del gioco 
+
+* Creazione di comandi appositi per la navicella
+
+* Cambio background a seconda tempo
+
+* Logica nemici che vanno a sbattere contro la navicella
+
+
+Funzionalità opzionali:
+
+* Aggiunta di munizioni e bonus speciali
+
+* Funzionalità di sparo per i nemici semplici
+
+* Creazione di classifica tramite tabella dello score raggiunto dai giocatori, con aggiunt dello Score Board nel menu
+
+* Scelta nel settings per il livello di difficoltà
+
+* Easter egg 
+
+* Composizione comandi speciali
+
+
+
+"Challenge" principali:
+
+* thechileman.org non ha una API pubblica: sarà necessario estrarre i dati in qualche modo ("scraping")
+
+* La realizzazione di grafici richiederà l'uso di una libreria da identificare
+
+* L'estrema configurabilità degli ambienti richiederà un design attento
+
+* Sarà necessario prevedere una facile estendibilità per quanto riguarda i componenti del terreno e il tipo di coltura
+
+ 
+
+Suddivisione del lavoro:
+
+* Croatti: archivio dei peperoncini; interrogazione del db online;
+
+* Pianini: organizzazione delle colture; gestione ostacoli e zone d'ombra;
+
+* Viroli: gestione del rapporto esposizione/temperature; stima della necessità d'acqua; produzione grafici;
