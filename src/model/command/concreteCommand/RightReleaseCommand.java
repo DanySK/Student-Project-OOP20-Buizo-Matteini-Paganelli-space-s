@@ -1,12 +1,12 @@
 package model.command.concreteCommand;
 
 import model.command.commandInterfaces.CommandMovement;
-import model.gameObject.AbstractGameObject;
+import model.gameObject.MovableGameObject;
 
 public class RightReleaseCommand implements CommandMovement {
 
 	@Override
-	public void execute(AbstractGameObject ship) {
+	public void execute(MovableGameObject ship) {
 		System.out.println("Release Right");
 		
  

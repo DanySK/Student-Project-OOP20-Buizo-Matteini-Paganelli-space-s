@@ -2,6 +2,8 @@ package model.game;
 
 import controller.GUI.CtrlGUI;
 import model.gameObject.AbstractGameObject;
+import model.gameObject.MovableGameObject;
+import model.gameObject.spaceShip.SpaceShipSingleton;
 import model.world.World;
 import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 
@@ -26,7 +28,7 @@ public class GameState {
         return this.world;
     }
 
-    public AbstractGameObject getSpaceship(){
+    public SpaceShipSingleton getSpaceship(){
         return this.world.getShip();
     }
 

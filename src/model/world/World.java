@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import model.gameObject.AbstractGameObject;
+import model.gameObject.spaceShip.SpaceShipSingleton;
 import model.worldEcollisioni.WorldEvent;
 import model.worldEcollisioni.WorldEventListener;
 import model.worldEcollisioni.physics.BoundaryCollision;
@@ -15,7 +16,7 @@ public class World {
 	private List<AbstractGameObject> asteroids;
 	private List<AbstractGameObject> enemies;
 	private List<AbstractGameObject> perks;
-	private AbstractGameObject ship;
+	private SpaceShipSingleton ship;
 	private RectBoundingBox mainBBox;
 	private WorldEventListener evListener;
 	
@@ -31,7 +32,7 @@ public class World {
 		evListener = l;
 	}
 	
-	public void setShip(AbstractGameObject ship){
+	public void setShip(SpaceShipSingleton ship){
 		this.ship = ship;
 	}
 	
@@ -109,7 +110,7 @@ public class World {
 		return mainBBox;
 	}
 	
-	public AbstractGameObject getShip(){
+	public SpaceShipSingleton getShip(){
 		return this.ship;
 	}
 

@@ -3,7 +3,7 @@ package model.command.caller;
 import utilities.CmdMovementType;
 import model.command.concreteCommand.*;
 import model.command.commandInterfaces.CommandMovement;
-import model.gameObject.AbstractGameObject;
+import model.gameObject.MovableGameObject;
 
 public class CallerMovement {
 
@@ -20,12 +20,10 @@ public class CallerMovement {
 	private final CommandMovement cmdRotateLeft;
 	private final CommandMovement cmdRotateRight;
 	
-	private final AbstractGameObject ship;
+	private final MovableGameObject ship;
 	
 	
-	
-	public CallerMovement(AbstractGameObject ship) {
-		
+	public CallerMovement(MovableGameObject ship) {
 		this.cmdLeft  = new LeftCommand();
 		this.cmdUp    = new UpCommand();
 		this.cmdRight = new RightCommand();
@@ -36,7 +34,7 @@ public class CallerMovement {
 		this.cmdReleaseRight = new RightReleaseCommand();
 		this.cmdReleaseDown  = new DownReleaseCommand();
 		
-		this.cmdRotateLeft = new RotateLeftCommand();
+		this.cmdRotateLeft   = new RotateLeftCommand();
 		this.cmdRotateRight  = new RotateRightCommand();
 		
 		this.ship = ship;
