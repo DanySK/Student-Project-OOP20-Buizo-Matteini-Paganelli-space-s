@@ -13,6 +13,7 @@ import model.GUI.pause.EnginePause;
 import model.GUI.scoreboard.EngineScoreboard;
 import model.GUI.settings.EngineSettings;
 import model.GUI.sound.EngineSound;
+import model.GUI.sound.TypeUnitSound;
 import utilities.IdGUI;
 import utilities.SoundPath;
 import utilities.StateLevelGUI;
@@ -220,6 +221,10 @@ public class CtrlGUI {
         	index.incrementAndGet();     	
         });
         this.ctrlSound.linksCallerAudioEffectWithListener();
+    }
+
+    public void setVolumeLoop(){
+        this.ctrlSound.setVolumeLoop();
     }
 
     

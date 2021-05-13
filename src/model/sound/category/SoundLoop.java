@@ -22,6 +22,7 @@ public class SoundLoop extends Sound {
 
 	@Override
 	protected void playSound(double volume) {
+
 		Thread thread = new Thread(() -> {
 				
 				super.getClip().get().loop(Clip.LOOP_CONTINUOUSLY);

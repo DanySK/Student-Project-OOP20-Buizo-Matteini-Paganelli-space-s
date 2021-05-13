@@ -12,8 +12,10 @@ import model.worldEcollisioni.hitEvents.HitBorderEvent;
 import model.worldEcollisioni.hitEvents.HitPerkEvent;
 import view.GUI.game.GUIGame;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Optional;
 
 public class GameMalaLoop {
     private long period = 20L;
@@ -114,7 +116,7 @@ public class GameMalaLoop {
     }
 
     protected void renderSound(){
-        if(this.callerAudioLoop.isNewSound(this.controlGUI.getCurrentSound())){
+        if(this.callerAudioLoop.isNewSound(this.controlGUI.getCurrentSound())) {
             this.callerAudioLoop.execute(CmdAudioType.AUDIO_OFF);
             this.callerAudioLoop.setSound(new SoundLoop(this.controlGUI.getCurrentSound()));
             this.callerAudioLoop.execute(CmdAudioType.AUDIO_ON);

@@ -21,6 +21,7 @@ public class SoundEffect extends Sound {
 
 	@Override
 	protected void playSound(final double volume) {
+
 		Thread thread = new Thread(() -> {
             setVol(volume);
             super.getClip().get().start();      

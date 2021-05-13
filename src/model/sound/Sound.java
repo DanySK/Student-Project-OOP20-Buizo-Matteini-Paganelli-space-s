@@ -90,19 +90,12 @@ public abstract class Sound {
 	   
 	    
 		public void setVol(double volume) {
-			System.out.println("Sono entrato");
-
 			FloatControl gain = null;
-
-			System.out.println(this.clip);
-
-			System.out.println(getClip().get());
-			
 			gain = (FloatControl) getClip().get().getControl(FloatControl.Type.MASTER_GAIN);
 		
 			float dB = (float) (Math.log(volume) / Math.log(10) * 20);
 			gain.setValue(dB);
-			
+			this.volume = volume;
 		}
 
 }

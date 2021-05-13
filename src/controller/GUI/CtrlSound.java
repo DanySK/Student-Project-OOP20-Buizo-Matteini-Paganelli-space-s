@@ -1,6 +1,7 @@
 package controller.GUI;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
@@ -28,7 +29,7 @@ public class CtrlSound implements ControllerGUI{
 
     private final SwitchGUI switchGUI;
     private CallerAudio callerAudioLoop;
-    private ArrayList<CallerAudio> callerAudioEffect;
+    private List<CallerAudio> callerAudioEffect;
 
     public CtrlSound(final EngineSound engine, final GUISound gui){
         this.engine = engine;
@@ -39,7 +40,6 @@ public class CtrlSound implements ControllerGUI{
         this.assignStrings();
         this.assignSound();
         this.switchGUI.turn(this.engine.getVisibility());
-        
     }
 
     private void assignId() {
@@ -58,6 +58,7 @@ public class CtrlSound implements ControllerGUI{
         this.gui.setDefaultValueSlidersSound(this.engine.getDefaultValueSound());
         this.gui.setIconBtnSwitches(this.engine.getIconStateSounds());
     }
+
 
     public CallerAudio getCallerAudio(){
         return this.callerAudioLoop;
@@ -89,11 +90,11 @@ public class CtrlSound implements ControllerGUI{
         return this.callerAudioLoop;
     }
     
-    public void setCallerAudioEffect(final ArrayList<CallerAudio> callerAudioEffect){
+    public void setCallerAudioEffect(final List<CallerAudio> callerAudioEffect){
         this.callerAudioEffect = callerAudioEffect;
     }
     
-    public ArrayList<CallerAudio> getCallerAudioEffect(){
+    public List<CallerAudio> getCallerAudioEffect(){
         return this.callerAudioEffect;
     }
 
@@ -108,29 +109,29 @@ public class CtrlSound implements ControllerGUI{
     }
     
     public void setChangeListenerSliderLoop(){
-
-    	this.gui.getSlidersSound().get(0).addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent ce) {
-            	
-                System.out.println(((JSlider) ce.getSource()).getValue());
-                getCallerAudioLoop().changeVolume(((JSlider) ce.getSource()).getValue());
-            }
+    	this.gui.getSlidersSound().get(0).addChangeListener(ce -> {
+            System.out.println(((JSlider) ce.getSource()).getValue());
+            final JSlider sld = (JSlider) ce.getSource();
+            this.engine.setValueUnitSound(TypeUnitSound.SLIDER_BACKGROUND, sld.getValue());
+            this.setVolumeLoop();
         });
 
+    }
+
+    public void setVolumeLoop(){
+        this.callerAudioLoop.changeVolume(this.engine.getValueUnitSound(TypeUnitSound.SLIDER_BACKGROUND));
     }
     
     public void setChangeListenerSliderEffect(){
         
-    	this.gui.getSlidersSound().get(1).addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent ce) {
-            	
-                System.out.println(((JSlider) ce.getSource()).getValue());
-                getCallerAudioEffect().forEach(callerAudioEffect -> {     	
-                	callerAudioEffect.changeVolume(((JSlider) ce.getSource()).getValue());     	
-                });
-            }
+    	this.gui.getSlidersSound().get(1).addChangeListener(ce -> {
+
+            System.out.println(((JSlider) ce.getSource()).getValue());
+
+            getCallerAudioEffect().forEach(callerAudioEffect -> {
+                callerAudioEffect.changeVolume(((JSlider) ce.getSource()).getValue());
+            });
+
         });
     }
 
