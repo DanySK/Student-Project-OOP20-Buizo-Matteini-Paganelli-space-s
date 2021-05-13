@@ -19,7 +19,7 @@ public class SoundEffect extends Sound {
 	}
 
 	@Override
-	protected void playSound(final String fileName, final double volume) {
+	protected synchronized void playSound(final String fileName, final double volume) {
 		Thread thread = new Thread(() -> {
 
 			 	URL soundFile = ClassLoader.getSystemResource(fileName);

@@ -4,7 +4,6 @@ import utilities.IdGUI;
 import view.GUI.AbstractGUI;
 import view.GUI.game.GUIGame;
 import view.GUI.game.utilities.*;
-import view.spaceShip.SpaceShipView;
 import view.utilities.ButtonID;
 
 import javax.swing.*;

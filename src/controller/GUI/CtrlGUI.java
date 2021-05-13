@@ -13,6 +13,7 @@ import model.GUI.pause.EnginePause;
 import model.GUI.scoreboard.EngineScoreboard;
 import model.GUI.settings.EngineSettings;
 import model.GUI.sound.EngineSound;
+import model.GUI.sound.TypeUnitSound;
 import utilities.IdGUI;
 import utilities.SoundPath;
 import utilities.StateLevelGUI;
@@ -29,6 +30,7 @@ import view.utilities.ButtonID;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -210,7 +212,7 @@ public class CtrlGUI {
         this.ctrlSound.linksCallerAudioLoopWithListener();
     }
 
-    public void linksCallerAudioEffectWith(final ArrayList<CallerAudio> callerAudioEffects){
+    public void linksCallerAudioEffectWith(final List<CallerAudio> callerAudioEffects){
         this.ctrlSound.setCallerAudioEffect(callerAudioEffects);
         AtomicInteger index = new AtomicInteger(0);
         
@@ -219,6 +221,10 @@ public class CtrlGUI {
         	index.incrementAndGet();     	
         });
         this.ctrlSound.linksCallerAudioEffectWithListener();
+    }
+
+    public void setVolumeLoop(){
+        this.ctrlSound.setVolumeLoop();
     }
 
     
