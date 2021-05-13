@@ -29,6 +29,7 @@ import view.utilities.ButtonID;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -210,7 +211,7 @@ public class CtrlGUI {
         this.ctrlSound.linksCallerAudioLoopWithListener();
     }
 
-    public void linksCallerAudioEffectWith(final ArrayList<CallerAudio> callerAudioEffects){
+    public void linksCallerAudioEffectWith(final List<CallerAudio> callerAudioEffects){
         this.ctrlSound.setCallerAudioEffect(callerAudioEffects);
         AtomicInteger index = new AtomicInteger(0);
         

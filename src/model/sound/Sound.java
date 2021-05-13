@@ -2,10 +2,17 @@ package model.sound;
 
 import utilities.SoundPath;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.Optional;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 	
 public abstract class Sound {
@@ -23,6 +30,23 @@ public abstract class Sound {
 	    public Sound(final SoundPath sound) {
 	    	this.soundPath = sound;
 	    	this.volume = START_VOLUME;
+	    	
+	    	AudioInputStream audioInputStream = null;
+	    	
+	    	try {
+				audioInputStream = AudioSystem.getAudioInputStream(ClassLoader.getSystemResource(sound.getValue()));
+				setClip(AudioSystem.getClip());
+			} catch (UnsupportedAudioFileException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (LineUnavailableException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 	    }
 	    
 	    public void setSoundType(SoundPath sound) {
@@ -58,11 +82,11 @@ public abstract class Sound {
 
 
 	    public void startClip() {   	
-	    	playSound(this.soundPath.getValue(), this.volume);
+	    	playSound(this.volume);
 	    	this.isPlaying = true;
 	    }
 	    
-	    protected abstract void playSound(String fileName, double volume);
+	    protected abstract void playSound(double volume);
 	   
 	    
 		public void setVol(double volume) {
