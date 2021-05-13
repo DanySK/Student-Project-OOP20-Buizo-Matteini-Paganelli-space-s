@@ -1,8 +1,12 @@
 package controller.GUI;
 
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
 
 import controller.GUI.command.SwitchGUI;
 import controller.sound.CallerAudio;
@@ -10,11 +14,13 @@ import model.GUI.EngineGUI;
 import model.GUI.Visibility;
 import model.GUI.sound.EngineSound;
 import model.GUI.sound.TypeUnitSound;
+import model.sound.CmdAudioType;
 import utilities.DesignSound;
 import utilities.DimensionScreen;
 import utilities.IdGUI;
 import view.GUI.GUI;
 import view.GUI.sound.GUISound;
+import view.GUI.sound.utilities.ButtonSliderType;
 import view.utilities.FactoryGUIs;
 
 public class CtrlSound implements ControllerGUI{
@@ -22,7 +28,8 @@ public class CtrlSound implements ControllerGUI{
     private final EngineSound engine;
 
     private final SwitchGUI switchGUI;
-    private CallerAudio callerAudio;
+    private CallerAudio callerAudioLoop;
+    private ArrayList<CallerAudio> callerAudioEffect;
 
     public CtrlSound(final EngineSound engine, final GUISound gui){
         this.engine = engine;
@@ -56,47 +63,111 @@ public class CtrlSound implements ControllerGUI{
     
     
 
-    public void setCallerAudio(final CallerAudio callerAudio){
-        this.callerAudio = callerAudio;
+    public void setCallerAudioLoop(final CallerAudio callerAudioLoop){
+        this.callerAudioLoop = callerAudioLoop;
     }
     
-    public CallerAudio getCallerAudio(){
-        return this.callerAudio;
+    public CallerAudio getCallerAudioLoop(){
+        return this.callerAudioLoop;
+    }
+    
+    public void setCallerAudioEffect(final ArrayList<CallerAudio> callerAudioEffect){
+        this.callerAudioEffect = callerAudioEffect;
+    }
+    
+    public ArrayList<CallerAudio> getCallerAudioEffect(){
+        return this.callerAudioEffect;
     }
 
-    public void linksCallerWithListener(){
-        this.setChangeListenerSlider();
-        this.setActionListenerChangeSwitchSound();
+    public void linksCallerAudioLoopWithListener(){
+        this.setChangeListenerSliderLoop();
+        this.setActionListenerChangeSwitchSoundLoop();
     }
+    
+    public void linksCallerAudioEffectWithListener(){
+        this.setChangeListenerSliderEffect();
+        this.setActionListenerChangeSwitchSoundEffect();
+    }
+    
+    public void setChangeListenerSliderLoop(){
 
-    public void setChangeListenerSlider(){
-        this.gui.getSlidersSound().forEach(slider -> {
-            //this.engine.setValueUnitSound(slider.getType(), slider.getValue());
-        	if(this.engine.isActiveUnitSound(TypeUnitSound.SLIDER_BACKGROUND)){
-           	slider.addChangeListener(new ChangeListener() {
-                @Override
-                public void stateChanged(ChangeEvent ce) {
-                    System.out.println(((JSlider) ce.getSource()).getValue());
-                    getCallerAudio().changeVolume(((JSlider) ce.getSource()).getValue());
-                }
-            });
-          }
+    	this.gui.getSlidersSound().get(0).addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent ce) {
+            	
+                System.out.println(((JSlider) ce.getSource()).getValue());
+                getCallerAudioLoop().changeVolume(((JSlider) ce.getSource()).getValue());
+            }
         });
 
     }
+    
+    public void setChangeListenerSliderEffect(){
+        
+    	this.gui.getSlidersSound().get(1).addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent ce) {
+            	
+                System.out.println(((JSlider) ce.getSource()).getValue());
+                getCallerAudioEffect().forEach(callerAudioEffect -> {     	
+                	callerAudioEffect.changeVolume(((JSlider) ce.getSource()).getValue());     	
+                });
+            }
+        });
+    }
 
-    public void setActionListenerChangeSwitchSound(){
-        this.gui.getBtnSwitches().forEach(btn -> {
+
+    public void setActionListenerChangeSwitchSoundLoop(){
+        
+    		ButtonSliderType btn = this.gui.getBtnSwitches().get(0);
+    		//AtomicInteger i = new AtomicInteger(0);
+    		btn.addActionListener(l -> {
+    			if(getCallerAudioLoop().getSound().isPlaying()) {
+    				getCallerAudioLoop().execute(CmdAudioType.AUDIO_OFF);
+    				getCallerAudioLoop().changeVolume(0);
+    				System.out.println(getCallerAudioLoop().getSound());
+    				//getCallerAudioLoop().execute(CmdAudioType.AUDIO_OFF);
+    			}
+    			else {
+    				//getCallerAudioLoop().execute(CmdAudioType.AUDIO_ON);
+    				getCallerAudioLoop().changeVolume(50);
+    			}
+    			//this.engine.changeStateUnitSound(btn.getTypeSlider());
+    			//this.engine.setValueUnitSound(TypeUnitSound.SLIDER_BACKGROUND, DesignSound.SOUND_ZERO);
+    			//i.incrementAndGet();
+    			
+    			
+    			//getCallerAudioLoop().execute((getCallerAudioLoop().getSound().isPlaying()) ? CmdAudioType.AUDIO_OFF : CmdAudioType.AUDIO_ON);
+    		});
+    	
+           // this.engine.changeStateUnitSound(btn.getTypeSlider());
+            //FactoryGUIs.setIconJButtonFromRate(btn, this.engine.getPathIconUnitSound((btn.getTypeSlider())), 50, DimensionScreen.WIDTH_MEDIUM);
+
+            
+//            this.gui.getSliderTypeofMixer(btn.getTypeSlider()).setValue(
+//            		this.engine.isActiveUnitSound(btn.getTypeSlider()) ?
+//            				this.engine.getValueUnitSound(btn.getTypeSlider()) : DesignSound.SOUND_ZERO);
+          
+           //System.out.println(getCallerAudioLoop().getSound().isPlaying());
+           
+           //getCallerAudioLoop().execute(CmdAudioType.AUDIO_ON);
+
+    }
+    
+    public void setActionListenerChangeSwitchSoundEffect(){
+    		
+    		ButtonSliderType btn = this.gui.getBtnSwitches().get(1);
+    	
             this.engine.changeStateUnitSound(btn.getTypeSlider());
             FactoryGUIs.setIconJButtonFromRate(btn, this.engine.getPathIconUnitSound((btn.getTypeSlider())), 50, DimensionScreen.WIDTH_MEDIUM);
 
-            this.gui.getSliderTypeofMixer(btn.getTypeSlider()).setValue(
-                    this.engine.isActiveUnitSound(btn.getTypeSlider()) ?
-                            this.engine.getValueUnitSound(btn.getTypeSlider()) : DesignSound.SOUND_ZERO);
+//            this.gui.getSliderTypeofMixer(btn.getTypeSlider()).setValue(
+//                    this.engine.isActiveUnitSound(btn.getTypeSlider()) ?
+//                            this.engine.getValueUnitSound(btn.getTypeSlider()) : DesignSound.SOUND_ZERO);
 
-//            this.callerAudio.execute(this.engine.isActiveUnitSound(btn.getTypeSlider()) ?
-//                    CmdAudioType.AUDIO_ON : CmdAudioType.AUDIO_OFF);
-        });
+            getCallerAudioEffect().forEach(callerAudioEffect -> {        	
+            	callerAudioEffect.execute((callerAudioEffect.getSound().isPlaying()) ? CmdAudioType.AUDIO_OFF : CmdAudioType.AUDIO_ON);
+            });
     }
 
     @Override

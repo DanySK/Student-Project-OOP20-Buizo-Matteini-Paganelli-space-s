@@ -13,6 +13,7 @@ public abstract class Sound {
 	    private SoundPath soundPath;
 	    private double volume;
 	    private Optional<Clip> clip = Optional.empty();
+	    private boolean isPlaying = false;
 
 		public Sound() {
 			this.soundPath = null;
@@ -43,17 +44,22 @@ public abstract class Sound {
 	    }
 	    
 	    public boolean isPlaying() {
-			return this.clip.map(DataLine::isActive).orElse(false);
+	    	
+	    	return this.isPlaying;
+			//return this.clip.map(DataLine::isActive).orElse(false);
 	    	
 	    }
 	    
+	    
 	    public void stopClip() {
 	    	this.clip.get().stop();
+	    	this.isPlaying = false;
 	    }
 
 
 	    public void startClip() {   	
 	    	playSound(this.soundPath.getValue(), this.volume);
+	    	this.isPlaying = true;
 	    }
 	    
 	    protected abstract void playSound(String fileName, double volume);

@@ -12,13 +12,15 @@ import model.worldEcollisioni.hitEvents.HitBorderEvent;
 import model.worldEcollisioni.hitEvents.HitPerkEvent;
 import view.GUI.game.GUIGame;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class GameMalaLoop {
     private long period = 20L;
     private CtrlGUI controlGUI;
     private GameState gameState;
-    private CallerAudio callerAudio;
+    private CallerAudio callerAudioLoop;
+    private ArrayList<CallerAudio> callerAudioEffects;
     private GUIGame panelGame;
     private MovementKeyListener controller;
     
@@ -34,16 +36,18 @@ public class GameMalaLoop {
         this.panelGame = this.controlGUI.getPanelGame();
         this.controller = new MovementKeyListener(this.gameState.getSpaceship());
 
-        this.callerAudio = new CallerAudio(new SoundLoop(this.controlGUI.getCurrentSound()));
-
+        this.callerAudioLoop = new CallerAudio(new SoundLoop(this.controlGUI.getCurrentSound()));
+        this.controlGUI.linksCallerAudioLoopWith(this.callerAudioLoop);
+        //this.controlGUI.linksCallerAudioEffectWith(this.callerAudioEffects);
         this.panelGame.addKeyListenerSpaceship(controller);
 
     }
 
     public void mainLoop(){
         long lastTime = System.currentTimeMillis();
-        this.callerAudio.execute(CmdAudioType.AUDIO_ON);
-        this.controlGUI.linksCallerAudioWith(this.callerAudio);
+        this.callerAudioLoop.execute(CmdAudioType.AUDIO_ON);
+        this.controlGUI.linksCallerAudioLoopWith(this.callerAudioLoop);
+        //this.controlGUI.linksCallerAudioEffectWith(this.callerAudioEffects);
 
         while (!gameState.isGameOver()) {
             long current = System.currentTimeMillis();
@@ -109,10 +113,10 @@ public class GameMalaLoop {
     }
 
     protected void renderSound(){
-        if(this.callerAudio.isNewSound(this.controlGUI.getCurrentSound())){
-            this.callerAudio.execute(CmdAudioType.AUDIO_OFF);
-            this.callerAudio.setSound(new SoundLoop(this.controlGUI.getCurrentSound()));
-            this.callerAudio.execute(CmdAudioType.AUDIO_ON);
+        if(this.callerAudioLoop.isNewSound(this.controlGUI.getCurrentSound())){
+            this.callerAudioLoop.execute(CmdAudioType.AUDIO_OFF);
+            this.callerAudioLoop.setSound(new SoundLoop(this.controlGUI.getCurrentSound()));
+            this.callerAudioLoop.execute(CmdAudioType.AUDIO_ON);
         }
     }
 
