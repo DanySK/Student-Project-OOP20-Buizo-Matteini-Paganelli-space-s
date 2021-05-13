@@ -1,10 +1,10 @@
 package model.gameObject.weapon;
 
 import model.gameObject.AbstractGameObject;
-import model.gameObject.Movable;
+import model.gameObject.MovableGameObject;
 import model.image.EngineImage;
 
-public class Bullet extends Movable {
+public class Bullet extends MovableGameObject {
 	private AmmoType type;
 	private EngineImage engineImage;
 	private int damage;

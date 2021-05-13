@@ -7,6 +7,7 @@ import model.common.P2d;
 import model.common.V2d;
 import model.image.EngineImage;
 import model.worldEcollisioni.physics.boundingType.BoundingBox;
+import model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
 import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 
 public class GameObjectUtils {
@@ -85,6 +86,10 @@ public class GameObjectUtils {
     	return new RectBoundingBox(new P2d(position.getX() - engineImage.getSize().getWidth() / 2, position.getY() - engineImage.getSize().getHeight() / 2),
 								   new P2d(position.getX() + engineImage.getSize().getWidth() / 2, position.getY() + engineImage.getSize().getHeight() / 2));
 	}
+    
+    public static BoundingBox createCircleBoundingBox(P2d position, EngineImage engineImage) {
+    	return new CircleBoundingBox(position, engineImage.getWidth() / 2);
+    }
     
     public static void main(String[] args) {
 		System.out.println(generateSpawnPoint(new Dimension(50, 50)));

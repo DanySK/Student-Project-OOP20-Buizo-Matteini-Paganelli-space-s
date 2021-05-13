@@ -1,73 +1,46 @@
 package model.gameObject;
 
 import java.awt.Dimension;
-import java.awt.geom.AffineTransform;
-import java.util.Optional;
 
 import model.common.P2d;
-import model.common.V2d;
-import model.gameObject.weapon.Weapon;
 import model.image.EngineImage;
 import model.worldEcollisioni.physics.boundingType.BoundingBox;
 import model.worldEcollisioni.physics.components.PhysicsComponent;
 import model.world.World;
 
 
-public abstract class AbstractGameObject extends Movable {
+public abstract class AbstractGameObject {
 	private EngineImage engineImage;
-	private int life;
-	private int damage;
-	
-	private Optional<Weapon> weapon;
-	private AffineTransform transform;
-
+	private P2d position;
 	private BoundingBox boundingBox;
 	private PhysicsComponent phys;
+	
 	//DA CAMBIARE, SARà L'ENUM DEGLI STATI DEGLI OGGETTI
 	private String state = "NORMAL";
 	
-	public AbstractGameObject(EngineImage engineImage, int life, int damage, P2d point,
-			  Movement movement, V2d vel, Optional<Weapon> weapon, BoundingBox bb, PhysicsComponent phys) {
-		super(point, vel, movement);
+	public AbstractGameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
+			final PhysicsComponent phys) {
 		this.engineImage = engineImage;
-		this.life = life;
-		this.damage = damage;
-		this.weapon = weapon;
-		this.transform = new AffineTransform();
+		this.position = position;
 		this.boundingBox = bb;
 		this.phys = phys;
 	}
 	
+	
 	public EngineImage getEngineImage() {
 		return engineImage;
+	}
+	
+	public P2d getPosition() {
+		return position;
+	}
+
+	public void setPosition(P2d position) {
+		this.position = position;
 	}
 
 	public void setEngineImage(EngineImage engineImage) {
 		this.engineImage = engineImage;
-	}
-
-	public int getLife() {
-		return life;
-	}
-
-	public void setLife(int life) {
-		this.life = life;
-	}
-
-	public int getDamage() {
-		return damage;
-	}
-
-	public void setDamage(int damage) {
-		this.damage = damage;
-	}
-
-	public Optional<Weapon> getWeapon() {
-		return weapon;
-	}
-
-	public void setWeapon(Optional<Weapon> weapon) {
-		this.weapon = weapon;
 	}
 
 	public BoundingBox getBoundingBox() {
@@ -76,14 +49,6 @@ public abstract class AbstractGameObject extends Movable {
 
 	public void setBoundingBox(BoundingBox boundingBox) {
 		this.boundingBox = boundingBox;
-	}
-
-	public AffineTransform getTransform() {
-		return transform;
-	}
-
-	public void setTransform(AffineTransform transform) {
-		this.transform = transform;
 	}
 
 	public PhysicsComponent getPhys() {
@@ -117,9 +82,8 @@ public abstract class AbstractGameObject extends Movable {
 
 	@Override
 	public String toString() {
-		return "AbstractGameObject [engineImage=" + engineImage + ", life=" + life + ", damage=" + damage + ", weapon="
-				+ weapon + ", boundingBox=" + boundingBox + ", transform=" + transform + ", phys=" + phys + ", state="
-				+ state + "]";
+		return "AbstractGameObject [engineImage=" + engineImage + ", boundingBox=" + boundingBox + 
+				", phys=" + phys + ", state="+ state + "]";
 	}
 
 }
