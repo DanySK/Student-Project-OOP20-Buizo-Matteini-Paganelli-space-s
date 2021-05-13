@@ -30,6 +30,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class CtrlGUI {
     public static final IdGUI FIRST_GUI = IdGUI.ID_MENU;
@@ -202,12 +203,25 @@ public class CtrlGUI {
         return this.chronology.lastElementOfList().getSound();
     }
 
-    public void linksCallerAudioWith(final CallerAudio callerAudio){
-        this.ctrlSound.setCallerAudio(callerAudio);
-        this.ctrlSound.getCallerAudio().setSound(callerAudio.getSound());
-        this.ctrlSound.linksCallerWithListener();
+    
+    public void linksCallerAudioLoopWith(final CallerAudio callerAudioLoop){
+        this.ctrlSound.setCallerAudioLoop(callerAudioLoop);
+        this.ctrlSound.getCallerAudioLoop().setSound(callerAudioLoop.getSound());
+        this.ctrlSound.linksCallerAudioLoopWithListener();
     }
 
+    public void linksCallerAudioEffectWith(final ArrayList<CallerAudio> callerAudioEffects){
+        this.ctrlSound.setCallerAudioEffect(callerAudioEffects);
+        AtomicInteger index = new AtomicInteger(0);
+        
+        callerAudioEffects.forEach(callerAudioEffect -> {   
+        	this.ctrlSound.getCallerAudioEffect().get(index.get()).setSound(callerAudioEffect.getSound());
+        	index.incrementAndGet();     	
+        });
+        this.ctrlSound.linksCallerAudioEffectWithListener();
+    }
+
+    
     private void quitAll(){
         this.managerGui.values().forEach(managerGui -> managerGui.getGUI().close());
     }

@@ -27,10 +27,10 @@ public class SoundLoop extends Sound {
 				AudioInputStream audioInputStream = null;
 
 			try {
-				if (isPlaying()) {
-					stopClip();
-					System.out.println(isPlaying());
-				}
+//				if (isPlaying()) {
+//					stopClip();
+//					System.out.println(isPlaying());
+//				}
 
 				audioInputStream = AudioSystem.getAudioInputStream(soundFile);
 
