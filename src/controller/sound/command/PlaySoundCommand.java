@@ -8,7 +8,5 @@ public class PlaySoundCommand implements CommandAudio {
 	public void execute(Sound sound) {
 		System.out.println("Start Sound");
 		sound.startClip();
-		//setSoundType(st);
-		//startClip();	
 	}
 }

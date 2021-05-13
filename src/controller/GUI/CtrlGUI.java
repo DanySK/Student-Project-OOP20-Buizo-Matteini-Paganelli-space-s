@@ -223,8 +223,12 @@ public class CtrlGUI {
         this.ctrlSound.linksCallerAudioEffectWithListener();
     }
 
-    public void setCurrentVolumeLoop(){
-        this.ctrlSound.setVolumeLoop();
+    public int getCurrentLoopVolume(){
+        return this.ctrlSound.getBackgroundVolume();
+    }
+
+    public boolean isActiveLoopUnitSound(){
+        return this.ctrlSound.isActiveLoopUnitSound();
     }
 
     

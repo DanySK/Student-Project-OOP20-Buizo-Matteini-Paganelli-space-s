@@ -2,6 +2,7 @@ package model.GUI.sound;
 
 import model.GUI.EngineGUI;
 import model.GUI.Visibility;
+import model.image.EngineImage;
 import utilities.DesignSound;
 import utilities.DesignTitleGUI;
 import utilities.dimension.Screen;
@@ -101,6 +102,10 @@ public class EngineSound implements EngineGUI {
 
     public boolean isActiveUnitSound(final TypeUnitSound typeUnitSound){
         return this.mixerSound.isActiveSound(typeUnitSound);
+    }
+
+    public EngineImage getEngineImageUnitSound(final TypeUnitSound typeUnitSound){
+        return this.mixerSound.getStateSound(typeUnitSound).getEngineImage();
     }
 
     public void changeStateUnitSound(final TypeUnitSound typeUnitSound){

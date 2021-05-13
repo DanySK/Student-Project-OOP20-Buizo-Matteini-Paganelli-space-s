@@ -10,12 +10,11 @@ import model.worldEcollisioni.WorldEvent;
 import model.worldEcollisioni.hitEvents.HitAsteroidEvent;
 import model.worldEcollisioni.hitEvents.HitBorderEvent;
 import model.worldEcollisioni.hitEvents.HitPerkEvent;
+import utilities.DesignSound;
 import view.GUI.game.GUIGame;
 
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Optional;
 
 public class GameMalaLoop {
     private long period = 20L;
@@ -39,9 +38,10 @@ public class GameMalaLoop {
         this.controller = new MovementKeyListener(this.gameState.getSpaceship());
 
         this.callerAudioLoop = new CallerAudio(new SoundLoop(this.controlGUI.getCurrentSound()));
-        this.controlGUI.linksCallerAudioLoopWith(this.callerAudioLoop);
 
+        this.controlGUI.linksCallerAudioLoopWith(this.callerAudioLoop);
         //this.controlGUI.linksCallerAudioEffectWith(this.callerAudioEffects);
+
         this.panelGame.addKeyListenerSpaceship(controller);
     }
 
@@ -49,17 +49,16 @@ public class GameMalaLoop {
         long lastTime = System.currentTimeMillis();
 
         this.callerAudioLoop.execute(CmdAudioType.AUDIO_ON);
-        this.controlGUI.linksCallerAudioLoopWith(this.callerAudioLoop);
-        //this.controlGUI.linksCallerAudioEffectWith(this.callerAudioEffects);
 
         while (!gameState.isGameOver()) {
+            renderSound();
+
             long current = System.currentTimeMillis();
             int elapsed = (int)(current - lastTime);
+
             processInput();
             //updateGame(elapsed);
-
             render();
-            renderSound();
 
             waitForNextFrame(current);
             lastTime = current;
@@ -119,9 +118,11 @@ public class GameMalaLoop {
         if(this.callerAudioLoop.isNewSound(this.controlGUI.getCurrentSound())) {
             this.callerAudioLoop.execute(CmdAudioType.AUDIO_OFF);
             this.callerAudioLoop.setSound(new SoundLoop(this.controlGUI.getCurrentSound()));
-            this.controlGUI.setCurrentVolumeLoop();
-            this.callerAudioLoop.execute(CmdAudioType.AUDIO_ON);
 
+            this.callerAudioLoop.changeVolume(this.controlGUI.isActiveLoopUnitSound() ?
+                    this.controlGUI.getCurrentLoopVolume() : DesignSound.SOUND_ZERO);
+
+            this.callerAudioLoop.execute(CmdAudioType.AUDIO_ON);
         }
     }
 

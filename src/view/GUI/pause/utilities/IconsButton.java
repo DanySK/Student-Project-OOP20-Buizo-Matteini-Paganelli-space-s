@@ -3,9 +3,9 @@ package view.GUI.pause.utilities;
 import utilities.pathImage.Icon;
 
 public enum IconsButton {
-    ICON_RESUME(Icon.START),
-    ICON_HELP(Icon.SETTINGS),
+    ICON_RESUME(Icon.RESUME),
     ICON_SOUND(Icon.SOUND),
+    ICON_HELP(Icon.HELP),
     ICON_QUI(Icon.QUIT);
 
     private String path;

@@ -58,6 +58,11 @@ public class ConcreteGUISound extends AbstractGUI implements GUISound {
     }
 
     @Override
+    public ButtonSliderType getBtnSwitch(final TypeUnitSound typeUnitSound) {
+        return this.mixerSound.getBtnSwitch(typeUnitSound);
+    }
+
+    @Override
     public void setDefaultValueSlidersSound(final int value) {
         this.mixerSound.setDefaultValueSlidersSound(value);
     }
