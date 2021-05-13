@@ -120,4 +120,9 @@ public class FactoryGUIs {
         button.setIcon(imag.getImageIcon());
     }
 
+    public static void setIconJButtonFromRate(final JButton button, final EngineImage engineImage) {
+        FactoryGUIs.setIconJButtonFromRate(button, engineImage.getPath(),
+                engineImage.getScaleOf(), engineImage.getRespectTo());
+    }
+
 }

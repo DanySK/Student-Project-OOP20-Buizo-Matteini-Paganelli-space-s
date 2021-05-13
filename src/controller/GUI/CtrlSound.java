@@ -60,8 +60,7 @@ public class CtrlSound implements ControllerGUI{
         this.gui.setIconBtnSwitches(this.engine.getIconStateSounds());
     }
 
-
-    public CallerAudio getCallerAudio(){
+    public CallerAudio getCallerAudioLoop(){
         return this.callerAudioLoop;
     }
 
@@ -69,35 +68,28 @@ public class CtrlSound implements ControllerGUI{
         this.callerAudioLoop = callerAudioLoop;
     }
 
-//    public void linksCallerWithListener(){
-//        this.setChangeListenerSlider();
-//        this.setActionListenerChangeSwitchSound();
-//    }
-//
-//    public void setChangeListenerSlider(){
-//        this.gui.getSlidersSound().forEach(slider -> {
-//
-//        	if(this.engine.isActiveUnitSound(TypeUnitSound.SLIDER_BACKGROUND)){
-//           	slider.addChangeListener(new ChangeListener() {
-//                @Override
-//                public void stateChanged(ChangeEvent ce) {
-//                    System.out.println(((JSlider) ce.getSource()).getValue());
-//                    getCallerAudio().changeVolume(((JSlider) ce.getSource()).getValue());
-//                }
-//            });
-//          }
-    
-    public CallerAudio getCallerAudioLoop(){
-        return this.callerAudioLoop;
+
+    public List<CallerAudio> getCallerAudioEffect(){
+        return this.callerAudioEffect;
     }
     
     public void setCallerAudioEffect(final List<CallerAudio> callerAudioEffect){
         this.callerAudioEffect = callerAudioEffect;
     }
-    
-    public List<CallerAudio> getCallerAudioEffect(){
-        return this.callerAudioEffect;
+
+
+    public int getBackgroundVolume(){
+        return this.engine.getValueUnitSound(TypeUnitSound.SLIDER_BACKGROUND);
     }
+
+    public int getEffectVolume(){
+        return this.engine.getValueUnitSound(TypeUnitSound.SLIDER_EFFECT);
+    }
+
+    public boolean isActiveLoopUnitSound(){
+        return this.engine.isActiveUnitSound(TypeUnitSound.SLIDER_BACKGROUND);
+    }
+
 
     public void linksCallerAudioLoopWithListener(){
         this.setChangeListenerSliderLoop();
@@ -117,17 +109,26 @@ public class CtrlSound implements ControllerGUI{
         });
     }
 
-    public int getBackgroundVolume(){
-        return this.engine.getValueUnitSound(TypeUnitSound.SLIDER_BACKGROUND);
+    public int getValueIfActive(final TypeUnitSound typeUnitSound){
+        return this.engine.isActiveUnitSound(typeUnitSound) ?
+                this.engine.getValueUnitSound(typeUnitSound) : DesignSound.SOUND_ZERO;
     }
 
-    public int getEffectVolume(){
-        return this.engine.getValueUnitSound(TypeUnitSound.SLIDER_EFFECT);
+    public void setActionListenerChangeSwitchSoundLoop(){
+        this.gui.getBtnSwitch(TypeUnitSound.SLIDER_BACKGROUND).addActionListener(btn -> {
+            final ButtonSliderType btnType = (ButtonSliderType) btn.getSource();
+
+            this.engine.changeStateUnitSound(btnType.getTypeSlider());
+
+            FactoryGUIs.setIconJButtonFromRate(btnType, this.engine.getEngineImageUnitSound(btnType.getTypeSlider()));
+
+            this.gui.getSliderTypeofMixer(btnType.getTypeSlider())
+                    .setValue(this.getValueIfActive(btnType.getTypeSlider()));
+
+            this.callerAudioLoop.changeVolume(this.getValueIfActive(btnType.getTypeSlider()));
+        });
     }
 
-    public boolean isActiveLoopUnitSound(){
-        return this.engine.isActiveUnitSound(TypeUnitSound.SLIDER_BACKGROUND);
-    }
 
     public void setChangeListenerSliderEffect(){
     	this.gui.getSliderTypeofMixer(TypeUnitSound.SLIDER_EFFECT).addChangeListener(ce -> {
@@ -139,29 +140,6 @@ public class CtrlSound implements ControllerGUI{
         });
     }
 
-    public void setActionListenerChangeSwitchSoundLoop(){
-        this.gui.getBtnSwitch(TypeUnitSound.SLIDER_BACKGROUND).addActionListener(btn -> {
-            final ButtonSliderType btnType = (ButtonSliderType) btn.getSource();
-            this.engine.changeStateUnitSound(btnType.getTypeSlider());
-
-            final EngineImage engineImage = this.engine.getEngineImageUnitSound(btnType.getTypeSlider());
-
-            FactoryGUIs.setIconJButtonFromRate(btnType, engineImage.getPath(),
-                    engineImage.getScaleOf(), engineImage.getRespectTo());
-
-            this.gui.getSliderTypeofMixer(btnType.getTypeSlider()).setValue(
-                    this.engine.isActiveUnitSound(btnType.getTypeSlider()) ?
-                            this.engine.getValueUnitSound(btnType.getTypeSlider()) :
-                            DesignSound.SOUND_ZERO
-            );
-
-            this.callerAudioLoop.changeVolume(this.engine.isActiveUnitSound(btnType.getTypeSlider()) ?
-                    this.engine.getValueUnitSound(btnType.getTypeSlider()) : DesignSound.SOUND_ZERO);
-
-        });
-
-    }
-    
     public void setActionListenerChangeSwitchSoundEffect(){
     		
     		ButtonSliderType btn = this.gui.getBtnSwitches().get(1);
