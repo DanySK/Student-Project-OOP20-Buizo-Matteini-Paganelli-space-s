@@ -92,6 +92,16 @@ public class World {
 		return Optional.empty();
 	}
 	
+	public Optional<AbstractGameObject> checkCollisionWithChaseEnemies(P2d pos, RectBoundingBox box){
+		double radius = box.getWidth();
+		for (AbstractGameObject obj: enemies){
+			if (obj.getBoundingBox().isCollidingWith(pos,radius)){
+				return Optional.of(obj);
+			}
+		}
+		return Optional.empty();
+	}
+	
 	public Optional<AbstractGameObject> checkCollisionWithPerks(P2d pos, RectBoundingBox box){
 		double radius = box.getWidth();
 		for (AbstractGameObject obj: perks){

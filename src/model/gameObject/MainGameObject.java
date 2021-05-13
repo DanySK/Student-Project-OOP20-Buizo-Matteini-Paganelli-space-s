@@ -17,24 +17,31 @@ public abstract class MainGameObject extends MovableGameObject {
 	private Optional<Weapon> weapon;
 	private AffineTransform transform;
 	
-	public MainGameObject(final EngineImage engineImage, final P2d point, final BoundingBox bb,
+	public MainGameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
 			final PhysicsComponent phys, final V2d velocity, final Movement movement, final int life,
 			final int damage, final Optional<Weapon> weapon) {
-		super(engineImage, point, bb, phys, velocity, movement);
+		super(engineImage, position, bb, phys, velocity, movement);
 		this.life = life;
 		this.damage = damage;
 		this.weapon = weapon;
 		this.transform = new AffineTransform();
 	}
 
-	public int getLife() {
+    public int getLife() {
 		return life;
 	}
 
-	public void setLife(int life) {
-		this.life = life;
+    public void increaseLife(int heal) {
+		this.life += heal;
 	}
-
+    
+	public void decreaseLife(int damage) {
+		this.life -= damage;
+		if (this.life <= 0) {
+			this.life = 0;
+		}
+	}
+	
 	public int getDamage() {
 		return damage;
 	}
