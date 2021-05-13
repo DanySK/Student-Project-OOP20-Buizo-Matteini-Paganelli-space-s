@@ -4,13 +4,17 @@ import model.GUI.Visibility;
 import model.image.EngineImage;
 import model.GUI.EngineGUI;
 import utilities.*;
+import utilities.dimension.ScaleOf;
+import utilities.dimension.Screen;
 
+import java.awt.*;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class EngineSettings implements EngineGUI {
+    public static final Rectangle DIMENSION_GUI = Screen.RECTANGLE_MEDIUM;
     public static final int INDEX_INIT_SKIN = 0;
     public static final int INDEX_INTI_DIFFICULT = 0;
     public static final int STEP_INDEX_SKIN = 1;
@@ -21,7 +25,7 @@ public class EngineSettings implements EngineGUI {
     private final IdGUI linkBack;
 
     private final Map<Difficulty, DifficultActive> difficult;
-    private final EngineImage skinSpaceShip;
+    private final List<SkinSpaceShip> skinSpaceShip;
     private int chooseSkin;
 
     private Visibility visibility = Visibility.HIDDEN;
@@ -30,8 +34,8 @@ public class EngineSettings implements EngineGUI {
         this.id = IdGUI.ID_SETTING;
         this.linkBack = IdGUI.ID_BACK;
         this.chooseSkin = INDEX_INIT_SKIN;
-        this.skinSpaceShip = new EngineImage(DimensionScreen.WIDTH_FULL_SCREEN, DesignImage.RATE_ICON_SKIN,
-                SkinSpaceShip.values()[this.chooseSkin].getPath());
+
+        this.skinSpaceShip = Arrays.asList(SkinSpaceShip.values());
         this.namesButtons = List.of(NameSettingsGUI.values());
 
         this.difficult = IntStream.range(INDEX_INTI_DIFFICULT, Difficulty.values().length).boxed()
@@ -81,19 +85,17 @@ public class EngineSettings implements EngineGUI {
     }
 
     public EngineImage getSkinSpaceShip() {
-        return this.skinSpaceShip;
+        return this.skinSpaceShip.get(this.chooseSkin).getEngineImage();
     }
 
     public void changeSkinDx(){
         this.chooseSkin = this.chooseSkin + STEP_INDEX_SKIN < SkinSpaceShip.values().length ?
                 this.chooseSkin + STEP_INDEX_SKIN : INDEX_INIT_SKIN;
-        this.skinSpaceShip.setPath(SkinSpaceShip.values()[this.chooseSkin].getPath());
     }
 
     public void changeSkinSx(){
         this.chooseSkin = this.chooseSkin - STEP_INDEX_SKIN >= INDEX_INIT_SKIN ?
                 this.chooseSkin - STEP_INDEX_SKIN : SkinSpaceShip.values().length - STEP_INDEX_SKIN;
-        this.skinSpaceShip.setPath(SkinSpaceShip.values()[this.chooseSkin].getPath());
     }
 
     public Difficulty getDifficultActivate(){

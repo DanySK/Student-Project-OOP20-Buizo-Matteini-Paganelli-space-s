@@ -10,13 +10,13 @@ import model.common.*;
 import model.gameObject.boss.Boss;
 import model.gameObject.weapon.Weapon;
 import model.image.EngineImage;
-import utilities.IconPath;
+import utilities.pathImage.Icon;
 
 public class ConcreteFactoryBoss extends AbstractFactoryGameObject {
 
 	@Override
 	public Boss createObject() {
-		EngineImage engineImage = new EngineImage(IconPath.ICON_BULLET);
+		EngineImage engineImage = new EngineImage(Icon.BULLET);
 		Dimension size = engineImage.getSize();
 		int life = GameObjectUtils.BOSS_LIFE;
 		int damage = GameObjectUtils.BOSS_DAMAGE;		

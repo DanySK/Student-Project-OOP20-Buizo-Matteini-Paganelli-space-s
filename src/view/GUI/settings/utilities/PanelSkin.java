@@ -1,6 +1,5 @@
 package view.GUI.settings.utilities;
 
-import model.GUI.settings.SkinSpaceShip;
 import model.image.EngineImage;
 import view.utilities.FactoryGUIs;
 import view.utilities.JImage;
@@ -13,7 +12,7 @@ public class PanelSkin extends JPanel {
     private JButton btSX = new JButton("<");
     private JButton btDX = new JButton(">");;
 
-    private SkinSpaceShip skinSpaceShip = SkinSpaceShip.DELUXE;
+
     private JImage pnImage = new JImage();
 
     public PanelSkin(final int width, final int height){

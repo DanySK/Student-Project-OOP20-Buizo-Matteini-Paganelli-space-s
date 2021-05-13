@@ -9,13 +9,13 @@ import model.common.*;
 import model.gameObject.chaseEnemy.ChaseEnemy;
 import model.gameObject.weapon.Weapon;
 import model.image.EngineImage;
-import utilities.IconPath;
+import utilities.pathImage.Icon;
 
 public class ConcreteFactoryChaseEnemy extends AbstractFactoryGameObject {
 
 	@Override
 	public ChaseEnemy createObject() {
-		EngineImage engineImage = new EngineImage(IconPath.ICON_BULLET);
+		EngineImage engineImage = new EngineImage(Icon.BULLET);
 		Dimension size = engineImage.getSize();
 		int life = GameObjectUtils.CHASE_ENEMY_LIFE;
 		int damage = GameObjectUtils.CHASE_ENEMY_DAMAGE;		

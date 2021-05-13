@@ -1,13 +1,8 @@
 package view.spaceShip;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
-
-import javax.swing.ImageIcon;
 
 import model.GUI.settings.SkinSpaceShip;
-import model.environment.Point2D;
-import utilities.IconPath;
 import view.utilities.JImage;
 import javax.swing.*;
 
@@ -30,12 +25,12 @@ public class SpaceShipView extends JComponent {
 //		super.paintComponent(g);
 		final Graphics2D g2d = (Graphics2D) g;
 
-		Image img = JImage.getImageFromPath(SkinSpaceShip.DELUXE.getPath());
-		g2d.drawImage(img, 50, 50, null);
-
-
-
-		System.out.println("sssss" + img);
+//		Image img = JImage.getImageFromPath(SkinSpaceShip.DELUXE.getPath());
+//		g2d.drawImage(img, 50, 50, null);
+//
+//
+//
+//		System.out.println("sssss" + img);
 
 
 	}

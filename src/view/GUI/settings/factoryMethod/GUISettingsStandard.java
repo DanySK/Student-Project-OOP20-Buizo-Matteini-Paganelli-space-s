@@ -1,7 +1,7 @@
 package view.GUI.settings.factoryMethod;
 
-import utilities.DimensionScreen;
-import utilities.IconPath;
+import utilities.dimension.Screen;
+import utilities.pathImage.Icon;
 import utilities.DesignJComponent;
 import utilities.DesignSpace;
 import view.GUI.settings.FactoryGUISettings;
@@ -22,7 +22,7 @@ public class GUISettingsStandard implements FactoryGUISettings {
         concreteSettings.setFontTitleUnit(DesignSpace.FONT_BIG_STANDARD);
         concreteSettings.setFontUnit(DesignSpace.FONT_MEDIUM_STANDARD);
         concreteSettings.setForegroundGUI(DesignSpace.color4);
-        concreteSettings.setBounds(DimensionScreen.RECTANGLE_MEDIUM);
+        concreteSettings.setBounds(Screen.RECTANGLE_MEDIUM);
         concreteSettings.setBorder(3);
         this.createGraphics(concreteSettings);
         return concreteSettings;
@@ -34,7 +34,7 @@ public class GUISettingsStandard implements FactoryGUISettings {
         concreteSettings.add(FactoryGUIs.encapsulatesInPanelFlow(concreteSettings.getLbTitle()), BorderLayout.NORTH);
         concreteSettings.add(FactoryGUIs.encapsulatesInPanelFlow(concreteSettings.getBtnBack()), BorderLayout.SOUTH);
 
-        FactoryGUIs.setIconJButtonFromRate(concreteSettings.getBtnBack(), IconPath.ICON_BACK,
+        FactoryGUIs.setIconJButtonFromRate(concreteSettings.getBtnBack(), Icon.BACK,
                 30, concreteSettings.getWidth());
         concreteSettings.setTransparentComponent();
 

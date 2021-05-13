@@ -2,7 +2,7 @@ package view.GUI.pause.factoryMethod;
 
 
 import utilities.DesignSpace;
-import utilities.DimensionScreen;
+import utilities.dimension.Screen;
 import view.GUI.pause.FactoryGUIPause;
 import view.GUI.pause.GUIPause;
 import view.GUI.pause.concrete.GUIPauseConcrete;
@@ -24,7 +24,7 @@ public class GUIPauseStandard implements FactoryGUIPause {
 
 
         concrete.setBorder(3);
-        concrete.setBounds(DimensionScreen.RECTANGLE_MINI);
+        concrete.setBounds(Screen.RECTANGLE_MINI);
         concrete.setBackgroundImage("background/transparent.png");
 
         this.createGraphics(concrete);

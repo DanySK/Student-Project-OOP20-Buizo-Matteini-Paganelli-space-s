@@ -10,13 +10,13 @@ import model.common.*;
 import model.gameObject.fireEnemy.FireEnemy;
 import model.gameObject.weapon.Weapon;
 import model.image.EngineImage;
-import utilities.IconPath;
+import utilities.pathImage.Icon;
 
 public class ConcreteFactoryFireEnemy extends AbstractFactoryGameObject {
 
 	@Override
 	public FireEnemy createObject() {
-		EngineImage engineImage = new EngineImage(IconPath.ICON_BULLET);
+		EngineImage engineImage = new EngineImage(Icon.BULLET);
 		Dimension size = engineImage.getSize();
 		int life = GameObjectUtils.FIRE_ENEMY_LIFE;
 		int damage = GameObjectUtils.FIRE_ENEMY_DAMAGE;		

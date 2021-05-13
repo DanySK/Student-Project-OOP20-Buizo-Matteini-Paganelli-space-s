@@ -1,7 +1,6 @@
 package utilities;
 
 import model.GUI.settings.DifficultActive;
-import model.GUI.sound.StateSlider;
 
 import java.util.List;
 

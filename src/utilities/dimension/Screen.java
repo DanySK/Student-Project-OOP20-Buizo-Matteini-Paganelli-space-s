@@ -1,8 +1,8 @@
-package utilities;
+package utilities.dimension;
 
 import java.awt.*;
 
-public class DimensionScreen {
+public class Screen {
     private static final float PROPORTION_BIG= 1.1F;
     private static final float PROPORTION_MEDIUM = 1.6F;
     private static final float PROPORTION_MINI = 3F;
@@ -14,6 +14,7 @@ public class DimensionScreen {
     public static final int HEIGHT_FULL_SCREEN = (int) FULLSCREEN.getHeight();
     public static final Point POINT_CENTER_FULLSCREEN = new Point(FULLSCREEN.width / 2, FULLSCREEN.height / 2);
     public static final Rectangle RECTANGLE_FULLSCREEN = new Rectangle(POINT_ZERO, FULLSCREEN);
+
 
     public static final int WIDTH_BIG = (int) (FULLSCREEN.width / PROPORTION_BIG);
     public static final int HEIGHT_BIG = (int) (FULLSCREEN.height / PROPORTION_BIG);
@@ -44,17 +45,6 @@ public class DimensionScreen {
     public static final Point POINT_CENTER_MINI = new Point(CENTER_X_MINI, CENTER_Y_MINI);
     public static final Rectangle RECTANGLE_MINI = new Rectangle(POINT_CENTER_MINI, DIMENSION_MINI);
 
-    public static final String PATH_MAIN_BACKGROUND = "background/main.png";
-    public static final String PATH_GAME_BACKGROUND = "background/game.png";
-
-
-    public static int findPointXGUI(final int n){
-        return (int) (POINT_CENTER_FULLSCREEN.getX() - (n / 2));
-    }
-
-    public static int findPointYGUI(final int n){
-        return (int) (POINT_CENTER_FULLSCREEN.getY() - (n / 2));
-    }
 
     public static int scaleRespectTo(final int scaleOf, final int respectTo){
         return scaleOf * respectTo / 1000;

@@ -10,8 +10,9 @@ import model.GUI.EngineGUI;
 import model.GUI.Visibility;
 import model.GUI.sound.EngineSound;
 import model.GUI.sound.TypeUnitSound;
+import model.sound.CmdAudioType;
 import utilities.DesignSound;
-import utilities.DimensionScreen;
+import utilities.dimension.Screen;
 import utilities.IdGUI;
 import view.GUI.GUI;
 import view.GUI.sound.GUISound;
@@ -51,17 +52,14 @@ public class CtrlSound implements ControllerGUI{
         this.gui.setTitleUnitSound(this.engine.getListNameSlider());
         this.gui.setDefaultValueSlidersSound(this.engine.getDefaultValueSound());
         this.gui.setIconBtnSwitches(this.engine.getIconStateSounds());
-
     }
-    
-    
+
+    public CallerAudio getCallerAudio(){
+        return this.callerAudio;
+    }
 
     public void setCallerAudio(final CallerAudio callerAudio){
         this.callerAudio = callerAudio;
-    }
-    
-    public CallerAudio getCallerAudio(){
-        return this.callerAudio;
     }
 
     public void linksCallerWithListener(){
@@ -71,7 +69,7 @@ public class CtrlSound implements ControllerGUI{
 
     public void setChangeListenerSlider(){
         this.gui.getSlidersSound().forEach(slider -> {
-            //this.engine.setValueUnitSound(slider.getType(), slider.getValue());
+
         	if(this.engine.isActiveUnitSound(TypeUnitSound.SLIDER_BACKGROUND)){
            	slider.addChangeListener(new ChangeListener() {
                 @Override
@@ -87,15 +85,23 @@ public class CtrlSound implements ControllerGUI{
 
     public void setActionListenerChangeSwitchSound(){
         this.gui.getBtnSwitches().forEach(btn -> {
-            this.engine.changeStateUnitSound(btn.getTypeSlider());
-            FactoryGUIs.setIconJButtonFromRate(btn, this.engine.getPathIconUnitSound((btn.getTypeSlider())), 50, DimensionScreen.WIDTH_MEDIUM);
+            btn.addActionListener(l -> {
+                FactoryGUIs.setIconJButtonFromRate(btn, this.engine.getPathIconUnitSound((btn.getTypeSlider())),
+                        60, Screen.WIDTH_MEDIUM);
 
-            this.gui.getSliderTypeofMixer(btn.getTypeSlider()).setValue(
+
+                            this.gui.getSliderTypeofMixer(btn.getTypeSlider()).setValue(
                     this.engine.isActiveUnitSound(btn.getTypeSlider()) ?
                             this.engine.getValueUnitSound(btn.getTypeSlider()) : DesignSound.SOUND_ZERO);
 
-//            this.callerAudio.execute(this.engine.isActiveUnitSound(btn.getTypeSlider()) ?
-//                    CmdAudioType.AUDIO_ON : CmdAudioType.AUDIO_OFF);
+                this.engine.changeStateUnitSound(btn.getTypeSlider());
+
+                System.out.println("clicco bottone" + btn.getTypeSlider() + " "
+                        + this.engine.isActiveUnitSound(btn.getTypeSlider()));
+
+                this.callerAudio.execute(this.engine.isActiveUnitSound(btn.getTypeSlider()) ?
+                    CmdAudioType.AUDIO_ON : CmdAudioType.AUDIO_OFF);
+            });
         });
     }
 

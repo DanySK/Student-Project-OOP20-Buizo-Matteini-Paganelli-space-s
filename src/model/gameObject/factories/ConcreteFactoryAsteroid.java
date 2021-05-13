@@ -9,13 +9,13 @@ import model.common.*;
 import model.gameObject.asteroid.Asteroid;
 import model.gameObject.weapon.Weapon;
 import model.image.EngineImage;
-import utilities.IconPath;
+import utilities.pathImage.Icon;
 
 
 public class ConcreteFactoryAsteroid extends AbstractFactoryGameObject {
 
 	public Asteroid createObject() {
-		EngineImage engineImage = new EngineImage(IconPath.ICON_BULLET);
+		EngineImage engineImage = new EngineImage(Icon.BULLET);
 		Dimension size = engineImage.getSize();
 		int life = GameObjectUtils.ASTEROID_LIFE;
 		int damage = GameObjectUtils.ASTEROID_DAMAGE;		

@@ -1,8 +1,8 @@
 package view.GUI.game.utilities;
 
 import model.image.EngineImage;
-import utilities.DimensionScreen;
-import utilities.IconPath;
+import utilities.dimension.Screen;
+import utilities.pathImage.Icon;
 import view.utilities.JImage;
 
 import javax.swing.*;
@@ -18,10 +18,10 @@ public class Bullet extends JPanel {
 
         this.nBullet = new JLabel();
         final Dimension dimension = EngineImage.getSizeImageFromScale(
-                IconPath.ICON_HEART, 30, DimensionScreen.WIDTH_FULL_SCREEN);
+                Icon.HEART, 30, Screen.WIDTH_FULL_SCREEN);
 
-        this.icon = new JImage(IconPath.ICON_BULLET, dimension);
-        this.nBullet.setIcon(new JImage(IconPath.ICON_WEAPON, dimension).getImageIcon());
+        this.icon = new JImage(Icon.BULLET, dimension);
+        this.nBullet.setIcon(new JImage(Icon.WEAPON, dimension).getImageIcon());
 
         super.add(this.nBullet);
         super.add(this.icon);

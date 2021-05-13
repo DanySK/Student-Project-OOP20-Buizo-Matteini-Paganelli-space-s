@@ -1,7 +1,6 @@
 package model.GUI.sound;
 
 import model.image.EngineImage;
-import utilities.DimensionScreen;
 
 public enum StateSlider {
     ON(true, new EngineImage(100, EngineSound.GUI_WIDTH, "icon/volumeON.png")),

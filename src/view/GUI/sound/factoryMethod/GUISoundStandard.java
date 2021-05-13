@@ -1,7 +1,7 @@
 package view.GUI.sound.factoryMethod;
 
-import utilities.IconPath;
-import utilities.DimensionScreen;
+import utilities.pathImage.Icon;
+import utilities.dimension.Screen;
 import utilities.DesignSpace;
 import view.GUI.sound.FactoryGUISound;
 import view.GUI.sound.GUISound;
@@ -19,7 +19,7 @@ public class GUISoundStandard implements FactoryGUISound {
         soundGUI.setFontGUI(DesignSpace.FONT_MEDIUM_STANDARD);
         soundGUI.setFontSpacingSlider(DesignSpace.FONT_MICRO_STANDARD);
         soundGUI.setForegroundGUI(DesignSpace.color4);
-        soundGUI.setBounds(DimensionScreen.RECTANGLE_MEDIUM);
+        soundGUI.setBounds(Screen.RECTANGLE_MEDIUM);
         soundGUI.setBorder(3);
         this.graphics(soundGUI);
         return soundGUI;
@@ -32,7 +32,7 @@ public class GUISoundStandard implements FactoryGUISound {
         soundGUI.add(soundGUI.getMixerSound(), BorderLayout.CENTER);
         soundGUI.add(FactoryGUIs.encapsulatesInPanelFlow(soundGUI.getBtnBack()), BorderLayout.SOUTH);
 
-        FactoryGUIs.setIconJButtonFromRate(soundGUI.getBtnBack(), IconPath.ICON_BACK,
+        FactoryGUIs.setIconJButtonFromRate(soundGUI.getBtnBack(), Icon.BACK,
                 30, soundGUI.getWidth());
     }
 }

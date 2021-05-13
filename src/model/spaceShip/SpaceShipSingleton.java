@@ -11,13 +11,14 @@ import model.gameObject.weapon.Weapon;
 import model.image.EngineImage;
 import model.GUI.settings.SkinSpaceShip;
 import utilities.DesignSpace;
-import utilities.DimensionScreen;
+import utilities.dimension.Screen;
+import utilities.pathImage.Skin;
 
 public class SpaceShipSingleton extends AbstractGameObject {
     
     // Eager and unique instance of this class for Threadsafing
     private static SpaceShipSingleton spaceShip = new SpaceShipSingleton(
-    		new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, DimensionScreen.WIDTH_FULL_SCREEN, SkinSpaceShip.NORMAL.getPath()),
+    		new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Skin.NORMAL),
     		GameObjectUtils.SPACESHIP_LIFE,
     		GameObjectUtils.SPACESHIP_DAMAGE,
     		DesignSpace.CENTER_ENVIRONMENT,

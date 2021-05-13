@@ -2,7 +2,7 @@ package model.gameObject;
 
 import java.awt.Dimension;
 import java.util.Random;
-import utilities.DimensionScreen;
+import utilities.dimension.Screen;
 import model.common.P2d;
 import model.common.V2d;
 
@@ -56,20 +56,20 @@ public class GameObjectUtils {
     	      	
     	switch (Edge.randomAxis()) {
 		case TOP:
-    		xAxis = random.nextInt(DimensionScreen.WIDTH_FULL_SCREEN);
+    		xAxis = random.nextInt(Screen.WIDTH_FULL_SCREEN);
     		yAxis = 0 - (int) objectDim.getHeight();
 		break;
 		case BOTTOM:
-    		xAxis = random.nextInt(DimensionScreen.WIDTH_FULL_SCREEN);
-    		yAxis = DimensionScreen.WIDTH_FULL_SCREEN;
+    		xAxis = random.nextInt(Screen.WIDTH_FULL_SCREEN);
+    		yAxis = Screen.WIDTH_FULL_SCREEN;
 		break;
 		case LEFT:
 			xAxis = 0 - (int) objectDim.getWidth();
-    		yAxis = random.nextInt(DimensionScreen.WIDTH_FULL_SCREEN);
+    		yAxis = random.nextInt(Screen.WIDTH_FULL_SCREEN);
 		break;
 		case RIGHT:
-			xAxis = DimensionScreen.WIDTH_FULL_SCREEN;
-    		yAxis = random.nextInt(DimensionScreen.WIDTH_FULL_SCREEN);
+			xAxis = Screen.WIDTH_FULL_SCREEN;
+    		yAxis = random.nextInt(Screen.WIDTH_FULL_SCREEN);
 		break;
 		}
 

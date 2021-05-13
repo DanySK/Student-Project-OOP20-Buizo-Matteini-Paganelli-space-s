@@ -28,7 +28,7 @@ public class EngineImage {
 
     public EngineImage(final int scaleOf, final int respectTo, final String path){
         this(path);
-        this.setScale(respectTo, scaleOf);
+        this.setScale(scaleOf, respectTo);
     }
 
 
