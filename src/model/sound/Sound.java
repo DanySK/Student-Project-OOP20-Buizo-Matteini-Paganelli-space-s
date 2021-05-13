@@ -36,6 +36,7 @@ public abstract class Sound {
 	    	try {
 				audioInputStream = AudioSystem.getAudioInputStream(ClassLoader.getSystemResource(sound.getValue()));
 				setClip(AudioSystem.getClip());
+				getClip().get().open(audioInputStream);
 			} catch (UnsupportedAudioFileException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
