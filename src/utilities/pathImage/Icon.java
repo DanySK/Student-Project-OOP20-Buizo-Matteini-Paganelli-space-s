@@ -1,6 +1,14 @@
 package utilities.pathImage;
 
 public class Icon {
+    public static final String START = "icon/start.png";
+    public static final String SETTINGS = "icon/settings.png";
+    public static final String SCOREBOARD = "icon/scoreboard.png";
+    public static final String SOUND = "icon/sound.png";
+    public static final String HELP = "icon/help.png";
+    public static final String QUIT = "icon/quit.png";
+    public static final String RESUME = "icon/resume.png";
+
     public static final String BACK = "icon/back.png";
     public static final String SEARCH = "icon/search.png";
 

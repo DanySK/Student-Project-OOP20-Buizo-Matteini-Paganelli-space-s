@@ -1,5 +1,6 @@
 package view.GUI.scoreboard.factoryMethod;
 
+import utilities.dimension.ScaleOf;
 import utilities.dimension.Screen;
 import utilities.pathImage.Icon;
 import utilities.DesignSpace;
@@ -40,9 +41,9 @@ public class GUIScoreboardStandard implements FactoryGUIScoreboard {
         FactoryGUIs.setTransparentDesignJButton(scoreboardConcrete.getBtnBack());
 
         FactoryGUIs.setIconJButtonFromRate(scoreboardConcrete.getBtnSearch(), Icon.SEARCH,
-                30, scoreboardConcrete.getWidth());
+                ScaleOf.ICON_MEDIUM, scoreboardConcrete.getWidth());
         FactoryGUIs.setIconJButtonFromRate(scoreboardConcrete.getBtnBack(), Icon.BACK,
-                30, scoreboardConcrete.getWidth());
+                ScaleOf.ICON_MEDIUM, scoreboardConcrete.getWidth());
 
         JPanel panelScore = new JPanel(new BorderLayout()) {{ setOpaque(false); }};
 

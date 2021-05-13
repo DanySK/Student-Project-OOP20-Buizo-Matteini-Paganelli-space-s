@@ -4,12 +4,16 @@ import model.GUI.EngineGUI;
 import model.GUI.Visibility;
 import utilities.DesignTitleGUI;
 import utilities.IdGUI;
+import utilities.dimension.Screen;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class EngineMenu implements EngineGUI {
+    public static final Rectangle DIMENSION = Screen.RECTANGLE_FULLSCREEN;
+
     private final IdGUI id;
     private final List<LinksMenu> linkButtons;
 

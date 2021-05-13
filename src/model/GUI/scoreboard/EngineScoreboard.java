@@ -4,7 +4,9 @@ import model.GUI.EngineGUI;
 import model.GUI.Visibility;
 import utilities.DesignTitleGUI;
 import utilities.IdGUI;
+import utilities.dimension.Screen;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -12,6 +14,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class EngineScoreboard implements EngineGUI {
+    public static final Rectangle DIMENSION = Screen.RECTANGLE_MEDIUM;
+
     private final IdGUI id;
     private final IdGUI linkBack;
 

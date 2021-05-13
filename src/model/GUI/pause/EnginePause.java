@@ -4,12 +4,15 @@ import model.GUI.EngineGUI;
 import model.GUI.Visibility;
 import utilities.DesignTitleGUI;
 import utilities.IdGUI;
+import utilities.dimension.Screen;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class EnginePause implements EngineGUI{
+    public static final Rectangle DIMENSION = Screen.RECTANGLE_MEDIUM;
     public static final int N_BUTTONS = 4;
 
     private final IdGUI id;

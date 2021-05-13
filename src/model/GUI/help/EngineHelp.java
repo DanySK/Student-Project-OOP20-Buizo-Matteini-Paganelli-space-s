@@ -6,12 +6,17 @@ import utilities.DesignTitleGUI;
 import model.GUI.EngineGUI;
 import utilities.DesignJComponent;
 import utilities.IdGUI;
+import utilities.dimension.Screen;
 import view.utilities.JImage;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class EngineHelp implements EngineGUI {
+    public static final Rectangle DIMENSION = Screen.RECTANGLE_MEDIUM;
+
     private final IdGUI id;
     private final IdGUI linkBack;
 

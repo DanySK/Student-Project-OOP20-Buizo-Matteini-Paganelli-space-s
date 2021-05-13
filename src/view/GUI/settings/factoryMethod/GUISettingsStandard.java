@@ -1,5 +1,6 @@
 package view.GUI.settings.factoryMethod;
 
+import utilities.dimension.ScaleOf;
 import utilities.dimension.Screen;
 import utilities.pathImage.Icon;
 import utilities.DesignJComponent;
@@ -35,7 +36,7 @@ public class GUISettingsStandard implements FactoryGUISettings {
         concreteSettings.add(FactoryGUIs.encapsulatesInPanelFlow(concreteSettings.getBtnBack()), BorderLayout.SOUTH);
 
         FactoryGUIs.setIconJButtonFromRate(concreteSettings.getBtnBack(), Icon.BACK,
-                30, concreteSettings.getWidth());
+                ScaleOf.ICON_MEDIUM, concreteSettings.getWidth());
         concreteSettings.setTransparentComponent();
 
         GridBagConstraints lim = FactoryGUIs.createGBConstraintsBase();

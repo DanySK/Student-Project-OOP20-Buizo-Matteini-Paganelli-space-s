@@ -1,16 +1,14 @@
-package view.GUI.menu.utilities;
+package view.GUI.pause.utilities;
 
 import utilities.pathImage.Icon;
 
 public enum IconsButton {
-    ICON_START(Icon.START),
-    ICON_SETTINGS(Icon.SETTINGS),
-    ICON_SCOREBOARD(Icon.SCOREBOARD),
+    ICON_RESUME(Icon.START),
+    ICON_HELP(Icon.SETTINGS),
     ICON_SOUND(Icon.SOUND),
-    ICON_HELP(Icon.HELP),
-    ICON_QUIT(Icon.QUIT);
+    ICON_QUI(Icon.QUIT);
 
-    private final String path;
+    private String path;
 
     private IconsButton(final String path){
         this.path = path;

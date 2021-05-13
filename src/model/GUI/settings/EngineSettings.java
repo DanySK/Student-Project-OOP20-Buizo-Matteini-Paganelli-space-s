@@ -4,7 +4,6 @@ import model.GUI.Visibility;
 import model.image.EngineImage;
 import model.GUI.EngineGUI;
 import utilities.*;
-import utilities.dimension.ScaleOf;
 import utilities.dimension.Screen;
 
 import java.awt.*;
@@ -14,7 +13,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class EngineSettings implements EngineGUI {
-    public static final Rectangle DIMENSION_GUI = Screen.RECTANGLE_MEDIUM;
+    public static final Rectangle DIMENSION = Screen.RECTANGLE_MEDIUM;
+
     public static final int INDEX_INIT_SKIN = 0;
     public static final int INDEX_INTI_DIFFICULT = 0;
     public static final int STEP_INDEX_SKIN = 1;

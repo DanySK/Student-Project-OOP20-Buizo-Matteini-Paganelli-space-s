@@ -2,7 +2,6 @@ package model.GUI.help;
 
 import model.image.EngineImage;
 import utilities.dimension.ScaleOf;
-import utilities.dimension.Screen;
 import utilities.pathImage.Icon;
 import utilities.DesignJComponent;
 
@@ -10,14 +9,16 @@ import java.util.List;
 
 public enum UnitsHelp {
     PANEL_MOVE(DesignJComponent.NAME_UNIT_HELP_MOVEMENT, List.of(
-            new EngineImage(Screen.WIDTH_BIG , ScaleOf.ICON_HELP_PLURAL, Icon.WASD),
-            new EngineImage(Screen.WIDTH_BIG ,ScaleOf.ICON_HELP_PLURAL, Icon.ROW))),
+            new EngineImage(ScaleOf.ICON_HELP_PLURAL, EngineHelp.DIMENSION.width, Icon.WASD),
+            new EngineImage(ScaleOf.ICON_HELP_PLURAL, EngineHelp.DIMENSION.width, Icon.ROW))),
+
     PANEL_SHOT(DesignJComponent.NAME_UNIT_HELP_SHOT, List.of(
-            new EngineImage(Screen.WIDTH_BIG, ScaleOf.ICON_HELP_PLURAL, Icon.SPACEBAR),
-            new EngineImage(Screen.WIDTH_BIG, ScaleOf.ICON_HELP_SINGULAR, Icon.KEY_K))),
+            new EngineImage(ScaleOf.ICON_HELP_PLURAL, EngineHelp.DIMENSION.width, Icon.SPACEBAR),
+            new EngineImage(ScaleOf.ICON_HELP_SINGULAR, EngineHelp.DIMENSION.width, Icon.KEY_K))),
+
     PANEL_PAUSE(DesignJComponent.NAME_UNIT_HELP_PAUSE, List.of(
-            new EngineImage(Screen.WIDTH_BIG, ScaleOf.ICON_HELP_SINGULAR, Icon.KEY_P),
-            new EngineImage(Screen.WIDTH_BIG, ScaleOf.ICON_HELP_SINGULAR, Icon.PAUSE_KEY)));
+            new EngineImage(ScaleOf.ICON_HELP_SINGULAR, EngineHelp.DIMENSION.width, Icon.KEY_P),
+            new EngineImage(ScaleOf.ICON_HELP_SINGULAR, EngineHelp.DIMENSION.width, Icon.PAUSE_KEY)));
 
     private final String name;
 

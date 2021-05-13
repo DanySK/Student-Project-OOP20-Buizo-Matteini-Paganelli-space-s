@@ -1,5 +1,6 @@
 package view.GUI.help.factoryMethod;
 
+import utilities.dimension.ScaleOf;
 import utilities.pathImage.Icon;
 import utilities.DesignJComponent;
 import utilities.dimension.Screen;
@@ -37,6 +38,6 @@ public class GUIHelpStandard implements FactoryGUIHelp {
 
         FactoryGUIs.setTransparentDesignJButton(helpConcrete.getBtnBack());
         FactoryGUIs.setIconJButtonFromRate(helpConcrete.getBtnBack(), Icon.BACK,
-                30, helpConcrete.getWidth());
+                ScaleOf.ICON_MEDIUM, helpConcrete.getWidth());
     }
 }

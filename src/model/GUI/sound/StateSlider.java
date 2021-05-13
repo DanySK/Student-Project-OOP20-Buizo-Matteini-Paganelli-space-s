@@ -1,10 +1,12 @@
 package model.GUI.sound;
 
 import model.image.EngineImage;
+import utilities.dimension.ScaleOf;
+import utilities.pathImage.Icon;
 
 public enum StateSlider {
-    ON(true, new EngineImage(100, EngineSound.GUI_WIDTH, "icon/volumeON.png")),
-    OFF(false, new EngineImage(100,  EngineSound.GUI_WIDTH, "icon/volumeOFF.png"));
+    ON(true, new EngineImage(ScaleOf.ICON_MEDIUM, EngineSound.DIMENSION.width, Icon.SOUND_ON)),
+    OFF(false, new EngineImage(ScaleOf.ICON_MEDIUM,  EngineSound.DIMENSION.width, Icon.SOUND_OFF));
 
     private final boolean state;
     private final EngineImage engineImage;

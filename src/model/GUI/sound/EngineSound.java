@@ -7,11 +7,13 @@ import utilities.DesignTitleGUI;
 import utilities.dimension.Screen;
 import utilities.IdGUI;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
 public class EngineSound implements EngineGUI {
-    public static int GUI_WIDTH = Screen.WIDTH_MEDIUM;
+    public static final Rectangle DIMENSION = Screen.RECTANGLE_MEDIUM;
+
     public static int N_UNIT_SOUND = 2;
 
     private final IdGUI id;

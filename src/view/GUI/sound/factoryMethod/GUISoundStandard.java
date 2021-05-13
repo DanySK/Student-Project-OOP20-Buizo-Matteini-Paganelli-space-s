@@ -1,5 +1,6 @@
 package view.GUI.sound.factoryMethod;
 
+import utilities.dimension.ScaleOf;
 import utilities.pathImage.Icon;
 import utilities.dimension.Screen;
 import utilities.DesignSpace;
@@ -33,6 +34,6 @@ public class GUISoundStandard implements FactoryGUISound {
         soundGUI.add(FactoryGUIs.encapsulatesInPanelFlow(soundGUI.getBtnBack()), BorderLayout.SOUTH);
 
         FactoryGUIs.setIconJButtonFromRate(soundGUI.getBtnBack(), Icon.BACK,
-                30, soundGUI.getWidth());
+                ScaleOf.ICON_MEDIUM, soundGUI.getWidth());
     }
 }

@@ -89,11 +89,11 @@ public class EngineImage {
     }
 
 
-    public static Dimension getSizeImageFromScale(final String path, final int rate, final int widthScreen){
+    public static Dimension getSizeImageFromScale(final String path, final int scaleOf, final int respectTo){
         final Dimension dimension = new Dimension();
         try{
             final BufferedImage img = ImageIO.read(ClassLoader.getSystemResource(path));
-            dimension.width = (widthScreen * rate) / 1000;
+            dimension.width = (respectTo * scaleOf) / 1000;
             dimension.height = (img.getHeight() * dimension.width) / img.getWidth();
         } catch (IOException e) {
             e.printStackTrace();
