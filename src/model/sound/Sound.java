@@ -27,7 +27,11 @@ public abstract class Sound {
 			this.volume = START_VOLUME;
 		}
 
-	    public Sound(final SoundPath sound) {
+	public double getVolume() {
+		return volume;
+	}
+
+	public Sound(final SoundPath sound) {
 	    	this.soundPath = sound;
 	    	this.volume = START_VOLUME;
 	    	
@@ -37,18 +41,12 @@ public abstract class Sound {
 				audioInputStream = AudioSystem.getAudioInputStream(ClassLoader.getSystemResource(sound.getValue()));
 				setClip(AudioSystem.getClip());
 				getClip().get().open(audioInputStream);
-			} catch (UnsupportedAudioFileException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (LineUnavailableException e) {
+			} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-	    }
+
+		}
 	    
 	    public void setSoundType(SoundPath sound) {
 	    	this.soundPath = sound;
@@ -59,9 +57,7 @@ public abstract class Sound {
 	    }
 	    
 	    public void setClip(Clip clip) {
-	    	System.out.println(Optional.of(clip));
 	    	this.clip = Optional.of(clip);
-	    	System.out.println(this.clip.get());
 	    }
 	    
 	    public Optional<Clip> getClip() {
@@ -69,10 +65,7 @@ public abstract class Sound {
 	    }
 	    
 	    public boolean isPlaying() {
-	    	
 	    	return this.isPlaying;
-			//return this.clip.map(DataLine::isActive).orElse(false);
-	    	
 	    }
 	    
 	    
@@ -82,7 +75,8 @@ public abstract class Sound {
 	    }
 
 
-	    public void startClip() {   	
+	    public void startClip() {
+			System.out.println("VOLUMENE DENTRO nel SOUND" + this.volume);
 	    	playSound(this.volume);
 	    	this.isPlaying = true;
 	    }
@@ -91,12 +85,11 @@ public abstract class Sound {
 	   
 	    
 		public void setVol(double volume) {
-			FloatControl gain = null;
-			gain = (FloatControl) getClip().get().getControl(FloatControl.Type.MASTER_GAIN);
-		
+			this.volume = volume;
+			FloatControl gain = (FloatControl) getClip().get().getControl(FloatControl.Type.MASTER_GAIN);
+
 			float dB = (float) (Math.log(volume) / Math.log(10) * 20);
 			gain.setValue(dB);
-			this.volume = volume;
 		}
 
 }

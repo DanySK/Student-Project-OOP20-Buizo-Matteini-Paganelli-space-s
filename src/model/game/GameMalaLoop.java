@@ -119,7 +119,9 @@ public class GameMalaLoop {
         if(this.callerAudioLoop.isNewSound(this.controlGUI.getCurrentSound())) {
             this.callerAudioLoop.execute(CmdAudioType.AUDIO_OFF);
             this.callerAudioLoop.setSound(new SoundLoop(this.controlGUI.getCurrentSound()));
+            this.controlGUI.setCurrentVolumeLoop();
             this.callerAudioLoop.execute(CmdAudioType.AUDIO_ON);
+
         }
     }
 
