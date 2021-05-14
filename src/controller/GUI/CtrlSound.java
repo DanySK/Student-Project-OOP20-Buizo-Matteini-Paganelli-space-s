@@ -131,14 +131,14 @@ public class CtrlSound implements ControllerGUI{
             final SliderType sld = this.gui.getSliderTypeofMixer(type);
             final ButtonSliderType btnType = (ButtonSliderType) btn.getSource();
 
-            this.engine.changeStateUnitSound(type);
-
-            FactoryGUIs.setIconJButtonFromRate(btnType, this.engine.getEngineImageUnitSound(type));
-
-            this.gui.getSliderTypeofMixer(TypeUnitSound.SLIDER_BACKGROUND)
-                    .setValue(this.getValueIfActive(TypeUnitSound.SLIDER_BACKGROUND));
-
-            this.callerAudioLoop.changeVolume(this.getValueIfActive(btnType.getTypeSlider()));
+//            this.engine.changeStateUnitSound(type);
+//
+//            FactoryGUIs.setIconJButtonFromRate(btnType, this.engine.getEngineImageUnitSound(type));
+//
+//            this.gui.getSliderTypeofMixer(TypeUnitSound.SLIDER_BACKGROUND)
+//                    .setValue(this.getValueIfActive(TypeUnitSound.SLIDER_BACKGROUND));
+//
+//            this.callerAudioLoop.changeVolume(this.getValueIfActive(btnType.getTypeSlider()));
         });
     }
 
