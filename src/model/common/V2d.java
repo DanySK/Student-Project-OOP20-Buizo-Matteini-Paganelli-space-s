@@ -24,8 +24,8 @@ public class V2d implements java.io.Serializable {
 	public double x,y;
 	
     public V2d(){
-        this.x=50;
-        this.y=50;
+        this.x=0;
+        this.y=0;
     }
     
     public V2d(double x,double y){
@@ -37,6 +37,14 @@ public class V2d implements java.io.Serializable {
         this.x=to.x-from.x;
         this.y=to.y-from.y;
     }
+    
+    public double getX() {
+		return this.x;
+	}
+    
+    public double getY() {
+		return this.y;
+	}
 
     public V2d sum(V2d v){
         return new V2d(x+v.x,y+v.y);
