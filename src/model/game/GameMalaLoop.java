@@ -25,8 +25,6 @@ public class GameMalaLoop {
     private List<CallerAudio> callerAudioEffects;
     private GUIGame panelGame;
 
-    private final ThreadSound threadSound;
-
     private MovementKeyListener controller;
     
     private List<WorldEvent> eventQueue;
@@ -35,7 +33,6 @@ public class GameMalaLoop {
         this.eventQueue = new LinkedList<>();
         this.gameState = new GameState();
         this.controlGUI = new CtrlGUI();
-        this.threadSound = new ThreadSound();
     }
 
     public void initGame(){
@@ -48,22 +45,19 @@ public class GameMalaLoop {
         //this.controlGUI.linksCallerAudioEffectWith(this.callerAudioEffects);
 
         this.panelGame.addKeyListenerSpaceship(controller);
-
-        this.threadSound.setCallerAudio(this.callerAudioLoop);
-        this.threadSound.setCtrlGUI(this.controlGUI);
     }
 
     public void mainLoop(){
         long lastTime = System.currentTimeMillis();
 
         this.callerAudioLoop.execute(CmdAudioType.AUDIO_ON);
-        this.threadSound.start();
 
         while (!gameState.isGameOver()) {
             long current = System.currentTimeMillis();
             int elapsed = (int)(current - lastTime);
 
-//            renderSound();
+            this.updateSound();
+
             processInput();
             //updateGame(elapsed);
             render();
@@ -122,7 +116,7 @@ public class GameMalaLoop {
 //        view.renderGameOver();
     }
 
-    protected void renderSound(){
+    protected void updateSound(){
         if(this.callerAudioLoop.isNewSound(this.controlGUI.getCurrentSound())) {
             this.callerAudioLoop.execute(CmdAudioType.AUDIO_OFF);
             this.callerAudioLoop.setSound(new SoundLoop(this.controlGUI.getCurrentSound()));
