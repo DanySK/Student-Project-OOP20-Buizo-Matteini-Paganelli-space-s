@@ -64,7 +64,7 @@ public class GameMalaLoop {
 
             waitForNextFrame(current);
             lastTime = current;
-            System.out.println("LoopMala -> "+ elapsed +" FPS");
+//            System.out.println("LoopMala -> "+ elapsed +" FPS");
         }
         renderGameOver();
     }

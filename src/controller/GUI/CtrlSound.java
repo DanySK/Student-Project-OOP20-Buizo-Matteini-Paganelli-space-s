@@ -13,6 +13,7 @@ import controller.sound.CallerAudio;
 import model.GUI.EngineGUI;
 import model.GUI.Visibility;
 import model.GUI.sound.EngineSound;
+import model.GUI.sound.StateSlider;
 import model.GUI.sound.TypeUnitSound;
 import model.image.EngineImage;
 import model.sound.CmdAudioType;
@@ -22,6 +23,7 @@ import utilities.IdGUI;
 import view.GUI.GUI;
 import view.GUI.sound.GUISound;
 import view.GUI.sound.utilities.ButtonSliderType;
+import view.GUI.sound.utilities.SliderType;
 import view.utilities.FactoryGUIs;
 
 public class CtrlSound implements ControllerGUI{
@@ -103,9 +105,18 @@ public class CtrlSound implements ControllerGUI{
     
     public void setChangeListenerSliderLoop(){
         this.gui.getSliderTypeofMixer(TypeUnitSound.SLIDER_BACKGROUND).addChangeListener(l -> {
+            final TypeUnitSound type = TypeUnitSound.SLIDER_BACKGROUND;
+            final ButtonSliderType btnType = this.gui.getBtnSwitch(type);
             final JSlider sld = (JSlider)l.getSource();
-            this.engine.setValueUnitSound(TypeUnitSound.SLIDER_BACKGROUND, sld.getValue());
-            this.callerAudioLoop.changeVolume(this.engine.getValueUnitSound(TypeUnitSound.SLIDER_BACKGROUND));
+
+            this.engine.setValueUnitSound(type, sld.getValue());
+
+            this.engine.setStateUnitSound(type, this.engine.getValueUnitSound(type) == DesignSound.SOUND_ZERO ?
+                            StateSlider.OFF : StateSlider.ON);
+
+            FactoryGUIs.setIconJButtonFromRate(btnType,this.engine.getEngineImageUnitSound(type));
+
+            this.callerAudioLoop.changeVolume(this.engine.getValueUnitSound(type));
         });
     }
 
@@ -116,14 +127,16 @@ public class CtrlSound implements ControllerGUI{
 
     public void setActionListenerChangeSwitchSoundLoop(){
         this.gui.getBtnSwitch(TypeUnitSound.SLIDER_BACKGROUND).addActionListener(btn -> {
+            final TypeUnitSound type = TypeUnitSound.SLIDER_BACKGROUND;
+            final SliderType sld = this.gui.getSliderTypeofMixer(type);
             final ButtonSliderType btnType = (ButtonSliderType) btn.getSource();
 
-            this.engine.changeStateUnitSound(btnType.getTypeSlider());
+            this.engine.changeStateUnitSound(type);
 
-            FactoryGUIs.setIconJButtonFromRate(btnType, this.engine.getEngineImageUnitSound(btnType.getTypeSlider()));
+            FactoryGUIs.setIconJButtonFromRate(btnType, this.engine.getEngineImageUnitSound(type));
 
-            this.gui.getSliderTypeofMixer(btnType.getTypeSlider())
-                    .setValue(this.getValueIfActive(btnType.getTypeSlider()));
+            this.gui.getSliderTypeofMixer(TypeUnitSound.SLIDER_BACKGROUND)
+                    .setValue(this.getValueIfActive(TypeUnitSound.SLIDER_BACKGROUND));
 
             this.callerAudioLoop.changeVolume(this.getValueIfActive(btnType.getTypeSlider()));
         });

@@ -87,9 +87,7 @@ public class EngineSound implements EngineGUI {
     }
 
     public void setValueUnitSound(final TypeUnitSound typeUnitSound, final int value){
-        if( this.mixerSound.getStateSound(typeUnitSound) == StateSlider.ON){
-            this.mixerSound.setValueSound(typeUnitSound, value);
-        }
+        this.mixerSound.setValueSound(typeUnitSound, value);
     }
 
     public StateSlider getStateUnitSound(final TypeUnitSound typeUnitSound){
