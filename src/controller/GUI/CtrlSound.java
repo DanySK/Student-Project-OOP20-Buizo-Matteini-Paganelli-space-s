@@ -1,12 +1,8 @@
 package controller.GUI;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JSlider;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
 
 import controller.GUI.command.SwitchGUI;
 import controller.sound.CallerAudio;
@@ -15,7 +11,6 @@ import model.GUI.Visibility;
 import model.GUI.sound.EngineSound;
 import model.GUI.sound.StateSlider;
 import model.GUI.sound.TypeUnitSound;
-import model.image.EngineImage;
 import model.sound.CmdAudioType;
 import utilities.DesignSound;
 import utilities.dimension.Screen;
@@ -23,7 +18,6 @@ import utilities.IdGUI;
 import view.GUI.GUI;
 import view.GUI.sound.GUISound;
 import view.GUI.sound.utilities.ButtonSliderType;
-import view.GUI.sound.utilities.SliderType;
 import view.utilities.FactoryGUIs;
 
 public class CtrlSound implements ControllerGUI{
@@ -128,17 +122,12 @@ public class CtrlSound implements ControllerGUI{
     public void setActionListenerChangeSwitchSoundLoop(){
         this.gui.getBtnSwitch(TypeUnitSound.SLIDER_BACKGROUND).addActionListener(btn -> {
             final TypeUnitSound type = TypeUnitSound.SLIDER_BACKGROUND;
-            final SliderType sld = this.gui.getSliderTypeofMixer(type);
             final ButtonSliderType btnType = (ButtonSliderType) btn.getSource();
 
-//            this.engine.changeStateUnitSound(type);
-//
-//            FactoryGUIs.setIconJButtonFromRate(btnType, this.engine.getEngineImageUnitSound(type));
-//
-//            this.gui.getSliderTypeofMixer(TypeUnitSound.SLIDER_BACKGROUND)
-//                    .setValue(this.getValueIfActive(TypeUnitSound.SLIDER_BACKGROUND));
-//
-//            this.callerAudioLoop.changeVolume(this.getValueIfActive(btnType.getTypeSlider()));
+            this.engine.changeStateUnitSound(type);
+            FactoryGUIs.setIconJButtonFromRate(btnType, this.engine.getEngineImageUnitSound(type));
+            
+            this.callerAudioLoop.changeVolume(this.getValueIfActive(btnType.getTypeSlider()));
         });
     }
 
@@ -154,19 +143,13 @@ public class CtrlSound implements ControllerGUI{
     }
 
     public void setActionListenerChangeSwitchSoundEffect(){
-    		
-    		ButtonSliderType btn = this.gui.getBtnSwitches().get(1);
+    	ButtonSliderType btn = this.gui.getBtnSwitches().get(1);
     	
-            this.engine.changeStateUnitSound(btn.getTypeSlider());
-            FactoryGUIs.setIconJButtonFromRate(btn, this.engine.getPathIconUnitSound((btn.getTypeSlider())), 50, Screen.WIDTH_MEDIUM);
-
-//            this.gui.getSliderTypeofMixer(btn.getTypeSlider()).setValue(
-//                    this.engine.isActiveUnitSound(btn.getTypeSlider()) ?
-//                            this.engine.getValueUnitSound(btn.getTypeSlider()) : DesignSound.SOUND_ZERO);
-
-            getCallerAudioEffect().forEach(callerAudioEffect -> {        	
-            	callerAudioEffect.execute((callerAudioEffect.getSound().isPlaying()) ? CmdAudioType.AUDIO_OFF : CmdAudioType.AUDIO_ON);
-            });
+        this.engine.changeStateUnitSound(btn.getTypeSlider());
+        FactoryGUIs.setIconJButtonFromRate(btn, this.engine.getPathIconUnitSound((btn.getTypeSlider())), 50, Screen.WIDTH_MEDIUM);
+        getCallerAudioEffect().forEach(callerAudioEffect -> {        	
+        	callerAudioEffect.execute((callerAudioEffect.getSound().isPlaying()) ? CmdAudioType.AUDIO_OFF : CmdAudioType.AUDIO_ON);
+        });
     }
 
     @Override
