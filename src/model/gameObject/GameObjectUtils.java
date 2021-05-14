@@ -5,9 +5,15 @@ import java.util.Random;
 import utilities.dimension.Screen;
 import model.common.P2d;
 import model.common.V2d;
+import model.image.EngineImage;
+import model.worldEcollisioni.physics.boundingType.BoundingBox;
+import model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
+import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 
 public class GameObjectUtils {
-
+    public static final int INFINITY = 0;
+    public static final int SPECIAL_MUNITIONS = 25;
+    
     public static final int SPACESHIP_LIFE = 100;
     public static final int SPACESHIP_LIVES = 3;
     public static final int SPACESHIP_SCALEOF = 100;
@@ -74,6 +80,15 @@ public class GameObjectUtils {
 		}
 
     	return new P2d(xAxis, yAxis);
+    }
+    
+    public static BoundingBox createRectBoundingBox(P2d position, EngineImage engineImage) {
+    	return new RectBoundingBox(new P2d(position.getX() - engineImage.getSize().getWidth() / 2, position.getY() - engineImage.getSize().getHeight() / 2),
+								   new P2d(position.getX() + engineImage.getSize().getWidth() / 2, position.getY() + engineImage.getSize().getHeight() / 2));
+	}
+    
+    public static BoundingBox createCircleBoundingBox(P2d position, EngineImage engineImage) {
+    	return new CircleBoundingBox(position, engineImage.getWidth() / 2);
     }
     
     public static void main(String[] args) {

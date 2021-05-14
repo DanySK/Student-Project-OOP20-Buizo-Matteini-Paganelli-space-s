@@ -1,8 +1,8 @@
 package model.command.commandInterfaces;
 
-import model.gameObject.AbstractGameObject;
+import model.gameObject.MovableGameObject;
 
 public interface CommandMovement {
-    public void execute(AbstractGameObject ship);
+    public void execute(MovableGameObject ship);
 }
 	

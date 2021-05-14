@@ -2,8 +2,8 @@ package model.GUI.game;
 
 import model.GUI.EngineGUI;
 import model.GUI.Visibility;
+import model.gameObject.spaceShip.SpaceShipSingleton;
 import model.input.MovementKeyListener;
-import model.spaceShip.SpaceShipSingleton;
 import utilities.IdGUI;
 import utilities.dimension.Screen;
 
@@ -11,6 +11,7 @@ import java.awt.*;
 import java.util.List;
 
 public class EngineGame implements EngineGUI {
+	
     public static final Rectangle DIMENSION = Screen.RECTANGLE_FULLSCREEN;
 
     public static final int N_BUTTONS = 6;

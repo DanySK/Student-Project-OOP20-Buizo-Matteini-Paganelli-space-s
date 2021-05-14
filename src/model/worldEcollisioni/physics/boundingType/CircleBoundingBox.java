@@ -7,6 +7,11 @@ public class CircleBoundingBox implements BoundingBox{
 	private P2d center;
 	private double radius;
 	
+	public CircleBoundingBox(){
+		this.center = new P2d(0, 0);
+		this.radius = 0;
+	}
+	
 	public CircleBoundingBox(P2d center, double radius){
 		this.center = center;
 		this.radius = radius;

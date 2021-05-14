@@ -5,25 +5,25 @@ import java.util.List;
 import java.util.Optional;
 
 import model.gameObject.AbstractGameObject;
-import model.spaceShip.SpaceShipSingleton;
+import model.gameObject.spaceShip.SpaceShipSingleton;
 import model.worldEcollisioni.WorldEvent;
 import model.worldEcollisioni.WorldEventListener;
 import model.worldEcollisioni.physics.BoundaryCollision;
-import model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
 import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import model.common.*;
-//import rollball.physics.BoundaryCollision;
 
 public class World {
 	private List<AbstractGameObject> asteroids;
+	private List<AbstractGameObject> enemies;
 	private List<AbstractGameObject> perks;
-	private AbstractGameObject ship;
+	private SpaceShipSingleton ship;
 	private RectBoundingBox mainBBox;
 	private WorldEventListener evListener;
 	
 	public World(RectBoundingBox bbox){
 		ship = SpaceShipSingleton.getSpaceShip();
 		asteroids = new ArrayList<AbstractGameObject>();
+		enemies = new ArrayList<AbstractGameObject>();
 		perks = new ArrayList<AbstractGameObject>();
 		
 		mainBBox = bbox;
@@ -33,16 +33,12 @@ public class World {
 		evListener = l;
 	}
 	
-	public void setShip(AbstractGameObject ship){
+	public void setShip(SpaceShipSingleton ship){
 		this.ship = ship;
 	}
 	
-	public void addPickablePerk(AbstractGameObject obj){
-		perks.add(obj);
-	}
-
-	public void removePickablePerk(AbstractGameObject obj){
-		perks.remove(obj);
+	public SpaceShipSingleton getShip(){
+		return this.ship;
 	}
 	
 	public void addAsteroid(AbstractGameObject obj){
@@ -51,6 +47,22 @@ public class World {
 
 	public void removeAsteroid(AbstractGameObject obj){
 		asteroids.remove(obj);
+	}
+	
+	public void addEnemy(AbstractGameObject obj){
+		enemies.add(obj);
+	}
+	
+	public void removeEnemy(AbstractGameObject obj){
+		enemies.remove(obj);
+	}
+	
+	public void addPickablePerk(AbstractGameObject obj){
+		perks.add(obj);
+	}
+
+	public void removePickablePerk(AbstractGameObject obj){
+		perks.remove(obj);
 	}
 	
 	public void updateState(int dt){
@@ -63,13 +75,13 @@ public class World {
 		P2d br = mainBBox.getBRCorner();
 		double r = box.getWidth();
 		if (pos.y + r> ul.y){
-			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.TOP, new P2d(pos.x,ul.y)));
+			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.TOP, new P2d(pos.x, ul.y)));
 		} else if (pos.y - r < br.y){
-			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.BOTTOM, new P2d(pos.x,br.y)));
+			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.BOTTOM, new P2d(pos.x, br.y)));
 		} else if (pos.x + r > br.x){
-			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.RIGHT, new P2d(br.x,pos.y)));
+			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.RIGHT, new P2d(br.x, pos.y)));
 		} else if (pos.x - r < ul.x){
-			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.LEFT, new P2d(ul.x,pos.y)));
+			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.LEFT, new P2d(ul.x, pos.y)));
 		} else {
 			return Optional.empty();
 		}
@@ -78,7 +90,17 @@ public class World {
 	public Optional<AbstractGameObject> checkCollisionWithAsteroids(P2d pos, RectBoundingBox box){
 		double radius = box.getWidth();
 		for (AbstractGameObject obj: asteroids){
-			if (obj.getBBox().isCollidingWith(pos,radius)){
+			if (obj.getBoundingBox().isCollidingWith(pos, radius)){
+				return Optional.of(obj);
+			}
+		}
+		return Optional.empty();
+	}
+	
+	public Optional<AbstractGameObject> checkCollisionWithChaseEnemies(P2d pos, RectBoundingBox box){
+		double radius = box.getWidth();
+		for (AbstractGameObject obj: enemies){
+			if (obj.getBoundingBox().isCollidingWith(pos, radius)){
 				return Optional.of(obj);
 			}
 		}
@@ -88,7 +110,7 @@ public class World {
 	public Optional<AbstractGameObject> checkCollisionWithPerks(P2d pos, RectBoundingBox box){
 		double radius = box.getWidth();
 		for (AbstractGameObject obj: perks){
-			if (obj.getBBox().isCollidingWith(pos,radius)){
+			if (obj.getBoundingBox().isCollidingWith(pos, radius)){
 				return Optional.of(obj);
 			}
 		}
@@ -99,14 +121,10 @@ public class World {
 		evListener.notifyEvent(ev);
 	}
 	
-	public RectBoundingBox getBBox(){
+	public RectBoundingBox getMainBBox(){
 		return mainBBox;
 	}
 	
-	public AbstractGameObject getShip(){
-		return this.ship;
-	}
-
 	public List<AbstractGameObject> getPickablePerks(){
 		return this.perks;
 	}
@@ -114,10 +132,15 @@ public class World {
 	public List<AbstractGameObject> getAsteroids(){
 		return this.asteroids;
 	}
+	
+	public List<AbstractGameObject> getEnemies(){
+		return this.enemies;
+	}
 
 	public List<AbstractGameObject> getSceneEntities(){
 		List<AbstractGameObject> entities = new ArrayList<AbstractGameObject>();
 		entities.addAll(asteroids);
+		entities.addAll(enemies);
 		entities.add(ship);
 		return entities;
 	}

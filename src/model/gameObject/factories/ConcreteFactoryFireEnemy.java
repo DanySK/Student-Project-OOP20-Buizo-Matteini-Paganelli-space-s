@@ -1,7 +1,5 @@
 package model.gameObject.factories;
 
-import java.awt.Dimension;
-import java.awt.geom.AffineTransform;
 import java.util.Optional;
 
 import model.gameObject.GameObjectUtils;
@@ -10,6 +8,8 @@ import model.common.*;
 import model.gameObject.fireEnemy.FireEnemy;
 import model.gameObject.weapon.Weapon;
 import model.image.EngineImage;
+import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
+import model.worldEcollisioni.physics.components.FireEnemyPhysicsComponent;
 import utilities.pathImage.Icon;
 
 public class ConcreteFactoryFireEnemy extends AbstractFactoryGameObject {
@@ -17,16 +17,16 @@ public class ConcreteFactoryFireEnemy extends AbstractFactoryGameObject {
 	@Override
 	public FireEnemy createObject() {
 		EngineImage engineImage = new EngineImage(Icon.BULLET);
-		Dimension size = engineImage.getSize();
+		P2d point = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
+		V2d velocity = GameObjectUtils.FIRE_ENEMY_VEL;
+		Movement movement = Movement.RANDOM;
 		int life = GameObjectUtils.FIRE_ENEMY_LIFE;
 		int damage = GameObjectUtils.FIRE_ENEMY_DAMAGE;		
-		P2d point = GameObjectUtils.generateSpawnPoint(size);
-		Movement movement = Movement.RANDOM;
-		V2d velocity = GameObjectUtils.FIRE_ENEMY_VEL;
 		Optional<Weapon> weapon = Optional.of(new Weapon());
-		AffineTransform transform = new AffineTransform();
-		return new FireEnemy(engineImage, life, damage, size, point, movement, velocity, transform, weapon);
 		
+		return new FireEnemy(engineImage, point, new RectBoundingBox(), new FireEnemyPhysicsComponent(),
+				velocity, movement, life, damage, weapon);
 	}
+	
 
 }

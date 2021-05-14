@@ -5,7 +5,7 @@ import java.awt.event.KeyListener;
 
 import model.command.caller.CallerMovement;
 import utilities.CmdMovementType;
-import model.gameObject.AbstractGameObject;
+import model.gameObject.MovableGameObject;
 
 public class MovementKeyListener implements KeyListener {
 
@@ -15,16 +15,16 @@ public class MovementKeyListener implements KeyListener {
     private static final int DOWN_KEY_CODE  = 40;
     CallerMovement caller;
 
-    public MovementKeyListener(AbstractGameObject ship) {
+    public MovementKeyListener(final MovableGameObject ship) {
     	caller = new CallerMovement(ship);
     }
         
 
-	public void keyTyped(KeyEvent e) {
+	public void keyTyped(final KeyEvent e) {
 		//System.out.println(e.getKeyCode());
     }
 
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(final KeyEvent e) {
     	System.out.println(e.getKeyCode());
     	int pressedKeyCode = e.getKeyCode(); 	
     	if(canHandleKey(pressedKeyCode)) {
@@ -35,7 +35,7 @@ public class MovementKeyListener implements KeyListener {
     	} 		
     }
 
-    public void keyReleased(KeyEvent e) {
+    public void keyReleased(final KeyEvent e) {
     	System.out.println(e.getKeyCode());
     	int pressedKeyCode = e.getKeyCode();
     	if(canHandleKey(pressedKeyCode)) {
@@ -46,24 +46,22 @@ public class MovementKeyListener implements KeyListener {
     	}
     }
     
-    private boolean canHandleKey(int currentKeyCode) {
+    private boolean canHandleKey(final int currentKeyCode) {
     	return (currentKeyCode >= LEFT_KEY_CODE && currentKeyCode <= DOWN_KEY_CODE) || isWASD(currentKeyCode);
     }
     
     
-    private boolean isWASD(int keyCode) {
+    private boolean isWASD(final int keyCode) {
     	//69 = E, 81 = Q
     	return keyCode == 69 || keyCode == 81;
-
 	}
 
 
-	public CmdMovementType translateKeyCode(Integer keyCode) {
+	public CmdMovementType translateKeyCode(final Integer keyCode) {
     	if(canHandleKey(keyCode)) {
     		return CmdMovementType.getValue(keyCode);
     	}
 		return null;
     }
-    
 
 }

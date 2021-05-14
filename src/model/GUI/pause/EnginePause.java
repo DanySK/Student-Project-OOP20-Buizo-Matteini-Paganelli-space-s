@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class EnginePause implements EngineGUI{
+
     public static final Rectangle DIMENSION = Screen.RECTANGLE_MEDIUM;
     public static final int N_BUTTONS = 4;
 

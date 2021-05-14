@@ -3,19 +3,27 @@ package model.worldEcollisioni.physics.components;
 import java.util.Optional;
 
 import model.gameObject.AbstractGameObject;
+import model.gameObject.spaceShip.SpaceShipSingleton;
 import model.world.World;
 import model.worldEcollisioni.hitEvents.HitAsteroidEvent;
 import model.worldEcollisioni.hitEvents.HitBorderEvent;
 import model.worldEcollisioni.physics.BoundaryCollision;
 import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import model.common.P2d;
+import model.common.V2d;
 
-public class ShipPhysicsComponent extends PhysicsComponent {
-
-	public void update(int dt, AbstractGameObject obj, World w) {
-		super.update(dt, obj, w);
+public class ShipPhysicsComponent implements PhysicsComponent {
+	
+	@Override
+	public void update(int dt, AbstractGameObject abstractObj, World w) {
+		SpaceShipSingleton obj = (SpaceShipSingleton) abstractObj;
+		P2d position = obj.getPosition();
+		V2d velocity = obj.getVelocity();
+		obj.setPosition(position.sum(velocity.mul(0.001 * dt)));		
+		//super.update(dt, obj, w);
+		
 		//w.checkBoundaries(obj);
-		RectBoundingBox bbox = (RectBoundingBox) obj.getBBox();
+		RectBoundingBox bbox = (RectBoundingBox) obj.getBoundingBox();
 		Optional<BoundaryCollision> binfo = w.checkCollisionWithBoundaries(obj.getPosition(), bbox);
 		if (binfo.isPresent()){
 			BoundaryCollision info = binfo.get();

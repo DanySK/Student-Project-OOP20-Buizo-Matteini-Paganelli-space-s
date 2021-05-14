@@ -1,7 +1,7 @@
 package model.command.concreteCommand;
 
 import model.command.commandInterfaces.CommandMovement;
-import model.gameObject.AbstractGameObject;
+import model.gameObject.MovableGameObject;
 import model.common.V2d;
 
 public class RightCommand implements CommandMovement{
@@ -9,7 +9,7 @@ public class RightCommand implements CommandMovement{
 	public RightCommand() {}
 
 	@Override
-	public void execute(AbstractGameObject ship) {
+	public void execute(MovableGameObject ship) {
 		
 		V2d vel = ship.getVelocity();
 		ship.setVelocity(vel.sum(new V2d(30,0)));

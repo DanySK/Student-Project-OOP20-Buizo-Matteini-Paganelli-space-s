@@ -1,11 +1,15 @@
 package model.worldEcollisioni.physics.boundingType;
 
 import model.common.P2d;
-import model.common.V2d;
 
 public class RectBoundingBox implements BoundingBox {
 
 	private P2d p0,p1;
+	
+	public RectBoundingBox(){
+		this.p0 = new P2d(0, 0);
+		this.p1 = new P2d(0, 0);
+	}
 	
 	public RectBoundingBox(P2d p0, P2d p1){
 		this.p0 = p0;

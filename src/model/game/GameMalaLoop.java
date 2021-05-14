@@ -2,6 +2,8 @@ package model.game;
 
 import controller.GUI.CtrlGUI;
 import controller.sound.CallerAudio;
+import model.gameObject.asteroid.Asteroid;
+import model.gameObject.chaseEnemy.ChaseEnemy;
 import model.input.MovementKeyListener;
 import model.sound.CmdAudioType;
 import model.sound.category.SoundLoop;
@@ -9,11 +11,11 @@ import model.world.World;
 import model.worldEcollisioni.WorldEvent;
 import model.worldEcollisioni.hitEvents.HitAsteroidEvent;
 import model.worldEcollisioni.hitEvents.HitBorderEvent;
+import model.worldEcollisioni.hitEvents.HitChaseEnemyEvent;
 import model.worldEcollisioni.hitEvents.HitPerkEvent;
 import utilities.DesignSound;
 import view.GUI.game.GUIGame;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -91,17 +93,25 @@ public class GameMalaLoop {
     protected void checkEvents(){
         World scene = gameState.getWorld();
         eventQueue.stream().forEach(ev -> {
-            if (ev instanceof HitAsteroidEvent){
-            	HitAsteroidEvent aEv = (HitAsteroidEvent) ev;
-                scene.removeAsteroid(aEv.getCollisionObj());
-                gameState.decreaseLife();
+        	if (ev instanceof HitAsteroidEvent){
+            	HitAsteroidEvent asteroidEvent = (HitAsteroidEvent) ev;
+            	final Asteroid asteroidCollided = (Asteroid) asteroidEvent.getCollisionObj();
+                scene.removeAsteroid(asteroidCollided);
+                gameState.decreaseLife(asteroidCollided.getDamage());
+            } else if (ev instanceof HitChaseEnemyEvent){
+            	HitChaseEnemyEvent chaseEnemyEvent = (HitChaseEnemyEvent) ev;
+            	final ChaseEnemy chaseEnemyCollided = (ChaseEnemy) chaseEnemyEvent.getCollisionObj();
+            	scene.removeEnemy(chaseEnemyEvent.getCollisionObj());
+                gameState.decreaseLife(chaseEnemyCollided.getDamage());
+                // HitBorderEvent bEv = (HitBorderEvent) ev;
+                //gameState.decreaseLives();
             } else if (ev instanceof HitPerkEvent){
-                HitPerkEvent pEv = (HitPerkEvent) ev;
+                //HitPerkEvent pEv = (HitPerkEvent) ev;
                 //stato = pEv.getCollisionObj().getType(???):
                 //gameState.getSpaceship().setState(stato);
             } else if (ev instanceof HitBorderEvent){
                 // HitBorderEvent bEv = (HitBorderEvent) ev;
-                gameState.decreaseLife();
+                //gameState.decreaseLife();
             }
         });
         eventQueue.clear();

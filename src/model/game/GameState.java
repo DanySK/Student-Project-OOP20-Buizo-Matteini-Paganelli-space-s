@@ -1,10 +1,11 @@
 package model.game;
 
 import controller.GUI.CtrlGUI;
-import model.gameObject.AbstractGameObject;
+import model.gameObject.GameObjectUtils;
+import model.gameObject.spaceShip.SpaceShipSingleton;
 import model.world.World;
 import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
-import view.GUI.game.GUIGame;
+import utilities.DesignSpace;
 
 import java.util.Timer;
 
@@ -14,7 +15,10 @@ public class GameState {
     private int round;
     private World world;
     private CtrlGUI controllerGUI;
-    private int life;
+    
+    private boolean gameOver = false;
+
+	private int lives;
 
     public GameState(){
         this.world = new World(new RectBoundingBox(null, null));
@@ -24,23 +28,56 @@ public class GameState {
         return this.world;
     }
 
-    public AbstractGameObject getSpaceship(){
+    public SpaceShipSingleton getSpaceship(){
         return this.world.getShip();
     }
 
-    public boolean isGameOver(){
-        return false;
-    }
-    
-	public void increaseLife(){
-		this.life++;
-	}
-
-	public void decreaseLife(){
-		this.life--;
+	public void setGameOver(boolean gameOver) {
+		this.gameOver = gameOver;
 	}
 	
-	public void resetLife(){
-		this.life = 5;
+    public boolean isGameOver(){
+        return this.gameOver;
+    }
+    
+    public int getLives() {
+		return lives;
+	}
+    
+	public void increaseLives(){
+		this.lives++;
+	}
+
+	public void decreaseLives(){
+		this.lives--;
+		if (getLives() == 0) {
+			this.setGameOver(true);
+		} else {
+			this.respawn();
+		}
+	}
+	
+	public void resetLives(){
+		this.lives = 5;
+	}
+	
+    public int getLife() {
+    	return this.getSpaceship().getLife();
+	}
+
+    public void increaseLife(int heal) {
+    	this.getSpaceship().increaseLife(heal);
+	}
+    
+	public void decreaseLife(int damage) {
+    	this.getSpaceship().decreaseLife(damage);
+    	if (this.getLife() == 0) {
+			this.increaseLife(GameObjectUtils.SPACESHIP_LIFE);
+			this.decreaseLives();
+		}
+	}
+	
+	public void respawn() {
+		this.getSpaceship().setPosition(DesignSpace.CENTER_ENVIRONMENT);
 	}
 }

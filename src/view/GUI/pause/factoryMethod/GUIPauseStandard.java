@@ -1,6 +1,5 @@
 package view.GUI.pause.factoryMethod;
 
-
 import model.GUI.pause.EnginePause;
 import utilities.DesignSpace;
 import utilities.dimension.ScaleOf;
@@ -41,7 +40,6 @@ public class GUIPauseStandard implements FactoryGUIPause {
         concrete.setLayout(new BorderLayout());
 
         concrete.getButtonLinks().forEach(btn -> btn.setFocusable(false));
-
         concrete.add(FactoryGUIs.encapsulatesInPanelFlow(concrete.getLbTitle()), BorderLayout.NORTH);
 
         concrete.add(FactoryGUIs.createPanelGridBagUnionComponentsVertical(concrete.getButtonLinks(), 5),
