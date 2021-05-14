@@ -1,6 +1,7 @@
 package model.command.concreteCommand;
 
 import model.command.commandInterfaces.CommandMovement;
+import model.common.V2d;
 import model.gameObject.MovableGameObject;
 
 public class RightReleaseCommand implements CommandMovement {
