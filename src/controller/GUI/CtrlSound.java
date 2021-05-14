@@ -88,30 +88,18 @@ public class CtrlSound implements ControllerGUI{
 
 
     public void linksCallerAudioLoopWithListener(){
-        this.setChangeListenerSliderLoop();
-        this.setActionListenerChangeSwitchSoundLoop();
+        final TypeUnitSound type = TypeUnitSound.SLIDER_BACKGROUND;
+        this.setChangeListenerSliderLoop(type);
+        this.setActionListenerChangeSwitchSoundLoop(type);
     }
     
     public void linksCallerAudioEffectWithListener(){
         this.setChangeListenerSliderEffect();
         this.setActionListenerChangeSwitchSoundEffect();
     }
-    
-    public void setChangeListenerSliderLoop(){
-        this.gui.getSliderTypeofMixer(TypeUnitSound.SLIDER_BACKGROUND).addChangeListener(l -> {
-            final TypeUnitSound type = TypeUnitSound.SLIDER_BACKGROUND;
-            final ButtonSliderType btnType = this.gui.getBtnSwitch(type);
-            final JSlider sld = (JSlider)l.getSource();
 
-            this.engine.setValueUnitSound(type, sld.getValue());
-
-            this.engine.setStateUnitSound(type, this.engine.getValueUnitSound(type) == DesignSound.SOUND_ZERO ?
-                            StateSlider.OFF : StateSlider.ON);
-
-            FactoryGUIs.setIconJButtonFromRate(btnType,this.engine.getEngineImageUnitSound(type));
-
-            this.callerAudioLoop.changeVolume(this.engine.getValueUnitSound(type));
-        });
+    public boolean isVolumeZero(final TypeUnitSound type){
+        return this.engine.getValueUnitSound(type) == DesignSound.SOUND_ZERO;
     }
 
     public int getValueIfActive(final TypeUnitSound typeUnitSound){
@@ -119,14 +107,24 @@ public class CtrlSound implements ControllerGUI{
                 this.engine.getValueUnitSound(typeUnitSound) : DesignSound.SOUND_ZERO;
     }
 
-    public void setActionListenerChangeSwitchSoundLoop(){
-        this.gui.getBtnSwitch(TypeUnitSound.SLIDER_BACKGROUND).addActionListener(btn -> {
-            final TypeUnitSound type = TypeUnitSound.SLIDER_BACKGROUND;
+    public void setChangeListenerSliderLoop(final TypeUnitSound type){
+        this.gui.getSliderTypeofMixer(type).addChangeListener(l -> {
+            final ButtonSliderType btnType = this.gui.getBtnSwitch(type);
+            final JSlider sld = (JSlider)l.getSource();
+
+            this.engine.setValueUnitSound(type, sld.getValue());
+            this.engine.setStateUnitSound(type, this.isVolumeZero(type) ? StateSlider.OFF : StateSlider.ON);
+            FactoryGUIs.setIconJButtonFromRate(btnType,this.engine.getEngineImageUnitSound(type));
+            this.callerAudioLoop.changeVolume(this.engine.getValueUnitSound(type));
+        });
+    }
+
+    public void setActionListenerChangeSwitchSoundLoop(final TypeUnitSound type){
+        this.gui.getBtnSwitch(type).addActionListener(btn -> {
             final ButtonSliderType btnType = (ButtonSliderType) btn.getSource();
 
             this.engine.changeStateUnitSound(type);
             FactoryGUIs.setIconJButtonFromRate(btnType, this.engine.getEngineImageUnitSound(type));
-            
             this.callerAudioLoop.changeVolume(this.getValueIfActive(btnType.getTypeSlider()));
         });
     }
@@ -135,9 +133,7 @@ public class CtrlSound implements ControllerGUI{
     public void setChangeListenerSliderEffect(){
     	this.gui.getSliderTypeofMixer(TypeUnitSound.SLIDER_EFFECT).addChangeListener(ce -> {
             System.out.println(((JSlider) ce.getSource()).getValue());
-            getCallerAudioEffect().forEach(callerAudioEffect -> {
-                callerAudioEffect.changeVolume(((JSlider) ce.getSource()).getValue());
-            });
+            getCallerAudioEffect().forEach(callerAudioEffect -> callerAudioEffect.changeVolume(((JSlider) ce.getSource()).getValue()));
 
         });
     }
@@ -147,9 +143,7 @@ public class CtrlSound implements ControllerGUI{
     	
         this.engine.changeStateUnitSound(btn.getTypeSlider());
         FactoryGUIs.setIconJButtonFromRate(btn, this.engine.getPathIconUnitSound((btn.getTypeSlider())), 50, Screen.WIDTH_MEDIUM);
-        getCallerAudioEffect().forEach(callerAudioEffect -> {        	
-        	callerAudioEffect.execute((callerAudioEffect.getSound().isPlaying()) ? CmdAudioType.AUDIO_OFF : CmdAudioType.AUDIO_ON);
-        });
+        getCallerAudioEffect().forEach(callerAudioEffect -> callerAudioEffect.execute((callerAudioEffect.getSound().isPlaying()) ? CmdAudioType.AUDIO_OFF : CmdAudioType.AUDIO_ON));
     }
 
     @Override
