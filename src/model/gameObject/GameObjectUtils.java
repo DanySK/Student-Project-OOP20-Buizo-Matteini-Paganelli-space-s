@@ -10,7 +10,7 @@ public class GameObjectUtils {
 
     public static final int SPACESHIP_LIFE = 100;
     public static final int SPACESHIP_LIVES = 3;
-    public static final int SPACESHIP_SCALEOF = 100;
+    public static final int SPACESHIP_SCALEOF = 50;
 
     
     public static final int ASTEROID_LIFE = 60;
@@ -75,9 +75,6 @@ public class GameObjectUtils {
 
     	return new P2d(xAxis, yAxis);
     }
-    
-    public static void main(String[] args) {
-		System.out.println(generateSpawnPoint(new Dimension(50, 50)));
-	}
+
 
 }

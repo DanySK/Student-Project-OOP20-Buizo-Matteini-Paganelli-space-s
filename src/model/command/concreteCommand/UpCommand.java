@@ -12,7 +12,7 @@ public class UpCommand implements CommandMovement{
 	public void execute(AbstractGameObject ship) {
 
 		V2d vel = ship.getVelocity();
-		ship.setVelocity(vel.sum(new V2d(0,30)));
+		ship.setVelocity(vel.sum(new V2d(0,-1)));
 		
 		System.out.println("Up " + ship.toString());
 

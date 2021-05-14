@@ -2,6 +2,7 @@ package model.game;
 
 import controller.GUI.CtrlGUI;
 import controller.sound.CallerAudio;
+import model.common.V2d;
 import model.input.MovementKeyListener;
 import model.sound.CmdAudioType;
 import model.sound.category.SoundLoop;
@@ -45,6 +46,8 @@ public class GameMalaLoop {
         //this.controlGUI.linksCallerAudioEffectWith(this.callerAudioEffects);
 
         this.panelGame.addKeyListenerSpaceship(controller);
+        this.panelGame.getPanelGame().addGameObject(this.gameState.getWorld().getShip(), this.gameState.getWorld().getShip().getTransform());
+        System.out.println(this.panelGame.getPanelGame());
     }
 
     public void mainLoop(){
@@ -61,6 +64,7 @@ public class GameMalaLoop {
             processInput();
             //updateGame(elapsed);
             render();
+            renderMovement();
 
             waitForNextFrame(current);
             lastTime = current;
@@ -69,7 +73,9 @@ public class GameMalaLoop {
         renderGameOver();
     }
 
-    protected void waitForNextFrame(long current){
+
+
+	protected void waitForNextFrame(long current){
         long dt = System.currentTimeMillis() - current;
         if (dt < period){
             try {
@@ -108,9 +114,18 @@ public class GameMalaLoop {
     }
 
     protected void render(){
+   
         panelGame.repaintGameObjects();
-
     }
+    
+    private void renderMovement() {
+		System.out.println("render movimento");
+		
+		//this.ship.setPosition(ship.getPosition().sum(new V2d(0,3)));
+		System.out.println(this.gameState.getWorld().getShip().getVelocity().getX() + "Y: " +  this.gameState.getWorld().getShip().getVelocity().getY());
+		this.gameState.getWorld().getShip().getTransform().translate(this.gameState.getWorld().getShip().getVelocity().getX(), this.gameState.getWorld().getShip().getVelocity().getY());
+		this.gameState.getWorld().getShip().setPosition(this.gameState.getWorld().getShip().getPosition().sum(this.gameState.getWorld().getShip().getVelocity()));
+	}
 
     protected void renderGameOver(){
 //        view.renderGameOver();
