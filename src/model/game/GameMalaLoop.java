@@ -15,22 +15,27 @@ import view.GUI.game.GUIGame;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class GameMalaLoop {
     private long period = 20L;
-    private CtrlGUI controlGUI;
-    private GameState gameState;
+    private final CtrlGUI controlGUI;
+    private final GameState gameState;
     private CallerAudio callerAudioLoop;
-    private ArrayList<CallerAudio> callerAudioEffects;
+    private List<CallerAudio> callerAudioEffects;
     private GUIGame panelGame;
+
+    private final ThreadSound threadSound;
+
     private MovementKeyListener controller;
     
-    private LinkedList<WorldEvent> eventQueue;
+    private List<WorldEvent> eventQueue;
 
     public GameMalaLoop(){
         this.eventQueue = new LinkedList<>();
         this.gameState = new GameState();
         this.controlGUI = new CtrlGUI();
+        this.threadSound = new ThreadSound();
     }
 
     public void initGame(){
@@ -43,19 +48,22 @@ public class GameMalaLoop {
         //this.controlGUI.linksCallerAudioEffectWith(this.callerAudioEffects);
 
         this.panelGame.addKeyListenerSpaceship(controller);
+
+        this.threadSound.setCallerAudio(this.callerAudioLoop);
+        this.threadSound.setCtrlGUI(this.controlGUI);
     }
 
     public void mainLoop(){
         long lastTime = System.currentTimeMillis();
 
         this.callerAudioLoop.execute(CmdAudioType.AUDIO_ON);
+        this.threadSound.start();
 
         while (!gameState.isGameOver()) {
-            renderSound();
-
             long current = System.currentTimeMillis();
             int elapsed = (int)(current - lastTime);
 
+//            renderSound();
             processInput();
             //updateGame(elapsed);
             render();
