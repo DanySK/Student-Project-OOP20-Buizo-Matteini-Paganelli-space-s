@@ -1,11 +1,8 @@
 package model.gameObject;
 
 import java.awt.Dimension;
-import java.awt.geom.AffineTransform;
-import java.util.Optional;
 
-import model.gameObject.weapon.Weapon;
-import model.common.*;
+import model.common.P2d;
 import model.image.EngineImage;
 import model.worldEcollisioni.physics.boundingType.BoundingBox;
 import model.worldEcollisioni.physics.components.PhysicsComponent;
@@ -14,56 +11,27 @@ import model.world.World;
 
 public abstract class AbstractGameObject {
 	private EngineImage engineImage;
-	private int life;
-	private int damage;
 	private P2d position;
-	private Movement movement;
-	private V2d velocity;
-	private Optional<Weapon> weapon;
 	private BoundingBox boundingBox;
-	private AffineTransform transform;
-	
+
 	private PhysicsComponent phys;
-	//DA CAMBIARE, SARà L'ENUM DEGLI STATI DELLA SPACESHIP
+	
+	//DA CAMBIARE, SARà L'ENUM DEGLI STATI DEGLI OGGETTI
 	private String state = "NORMAL";
-
-	public AbstractGameObject(EngineImage engineImage, int life, int damage, P2d point,
-							  Movement movement, V2d vel, AffineTransform transform, Optional<Weapon> weapon) {
+	
+	public AbstractGameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
+			final PhysicsComponent phys) {
 		this.engineImage = engineImage;
-		this.life = life;
-		this.damage = damage;
-		this.position = point;
-		this.movement = movement;
-		this.velocity = vel;
-		this.weapon = weapon;
-		this.transform = transform;
+		this.position = position;
+		this.boundingBox = bb;
+		this.phys = phys;
 	}
-
-
-	public EngineImage getImageEngine() {
+	
+	
+	public EngineImage getEngineImage() {
 		return engineImage;
 	}
-
-	public void setImageEngine(String pathImage) {
-		this.engineImage = new EngineImage(pathImage);
-	}
-
-	public int getLife() {
-		return life;
-	}
-
-	public void setLife(int life) {
-		this.life = life;
-	}
-
-	public int getDamage() {
-		return damage;
-	}
-
-	public void setDamage(int damage) {
-		this.damage = damage;
-	}
-
+	
 	public P2d getPosition() {
 		return position;
 	}
@@ -81,66 +49,19 @@ public abstract class AbstractGameObject {
 		this.boundingBox = boundingBox;
 	}
 
-	public Movement getMovement() {
-		return movement;
-	}
-
-	public void setMovement(Movement movement) {
-		this.movement = movement;
-	}
-
-	public V2d getVelocity() {
-		return velocity;
-	}
-
-	public void setVelocity(V2d velocity) {
-		this.velocity = velocity;
-	}
-
-	public Optional<Weapon> getWeapon() {
-		return weapon;
-	}
-
-	public void setWeapon(Optional<Weapon> weapon) {
-		this.weapon = weapon;
-	}
-	
-	public AffineTransform getTransform() {
-		return transform;
-	}
-
-	public void setTransform(AffineTransform transform) {
-		this.transform = transform;
+	public void setEngineImage(EngineImage engineImage) {
+		this.engineImage = engineImage;
 	}
 
 
-	public Dimension getSize() {
-		return this.engineImage.getSize();
-	}
-	
-	public int getScaleOf(){
-		return this.engineImage.getScaleOf();
+	public PhysicsComponent getPhys() {
+		return phys;
 	}
 
-	public String getPath(){
-		return this.engineImage.getPath();
-	}
-		
-	public BoundingBox getBBox(){
-		return this.boundingBox;
+	public void setPhys(PhysicsComponent phys) {
+		this.phys = phys;
 	}
 
-	public int getRespectTo(){
-		return this.engineImage.getRespectTo();
-	}
-	
-	public void setScale(int scaleOf, int respectTo) {
-		this.engineImage.setScale(scaleOf, respectTo);
-	}
-	
-	public void setScaleOf(int scaleOf) {
-		this.engineImage.setScaleOf(scaleOf);
-	}
 	
 //	public void setScale(int scaleOf, int respectTo) {
 //	this.engineImage.setScaleOfRespect(scaleOf, respectTo);
@@ -158,13 +79,14 @@ public abstract class AbstractGameObject {
 		this.state = state;
 	}
 	
-	@Override
-	public String toString() {
-		return "AbstractGameObject [engineImage=" + engineImage + ", life=" + life + ", damage=" + damage
-				+ ", position=" + position + ", movement=" + movement + ", velocity=" + velocity + ", weapon=" + ", trasform=" + transform + "]";
+	public Dimension getSize() {
+		return this.getEngineImage().getSize();
 	}
 
-	
-
+	@Override
+	public String toString() {
+		return "AbstractGameObject [engineImage=" + engineImage + ", boundingBox=" + boundingBox + 
+				", phys=" + phys + ", state="+ state + "]";
+	}
 
 }

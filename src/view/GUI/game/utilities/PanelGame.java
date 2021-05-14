@@ -21,8 +21,7 @@ public class PanelGame extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-        this.gameObject.forEach((key, value) -> g2d.drawImage(
-                this.getImageFromPath(key.getImageEngine()), value, null));
+        this.gameObject.forEach((key, value) -> g2d.drawImage(this.getImageFromPath(key.getEngineImage()), value, null));
     }
 
     public void addGameObject(final AbstractGameObject gameObject, final AffineTransform transform) {

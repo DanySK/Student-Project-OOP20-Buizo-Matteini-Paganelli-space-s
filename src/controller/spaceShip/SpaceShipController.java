@@ -1,8 +1,7 @@
 package controller.spaceShip;
 
-import model.spaceShip.SpaceShipSingleton;
+import model.gameObject.spaceShip.SpaceShipSingleton;
 
-import java.awt.event.KeyListener;
 
 public class SpaceShipController {
 
@@ -23,5 +22,8 @@ public class SpaceShipController {
 //				this.spaceShipModel.getPosition());
 	}
 
+	public SpaceShipSingleton getSpaceShipModel() {
+		return spaceShipModel;
+	}
 
 }

@@ -119,10 +119,9 @@ public class FactoryGUIs {
         final JImage imag = new JImage(pathIcon, engineImage.getSize());
         button.setIcon(imag.getImageIcon());
     }
-
+    
     public static void setIconJButtonFromRate(final JButton button, final EngineImage engineImage) {
-        FactoryGUIs.setIconJButtonFromRate(button, engineImage.getPath(),
+    	FactoryGUIs.setIconJButtonFromRate(button, engineImage.getPath(),
                 engineImage.getScaleOf(), engineImage.getRespectTo());
     }
-
 }

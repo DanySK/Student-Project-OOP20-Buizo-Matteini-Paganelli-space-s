@@ -5,6 +5,7 @@ import model.GUI.Visibility;
 import model.image.EngineImage;
 import utilities.DesignSound;
 import utilities.DesignTitleGUI;
+
 import utilities.dimension.Screen;
 import utilities.IdGUI;
 
@@ -13,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class EngineSound implements EngineGUI {
+
     public static final Rectangle DIMENSION = Screen.RECTANGLE_MEDIUM;
 
     public static int N_UNIT_SOUND = 2;
@@ -87,9 +89,7 @@ public class EngineSound implements EngineGUI {
     }
 
     public void setValueUnitSound(final TypeUnitSound typeUnitSound, final int value){
-        if( this.mixerSound.getStateSound(typeUnitSound) == StateSlider.ON){
-            this.mixerSound.setValueSound(typeUnitSound, value);
-        }
+        this.mixerSound.setValueSound(typeUnitSound, value);
     }
 
     public StateSlider getStateUnitSound(final TypeUnitSound typeUnitSound){

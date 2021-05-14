@@ -26,8 +26,6 @@ public class GUIMenuStandard implements FactoryGUIMenu {
         menuConcrete.setForegroundGUI(DesignSpace.color4);
         menuConcrete.setFontTitleGUI(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_H1));
         menuConcrete.setColumnsNamePlayer(DesignJComponent.SIZE_COLUMNS_TEXT);
-
-
         menuConcrete.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 //        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
@@ -38,7 +36,11 @@ public class GUIMenuStandard implements FactoryGUIMenu {
 //        } else {
 //            System.err.println("Full screen not supported");
 //        }
-//
+//        menuConcrete.validate();
+//        menuConcrete.revalidate();
+//        menuConcrete.repaint();
+        
+
         this.createGraphics(menuConcrete);
         return menuConcrete;
     }

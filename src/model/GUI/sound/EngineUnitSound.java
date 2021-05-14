@@ -3,6 +3,7 @@ package model.GUI.sound;
 import utilities.DesignSound;
 
 public class EngineUnitSound {
+    private int valueBackup;
     private int valueSound;
     private StateSlider stateSlider;
 
@@ -17,6 +18,7 @@ public class EngineUnitSound {
 
     public void setValueSound(final int valueSound) {
         this.valueSound = valueSound;
+        this.valueBackup = valueSound != DesignSound.SOUND_ZERO ? this.valueSound : this.valueBackup;
     }
 
     public StateSlider getStateSlider() {
@@ -33,5 +35,9 @@ public class EngineUnitSound {
 
     public boolean isActiveSlider(){
         return this.stateSlider.isActive();
+    }
+
+    public int getValueBackup(){
+        return this.valueBackup;
     }
 }

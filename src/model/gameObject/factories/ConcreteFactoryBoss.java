@@ -1,7 +1,5 @@
 package model.gameObject.factories;
 
-import java.awt.Dimension;
-import java.awt.geom.AffineTransform;
 import java.util.Optional;
 
 import model.gameObject.GameObjectUtils;
@@ -10,6 +8,8 @@ import model.common.*;
 import model.gameObject.boss.Boss;
 import model.gameObject.weapon.Weapon;
 import model.image.EngineImage;
+import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
+import model.worldEcollisioni.physics.components.BossPhysicsComponent;
 import utilities.pathImage.Icon;
 
 public class ConcreteFactoryBoss extends AbstractFactoryGameObject {
@@ -17,16 +17,14 @@ public class ConcreteFactoryBoss extends AbstractFactoryGameObject {
 	@Override
 	public Boss createObject() {
 		EngineImage engineImage = new EngineImage(Icon.BULLET);
-		Dimension size = engineImage.getSize();
+		P2d point = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
+		V2d velocity = GameObjectUtils.BOSS_VEL;
+		Movement movement = Movement.RANDOM;
 		int life = GameObjectUtils.BOSS_LIFE;
 		int damage = GameObjectUtils.BOSS_DAMAGE;		
-		P2d point = GameObjectUtils.generateSpawnPoint(size);
-		Movement movement = Movement.RANDOM;
-		V2d velocity = GameObjectUtils.BOSS_VEL;
-		AffineTransform transform = new AffineTransform();  
 		Optional<Weapon> weapon = Optional.of(new Weapon());
 		
-		return new Boss(engineImage, life, damage, size, point, movement, velocity, transform, weapon);
+		return new Boss(engineImage, point, new RectBoundingBox(), new BossPhysicsComponent(),
+				velocity, movement, life, damage, weapon);
 	}
-
 }

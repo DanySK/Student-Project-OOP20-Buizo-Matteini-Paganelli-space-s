@@ -13,7 +13,6 @@ import model.GUI.pause.EnginePause;
 import model.GUI.scoreboard.EngineScoreboard;
 import model.GUI.settings.EngineSettings;
 import model.GUI.sound.EngineSound;
-import model.GUI.sound.TypeUnitSound;
 import utilities.IdGUI;
 import utilities.SoundPath;
 import utilities.StateLevelGUI;
@@ -25,7 +24,6 @@ import view.GUI.pause.GUIPause;
 import view.GUI.scoreboard.GUIScoreboard;
 import view.GUI.settings.GUISettings;
 import view.GUI.sound.GUISound;
-import view.utilities.ButtonID;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -133,7 +131,6 @@ public class CtrlGUI {
                         this.chronology.remove(this.chronology.lastElementOfList()); break;
 
                     case ID_QUIT: this.quitAll(); break;
-
                     default:
                         this.chronology.add(btn.getIdGUINext());
                         this.managerGui.get(btn.getIdGUINext()).turn(Visibility.VISIBLE); break;
@@ -205,7 +202,6 @@ public class CtrlGUI {
         return this.chronology.lastElementOfList().getSound();
     }
 
-    
     public void linksCallerAudioLoopWith(final CallerAudio callerAudioLoop){
         this.ctrlSound.setCallerAudioLoop(callerAudioLoop);
         this.ctrlSound.getCallerAudioLoop().setSound(callerAudioLoop.getSound());
@@ -231,8 +227,7 @@ public class CtrlGUI {
         return this.ctrlSound.isActiveLoopUnitSound();
     }
 
-    
-    private void quitAll(){
+        private void quitAll(){
         this.managerGui.values().forEach(managerGui -> managerGui.getGUI().close());
     }
 }
