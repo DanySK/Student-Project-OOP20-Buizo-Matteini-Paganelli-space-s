@@ -3,6 +3,7 @@ package view.GUI.menu.factoryMethod;
 import model.GUI.game.EngineGame;
 import utilities.DesignJComponent;
 import utilities.DesignSpace;
+import utilities.dimension.ScaleOf;
 import view.GUI.menu.FactoryGUIMenu;
 import view.GUI.menu.GUIMenu;
 import view.GUI.menu.concrete.GUIMenuConcrete;
@@ -67,7 +68,7 @@ public class GUIMenuStandard implements FactoryGUIMenu {
         nBtnUsed = 0;
         while(nBtnUsed < EngineGame.N_BUTTONS){
             FactoryGUIs.setIconJButtonFromRate(menu.getButton(nBtnUsed),
-                    IconsButton.values()[nBtnUsed++].getPath(), 25, menu.getWidth());
+                    IconsButton.values()[nBtnUsed++].getPath(), ScaleOf.ICON_FULL, menu.getWidth());
         }
     }
 

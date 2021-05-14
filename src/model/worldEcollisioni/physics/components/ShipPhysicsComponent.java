@@ -3,7 +3,6 @@ package model.worldEcollisioni.physics.components;
 import java.util.Optional;
 
 import model.gameObject.AbstractGameObject;
-import model.gameObject.MovableGameObject;
 import model.gameObject.spaceShip.SpaceShipSingleton;
 import model.world.World;
 import model.worldEcollisioni.hitEvents.HitAsteroidEvent;

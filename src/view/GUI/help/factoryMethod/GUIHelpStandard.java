@@ -1,8 +1,9 @@
 package view.GUI.help.factoryMethod;
 
-import utilities.IconPath;
+import utilities.dimension.ScaleOf;
+import utilities.pathImage.Icon;
 import utilities.DesignJComponent;
-import utilities.DimensionScreen;
+import utilities.dimension.Screen;
 import view.GUI.help.concrete.GUIHelpConcrete;
 import view.GUI.help.FactoryGUIHelp;
 import view.GUI.help.GUIHelp;
@@ -20,7 +21,7 @@ public class GUIHelpStandard implements FactoryGUIHelp {
         helpGUIConcrete.setFontTitleGUI(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_H1));
         helpGUIConcrete.setFontGUI(DesignSpace.FONT_MEDIUM_STANDARD);
         helpGUIConcrete.setForegroundGUI(DesignSpace.color4);
-        helpGUIConcrete.setBounds(DimensionScreen.RECTANGLE_MEDIUM);
+        helpGUIConcrete.setBounds(Screen.RECTANGLE_MEDIUM);
         helpGUIConcrete.setBorder(3);
         this.createGraphics(helpGUIConcrete);
         return helpGUIConcrete;
@@ -36,7 +37,7 @@ public class GUIHelpStandard implements FactoryGUIHelp {
                 BorderLayout.CENTER);
 
         FactoryGUIs.setTransparentDesignJButton(helpConcrete.getBtnBack());
-        FactoryGUIs.setIconJButtonFromRate(helpConcrete.getBtnBack(), IconPath.ICON_BACK,
-                30, helpConcrete.getWidth());
+        FactoryGUIs.setIconJButtonFromRate(helpConcrete.getBtnBack(), Icon.BACK,
+                ScaleOf.ICON_MEDIUM, helpConcrete.getWidth());
     }
 }

@@ -13,15 +13,15 @@ import model.worldEcollisioni.physics.boundingType.BoundingBox;
 import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import model.worldEcollisioni.physics.components.PhysicsComponent;
 import model.worldEcollisioni.physics.components.ShipPhysicsComponent;
-import model.GUI.settings.SkinSpaceShip;
 import utilities.DesignSpace;
-import utilities.DimensionScreen;
+import utilities.dimension.Screen;
+import utilities.pathImage.Skin;
 
 public class SpaceShipSingleton extends MainGameObject {
     
     // Eager and unique instance of this class for Threadsafing
     private static SpaceShipSingleton spaceShip = new SpaceShipSingleton(
-    	new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, DimensionScreen.WIDTH_FULL_SCREEN, SkinSpaceShip.GNEGNE.getPath()),
+    	new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Skin.NORMAL),
    		DesignSpace.CENTER_ENVIRONMENT,
    		new RectBoundingBox(),
    		new ShipPhysicsComponent(),
@@ -49,4 +49,3 @@ public class SpaceShipSingleton extends MainGameObject {
         return spaceShip;
     }
 }
-

@@ -1,23 +1,22 @@
 package model.GUI.settings;
 
+import model.image.EngineImage;
+import utilities.dimension.ScaleOf;
+import utilities.pathImage.Skin;
+
 public enum SkinSpaceShip {
-    SPECIAL("spaceship/spaceship_07.png"),
-    STANDARD("spaceship/spaceship_04.png"),
-    DELUXE("spaceship/spaceship_02.png"),
-    NORMAL("spaceship/spaceship_06.png"),
-    GNEGNE("spaceship/spaceship_09.png"),
-    SURPRISE("spaceship/spaceship_10.png"),
-    MALA("spaceship/spaceship_15.png"),
-    PRIME("spaceship/spaceship_16.png"),
-    UNDEFINE("spaceship/spaceship_20.png");
+    SPECIAL(new EngineImage(ScaleOf.ICON_SKIN, EngineSettings.DIMENSION.width, Skin.SPECIAL)),
+    STANDARD(new EngineImage(ScaleOf.ICON_SKIN, EngineSettings.DIMENSION.width, Skin.STANDARD)),
+    DELUXE(new EngineImage(ScaleOf.ICON_SKIN, EngineSettings.DIMENSION.width, Skin.DELUXE)),
+    NORMAL(new EngineImage(ScaleOf.ICON_SKIN, EngineSettings.DIMENSION.width, Skin.NORMAL));
 
-    private String path;
+    private EngineImage engineImage;
 
-    private SkinSpaceShip(final String path){
-        this.path = path;
+    private SkinSpaceShip(final EngineImage engineImage){
+        this.engineImage = engineImage;
     }
 
-    public String getPath(){
-        return this.path;
+    public EngineImage getEngineImage() {
+        return this.engineImage;
     }
 }

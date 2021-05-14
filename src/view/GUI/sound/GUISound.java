@@ -19,6 +19,8 @@ public interface GUISound extends GUI, GraphicsGUISound {
 
     public SliderType getSliderTypeofMixer(final TypeUnitSound typeUnitSound);
 
+    public ButtonSliderType getBtnSwitch(final TypeUnitSound typeUnitSound);
+
     public void setDefaultValueSlidersSound(final int value);
 
     public void setBtnBackID(final IdGUI idGUI);

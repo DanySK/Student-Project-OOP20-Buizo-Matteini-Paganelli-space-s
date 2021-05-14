@@ -10,13 +10,13 @@ import model.gameObject.weapon.Weapon;
 import model.image.EngineImage;
 import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import model.worldEcollisioni.physics.components.FireEnemyPhysicsComponent;
-import utilities.IconPath;
+import utilities.pathImage.Icon;
 
 public class ConcreteFactoryFireEnemy extends AbstractFactoryGameObject {
 
 	@Override
 	public FireEnemy createObject() {
-		EngineImage engineImage = new EngineImage(IconPath.ICON_BULLET);
+		EngineImage engineImage = new EngineImage(Icon.BULLET);
 		P2d point = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.FIRE_ENEMY_VEL;
 		Movement movement = Movement.RANDOM;

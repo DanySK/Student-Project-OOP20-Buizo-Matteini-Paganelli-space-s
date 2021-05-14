@@ -13,6 +13,7 @@ public abstract class AbstractGameObject {
 	private EngineImage engineImage;
 	private P2d position;
 	private BoundingBox boundingBox;
+
 	private PhysicsComponent phys;
 	
 	//DA CAMBIARE, SARà L'ENUM DEGLI STATI DEGLI OGGETTI
@@ -38,18 +39,20 @@ public abstract class AbstractGameObject {
 	public void setPosition(P2d position) {
 		this.position = position;
 	}
+	
+	public BoundingBox getBoundingBox() {
+		return boundingBox;
+	}
+
+
+	public void setBoundingBox(BoundingBox boundingBox) {
+		this.boundingBox = boundingBox;
+	}
 
 	public void setEngineImage(EngineImage engineImage) {
 		this.engineImage = engineImage;
 	}
 
-	public BoundingBox getBoundingBox() {
-		return boundingBox;
-	}
-
-	public void setBoundingBox(BoundingBox boundingBox) {
-		this.boundingBox = boundingBox;
-	}
 
 	public PhysicsComponent getPhys() {
 		return phys;

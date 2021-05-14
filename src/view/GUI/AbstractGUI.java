@@ -1,8 +1,9 @@
 package view.GUI;
 
 import utilities.DesignSpace;
-import utilities.DimensionScreen;
+import utilities.dimension.Screen;
 import utilities.IdGUI;
+import utilities.pathImage.Background;
 import view.utilities.JPanelImage;
 
 import javax.swing.*;
@@ -16,7 +17,7 @@ public abstract class AbstractGUI extends JFrame{
 
     public AbstractGUI() {
         super();
-        this.panelBackground = new JPanelImage(DimensionScreen.PATH_MAIN_BACKGROUND);
+        this.panelBackground = new JPanelImage(Background.MAIN);
         this.panelForeground = new JPanel(new BorderLayout()) {{ setOpaque(false); setVisible(false); }};
         super.setContentPane(this.panelBackground);
         super.setGlassPane(this.panelForeground);
@@ -25,7 +26,7 @@ public abstract class AbstractGUI extends JFrame{
     }
 
     private void setDefaultJFrame(){
-        super.setBounds(DimensionScreen.RECTANGLE_FULLSCREEN);
+        super.setBounds(Screen.RECTANGLE_FULLSCREEN);
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         super.setUndecorated(true);
         super.setResizable(false);

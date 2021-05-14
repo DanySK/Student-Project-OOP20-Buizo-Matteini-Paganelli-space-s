@@ -2,10 +2,15 @@ package model.sound;
 
 import utilities.SoundPath;
 
+import java.io.IOException;
 import java.util.Optional;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.DataLine;
 import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 	
 public abstract class Sound {
@@ -13,16 +18,33 @@ public abstract class Sound {
 	    private SoundPath soundPath;
 	    private double volume;
 	    private Optional<Clip> clip = Optional.empty();
+	    private boolean isPlaying = false;
 
 		public Sound() {
 			this.soundPath = null;
 			this.volume = START_VOLUME;
 		}
 
-	    public Sound(final SoundPath sound) {
+	public double getVolume() {
+		return volume;
+	}
+
+	public Sound(final SoundPath sound) {
 	    	this.soundPath = sound;
 	    	this.volume = START_VOLUME;
-	    }
+	    	
+	    	AudioInputStream audioInputStream = null;
+	    	
+	    	try {
+				audioInputStream = AudioSystem.getAudioInputStream(ClassLoader.getSystemResource(sound.getValue()));
+				setClip(AudioSystem.getClip());
+				getClip().get().open(audioInputStream);
+			} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
 	    
 	    public void setSoundType(SoundPath sound) {
 	    	this.soundPath = sound;
@@ -33,9 +55,7 @@ public abstract class Sound {
 	    }
 	    
 	    public void setClip(Clip clip) {
-	    	System.out.println(Optional.of(clip));
 	    	this.clip = Optional.of(clip);
-	    	System.out.println(this.clip.get());
 	    }
 	    
 	    public Optional<Clip> getClip() {
@@ -43,36 +63,31 @@ public abstract class Sound {
 	    }
 	    
 	    public boolean isPlaying() {
-			return this.clip.map(DataLine::isActive).orElse(false);
-	    	
+	    	return this.isPlaying;
 	    }
+	    
 	    
 	    public void stopClip() {
 	    	this.clip.get().stop();
+	    	this.isPlaying = false;
 	    }
 
 
-	    public void startClip() {   	
-	    	playSound(this.soundPath.getValue(), this.volume);
+	    public void startClip() {
+			System.out.println("VOLUMENE DENTRO nel SOUND" + this.volume);
+	    	playSound(this.volume);
+	    	this.isPlaying = true;
 	    }
 	    
-	    protected abstract void playSound(String fileName, double volume);
+	    protected abstract void playSound(double volume);
 	   
 	    
 		public void setVol(double volume) {
-			System.out.println("Sono entrato");
+			this.volume = volume;
+			FloatControl gain = (FloatControl) getClip().get().getControl(FloatControl.Type.MASTER_GAIN);
 
-			FloatControl gain = null;
-
-			System.out.println(this.clip);
-
-			System.out.println(getClip().get());
-			
-			gain = (FloatControl) getClip().get().getControl(FloatControl.Type.MASTER_GAIN);
-		
 			float dB = (float) (Math.log(volume) / Math.log(10) * 20);
 			gain.setValue(dB);
-			
 		}
 
 }

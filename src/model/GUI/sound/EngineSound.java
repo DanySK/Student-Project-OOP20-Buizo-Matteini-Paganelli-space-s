@@ -2,16 +2,21 @@ package model.GUI.sound;
 
 import model.GUI.EngineGUI;
 import model.GUI.Visibility;
+import model.image.EngineImage;
 import utilities.DesignSound;
 import utilities.DesignTitleGUI;
-import utilities.DimensionScreen;
+
+import utilities.dimension.Screen;
 import utilities.IdGUI;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
 public class EngineSound implements EngineGUI {
-    public static int GUI_WIDTH = DimensionScreen.WIDTH_MEDIUM;
+
+    public static final Rectangle DIMENSION = Screen.RECTANGLE_MEDIUM;
+
     public static int N_UNIT_SOUND = 2;
 
     private final IdGUI id;
@@ -99,6 +104,10 @@ public class EngineSound implements EngineGUI {
 
     public boolean isActiveUnitSound(final TypeUnitSound typeUnitSound){
         return this.mixerSound.isActiveSound(typeUnitSound);
+    }
+
+    public EngineImage getEngineImageUnitSound(final TypeUnitSound typeUnitSound){
+        return this.mixerSound.getStateSound(typeUnitSound).getEngineImage();
     }
 
     public void changeStateUnitSound(final TypeUnitSound typeUnitSound){

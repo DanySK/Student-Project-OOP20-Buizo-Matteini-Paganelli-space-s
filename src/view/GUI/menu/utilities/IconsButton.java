@@ -1,20 +1,29 @@
 package view.GUI.menu.utilities;
 
-public enum IconsButton {
-    ICON_START("icon/start.png"),
-    ICON_SETTINGS("icon/settings.png"),
-    ICON_SCOREBOARD("icon/scoreboard.png"),
-    ICON_SOUND("icon/sound.png"),
-    ICON_HELP("icon/help.png"),
-    ICON_QUIT("icon/quit.png");
+import utilities.pathImage.Icon;
 
-    private String path;
+public enum IconsButton {
+    ICON_START(Icon.START),
+    ICON_SETTINGS(Icon.SETTINGS),
+    ICON_SCOREBOARD(Icon.SCOREBOARD),
+    ICON_SOUND(Icon.SOUND),
+    ICON_HELP(Icon.HELP),
+    ICON_QUIT(Icon.QUIT);
+
+    private final String path;
 
     private IconsButton(final String path){
         this.path = path;
     }
 
     public String getPath() {
-        return path;
+        return this.path;
+    }
+
+    @Override
+    public String toString() {
+        return "IconsButton{" +
+                "path='" + path + '\'' +
+                '}';
     }
 }

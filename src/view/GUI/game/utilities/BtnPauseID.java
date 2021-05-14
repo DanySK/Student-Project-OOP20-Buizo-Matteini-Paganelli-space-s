@@ -1,7 +1,7 @@
 package view.GUI.game.utilities;
 
-import utilities.DimensionScreen;
-import utilities.IconPath;
+import utilities.dimension.Screen;
+import utilities.pathImage.Icon;
 import view.utilities.ButtonID;
 import view.utilities.FactoryGUIs;
 
@@ -14,7 +14,7 @@ public class BtnPauseID extends ButtonID {
 
     public BtnPauseID(){
         super();
-        FactoryGUIs.setIconJButtonFromRate(this, IconPath.ICON_PAUSE, 30, DimensionScreen.WIDTH_FULL_SCREEN);
+        FactoryGUIs.setIconJButtonFromRate(this, Icon.PAUSE, 30, Screen.WIDTH_FULL_SCREEN);
         super.addMouseListener(this.mouseListener());
     }
 
@@ -31,12 +31,12 @@ public class BtnPauseID extends ButtonID {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                FactoryGUIs.setIconJButtonFromRate(BtnPauseID.this, IconPath.ICON_PAUSE_2FACE, 30, DimensionScreen.WIDTH_FULL_SCREEN);
+                FactoryGUIs.setIconJButtonFromRate(BtnPauseID.this, Icon.PAUSE_2FACE, 30, Screen.WIDTH_FULL_SCREEN);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                FactoryGUIs.setIconJButtonFromRate(BtnPauseID.this, IconPath.ICON_PAUSE, 30, DimensionScreen.WIDTH_FULL_SCREEN);
+                FactoryGUIs.setIconJButtonFromRate(BtnPauseID.this, Icon.PAUSE, 30, Screen.WIDTH_FULL_SCREEN);
             }
         };
     }

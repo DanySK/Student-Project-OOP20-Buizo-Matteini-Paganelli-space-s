@@ -1,6 +1,6 @@
 package view.GUI.game.factoryMethod;
 
-import utilities.DimensionScreen;
+import utilities.dimension.Screen;
 import view.GUI.game.FactoryGUIGame;
 import view.GUI.game.GUIGame;
 import view.GUI.game.concrete.GUIGameConcrete;
@@ -40,7 +40,7 @@ public class GUIGameStandard implements FactoryGUIGame {
                         5)));
 
         final JPanel panelSouth = new JPanel(new BorderLayout()
-        {{ setHgap(DimensionScreen.scaleRespectTo(50, DimensionScreen.WIDTH_FULL_SCREEN)); }})
+        {{ setHgap(Screen.scaleRespectTo(50, Screen.WIDTH_FULL_SCREEN)); }})
         {{ setOpaque(false); }};
 
         panelSouth.add(FactoryGUIs.encapsulatesInPanelFlowOrientation(FlowLayout.LEFT,concreteGame.getHeartLife()),

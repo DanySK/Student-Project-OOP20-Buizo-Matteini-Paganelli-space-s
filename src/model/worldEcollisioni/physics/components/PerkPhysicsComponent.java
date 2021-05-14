@@ -11,7 +11,6 @@ public class PerkPhysicsComponent implements PhysicsComponent {
 	@Override
 	public void update(int dt, AbstractGameObject obj, World w) {
 		RectBoundingBox bbox = (RectBoundingBox) obj.getBoundingBox();
-		
 		Optional<AbstractGameObject> perk = w.checkCollisionWithAsteroids(obj.getPosition(), bbox);
 		//collisioni con perks
 		if (perk.isPresent()){

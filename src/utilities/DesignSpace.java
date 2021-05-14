@@ -4,9 +4,10 @@ import java.awt.*;
 import java.net.URL;
 
 import model.common.P2d;
+import utilities.dimension.Screen;
 
 public class DesignSpace {
-    public static final P2d CENTER_ENVIRONMENT = new P2d(DimensionScreen.WIDTH_MEDIUM / 2, DimensionScreen.HEIGHT_MEDIUM / 2);
+    public static final P2d CENTER_ENVIRONMENT = new P2d(Screen.WIDTH_MEDIUM / 2, Screen.HEIGHT_MEDIUM / 2);
 
     public static int SIZE_FONT_H1 = 60;
     public static int SIZE_FONT_H2 = 55;

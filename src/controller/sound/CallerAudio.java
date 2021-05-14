@@ -33,9 +33,7 @@ public class CallerAudio {
 	}
 
 	public void changeVolume(int currentVolume) {
-		System.out.println("Current Volume: " + currentVolume);
-		double parsedVolume = currentVolume / 100.0f;	
-		System.out.println("parsedVolume:" + parsedVolume);
+		double parsedVolume = currentVolume / 100.0f;
 		this.sound.setVol(parsedVolume);
 	}
 

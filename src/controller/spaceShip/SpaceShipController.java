@@ -1,7 +1,7 @@
 package controller.spaceShip;
 
-
 import model.gameObject.spaceShip.SpaceShipSingleton;
+
 
 public class SpaceShipController {
 
@@ -25,6 +25,5 @@ public class SpaceShipController {
 	public SpaceShipSingleton getSpaceShipModel() {
 		return spaceShipModel;
 	}
-
 
 }

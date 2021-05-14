@@ -83,4 +83,13 @@ public class MixerSound extends JPanel{
         }
         return null;
     }
+
+    public ButtonSliderType getBtnSwitch(final TypeUnitSound typeUnitSound){
+        for (UnitSound unit : this.sdlSounds) {
+            if(typeUnitSound == unit.getType()){
+                return unit.getBtnSwitch();
+            }
+        }
+        return null;
+    }
 }

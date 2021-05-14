@@ -1,7 +1,6 @@
 package game;
 import controller.sound.CallerAudio;
 import model.sound.CmdAudioType;
-import model.sound.category.SoundEffect;
 import model.sound.category.SoundLoop;
 import utilities.SoundPath;
 

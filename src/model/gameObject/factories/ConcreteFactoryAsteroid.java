@@ -9,13 +9,13 @@ import model.gameObject.weapon.Weapon;
 import model.image.EngineImage;
 import model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
 import model.worldEcollisioni.physics.components.AsteroidPhysicsComponent;
-import utilities.IconPath;
+import utilities.pathImage.Icon;
 
 
 public class ConcreteFactoryAsteroid extends AbstractFactoryGameObject {
 
 	public Asteroid createObject() {
-		EngineImage engineImage = new EngineImage(IconPath.ICON_BULLET);
+		EngineImage engineImage = new EngineImage(Icon.BULLET);
 		P2d point = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.ASTEROID_VEL;
 		Movement movement = Movement.FIXED;

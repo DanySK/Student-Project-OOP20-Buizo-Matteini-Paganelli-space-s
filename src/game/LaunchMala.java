@@ -1,11 +1,14 @@
 package game;
 
-import model.game.GameLoop;
+import model.game.GameMalaLoop;
 
 public class LaunchMala {
 
     public static void main(String[] args){
-        new GameLoop();
+
+        final GameMalaLoop engine = new GameMalaLoop();
+        engine.initGame();
+        engine.mainLoop();
     }
 }
 

@@ -18,7 +18,6 @@ public class RotateLeftCommand implements CommandMovement{
 		AffineTransform transform = ship.getTransform();
 		transform.rotate(Math.toRadians(15), ship.getSize().getHeight() / 2, ship.getSize().getWidth() / 2);
 		ship.setTransform(transform);
-
 		//System.out.println(ship.toString());
 	}
 	

@@ -1,6 +1,6 @@
 package view.utilities;
 
-import utilities.DimensionScreen;
+import utilities.dimension.Screen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +16,7 @@ public class JPanelImage extends JPanel {
     public JPanelImage(final String path){
         this();
         this.icon.setImage(JImage.getImageFromPath(path));
-        JPanelImage.setSizeFromScreen(this.icon, DimensionScreen.RECTANGLE_FULLSCREEN);
+        JPanelImage.setSizeFromScreen(this.icon, Screen.RECTANGLE_FULLSCREEN);
     }
 
     public JPanelImage(final String path, final Rectangle rectangleGUI){
