@@ -8,7 +8,8 @@ public enum SkinSpaceShip {
     SPECIAL(new EngineImage(ScaleOf.ICON_SKIN, EngineSettings.DIMENSION.width, Skin.SPECIAL)),
     STANDARD(new EngineImage(ScaleOf.ICON_SKIN, EngineSettings.DIMENSION.width, Skin.STANDARD)),
     DELUXE(new EngineImage(ScaleOf.ICON_SKIN, EngineSettings.DIMENSION.width, Skin.DELUXE)),
-    NORMAL(new EngineImage(ScaleOf.ICON_SKIN, EngineSettings.DIMENSION.width, Skin.NORMAL));
+    NORMAL(new EngineImage(ScaleOf.ICON_SKIN, EngineSettings.DIMENSION.width, Skin.NORMAL)),
+    ATOMIC(new EngineImage(ScaleOf.ICON_SKIN, EngineSettings.DIMENSION.width, Skin.ATOMIC));
 
     private EngineImage engineImage;
 

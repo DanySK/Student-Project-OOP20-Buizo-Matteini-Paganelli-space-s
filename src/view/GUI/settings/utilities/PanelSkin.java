@@ -12,7 +12,6 @@ public class PanelSkin extends JPanel {
     private JButton btSX = new JButton("<");
     private JButton btDX = new JButton(">");;
 
-
     private JImage pnImage = new JImage();
 
     public PanelSkin(final int width, final int height){

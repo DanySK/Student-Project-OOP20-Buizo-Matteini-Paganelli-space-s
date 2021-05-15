@@ -5,6 +5,7 @@ import model.GUI.EngineGUI;
 import model.GUI.Visibility;
 import model.GUI.settings.Difficulty;
 import model.GUI.settings.EngineSettings;
+import model.image.EngineImage;
 import utilities.IdGUI;
 import view.GUI.GUI;
 import view.GUI.settings.GUISettings;
@@ -26,7 +27,6 @@ public class CtrlSettings implements ControllerGUI {
         this.assignId();
         this.assignStrings();
         this.assignSettings();
-
     }
 
     private void assignId() {
@@ -51,9 +51,12 @@ public class CtrlSettings implements ControllerGUI {
         return e -> {
             if(btn.getText().equals("<")){
                 CtrlSettings.this.engine.changeSkinSx();
+                System.out.println("vado a sinitraaaaaaa");
             } else {
                 CtrlSettings.this.engine.changeSkinDx();
+                System.out.println("vado a destraaaaa");
             }
+            System.out.println(this.engine.getChooseSkin());
             CtrlSettings.this.gui.setSkinSpaceShip(CtrlSettings.this.engine.getSkinSpaceShip());
         };
     }
@@ -69,6 +72,10 @@ public class CtrlSettings implements ControllerGUI {
                     CtrlSettings.this.engine.setDifficult(Difficulty.HARD); break;
             }
         };
+    }
+
+    public String getCurrentSkin(){
+        return this.engine.getSkinSpaceShip().getPath();
     }
 
     @Override

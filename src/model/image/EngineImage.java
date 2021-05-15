@@ -44,6 +44,7 @@ public class EngineImage {
         return this.scaleOf;
     }
 
+
     public int getRespectTo(){
         return this.respectTo;
     }
@@ -55,9 +56,9 @@ public class EngineImage {
 
     public void setPath(final String path) {
         this.path = path;
-        if(!this.isScale()){
-            this.setSize(EngineImage.getSizeFromImage(this.path));
-        }
+//        if(!this.isScale()){
+//            this.setSize(EngineImage.getSizeFromImage(this.path));
+//        }
     }
 
     public void setScale(final int scaleOf, final int respectTo) {

@@ -11,7 +11,6 @@ import java.awt.*;
 import java.util.List;
 
 public class EngineGame implements EngineGUI {
-	
     public static final Rectangle DIMENSION = Screen.RECTANGLE_FULLSCREEN;
 
     public static final int N_BUTTONS = 6;
