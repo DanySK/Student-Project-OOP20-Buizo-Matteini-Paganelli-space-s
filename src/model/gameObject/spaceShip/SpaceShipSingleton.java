@@ -40,6 +40,8 @@ public class SpaceShipSingleton extends MainGameObject {
 			final int damage, final Optional<Weapon> weapon) {
 		super(engineImage, position, bb, phys, velocity, movement, life, damage, weapon);
     	this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage));
+    	RectBoundingBox shipBox = (RectBoundingBox) this.getBoundingBox();
+    	this.getTransform().translate(shipBox.getULCorner().getX(), shipBox.getBRCorner().getY());
     }
     
     /**
