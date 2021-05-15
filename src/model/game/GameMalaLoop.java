@@ -15,6 +15,7 @@ import model.worldEcollisioni.hitEvents.HitBorderEvent;
 import model.worldEcollisioni.hitEvents.HitChaseEnemyEvent;
 import model.worldEcollisioni.hitEvents.HitPerkEvent;
 import utilities.DesignSound;
+import utilities.IdGUI;
 import view.GUI.game.GUIGame;
 
 import java.util.LinkedList;
@@ -63,6 +64,8 @@ public class GameMalaLoop {
 
             this.updateSound();
 
+            inputSkin();
+
             processInput();
             //updateGame(elapsed);
             render();
@@ -70,7 +73,8 @@ public class GameMalaLoop {
 
             waitForNextFrame(current);
             lastTime = current;
-//            System.out.println("LoopMala -> "+ elapsed +" FPS");
+            System.out.println("LoopMala -> "+ elapsed +" FPS");
+
         }
         renderGameOver();
     }
@@ -126,6 +130,14 @@ public class GameMalaLoop {
 
     protected void render(){
         panelGame.repaintGameObjects();
+    }
+
+    private void inputSkin(){
+        int i = 0;
+        if(this.controlGUI.getCurrentGUI() == IdGUI.ID_GAME && i == 0){
+            this.gameState.setSkin(this.controlGUI.getCurrentSkin());
+            i = 1;
+        }
     }
     
     private void renderMovement() {

@@ -5,6 +5,7 @@ import model.GUI.EngineGUI;
 import model.GUI.Visibility;
 import model.GUI.settings.Difficulty;
 import model.GUI.settings.EngineSettings;
+import model.image.EngineImage;
 import utilities.IdGUI;
 import view.GUI.GUI;
 import view.GUI.settings.GUISettings;
@@ -26,7 +27,6 @@ public class CtrlSettings implements ControllerGUI {
         this.assignId();
         this.assignStrings();
         this.assignSettings();
-
     }
 
     private void assignId() {
@@ -69,6 +69,10 @@ public class CtrlSettings implements ControllerGUI {
                     CtrlSettings.this.engine.setDifficult(Difficulty.HARD); break;
             }
         };
+    }
+
+    public String getCurrentSkin(){
+        return this.engine.getSkinSpaceShip().getPath();
     }
 
     @Override
