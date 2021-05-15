@@ -1,6 +1,5 @@
 package model.gameObject;
 
-import java.awt.geom.AffineTransform;
 import java.util.Optional;
 
 import model.common.P2d;
@@ -15,7 +14,6 @@ public abstract class MainGameObject extends MovableGameObject {
 	private int damage;
 	
 	private Optional<Weapon> weapon;
-	private AffineTransform transform;
 	
 	public MainGameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
 			final PhysicsComponent phys, final V2d velocity, final Movement movement, final int life,
@@ -24,7 +22,6 @@ public abstract class MainGameObject extends MovableGameObject {
 		this.life = life;
 		this.damage = damage;
 		this.weapon = weapon;
-		this.transform = new AffineTransform();
 	}
 
     public int getLife() {
@@ -58,12 +55,9 @@ public abstract class MainGameObject extends MovableGameObject {
 		this.weapon = weapon;
 	}
 
-	public AffineTransform getTransform() {
-		return transform;
-	}
-
-	public void setTransform(AffineTransform transform) {
-		this.transform = transform;
+	@Override
+	public String toString() {
+		return "MainGameObject [life=" + life + ", damage=" + damage + ", weapon=" + weapon + "]";
 	}
 	
 }

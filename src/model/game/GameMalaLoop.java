@@ -2,7 +2,6 @@ package model.game;
 
 import controller.GUI.CtrlGUI;
 import controller.sound.CallerAudio;
-import model.common.V2d;
 import model.gameObject.asteroid.Asteroid;
 import model.gameObject.chaseEnemy.ChaseEnemy;
 import model.input.MovementKeyListener;
@@ -145,8 +144,10 @@ public class GameMalaLoop {
 		
 		//this.ship.setPosition(ship.getPosition().sum(new V2d(0,3)));
 		System.out.println(this.gameState.getWorld().getShip().getVelocity().getX() + "Y: " +  this.gameState.getWorld().getShip().getVelocity().getY());
-		this.gameState.getWorld().getShip().getTransform().translate(this.gameState.getWorld().getShip().getVelocity().getX(), this.gameState.getWorld().getShip().getVelocity().getY());
-		this.gameState.getWorld().getShip().setPosition(this.gameState.getWorld().getShip().getPosition().sum(this.gameState.getWorld().getShip().getVelocity()));
+		
+		this.gameState.getSpaceship().move();
+//		this.gameState.getWorld().getShip().getTransform().translate(this.gameState.getWorld().getShip().getVelocity().getX(), this.gameState.getWorld().getShip().getVelocity().getY());
+//		this.gameState.getWorld().getShip().setPosition(this.gameState.getWorld().getShip().getPosition().sum(this.gameState.getWorld().getShip().getVelocity()));
 	}
 
     protected void renderGameOver() {
