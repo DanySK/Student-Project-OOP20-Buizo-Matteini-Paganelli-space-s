@@ -40,6 +40,10 @@ public class World {
 	public SpaceShipSingleton getShip(){
 		return this.ship;
 	}
+
+	public void setSkin(final String path){
+		this.ship.getEngineImage().setPath(path);
+	}
 	
 	public void addAsteroid(AbstractGameObject obj){
 		asteroids.add(obj);

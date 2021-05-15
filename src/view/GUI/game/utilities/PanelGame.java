@@ -13,7 +13,7 @@ public class PanelGame extends JPanel {
     private final Map<AbstractGameObject, AffineTransform> gameObject;
 
     public PanelGame() {
-        super(); {{ setOpaque(false); setBorder(BorderFactory.createLineBorder(Color.GREEN, 5));}}
+        super(); {{ setOpaque(false); }}
         this.gameObject = new HashMap<>();
     }
 

@@ -80,4 +80,8 @@ public class GameState {
 	public void respawn() {
 		this.getSpaceship().setPosition(DesignSpace.CENTER_ENVIRONMENT);
 	}
+
+	public void setSkin(final String path){
+    	this.world.setSkin(path);
+	}
 }

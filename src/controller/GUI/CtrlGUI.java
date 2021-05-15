@@ -13,6 +13,7 @@ import model.GUI.pause.EnginePause;
 import model.GUI.scoreboard.EngineScoreboard;
 import model.GUI.settings.EngineSettings;
 import model.GUI.sound.EngineSound;
+import model.image.EngineImage;
 import utilities.IdGUI;
 import utilities.SoundPath;
 import utilities.StateLevelGUI;
@@ -198,6 +199,10 @@ public class CtrlGUI {
         return null;
     }
 
+    public IdGUI getCurrentGUI(){
+        return this.chronology.lastElementOfList();
+    }
+
     public SoundPath getCurrentSound(){
         return this.chronology.lastElementOfList().getSound();
     }
@@ -227,7 +232,12 @@ public class CtrlGUI {
         return this.ctrlSound.isActiveLoopUnitSound();
     }
 
-        private void quitAll(){
+
+    public String getCurrentSkin(){
+        return this.ctrlSettings.getCurrentSkin();
+    }
+
+    private void quitAll(){
         this.managerGui.values().forEach(managerGui -> managerGui.getGUI().close());
     }
 }
