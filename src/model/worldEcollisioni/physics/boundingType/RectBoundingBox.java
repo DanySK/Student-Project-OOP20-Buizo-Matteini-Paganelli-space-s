@@ -41,6 +41,7 @@ public class RectBoundingBox implements BoundingBox {
 		
 		if(p.getX() <= this.getULCorner().getX() + this.getWidth() &&
 				p.getY() <= this.getULCorner().getY() + this.getHeight()) {
+			System.out.println("return true");
 			return true;
 		}
 			
