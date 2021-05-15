@@ -14,6 +14,10 @@ import utilities.pathImage.Icon;
 
 public class ConcreteFactoryFireEnemy extends AbstractFactoryGameObject {
 
+	public ConcreteFactoryFireEnemy() {
+		super();
+	}
+	
 	@Override
 	public FireEnemy createObject() {
 		EngineImage engineImage = new EngineImage(Icon.BULLET);

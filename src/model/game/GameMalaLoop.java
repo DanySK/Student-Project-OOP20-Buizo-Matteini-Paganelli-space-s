@@ -17,6 +17,7 @@ import utilities.DesignSound;
 import utilities.IdGUI;
 import view.GUI.game.GUIGame;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -48,7 +49,13 @@ public class GameMalaLoop {
         //this.controlGUI.linksCallerAudioEffectWith(this.callerAudioEffects);
 
         this.panelGame.addKeyListenerSpaceship(controller);
-        this.panelGame.getPanelGame().addGameObject(this.gameState.getWorld().getShip(), this.gameState.getWorld().getShip().getTransform());
+        this.panelGame.getPanelGame().addGameObject(this.gameState.getSpaceship(), this.gameState.getSpaceship().getTransform());
+        
+        this.gameState.getWorld().getEnemies().forEach(enemy -> {
+        	System.out.println(enemy);
+        	//this.panelGame.getPanelGame().addGameObject(enemy, enemy.);
+        });
+        
         System.out.println(this.panelGame.getPanelGame());
     }
 

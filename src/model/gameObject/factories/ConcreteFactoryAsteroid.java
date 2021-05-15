@@ -13,6 +13,11 @@ import utilities.pathImage.Icon;
 
 
 public class ConcreteFactoryAsteroid extends AbstractFactoryGameObject {
+	
+	public ConcreteFactoryAsteroid() {
+		super();
+	}
+	
 
 	public Asteroid createObject() {
 		EngineImage engineImage = new EngineImage(Icon.BULLET);

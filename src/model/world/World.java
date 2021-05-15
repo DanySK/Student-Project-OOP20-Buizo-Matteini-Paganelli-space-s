@@ -3,8 +3,16 @@ package model.world;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import model.gameObject.AbstractGameObject;
+import model.gameObject.chaseEnemy.ChaseEnemy;
+import model.gameObject.factories.AbstractFactoryGameObject;
+import model.gameObject.factories.ConcreteFactoryAsteroid;
+import model.gameObject.factories.ConcreteFactoryChaseEnemy;
+import model.gameObject.factories.ConcreteFactoryFireEnemy;
+import model.gameObject.factories.ConcreteFactoryRandomPickable;
+import model.gameObject.fireEnemy.FireEnemy;
 import model.gameObject.spaceShip.SpaceShipSingleton;
 import model.worldEcollisioni.WorldEvent;
 import model.worldEcollisioni.WorldEventListener;
@@ -13,20 +21,33 @@ import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import model.common.*;
 
 public class World {
-	private List<AbstractGameObject> asteroids;
-	private List<AbstractGameObject> enemies;
-	private List<AbstractGameObject> perks;
+	private List<AbstractGameObject> asteroids = new ArrayList<>();
+	private List<AbstractGameObject> enemies = new ArrayList<>();
+	private List<AbstractGameObject> perks = new ArrayList<>();
+
+	private AbstractFactoryGameObject factoryAsteroid = new ConcreteFactoryAsteroid();
+	private AbstractFactoryGameObject factoryChaseEnemy = new ConcreteFactoryChaseEnemy();
+	private AbstractFactoryGameObject factoryFireEnemy = new ConcreteFactoryFireEnemy();
+	private AbstractFactoryGameObject factoryPickable = new ConcreteFactoryRandomPickable();
+
 	private SpaceShipSingleton ship;
 	private RectBoundingBox mainBBox;
 	private WorldEventListener evListener;
 	
 	public World(RectBoundingBox bbox){
 		ship = SpaceShipSingleton.getSpaceShip();
-		asteroids = new ArrayList<AbstractGameObject>();
-		enemies = new ArrayList<AbstractGameObject>();
-		perks = new ArrayList<AbstractGameObject>();
+		
+		for (int i = 0; i < 5; i++) {
+			asteroids.add(factoryAsteroid.createObject());
+			enemies.add(factoryChaseEnemy.createObject());
+			enemies.add(factoryFireEnemy.createObject());
+		}
 		
 		mainBBox = bbox;
+		
+		System.out.println(getFireEnemies());
+		System.out.println(getChaseEnemies());
+
 	}
 
 	public void setEventListener(WorldEventListener l){
@@ -139,6 +160,14 @@ public class World {
 	
 	public List<AbstractGameObject> getEnemies(){
 		return this.enemies;
+	}
+	
+	public List<AbstractGameObject> getFireEnemies(){
+		return this.enemies.stream().filter(FireEnemy.class::isInstance).collect(Collectors.toList());
+	}
+	
+	public List<AbstractGameObject> getChaseEnemies(){
+		return this.enemies.stream().filter(ChaseEnemy.class::isInstance).collect(Collectors.toList());
 	}
 
 	public List<AbstractGameObject> getSceneEntities(){
