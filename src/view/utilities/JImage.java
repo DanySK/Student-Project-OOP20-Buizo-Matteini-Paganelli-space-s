@@ -37,6 +37,7 @@ public class JImage extends JComponent{
     }
 
 
+
     public String getPath() {
         return this.path;
     }
@@ -60,6 +61,7 @@ public class JImage extends JComponent{
         this.width = width;
         this.height = height;
         JImage.resizeImageIcon(this.imageIcon, width, height);
+        this.repaint();
     }
 
     public void setSize(final Dimension dimension){
@@ -72,6 +74,7 @@ public class JImage extends JComponent{
         if(this.width != 0){
             this.setSize(this.width, this.height);
         }
+        this.repaint();
     }
 
     public void setBounds(final Rectangle rectangle){

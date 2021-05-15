@@ -51,9 +51,12 @@ public class CtrlSettings implements ControllerGUI {
         return e -> {
             if(btn.getText().equals("<")){
                 CtrlSettings.this.engine.changeSkinSx();
+                System.out.println("vado a sinitraaaaaaa");
             } else {
                 CtrlSettings.this.engine.changeSkinDx();
+                System.out.println("vado a destraaaaa");
             }
+            System.out.println(this.engine.getChooseSkin());
             CtrlSettings.this.gui.setSkinSpaceShip(CtrlSettings.this.engine.getSkinSpaceShip());
         };
     }
