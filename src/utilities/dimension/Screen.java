@@ -1,5 +1,7 @@
 package utilities.dimension;
 
+import model.common.P2d;
+
 import java.awt.*;
 
 public class Screen {
@@ -12,7 +14,7 @@ public class Screen {
     public static final Dimension FULLSCREEN = Toolkit.getDefaultToolkit().getScreenSize();
     public static final int WIDTH_FULL_SCREEN = (int) FULLSCREEN.getWidth();
     public static final int HEIGHT_FULL_SCREEN = (int) FULLSCREEN.getHeight();
-    public static final Point POINT_CENTER_FULLSCREEN = new Point(FULLSCREEN.width / 2, FULLSCREEN.height / 2);
+    public static final P2d POINT_CENTER_FULLSCREEN = new P2d(WIDTH_FULL_SCREEN / 2, HEIGHT_FULL_SCREEN / 2);
     public static final Rectangle RECTANGLE_FULLSCREEN = new Rectangle(POINT_ZERO, FULLSCREEN);
 
 
