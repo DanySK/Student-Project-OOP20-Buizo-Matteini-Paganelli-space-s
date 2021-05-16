@@ -49,12 +49,9 @@ public class PanelGame extends JPanel {
         final int x = (int)transform.getTranslateX();
         final int y = (int) (transform.getTranslateY() + gameObject.getSize().getHeight() + 2);
 
-<<<<<<< HEAD
         final double p2dX = gameObject.getPosition().x - (gameObject.getSize().getWidth()/2);
         final double p2dY = gameObject.getPosition().y + (gameObject.getSize().getHeight()/2);
 
-=======
->>>>>>> dafafe2d83832ada29bc03abe5f4cc15efeae9bb
         g2d.setColor(Color.WHITE);
         g2d.drawRect(x, y, 100, 11);
     }
