@@ -20,11 +20,10 @@ public class PanelGame extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
+        final Graphics2D g2d = (Graphics2D) g;
+
         this.gameObject.forEach((key, value) -> {
             g2d.drawImage(this.getImageFromPath(key.getEngineImage()), value, null);
-
-            System.out.println("POSITIOON SPACESHIP -> "+ key.getPosition());
 
             this.drawLifeBar(g2d, key, value);
             this.drawLife(g2d, key, value);
@@ -50,9 +49,12 @@ public class PanelGame extends JPanel {
         final int x = (int)transform.getTranslateX();
         final int y = (int) (transform.getTranslateY() + gameObject.getSize().getHeight() + 2);
 
+<<<<<<< HEAD
         final double p2dX = gameObject.getPosition().x - (gameObject.getSize().getWidth()/2);
         final double p2dY = gameObject.getPosition().y + (gameObject.getSize().getHeight()/2);
 
+=======
+>>>>>>> dafafe2d83832ada29bc03abe5f4cc15efeae9bb
         g2d.setColor(Color.WHITE);
         g2d.drawRect(x, y, 100, 11);
     }
