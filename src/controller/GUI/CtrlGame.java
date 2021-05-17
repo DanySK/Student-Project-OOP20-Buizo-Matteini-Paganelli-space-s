@@ -20,7 +20,6 @@ public class CtrlGame implements ControllerGUI{
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
 
         this.init();
-        this.assignListener();
         this.switchGUI.turn(this.engine.getVisibility());
     }
 
@@ -29,8 +28,12 @@ public class CtrlGame implements ControllerGUI{
         this.gui.setIdButtons(this.engine.getLinks());
     }
 
-    private void assignListener(){
-        this.gui.addKeyListenerSpaceship(this.engine.getMovementKeyListener());
+    public void startTimer(){
+        this.engine.startTimer();
+    }
+
+    public void assignTimer(){
+        this.gui.setTimer(this.engine.getTimer());
     }
 
     @Override

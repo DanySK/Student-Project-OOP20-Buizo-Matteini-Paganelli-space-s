@@ -27,12 +27,13 @@ public class RoundTimer extends JPanel {
         this.stringRound.setForeground(DesignSpace.color4);
         this.round.setForeground(DesignSpace.color4);
 
-
-        super.add(FactoryGUIs.createPanelFlowUnionComponents(java.util.List.of(this.stringRound, this.round)));
         super.add(FactoryGUIs.encapsulatesInPanelFlow(this.timer));
-
-
+        super.add(FactoryGUIs.createPanelFlowUnionComponents(java.util.List.of(this.stringRound, this.round)));
 
         super.setLayout(new GridLayout(0, super.getComponentCount() - 1));
+    }
+
+    public void setTimer(final String timer){
+        this.timer.setText("Timer " + timer);
     }
 }

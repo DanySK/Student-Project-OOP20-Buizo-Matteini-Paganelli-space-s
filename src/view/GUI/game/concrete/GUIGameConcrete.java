@@ -74,6 +74,12 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
         return btnPause;
     }
 
+
+    @Override
+    public void setTimer(String timer) {
+        this.roundTimer.setTimer(timer);
+    }
+
     @Override
     public void setIdButtons(List<IdGUI> linksID) {
         this.btnPause.setIdGUICurrent(super.getId());

@@ -30,7 +30,7 @@ public class DesignSpace {
     public static Color color2 = new Color(128, 213, 255);
     public static Color color3 = new Color(148, 233, 255);
     public static Color color4 = new Color(58, 241, 255);
-    public static Color colorOpacityBlack = new Color(0,0,0,200);
+    public static Color colorOpacityBlack = new Color(0,0,0,80);
 
     public static Font getFontForTitle(final int size){
         URL fontUrl = ClassLoader.getSystemResource("font/mainFont.ttf");

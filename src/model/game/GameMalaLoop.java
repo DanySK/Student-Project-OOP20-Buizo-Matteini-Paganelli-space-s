@@ -80,6 +80,9 @@ public class GameMalaLoop implements WorldEventListener {
             long current = System.currentTimeMillis();
             int elapsed = (int)(current - lastTime);
 
+            this.startGame();
+
+
             this.updateSound();
 
             inputSkin();
@@ -195,6 +198,14 @@ public class GameMalaLoop implements WorldEventListener {
 
             this.callerAudioLoop.execute(CmdAudioType.AUDIO_ON);
         }
+    }
+
+    public void startGame(){
+        int i = 0;
+        if(i++ == 0 && this.controlGUI.getCurrentGUI() == IdGUI.ID_GAME){
+            this.controlGUI.startTimer();
+        }
+        this.controlGUI.renderTimer();
     }
 
     public void notifyEvent(WorldEvent ev) {
