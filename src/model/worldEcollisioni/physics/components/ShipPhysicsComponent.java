@@ -2,11 +2,17 @@ package model.worldEcollisioni.physics.components;
 
 import java.util.Optional;
 
-import model.gameObject.AbstractGameObject;
-import model.gameObject.spaceShip.SpaceShipSingleton;
+import model.gameObject.GameObject;
+import model.gameObject.MainGameObject;
+import model.gameObject.PickableGameObject;
+import model.gameObject.mainGameObject.SpaceShipSingleton;
 import model.world.World;
 import model.worldEcollisioni.hitEvents.HitAsteroidEvent;
 import model.worldEcollisioni.hitEvents.HitBorderEvent;
+import model.worldEcollisioni.hitEvents.HitBossEvent;
+import model.worldEcollisioni.hitEvents.HitChaseEnemyEvent;
+import model.worldEcollisioni.hitEvents.HitFireEnemyEvent;
+import model.worldEcollisioni.hitEvents.HitPickableEvent;
 import model.worldEcollisioni.physics.BoundaryCollision;
 import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import model.common.P2d;
@@ -15,7 +21,7 @@ import model.common.V2d;
 public class ShipPhysicsComponent implements PhysicsComponent {
 	
 	@Override
-	public void update(int dt, AbstractGameObject abstractObj, World w) {
+	public void update(int dt, GameObject abstractObj, World w) {
 		SpaceShipSingleton obj = (SpaceShipSingleton) abstractObj;
 		P2d position = obj.getPosition();
 		V2d velocity = obj.getVelocity();
@@ -53,13 +59,40 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 			}
 		}
 		
-		Optional<AbstractGameObject> asteroid = w.checkCollisionWithAsteroids(obj.getPosition(), bbox);
+		Optional<MainGameObject> asteroid = w.checkCollisionWithAsteroids(obj.getPosition(), bbox);
 		//collisioni con asteroidi
-		if (asteroid.isPresent()){
+		if (asteroid.isPresent()) {
 			w.notifyWorldEvent(new HitAsteroidEvent(asteroid.get()));
-			System.out.println("Preso l'asteroid Fratellì");
+			System.out.println("Preso un asteroid Fratellì");
 		}
 		
+		Optional<MainGameObject> chaseEnemy = w.checkCollisionWithChaseEnemies(obj.getPosition(), bbox);
+		//collisioni con chaseEnemy
+		if (chaseEnemy.isPresent()) {
+			w.notifyWorldEvent(new HitChaseEnemyEvent(chaseEnemy.get()));
+			System.out.println("Preso un chaseEnemy Fratellì");
+		}
+		
+		Optional<MainGameObject> fireEnemy = w.checkCollisionWithFireEnemies(obj.getPosition(), bbox);
+		//collisioni con chaseEnemy
+		if (fireEnemy.isPresent()) {
+			w.notifyWorldEvent(new HitFireEnemyEvent(fireEnemy.get()));
+			System.out.println("Preso un fireEnemy Fratellì");
+		}
+		
+		Optional<MainGameObject> boss = w.checkCollisionWithBoss(obj.getPosition(), bbox);
+		//collisioni con chaseEnemy
+		if (boss.isPresent()) {
+			w.notifyWorldEvent(new HitBossEvent(boss.get()));
+			System.out.println("Preso il boss Fratellì");
+		}
+		
+		Optional<PickableGameObject> pickable = w.checkCollisionWithPickables(obj.getPosition(), bbox);
+		//collisioni con chaseEnemy
+		if (pickable.isPresent()) {
+			w.notifyWorldEvent(new HitPickableEvent(pickable.get()));
+			System.out.println("Preso un pickable Fratellì");
+		}
 	}
 
 }

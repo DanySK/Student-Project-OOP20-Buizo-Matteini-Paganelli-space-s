@@ -1,16 +1,16 @@
 package model.worldEcollisioni.hitEvents;
 
-import model.gameObject.AbstractGameObject;
+import model.gameObject.MainGameObject;
 import model.worldEcollisioni.WorldEvent;
 
 public class HitFireEnemyEvent implements WorldEvent {
-	private AbstractGameObject fireEnemy;
+	private MainGameObject fireEnemy;
 	
-	public HitFireEnemyEvent(AbstractGameObject obj){
+	public HitFireEnemyEvent(MainGameObject obj){
 		this.fireEnemy = obj;
 	}
 	
-	public AbstractGameObject getCollisionObj(){
+	public MainGameObject getCollisionObj(){
 		return this.fireEnemy;
 	}
 	

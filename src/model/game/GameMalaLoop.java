@@ -2,8 +2,8 @@ package model.game;
 
 import controller.GUI.CtrlGUI;
 import controller.sound.CallerAudio;
-import model.gameObject.asteroid.Asteroid;
-import model.gameObject.chaseEnemy.ChaseEnemy;
+import model.gameObject.mainGameObject.Asteroid;
+import model.gameObject.mainGameObject.ChaseEnemy;
 import model.input.MovementKeyListener;
 import model.sound.CmdAudioType;
 import model.sound.category.SoundLoop;
@@ -12,7 +12,7 @@ import model.worldEcollisioni.WorldEvent;
 import model.worldEcollisioni.hitEvents.HitAsteroidEvent;
 import model.worldEcollisioni.hitEvents.HitBorderEvent;
 import model.worldEcollisioni.hitEvents.HitChaseEnemyEvent;
-import model.worldEcollisioni.hitEvents.HitPerkEvent;
+import model.worldEcollisioni.hitEvents.HitPickableEvent;
 import utilities.DesignSound;
 import utilities.IdGUI;
 import view.GUI.game.GUIGame;
@@ -51,9 +51,9 @@ public class GameMalaLoop {
         this.panelGame.addKeyListenerSpaceship(controller);
         this.panelGame.getPanelGame().addGameObject(this.gameState.getSpaceship(), this.gameState.getSpaceship().getTransform());
         
-        this.gameState.getWorld().getEnemies().forEach(enemy -> {
+        this.gameState.getWorld().getAllEnemies().forEach(enemy -> {
         	System.out.println(enemy);
-        	//this.panelGame.getPanelGame().addGameObject(enemy, enemy.);
+        	this.panelGame.getPanelGame().addGameObject(enemy, enemy.getTransform());
         });
         
         System.out.println(this.panelGame.getPanelGame());
@@ -113,15 +113,15 @@ public class GameMalaLoop {
             	HitAsteroidEvent asteroidEvent = (HitAsteroidEvent) ev;
             	final Asteroid asteroidCollided = (Asteroid) asteroidEvent.getCollisionObj();
                 scene.removeAsteroid(asteroidCollided);
-                gameState.decreaseLife(asteroidCollided.getDamage());
+                gameState.decreaseLife(asteroidCollided.getImpactDamage());
             } else if (ev instanceof HitChaseEnemyEvent){
             	HitChaseEnemyEvent chaseEnemyEvent = (HitChaseEnemyEvent) ev;
             	final ChaseEnemy chaseEnemyCollided = (ChaseEnemy) chaseEnemyEvent.getCollisionObj();
-            	scene.removeEnemy(chaseEnemyEvent.getCollisionObj());
-                gameState.decreaseLife(chaseEnemyCollided.getDamage());
+            	scene.removeChaseEnemy(chaseEnemyEvent.getCollisionObj());
+                gameState.decreaseLife(chaseEnemyCollided.getImpactDamage());
                 // HitBorderEvent bEv = (HitBorderEvent) ev;
                 //gameState.decreaseLives();
-            } else if (ev instanceof HitPerkEvent){
+            } else if (ev instanceof HitPickableEvent){
                 //HitPerkEvent pEv = (HitPerkEvent) ev;
                 //stato = pEv.getCollisionObj().getType(???):
                 //gameState.getSpaceship().setState(stato);

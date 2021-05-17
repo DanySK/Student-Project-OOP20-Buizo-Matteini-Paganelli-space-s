@@ -8,7 +8,7 @@ import model.image.EngineImage;
 import model.worldEcollisioni.physics.boundingType.BoundingBox;
 import model.worldEcollisioni.physics.components.PhysicsComponent;
 
-public abstract class MovableGameObject extends AbstractGameObject {
+public abstract class MovableGameObject extends GameObject {
 	private V2d velocity;
 	private Movement movement;
 	private AffineTransform transform;

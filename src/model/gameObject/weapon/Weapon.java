@@ -10,13 +10,13 @@ public class Weapon {
 	private int damage;
 	
 	public Weapon() {
-		this.bulletType = new Bullet(AmmoType.NORMAL, null);
+		this.bulletType = new Bullet();
 		this.magazine =  Magazine.UNLIMITED;
 		this.munitions = GameObjectUtils.INFINITY;
 	}
 	
-	public Weapon(AmmoType ammoType) {
-		this.bulletType = new Bullet(ammoType, null);
+	public Weapon(final AmmoType ammoType, final int damage) {
+		this.bulletType = new Bullet();
 		
 		switch (ammoType) {
 		case NORMAL:

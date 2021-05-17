@@ -2,7 +2,7 @@ package model.GUI.game;
 
 import model.GUI.EngineGUI;
 import model.GUI.Visibility;
-import model.gameObject.spaceShip.SpaceShipSingleton;
+import model.gameObject.mainGameObject.SpaceShipSingleton;
 import model.input.MovementKeyListener;
 import utilities.IdGUI;
 import utilities.dimension.Screen;

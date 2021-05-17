@@ -1,6 +1,6 @@
 package controller.spaceShip;
 
-import model.gameObject.spaceShip.SpaceShipSingleton;
+import model.gameObject.mainGameObject.SpaceShipSingleton;
 
 
 public class SpaceShipController {

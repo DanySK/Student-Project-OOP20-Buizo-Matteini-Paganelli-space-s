@@ -5,7 +5,7 @@ import model.image.EngineImage;
 import model.worldEcollisioni.physics.boundingType.BoundingBox;
 import model.worldEcollisioni.physics.components.PhysicsComponent;
 
-public class PickableGameObject extends AbstractGameObject {
+public class PickableGameObject extends GameObject {
 	
 	private EffectType effectType;
 
