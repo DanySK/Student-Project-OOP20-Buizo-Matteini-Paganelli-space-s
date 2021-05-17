@@ -22,7 +22,7 @@ public class SpaceShipSingleton extends MainGameObject {
     // Eager and unique instance of this class for Threadsafing
     private static SpaceShipSingleton spaceShip = new SpaceShipSingleton(
     	new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Skin.NORMAL),
-   		new P2d(0, 0),
+   		Screen.POINT_CENTER_FULLSCREEN,
    		new RectBoundingBox(),
    		new ShipPhysicsComponent(),
    		new V2d(),
@@ -40,8 +40,14 @@ public class SpaceShipSingleton extends MainGameObject {
 			final int damage, final Optional<Weapon> weapon) {
 		super(engineImage, position, bb, phys, velocity, movement, life, damage, weapon);
     	this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage));
-    	RectBoundingBox shipBox = (RectBoundingBox) this.getBoundingBox();
+    	final RectBoundingBox shipBox = (RectBoundingBox) this.getBoundingBox();
     	this.getTransform().translate(shipBox.getULCorner().getX(), shipBox.getBRCorner().getY());
+
+    	System.out.println("POSITION SPACESHIP CONSTRUCTOR -> " + this.getPosition());
+
+		System.out.println("POSITION SPACESHIP CONSTRUCTOR -> " + this.getBoundingBox());
+
+		System.out.println("POSITION SPACESHIP CONSTRUCTOR -> " + this.getTransform());
     }
     
     /**

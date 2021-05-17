@@ -56,9 +56,15 @@ public class RectBoundingBox implements BoundingBox {
 
 			return false;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "RectBoundingBox{" +
+				"p0=" + p0 +
+				", p1=" + p1 +
+				'}';
+	}
+
 	//TEST
 	
 	public static void main (String[] args) {

@@ -53,7 +53,7 @@ public class PanelGame extends JPanel {
         final double p2dY = gameObject.getPosition().y + (gameObject.getSize().getHeight()/2);
 
         g2d.setColor(Color.WHITE);
-        g2d.drawRect(x, y, 100, 11);
+        g2d.drawRect((int)p2dX, (int)p2dY, 100, 11);
     }
 
     private void drawLife(final Graphics2D g2d, final AbstractGameObject gameObject, final AffineTransform transform){

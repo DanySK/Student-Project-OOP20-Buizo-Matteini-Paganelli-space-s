@@ -20,4 +20,12 @@ public class BoundaryCollision {
 	public P2d getWhere(){
 		return where;
 	}
+
+	@Override
+	public String toString() {
+		return "BoundaryCollision{" +
+				"edge=" + edge +
+				", where=" + where +
+				'}';
+	}
 }
