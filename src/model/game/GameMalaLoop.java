@@ -91,12 +91,11 @@ public class GameMalaLoop implements WorldEventListener {
 
     
 	protected void waitForNextFrame(long current){
-
         long dt = System.currentTimeMillis() - current;
         if (dt < period){
             try {
                 Thread.sleep(period-dt);
-            } catch (Exception ex){}
+            } catch (Exception ignored){}
         }
     }
 

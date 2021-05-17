@@ -12,6 +12,7 @@ public class RectBoundingBox implements BoundingBox {
 	}
 	
 	public RectBoundingBox(P2d p0, P2d p1){
+		this();
 		this.p0 = p0;
 		this.p1 = p1;
 	}

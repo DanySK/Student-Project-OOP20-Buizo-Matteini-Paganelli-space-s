@@ -24,12 +24,6 @@ public class GUIGameStandard implements FactoryGUIGame {
         FactoryGUIs.setTransparentDesignJButton(concreteGame.getBtnPause());
         concreteGame.getBtnPause().setBorder(null);
 
-        concreteGame.getLife().setFont(new Font("Mv Boli", Font.BOLD, 20));
-        concreteGame.getLife().setValue(50);
-        concreteGame.getLife().setStringPainted(true);
-        concreteGame.getLife().setForeground(Color.green);
-        concreteGame.getLife().setBackground(Color.black);
-
         final JPanel panelNorth = new JPanel(new GridLayout()) {{ setOpaque(false); }};
 
         panelNorth.add(FactoryGUIs.encapsulatesInPanelFlowOrientation(FlowLayout.LEFT, concreteGame.getScore()));
@@ -40,13 +34,19 @@ public class GUIGameStandard implements FactoryGUIGame {
                         5)));
 
         final JPanel panelSouth = new JPanel(new BorderLayout()
-        {{ setHgap(Screen.scaleRespectTo(50, Screen.WIDTH_FULL_SCREEN)); }})
+        {{ setHgap(Screen.scaleRespectTo(70, Screen.WIDTH_FULL_SCREEN));
+            }})
         {{ setOpaque(false); }};
 
-        panelSouth.add(FactoryGUIs.encapsulatesInPanelFlowOrientation(FlowLayout.LEFT,concreteGame.getHeartLife()),
-                BorderLayout.WEST);
-        panelSouth.add(FactoryGUIs.encapsulateInPanelVerticalCenter(concreteGame.getLife()), BorderLayout.CENTER);
-        panelSouth.add(FactoryGUIs.encapsulatesInPanelFlowOrientation(FlowLayout.RIGHT,concreteGame.getBullet()),
+        concreteGame.getLifeShip().setPreferredSize(new Dimension(250, 20));
+
+        panelSouth.add(FactoryGUIs.createPanelGridBagUnionComponentsVerticalInsetExternalSX(
+                java.util.List.of(
+                FactoryGUIs.encapsulatesInPanelFlowOrientation(FlowLayout.LEFT,concreteGame.getHeartLife()),
+                concreteGame.getLifeShip()), 10, 10),BorderLayout.WEST);
+
+        panelSouth.add(FactoryGUIs.encapsulateInPanelVerticalCenter(concreteGame.getLifeBoss()), BorderLayout.CENTER);
+        panelSouth.add(FactoryGUIs.encapsulatesInPanelFlowOrientation(FlowLayout.LEADING,concreteGame.getBullet()),
                 BorderLayout.EAST);
 
         concreteGame.addForegroundPanel(panelNorth, BorderLayout.NORTH);
