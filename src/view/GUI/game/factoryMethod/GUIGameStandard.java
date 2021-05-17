@@ -33,21 +33,65 @@ public class GUIGameStandard implements FactoryGUIGame {
                         java.util.List.of(concreteGame.getBtnPause(), concreteGame.getCounterEnemies()),
                         5)));
 
-        final JPanel panelSouth = new JPanel(new BorderLayout()
-        {{ setHgap(Screen.scaleRespectTo(70, Screen.WIDTH_FULL_SCREEN));
-            }})
-        {{ setOpaque(false); }};
-
+        concreteGame.getLifeBoss().setPreferredSize(new Dimension(500, 30));
         concreteGame.getLifeShip().setPreferredSize(new Dimension(250, 20));
 
-        panelSouth.add(FactoryGUIs.createPanelGridBagUnionComponentsVerticalInsetExternalSX(
-                java.util.List.of(
-                FactoryGUIs.encapsulatesInPanelFlowOrientation(FlowLayout.LEFT,concreteGame.getHeartLife()),
-                concreteGame.getLifeShip()), 10, 10),BorderLayout.WEST);
+        final JPanel panelSouth = new JPanel(new GridBagLayout());
+        final GridBagConstraints lim = FactoryGUIs.createGBConstraintFill(GridBagConstraints.VERTICAL);
 
-        panelSouth.add(FactoryGUIs.encapsulateInPanelVerticalCenter(concreteGame.getLifeBoss()), BorderLayout.CENTER);
-        panelSouth.add(FactoryGUIs.encapsulatesInPanelFlowOrientation(FlowLayout.LEADING,concreteGame.getBullet()),
-                BorderLayout.EAST);
+        lim.fill = GridBagConstraints.HORIZONTAL;
+        lim.gridwidth = 1;
+        lim.weightx = 0.5;
+        lim.anchor = GridBagConstraints.LINE_START;
+        lim.gridx = 0;
+        lim.gridy = 0;
+        panelSouth.add(FactoryGUIs.encapsulatesInPanelFlowOrientation(FlowLayout.LEFT,
+                FactoryGUIs.createPanelGridBagUnionComponentsVerticalInsetExternalSX(
+                java.util.List.of(FactoryGUIs.encapsulatesInPanelFlowOrientation(
+                        FlowLayout.LEFT,concreteGame.getHeartLife()),
+                concreteGame.getLifeShip()), 6, 6)), lim);
+
+
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.add(FactoryGUIs.encapsulatesInPanelFlow(concreteGame.getLifeBoss()), BorderLayout.SOUTH);
+        lim.fill = GridBagConstraints.HORIZONTAL;
+        lim.gridwidth = 1;
+        lim.anchor = GridBagConstraints.CENTER;
+        lim.weightx = 0.5;
+        lim.gridx = 1;
+        lim.gridy = 0;
+        panelSouth.add(panel, lim);
+
+        lim.fill = GridBagConstraints.HORIZONTAL;
+        lim.anchor = GridBagConstraints.LINE_END;
+        lim.gridwidth = 1;
+        lim.weightx = 0.5;
+        lim.gridx = 2;
+        lim.gridy = 0;
+        panelSouth.add(FactoryGUIs.encapsulateInPanelBorderOrientation(
+                FactoryGUIs.encapsulatesInPanelFlowOrientation(FlowLayout.RIGHT,concreteGame.getBullet()),
+                BorderLayout.SOUTH), lim);
+
+
+//        final JPanel panelSouth = new JPanel(new GridLayout()) {{setOpaque(false); }};
+//
+//        panelSouth.add(FactoryGUIs.encapsulatesInPanelFlowOrientation(FlowLayout.LEFT,
+//                FactoryGUIs.createPanelGridBagUnionComponentsVerticalInsetExternalSX(
+//                java.util.List.of(FactoryGUIs.encapsulatesInPanelFlowOrientation(
+//                        FlowLayout.LEFT,concreteGame.getHeartLife()),
+//                concreteGame.getLifeShip()), 6, 6)));
+//
+//
+//        JPanel panel = new JPanel(new BorderLayout());
+//        panel.add(FactoryGUIs.encapsulatesInPanelFlow(concreteGame.getLifeBoss()), BorderLayout.SOUTH);
+//        panelSouth.add(panel);
+//
+//
+//        panelSouth.add(FactoryGUIs.encapsulateInPanelBorderOrientation(
+//                FactoryGUIs.encapsulatesInPanelFlowOrientation(FlowLayout.RIGHT,concreteGame.getBullet()),
+//                BorderLayout.SOUTH
+//        ));
+
 
         concreteGame.addForegroundPanel(panelNorth, BorderLayout.NORTH);
         concreteGame.addForegroundPanel(panelSouth, BorderLayout.SOUTH);

@@ -37,6 +37,12 @@ public class FactoryGUIs {
     }
 
 
+    public static JPanel encapsulateInPanelBorderOrientation(final Component component, final String border){
+        final JPanel panel = FactoryGUIs.createPanelTransparent(new BorderLayout());
+        panel.add(component, border);
+        return panel;
+    }
+
     public static JPanel encapsulateInPanelVerticalCenter(final Component component){
         final JPanel encapsulate = FactoryGUIs.createPanelTransparent(null);
         encapsulate.setLayout(new BoxLayout(encapsulate, BoxLayout.X_AXIS));
@@ -61,12 +67,17 @@ public class FactoryGUIs {
             (final List<? extends JComponent> components, final int bottom, final int left){
         final JPanel encapsulate = FactoryGUIs.createPanelTransparent(new GridBagLayout());
         final GridBagConstraints limit = createGBConstraintsBase();
-        limit.insets = new Insets(0, left, bottom, 0);
+        limit.insets = new Insets(0, 0, 0, 0);
 
         for (final Component component : components) {
+            if(components.indexOf(component) == components.size() - 1){
+                limit.insets = new Insets(0, left, bottom, 0);
+            }
             encapsulate.add(component, limit);
+
             limit.gridy++;
         }
+
         return encapsulate;
     }
 
