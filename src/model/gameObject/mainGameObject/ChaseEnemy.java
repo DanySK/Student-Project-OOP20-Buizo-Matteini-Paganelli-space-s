@@ -1,4 +1,4 @@
-package model.gameObject.fireEnemy;
+package model.gameObject.mainGameObject;
 
 import java.util.Optional;
 
@@ -12,19 +12,20 @@ import model.image.EngineImage;
 import model.worldEcollisioni.physics.boundingType.BoundingBox;
 import model.worldEcollisioni.physics.components.PhysicsComponent;
 
-public class FireEnemy extends MainGameObject {
-
-	public FireEnemy(final EngineImage engineImage, final P2d position, final BoundingBox bb,
+public class ChaseEnemy extends MainGameObject {
+	
+	public ChaseEnemy(final EngineImage engineImage, final P2d position, final BoundingBox bb,
 			final PhysicsComponent phys, final V2d velocity, final Movement movement, final int life,
-			final int damage, final Optional<Weapon> weapon) {
+			final int impactDamage, final Optional<Weapon> weapon) {
 		
-		super(engineImage, position, bb, phys, velocity, movement, life, damage, weapon);
+		super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, weapon);
     	this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage));
 	}
-
+	
 	@Override
 	public String toString() {
-		return "FireEnemy { " + super.toString() + " }";
+		return "ChaseEnemy { " + super.toString() + " }";
 	}
+	
 
 }

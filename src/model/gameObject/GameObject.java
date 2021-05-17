@@ -9,7 +9,7 @@ import model.worldEcollisioni.physics.components.PhysicsComponent;
 import model.world.World;
 
 
-public abstract class AbstractGameObject {
+public abstract class GameObject {
 	private EngineImage engineImage;
 	private P2d position;
 	private BoundingBox boundingBox;
@@ -19,7 +19,7 @@ public abstract class AbstractGameObject {
 	//DA CAMBIARE, SARà L'ENUM DEGLI STATI DEGLI OGGETTI
 	private String state = "NORMAL";
 	
-	public AbstractGameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
+	public GameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
 			final PhysicsComponent phys) {
 		this.engineImage = engineImage;
 		this.position = position;

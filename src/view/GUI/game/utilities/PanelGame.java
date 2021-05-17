@@ -1,6 +1,7 @@
 package view.GUI.game.utilities;
 
-import model.gameObject.AbstractGameObject;
+import model.gameObject.GameObject;
+import model.gameObject.MainGameObject;
 import model.image.EngineImage;
 import view.utilities.JImage;
 import javax.swing.*;
@@ -10,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PanelGame extends JPanel {
-    private final Map<AbstractGameObject, AffineTransform> gameObject;
+    private final Map<GameObject, AffineTransform> gameObject;
 
     public PanelGame() {
         super(); {{ setOpaque(false); }}
@@ -30,12 +31,12 @@ public class PanelGame extends JPanel {
         });
     }
 
-    public void addGameObject(final AbstractGameObject gameObject, final AffineTransform transform) {
+    public void addGameObject(final GameObject gameObject, final AffineTransform transform) {
         this.gameObject.put(gameObject, transform);
         this.repaint();
     }
 
-    public void deleteGameObject(final AbstractGameObject gameObject){
+    public void deleteGameObject(final GameObject gameObject){
         this.gameObject.remove(gameObject);
         this.repaint();
     }
@@ -45,7 +46,7 @@ public class PanelGame extends JPanel {
         return icon.getImage();
     }
 
-    private void drawLifeBar(final Graphics2D g2d, final AbstractGameObject gameObject, final AffineTransform transform){
+    private void drawLifeBar(final Graphics2D g2d, final MainGameObject gameObject, final AffineTransform transform){
         final int x = (int)transform.getTranslateX();
         final int y = (int) (transform.getTranslateY() + gameObject.getSize().getHeight() + 2);
 
@@ -56,7 +57,7 @@ public class PanelGame extends JPanel {
         g2d.drawRect((int)p2dX, (int)p2dY, 100, 11);
     }
 
-    private void drawLife(final Graphics2D g2d, final AbstractGameObject gameObject, final AffineTransform transform){
+    private void drawLife(final Graphics2D g2d, final MainGameObject gameObject, final AffineTransform transform){
         final int x = (int)transform.getTranslateX();
         final int y = (int) (transform.getTranslateY() + gameObject.getSize().getHeight() + 3);
 

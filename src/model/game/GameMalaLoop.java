@@ -2,10 +2,10 @@ package model.game;
 
 import controller.GUI.CtrlGUI;
 import controller.sound.CallerAudio;
+import model.gameObject.mainGameObject.Asteroid;
+import model.gameObject.mainGameObject.ChaseEnemy;
 import model.common.P2d;
 import model.common.V2d;
-import model.gameObject.asteroid.Asteroid;
-import model.gameObject.chaseEnemy.ChaseEnemy;
 import model.input.MovementKeyListener;
 import model.sound.CmdAudioType;
 import model.sound.category.SoundLoop;
@@ -15,7 +15,7 @@ import model.worldEcollisioni.WorldEventListener;
 import model.worldEcollisioni.hitEvents.HitAsteroidEvent;
 import model.worldEcollisioni.hitEvents.HitBorderEvent;
 import model.worldEcollisioni.hitEvents.HitChaseEnemyEvent;
-import model.worldEcollisioni.hitEvents.HitPerkEvent;
+import model.worldEcollisioni.hitEvents.HitPickableEvent;
 import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import utilities.DesignSound;
 import utilities.IdGUI;
@@ -52,6 +52,14 @@ public class GameMalaLoop implements WorldEventListener {
         //this.controlGUI.linksCallerAudioEffectWith(this.callerAudioEffects);
 
         this.panelGame.addKeyListenerSpaceship(controller);
+        this.panelGame.getPanelGame().addGameObject(this.gameState.getSpaceship(), this.gameState.getSpaceship().getTransform());
+        
+        this.gameState.getWorld().getAllEnemies().forEach(enemy -> {
+        	System.out.println(enemy);
+        	this.panelGame.getPanelGame().addGameObject(enemy, enemy.getTransform());
+        });
+        
+        System.out.println(this.panelGame.getPanelGame());
         System.out.println(this.gameState.getWorld().getShip().getPosition().toString());
         RectBoundingBox rbb = (RectBoundingBox) this.gameState.getWorld().getShip().getBoundingBox();
         System.out.println(rbb.getULCorner().toString());
@@ -116,15 +124,15 @@ public class GameMalaLoop implements WorldEventListener {
             	HitAsteroidEvent asteroidEvent = (HitAsteroidEvent) ev;
             	final Asteroid asteroidCollided = (Asteroid) asteroidEvent.getCollisionObj();
                 scene.removeAsteroid(asteroidCollided);
-                gameState.decreaseLife(asteroidCollided.getDamage());
+                gameState.decreaseLife(asteroidCollided.getImpactDamage());
             } else if (ev instanceof HitChaseEnemyEvent){
             	HitChaseEnemyEvent chaseEnemyEvent = (HitChaseEnemyEvent) ev;
             	final ChaseEnemy chaseEnemyCollided = (ChaseEnemy) chaseEnemyEvent.getCollisionObj();
-            	scene.removeEnemy(chaseEnemyEvent.getCollisionObj());
-                gameState.decreaseLife(chaseEnemyCollided.getDamage());
+            	scene.removeChaseEnemy(chaseEnemyEvent.getCollisionObj());
+                gameState.decreaseLife(chaseEnemyCollided.getImpactDamage());
                 // HitBorderEvent bEv = (HitBorderEvent) ev;
                 //gameState.decreaseLives();
-            } else if (ev instanceof HitPerkEvent){
+            } else if (ev instanceof HitPickableEvent){
                 //HitPerkEvent pEv = (HitPerkEvent) ev;
                 //stato = pEv.getCollisionObj().getType(???):
                 //gameState.getSpaceship().setState(stato);
@@ -155,6 +163,11 @@ public class GameMalaLoop implements WorldEventListener {
 		//System.out.println("render movimento");
 		
 		//this.ship.setPosition(ship.getPosition().sum(new V2d(0,3)));
+		
+		//this.gameState.getSpaceship().move();
+//		this.gameState.getWorld().getShip().getTransform().translate(this.gameState.getWorld().getShip().getVelocity().getX(), this.gameState.getWorld().getShip().getVelocity().getY());
+//		this.gameState.getWorld().getShip().setPosition(this.gameState.getWorld().getShip().getPosition().sum(this.gameState.getWorld().getShip().getVelocity()));
+
 		//System.out.println(this.gameState.getWorld().getShip().getVelocity().getX() + "Y: " +  this.gameState.getWorld().getShip().getVelocity().getY());
 		this.gameState.getWorld().getShip().getTransform().translate(this.gameState.getWorld().getShip().getVelocity().getX(), this.gameState.getWorld().getShip().getVelocity().getY());
 		this.gameState.getWorld().getShip().setPosition(this.gameState.getWorld().getShip().getPosition().sum(this.gameState.getWorld().getShip().getVelocity()));

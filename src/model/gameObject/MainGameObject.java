@@ -1,6 +1,5 @@
 package model.gameObject;
 
-import java.awt.geom.AffineTransform;
 import java.util.Optional;
 
 import model.common.P2d;
@@ -12,19 +11,17 @@ import model.worldEcollisioni.physics.components.PhysicsComponent;
 
 public abstract class MainGameObject extends MovableGameObject {
 	private int life;
-	private int damage;
+	private int impactDamage;
 	
 	private Optional<Weapon> weapon;
-	private AffineTransform transform;
 	
 	public MainGameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
 			final PhysicsComponent phys, final V2d velocity, final Movement movement, final int life,
-			final int damage, final Optional<Weapon> weapon) {
+			final int impactDamage, final Optional<Weapon> weapon) {
 		super(engineImage, position, bb, phys, velocity, movement);
 		this.life = life;
-		this.damage = damage;
+		this.setImpactDamage(impactDamage);
 		this.weapon = weapon;
-		this.transform = new AffineTransform();
 	}
 
     public int getLife() {
@@ -42,13 +39,14 @@ public abstract class MainGameObject extends MovableGameObject {
 		}
 	}
 	
-	public int getDamage() {
-		return damage;
+	public int getImpactDamage() {
+		return impactDamage;
 	}
 
-	public void setDamage(int damage) {
-		this.damage = damage;
+	public void setImpactDamage(int impactDamage) {
+		this.impactDamage = impactDamage;
 	}
+	
 
 	public Optional<Weapon> getWeapon() {
 		return weapon;
@@ -58,12 +56,9 @@ public abstract class MainGameObject extends MovableGameObject {
 		this.weapon = weapon;
 	}
 
-	public AffineTransform getTransform() {
-		return transform;
+	@Override
+	public String toString() {
+		return "MainGameObject [life=" + life + ", weapon=" + weapon + "]";
 	}
 
-	public void setTransform(AffineTransform transform) {
-		this.transform = transform;
-	}
-	
 }

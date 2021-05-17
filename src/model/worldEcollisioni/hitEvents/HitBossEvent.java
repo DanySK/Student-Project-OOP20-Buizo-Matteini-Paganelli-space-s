@@ -1,17 +1,17 @@
 package model.worldEcollisioni.hitEvents;
 
-import model.gameObject.AbstractGameObject;
+import model.gameObject.MainGameObject;
 import model.worldEcollisioni.WorldEvent;
 
 public class HitBossEvent implements WorldEvent {
 
-	private AbstractGameObject boss;
+	private MainGameObject boss;
 	
-	public HitBossEvent(AbstractGameObject obj){
+	public HitBossEvent(MainGameObject obj){
 		this.boss = obj;
 	}
 	
-	public AbstractGameObject getCollisionObj(){
+	public MainGameObject getCollisionObj(){
 		return this.boss;
 	}
 }
