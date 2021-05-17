@@ -16,6 +16,7 @@ import model.worldEcollisioni.WorldEvent;
 import model.worldEcollisioni.WorldEventListener;
 import model.worldEcollisioni.physics.BoundaryCollision;
 import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
+import model.GUI.game.EngineGame;
 import model.common.*;
 
 public class World {
@@ -41,6 +42,7 @@ public class World {
 			chaseEnemies.add(factoryGameObject.createChaseEnemy());
 			fireEnemies.add(factoryGameObject.createFireEnemy());
 		}
+		
 		
 		mainBBox = bbox;
 		
@@ -113,18 +115,23 @@ public class World {
 	public Optional<BoundaryCollision> checkCollisionWithBoundaries(P2d pos, RectBoundingBox box){
 		P2d ul = mainBBox.getULCorner();
 		P2d br = mainBBox.getBRCorner();
-		double r = box.getWidth();
-		if (pos.y + r> ul.y){
+		//System.out.println("Main Box UL " + mainBBox.getULCorner());
+		System.out.println("Ship Box UL " + box.getULCorner());
+		System.out.println("Position " + pos.toString());
+		
+		double heightRect = box.getHeight();
+		if (pos.y < -br.y){
 			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.TOP, new P2d(pos.x, ul.y)));
-		} else if (pos.y - r < br.y){
-			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.BOTTOM, new P2d(pos.x, br.y)));
-		} else if (pos.x + r > br.x){
-			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.RIGHT, new P2d(br.x, pos.y)));
-		} else if (pos.x - r < ul.x){
-			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.LEFT, new P2d(ul.x, pos.y)));
-		} else {
+		} 
+		//else if (pos.y - r < br.y){
+//			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.BOTTOM, new P2d(pos.x, br.y)));
+//		} else if (pos.x + r > br.x){
+//			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.RIGHT, new P2d(br.x, pos.y)));
+//		} else if (pos.x - r < ul.x){
+//			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.LEFT, new P2d(ul.x, pos.y)));
+//		} else {
 			return Optional.empty();
-		}
+//		}
 	}
 
 	public Optional<MainGameObject> checkCollisionWithAsteroids(P2d pos, RectBoundingBox box){

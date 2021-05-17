@@ -68,6 +68,10 @@ public class EngineSettings implements EngineGUI {
     }
 
 
+    public int getChooseSkin() {
+        return this.chooseSkin;
+    }
+
     public IdGUI getBackLink(){
         return this.linkBack;
     }

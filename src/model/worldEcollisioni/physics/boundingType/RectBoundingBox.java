@@ -12,6 +12,7 @@ public class RectBoundingBox implements BoundingBox {
 	}
 	
 	public RectBoundingBox(P2d p0, P2d p1){
+		this();
 		this.p0 = p0;
 		this.p1 = p1;
 	}
@@ -41,6 +42,7 @@ public class RectBoundingBox implements BoundingBox {
 		
 		if(p.getX() <= this.getULCorner().getX() + this.getWidth() &&
 				p.getY() <= this.getULCorner().getY() + this.getHeight()) {
+			System.out.println("return true");
 			return true;
 		}
 			
@@ -55,9 +57,15 @@ public class RectBoundingBox implements BoundingBox {
 
 			return false;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "RectBoundingBox{" +
+				"p0=" + p0 +
+				", p1=" + p1 +
+				'}';
+	}
+
 	//TEST
 	
 	public static void main (String[] args) {

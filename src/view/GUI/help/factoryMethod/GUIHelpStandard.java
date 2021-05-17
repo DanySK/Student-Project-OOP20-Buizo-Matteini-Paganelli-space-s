@@ -33,7 +33,8 @@ public class GUIHelpStandard implements FactoryGUIHelp {
         helpConcrete.add(FactoryGUIs.encapsulatesInPanelFlow(helpConcrete.getLbTitle()), BorderLayout.NORTH);
         helpConcrete.add(FactoryGUIs.encapsulatesInPanelFlow(helpConcrete.getBtnBack()), BorderLayout.SOUTH);
 
-        helpConcrete.add(FactoryGUIs.createPanelGridBagUnionComponentsVertical(helpConcrete.getUnitHelps(), DesignJComponent.MIN_INSET),
+        helpConcrete.add(FactoryGUIs.createPanelGridBagUnionComponentsVertical(
+                helpConcrete.getUnitHelps(), DesignJComponent.MIN_INSET),
                 BorderLayout.CENTER);
 
         FactoryGUIs.setTransparentDesignJButton(helpConcrete.getBtnBack());
