@@ -237,6 +237,14 @@ public class CtrlGUI {
         return this.ctrlSettings.getCurrentSkin();
     }
 
+    public void startTimer(){
+        this.ctrlGame.startTimer();
+    }
+
+    public void renderTimer(){
+        this.ctrlGame.assignTimer();
+    }
+
     private void quitAll(){
         this.managerGui.values().forEach(managerGui -> managerGui.getGUI().close());
     }

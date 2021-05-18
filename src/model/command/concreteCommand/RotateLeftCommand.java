@@ -16,7 +16,12 @@ public class RotateLeftCommand implements CommandMovement{
 		
 		SpaceShipSingleton ship = (SpaceShipSingleton) obj;
 		AffineTransform transform = ship.getTransform();
-		transform.rotate(Math.toRadians(15), ship.getSize().getHeight() / 2, ship.getSize().getWidth() / 2);
+		//transform.rotate(Math.toRadians(-15), ship.getPosition().getX(),ship.getPosition().getY());
+		//ship.getSize().getSize();
+		transform.rotate(Math.toRadians(-15), ship.getSize().getHeight(), ship.getSize().getWidth());
+
+		//transform.rotate(Math.toRadians(-15), ship.getSize().getHeight() / 2, ship.getSize().getWidth() / 2);
+		System.out.println(ship.getPosition());
 		ship.setTransform(transform);
 		//System.out.println(ship.toString());
 	}
