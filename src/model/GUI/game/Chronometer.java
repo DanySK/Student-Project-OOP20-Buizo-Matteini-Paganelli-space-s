@@ -25,15 +25,12 @@ public class Chronometer extends Thread{
         this.go = false;
     }
 
-    private void pause(final int millis){
-        try {
-            sleep(millis);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
+    private void incrSecond(){
+        this.seconds++;
     }
 
-    public void control60(){
+    private void control60(){
         if(this.seconds == 60) {
             this.seconds = 0;
             this.minutes++;
@@ -45,37 +42,56 @@ public class Chronometer extends Thread{
         }
     }
 
-    public String controlFormat(final int number){
+    private String controlFormat(final int number){
         return number < 10 ? "0" + number : Integer.toString(number);
     }
 
-    public String makeFormatTimer(final String hours, final String minutes, final String seconds, final String split) {
+    private String makeFormatTimer(final String hours, final String minutes, final String seconds, final String split) {
         return hours + split + minutes + split + seconds;
     }
 
+
+    private void pause(final int millis){
+        try {
+            sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
-    public synchronized void run(){
+    public void run(){
         this.go = true;
 
         while(this.go){
             this.pause(1000);
 
-            this.seconds++;
+            this.incrSecond();
             this.control60();
 
             this.timer = this.makeFormatTimer(
                     this.controlFormat(this.hours),
                     this.controlFormat(this.minutes),
                     this.controlFormat(this.seconds), ":");
-
-            System.out.println(this.getTimer());
         }
     }
 
     public static void main(String[] args) {
         Chronometer timer = new Chronometer();
 
-        timer.start();
+        Thread thead = new Thread(timer);
+
+        thead.start();
+
+        for(int i = 0; i < 10; i++) {
+
+            try {
+                sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println(timer.getTimer());
+        }
 
 
     }
