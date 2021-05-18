@@ -166,7 +166,9 @@ public class World {
 	}
 	
 	public Optional<MainGameObject> checkCollisionWithBoss(P2d pos, RectBoundingBox box){
+		System.out.println(boss);
 		if (boss.isPresent()) {
+			System.out.println("SONO DENTRO L IF");
 			double radius = box.getWidth();
 			if (this.getBoss().get().getBoundingBox().isCollidingWith(pos, radius)){
 				return this.getBoss();

@@ -53,10 +53,10 @@ public class GameMalaLoop implements WorldEventListener {
         this.panelGame.addKeyListenerSpaceship(controller);
         this.panelGame.getPanelGame().addGameObject(this.gameState.getSpaceship(), this.gameState.getSpaceship().getTransform());
         
-//        this.gameState.getWorld().getAllEnemies().forEach(enemy -> {
-//        	System.out.println(enemy);
-//        	this.panelGame.getPanelGame().addGameObject(enemy, enemy.getTransform());
-//        });
+        this.gameState.getWorld().getAllEnemies().forEach(enemy -> {
+        	System.out.println(enemy);
+        	this.panelGame.getPanelGame().addGameObject(enemy, enemy.getTransform());
+        });
         
         System.out.println(this.panelGame.getPanelGame());
         System.out.println(this.gameState.getWorld().getShip().getPosition().toString());
@@ -80,7 +80,7 @@ public class GameMalaLoop implements WorldEventListener {
             long current = System.currentTimeMillis();
             int elapsed = (int)(current - lastTime);
 
-            this.startGame();
+            //this.startGame();
 
 
             this.updateSound();

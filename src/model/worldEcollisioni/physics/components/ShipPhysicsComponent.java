@@ -1,6 +1,7 @@
 package model.worldEcollisioni.physics.components;
 
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import model.gameObject.GameObject;
 import model.gameObject.MainGameObject;
@@ -90,6 +91,12 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 		//collisioni con fireEnemy
 		if (fireEnemy.isPresent()) {
 			w.notifyWorldEvent(new HitFireEnemyEvent(fireEnemy.get()));
+//			try {
+//				TimeUnit.SECONDS.sleep(5);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 			System.out.println("Preso un fireEnemy Fratellì");
 		}
 		

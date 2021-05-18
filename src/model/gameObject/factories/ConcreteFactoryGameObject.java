@@ -33,7 +33,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 
 	@Override
 	public MainGameObject createAsteroid() {
-		EngineImage engineImage =new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Skin.ATOMIC);
+		EngineImage engineImage = new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Skin.DELUXE);
 		P2d point = new P2d(300, 300);//GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.ASTEROID_VEL;
 		Movement movement = Movement.FIXED;
@@ -48,7 +48,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 
 	@Override
 	public MainGameObject createChaseEnemy() {
-		EngineImage engineImage =new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Skin.DELUXE);
+		EngineImage engineImage = new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Skin.DELUXE);
 		P2d point = new P2d(200, 200);//GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.CHASE_ENEMY_VEL;
 		Movement movement = Movement.CHASE;
@@ -63,7 +63,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 
 	@Override
 	public MainGameObject createFireEnemy() {
-		EngineImage engineImage =new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Skin.SPECIAL);
+		EngineImage engineImage = new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Skin.SPECIAL);
 		P2d point =new P2d(500, 500);// GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.FIRE_ENEMY_VEL;
 		Movement movement = Movement.RANDOM;
@@ -78,7 +78,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 
 	@Override
 	public MainGameObject createBoss() {
-		EngineImage engineImage =new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Skin.STANDARD);
+		EngineImage engineImage = new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Skin.STANDARD);
 		P2d point = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.BOSS_VEL;
 		Movement movement = Movement.RANDOM;
