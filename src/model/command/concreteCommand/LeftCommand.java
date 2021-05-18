@@ -11,9 +11,9 @@ public class LeftCommand implements CommandMovement{
 	@Override
 	public void execute(MovableGameObject ship) {
 		
-		V2d vel = ship.getVelocity();
-//
-		ship.setVelocity(vel.sum(new V2d(-1,0)));
+//		V2d vel = ship.getVelocity();
+////
+//		ship.setVelocity(vel.sum(new V2d(-1,0)));
 		System.out.println("Left " + ship.toString());
 
 		

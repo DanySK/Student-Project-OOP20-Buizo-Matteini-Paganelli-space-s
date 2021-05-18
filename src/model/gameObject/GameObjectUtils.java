@@ -84,8 +84,8 @@ public class GameObjectUtils {
 
     
     public static BoundingBox createRectBoundingBox(P2d position, EngineImage engineImage) {
-    	return new RectBoundingBox(new P2d(position.getX() - engineImage.getSize().getWidth() / 2, position.getY() - engineImage.getSize().getHeight() / 2),
-								   new P2d(position.getX() + engineImage.getSize().getWidth() / 2, position.getY() + engineImage.getSize().getHeight() / 2));
+    	return new RectBoundingBox(new P2d(position.getX() - (engineImage.getSize().getWidth() / 2), position.getY() - (engineImage.getSize().getHeight() / 2)),
+								   new P2d(position.getX() + (engineImage.getSize().getWidth() / 2), position.getY() + (engineImage.getSize().getHeight() / 2)));
 	}
     
     public static BoundingBox createCircleBoundingBox(P2d position, EngineImage engineImage) {

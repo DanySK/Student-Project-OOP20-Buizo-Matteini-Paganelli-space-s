@@ -34,6 +34,7 @@ public abstract class MainGameObject extends MovableGameObject {
     
 	public void decreaseLife(int damage) {
 		this.life -= damage;
+		System.out.println("Ahia danno" + this.life);
 		if (this.life <= 0) {
 			this.life = 0;
 		}
@@ -58,7 +59,13 @@ public abstract class MainGameObject extends MovableGameObject {
 
 	@Override
 	public String toString() {
-		return "MainGameObject [life=" + life + ", weapon=" + weapon + "]";
+		return "MainGameObject [life=" + life + ", impactDamage=" + impactDamage + ", "
+				+ "weapon=" + weapon + ", " + super.toString() + "]";
 	}
+
+//	@Override
+//	public String toString() {
+//		return "MainGameObject [life=" + life + ", weapon=" + weapon + "]";
+//	}
 
 }

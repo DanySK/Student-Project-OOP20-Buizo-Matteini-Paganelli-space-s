@@ -22,12 +22,12 @@ public class ChaseEnemyPhysicsComponent implements PhysicsComponent {
 		
 		RectBoundingBox bbox = (RectBoundingBox) obj.getBoundingBox();
 		
-		Optional<MainGameObject> chaseEnemy = w.checkCollisionWithChaseEnemies(obj.getPosition(), bbox);
-		//collisioni con asteroidi
-		if (chaseEnemy.isPresent()){
-			w.notifyWorldEvent(new HitChaseEnemyEvent(chaseEnemy.get()));
-			System.out.println("Preso il asteroid Fratellì");
-		}	
+//		Optional<MainGameObject> chaseEnemy = w.checkCollisionWithChaseEnemies(obj.getPosition(), bbox);
+//		//collisioni con asteroidi
+//		if (chaseEnemy.isPresent()){
+//			w.notifyWorldEvent(new HitChaseEnemyEvent(chaseEnemy.get()));
+//			System.out.println("Preso il asteroid Fratellì");
+//		}	
 	}
 
 }

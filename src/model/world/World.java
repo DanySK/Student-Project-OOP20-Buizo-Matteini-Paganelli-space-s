@@ -37,7 +37,7 @@ public class World {
 	public World(RectBoundingBox bbox){
 		ship = SpaceShipSingleton.getSpaceShip();
 		
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 1; i++) {
 			asteroids.add(factoryGameObject.createAsteroid());
 			chaseEnemies.add(factoryGameObject.createChaseEnemy());
 			fireEnemies.add(factoryGameObject.createFireEnemy());
@@ -118,6 +118,7 @@ public class World {
 		//System.out.println("Main Box UL " + mainBBox.getULCorner());
 		System.out.println("Ship Box UL " + box.getULCorner());
 		System.out.println("Position " + pos.toString());
+		System.out.println("Transform " + ship.getTransform());
 		
 		double heightRect = box.getHeight();
 		if (pos.y < -br.y){
