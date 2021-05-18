@@ -10,6 +10,7 @@ public class Chronometer extends Thread{
     private boolean go;
 
     public Chronometer(){
+        super();
         this.seconds = 0;
         this.minutes = 0;
         this.hours = 0;
@@ -53,7 +54,7 @@ public class Chronometer extends Thread{
     }
 
     @Override
-    public void run(){
+    public synchronized void run(){
         this.go = true;
 
         while(this.go){

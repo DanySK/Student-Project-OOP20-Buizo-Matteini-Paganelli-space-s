@@ -31,7 +31,7 @@ public class EngineGame implements EngineGUI {
     }
 
     public synchronized void startTimer(){
-        this.chronometer.start();
+        this.chronometer.run();
     }
 
     @Override
