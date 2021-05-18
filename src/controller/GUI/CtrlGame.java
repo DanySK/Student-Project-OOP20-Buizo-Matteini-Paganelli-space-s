@@ -28,6 +28,14 @@ public class CtrlGame implements ControllerGUI{
         this.gui.setIdButtons(this.engine.getLinks());
     }
 
+    public boolean isStartTimer(){
+        return this.engine.isStartTimer();
+    }
+
+    public void initTimer(){
+        this.engine.initTimer();
+    }
+
     public void startTimer(){
         this.engine.startTimer();
     }

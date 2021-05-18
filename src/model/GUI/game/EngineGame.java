@@ -15,7 +15,7 @@ public class EngineGame implements EngineGUI {
     private final IdGUI id;
     private final IdGUI idPause;
 
-    private volatile Chronometer chronometer;
+    private final Chronometer chronometer;
 
 	private Visibility visibility;
 
@@ -26,12 +26,20 @@ public class EngineGame implements EngineGUI {
         this.chronometer = new Chronometer();
     }
 
-    public synchronized String getTimer(){
+    public boolean isStartTimer(){
+        return this.chronometer.isPlay();
+    }
+
+    public String getTimer(){
         return this.chronometer.getTimer();
     }
 
-    public synchronized void startTimer(){
-        this.chronometer.run();
+    public void initTimer(){
+        this.chronometer.start();
+    }
+
+    public void startTimer(){
+        this.chronometer.play();
     }
 
     @Override

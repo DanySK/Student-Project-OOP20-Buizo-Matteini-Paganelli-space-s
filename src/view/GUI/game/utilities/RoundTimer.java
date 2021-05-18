@@ -15,7 +15,7 @@ public class RoundTimer extends JPanel {
         super();
         super.setOpaque(false);
 
-        this.timer = new JLabel("00:00");
+        this.timer = new JLabel("00:00:00");
         this.stringRound = new JLabel("Round ");
         this.round = new JLabel("3");
 
@@ -34,6 +34,6 @@ public class RoundTimer extends JPanel {
     }
 
     public void setTimer(final String timer){
-        this.timer.setText("Timer " + timer);
+        this.timer.setText(timer);
     }
 }

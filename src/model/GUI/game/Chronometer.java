@@ -7,22 +7,30 @@ public class Chronometer extends Thread{
     private int minutes;
     private int hours;
 
-    private boolean go;
+    private boolean play;
+    private boolean state;
 
     public Chronometer(){
         super();
-        this.seconds = 0;
-        this.minutes = 0;
-        this.hours = 0;
-        this.go = false;
+        this.timer = "00:00:00";
+        this.play = false;
+        this.state = false;
     }
 
     public String getTimer(){
         return this.timer;
     }
 
-    public void arrest(){
-        this.go = false;
+    public void finishGame(){
+        this.state = false;
+    }
+
+    public void play(){
+        this.play = true;
+    }
+
+    public boolean isPlay(){
+        return this.play;
     }
 
 
@@ -61,41 +69,21 @@ public class Chronometer extends Thread{
 
     @Override
     public void run(){
-        this.go = true;
+        this.state = true;
 
-        while(this.go){
-            this.pause(1000);
+        while(this.state){
 
-            this.incrSecond();
+            if(this.play) {
+                System.out.println("TIMERRRRRR PARTITOOOOOOOO");
+                this.incrSecond();
+                this.pause(1000);
+            }
+
             this.control60();
-
             this.timer = this.makeFormatTimer(
                     this.controlFormat(this.hours),
                     this.controlFormat(this.minutes),
                     this.controlFormat(this.seconds), ":");
         }
     }
-
-    public static void main(String[] args) {
-        Chronometer timer = new Chronometer();
-
-        Thread thead = new Thread(timer);
-
-        thead.start();
-
-        for(int i = 0; i < 10; i++) {
-
-            try {
-                sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            System.out.println(timer.getTimer());
-        }
-
-
-    }
-
-
-
 }

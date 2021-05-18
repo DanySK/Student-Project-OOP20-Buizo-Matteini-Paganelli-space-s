@@ -47,6 +47,8 @@ public class GameMalaLoop implements WorldEventListener {
 
         this.callerAudioLoop = new CallerAudio(new SoundLoop(this.controlGUI.getCurrentSound()));
 
+        this.controlGUI.initTimer();
+
         this.controlGUI.linksCallerAudioLoopWith(this.callerAudioLoop);
         //this.controlGUI.linksCallerAudioEffectWith(this.callerAudioEffects);
 
@@ -80,8 +82,8 @@ public class GameMalaLoop implements WorldEventListener {
             long current = System.currentTimeMillis();
             int elapsed = (int)(current - lastTime);
 
-            this.startGame();
-
+            this.startTimer();
+            this.controlGUI.renderTimer();
 
             this.updateSound();
 
@@ -212,12 +214,10 @@ public class GameMalaLoop implements WorldEventListener {
         }
     }
 
-    public void startGame(){
-        int i = 0;
-        if(i++ == 0 && this.controlGUI.getCurrentGUI() == IdGUI.ID_GAME){
+    public void startTimer(){
+        if(!this.controlGUI.isStartTimer() && this.controlGUI.getCurrentGUI() == IdGUI.ID_GAME){
             this.controlGUI.startTimer();
         }
-        this.controlGUI.renderTimer();
     }
 
     public void notifyEvent(WorldEvent ev) {

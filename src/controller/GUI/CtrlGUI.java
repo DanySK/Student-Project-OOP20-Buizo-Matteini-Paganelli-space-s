@@ -237,12 +237,20 @@ public class CtrlGUI {
         return this.ctrlSettings.getCurrentSkin();
     }
 
+    public void initTimer(){
+        this.ctrlGame.initTimer();
+    }
+
     public void startTimer(){
         this.ctrlGame.startTimer();
     }
 
     public void renderTimer(){
         this.ctrlGame.assignTimer();
+    }
+
+    public boolean isStartTimer(){
+        return this.ctrlGame.isStartTimer();
     }
 
     private void quitAll(){
