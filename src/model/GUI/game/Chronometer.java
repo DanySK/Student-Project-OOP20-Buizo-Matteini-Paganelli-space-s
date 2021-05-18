@@ -74,12 +74,10 @@ public class Chronometer extends Thread{
         while(this.state){
 
             if(this.play) {
-                System.out.println("TIMERRRRRR PARTITOOOOOOOO");
                 this.incrSecond();
+                this.control60();
                 this.pause(1000);
             }
-
-            this.control60();
             this.timer = this.makeFormatTimer(
                     this.controlFormat(this.hours),
                     this.controlFormat(this.minutes),
