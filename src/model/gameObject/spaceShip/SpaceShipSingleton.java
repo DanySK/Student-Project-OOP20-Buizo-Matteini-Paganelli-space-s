@@ -41,13 +41,20 @@ public class SpaceShipSingleton extends MainGameObject {
 		super(engineImage, position, bb, phys, velocity, movement, life, damage, weapon);
     	this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage));
     	final RectBoundingBox shipBox = (RectBoundingBox) this.getBoundingBox();
-    	this.getTransform().translate(shipBox.getULCorner().getX(), shipBox.getBRCorner().getY());
+		//this.getTransform().translate(getVelocity().getX(), getVelocity().getY());
+    	System.out.println(position);
+    	System.out.println(Screen.POINT_CENTER_FULLSCREEN);
 
-    	System.out.println("POSITION SPACESHIP CONSTRUCTOR -> " + this.getPosition());
+    	//this.getTransform().translate(shipBox.getULCorner().getX(), shipBox.getBRCorner().getY());
+    	//this.getTransform().translate(shipBox.getULCorner().getX(), shipBox.getULCorner().getY());
+    	//this.getTransform().T
+    	
 
-		System.out.println("POSITION SPACESHIP CONSTRUCTOR -> " + this.getBoundingBox());
+    	System.out.println("POSITION SPACESHIP CONSTRUCTOR-> " + this.getPosition());
 
-		System.out.println("POSITION SPACESHIP CONSTRUCTOR -> " + this.getTransform());
+		System.out.println("BOUNDING SPACESHIP CONSTRUCTOR -> " + this.getBoundingBox());
+
+		System.out.println("TRANSFORM SPACESHIP CONSTRUCTOR -> " + this.getTransform());
     }
     
     /**
