@@ -24,9 +24,9 @@ public class AsteroidPhysicsComponent implements PhysicsComponent {
 		
 		Optional<MainGameObject> asteroid = w.checkCollisionWithAsteroids(obj.getPosition(), bbox);
 		//collisioni con asteroidi
-		if (asteroid.isPresent()){
-			w.notifyWorldEvent(new HitAsteroidEvent(asteroid.get()));
-			System.out.println("Preso il asteroid Fratellì");
-		}	
+//		if (asteroid.isPresent()){
+//			w.notifyWorldEvent(new HitAsteroidEvent(asteroid.get()));
+//			System.out.println("Preso il asteroid Fratellì");
+//		}	
 	}
 }

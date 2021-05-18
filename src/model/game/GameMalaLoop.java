@@ -5,7 +5,6 @@ import controller.sound.CallerAudio;
 import model.gameObject.mainGameObject.Asteroid;
 import model.gameObject.mainGameObject.ChaseEnemy;
 import model.common.P2d;
-import model.common.V2d;
 import model.input.MovementKeyListener;
 import model.sound.CmdAudioType;
 import model.sound.category.SoundLoop;
@@ -54,10 +53,10 @@ public class GameMalaLoop implements WorldEventListener {
         this.panelGame.addKeyListenerSpaceship(controller);
         this.panelGame.getPanelGame().addGameObject(this.gameState.getSpaceship(), this.gameState.getSpaceship().getTransform());
         
-        this.gameState.getWorld().getAllEnemies().forEach(enemy -> {
-        	System.out.println(enemy);
-        	this.panelGame.getPanelGame().addGameObject(enemy, enemy.getTransform());
-        });
+//        this.gameState.getWorld().getAllEnemies().forEach(enemy -> {
+//        	System.out.println(enemy);
+//        	this.panelGame.getPanelGame().addGameObject(enemy, enemy.getTransform());
+//        });
         
         System.out.println(this.panelGame.getPanelGame());
         System.out.println(this.gameState.getWorld().getShip().getPosition().toString());
@@ -91,7 +90,7 @@ public class GameMalaLoop implements WorldEventListener {
 
             waitForNextFrame(current);
             lastTime = current;
-            System.out.println("LoopMala -> "+ elapsed +" FPS");
+            //System.out.println("LoopMala -> "+ elapsed +" FPS");
 
         }
         renderGameOver();
@@ -102,7 +101,7 @@ public class GameMalaLoop implements WorldEventListener {
         long dt = System.currentTimeMillis() - current;
         if (dt < period){
             try {
-                Thread.sleep(period-dt);
+                Thread.sleep(period - dt);
             } catch (Exception ignored){}
         }
     }

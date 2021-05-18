@@ -39,10 +39,9 @@ public class RectBoundingBox implements BoundingBox {
 	 */
 	public boolean isCollidingWith(P2d p, double radius){
 		
-		
-		if(p.getX() <= this.getULCorner().getX() + this.getWidth() &&
+		if(p.getX() <= this.getULCorner().getX() + this.getWidth() && 
 				p.getY() <= this.getULCorner().getY() + this.getHeight()) {
-			System.out.println("return true");
+			//System.out.println("return true");
 			return true;
 		}
 			
@@ -55,15 +54,12 @@ public class RectBoundingBox implements BoundingBox {
 //			}
 //		
 
-			return false;
+		return false;
 	}
 
 	@Override
 	public String toString() {
-		return "RectBoundingBox{" +
-				"p0=" + p0 +
-				", p1=" + p1 +
-				'}';
+		return "RectBoundingBox [p0=" + p0 + ", p1=" + p1 + "]";
 	}
 
 	//TEST
@@ -75,7 +71,7 @@ public class RectBoundingBox implements BoundingBox {
 		RectBoundingBox r2 = new RectBoundingBox(new P2d(7,7), new P2d(15,15));
 		
 		
-		System.out.println(r1.isCollidingWith(r2.getULCorner(), 10));
+		//System.out.println(r1.isCollidingWith(r2.getULCorner(), 10));
 		
 	}
 }

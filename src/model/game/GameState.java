@@ -7,7 +7,6 @@ import model.gameObject.GameObjectUtils;
 import model.gameObject.mainGameObject.SpaceShipSingleton;
 import model.world.World;
 import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
-import utilities.DesignSpace;
 import utilities.dimension.Screen;
 
 import java.awt.geom.Point2D;
@@ -35,13 +34,50 @@ public class GameState {
     public World getWorld(){
         return this.world;
     }
+    
+    public void setWorld(World world) {
+		this.world = world;
+	}
 
-    public SpaceShipSingleton getSpaceship(){
+    public Timer getTimer() {
+		return timer;
+	}
+
+	public void setTimer(Timer timer) {
+		this.timer = timer;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
+	public int getRound() {
+		return round;
+	}
+
+	public void setRound(int round) {
+		this.round = round;
+	}
+
+	public CtrlGUI getControllerGUI() {
+		return controllerGUI;
+	}
+
+	public void setControllerGUI(CtrlGUI controllerGUI) {
+		this.controllerGUI = controllerGUI;
+	}
+
+	public SpaceShipSingleton getSpaceship(){
         return this.world.getShip();
     }
 
 	public void setGameOver(boolean gameOver) {
 		this.gameOver = gameOver;
+		System.out.println("GameOver" + gameOver);
 	}
 	
     public boolean isGameOver(){
@@ -51,6 +87,10 @@ public class GameState {
     public int getLives() {
 		return lives;
 	}
+
+	public void setLives(int lives) {
+		this.lives = lives;
+	}
     
 	public void increaseLives(){
 		this.lives++;
@@ -58,6 +98,7 @@ public class GameState {
 
 	public void decreaseLives(){
 		this.lives--;
+		System.out.println("Decremento vita" + this.lives);
 		if (getLives() == 0) {
 			this.setGameOver(true);
 		} else {

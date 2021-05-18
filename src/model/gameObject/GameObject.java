@@ -85,8 +85,8 @@ public abstract class GameObject {
 
 	@Override
 	public String toString() {
-		return "AbstractGameObject [engineImage=" + engineImage + ", boundingBox=" + boundingBox + 
-				", phys=" + phys + ", state="+ state + "]";
+		return "GameObject [engineImage=" + engineImage + ", position=" + position + ", boundingBox=" + boundingBox
+				+ ", phys=" + phys + ", state=" + state + "]";
 	}
 
 }

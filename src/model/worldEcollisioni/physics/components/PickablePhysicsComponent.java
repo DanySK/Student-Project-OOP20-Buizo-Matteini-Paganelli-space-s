@@ -14,11 +14,11 @@ public class PickablePhysicsComponent implements PhysicsComponent {
 		RectBoundingBox bbox = (RectBoundingBox) obj.getBoundingBox();
 		Optional<PickableGameObject> perk = w.checkCollisionWithPickables(obj.getPosition(), bbox);
 		//collisioni con perks
-		if (perk.isPresent()) {
-			w.notifyWorldEvent(new HitPickableEvent(perk.get()));
-			System.out.println("Preso il PERK Fratellì");
-		}
-		
+//		if (perk.isPresent()) {
+//			w.notifyWorldEvent(new HitPickableEvent(perk.get()));
+//			System.out.println("Preso il PERK Fratellì");
+//		}
+//		
 	}
 
 }

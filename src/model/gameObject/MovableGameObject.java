@@ -59,7 +59,8 @@ public abstract class MovableGameObject extends GameObject {
 
 	@Override
 	public String toString() {
-		return "MovableGameObject [velocity=" + velocity + ", movement=" + movement + ", transform=" + transform + "]";
+		return "MovableGameObject [velocity=" + velocity + ", movement=" + movement + ", "
+				+ "transform=" + transform + ", " + super.toString() +  "]";
 	}
 	
 }

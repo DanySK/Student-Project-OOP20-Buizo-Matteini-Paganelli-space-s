@@ -37,7 +37,7 @@ public class World {
 	public World(RectBoundingBox bbox){
 		ship = SpaceShipSingleton.getSpaceShip();
 		
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 1; i++) {
 			asteroids.add(factoryGameObject.createAsteroid());
 			chaseEnemies.add(factoryGameObject.createChaseEnemy());
 			fireEnemies.add(factoryGameObject.createFireEnemy());
