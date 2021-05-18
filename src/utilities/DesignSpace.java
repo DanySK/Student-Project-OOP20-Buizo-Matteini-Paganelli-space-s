@@ -7,8 +7,6 @@ import model.common.P2d;
 import utilities.dimension.Screen;
 
 public class DesignSpace {
-    public static final P2d CENTER_ENVIRONMENT = new P2d(Screen.WIDTH_MEDIUM / 2, Screen.HEIGHT_MEDIUM / 2);
-
     public static int SIZE_FONT_H1 = 60;
     public static int SIZE_FONT_H2 = 55;
     public static int SIZE_FONT_H3 = 30;
@@ -32,7 +30,7 @@ public class DesignSpace {
     public static Color color2 = new Color(128, 213, 255);
     public static Color color3 = new Color(148, 233, 255);
     public static Color color4 = new Color(58, 241, 255);
-    public static Color colorOpacityBlack = new Color(0,0,0,200);
+    public static Color colorOpacityBlack = new Color(0,0,0,80);
 
     public static Font getFontForTitle(final int size){
         URL fontUrl = ClassLoader.getSystemResource("font/mainFont.ttf");

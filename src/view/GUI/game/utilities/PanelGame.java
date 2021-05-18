@@ -1,8 +1,9 @@
 package view.GUI.game.utilities;
 
-import model.gameObject.AbstractGameObject;
+
+import model.gameObject.GameObject;
 import model.gameObject.MainGameObject;
-import model.gameObject.MovableGameObject;
+
 import model.image.EngineImage;
 import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import view.utilities.JImage;
@@ -13,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PanelGame extends JPanel {
-    private final Map<AbstractGameObject, AffineTransform> gameObject;
+    private final Map<GameObject, AffineTransform> gameObject;
 
     public PanelGame() {
         super(); {{ setOpaque(false); }}
@@ -28,17 +29,17 @@ public class PanelGame extends JPanel {
         this.gameObject.forEach((key, value) -> {
             g2d.drawImage(this.getImageFromPath(key.getEngineImage()), value, null);
 
-            this.drawLifeBar(g2d, key, value);
-            this.drawLife(g2d, key, value);
+            this.drawLifeBar(g2d, (MainGameObject) key, value);
+            this.drawLife(g2d, (MainGameObject) key, value);
         });
     }
 
-    public void addGameObject(final AbstractGameObject gameObject, final AffineTransform transform) {
+    public void addGameObject(final GameObject gameObject, final AffineTransform transform) {
         this.gameObject.put(gameObject, transform);
         this.repaint();
     }
 
-    public void deleteGameObject(final AbstractGameObject gameObject){
+    public void deleteGameObject(final GameObject gameObject){
         this.gameObject.remove(gameObject);
         this.repaint();
     }
@@ -48,9 +49,15 @@ public class PanelGame extends JPanel {
         return icon.getImage();
     }
 
-    private void drawLifeBar(final Graphics2D g2d, final AbstractGameObject gameObject, final AffineTransform transform){
+
+    private void drawLifeBar(final Graphics2D g2d, final GameObject gameObject, final AffineTransform transform){
         //final int x = (int)transform.getTranslateX();
         //final int y = (int) (transform.getTranslateY() + gameObject.getSize().getHeight() + 2);
+//=======
+//    private void drawLifeBar(final Graphics2D g2d, final MainGameObject gameObject, final AffineTransform transform){
+//        final int x = (int)transform.getTranslateX();
+//        final int y = (int) (transform.getTranslateY() + gameObject.getSize().getHeight() + 2);
+//>>>>>>> buizo
 
         //final double p2dX = gameObject.getPosition().x - (gameObject.getSize().getWidth()/2);
         //final double p2dY = gameObject.getPosition().y + (gameObject.getSize().getHeight()/2);
@@ -65,7 +72,8 @@ public class PanelGame extends JPanel {
         //g2d.drawRect(transform, 100,11);
     }
 
-    private void drawLife(final Graphics2D g2d, final AbstractGameObject gameObject, final AffineTransform transform){
+
+    private void drawLife(final Graphics2D g2d, final GameObject gameObject, final AffineTransform transform){
        // final int x = (int)transform.getTranslateX();
        // final int y = (int) (transform.getTranslateY() + gameObject.getSize().getHeight() + 3);
         final RectBoundingBox rect = (RectBoundingBox) gameObject.getBoundingBox();
@@ -73,6 +81,11 @@ public class PanelGame extends JPanel {
         final int y = (int) rect.getBRCorner().getY();
     	//final int x = (int) gameObject.getPosition().x;
         //final int y = (int) (gameObject.getPosition().y + gameObject.getSize().getHeight() + 3);
+
+//    private void drawLife(final Graphics2D g2d, final MainGameObject gameObject, final AffineTransform transform){
+//        final int x = (int)transform.getTranslateX();
+//        final int y = (int) (transform.getTranslateY() + gameObject.getSize().getHeight() + 3);
+//>>>>>>> buizo
 
         g2d.setColor(Color.GREEN);
         //System.out.println(transform.getTranslateX());

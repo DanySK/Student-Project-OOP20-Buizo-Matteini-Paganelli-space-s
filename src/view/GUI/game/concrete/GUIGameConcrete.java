@@ -17,14 +17,16 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
     private final CounterEnemies counterEnemies;
 
     private final Heart heartLife;
-    private final LifeBar life;
+    private final LifeBar lifeShip;
+    private final LifeBar lifeBoss;
     private final Bullet bullet;
 
     private PanelGame panelGame = new PanelGame();
 
     public GUIGameConcrete(){
         super();
-        this.life = new LifeBar();
+        this.lifeBoss = new LifeBar();
+        this.lifeShip = new LifeBar();
         this.score = new Score();
         this.heartLife = new Heart();
         this.bullet = new Bullet();
@@ -40,8 +42,12 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
         return List.of(this.btnPause);
     }
 
-    public JProgressBar getLife() {
-        return this.life;
+    public LifeBar getLifeBoss() {
+        return this.lifeBoss;
+    }
+
+    public LifeBar getLifeShip(){
+        return this.lifeShip;
     }
 
     public Score getScore() {
@@ -66,6 +72,12 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
 
     public BtnPauseID getBtnPause() {
         return btnPause;
+    }
+
+
+    @Override
+    public void setTimer(String timer) {
+        this.roundTimer.setTimer(timer);
     }
 
     @Override

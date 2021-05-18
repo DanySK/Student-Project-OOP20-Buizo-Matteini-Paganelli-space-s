@@ -4,8 +4,9 @@ import java.awt.geom.AffineTransform;
 
 import model.command.commandInterfaces.CommandMovement;
 import model.gameObject.MovableGameObject;
-import model.gameObject.spaceShip.SpaceShipSingleton;
+import model.gameObject.mainGameObject.SpaceShipSingleton;
 import utilities.dimension.Screen;
+
 
 public class RotateRightCommand implements CommandMovement{
 	

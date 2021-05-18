@@ -9,6 +9,8 @@ import java.util.List;
 
 public interface GUIGame extends GUI, GraphicsGUIGame {
 
+    public void setTimer(final String timer);
+
     public void setIdButtons(final List<IdGUI> linksID);
 
     public PanelGame getPanelGame();

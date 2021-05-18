@@ -1,4 +1,4 @@
-package model.gameObject.spaceShip;
+package model.gameObject.mainGameObject;
 
 import java.util.Optional;
 
@@ -6,7 +6,6 @@ import model.gameObject.GameObjectUtils;
 import model.gameObject.MainGameObject;
 import model.gameObject.Movement;
 import model.common.*;
-import model.gameObject.weapon.AmmoType;
 import model.gameObject.weapon.Weapon;
 import model.image.EngineImage;
 import model.worldEcollisioni.physics.boundingType.BoundingBox;
@@ -28,8 +27,8 @@ public class SpaceShipSingleton extends MainGameObject {
    		new V2d(),
    		Movement.CONTROLLED,
     	GameObjectUtils.SPACESHIP_LIFE,
-   		GameObjectUtils.SPACESHIP_DAMAGE,
-   		Optional.of(new Weapon(AmmoType.NORMAL))
+    	GameObjectUtils.ASTEROID_DAMAGE,
+   		Optional.of(new Weapon())
     	);
 
     /** 
@@ -37,8 +36,8 @@ public class SpaceShipSingleton extends MainGameObject {
     */
     private SpaceShipSingleton(final EngineImage engineImage, final P2d position, final BoundingBox bb,
 			final PhysicsComponent phys, final V2d velocity, final Movement movement, final int life,
-			final int damage, final Optional<Weapon> weapon) {
-		super(engineImage, position, bb, phys, velocity, movement, life, damage, weapon);
+			final int impactDamage, final Optional<Weapon> weapon) {
+		super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, weapon);
     	this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage));
     	final RectBoundingBox shipBox = (RectBoundingBox) this.getBoundingBox();
 		//this.getTransform().translate(getVelocity().getX(), getVelocity().getY());

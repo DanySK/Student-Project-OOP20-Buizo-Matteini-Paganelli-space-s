@@ -4,10 +4,11 @@ import controller.GUI.CtrlGUI;
 import model.GUI.game.EngineGame;
 import model.common.P2d;
 import model.gameObject.GameObjectUtils;
-import model.gameObject.spaceShip.SpaceShipSingleton;
+import model.gameObject.mainGameObject.SpaceShipSingleton;
 import model.world.World;
 import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import utilities.DesignSpace;
+import utilities.dimension.Screen;
 
 import java.awt.geom.Point2D;
 import java.util.Timer;
@@ -85,7 +86,7 @@ public class GameState {
 	}
 	
 	public void respawn() {
-		this.getSpaceship().setPosition(DesignSpace.CENTER_ENVIRONMENT);
+		this.getSpaceship().setPosition(Screen.POINT_CENTER_FULLSCREEN);
 	}
 
 	public void setSkin(final String path){

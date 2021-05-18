@@ -2,11 +2,17 @@ package model.worldEcollisioni.physics.components;
 
 import java.util.Optional;
 
-import model.gameObject.AbstractGameObject;
-import model.gameObject.spaceShip.SpaceShipSingleton;
+import model.gameObject.GameObject;
+import model.gameObject.MainGameObject;
+import model.gameObject.PickableGameObject;
+import model.gameObject.mainGameObject.SpaceShipSingleton;
 import model.world.World;
 import model.worldEcollisioni.hitEvents.HitAsteroidEvent;
 import model.worldEcollisioni.hitEvents.HitBorderEvent;
+import model.worldEcollisioni.hitEvents.HitBossEvent;
+import model.worldEcollisioni.hitEvents.HitChaseEnemyEvent;
+import model.worldEcollisioni.hitEvents.HitFireEnemyEvent;
+import model.worldEcollisioni.hitEvents.HitPickableEvent;
 import model.worldEcollisioni.physics.BoundaryCollision;
 import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import model.common.P2d;
@@ -15,12 +21,9 @@ import model.common.V2d;
 public class ShipPhysicsComponent implements PhysicsComponent {
 	
 	@Override
-	public void update(int dt, AbstractGameObject abstractObj, World w) {
+	public void update(int dt, GameObject abstractObj, World w) {
 		SpaceShipSingleton ship = (SpaceShipSingleton) abstractObj;
-		
-		P2d position = ship.getPosition();
-		V2d velocity = ship.getVelocity();
-	
+
 		//System.out.println("Velocità: " + velocity);
 		
 		//w.checkBoundaries(ship);
@@ -36,11 +39,11 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 //		//w.checkBoundaries(obj);
 //		RectBoundingBox bbox = (RectBoundingBox) obj.getBoundingBox();
 		//Optional<BoundaryCollision> binfo = w.checkCollisionWithBoundaries(ship.getPosition(), boundingBox);
-		if (binfo.isPresent()){
+		if (binfo.isPresent()) {
 			BoundaryCollision info = binfo.get();
 			P2d pos = ship.getPosition();
 			
-			switch (info.getEdge()){
+			switch (info.getEdge()) {
 			case TOP: 
 				//ship.setPosition(new P2d(60, 60));
 				ship.setVelocity(new V2d(ship.getVelocity().getX(), -ship.getVelocity().getY()));
@@ -69,13 +72,40 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 			}
 		}
 		
-		Optional<AbstractGameObject> asteroid = w.checkCollisionWithAsteroids(ship.getPosition(), boundingBox);
+		Optional<MainGameObject> asteroid = w.checkCollisionWithAsteroids(ship.getPosition(), boundingBox);
 		//collisioni con asteroidi
-		if (asteroid.isPresent()){
+		if (asteroid.isPresent()) {
 			w.notifyWorldEvent(new HitAsteroidEvent(asteroid.get()));
-			System.out.println("Preso l'asteroid Fratellì");
+			System.out.println("Preso un asteroid Fratellì");
 		}
 		
+		Optional<MainGameObject> chaseEnemy = w.checkCollisionWithChaseEnemies(ship.getPosition(), boundingBox);
+		//collisioni con chaseEnemy
+		if (chaseEnemy.isPresent()) {
+			w.notifyWorldEvent(new HitChaseEnemyEvent(chaseEnemy.get()));
+			System.out.println("Preso un chaseEnemy Fratellì");
+		}
+		
+		Optional<MainGameObject> fireEnemy = w.checkCollisionWithFireEnemies(ship.getPosition(), boundingBox);
+		//collisioni con fireEnemy
+		if (fireEnemy.isPresent()) {
+			w.notifyWorldEvent(new HitFireEnemyEvent(fireEnemy.get()));
+			System.out.println("Preso un fireEnemy Fratellì");
+		}
+		
+		Optional<MainGameObject> boss = w.checkCollisionWithBoss(ship.getPosition(), boundingBox);
+		//collisioni con boss
+		if (boss.isPresent()) {
+			w.notifyWorldEvent(new HitBossEvent(boss.get()));
+			System.out.println("Preso il boss Fratellì");
+		}
+		
+		Optional<PickableGameObject> pickable = w.checkCollisionWithPickables(ship.getPosition(), boundingBox);
+		//collisioni con pickable
+		if (pickable.isPresent()) {
+			w.notifyWorldEvent(new HitPickableEvent(pickable.get()));
+			System.out.println("Preso un pickable Fratellì");
+		}
 	}
 
 }

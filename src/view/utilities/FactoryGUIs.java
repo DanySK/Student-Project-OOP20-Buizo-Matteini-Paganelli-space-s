@@ -37,6 +37,12 @@ public class FactoryGUIs {
     }
 
 
+    public static JPanel encapsulateInPanelBorderOrientation(final Component component, final String border){
+        final JPanel panel = FactoryGUIs.createPanelTransparent(new BorderLayout());
+        panel.add(component, border);
+        return panel;
+    }
+
     public static JPanel encapsulateInPanelVerticalCenter(final Component component){
         final JPanel encapsulate = FactoryGUIs.createPanelTransparent(null);
         encapsulate.setLayout(new BoxLayout(encapsulate, BoxLayout.X_AXIS));
@@ -44,10 +50,11 @@ public class FactoryGUIs {
         return encapsulate;
     }
 
-    public static JPanel createPanelGridBagUnionComponentsVertical(final List<? extends JComponent> components, final int inset){
+    public static JPanel createPanelGridBagUnionComponentsVertical(final List<? extends  Component> components,
+                                                                   final int inset){
         final JPanel encapsulate = FactoryGUIs.createPanelTransparent(new GridBagLayout());
         final GridBagConstraints limit = createGBConstraintsBase();
-        limit.insets = new Insets(inset / 2,inset,inset / 2,inset);
+        limit.insets = new Insets(inset / 2,inset, inset / 2, inset);
 
         for (final Component component : components) {
             encapsulate.add(component, limit);
@@ -56,7 +63,25 @@ public class FactoryGUIs {
         return encapsulate;
     }
 
-    public static JPanel createPanelGridBagUnionComponentsHorizontal(final List<JComponent> components, final int inset){
+    public static JPanel createPanelGridBagUnionComponentsVerticalInsetExternalSX
+            (final List<? extends JComponent> components, final int bottom, final int left){
+        final JPanel encapsulate = FactoryGUIs.createPanelTransparent(new GridBagLayout());
+        final GridBagConstraints limit = createGBConstraintsBase();
+        limit.insets = new Insets(0, 0, 0, 0);
+
+        for (final Component component : components) {
+            if(components.indexOf(component) == components.size() - 1){
+                limit.insets = new Insets(0, left, bottom, 0);
+            }
+            encapsulate.add(component, limit);
+
+            limit.gridy++;
+        }
+
+        return encapsulate;
+    }
+
+    public static JPanel createPanelGridBagUnionComponentsHorizontal(final List<? extends  JComponent> components, final int inset){
         final JPanel encapsulate =  FactoryGUIs.createPanelTransparent(new GridBagLayout());
         final GridBagConstraints limit = createGBConstraintsBase();
         limit.insets = new Insets(inset, inset / 2,inset, inset / 2);
