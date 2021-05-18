@@ -7,33 +7,38 @@ public class Chronometer extends Thread{
     private int minutes;
     private int hours;
 
-    private boolean go;
+    private boolean play;
+    private boolean state;
 
     public Chronometer(){
         super();
-        this.seconds = 0;
-        this.minutes = 0;
-        this.hours = 0;
-        this.go = false;
+        this.timer = "00:00:00";
+        this.play = false;
+        this.state = false;
     }
 
     public String getTimer(){
         return this.timer;
     }
 
-    public void arrest(){
-        this.go = false;
+    public void finishGame(){
+        this.state = false;
     }
 
-    private void pause(final int millis){
-        try {
-            sleep(millis);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public void play(){
+        this.play = true;
     }
 
-    public void control60(){
+    public boolean isPlay(){
+        return this.play;
+    }
+
+
+    private void incrSecond(){
+        this.seconds++;
+    }
+
+    private void control60(){
         if(this.seconds == 60) {
             this.seconds = 0;
             this.minutes++;
@@ -45,41 +50,40 @@ public class Chronometer extends Thread{
         }
     }
 
-    public String controlFormat(final int number){
+    private String controlFormat(final int number){
         return number < 10 ? "0" + number : Integer.toString(number);
     }
 
-    public String makeFormatTimer(final String hours, final String minutes, final String seconds, final String split) {
+    private String makeFormatTimer(final String hours, final String minutes, final String seconds, final String split) {
         return hours + split + minutes + split + seconds;
     }
 
+
+    private void pause(final int millis){
+        try {
+            sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
-    public synchronized void run(){
-        this.go = true;
+    public void run(){
+        this.state = true;
 
-        while(this.go){
-            this.pause(1000);
+        while(this.state){
 
-            this.seconds++;
+            if(this.play) {
+                System.out.println("TIMERRRRRR PARTITOOOOOOOO");
+                this.incrSecond();
+                this.pause(1000);
+            }
+
             this.control60();
-
             this.timer = this.makeFormatTimer(
                     this.controlFormat(this.hours),
                     this.controlFormat(this.minutes),
                     this.controlFormat(this.seconds), ":");
-
-            System.out.println(this.getTimer());
         }
     }
-
-    public static void main(String[] args) {
-        Chronometer timer = new Chronometer();
-
-        timer.start();
-
-
-    }
-
-
-
 }
