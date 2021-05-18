@@ -24,7 +24,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class GameMalaLoop implements WorldEventListener {
-    private long period = 60L;
+    private long period = 30L;
 
     private final CtrlGUI controlGUI;
     private final GameState gameState;
@@ -54,22 +54,26 @@ public class GameMalaLoop implements WorldEventListener {
         //this.controlGUI.linksCallerAudioEffectWith(this.callerAudioEffects);
 
         this.panelGame.addKeyListenerSpaceship(controller);
-        this.panelGame.getPanelGame().addGameObject(this.gameState.getSpaceship(), this.gameState.getSpaceship().getTransform());
+        //this.panelGame.getPanelGame().addGameObject(this.gameState.getSpaceship(), this.gameState.getSpaceship().getTransform());
         
         this.gameState.getWorld().getAllEnemies().forEach(enemy -> {
-        	System.out.println(enemy);
+        	System.out.println(enemy);        	
+            RectBoundingBox rbbEnemy = (RectBoundingBox) enemy.getBoundingBox();
+            enemy.getTransform().translate(rbbEnemy.getULCorner().getX(), rbbEnemy.getULCorner().getY());
         	this.panelGame.getPanelGame().addGameObject(enemy, enemy.getTransform());
+
         });
+       
         
         System.out.println(this.panelGame.getPanelGame());
         System.out.println(this.gameState.getWorld().getShip().getPosition().toString());
-        RectBoundingBox rbb = (RectBoundingBox) this.gameState.getWorld().getShip().getBoundingBox();
+        RectBoundingBox rbb = (RectBoundingBox) this.gameState.getSpaceship().getBoundingBox();
         System.out.println(rbb.getULCorner().toString());
         //System.out.println(this.gameState.getWorld().getShip().getTransform().translate(rbb.getULCorner(), rbb.getBRCorner()));
         
-        this.gameState.getWorld().getShip().getTransform().translate(rbb.getULCorner().getX(), rbb.getULCorner().getY());
-        System.out.println(this.gameState.getWorld().getShip().getTransform().toString());
-        this.panelGame.getPanelGame().addGameObject(this.gameState.getWorld().getShip(), this.gameState.getWorld().getShip().getTransform());
+        this.gameState.getSpaceship().getTransform().translate(rbb.getULCorner().getX(), rbb.getULCorner().getY());
+        System.out.println(this.gameState.getSpaceship().getTransform().toString());
+        this.panelGame.getPanelGame().addGameObject(this.gameState.getSpaceship(), this.gameState.getSpaceship().getTransform());
         
         this.gameState.getWorld().setEventListener(this);
     }
@@ -102,7 +106,7 @@ public class GameMalaLoop implements WorldEventListener {
             lastTime = current;
             updateGame(elapsed);
 
-            System.out.println("LoopMala -> "+ elapsed +" FPS");
+            //System.out.println("LoopMala -> "+ elapsed +" FPS");
 
         }
         renderGameOver();
@@ -183,7 +187,7 @@ public class GameMalaLoop implements WorldEventListener {
 		double x = this.gameState.getWorld().getShip().getTransform().getTranslateX();
 		double y = this.gameState.getWorld().getShip().getTransform().getTranslateY();
 		P2d newPos = new P2d(x + 42,y + 44);
-		System.out.println(this.gameState.getWorld().getShip().getVelocity());
+		//System.out.println(this.gameState.getWorld().getShip().getVelocity());
 		//this.gameState.getWorld().getShip().setPosition(this.gameState.getWorld().getShip().getPosition().sum(this.gameState.getWorld().getShip().getVelocity()));
 		//this.gameState.getWorld().getShip().setPosition(newPos);
 		this.gameState.getWorld().getShip().setPosition(newPos);

@@ -16,7 +16,6 @@ import model.worldEcollisioni.WorldEvent;
 import model.worldEcollisioni.WorldEventListener;
 import model.worldEcollisioni.physics.BoundaryCollision;
 import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
-import model.GUI.game.EngineGame;
 import model.common.*;
 
 public class World {
@@ -26,7 +25,7 @@ public class World {
 	private Set<MainGameObject> asteroids = new HashSet<>();
 	private Set<MainGameObject> fireEnemies = new HashSet<>();
 	private Set<MainGameObject> chaseEnemies = new HashSet<>();
-	private Optional<MainGameObject> boss = Optional.of(factoryGameObject.createBoss()); 
+	private Optional<MainGameObject> boss = Optional.empty(); 
 	
 	private Set<PickableGameObject> pickables = new HashSet<>();
 
@@ -116,9 +115,9 @@ public class World {
 		P2d ul = mainBBox.getULCorner();
 		P2d br = mainBBox.getBRCorner();
 		//System.out.println("Main Box UL " + mainBBox.getULCorner());
-		System.out.println("Ship Box UL " + box.getULCorner());
-		System.out.println("Position " + pos.toString());
-		System.out.println("Transform " + ship.getTransform());
+//		System.out.println("Ship Box UL " + box.getULCorner());
+//		System.out.println("Position " + pos.toString());
+//		System.out.println("Transform " + ship.getTransform());
 		
 		double heightRect = box.getHeight();
 		if (pos.y < -br.y){
@@ -166,7 +165,7 @@ public class World {
 	}
 	
 	public Optional<MainGameObject> checkCollisionWithBoss(P2d pos, RectBoundingBox box){
-		System.out.println(boss);
+		//System.out.println(boss);
 		if (boss.isPresent()) {
 			System.out.println("SONO DENTRO L IF");
 			double radius = box.getWidth();
