@@ -16,7 +16,7 @@ public enum EffectType {
 	private static final int SIZE = VALUES.size();
 	private static final Random RANDOM = new Random();
 	
-	public static EffectType randomEffect()  {
+	public static EffectType random()  {
 		return VALUES.get(RANDOM.nextInt(SIZE));
 	}
 }

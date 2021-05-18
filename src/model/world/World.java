@@ -33,36 +33,34 @@ public class World {
 	private RectBoundingBox mainBBox;
 	private WorldEventListener evListener;
 	
-	public World(RectBoundingBox bbox){
-		ship = SpaceShipSingleton.getSpaceShip();
-		
+	public World(RectBoundingBox mainBBox) {
+		this.ship = SpaceShipSingleton.getSpaceShip();
+		this.mainBBox = mainBBox;
+
 		for (int i = 0; i < 1; i++) {
 			asteroids.add(factoryGameObject.createAsteroid());
 			chaseEnemies.add(factoryGameObject.createChaseEnemy());
 			fireEnemies.add(factoryGameObject.createFireEnemy());
 		}
 		
-		
-		mainBBox = bbox;
-		
 		System.out.println(getFireEnemies());
 		System.out.println(getChaseEnemies());
 
 	}
 
-	public void setEventListener(WorldEventListener l){
+	public void setEventListener(WorldEventListener l) {
 		evListener = l;
 	}
 	
-	public void setShip(SpaceShipSingleton ship){
+	public void setShip(SpaceShipSingleton ship) {
 		this.ship = ship;
 	}
 	
-	public SpaceShipSingleton getShip(){
+	public SpaceShipSingleton getShip() {
 		return this.ship;
 	}
 
-	public void setSkin(final String path){
+	public void setSkin(final String path) {
 		this.ship.getEngineImage().setPath(path);
 	}
 	
@@ -74,39 +72,39 @@ public class World {
 		this.factoryGameObject = factoryGameObject;
 	}
 	
-	public void addAsteroid(MainGameObject obj){
+	public void addAsteroid(MainGameObject obj) {
 		asteroids.add(obj);
 	}
 
-	public void removeAsteroid(MainGameObject obj){
+	public void removeAsteroid(MainGameObject obj) {
 		asteroids.remove(obj);
 	}
 	
-	public void addChaseEnemy(MainGameObject obj){
+	public void addChaseEnemy(MainGameObject obj) {
 		chaseEnemies.add(obj);
 	}
 	
-	public void removeChaseEnemy(MainGameObject obj){
+	public void removeChaseEnemy(MainGameObject obj) {
 		chaseEnemies.remove(obj);
 	}
 	
-	public void addFireEnemy(MainGameObject obj){
+	public void addFireEnemy(MainGameObject obj) {
 		fireEnemies.add(obj);
 	}
 	
-	public void removeFireEnemy(MainGameObject obj){
+	public void removeFireEnemy(MainGameObject obj) {
 		fireEnemies.remove(obj);
 	}
 	
-	public void addPickablePerk(PickableGameObject obj){
+	public void addPickablePerk(PickableGameObject obj) {
 		pickables.add(obj);
 	}
 
-	public void removePickablePerk(PickableGameObject obj){
+	public void removePickablePerk(PickableGameObject obj) {
 		pickables.remove(obj);
 	}
 	
-	public void updateState(int dt){
+	public void updateState(int dt) {
 		ship.updatePhysics(dt, this);
 		asteroids.forEach(a -> a.updatePhysics(dt, this));
 	}
@@ -134,7 +132,7 @@ public class World {
 //		}
 	}
 
-	public Optional<MainGameObject> checkCollisionWithAsteroids(P2d pos, RectBoundingBox box){
+	public Optional<MainGameObject> checkCollisionWithAsteroids(P2d pos, RectBoundingBox box) {
 		double radius = box.getWidth();
 		for (MainGameObject obj: asteroids){
 			if (obj.getBoundingBox().isCollidingWith(pos, radius)){
@@ -144,7 +142,7 @@ public class World {
 		return Optional.empty();
 	}
 	
-	public Optional<MainGameObject> checkCollisionWithChaseEnemies(P2d pos, RectBoundingBox box){
+	public Optional<MainGameObject> checkCollisionWithChaseEnemies(P2d pos, RectBoundingBox box) {
 		double radius = box.getWidth();
 		for (MainGameObject obj: chaseEnemies){
 			if (obj.getBoundingBox().isCollidingWith(pos, radius)){
@@ -154,7 +152,7 @@ public class World {
 		return Optional.empty();
 	}
 	
-	public Optional<MainGameObject> checkCollisionWithFireEnemies(P2d pos, RectBoundingBox box){
+	public Optional<MainGameObject> checkCollisionWithFireEnemies(P2d pos, RectBoundingBox box) {
 		double radius = box.getWidth();
 		for (MainGameObject obj: fireEnemies){
 			if (obj.getBoundingBox().isCollidingWith(pos, radius)){
@@ -164,7 +162,7 @@ public class World {
 		return Optional.empty();
 	}
 	
-	public Optional<MainGameObject> checkCollisionWithBoss(P2d pos, RectBoundingBox box){
+	public Optional<MainGameObject> checkCollisionWithBoss(P2d pos, RectBoundingBox box) {
 		//System.out.println(boss);
 		if (boss.isPresent()) {
 			System.out.println("SONO DENTRO L IF");
@@ -176,7 +174,7 @@ public class World {
 		return Optional.empty();
 	}
 	
-	public Optional<PickableGameObject> checkCollisionWithPickables(P2d pos, RectBoundingBox box){
+	public Optional<PickableGameObject> checkCollisionWithPickables(P2d pos, RectBoundingBox box) {
 		double radius = box.getWidth();
 		for (PickableGameObject obj: pickables){
 			if (obj.getBoundingBox().isCollidingWith(pos, radius)){
@@ -186,30 +184,30 @@ public class World {
 		return Optional.empty();
 	}
 	
-	public void notifyWorldEvent(WorldEvent ev){
+	public void notifyWorldEvent(WorldEvent ev) {
 		evListener.notifyEvent(ev);
 	}
 	
-	public RectBoundingBox getMainBBox(){
+	public RectBoundingBox getMainBBox() {
 		return mainBBox;
 	}
 	
-	public Set<MainGameObject> getAsteroids(){
+	public Set<MainGameObject> getAsteroids() {
 		return this.asteroids;
 	}
 	
-	public Set<MainGameObject> getAllEnemies(){
+	public Set<MainGameObject> getAllEnemies() {
 		HashSet<MainGameObject> allEnemies = new HashSet<>();
 		allEnemies.addAll(chaseEnemies);
 		allEnemies.addAll(fireEnemies);
 		return allEnemies;
 	}
 	
-	public Set<MainGameObject> getFireEnemies(){
+	public Set<MainGameObject> getFireEnemies() {
 		return this.fireEnemies;
 	}
 	
-	public Set<MainGameObject> getChaseEnemies(){
+	public Set<MainGameObject> getChaseEnemies() {
 		return this.chaseEnemies;
 	}
 	
@@ -221,11 +219,11 @@ public class World {
 		this.boss = boss;
 	}
 	
-	public Set<PickableGameObject> getPickablePerks(){
+	public Set<PickableGameObject> getPickablePerks() {
 		return this.pickables;
 	}
 
-	public List<GameObject> getSceneEntities(){
+	public List<GameObject> getSceneEntities() {
 		List<GameObject> entities = new ArrayList<GameObject>();
 		entities.addAll(asteroids);
 		entities.addAll(getAllEnemies());

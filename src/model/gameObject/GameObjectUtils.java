@@ -12,7 +12,7 @@ import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 
 public class GameObjectUtils {
     public static final int INFINITY = 0;
-    public static final int SPECIAL_MUNITIONS = 25;
+    public static final int SPECIAL_MUNITIONS_QUANTITY = 25;
     
     public static final int SPACESHIP_LIFE = 100;
     public static final int SPACESHIP_LIVES = 3;
@@ -36,6 +36,8 @@ public class GameObjectUtils {
     public static final V2d CHASE_ENEMY_VEL = new V2d();
     public static final V2d FIRE_ENEMY_VEL = new V2d();
     public static final V2d BOSS_VEL = new V2d();
+    public static final V2d BULLET_VEL = new V2d();
+
     
     public static final int SPACESHIP_DAMAGE = 100;
 
