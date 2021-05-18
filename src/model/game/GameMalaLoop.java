@@ -24,7 +24,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class GameMalaLoop implements WorldEventListener {
-    private long period = 20L;
+    private long period = 60L;
+
     private final CtrlGUI controlGUI;
     private final GameState gameState;
     private CallerAudio callerAudioLoop;
@@ -76,32 +77,36 @@ public class GameMalaLoop implements WorldEventListener {
     public void mainLoop() {
         long lastTime = System.currentTimeMillis();
 
+        double next_game_tick = System.currentTimeMillis();
+        int loops;
+
         this.callerAudioLoop.execute(CmdAudioType.AUDIO_ON);
 
         while (!gameState.isGameOver()) {
+            loops = 0;
+
             long current = System.currentTimeMillis();
             int elapsed = (int)(current - lastTime);
 
             this.startTimer();
             this.controlGUI.renderTimer();
-
             this.updateSound();
 
             inputSkin();
-
             processInput();
-            updateGame(elapsed);
+
             render();
             renderMovement();
 
             waitForNextFrame(current);
             lastTime = current;
-            //System.out.println("LoopMala -> "+ elapsed +" FPS");
+            updateGame(elapsed);
+
+            System.out.println("LoopMala -> "+ elapsed +" FPS");
 
         }
         renderGameOver();
     }
-
     
 	protected void waitForNextFrame(long current){
         long dt = System.currentTimeMillis() - current;
