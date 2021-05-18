@@ -1,6 +1,7 @@
 package model.gameObject;
 
 import java.awt.Dimension;
+import java.awt.geom.AffineTransform;
 
 import model.common.P2d;
 import model.image.EngineImage;
@@ -15,6 +16,7 @@ public abstract class GameObject {
 	private BoundingBox boundingBox;
 
 	private PhysicsComponent phys;
+	private AffineTransform transform;
 	
 	//DA CAMBIARE, SARà L'ENUM DEGLI STATI DEGLI OGGETTI
 	private String state = "NORMAL";
@@ -25,6 +27,17 @@ public abstract class GameObject {
 		this.position = position;
 		this.boundingBox = bb;
 		this.phys = phys;
+		this.transform = new AffineTransform();
+	}
+	
+	public AffineTransform getTransform() {
+		return transform;
+	}
+
+	public void setTransform(AffineTransform transform) {
+		this.transform = transform;
+		this.position.x = transform.getTranslateX();
+		this.position.y = transform.getTranslateY();
 	}
 	
 	
@@ -33,11 +46,15 @@ public abstract class GameObject {
 	}
 	
 	public P2d getPosition() {
-		return position;
+		return new P2d(this.transform.getTranslateX(), this.getTransform().getTranslateY());
 	}
 
 	public void setPosition(P2d position) {
-		this.position = position;
+		AffineTransform newTransform = new AffineTransform();
+		newTransform.translate(position.getX(), position.getY());
+		this.transform = newTransform;
+		
+		//this.position = position;
 	}
 	
 	public BoundingBox getBoundingBox() {

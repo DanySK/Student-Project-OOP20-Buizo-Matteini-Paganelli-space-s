@@ -97,7 +97,7 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 		//collisioni con boss
 		if (boss.isPresent()) {
 			w.notifyWorldEvent(new HitBossEvent(boss.get()));
-			System.out.println("Preso il boss Fratellì");
+			//System.out.println("Preso il boss Fratellì");
 		}
 		
 		Optional<PickableGameObject> pickable = w.checkCollisionWithPickables(ship.getPosition(), boundingBox);
