@@ -1,13 +1,12 @@
 package model.world;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
 import model.gameObject.GameObject;
 import model.gameObject.MainGameObject;
+import model.gameObject.MovableGameObject;
 import model.gameObject.PickableGameObject;
 import model.gameObject.factories.AbstractFactoryGameObject;
 import model.gameObject.factories.ConcreteFactoryGameObject;
@@ -112,10 +111,6 @@ public class World {
 	public Optional<BoundaryCollision> checkCollisionWithBoundaries(P2d pos, RectBoundingBox box){
 		P2d ul = mainBBox.getULCorner();
 		P2d br = mainBBox.getBRCorner();
-		//System.out.println("Main Box UL " + mainBBox.getULCorner());
-//		System.out.println("Ship Box UL " + box.getULCorner());
-//		System.out.println("Position " + pos.toString());
-//		System.out.println("Transform " + ship.getTransform());
 		
 		double heightRect = box.getHeight();
 		if (pos.y < -br.y){
@@ -223,14 +218,25 @@ public class World {
 		return this.pickables;
 	}
 
-	public List<GameObject> getSceneEntities() {
-		List<GameObject> entities = new ArrayList<GameObject>();
+	public Set<MovableGameObject> getMovableEntities() {
+		Set<MovableGameObject> entities = new HashSet<>();
+		entities.add(ship);
 		entities.addAll(asteroids);
 		entities.addAll(getAllEnemies());
 		if (boss.isPresent()) {
 			entities.add(boss.get());
 		}
+		return entities;
+	}
+	public Set<GameObject> getAllEntities() {
+		Set<GameObject> entities = new HashSet<>();
 		entities.add(ship);
+		entities.addAll(asteroids);
+		entities.addAll(getAllEnemies());
+		if (boss.isPresent()) {
+			entities.add(boss.get());
+		}
+		entities.addAll(pickables);
 		return entities;
 	}
 	
