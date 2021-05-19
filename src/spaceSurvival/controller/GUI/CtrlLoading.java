@@ -33,8 +33,6 @@ public class CtrlLoading extends Thread implements ControllerGUI{
             this.gui.setLoading(this.engine.getLoading() / 25);
 
             if(this.engine.getLoading() >= 2500){
-                System.out.println("Entroooo ed escooooooooooooo");
-                this.turn(Visibility.HIDDEN);
                 this.engine.load();
             }
 

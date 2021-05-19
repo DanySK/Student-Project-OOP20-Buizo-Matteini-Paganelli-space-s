@@ -1,0 +1,1282 @@
+[33mcommit 75978969f2870289c35ff99ee8d3a4c3d9ab14da[m[33m ([m[1;36mHEAD -> [m[1;32mbuizo[m[33m, [m[1;31morigin/buizo[m[33m)[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Wed May 19 22:57:28 2021 +0200
+
+    init GUI loading
+
+[33mcommit 31f027b9e7e1d651066c650d6742f16988d90210[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Wed May 19 19:59:56 2021 +0200
+
+    new package spacesurvival
+
+[33mcommit 5ea0e09b8250ca3b55d6c18cf1d011349e0b6695[m
+Merge: ab6c0c1 e85bc16
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Wed May 19 19:50:02 2021 +0200
+
+    merge paga
+
+[33mcommit ab6c0c19b45142dcadbec731bc8ef5403cbb7199[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Wed May 19 19:42:16 2021 +0200
+
+    init loading gui
+
+[33mcommit e85bc1604347d0519cbbcc9cfb78c98c84bb0981[m[33m ([m[1;31morigin/paganelli[m[33m, [m[1;32mpaganelli[m[33m)[m
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Wed May 19 19:32:14 2021 +0200
+
+    Risolto AffineTransform e barra della vita
+
+[33mcommit f61564c34d032bc53444acbb0f88a92b0f4398b1[m
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Wed May 19 17:05:48 2021 +0200
+
+    Sistemato rotate vita
+
+[33mcommit 6f30a94cf72fb4abb705e637369a0c136521a250[m
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Tue May 18 20:08:52 2021 +0200
+
+    provato rotate
+
+[33mcommit 99aa90d1e563b3fdc66079726f291db7fc8a5ce0[m[33m ([m[1;32mmala[m[33m)[m
+Merge: 9d2a8a5 7e49201
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Tue May 18 17:25:42 2021 +0200
+
+    Merge branch 'buizo' into mala
+
+[33mcommit 7e49201fada004e9f5aa4189af4ecbc20665f801[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Tue May 18 17:24:26 2021 +0200
+
+    add 60 fps
+
+[33mcommit 9d2a8a5fddc5923ab066701676f2a206c10523f7[m
+Merge: ae715e2 2a93543
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Tue May 18 16:55:07 2021 +0200
+
+    merge with buizo(add chronometer)
+
+[33mcommit ae715e2d6934c85d8dfc61a4d828ea3208a55b4f[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Tue May 18 16:53:47 2021 +0200
+
+    add log for boss collisions
+
+[33mcommit 2a93543b98e38d535ee1e7ea26c052fa4310d0d3[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Tue May 18 16:53:14 2021 +0200
+
+    finish timer
+
+[33mcommit b20935a34ecb3d8bf866753f848742bdfa5df3d3[m
+Merge: cefe58f 49134d9
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Tue May 18 15:56:49 2021 +0200
+
+    Merge branch 'mala' into buizo
+
+[33mcommit cefe58f1ec6b2d9a002d29577c29afeed19655aa[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Tue May 18 15:56:07 2021 +0200
+
+    merge all
+
+[33mcommit 49134d910f56fa74b19ee7c52ad8bc55c3f9e574[m
+Merge: 0f3b885 82fe69b
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Tue May 18 15:51:24 2021 +0200
+
+    merge with paganelli
+
+[33mcommit 82fe69bc997cd44c6f8e50b0b1e55f6482d4ae6a[m
+Merge: 1bf42b9 f33dc69
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Tue May 18 15:49:17 2021 +0200
+
+    solved conflict
+
+[33mcommit 1bf42b91f473d360e5bad3c9a5e558748f4dd32f[m
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Tue May 18 15:41:26 2021 +0200
+
+    sistemata posiztion, comando rotate concreto da rivedere
+
+[33mcommit 0f3b885bba6ba3814c33b5459f8701ae896c9c66[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Tue May 18 15:41:14 2021 +0200
+
+    finished factories, inserted in world, added checkCollisions in ShipPhysics
+
+[33mcommit f33dc6990a9a78965a7bcefe03ef52814cb4118c[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Tue May 18 06:36:45 2021 +0200
+
+    timer thread
+
+[33mcommit d352af399adf2aa7f768a4fca0ea3afd58c30cd0[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Mon May 17 23:35:26 2021 +0200
+
+    init timer
+
+[33mcommit 26b27d574dbdd025a453187ab745ef0d713431fe[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Mon May 17 21:42:45 2021 +0200
+
+    finish graphics lifebar boss
+
+[33mcommit fee48002e5b5fa1fb9bb6c789a6f1d1b4692a42a[m
+Merge: 3b446fd 12b0eec
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Mon May 17 19:09:15 2021 +0200
+
+    Merge branch 'mala' into buizo
+
+[33mcommit 3b446fd159e263a98b7bf0b375cb0c4ee781fd14[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Mon May 17 19:07:56 2021 +0200
+
+    add life bar spaceship and boss
+
+[33mcommit 12b0eec47be99f4039806de35e2de15931978b60[m
+Merge: 78a67ac 484d099
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Mon May 17 17:25:12 2021 +0200
+
+    merge with buizo
+
+[33mcommit 484d09973ff1bdb3671d35a8bb36755900bb98aa[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Mon May 17 17:14:36 2021 +0200
+
+    delete .metadata
+
+[33mcommit 78a67accfa3929770e289139aa26dc8c97b2e9ab[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Mon May 17 17:14:22 2021 +0200
+
+    finished factories, added impactDamage to MainGameObject, add checkCollisions to ShipPhysics, modified world entities in HashSet
+
+[33mcommit 1af8f4af0f8e41e9610e509f2e825585c76b955b[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Mon May 17 17:13:41 2021 +0200
+
+    add lifebar spaceship gamegui
+
+[33mcommit 20085c01d52adc4673a4682d153a1146690d5e5d[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Mon May 17 15:04:30 2021 +0200
+
+    controllo position
+
+[33mcommit bba26f626de1340b6e434c0f1fe96a0d37b76304[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Sun May 16 16:27:08 2021 +0200
+
+    print position
+
+[33mcommit f5b8ec2304ef9b9106321ab5031bc88e6b4d4825[m
+Merge: ec791ba dafafe2
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Sun May 16 16:23:14 2021 +0200
+
+    no solved position
+
+[33mcommit ec791ba494e9e8d9ed5b6f4df0404a02c897d3c5[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Sun May 16 16:14:49 2021 +0200
+
+    problem position spaceship
+
+[33mcommit dafafe2d83832ada29bc03abe5f4cc15efeae9bb[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Sat May 15 22:04:54 2021 +0200
+
+    add lifebar game object
+
+[33mcommit ae7d6f1a83f7ff78d55c04fe833e9ac1971eff28[m
+Merge: e894555 c93e0ae
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Sat May 15 19:00:22 2021 +0200
+
+    Merge branch 'paganelli' into buizo
+
+[33mcommit e894555ce2c82983e9a1c1f65fb9adab0580f678[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Sat May 15 18:59:38 2021 +0200
+
+    remove file idea
+
+[33mcommit c93e0ae05e1ca224cbc4fd783026b6cc72585fe9[m
+Merge: ccb3ec8 fc078b0
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Sat May 15 18:58:04 2021 +0200
+
+    merged with buizo
+
+[33mcommit fc078b0777905e1e428fa461061afd627313bd49[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Sat May 15 18:54:48 2021 +0200
+
+    add real skin and solved settings skin
+
+[33mcommit ccb3ec8bea0f5994478ae327214a4c990221f842[m
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Sat May 15 18:50:15 2021 +0200
+
+    rimosso soundTest project e collisioni con muro aggiunte
+
+[33mcommit 3facf3730fa197f0792181034dc6deb43e4d8b2f[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Sat May 15 18:30:32 2021 +0200
+
+    inserted factories in world, renamed electric.png
+
+[33mcommit 350290f2f92ea9e12d3819ad9f0128d86ca571f6[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Sat May 15 15:58:06 2021 +0200
+
+    added move() method and AffineTransform to MovableObject
+
+[33mcommit 5f15e0181525bb9e112c6b54a72dcb88ef2bc867[m
+Merge: 199b04d 9e5f90a
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Sat May 15 15:34:36 2021 +0200
+
+    merged with buizo and redeleted SoundTest
+
+[33mcommit 9e5f90ac076fb4f00f48b0cb89c2177a6c24beda[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Sat May 15 13:23:08 2021 +0200
+
+    add change skin from settingsgui
+
+[33mcommit 0ee7a8e7b2ea1f447c4914abb9aefef40648affe[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Fri May 14 21:09:52 2021 +0200
+
+    merge paga
+
+[33mcommit 199b04d356eb50effaaa6f336617342b315671a4[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Fri May 14 19:36:40 2021 +0200
+
+    deleted SoundTest
+
+[33mcommit 1e273605f155cb33b177324fc5d0e1ef6d045cce[m
+Merge: 63b1952 c0234ec
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Fri May 14 19:27:48 2021 +0200
+
+    Merge branch 'paganelli' into buizo
+
+[33mcommit 63b1952b04e40489764eef1dfa2a4c47044c04da[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Fri May 14 19:27:02 2021 +0200
+
+    finish audio
+
+[33mcommit c0234ecfddde5eb921299e7b00ad9989fd2506f1[m
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Fri May 14 19:24:10 2021 +0200
+
+    mergiato mlaa e sistemato un p2d
+
+[33mcommit d51195a4b7cf7059583630c3a02caad8bbe80c43[m
+Merge: cac237a 94ee7af
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Fri May 14 19:20:29 2021 +0200
+
+    merged mala
+
+[33mcommit cac237acf907bb272a24116f882286627098a4bc[m
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Fri May 14 19:11:56 2021 +0200
+
+    HABEMUS SPACESHIP
+
+[33mcommit 94ee7af5ab49c19e69df42a477e7c01261677177[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Fri May 14 17:36:53 2021 +0200
+
+    finished audio
+
+[33mcommit 610c3137947d13599d3d2c2f5de991cd6c58a91d[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Fri May 14 17:22:58 2021 +0200
+
+    buizo and intelliJ are stupid
+
+[33mcommit 57bc30c0e0a6657662b749163ccf2c005ed3f037[m
+Merge: 746d5dd d6cbedc
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Fri May 14 16:36:38 2021 +0200
+
+    Merge branch 'mala' into buizo
+
+[33mcommit 746d5dd1ef3934aef25eb1a769031f792780a500[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Fri May 14 16:35:47 2021 +0200
+
+    add sound slider
+
+[33mcommit d6cbedc6eacfb42e30623275cdc93ae7595c6cc7[m
+Merge: 471f0f5 6bc85b4
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Fri May 14 16:34:55 2021 +0200
+
+    merged with buizo(AbsGameObject, HitEvent, solve conflicts)
+
+[33mcommit 6bc85b4ae67c35cff44d91c6541f9e82a73e06fb[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Fri May 14 15:27:51 2021 +0200
+
+    remove thread sound
+
+[33mcommit 3a5cea8d8cda6d6d41b9b446705e5f5c5c2ba8fd[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Fri May 14 14:10:57 2021 +0200
+
+    manager sound in other thread
+
+[33mcommit 4ae8e40c51fd4fc7d84b21ba079bfac73ccce756[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Thu May 13 22:42:10 2021 +0200
+
+    finish background sound
+
+[33mcommit e7e8f375f374b4e8fbb1b20014f5f8f5d3612e56[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Thu May 13 22:30:44 2021 +0200
+
+    improvement sound
+
+[33mcommit f271ba35d0e384563ef7aa23e57010158089768e[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Thu May 13 20:17:03 2021 +0200
+
+    solved sound
+
+[33mcommit 471f0f500539fa39d3248f9d3c1ce1525bf44f6d[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Thu May 13 19:29:37 2021 +0200
+
+    added increase/decrease life in MainGameObject, and relative controls in GameState with gameOver
+
+[33mcommit 09c251c4f8a554f2a0e2248fcb3a40a74b101837[m
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Thu May 13 19:28:48 2021 +0200
+
+    suono clip
+
+[33mcommit bbc9952a1c7343912f52bef25b65bf1a389da78f[m
+Merge: 9242ffa 8ea5837
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Thu May 13 19:15:02 2021 +0200
+
+    solved conflict buizo
+
+[33mcommit 8ea5837a5dd2be00872b1cade9efa0d15026c964[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Thu May 13 19:13:31 2021 +0200
+
+    merge paga
+
+[33mcommit 9242ffadce601c17cc90c77981a4bf90ba24cb13[m
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Thu May 13 19:12:46 2021 +0200
+
+    cambiato il setClip()
+
+[33mcommit 0aa9da1669d61f22643ec51f245cc4f5bb9f1a4a[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Thu May 13 18:43:24 2021 +0200
+
+    replaced Abstract with Movable in MovementCommand, and SpaceShipSingleton in GameState, GameLoop ecc..
+
+[33mcommit 36111d36a5fd6a05f22dc906935ca3978e86483d[m
+Merge: 3e576ac d8afab7
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Thu May 13 18:03:31 2021 +0200
+
+    merged paga
+
+[33mcommit 6a4f5f918876c5dd0e590353ff5b206bf7e14685[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Thu May 13 17:58:08 2021 +0200
+
+    modified hierarchy: AbsGameObject, MovableGameObject, MainGameObject. Created their PhysicsComponent
+
+[33mcommit 3e576ac7d786266a621bc5d476ee4305c4233f72[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Thu May 13 17:57:56 2021 +0200
+
+    add icon button in guiPause
+
+[33mcommit d8afab7497792f459e56ec5a4afddbac2b760acf[m
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Thu May 13 17:57:12 2021 +0200
+
+    provato sound
+
+[33mcommit 3c6b323a942135d09284df6d4da2220da7ddbc21[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Thu May 13 16:22:27 2021 +0200
+
+    fix skin and add class screen scaleOf
+
+[33mcommit 88e07436327d4ccbb003890e8b792c9e9d208204[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Wed May 12 17:56:15 2021 +0200
+
+    renamed GameLoop, modified life/lives GameState
+
+[33mcommit 316c42ab11fce0c2c46c463031947b8fdaecf58f[m
+Merge: bbbb407 d795713
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Wed May 12 17:38:07 2021 +0200
+
+    merge paganelli
+
+[33mcommit bbbb4075c8be8a2407fa7e16df882c563f4f3210[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Wed May 12 17:35:01 2021 +0200
+
+    add skin spaceship
+
+[33mcommit e4d39e1c7e730469b4aa1af5a335677f69882622[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Wed May 12 17:32:13 2021 +0200
+
+    add skin spaceship
+
+[33mcommit d795713800a52783c358ecbd63a6ac68584c9d39[m
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Wed May 12 17:30:48 2021 +0200
+
+    suono globale
+
+[33mcommit 31651e10e41911db90289649e863f4ed462a9a03[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Wed May 12 17:30:40 2021 +0200
+
+    deleted Environment
+
+[33mcommit d5754d44766021e29d85c536c38bfb61cdcbba97[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Wed May 12 17:23:11 2021 +0200
+
+    cleaned project, modified constructors and BB
+
+[33mcommit bc9c67f009aa020323e285e6e3cbeaafa91860c0[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Wed May 12 17:21:03 2021 +0200
+
+    reset project
+
+[33mcommit 2d857cea38dc4654cedf74440283353726edbe47[m
+Merge: 7f6927a e2c85c5
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Wed May 12 14:55:31 2021 +0200
+
+    Merge branch 'paganelli' into buizo
+
+[33mcommit 7f6927abb2d073a1e34c6301b905bc672080c42b[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Wed May 12 14:47:07 2021 +0200
+
+    add portatile loop
+
+[33mcommit e2c85c5b4eb7db29d5dc48f8bfdc646b4cc61b25[m
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Tue May 11 17:42:15 2021 +0200
+
+    aggiunto tipi di collisione, aggiunto anche metodo commentato per settare lo stato dato il perk raccolto
+
+[33mcommit 76cf501a6a539c8492bd71940b951ac6589e3356[m
+Merge: b7ef582 7eb371d
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Tue May 11 16:07:49 2021 +0200
+
+    merged with buizo
+
+[33mcommit b7ef5820087a0e15dd91d1be9a0bf86e35eb36fe[m
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Tue May 11 16:05:34 2021 +0200
+
+    collisioni rectboundingbox dobvrebbero essere ok
+
+[33mcommit 7eb371d483ad1ca16b745d11407687c59363f031[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Tue May 11 13:29:04 2021 +0200
+
+    test fix sound falied
+
+[33mcommit dc06e0947aa9426cc02eded4e9dc9ccb428553f8[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Mon May 10 17:59:31 2021 +0200
+
+    improvement guiPause graphics
+
+[33mcommit 3de7fb26373877cc7a478310e5bbc09aef1f999d[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Mon May 10 17:28:23 2021 +0200
+
+    fix button pause
+
+[33mcommit a479f9964fb87abe8260eb0a19c00c2264e43570[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Sun May 9 22:47:28 2021 +0200
+
+    prototype guiPause
+
+[33mcommit cf8a2409765e2cd3a51fb5c5b105f9bd55f5d2b5[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Sat May 8 21:57:22 2021 +0200
+
+    improvement FactoryGUIs
+
+[33mcommit c66892b0d683cac267e88611ea6241393b03751b[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Fri May 7 13:59:01 2021 +0200
+
+    fix allign center hud
+
+[33mcommit 413cd76541bc7571d1b4e58885c0ce579327e69a[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Thu May 6 21:16:09 2021 +0200
+
+    fix multi sound
+
+[33mcommit 24c3c084f71da99c97dfea80fee1779dd6cd11c4[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Thu May 6 20:46:20 2021 +0200
+
+    add background sound
+
+[33mcommit 9cfb48befbf618d081dc718d83625e86989a7eb3[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Thu May 6 15:06:35 2021 +0200
+
+    integrated gameloop
+
+[33mcommit 22bba943b87c103b9f72ed18a65ae72bd23741e3[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Thu May 6 12:20:26 2021 +0200
+
+    odifed Weapon, initialized Bullet, add Movable
+
+[33mcommit 5c3caf3176f8af837d6365bb6541978f1ecc8dcf[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Wed May 5 18:41:09 2021 +0200
+
+    iniziate collisioni con test, più aggiunte rotazioni nei comandi concreti
+
+[33mcommit 7b1f74915e53381932673c1e7ff19997ca0d6bca[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Wed May 5 15:20:35 2021 +0200
+
+    update panelGame
+
+[33mcommit a2b4de60bfac1fce6ed41b22a5e0600713a96921[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Tue May 4 19:32:56 2021 +0200
+
+    resolve merge paga
+
+[33mcommit b4f8ce7628edfa75fc96da139a049b2eb0c596a8[m
+Merge: 93199b3 5d1960c
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Tue May 4 19:22:50 2021 +0200
+
+    merge pag
+
+[33mcommit 93199b3ee88b0bbe79bb724a38affce838361556[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Tue May 4 19:20:47 2021 +0200
+
+    add function getImage from engineImage from AbstractGameObject
+
+[33mcommit 5d1960cbb0cf1c89fa5b70fd72166faa8c0ef971[m
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Tue May 4 19:14:46 2021 +0200
+
+    aggiunto world
+
+[33mcommit 72f7ac176abf341bf0943d8dd8feb719b2f9e179[m
+Merge: d8d9ec7 31330e8
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Tue May 4 18:14:53 2021 +0200
+
+    solved conflict su keylistener, messo il mio
+
+[33mcommit d8d9ec720206c6650cb90305844a35e7ae402fbd[m
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Tue May 4 18:13:29 2021 +0200
+
+    modificato due su duemila warning
+
+[33mcommit c4aad1d2e406f7075b363f056a62cd9148dc5f3d[m
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Tue May 4 18:03:10 2021 +0200
+
+    Aggiunto controller, pero non ci si capisce niente tra i 3000 package a caso
+
+[33mcommit 31330e823dd9f144eac37c017aefe8bbfabfed71[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Tue May 4 17:57:21 2021 +0200
+
+    add repaintGameObjects function in gameGUi
+
+[33mcommit 0e9720740c4fbbfd1023237ba2c997dea95288b2[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Tue May 4 17:41:45 2021 +0200
+
+    add panelGame and function add gameObject
+
+[33mcommit 1719a393eccc5c2b0dce924e0287f13f0eea02c8[m
+Merge: b498579 7a97acd
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Tue May 4 16:31:42 2021 +0200
+
+    mergo con buizo
+
+[33mcommit 7a97acd51b2d110336fca338c3b134511e00d731[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Tue May 4 11:01:07 2021 +0200
+
+    solved merge spaceShipView
+
+[33mcommit e7826f6ae06a94ad48c8717d8d507480e016e7aa[m
+Merge: 82b3ed4 d564f08
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Tue May 4 10:58:36 2021 +0200
+
+    self merge
+
+[33mcommit 82b3ed49e9784fe5b106b66ba3563cc32f663160[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Tue May 4 10:51:31 2021 +0200
+
+    add gamepanel
+
+[33mcommit b49857967c3e0e849caa3e0f4822efef022152cf[m
+Merge: ea09175 d564f08
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Mon May 3 17:01:16 2021 +0200
+
+    merge buizo
+
+[33mcommit d564f083daf24183ebe2b39ef153e88aa269b801[m
+Merge: e5b120c 99712c6
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Mon May 3 16:58:52 2021 +0200
+
+    merge mala
+
+[33mcommit 99712c691e4e4b0494979128da155c9883dfe473[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Mon May 3 16:54:21 2021 +0200
+
+    modified ShipView with graphics, imageIcon, transform; modified Enemies toString()
+
+[33mcommit ea09175c1c1254b1e38fd4906ef3e3f59eea0323[m
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Mon May 3 16:53:56 2021 +0200
+
+    comandi on offf e rotation concrete
+
+[33mcommit e5b120c7e9154ba4cd31a3cdb51511d96dfc8650[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Mon May 3 16:53:39 2021 +0200
+
+    delet view ship
+
+[33mcommit 1fe73d1e4c77561ef18043864288713afce2a644[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Thu Apr 29 18:54:41 2021 +0200
+
+    added fullScreen and setted StandardGUI
+
+[33mcommit bec4bccdb5613901f25005aee08b25a73a09cc2a[m
+Merge: 3aa906a 4c67521
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Thu Apr 29 16:55:02 2021 +0200
+
+    Merge branch 'buizo' into paganelli
+
+[33mcommit 3aa906a8082aa4f5cd2796f2d453dee8a6db228f[m
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Thu Apr 29 16:53:11 2021 +0200
+
+    ggiunti comandi rotate
+
+[33mcommit 4c675219ddb94dca307086058d5bd926af03399d[m
+Merge: 0ba536a 03d4ac6
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Thu Apr 29 16:52:45 2021 +0200
+
+    Merge branch 'paganelli' into buizo
+
+[33mcommit 0ba536ab7e949055aa5f93e0a46c4800779c4089[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Thu Apr 29 16:50:44 2021 +0200
+
+    add setRespetTo in EngineImage
+
+[33mcommit d829c04b7869276d6f799bd1691317ce1283dc56[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Thu Apr 29 16:20:02 2021 +0200
+
+    fullscreen for mac
+
+[33mcommit 0e2c09b34a327acd1a5cdbc4832acaa2c8940c13[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Thu Apr 29 16:09:07 2021 +0200
+
+    merge mala
+
+[33mcommit 6991991c7cb7b4305d9dd3ab49c1c98401269d23[m
+Merge: 4f72785 102322f
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Thu Apr 29 16:08:08 2021 +0200
+
+    Merge branch 'mala' into buizo
+
+[33mcommit 4f7278501b1674bde0a10729128d04a379ec79f0[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Thu Apr 29 16:06:46 2021 +0200
+
+    add function scale EngineImage
+
+[33mcommit 102322f7cd3857453c853f791920fdfc993e85ec[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Thu Apr 29 16:02:43 2021 +0200
+
+    set EngineImage inside AbstractGameObject
+
+[33mcommit 9996ebdba61aaca99cf07734a21a861853d50c40[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Thu Apr 29 14:58:17 2021 +0200
+
+    aggregate fields scaleOf and respectTo in EngineImage
+
+[33mcommit 03d4ac62c979e2b03065daebe7add39aa9352201[m
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Wed Apr 28 18:49:59 2021 +0200
+
+    Aggiunto suono a command patt
+
+[33mcommit 35f969bb70e83097d8452ab93be6a142d3b2f2db[m
+Merge: 6c7fc15 2e48099
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Wed Apr 28 18:23:58 2021 +0200
+
+    solved conflict mala factory enemies and spaceshipSingleton
+
+[33mcommit 2e48099875d57b2affbecfd232f0a5084e10e9bb[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Wed Apr 28 18:13:12 2021 +0200
+
+    deleted AbstractEnemy, linked SpaceShip to AbstractGameObject, modified Factories
+
+[33mcommit 6c7fc15e7d3ad2e3f07367ded2f9ad8984b14a02[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Wed Apr 28 17:54:17 2021 +0200
+
+    create constructor with rate in EngineImage
+
+[33mcommit 3ac79834ab2ee55bdba63de254c2903d88ecb5b4[m
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Wed Apr 28 15:45:10 2021 +0200
+
+    Aggiunto codice per world
+
+[33mcommit 2467ec6a39e5f972e5909de06ace80a8bb4063ed[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Tue Apr 27 22:38:42 2021 +0200
+
+    change class: JImage extends JComponent
+
+[33mcommit aff7c9093b531e1b5efbd3f5b4c68aa28995cc8b[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Mon Apr 26 18:13:32 2021 +0200
+
+    modified abstractfactory, created Axis, V2d(temp), Weapon, GameObjectUtils
+
+[33mcommit f23aa72fc3a61ffbdea47eeb97332ecd3ee0118b[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Sun Apr 25 18:09:49 2021 +0200
+
+    change all class image with JImage and EngineImage
+
+[33mcommit a9ed1ade043284ce07080735a6dee6f307a5bc6c[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Sat Apr 24 22:51:00 2021 +0200
+
+    add border all gui except game and menu
+
+[33mcommit 907cc01647b454ea2a9362005c094badd4d1aee4[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Sat Apr 24 20:12:46 2021 +0200
+
+    transform fullscreen game
+
+[33mcommit 91484d3aa6bca4a422048c1772697c5b8f90add2[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Sat Apr 24 19:12:04 2021 +0200
+
+    resolved packages problem gameElement
+
+[33mcommit fe78fc067d60c3efb91f1fa81155cf2f4e57bc8e[m
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Sat Apr 24 18:41:18 2021 +0200
+
+    aggiunto progetto ricci, da rimuovere
+
+[33mcommit 439dc2df227473f7fbfbf2236c49549d03276d57[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Sat Apr 24 18:03:14 2021 +0200
+
+    started gameElement factory
+
+[33mcommit 01507a7eae921b60ee675e72498064529e262a49[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Sat Apr 24 17:43:46 2021 +0200
+
+    update DesigneJframe
+
+[33mcommit 19efa98279b8675735bbfa782ea4c26e8ee840e3[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Sat Apr 24 15:19:40 2021 +0200
+
+    remove prova.txt
+
+[33mcommit eae3a6cf4654c08ed098591ba6fed7eb1c38b169[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Sat Apr 24 15:04:03 2021 +0200
+
+    remove prova.txt
+
+[33mcommit b994781711582c6257e9d658949b4662ea9d241e[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Sat Apr 24 15:02:13 2021 +0200
+
+    remove prova.txt
+
+[33mcommit 16e79f12fe761ff6f67b417a905ada49e30fe5c7[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Sat Apr 24 15:01:27 2021 +0200
+
+    add prova.txt
+
+[33mcommit e233533c1d892ec3b9c373c8c84783b2f5b29c17[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Fri Apr 23 19:29:16 2021 +0200
+
+    fix movement dir
+
+[33mcommit 7f38bd1efb125a392f072709d893ac3f3bbd8e7c[m
+Author: Alberto Paganelli <albi1600@gmail.com>
+Date:   Fri Apr 23 19:24:57 2021 +0200
+
+    modificato pattern movimento, da collegare fisica e da togliere observer del suono
+
+[33mcommit 46d8e1cf508285dded4b4925fa938e2a59f9708c[m
+Merge: 841fdab a30a2be
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Fri Apr 23 19:24:40 2021 +0200
+
+    Merge branch 'mala' into buizo
+
+[33mcommit a30a2be03d3cb6b2a12d729b9ab989c9eb8e5707[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Fri Apr 23 19:20:24 2021 +0200
+
+    modify switch case for lower jre versions
+
+[33mcommit 841fdab9ca329ab30d676c7737c4a0d3ee45357f[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Fri Apr 23 19:20:20 2021 +0200
+
+    movement
+
+[33mcommit a1f8dca24076c03b620861eeb466b1d0f45c98be[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Fri Apr 23 18:14:13 2021 +0200
+
+    add spaceship in gameGUI
+
+[33mcommit cd5a452a3b728f34240f51b7cd98126f84b8ad7c[m
+Merge: bfd7912 42d0ad9
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Fri Apr 23 17:27:29 2021 +0200
+
+    revisited speceShip packages and merged with buizo
+
+[33mcommit 42d0ad969bfcf6f71ba0c8022599c64414e059e7[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Fri Apr 23 16:37:33 2021 +0200
+
+    init patter state and push for mala
+
+[33mcommit cd5d395d6d18859a89aaae70a7672310a40b81a1[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Fri Apr 23 16:13:55 2021 +0200
+
+    fix and improvement command switchGUI
+
+[33mcommit bfd7912d6bace4888bd257bc98e534c9eace5e83[m
+Author: Mattia Matteini <matteinimattia@gmail.com>
+Date:   Fri Apr 23 15:47:37 2021 +0200
+
+    remove prova.txt
+
+[33mcommit 13e06a23add97afbbcf3b4a859c4764cea392405[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Thu Apr 22 18:33:29 2021 +0200
+
+    fix sound controller and respect model
+
+[33mcommit 9e553b0e40ed0daa47e35d175b6a29cc6833b6c9[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Wed Apr 21 19:19:21 2021 +0200
+
+    test update sound game and sound menu
+
+[33mcommit 2819ecabe565215070d7f77a548ef51f3df3f5be[m
+Merge: 49ab6d7 13bc356
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Wed Apr 21 18:03:59 2021 +0200
+
+    Merge branch 'paganelli' into buizo
+
+[33mcommit 13bc356fc2e0ca959a43133ad911e0443f04bd55[m
+Merge: 8e13bb5 86b588d
+Author: paga16-hash <62810517+paga16-hash@users.noreply.github.com>
+Date:   Wed Apr 21 17:02:41 2021 +0200
+
+    Merge pull request #11 from paga16-hash/paganelli
+    
+    Aggiunto mio progetto, puoi prendere il package sound
+
+[33mcommit 49ab6d7f02b8acbeb6c73d7b79840c890c8d1b6b[m
+Author: Manuel <buizomanuel@gmail.com>
+Date:   Wed Apr 21 17:00:27 2021 +0200
+
+    add engine UnitSound
+
+[33mcommit 86b588d93b4878924bd7c98acebc3c08620d8ba2[m
+Author: Alberto <albi1600@gmail.com>
+Date:   Wed Apr 21 16:32:44 2021 +0200
+
+    Aggiunto mio progetto, puoi prendere il package sound
+
+[33mcommit 08d4c2b408bbd16b171c0abf763d6fddf39cde76[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Wed Apr 21 15:42:16 2021 +0200
+
+    add view gameGUI
+
+[33mcommit 3be9a38a223dc5f561c2caef98ff78d25436c3f0[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Thu Apr 15 17:42:17 2021 +0200
+
+    improvement all model GUI
+
+[33mcommit ab5b5784ed1a620c7b0ffc96ff077722ededd1c7[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Thu Apr 15 15:42:12 2021 +0200
+
+    add enum Visibility and add path in DefaultPathIcon
+
+[33mcommit b58d772295edb2af353101aab5ce58d794a6b534[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Thu Apr 15 12:59:02 2021 +0200
+
+    add interface ControlGUI
+
+[33mcommit c7878666dd1f68425335f34fe64eafe91f7dc819[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Wed Apr 14 18:53:24 2021 +0200
+
+    improvement engineHelp model
+
+[33mcommit 241d62b190bb24530c41b55ba06f7a22bf276ddb[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Wed Apr 14 18:01:34 2021 +0200
+
+    improvement helpGUI view
+
+[33mcommit 74ea73662c3dfdcbb718d5a9f90caff04a757ab7[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Wed Apr 14 16:40:37 2021 +0200
+
+    add function close gui
+
+[33mcommit 6a35e0366c216a11e4c9cde0e9ba9cbdc0e83a4c[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Wed Apr 14 11:23:58 2021 +0200
+
+    fix exchange gui
+
+[33mcommit 0fa848c5512e1191589f3f8730806df7ea6bc7b7[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Tue Apr 13 13:04:52 2021 +0200
+
+    add switch sound
+
+[33mcommit 9ae749cd6ffeb0ef5496db7aebaad05b18305b79[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Mon Apr 12 20:20:56 2021 +0200
+
+    add img for help GUI
+
+[33mcommit 7ad43253b5209823e1a00d49aecc0182d7fb7168[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Sat Apr 10 18:33:54 2021 +0200
+
+    add icon in guis
+
+[33mcommit b54754cab2f5e1671e7888585722d91a1ce52870[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Thu Apr 8 16:28:18 2021 +0200
+
+    add controller settingsGUI
+
+[33mcommit 497f4e8b8a6ab8cf87146f766d95153bebb40a0a[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Sun Apr 4 18:50:16 2021 +0200
+
+    add tool for github
+
+[33mcommit 44b4887408d18aa4402c0d08f86469dff70d34ca[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Thu Apr 1 20:41:45 2021 +0200
+
+    improvement ConcreteMenu and interface
+
+[33mcommit 07988dd4fcaf5c0350cd4055b76ac77494733109[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Wed Mar 31 17:07:29 2021 +0200
+
+    improvement AbstractGUI e add JPanelImage
+
+[33mcommit 931dcafb9f4da1ab874e7b34e2d47ff736614bb1[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Tue Mar 30 18:00:38 2021 +0200
+
+    raname packeges and modules
+
+[33mcommit 2675cc059e708fb07b05d611b1411c431792f867[m
+Merge: 4606054 471c8fb
+Author: Mala1180 <50589684+Mala1180@users.noreply.github.com>
+Date:   Fri Mar 26 21:08:14 2021 +0100
+
+    Merge pull request #10 from Mala1180/mala
+    
+    added ImageRate to spaceship
+
+[33mcommit 471c8fb3b09d8e0c53ebc35b425d9a246bbb2922[m
+Author: Mala <matteinimattia@gmail.com>
+Date:   Fri Mar 26 21:07:16 2021 +0100
+
+    added ImageRate to spaceship
+
+[33mcommit 460605440aec7a35c7f8375f06d5e502520c3cde[m
+Merge: 26ddc89 6b93a36
+Author: Mala1180 <50589684+Mala1180@users.noreply.github.com>
+Date:   Fri Mar 26 16:52:15 2021 +0100
+
+    Merge pull request #9 from Mala1180/mala
+    
+    Mala
+
+[33mcommit 6b93a369f04ff29d51ae27f37379dba89e682180[m
+Author: Mala <matteinimattia@gmail.com>
+Date:   Fri Mar 26 16:48:16 2021 +0100
+
+    prova2
+
+[33mcommit 30ca143a41e871fb04e3f2cab7b73287472a1b61[m
+Author: Mala <matteinimattia@gmail.com>
+Date:   Fri Mar 26 16:46:23 2021 +0100
+
+    prova
+
+[33mcommit 26ddc8922d431b75902acb4a7c86a25f5bb1ca44[m
+Merge: e459f50 3746e21
+Author: Mala1180 <50589684+Mala1180@users.noreply.github.com>
+Date:   Fri Mar 26 16:28:56 2021 +0100
+
+    Merge pull request #8 from Mala1180/mala
+    
+    Mala
+
+[33mcommit 865c43337ecb2388086c26f4d0876f3123710a11[m
+Merge: 2678ce5 e459f50
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Fri Mar 26 16:23:52 2021 +0100
+
+    Merge branch 'mala' into buizo
+
+[33mcommit 2678ce5745f705c6c741c3e10afbb42981ba62b9[m
+Merge: 0c204b2 3746e21
+Author: Mala1180 <50589684+Mala1180@users.noreply.github.com>
+Date:   Fri Mar 26 16:02:02 2021 +0100
+
+    Merge pull request #6 from Mala1180/mala
+    
+    Mala
+
+[33mcommit 3746e2122d88ea8cae3a309c3d74ae4953606b5a[m
+Merge: e8ab61a 82b424b
+Author: Mala1180 <50589684+Mala1180@users.noreply.github.com>
+Date:   Fri Mar 26 15:55:29 2021 +0100
+
+    Merge pull request #3 from JBmanu/developing
+    
+    Developing
+
+[33mcommit e459f5049fc60e7926c05a44e384f05fe0745e90[m
+Merge: 8e13bb5 e8ab61a
+Author: Mala1180 <50589684+Mala1180@users.noreply.github.com>
+Date:   Fri Mar 26 15:38:16 2021 +0100
+
+    Merge pull request #3 from Mala1180/mala
+    
+    Mala
+
+[33mcommit e8ab61a91a230d48692d69bfc45c0ac6e01bc4c0[m
+Author: Mala <matteinimattia@gmail.com>
+Date:   Fri Mar 26 15:23:18 2021 +0100
+
+    modified spaceship classes and point2d
+
+[33mcommit 82b424b650fa5629c2ac40b8c2dbebf0e71fef5d[m[33m ([m[1;31morigin/developing[m[33m)[m
+Merge: 04e81e0 0c204b2
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Fri Mar 26 00:13:47 2021 +0100
+
+    Merge branch 'buizo' into developing
+
+[33mcommit 0c204b2aa508ec0232e4b48b3e026a4d8fd30e79[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Fri Mar 26 00:13:17 2021 +0100
+
+    add new JImageRate and JImageRateEngine
+
+[33mcommit d1bf2d96f506639d2e31ff9e604deb8586c1a9a2[m
+Merge: d090c2c f08ccfe
+Author: Mala <matteinimattia@gmail.com>
+Date:   Wed Mar 24 18:13:59 2021 +0100
+
+    merged with developing
+
+[33mcommit f08ccfead37b58b6259babb21a26f0db45b917e5[m
+Merge: 8e13bb5 04e81e0
+Author: Mala1180 <50589684+Mala1180@users.noreply.github.com>
+Date:   Wed Mar 24 17:45:44 2021 +0100
+
+    Merge pull request #2 from JBmanu/developing
+    
+    Developing
+
+[33mcommit 04e81e0854269e477a36f68ae316d459560c138a[m
+Merge: fd5a33e 0123702
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Wed Mar 24 17:38:03 2021 +0100
+
+    initialized developing, update all gui and MyJImage from buizo
+
+[33mcommit fd5a33e2a6e1bb4766dc65f42b30580141203ae3[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Wed Mar 24 17:30:54 2021 +0100
+
+    add .idea to .gitignore
+
+[33mcommit 01237023c29fc7e7a23c56dd081a89365a4b78fc[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Wed Mar 24 17:25:14 2021 +0100
+
+    add slide skin end MJImage
+
+[33mcommit d090c2c8d428086ac9f01f98e0af5b714cb22400[m
+Author: Mala <matteinimattia@gmail.com>
+Date:   Wed Mar 24 16:00:42 2021 +0100
+
+    initial create spaceship package and Point2D, added CENTER_ENVIRONMENT in DesignSpace
+
+[33mcommit 873fd759314b82fb87d386177be6aacde0e7ef26[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Tue Mar 23 22:13:00 2021 +0100
+
+    add change icon Spaceship with Settings
+
+[33mcommit 9b3c8ca4633b03a5ac3a626bb520955a9805c865[m
+Merge: 4f7604b c7e031d
+Author: Mala1180 <50589684+Mala1180@users.noreply.github.com>
+Date:   Tue Mar 23 15:59:21 2021 +0100
+
+    Merge pull request #1 from JBmanu/main
+    
+    add all gui
+
+[33mcommit c7e031dc074ba80a21a59483b35beb613d2091f4[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Tue Mar 23 15:47:08 2021 +0100
+
+    add all gui
+
+[33mcommit 4f7604b6fae9980f9dca9b4f4dc0221bcb07dd47[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Fri Mar 19 14:28:33 2021 +0100
+
+    create Model and Controller SettingsGUI
+
+[33mcommit 90275864062a22187b26077651a95766ecae2078[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Fri Mar 19 12:22:38 2021 +0100
+
+    create View SettingsGUI e add UML
+
+[33mcommit b2cbbd6750cc931857a8b9ac6aa76ad082f94423[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Tue Mar 16 15:07:37 2021 +0100
+
+    create factory GUI
+
+[33mcommit 8e13bb5f25863edd7710f2eed180625a67cb04ef[m[33m ([m[1;31morigin/featureWindowFactory[m[33m)[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Wed Mar 3 20:18:17 2021 +0100
+
+    add proposta progetto
+
+[33mcommit ba0ef72f4b72ff6e38a1d221f321ce1e2c785f99[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Wed Mar 3 20:05:08 2021 +0100
+
+    add proposta progetto
+
+[33mcommit df6a83a41922b0584c678e49bec52ee0efa5783f[m
+Author: Bmanuel <buizomanuel@gmail.com>
+Date:   Wed Mar 3 20:03:34 2021 +0100
+
+    init project
+
+[33mcommit b6404f348a9abb9fe796f681c9a75c12238632ae[m
+Author: Manuel Buizo <65312924+JBmanu@users.noreply.github.com>
+Date:   Wed Mar 3 20:03:04 2021 +0100
+
+    Update README.md
+
+[33mcommit 69a3839d6472824e135359c80d488cb06fdbfc60[m
+Author: Manuel Buizo <65312924+JBmanu@users.noreply.github.com>
+Date:   Wed Mar 3 20:02:04 2021 +0100
+
+    Initial commit

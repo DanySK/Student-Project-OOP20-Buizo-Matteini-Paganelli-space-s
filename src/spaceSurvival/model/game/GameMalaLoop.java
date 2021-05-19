@@ -72,19 +72,15 @@ public class GameMalaLoop extends Thread implements WorldEventListener {
         this.panelGame.getPanelGame().addGameObject(this.gameState.getSpaceship(), this.gameState.getSpaceship().getTransform());  
 
         this.gameState.getWorld().setEventListener(this);
+
+        this.callerAudioLoop.execute(CmdAudioType.AUDIO_ON);
+        this.controlGUI.startGUI();
     }
 
     public void run() {
         long lastTime = System.currentTimeMillis();
-        this.callerAudioLoop.execute(CmdAudioType.AUDIO_ON);
-        this.controlGUI.startGUI();
-
-        double next_game_tick = System.currentTimeMillis();
-        int loops;
 
         while (!gameState.isGameOver()) {
-            loops = 0;
-
             long current = System.currentTimeMillis();
             int elapsed = (int)(current - lastTime);
 

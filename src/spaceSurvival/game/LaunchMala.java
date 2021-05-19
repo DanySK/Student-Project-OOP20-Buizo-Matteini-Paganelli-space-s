@@ -3,8 +3,8 @@ package spaceSurvival.game;
 import spaceSurvival.controller.GUI.CtrlLoading;
 import spaceSurvival.factorys.StaticFactoryEngineGUI;
 import spaceSurvival.factorys.StaticFactoryGUI;
+import spaceSurvival.model.GUI.Visibility;
 import spaceSurvival.model.game.GameMalaLoop;
-import spaceSurvival.view.GUI.Loading.GUILoading;
 
 public class LaunchMala {
 
@@ -13,15 +13,9 @@ public class LaunchMala {
                 StaticFactoryGUI.createLoading());
         ctrlLoading.start();
 
-
         final GameMalaLoop engine = new GameMalaLoop();
 
         while(!ctrlLoading.isLoad()){
-            if(!ctrlLoading.isVisibility()){
-                engine.initGame();
-                engine.start();
-            }
-
             try {
                 Thread.sleep(2);
             } catch (InterruptedException e) {
@@ -29,9 +23,10 @@ public class LaunchMala {
             }
         }
 
-
-
-
+        engine.initGame();
+        ctrlLoading.turn(Visibility.HIDDEN);
+        
+        engine.start();
     }
 }
 
