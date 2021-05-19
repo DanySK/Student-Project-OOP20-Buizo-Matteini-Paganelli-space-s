@@ -1,20 +1,34 @@
 package model.worldEcollisioni.physics.boundingType;
 
+import java.awt.geom.AffineTransform;
+
 import model.common.P2d;
+import model.image.EngineImage;
 
 public class RectBoundingBox implements BoundingBox {
 
 	private P2d p0,p1;
+	private AffineTransform transform;
 	
 	public RectBoundingBox(){
 		this.p0 = new P2d(0, 0);
 		this.p1 = new P2d(0, 0);
+		this.transform = new AffineTransform();
 	}
 	
 	public RectBoundingBox(P2d p0, P2d p1){
 		this();
 		this.p0 = p0;
 		this.p1 = p1;
+		this.transform = new AffineTransform();
+	}
+	
+	public RectBoundingBox(P2d center, EngineImage engineImage){
+		
+		this.p0 = new P2d(center.getX() - engineImage.getWidth() / 2, center.getY() - engineImage.getHeight() / 2);
+		this.p1 = new P2d(center.getX() + engineImage.getWidth() / 2, center.getY() + engineImage.getHeight() / 2);
+		this.transform = new AffineTransform();
+			
 	}
 	
 	public P2d getULCorner(){
@@ -31,6 +45,14 @@ public class RectBoundingBox implements BoundingBox {
 	
 	public double getHeight(){
 		return this.p1.getY() - this.p0.getY();
+	}
+	
+	public AffineTransform getTransform(){
+		return this.transform;
+	}
+	
+	public void setTransform(AffineTransform affineTranform){
+		this.transform = affineTranform;
 	}
 	
 	/**

@@ -116,9 +116,9 @@ public class World {
 		P2d ul = mainBBox.getULCorner();
 		P2d br = mainBBox.getBRCorner();
 		//System.out.println("Main Box UL " + mainBBox.getULCorner());
-		System.out.println("Ship Box UL " + box.getULCorner());
-		System.out.println("Position " + pos.toString());
-		System.out.println("Transform " + ship.getTransform());
+		//System.out.println("Ship Box UL " + box.getULCorner());
+		//System.out.println("Position " + pos.toString());
+		//System.out.println("Transform " + ship.getTransform());
 		
 		double heightRect = box.getHeight();
 		if (pos.y < -br.y){

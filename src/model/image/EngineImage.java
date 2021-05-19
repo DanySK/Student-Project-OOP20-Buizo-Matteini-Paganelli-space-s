@@ -39,10 +39,10 @@ public class EngineImage {
     public int getWidth() {
         return this.width;
     }
-
-    public int getHeight(){
-        return this.height;
-    }
+    
+    public int getHeight() {
+		return this.height;
+	}
 
     public int getScaleOf() {
         return this.scaleOf;
@@ -123,4 +123,5 @@ public class EngineImage {
                 ", width=" + width + ", height=" + height +
                 ", scaleOf=" + scaleOf + ", respectTo=" + respectTo + '}';
     }
+
 }

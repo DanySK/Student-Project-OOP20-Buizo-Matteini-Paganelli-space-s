@@ -43,6 +43,8 @@ public class SpaceShipSingleton extends MainGameObject {
 		//this.getTransform().translate(getVelocity().getX(), getVelocity().getY());
 //    	System.out.println(position);
 //    	System.out.println(Screen.POINT_CENTER_FULLSCREEN);
+    	//System.out.println("POSITION  " + position);
+
 
     	//this.getTransform().translate(shipBox.getULCorner().getX(), shipBox.getBRCorner().getY());
     	//this.getTransform().translate(shipBox.getULCorner().getX(), shipBox.getULCorner().getY());

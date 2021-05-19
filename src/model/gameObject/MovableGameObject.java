@@ -6,12 +6,14 @@ import model.common.P2d;
 import model.common.V2d;
 import model.image.EngineImage;
 import model.worldEcollisioni.physics.boundingType.BoundingBox;
+import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import model.worldEcollisioni.physics.components.PhysicsComponent;
+import utilities.dimension.Screen;
 
 public abstract class MovableGameObject extends GameObject {
 	private V2d velocity;
 	private Movement movement;
-	private AffineTransform transform;
+	
 
 	
 	public MovableGameObject() {
@@ -25,12 +27,42 @@ public abstract class MovableGameObject extends GameObject {
 		super(engineImage, position, bb, phys);
 		this.velocity = velocity;
 		this.movement = movement;
-		this.transform = new AffineTransform();
 	}
 	
 	public void move() {
+		//this.getTransform().translate(this.getVelocity().getX(), this.getVelocity().getY());
+		//this.setPosition(this.getPosition().sum(this.getVelocity()));
+		
 		this.getTransform().translate(this.getVelocity().getX(), this.getVelocity().getY());
-		this.setPosition(this.getPosition().sum(this.getVelocity()));
+		//this.getBoundingBox().getTransform()
+		RectBoundingBox bbox = (RectBoundingBox) this.getBoundingBox();
+		bbox.getTransform().translate(this.getVelocity().getX(), this.getVelocity().getY());
+		
+		
+//		double x = this.getTransform().getTranslateX();
+//		double y = this.getTransform().getTranslateY();
+//
+//
+//		AffineTransform newAff = new AffineTransform();
+//        newAff.setToTranslation(x, y);
+//        double m00 = this.getTransform().getScaleX();
+//        double m01 = this.getTransform().getShearX();
+//        
+//        double angle = Math.atan2(-m01, m00);
+//        
+//        
+//        newAff.rotate(angle, this.getSize().getWidth() / 2, this.getSize().getHeight() / 2);
+//        
+//        bbox.setTransform(newAff);
+        
+
+		//BoundingBox newBox = new RectBoundingBox(new P2d(x,y), new P2d(x + this.getSize().getWidth(),y + this.getSize().getHeight()));
+		//RectBoundingBox newBox = new RectBoundingBox(new P2d(x,y), new P2d(x + this.getSize().getWidth(), y + this.getSize().getHeight()));
+		//BoundingBox newBox = new RectBoundingBox(new P2d(this.getPosition().getX(),this.getPosition().getY()), this.getEngineImage());
+
+		//RectBoundingBox rectBB = (RectBoundingBox) newBox;
+		//newBox.setTransform(this.getTransform());
+		//this.setBoundingBox(bbox);
 	}
 
 	public V2d getVelocity() {
@@ -49,18 +81,11 @@ public abstract class MovableGameObject extends GameObject {
 		this.movement = movement;
 	}
 	
-	public AffineTransform getTransform() {
-		return transform;
-	}
-
-	public void setTransform(AffineTransform transform) {
-		this.transform = transform;
-	}
 
 	@Override
 	public String toString() {
 		return "MovableGameObject [velocity=" + velocity + ", movement=" + movement + ", "
-				+ "transform=" + transform + ", " + super.toString() +  "]";
+				+ "transform=" + super.getTransform() + ", " + super.toString() +  "]";
 	}
 	
 }

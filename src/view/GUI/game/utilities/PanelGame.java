@@ -1,11 +1,13 @@
 package view.GUI.game.utilities;
 
-
 import model.gameObject.GameObject;
 import model.gameObject.MainGameObject;
-
+import model.gameObject.MovableGameObject;
+import model.gameObject.mainGameObject.SpaceShipSingleton;
 import model.image.EngineImage;
+import model.worldEcollisioni.physics.boundingType.BoundingBox;
 import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
+import utilities.dimension.Screen;
 import view.utilities.JImage;
 import javax.swing.*;
 import java.awt.*;
@@ -29,9 +31,39 @@ public class PanelGame extends JPanel {
         final Graphics2D g2d = (Graphics2D) g;
 
         this.gameObject.forEach((key, value) -> {
-//            g2d.setTransform(value);
             g2d.drawImage(this.getImageFromPath(key.getEngineImage()), value, null);
+            RectBoundingBox rbb = (RectBoundingBox) key.getBoundingBox();
+            
+            
+            
+            
+            
+            double m00 = value.getScaleX();
+            
+            double m01 = value.getShearX();
+            double angle = Math.atan2(-m01, m00);
+            
+            
+            AffineTransform newAff = new AffineTransform();
+            newAff.setToTranslation(value.getTranslateX(), value.getTranslateY());
+            
+            newAff.rotate(angle, key.getPosition().getX(), key.getPosition().getY());
 
+            //newAff.translate(0, key.getSize().getHeight() * 2);
+
+            
+            //), gameObject.getSize().getWidth()/2, gameObject.getSize().getHeight()/2);
+           
+            
+            g2d.setTransform(newAff);
+            //g2d.setColor(Color.GREEN);
+            
+            
+            
+            
+            //g2d.setTransform(rbb.getTransform());
+            g2d.drawRect((int)value.getTranslateX(), (int)value.getTranslateY(), (int)rbb.getWidth()*2, (int)rbb.getHeight()*2);
+            
             this.drawLifeBar(g2d, (MainGameObject) key, value);
             this.drawLife(g2d, (MainGameObject) key, value);
         });
@@ -54,52 +86,54 @@ public class PanelGame extends JPanel {
 
 
     private void drawLifeBar(final Graphics2D g2d, final GameObject gameObject, final AffineTransform transform){
-//        final int x = (int)transform.getTranslateX();
-//        final int y = (int) (transform.getTranslateY() + gameObject.getSize().getHeight() + 2);
+      
+    	final BoundingBox rect = gameObject.getBoundingBox();    
+        double m00 = transform.getScaleX();
+        double m01 = transform.getShearX();
 
-        AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_BILINEAR);
-
-        System.out.println("ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss" +
-        op.getPoint2D(new Point2D.Double(gameObject.getPosition().x, gameObject.getPosition().y), new Point(0,0)));
-
-        final int x = (int) gameObject.getPosition().x;
-        final int y = (int) (gameObject.getPosition().y + gameObject.getSize().getHeight() + 3);
-//=======
-//    private void drawLifeBar(final Graphics2D g2d, final MainGameObject gameObject, final AffineTransform transform){
-//        final int x = (int)transform.getTranslateX();
-//        final int y = (int) (transform.getTranslateY() + gameObject.getSize().getHeight() + 2);
-//>>>>>>> buizo
-
-        //final double p2dX = gameObject.getPosition().x - (gameObject.getSize().getWidth()/2);
-        //final double p2dY = gameObject.getPosition().y + (gameObject.getSize().getHeight()/2);
-//        final RectBoundingBox rect = (RectBoundingBox) gameObject.getBoundingBox();//.getULCorner().getX() - (gameObject.getSize().getWidth()/2);
-//
-//        final double p2dX = rect.getBRCorner().getX() - (gameObject.getSize().getWidth()/2);
-//        final double p2dY = rect.getBRCorner().getY();
+        final int x = (int) (transform.getTranslateX());
+        final int y = (int) (transform.getTranslateY());
+    
+        double angle = Math.atan2(-m01, m00);
         
+        AffineTransform newAff = new AffineTransform();
 
+        newAff.setToTranslation(transform.getTranslateX(), transform.getTranslateY());      
+        newAff.rotate(angle, gameObject.getPosition().getX(), gameObject.getPosition().getY());
+        newAff.translate(0, gameObject.getSize().getHeight() * 2);
+
+
+        g2d.setTransform(newAff);
         g2d.setColor(Color.WHITE);
-        g2d.drawRect(x, y, 100, 11);
-        //g2d.drawRect(transform, 100,11);
+
+
+        g2d.fillRect(x, y, (int)gameObject.getSize().getWidth()*2, 11);
+
     }
 
 
     private void drawLife(final Graphics2D g2d, final GameObject gameObject, final AffineTransform transform){
-//        final int x = (int)transform.getTranslateX();
-//        final int y = (int) (transform.getTranslateY() + gameObject.getSize().getHeight() + 3);
-//        final RectBoundingBox rect = (RectBoundingBox) gameObject.getBoundingBox();
-//        final int x = (int) ((int) rect.getBRCorner().getX() - (gameObject.getSize().getWidth()/2));
-//        final int y = (int) rect.getBRCorner().getY();
-    	final int x = (int) gameObject.getPosition().x;
-        final int y = (int) (gameObject.getPosition().y + gameObject.getSize().getHeight() + 3);
 
-//    private void drawLife(final Graphics2D g2d, final MainGameObject gameObject, final AffineTransform transform){
-//        final int x = (int)transform.getTranslateX();
-//        final int y = (int) (transform.getTranslateY() + gameObject.getSize().getHeight() + 3);
-//>>>>>>> buizo
+        final BoundingBox rect = gameObject.getBoundingBox();
+        
+        double m00 = transform.getScaleX();
+        double m01 = transform.getShearX();
 
+        final int x = (int) (transform.getTranslateX());
+        final int y = (int) (transform.getTranslateY());
+
+         
+        double angle = Math.atan2(-m01, m00);
+        
+        AffineTransform newAff = new AffineTransform();
+
+        newAff.setToTranslation(transform.getTranslateX(), transform.getTranslateY());      
+        newAff.rotate(angle, gameObject.getPosition().getX(), gameObject.getPosition().getY());
+        newAff.translate(0, gameObject.getSize().getHeight() * 2);
+
+
+        g2d.setTransform(newAff);
         g2d.setColor(Color.GREEN);
-        //System.out.println(transform.getTranslateX());
 
         g2d.fillRect(x, y, 50, 11);
     }
