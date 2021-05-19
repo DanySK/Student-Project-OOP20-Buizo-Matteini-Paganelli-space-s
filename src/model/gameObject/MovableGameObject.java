@@ -43,7 +43,7 @@ public abstract class MovableGameObject extends GameObject {
 		//this.gameState.getWorld().getShip().setPosition(newPos);
 		//this.gameState.getWorld().getShip().setPosition(newPos);
 		
-		this.setBoundingBox(new RectBoundingBox(new P2d(x - 44,y - 44), new P2d(x + 44,y + 44)));
+		this.setBoundingBox(new RectBoundingBox(new P2d(x,y ), new P2d(x + this.getSize().getWidth(),y + this.getSize().getHeight())));
 	}
 
 	public V2d getVelocity() {

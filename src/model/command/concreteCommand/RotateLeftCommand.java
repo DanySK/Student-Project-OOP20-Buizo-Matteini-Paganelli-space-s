@@ -16,7 +16,6 @@ public class RotateLeftCommand implements CommandMovement{
 	public void execute(MovableGameObject obj) {
 		System.out.println("Rotate Left");
 		
-		System.out.println(obj.getTransform());
 		
 
 		
@@ -27,15 +26,10 @@ public class RotateLeftCommand implements CommandMovement{
 		RectBoundingBox bbox = (RectBoundingBox) ship.getBoundingBox();
 		
 		
-		double xCenter = (ship.getTransform().getTranslateX() ) + ship.getSize().getWidth() / 2;
-		double yCenter = (ship.getTransform().getTranslateY() ) + ship.getSize().getHeight() / 2;	
+		//double xCenter = (ship.getTransform().getTranslateX() ) + ship.getSize().getWidth() / 2;
+		//double yCenter = (ship.getTransform().getTranslateY() ) + ship.getSize().getHeight() / 2;	
 
-
-		
-
-		
-		
-		transform.rotate(Math.toRadians(-15), ship.getSize().getWidth() / 2, 50);
+		transform.rotate(Math.toRadians(-15), ship.getSize().getWidth() / 2, ship.getSize().getHeight() / 2);
 
 		ship.setTransform(transform);
 

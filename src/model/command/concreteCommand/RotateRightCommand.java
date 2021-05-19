@@ -34,23 +34,35 @@ public class RotateRightCommand implements CommandMovement{
 //		System.out.println(ship.toString());
 		
 		
+//		SpaceShipSingleton ship = (SpaceShipSingleton) obj;
+//		AffineTransform transform = ship.getTransform();
+//
+//		RectBoundingBox bbox = (RectBoundingBox) ship.getBoundingBox();
+//		
+//		
+//		double xCenter = (ship.getTransform().getTranslateX() ) + ship.getSize().getWidth() / 2;
+//		double yCenter = (ship.getTransform().getTranslateY() ) + ship.getSize().getHeight() / 2;	
+//
+//		
+//		System.out.println("xCenter" + ship.getSize().getWidth() / 2);
+//		System.out.println("yCenter" + ship.getSize().getHeight() / 2);
+//		
+//		System.out.println("ScaleX" + transform.getScaleX());
+//		
+//		
+//		transform.rotate(Math.toRadians(15), ship.getSize().getWidth() / 2, 50);
+//
+//		ship.setTransform(transform);
 		SpaceShipSingleton ship = (SpaceShipSingleton) obj;
 		AffineTransform transform = ship.getTransform();
 
 		RectBoundingBox bbox = (RectBoundingBox) ship.getBoundingBox();
 		
 		
-		double xCenter = (ship.getTransform().getTranslateX() ) + ship.getSize().getWidth() / 2;
-		double yCenter = (ship.getTransform().getTranslateY() ) + ship.getSize().getHeight() / 2;	
+		//double xCenter = (ship.getTransform().getTranslateX() ) + ship.getSize().getWidth() / 2;
+		//double yCenter = (ship.getTransform().getTranslateY() ) + ship.getSize().getHeight() / 2;	
 
-		
-		System.out.println("xCenter" + ship.getSize().getWidth() / 2);
-		System.out.println("yCenter" + ship.getSize().getHeight() / 2);
-		
-		System.out.println("ScaleX" + transform.getScaleX());
-		
-		
-		transform.rotate(Math.toRadians(15), ship.getSize().getWidth() / 2, 50);
+		transform.rotate(Math.toRadians(15), ship.getSize().getWidth() / 2, ship.getSize().getHeight() / 2);
 
 		ship.setTransform(transform);
 	}
