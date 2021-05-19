@@ -8,6 +8,7 @@ import model.image.EngineImage;
 import model.worldEcollisioni.physics.boundingType.BoundingBox;
 import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import model.worldEcollisioni.physics.components.PhysicsComponent;
+import utilities.dimension.Screen;
 
 public abstract class MovableGameObject extends GameObject {
 	private V2d velocity;
@@ -33,17 +34,35 @@ public abstract class MovableGameObject extends GameObject {
 		//this.setPosition(this.getPosition().sum(this.getVelocity()));
 		
 		this.getTransform().translate(this.getVelocity().getX(), this.getVelocity().getY());
-		double x = this.getTransform().getTranslateX();
-		double y = this.getTransform().getTranslateY();
+		//this.getBoundingBox().getTransform()
+		RectBoundingBox bbox = (RectBoundingBox) this.getBoundingBox();
+		bbox.getTransform().translate(this.getVelocity().getX(), this.getVelocity().getY());
 		
-		//P2d newPos = new P2d(x + 42,y + 44);
-		//P2d newPos = new P2d(x,y);
-		//System.out.println(this.getVelocity());
-		//this.gameState.getWorld().getShip().setPosition(this.gameState.getWorld().getShip().getPosition().sum(this.gameState.getWorld().getShip().getVelocity()));
-		//this.gameState.getWorld().getShip().setPosition(newPos);
-		//this.gameState.getWorld().getShip().setPosition(newPos);
 		
-		this.setBoundingBox(new RectBoundingBox(new P2d(x,y ), new P2d(x + this.getSize().getWidth(),y + this.getSize().getHeight())));
+//		double x = this.getTransform().getTranslateX();
+//		double y = this.getTransform().getTranslateY();
+//
+//
+//		AffineTransform newAff = new AffineTransform();
+//        newAff.setToTranslation(x, y);
+//        double m00 = this.getTransform().getScaleX();
+//        double m01 = this.getTransform().getShearX();
+//        
+//        double angle = Math.atan2(-m01, m00);
+//        
+//        
+//        newAff.rotate(angle, this.getSize().getWidth() / 2, this.getSize().getHeight() / 2);
+//        
+//        bbox.setTransform(newAff);
+        
+
+		//BoundingBox newBox = new RectBoundingBox(new P2d(x,y), new P2d(x + this.getSize().getWidth(),y + this.getSize().getHeight()));
+		//RectBoundingBox newBox = new RectBoundingBox(new P2d(x,y), new P2d(x + this.getSize().getWidth(), y + this.getSize().getHeight()));
+		//BoundingBox newBox = new RectBoundingBox(new P2d(this.getPosition().getX(),this.getPosition().getY()), this.getEngineImage());
+
+		//RectBoundingBox rectBB = (RectBoundingBox) newBox;
+		//newBox.setTransform(this.getTransform());
+		//this.setBoundingBox(bbox);
 	}
 
 	public V2d getVelocity() {

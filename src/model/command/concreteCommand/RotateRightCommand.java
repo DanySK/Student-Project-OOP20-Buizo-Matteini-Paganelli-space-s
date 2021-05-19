@@ -52,7 +52,7 @@ public class RotateRightCommand implements CommandMovement{
 //		
 //		transform.rotate(Math.toRadians(15), ship.getSize().getWidth() / 2, 50);
 //
-//		ship.setTransform(transform);
+//		ship.setTransform(transform); 
 		SpaceShipSingleton ship = (SpaceShipSingleton) obj;
 		AffineTransform transform = ship.getTransform();
 

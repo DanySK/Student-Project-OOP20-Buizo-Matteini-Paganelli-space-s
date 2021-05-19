@@ -6,6 +6,7 @@ import java.awt.geom.AffineTransform;
 import model.common.P2d;
 import model.image.EngineImage;
 import model.worldEcollisioni.physics.boundingType.BoundingBox;
+import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import model.worldEcollisioni.physics.components.PhysicsComponent;
 import model.world.World;
 
@@ -36,6 +37,8 @@ public abstract class GameObject {
 
 	public void setTransform(AffineTransform transform) {
 		this.transform = transform;
+		//RectBoundingBox rectBB = (RectBoundingBox) this.getBoundingBox();
+		//rectBB.setTransform(transform);
 		this.position.x = transform.getTranslateX();
 		this.position.y = transform.getTranslateY();
 	}
