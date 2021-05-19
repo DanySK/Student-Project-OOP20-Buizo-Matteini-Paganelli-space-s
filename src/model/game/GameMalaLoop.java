@@ -35,8 +35,8 @@ public class GameMalaLoop implements WorldEventListener {
 
     private final CtrlGUI controlGUI;
     private final GameState gameState;
-    //private CallerAudio callerAudioLoop;
-    //private List<CallerAudio> callerAudioEffects;
+    private CallerAudio callerAudioLoop;
+    private List<CallerAudio> callerAudioEffects;
     private GUIGame panelGame;
 
     private MovementKeyListener controller;
@@ -53,11 +53,11 @@ public class GameMalaLoop implements WorldEventListener {
         this.panelGame = this.controlGUI.getPanelGame();
         this.controller = new MovementKeyListener(this.gameState.getSpaceship());
 
-        //this.callerAudioLoop = new CallerAudio(new SoundLoop(this.controlGUI.getCurrentSound()));
+        this.callerAudioLoop = new CallerAudio(new SoundLoop(this.controlGUI.getCurrentSound()));
 
         this.controlGUI.initTimer();
 
-        //this.controlGUI.linksCallerAudioLoopWith(this.callerAudioLoop);
+        this.controlGUI.linksCallerAudioLoopWith(this.callerAudioLoop);
         //this.controlGUI.linksCallerAudioEffectWith(this.callerAudioEffects);
 
         this.panelGame.addKeyListenerSpaceship(controller);
@@ -82,7 +82,7 @@ public class GameMalaLoop implements WorldEventListener {
     public void mainLoop() {
         long lastTime = System.currentTimeMillis();
 
-        //this.callerAudioLoop.execute(CmdAudioType.AUDIO_ON);
+        this.callerAudioLoop.execute(CmdAudioType.AUDIO_ON);
         
         while (!gameState.isGameOver()) {
 
@@ -215,15 +215,15 @@ public class GameMalaLoop implements WorldEventListener {
     }
 
     protected void updateSound() {
-//        if(this.callerAudioLoop.isNewSound(this.controlGUI.getCurrentSound())) {
-//            this.callerAudioLoop.execute(CmdAudioType.AUDIO_OFF);
-//            this.callerAudioLoop.setSound(new SoundLoop(this.controlGUI.getCurrentSound()));
-//
-//            this.callerAudioLoop.changeVolume(this.controlGUI.isActiveLoopUnitSound() ?
-//                    this.controlGUI.getCurrentLoopVolume() : DesignSound.SOUND_ZERO);
-//
-//            this.callerAudioLoop.execute(CmdAudioType.AUDIO_ON);
-//        }
+        if(this.callerAudioLoop.isNewSound(this.controlGUI.getCurrentSound())) {
+            this.callerAudioLoop.execute(CmdAudioType.AUDIO_OFF);
+            this.callerAudioLoop.setSound(new SoundLoop(this.controlGUI.getCurrentSound()));
+
+            this.callerAudioLoop.changeVolume(this.controlGUI.isActiveLoopUnitSound() ?
+                    this.controlGUI.getCurrentLoopVolume() : DesignSound.SOUND_ZERO);
+
+            this.callerAudioLoop.execute(CmdAudioType.AUDIO_ON);
+        }
     }
 
     public void startTimer() {
