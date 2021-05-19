@@ -25,7 +25,7 @@ public class LaunchMala {
 
         engine.initGame();
         ctrlLoading.turn(Visibility.HIDDEN);
-        
+
         engine.start();
     }
 }
