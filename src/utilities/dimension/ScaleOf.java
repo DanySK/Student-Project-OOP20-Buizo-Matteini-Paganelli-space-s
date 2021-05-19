@@ -18,4 +18,8 @@ public class ScaleOf {
     public static final int WIDTH_LIFEBAR_BOSS = 320;
     public static final int HEIGHT_LIFEBAR_BOSS = 30;
 
+    public static final int SHIP = 0;
+    public static final int ASTEROID = 80;
+
+
 }

@@ -11,9 +11,9 @@ public class LeftCommand implements CommandMovement{
 	@Override
 	public void execute(MovableGameObject ship) {
 		
-//		V2d vel = ship.getVelocity();
-////
-//		ship.setVelocity(vel.sum(new V2d(-1,0)));
+		V2d vel = ship.getVelocity();
+//
+		ship.setVelocity(vel.sum(new V2d(-1,0)));
 		System.out.println("Left " + ship.toString());
 
 		
@@ -25,10 +25,10 @@ public class LeftCommand implements CommandMovement{
 //			ball.setVel(new V2d(0,-1).mul(speed));
 //		} else if (ctrl.isMoveLeft()){
 //			double speed = ball.getCurrentVel().module();
-//			ball.setVel(new V2d(-1,0).mul(speed));			
+//			ball.setVel(new V2d(-1,0).mul(speed));
 //		} else if (ctrl.isMoveRight()){
 //			double speed = ball.getCurrentVel().module();
-//			ball.setVel(new V2d(1,0).mul(speed));			
+//			ball.setVel(new V2d(1,0).mul(speed));
 //		}
 	}
 

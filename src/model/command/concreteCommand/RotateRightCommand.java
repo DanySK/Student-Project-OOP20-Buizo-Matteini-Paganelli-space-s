@@ -24,8 +24,8 @@ public class RotateRightCommand implements CommandMovement{
 				//, ship.getSize().getHeight() / 2, ship.getSize().getWidth() / 2);
 		transform.rotate(Math.toRadians(15), ship.getPosition().getX(),ship.getPosition().getY());
 		System.out.println("POSIZIONE NAVICELLA PORCO " + ship.getPosition());
-		//transform.rotate
-		//transform.rotate(Math.toRadians(-15));
+//		transform.rotate
+//		transform.rotate(Math.toRadians(-15));
 		ship.setTransform(transform);
 		
 		System.out.println(ship.toString());	

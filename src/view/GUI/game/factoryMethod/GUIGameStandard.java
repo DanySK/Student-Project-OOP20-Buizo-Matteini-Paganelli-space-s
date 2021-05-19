@@ -65,11 +65,11 @@ public class GUIGameStandard implements FactoryGUIGame {
                 BorderLayout.SOUTH));
 
 
-        concreteGame.addForegroundPanel(panelNorth, BorderLayout.NORTH);
-        concreteGame.addForegroundPanel(panelSouth, BorderLayout.SOUTH);
+        concreteGame.addFrontPanel(panelNorth, BorderLayout.NORTH);
+        concreteGame.addFrontPanel(panelSouth, BorderLayout.SOUTH);
         concreteGame.visibleForegroundPanel(true);
 
         concreteGame.setBackgroundLayout(null);
-        concreteGame.addBackPanel(concreteGame.getPanelGame());
+        concreteGame.add(concreteGame.getPanelGame());
     }
 }

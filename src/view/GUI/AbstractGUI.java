@@ -42,18 +42,22 @@ public abstract class AbstractGUI extends JFrame{
         this.id = id;
     }
 
+    public JPanel getPanelBack(){
+        return this.panelBackground;
+    }
+
 
     public void setBackgroundLayout(final LayoutManager layoutGUI){
         this.panelBackground.setLayout(layoutGUI);
     }
 
-    public void addForegroundPanel(final Component component, final String index){
+    public void addFrontPanel(final Component component, final String index){
         this.panelForeground.add(component, index);
     }
 
-    public void addBackPanel(final Component component){
-        this.panelBackground.add(component);
-    }
+//    public void addBackPanel(final Component component){
+//        this.panelBackground.add(component);
+//    }
 
     public void visibleForegroundPanel(final boolean visible){
         this.panelForeground.setVisible(visible);

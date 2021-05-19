@@ -1,5 +1,9 @@
 package factorys;
 
+import view.GUI.Loading.FactoryGUILoading;
+import view.GUI.Loading.GUILoading;
+import view.GUI.Loading.concrete.GUILoadingConcrete;
+import view.GUI.Loading.factoryMethod.GUILoadingStandard;
 import view.GUI.game.FactoryGUIGame;
 import view.GUI.game.GUIGame;
 import view.GUI.game.factoryMethod.GUIGameStandard;
@@ -25,6 +29,11 @@ import view.GUI.sound.factoryMethod.GUISoundStandard;
 import view.utilities.FactoryGUIs;
 
 public class StaticFactoryGUI {
+
+    public static GUILoading createLoading(){
+        FactoryGUILoading factoryGUILoading = new GUILoadingStandard();
+        return factoryGUILoading.create();
+    }
 
     public static GUIMenu createMenuGUI(){
         FactoryGUIMenu menuGUI = new GUIMenuStandard();

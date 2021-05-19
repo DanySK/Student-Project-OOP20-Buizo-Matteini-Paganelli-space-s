@@ -26,7 +26,7 @@ public class World {
 	private Set<MainGameObject> asteroids = new HashSet<>();
 	private Set<MainGameObject> fireEnemies = new HashSet<>();
 	private Set<MainGameObject> chaseEnemies = new HashSet<>();
-	private Optional<MainGameObject> boss = Optional.of(factoryGameObject.createBoss()); 
+	private Optional<MainGameObject> boss = Optional.empty();
 	
 	private Set<PickableGameObject> pickables = new HashSet<>();
 
@@ -166,7 +166,7 @@ public class World {
 	}
 	
 	public Optional<MainGameObject> checkCollisionWithBoss(P2d pos, RectBoundingBox box){
-		System.out.println(boss);
+		//System.out.println(boss);
 		if (boss.isPresent()) {
 			System.out.println("SONO DENTRO L IF");
 			double radius = box.getWidth();
