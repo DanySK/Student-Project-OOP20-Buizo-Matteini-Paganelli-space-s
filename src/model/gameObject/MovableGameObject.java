@@ -1,7 +1,5 @@
 package model.gameObject;
 
-import java.awt.geom.AffineTransform;
-
 import model.common.P2d;
 import model.common.V2d;
 import model.image.EngineImage;
@@ -43,7 +41,7 @@ public abstract class MovableGameObject extends GameObject {
 		//this.gameState.getWorld().getShip().setPosition(newPos);
 		//this.gameState.getWorld().getShip().setPosition(newPos);
 		
-		this.setBoundingBox(new RectBoundingBox(new P2d(x,y ), new P2d(x + this.getSize().getWidth(),y + this.getSize().getHeight())));
+		this.setBoundingBox(new RectBoundingBox(new P2d(x, y), new P2d(x + this.getSize().getWidth(), y + this.getSize().getHeight())));
 	}
 
 	public V2d getVelocity() {

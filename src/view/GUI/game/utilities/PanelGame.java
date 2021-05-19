@@ -156,7 +156,7 @@ public class PanelGame extends JPanel {
         
         double angle = Math.atan2(-b, a);
         
-        System.out.println(Math.toDegrees(angle));
+        //System.out.println(Math.toDegrees(angle));
 
         
         
@@ -172,8 +172,8 @@ public class PanelGame extends JPanel {
         newAff.rotate(angle, gameObject.getPosition().getX(), gameObject.getPosition().getY());
 
         newAff.translate(0, gameObject.getSize().getHeight() * 2);
-        System.out.println(gameObject.getPosition());
-        System.out.println(Screen.POINT_CENTER_FULLSCREEN);
+        //System.out.println(gameObject.getPosition());
+        //System.out.println(Screen.POINT_CENTER_FULLSCREEN);
         
         //), gameObject.getSize().getWidth()/2, gameObject.getSize().getHeight()/2);
         

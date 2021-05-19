@@ -35,8 +35,8 @@ public class GameMalaLoop implements WorldEventListener {
 
     private final CtrlGUI controlGUI;
     private final GameState gameState;
-    private CallerAudio callerAudioLoop;
-    private List<CallerAudio> callerAudioEffects;
+    //private CallerAudio callerAudioLoop;
+    //private List<CallerAudio> callerAudioEffects;
     private GUIGame panelGame;
 
     private MovementKeyListener controller;
@@ -53,11 +53,11 @@ public class GameMalaLoop implements WorldEventListener {
         this.panelGame = this.controlGUI.getPanelGame();
         this.controller = new MovementKeyListener(this.gameState.getSpaceship());
 
-        this.callerAudioLoop = new CallerAudio(new SoundLoop(this.controlGUI.getCurrentSound()));
+        //this.callerAudioLoop = new CallerAudio(new SoundLoop(this.controlGUI.getCurrentSound()));
 
         this.controlGUI.initTimer();
 
-        this.controlGUI.linksCallerAudioLoopWith(this.callerAudioLoop);
+        //this.controlGUI.linksCallerAudioLoopWith(this.callerAudioLoop);
         //this.controlGUI.linksCallerAudioEffectWith(this.callerAudioEffects);
 
         this.panelGame.addKeyListenerSpaceship(controller);
@@ -70,19 +70,9 @@ public class GameMalaLoop implements WorldEventListener {
         	this.panelGame.getPanelGame().addGameObject(enemy, enemy.getTransform());
 
         });
-       
-//        this.gameState.getWorld().getAllEnemies().forEach(enemy -> {
-//        	System.out.println(enemy);
-//        	this.panelGame.getPanelGame().addGameObject(enemy, enemy.getTransform());
-//        });
-
-        
-        RectBoundingBox rbb = (RectBoundingBox) this.gameState.getSpaceship().getBoundingBox();
-        //System.out.println("INIT -> " + rbb);
-
+      
         
         this.gameState.getSpaceship().getTransform().translate(Screen.POINT_CENTER_FULLSCREEN.getX(), Screen.POINT_CENTER_FULLSCREEN.getY());
-        //System.out.println("INIT -> " + this.gameState.getWorld().getShip().getTransform().toString());
         
         this.panelGame.getPanelGame().addGameObject(this.gameState.getSpaceship(), this.gameState.getSpaceship().getTransform());  
                 
@@ -92,7 +82,7 @@ public class GameMalaLoop implements WorldEventListener {
     public void mainLoop() {
         long lastTime = System.currentTimeMillis();
 
-        this.callerAudioLoop.execute(CmdAudioType.AUDIO_ON);
+        //this.callerAudioLoop.execute(CmdAudioType.AUDIO_ON);
         
         while (!gameState.isGameOver()) {
 
@@ -115,6 +105,7 @@ public class GameMalaLoop implements WorldEventListener {
 
             //System.out.println("LoopMala -> "+ elapsed +" FPS");
         }
+        System.out.println("Sono fuori dal loop");
         renderGameOver();
     }
     
@@ -195,10 +186,9 @@ public class GameMalaLoop implements WorldEventListener {
     }
 
     private boolean isGameObjectDead(MainGameObject gameObjectCollided) {
-    	gameObjectCollided.getLife();
-    	return false;
-	}
-
+    	return gameObjectCollided.getLife() <= 0;
+    }
+    
 	private void inputSkin() {
         int i = 0;
         if(this.controlGUI.getCurrentGUI() == IdGUI.ID_GAME && i == 0){
@@ -225,15 +215,15 @@ public class GameMalaLoop implements WorldEventListener {
     }
 
     protected void updateSound() {
-        if(this.callerAudioLoop.isNewSound(this.controlGUI.getCurrentSound())) {
-            this.callerAudioLoop.execute(CmdAudioType.AUDIO_OFF);
-            this.callerAudioLoop.setSound(new SoundLoop(this.controlGUI.getCurrentSound()));
-
-            this.callerAudioLoop.changeVolume(this.controlGUI.isActiveLoopUnitSound() ?
-                    this.controlGUI.getCurrentLoopVolume() : DesignSound.SOUND_ZERO);
-
-            this.callerAudioLoop.execute(CmdAudioType.AUDIO_ON);
-        }
+//        if(this.callerAudioLoop.isNewSound(this.controlGUI.getCurrentSound())) {
+//            this.callerAudioLoop.execute(CmdAudioType.AUDIO_OFF);
+//            this.callerAudioLoop.setSound(new SoundLoop(this.controlGUI.getCurrentSound()));
+//
+//            this.callerAudioLoop.changeVolume(this.controlGUI.isActiveLoopUnitSound() ?
+//                    this.controlGUI.getCurrentLoopVolume() : DesignSound.SOUND_ZERO);
+//
+//            this.callerAudioLoop.execute(CmdAudioType.AUDIO_ON);
+//        }
     }
 
     public void startTimer() {

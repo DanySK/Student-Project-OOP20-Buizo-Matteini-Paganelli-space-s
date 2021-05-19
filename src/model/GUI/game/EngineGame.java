@@ -11,6 +11,8 @@ import java.util.List;
 public class EngineGame implements EngineGUI {
     public static final Rectangle DIMENSION = Screen.RECTANGLE_FULLSCREEN;
 
+    public static final int INITIAL_SCORE = 0;
+    public static final int INITIAL_ROUND = 1;
     public static final int N_BUTTONS = 6;
     private final IdGUI id;
     private final IdGUI idPause;

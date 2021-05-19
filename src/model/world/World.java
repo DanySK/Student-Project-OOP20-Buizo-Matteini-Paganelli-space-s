@@ -37,9 +37,10 @@ public class World {
 		this.mainBBox = mainBBox;
 
 		for (int i = 0; i < 1; i++) {
-			asteroids.add(factoryGameObject.createAsteroid());
-			chaseEnemies.add(factoryGameObject.createChaseEnemy());
-			fireEnemies.add(factoryGameObject.createFireEnemy());
+			addChaseEnemy(factoryGameObject.createChaseEnemy());
+			//asteroids.add(factoryGameObject.createAsteroid());
+			//chaseEnemies.add(factoryGameObject.createChaseEnemy());
+			//fireEnemies.add(factoryGameObject.createFireEnemy());
 		}
 		
 		System.out.println(getFireEnemies());
@@ -105,7 +106,7 @@ public class World {
 	
 	public void updateState(int dt) {
 		ship.updatePhysics(dt, this);
-		asteroids.forEach(a -> a.updatePhysics(dt, this));
+		//asteroids.forEach(a -> a.updatePhysics(dt, this));
 	}
 
 	public Optional<BoundaryCollision> checkCollisionWithBoundaries(P2d pos, RectBoundingBox box){

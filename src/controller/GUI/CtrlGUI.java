@@ -13,10 +13,10 @@ import model.GUI.pause.EnginePause;
 import model.GUI.scoreboard.EngineScoreboard;
 import model.GUI.settings.EngineSettings;
 import model.GUI.sound.EngineSound;
-import model.image.EngineImage;
 import utilities.IdGUI;
 import utilities.SoundPath;
 import utilities.StateLevelGUI;
+import utilities.pathImage.Skin;
 import view.GUI.GUI;
 import view.GUI.game.GUIGame;
 import view.GUI.help.GUIHelp;
@@ -38,27 +38,27 @@ public class CtrlGUI {
 
     private final GUIMenu guiMenu;
     private final GUIGame guiGame;
-    private final GUISettings guiSettings;
-    private final GUIScoreboard guiScoreboard;
-    private final GUISound guiSound;
-    private final GUIHelp guiHelp;
-    private final GUIPause guiPause;
+//    private final GUISettings guiSettings;
+//    private final GUIScoreboard guiScoreboard;
+//    private final GUISound guiSound;
+//    private final GUIHelp guiHelp;
+//    private final GUIPause guiPause;
 
     private final EngineMenu engineMenu;
     private final EngineGame engineGame;
-    private final EngineSettings engineSettings;
-    private final EngineScoreboard engineScoreboard;
-    private final EngineSound engineSound;
-    private final EngineHelp engineHelp;
-    private final EnginePause enginePause;
+//    private final EngineSettings engineSettings;
+//    private final EngineScoreboard engineScoreboard;
+//    private final EngineSound engineSound;
+//    private final EngineHelp engineHelp;
+//    private final EnginePause enginePause;
 
     private final CtrlMenu ctrlMenu;
     private final CtrlGame ctrlGame;
-    private final CtrlSettings ctrlSettings;
-    private final CtrlScoreboard ctrlScoreboard;
-    private final CtrlSound ctrlSound;
-    private final CtrlHelp ctrlHelp;
-    private final CtrlPause ctrlPause;
+//    private final CtrlSettings ctrlSettings;
+//    private final CtrlScoreboard ctrlScoreboard;
+//    private final CtrlSound ctrlSound;
+//    private final CtrlHelp ctrlHelp;
+//    private final CtrlPause ctrlPause;
 
     private final Map<IdGUI, ControllerGUI> managerGui;
 
@@ -67,36 +67,36 @@ public class CtrlGUI {
     public CtrlGUI(){
         this.engineMenu = StaticFactoryEngineGUI.createEngineMenu();
         this.engineGame = StaticFactoryEngineGUI.createEngineGame();
-        this.engineSettings = StaticFactoryEngineGUI.createEngineSettings();
-        this.engineScoreboard = StaticFactoryEngineGUI.createEngineScoreboard();
-        this.engineSound = StaticFactoryEngineGUI.createEngineSound();
-        this.engineHelp = StaticFactoryEngineGUI.createEngineHelp();
-        this.enginePause = StaticFactoryEngineGUI.creEnginePause();
+//        this.engineSettings = StaticFactoryEngineGUI.createEngineSettings();
+//        this.engineScoreboard = StaticFactoryEngineGUI.createEngineScoreboard();
+//        //this.engineSound = StaticFactoryEngineGUI.createEngineSound();
+//        this.engineHelp = StaticFactoryEngineGUI.createEngineHelp();
+//        this.enginePause = StaticFactoryEngineGUI.creEnginePause();
 
         this.guiMenu = StaticFactoryGUI.createMenuGUI();
         this.guiGame = StaticFactoryGUI.createGameGUI();
-        this.guiSettings = StaticFactoryGUI.createSettingsGUI();
-        this.guiScoreboard = StaticFactoryGUI.createScoreboardGUI();
-        this.guiSound = StaticFactoryGUI.createSoundGUI();
-        this.guiHelp = StaticFactoryGUI.createHelpGUI();
-        this.guiPause = StaticFactoryGUI.createPauseGUI();
+//        this.guiSettings = StaticFactoryGUI.createSettingsGUI();
+//        this.guiScoreboard = StaticFactoryGUI.createScoreboardGUI();
+//        //this.guiSound = StaticFactoryGUI.createSoundGUI();
+//        this.guiHelp = StaticFactoryGUI.createHelpGUI();
+//        this.guiPause = StaticFactoryGUI.createPauseGUI();
 
         this.ctrlMenu = new CtrlMenu(this.engineMenu, this.guiMenu);
         this.ctrlGame = new CtrlGame(this.engineGame, this.guiGame);
-        this.ctrlSettings = new CtrlSettings(this.engineSettings, this.guiSettings);
-        this.ctrlScoreboard = new CtrlScoreboard(this.engineScoreboard, this.guiScoreboard);
-        this.ctrlSound = new CtrlSound(this.engineSound, this.guiSound);
-        this.ctrlHelp = new CtrlHelp(this.engineHelp, this.guiHelp);
-        this.ctrlPause = new CtrlPause(this.enginePause, this.guiPause);
+//        this.ctrlSettings = new CtrlSettings(this.engineSettings, this.guiSettings);
+//        this.ctrlScoreboard = new CtrlScoreboard(this.engineScoreboard, this.guiScoreboard);
+//        //this.ctrlSound = new CtrlSound(this.engineSound, this.guiSound);
+//        this.ctrlHelp = new CtrlHelp(this.engineHelp, this.guiHelp);
+//        this.ctrlPause = new CtrlPause(this.enginePause, this.guiPause);
 
         this.managerGui = new HashMap<>(){{
             put(CtrlGUI.this.ctrlMenu.getId(), CtrlGUI.this.ctrlMenu);
             put(CtrlGUI.this.ctrlGame.getId(), CtrlGUI.this.ctrlGame);
-            put(CtrlGUI.this.ctrlSettings.getId(), CtrlGUI.this.ctrlSettings);
-            put(CtrlGUI.this.ctrlScoreboard.getId(), CtrlGUI.this.ctrlScoreboard);
-            put(CtrlGUI.this.ctrlSound.getId(), CtrlGUI.this.ctrlSound);
-            put(CtrlGUI.this.ctrlHelp.getId(), CtrlGUI.this.ctrlHelp);
-            put(CtrlGUI.this.ctrlPause.getId(), CtrlGUI.this.ctrlPause);
+//            put(CtrlGUI.this.ctrlSettings.getId(), CtrlGUI.this.ctrlSettings);
+//            put(CtrlGUI.this.ctrlScoreboard.getId(), CtrlGUI.this.ctrlScoreboard);
+//            //put(CtrlGUI.this.ctrlSound.getId(), CtrlGUI.this.ctrlSound);
+//            put(CtrlGUI.this.ctrlHelp.getId(), CtrlGUI.this.ctrlHelp);
+//            put(CtrlGUI.this.ctrlPause.getId(), CtrlGUI.this.ctrlPause);
         }};
 
         this.chronology = new ListGUI<>() {{ add(FIRST_GUI); }};
@@ -207,34 +207,35 @@ public class CtrlGUI {
         return this.chronology.lastElementOfList().getSound();
     }
 
-    public void linksCallerAudioLoopWith(final CallerAudio callerAudioLoop){
-        this.ctrlSound.setCallerAudioLoop(callerAudioLoop);
-        this.ctrlSound.getCallerAudioLoop().setSound(callerAudioLoop.getSound());
-        this.ctrlSound.linksCallerAudioLoopWithListener();
-    }
-
-    public void linksCallerAudioEffectWith(final List<CallerAudio> callerAudioEffects){
-        this.ctrlSound.setCallerAudioEffect(callerAudioEffects);
-        AtomicInteger index = new AtomicInteger(0);
-        
-        callerAudioEffects.forEach(callerAudioEffect -> {   
-        	this.ctrlSound.getCallerAudioEffect().get(index.get()).setSound(callerAudioEffect.getSound());
-        	index.incrementAndGet();     	
-        });
-        this.ctrlSound.linksCallerAudioEffectWithListener();
-    }
-
-    public int getCurrentLoopVolume(){
-        return this.ctrlSound.getBackgroundVolume();
-    }
-
-    public boolean isActiveLoopUnitSound(){
-        return this.ctrlSound.isActiveLoopUnitSound();
-    }
+//    public void linksCallerAudioLoopWith(final CallerAudio callerAudioLoop){
+//        this.ctrlSound.setCallerAudioLoop(callerAudioLoop);
+//        this.ctrlSound.getCallerAudioLoop().setSound(callerAudioLoop.getSound());
+//        this.ctrlSound.linksCallerAudioLoopWithListener();
+//    }
+//
+//    public void linksCallerAudioEffectWith(final List<CallerAudio> callerAudioEffects){
+//        this.ctrlSound.setCallerAudioEffect(callerAudioEffects);
+//        AtomicInteger index = new AtomicInteger(0);
+//        
+//        callerAudioEffects.forEach(callerAudioEffect -> {   
+//        	this.ctrlSound.getCallerAudioEffect().get(index.get()).setSound(callerAudioEffect.getSound());
+//        	index.incrementAndGet();     	
+//        });
+//        this.ctrlSound.linksCallerAudioEffectWithListener();
+//    }
+//
+//    public int getCurrentLoopVolume(){
+//        return this.ctrlSound.getBackgroundVolume();
+//    }
+//
+//    public boolean isActiveLoopUnitSound(){
+//        return this.ctrlSound.isActiveLoopUnitSound();
+//    }
 
 
     public String getCurrentSkin(){
-        return this.ctrlSettings.getCurrentSkin();
+    	return Skin.SPECIAL;
+        //return this.ctrlSettings.getCurrentSkin();
     }
 
     public void initTimer(){
