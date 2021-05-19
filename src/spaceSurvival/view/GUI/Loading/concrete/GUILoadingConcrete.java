@@ -9,7 +9,6 @@ import java.awt.*;
 import java.util.List;
 
 public class GUILoadingConcrete extends AbstractGUI implements GUILoading {
-
     private final JLabel lbTitle;
     private final JProgressBar progressBar;
 
@@ -41,4 +40,8 @@ public class GUILoadingConcrete extends AbstractGUI implements GUILoading {
     }
 
 
+    @Override
+    public void setLoading(int value) {
+        this.progressBar.setValue(value);
+    }
 }

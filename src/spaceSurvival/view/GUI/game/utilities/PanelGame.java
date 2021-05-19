@@ -29,10 +29,6 @@ public class PanelGame extends JPanel {
             g2d.drawImage(this.getImageFromPath(key.getEngineImage()), value, null);
             RectBoundingBox rbb = (RectBoundingBox) key.getBoundingBox();
             
-            
-            
-            
-            
             double m00 = value.getScaleX();
             
             double m01 = value.getShearX();
@@ -45,17 +41,12 @@ public class PanelGame extends JPanel {
             newAff.rotate(angle, key.getPosition().getX(), key.getPosition().getY());
 
             //newAff.translate(0, key.getSize().getHeight() * 2);
-
             
             //), gameObject.getSize().getWidth()/2, gameObject.getSize().getHeight()/2);
-           
             
             g2d.setTransform(newAff);
             //g2d.setColor(Color.GREEN);
-            
-            
-            
-            
+
             //g2d.setTransform(rbb.getTransform());
             g2d.drawRect((int)value.getTranslateX(), (int)value.getTranslateY(), (int)rbb.getWidth(), (int)rbb.getHeight());
             

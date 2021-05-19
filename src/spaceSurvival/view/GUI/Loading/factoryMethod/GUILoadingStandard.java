@@ -44,7 +44,7 @@ public class GUILoadingStandard implements FactoryGUILoading {
         concrete.add(FactoryGUIs.encapsulateInPanelBorderOrientation(panel, BorderLayout.SOUTH),
                 BorderLayout.CENTER);
 
-        concrete.getProgressBar().setValue(50);
+//        concrete.getProgressBar().setValue(50);
         concrete.getProgressBar().setForeground(DesignSpace.color4);
 
         concrete.getProgressBar().setPreferredSize(new Dimension(1600, 45));

@@ -35,7 +35,7 @@ public class CtrlMenu implements ControllerGUI {
     }
 
     @Override
-    public IdGUI getId() {
+    public IdGUI getIdGUI() {
         return this.engine.getId();
     }
 

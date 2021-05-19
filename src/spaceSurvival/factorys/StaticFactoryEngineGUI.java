@@ -2,6 +2,7 @@ package spaceSurvival.factorys;
 
 import spaceSurvival.model.GUI.game.EngineGame;
 import spaceSurvival.model.GUI.help.EngineHelp;
+import spaceSurvival.model.GUI.loading.EngineLoading;
 import spaceSurvival.model.GUI.menu.EngineMenu;
 import spaceSurvival.model.GUI.pause.EnginePause;
 import spaceSurvival.model.GUI.scoreboard.EngineScoreboard;
@@ -9,6 +10,10 @@ import spaceSurvival.model.GUI.settings.EngineSettings;
 import spaceSurvival.model.GUI.sound.EngineSound;
 
 public class StaticFactoryEngineGUI {
+
+    public static EngineLoading createLoading(){
+        return new EngineLoading();
+    }
 
     public static EngineGame createEngineGame(){
         return new EngineGame();

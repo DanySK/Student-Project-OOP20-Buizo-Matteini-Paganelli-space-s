@@ -89,13 +89,13 @@ public class CtrlGUI {
         this.ctrlPause = new CtrlPause(this.enginePause, this.guiPause);
 
         this.managerGui = new HashMap<>(){{
-            put(CtrlGUI.this.ctrlMenu.getId(), CtrlGUI.this.ctrlMenu);
-            put(CtrlGUI.this.ctrlGame.getId(), CtrlGUI.this.ctrlGame);
-            put(CtrlGUI.this.ctrlSettings.getId(), CtrlGUI.this.ctrlSettings);
-            put(CtrlGUI.this.ctrlScoreboard.getId(), CtrlGUI.this.ctrlScoreboard);
-            put(CtrlGUI.this.ctrlSound.getId(), CtrlGUI.this.ctrlSound);
-            put(CtrlGUI.this.ctrlHelp.getId(), CtrlGUI.this.ctrlHelp);
-            put(CtrlGUI.this.ctrlPause.getId(), CtrlGUI.this.ctrlPause);
+            put(CtrlGUI.this.ctrlMenu.getIdGUI(), CtrlGUI.this.ctrlMenu);
+            put(CtrlGUI.this.ctrlGame.getIdGUI(), CtrlGUI.this.ctrlGame);
+            put(CtrlGUI.this.ctrlSettings.getIdGUI(), CtrlGUI.this.ctrlSettings);
+            put(CtrlGUI.this.ctrlScoreboard.getIdGUI(), CtrlGUI.this.ctrlScoreboard);
+            put(CtrlGUI.this.ctrlSound.getIdGUI(), CtrlGUI.this.ctrlSound);
+            put(CtrlGUI.this.ctrlHelp.getIdGUI(), CtrlGUI.this.ctrlHelp);
+            put(CtrlGUI.this.ctrlPause.getIdGUI(), CtrlGUI.this.ctrlPause);
         }};
 
         this.chronology = new ListGUI<>() {{ add(FIRST_GUI); }};
@@ -103,6 +103,10 @@ public class CtrlGUI {
         this.linksAll();
         this.focusMenu();
 
+
+    }
+
+    public void startGUI(){
         this.managerGui.get(FIRST_GUI).turn(Visibility.VISIBLE);
     }
 
@@ -143,7 +147,7 @@ public class CtrlGUI {
 
     private void focusMenu(){
         this.managerGui.values().forEach(managerGui ->
-                managerGui.getGUI().addMouseListener(this.getMouseListener(managerGui.getId())));
+                managerGui.getGUI().addMouseListener(this.getMouseListener(managerGui.getIdGUI())));
     }
 
     private MouseListener getMouseListener(final IdGUI id){
@@ -182,7 +186,7 @@ public class CtrlGUI {
 
     private EngineGUI getEngine(IdGUI id){
         for (ControllerGUI ctrlGUI : this.managerGui.values()) {
-            if(ctrlGUI.getId() == id){
+            if(ctrlGUI.getIdGUI() == id){
                 return ctrlGUI.getEngine();
             }
         }
@@ -191,7 +195,7 @@ public class CtrlGUI {
 
     private GUI getGUI(IdGUI id){
         for (ControllerGUI ctrlGUI : this.managerGui.values()) {
-            if(ctrlGUI.getId() == id){
+            if(ctrlGUI.getIdGUI() == id){
                 return ctrlGUI.getGUI();
             }
         }
