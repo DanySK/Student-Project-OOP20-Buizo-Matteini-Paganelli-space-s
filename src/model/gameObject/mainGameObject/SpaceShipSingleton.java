@@ -39,11 +39,6 @@ public class SpaceShipSingleton extends MainGameObject {
 		super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, weapon);
     	this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage));
 
-//    	System.out.println("POSITION SPACESHIP CONSTRUCTOR-> " + this.getPosition());
-//
-//		System.out.println("BOUNDING SPACESHIP CONSTRUCTOR -> " + this.getBoundingBox());
-//
-//		System.out.println("TRANSFORM SPACESHIP CONSTRUCTOR -> " + this.getTransform());
     }
     
     /**

@@ -8,7 +8,6 @@ import model.gameObject.mainGameObject.Boss;
 import model.gameObject.mainGameObject.ChaseEnemy;
 import model.gameObject.mainGameObject.FireEnemy;
 import model.gameObject.mainGameObject.SpaceShipSingleton;
-import model.common.P2d;
 import model.input.MovementKeyListener;
 import model.sound.CmdAudioType;
 import model.sound.category.SoundLoop;
@@ -24,6 +23,7 @@ import model.worldEcollisioni.hitEvents.HitPickableEvent;
 import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import utilities.DesignSound;
 import utilities.IdGUI;
+import utilities.dimension.Screen;
 import view.GUI.game.GUIGame;
 
 import java.util.LinkedList;
@@ -71,13 +71,21 @@ public class GameMalaLoop implements WorldEventListener {
 
         });
        
+//        this.gameState.getWorld().getAllEnemies().forEach(enemy -> {
+//        	System.out.println(enemy);
+//        	this.panelGame.getPanelGame().addGameObject(enemy, enemy.getTransform());
+//        });
+
         
         RectBoundingBox rbb = (RectBoundingBox) this.gameState.getSpaceship().getBoundingBox();
+        //System.out.println("INIT -> " + rbb);
+
         
-        this.gameState.getSpaceship().getTransform().translate(rbb.getULCorner().getX(), rbb.getULCorner().getY());
-        System.out.println(this.gameState.getSpaceship().getTransform().toString());
-        this.panelGame.getPanelGame().addGameObject(this.gameState.getSpaceship(), this.gameState.getSpaceship().getTransform());
+        this.gameState.getSpaceship().getTransform().translate(Screen.POINT_CENTER_FULLSCREEN.getX(), Screen.POINT_CENTER_FULLSCREEN.getY());
+        //System.out.println("INIT -> " + this.gameState.getWorld().getShip().getTransform().toString());
         
+        this.panelGame.getPanelGame().addGameObject(this.gameState.getSpaceship(), this.gameState.getSpaceship().getTransform());  
+                
         this.gameState.getWorld().setEventListener(this);
     }
 
@@ -209,27 +217,7 @@ public class GameMalaLoop implements WorldEventListener {
 //    		gameObject.move();
 //    	});
     	
-		//System.out.println("render movimento");
-		
-		//this.ship.setPosition(ship.getPosition().sum(new V2d(0,3)));
-		
-		//this.gameState.getSpaceship().move();
-//		this.gameState.getWorld().getShip().getTransform().translate(this.gameState.getWorld().getShip().getVelocity().getX(), this.gameState.getWorld().getShip().getVelocity().getY());
-//		this.gameState.getWorld().getShip().setPosition(this.gameState.getWorld().getShip().getPosition().sum(this.gameState.getWorld().getShip().getVelocity()));
-
-		this.gameState.getWorld().getShip().getTransform().translate(this.gameState.getWorld().getShip().getVelocity().getX(), this.gameState.getWorld().getShip().getVelocity().getY());
-		double x = this.gameState.getWorld().getShip().getTransform().getTranslateX();
-		double y = this.gameState.getWorld().getShip().getTransform().getTranslateY();
-		P2d newPos = new P2d(x + 42,y + 44);
-		//this.gameState.getWorld().getShip().setPosition(this.gameState.getWorld().getShip().getPosition().sum(this.gameState.getWorld().getShip().getVelocity()));
-		//this.gameState.getWorld().getShip().setPosition(newPos);
-		this.gameState.getWorld().getShip().setPosition(newPos);
-		
-		this.gameState.getWorld().getShip().setBoundingBox(new RectBoundingBox(new P2d(x,y), new P2d(x +84,y + 88)));
-
-		//RectBoundingBox bbShip = (RectBoundingBox) this.gameState.getWorld().getShip().getBoundingBox();
-		//P2d newULCorner = bbShip.getULCorner().sum(this.gameState.getWorld().getShip().getVelocity());
-		//P2d newBRCorner = bbShip.getBRCorner().sum(this.gameState.getWorld().getShip().getVelocity());
+    	this.gameState.getSpaceship().move();
     }
 
     protected void renderGameOver() {

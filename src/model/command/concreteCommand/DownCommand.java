@@ -18,7 +18,8 @@ public class DownCommand implements CommandMovement{
 		
 
 		
-		System.out.println("Down " + ship.toString());
+		System.out.println("Down ");
+		System.out.println("Position in concrete command " + ship.getPosition());
 		
 		
 		//double speed = ship.getCurrentVel().module();
