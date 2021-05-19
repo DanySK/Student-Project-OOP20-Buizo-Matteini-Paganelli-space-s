@@ -3,9 +3,8 @@ package model.command.concreteCommand;
 import java.awt.geom.AffineTransform;
 
 import model.command.commandInterfaces.CommandMovement;
-import model.gameObject.MovableGameObject;
+import model.gameObject.MainGameObject;
 import model.gameObject.mainGameObject.SpaceShipSingleton;
-import utilities.dimension.Screen;
 
 
 public class RotateRightCommand implements CommandMovement{
@@ -13,7 +12,7 @@ public class RotateRightCommand implements CommandMovement{
 	public RotateRightCommand() {}
 
 	@Override
-	public void execute(MovableGameObject obj) {
+	public void execute(MainGameObject obj) {
 		System.out.println("Rotate Right");
 		
 		SpaceShipSingleton ship = (SpaceShipSingleton) obj;

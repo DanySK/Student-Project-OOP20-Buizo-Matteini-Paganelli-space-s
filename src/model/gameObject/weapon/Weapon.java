@@ -52,7 +52,8 @@ public class Weapon {
 	
 	public void shot() {
 		EngineImage engineImage = new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Icon.BULLET);
-		P2d position = owner.getPosition(); //GameObjectUtils.generateSpawnPoint(engineImage.getSize());
+		System.out.println("Sparo");
+		P2d position = new P2d(600, 600);//owner.getPosition(); //GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.BULLET_VEL;
 		Movement movement = Movement.FIXED;
 		

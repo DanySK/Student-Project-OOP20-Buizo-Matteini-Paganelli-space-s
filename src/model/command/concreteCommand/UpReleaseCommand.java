@@ -1,12 +1,12 @@
 package model.command.concreteCommand;
 
 import model.command.commandInterfaces.CommandMovement;
-import model.gameObject.MovableGameObject;
+import model.gameObject.MainGameObject;
 
 public class UpReleaseCommand implements CommandMovement {
 
 	@Override
-	public void execute(MovableGameObject ship) {
+	public void execute(MainGameObject ship) {
 		System.out.println("Release Up");
 		
 //		V2d vel = ship.getCurrentVel();

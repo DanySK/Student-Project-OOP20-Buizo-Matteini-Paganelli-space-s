@@ -2,30 +2,20 @@ package model.command.concreteCommand;
 
 import model.command.commandInterfaces.CommandMovement;
 import model.gameObject.MainGameObject;
-import model.common.V2d;
 
-public class DownCommand implements CommandMovement{
+public class SpaceBarCommand implements CommandMovement{
 	
-	public DownCommand() {}
+	public SpaceBarCommand() {}
 
 	@Override
 	public void execute(MainGameObject ship) {
 		
-		V2d vel = ship.getVelocity();
-		ship.setVelocity(vel.sum(new V2d(0,+1)));
-		
-		//ship.getTransform()
-		
-
-		
-		System.out.println("Down " + ship.toString());
-		
+		if (ship.getWeapon().isPresent()) {
+			ship.getWeapon().get().shot();
+		}		
 		
 		//double speed = ship.getCurrentVel().module();
 		//ship.setVel(new V2d(0,-1.5).mul(speed));
-		
-
 	}
-
-
+	
 }

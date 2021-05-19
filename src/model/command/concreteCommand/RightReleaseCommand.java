@@ -2,12 +2,12 @@ package model.command.concreteCommand;
 
 import model.command.commandInterfaces.CommandMovement;
 import model.common.V2d;
-import model.gameObject.MovableGameObject;
+import model.gameObject.MainGameObject;
 
 public class RightReleaseCommand implements CommandMovement {
 
 	@Override
-	public void execute(MovableGameObject ship) {
+	public void execute(MainGameObject ship) {
 		System.out.println("Release Right");
 		
 		V2d vel = ship.getVelocity();

@@ -1,9 +1,9 @@
 package model.command.caller;
 
-import utilities.CmdMovementType;
+import utilities.CommandType;
 import model.command.concreteCommand.*;
 import model.command.commandInterfaces.CommandMovement;
-import model.gameObject.MovableGameObject;
+import model.gameObject.MainGameObject;
 
 public class CallerMovement {
 
@@ -20,10 +20,12 @@ public class CallerMovement {
 	private final CommandMovement cmdRotateLeft;
 	private final CommandMovement cmdRotateRight;
 	
-	private final MovableGameObject ship;
+	private final SpaceBarCommand cmdShot;
+
+	private final MainGameObject ship;
 	
 	
-	public CallerMovement(MovableGameObject ship) {
+	public CallerMovement(MainGameObject ship) {
 		this.cmdLeft  = new LeftCommand();
 		this.cmdUp    = new UpCommand();
 		this.cmdRight = new RightCommand();
@@ -37,10 +39,13 @@ public class CallerMovement {
 		this.cmdRotateLeft   = new RotateLeftCommand();
 		this.cmdRotateRight  = new RotateRightCommand();
 		
+		//aggiunto comando per la barra spaziatrice
+		this.cmdShot  = new SpaceBarCommand();
+
 		this.ship = ship;
 	}
 	
-	public void execute(CmdMovementType cmd) {
+	public void execute(CommandType cmd) {
 		 switch(cmd) {
 		 case KEY_LEFT:
 			 cmdLeft.execute(ship);
@@ -60,10 +65,13 @@ public class CallerMovement {
 		 case KEY_ROTATE_RIGHT:
 			 cmdRotateRight.execute(ship);
 			 break;
+		 case KEY_SPACE_BAR:
+			 cmdShot.execute(ship);
+			 break;
 		 }
 	}
 	
-	public void release(CmdMovementType cmd) {
+	public void release(CommandType cmd) {
 		 switch(cmd) {
 		 case KEY_LEFT:
 			 cmdReleaseLeft.execute(ship);

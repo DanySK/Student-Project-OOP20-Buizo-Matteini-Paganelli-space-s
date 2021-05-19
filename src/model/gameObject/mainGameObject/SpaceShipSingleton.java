@@ -12,7 +12,6 @@ import model.worldEcollisioni.physics.boundingType.BoundingBox;
 import model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import model.worldEcollisioni.physics.components.PhysicsComponent;
 import model.worldEcollisioni.physics.components.ShipPhysicsComponent;
-import utilities.DesignSpace;
 import utilities.dimension.Screen;
 import utilities.pathImage.Skin;
 
