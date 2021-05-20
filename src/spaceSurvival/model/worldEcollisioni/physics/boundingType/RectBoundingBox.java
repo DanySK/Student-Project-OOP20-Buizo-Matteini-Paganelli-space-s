@@ -25,8 +25,9 @@ public class RectBoundingBox implements BoundingBox {
 	
 	public RectBoundingBox(P2d center, EngineImage engineImage){
 		
-		this.p0 = new P2d(center.getX() - engineImage.getWidth() / 2, center.getY() - engineImage.getHeight() / 2);
-		this.p1 = new P2d(center.getX() + engineImage.getWidth() / 2, center.getY() + engineImage.getHeight() / 2);
+		this.p0 = new P2d(center.getX() - (engineImage.getWidth() / 2), center.getY() - (engineImage.getHeight() / 2));
+		this.p1 = new P2d(center.getX() + (engineImage.getWidth() / 2), center.getY() + (engineImage.getHeight() / 2));
+		
 		this.transform = new AffineTransform();
 			
 	}
@@ -39,12 +40,18 @@ public class RectBoundingBox implements BoundingBox {
 		return p1;
 	}
 	
+	
+
 	public double getWidth(){
-		return this.p1.getX() - this.p0.getX();
+		
+		return Math.abs(this.p1.getX() - this.p0.getX());
+			
+		//DA RIMUOVERE DISTANZA FRA DUE PUNTI.
+		//return Math.sqrt(Math.pow(this.p1.getX() - this.p0.getX(), 2) + Math.pow(this.p1.getY() - this.p0.getY(), 2));
 	}
 	
 	public double getHeight(){
-		return this.p1.getY() - this.p0.getY();
+		return Math.abs(this.p1.getY() - this.p0.getY());
 	}
 	
 	public AffineTransform getTransform(){
