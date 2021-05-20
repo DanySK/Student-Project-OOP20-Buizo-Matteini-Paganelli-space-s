@@ -35,7 +35,11 @@ public abstract class MovableGameObject extends GameObject {
 		RectBoundingBox bbox = (RectBoundingBox) this.getBoundingBox();
 		bbox.getTransform().translate(this.getVelocity().getX(), this.getVelocity().getY());
 		
-		
+		System.out.println(this.getTransform());
+
+		System.out.println(bbox.getTransform());
+
+
 //		double x = this.getTransform().getTranslateX();
 //		double y = this.getTransform().getTranslateY();
 //

@@ -1,5 +1,9 @@
 package spaceSurvival.model.image;
 
+import spaceSurvival.model.gameObject.GameObjectUtils;
+import spaceSurvival.utilities.dimension.Screen;
+import spaceSurvival.utilities.pathImage.Skin;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -86,10 +90,6 @@ public class EngineImage {
         this.setSize(dimension.width, dimension.height);
     }
 
-    public boolean isScale(){
-        return this.getSize() == EngineImage.getSizeImageFromScale(this.path, this.scaleOf, this.respectTo);
-    }
-
 
     public static Dimension getSizeImageFromScale(final String path, final int scaleOf, final int respectTo){
         final Dimension dimension = new Dimension();
@@ -109,9 +109,8 @@ public class EngineImage {
             final BufferedImage img = ImageIO.read(ClassLoader.getSystemResource(path));
             dimension.width = img.getWidth();
             dimension.height = img.getHeight();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        } catch (IOException e) { e.printStackTrace(); }
+
         return dimension;
     }
 
@@ -124,4 +123,9 @@ public class EngineImage {
                 ", scaleOf=" + scaleOf + ", respectTo=" + respectTo + '}';
     }
 
+    public static void main(String[] args) {
+        EngineImage engineImage = new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Skin.NORMAL);
+
+        System.out.println(engineImage);
+    }
 }

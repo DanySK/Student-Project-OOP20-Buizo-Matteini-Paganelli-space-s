@@ -63,10 +63,11 @@ public class GameMalaLoop extends Thread implements WorldEventListener {
 
         
         RectBoundingBox rbb = (RectBoundingBox) this.gameState.getSpaceship().getBoundingBox();
-        //System.out.println("INIT -> " + rbb);
+        System.out.println("INIT -> " + rbb);
 
+        rbb.getTransform().setToTranslation(rbb.getULCorner().getX(), rbb.getULCorner().getY());
         
-        this.gameState.getSpaceship().getTransform().translate(Screen.POINT_CENTER_FULLSCREEN.getX(), Screen.POINT_CENTER_FULLSCREEN.getY());
+        this.gameState.getSpaceship().getTransform().setToTranslation(Screen.POINT_CENTER_FULLSCREEN.getX(), Screen.POINT_CENTER_FULLSCREEN.getY());
         //System.out.println("INIT -> " + this.gameState.getWorld().getShip().getTransform().toString());
         
         this.panelGame.getPanelGame().addGameObject(this.gameState.getSpaceship(), this.gameState.getSpaceship().getTransform());  

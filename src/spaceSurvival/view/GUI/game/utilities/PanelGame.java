@@ -27,35 +27,42 @@ public class PanelGame extends JPanel {
 
         this.gameObject.forEach((key, value) -> {
             g2d.drawImage(this.getImageFromPath(key.getEngineImage()), value, null);
+
+
             RectBoundingBox rbb = (RectBoundingBox) key.getBoundingBox();
-            
+
+
             double m00 = value.getScaleX();
-            
             double m01 = value.getShearX();
             double angle = Math.atan2(-m01, m00);
-
 
             drawPoint(g2d, key);
 
             AffineTransform newAff = new AffineTransform();
+
+            newAff.setToShear(value.getShearX(), value.getShearY());
             newAff.setToTranslation(value.getTranslateX(), value.getTranslateY());
             
             newAff.rotate(angle, key.getPosition().getX(), key.getPosition().getY());
 
             g2d.setColor(Color.green);
-            drawPoint(g2d, key);
+            g2d.drawRect((int)key.getPosition().x, (int)key.getPosition().y, 5, 5);
             //newAff.translate(0, key.getSize().getHeight() * 2);
             
             //), gameObject.getSize().getWidth()/2, gameObject.getSize().getHeight()/2);
-            
+
             g2d.setTransform(newAff);
-            //g2d.setColor(Color.GREEN);
+//            g2d.setColor(Color.GREEN);
 
             //g2d.setTransform(rbb.getTransform());
             g2d.drawRect((int)value.getTranslateX(), (int)value.getTranslateY(), (int)rbb.getWidth(), (int)rbb.getHeight());
-            
-            this.drawLifeBar(g2d, (MainGameObject) key, value);
-            this.drawLife(g2d, (MainGameObject) key, value);
+            this.drawLifeBar(g2d, key, value);
+            this.drawLife(g2d, key, value);
+
+            g2d.setColor(Color.red);
+            g2d.drawRect((int)key.getPosition().x, (int)key.getPosition().y, 5, 5);
+
+
         });
     }
 
