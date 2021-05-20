@@ -4,6 +4,7 @@ import java.awt.geom.AffineTransform;
 
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.image.EngineImage;
+import spaceSurvival.utilities.dimension.Screen;
 
 public class RectBoundingBox implements BoundingBox {
 
@@ -21,6 +22,7 @@ public class RectBoundingBox implements BoundingBox {
 		this.p0 = p0;
 		this.p1 = p1;
 		this.transform = new AffineTransform();
+		this.transform.setToTranslation(p0.getX(), p0.getY());
 	}
 	
 	public RectBoundingBox(P2d center, EngineImage engineImage){
@@ -29,15 +31,16 @@ public class RectBoundingBox implements BoundingBox {
 		this.p1 = new P2d(center.getX() + (engineImage.getWidth() / 2), center.getY() + (engineImage.getHeight() / 2));
 		
 		this.transform = new AffineTransform();
+		this.transform.setToTranslation(center.getX() - (engineImage.getWidth() / 2), center.getY() - (engineImage.getHeight() / 2));
 			
 	}
 	
 	public P2d getULCorner(){
-		return p0;
+		return this.p0;
 	}
 	
 	public P2d getBRCorner(){
-		return p1;
+		return this.p1;
 	}
 	
 	
@@ -57,11 +60,9 @@ public class RectBoundingBox implements BoundingBox {
 	public AffineTransform getTransform(){
 		return this.transform;
 	}
+	public void setTransform(AffineTransform transform){ this.transform.setTransform(transform); }
 	
-	public void setTransform(AffineTransform affineTranform){
-		this.transform = affineTranform;
-	}
-	
+
 	/**
 	 * @TODO to be implemented
 	 * Il raggio sarà il lato.
@@ -88,21 +89,21 @@ public class RectBoundingBox implements BoundingBox {
 
 	@Override
 	public String toString() {
-		return "RectBoundingBox [p0=" + p0 + ", p1=" + p1 + "]";
+		return "RectBoundingBox [p0=" + this.p0 + ", p1=" + this.p1 + "]";
 	}
 
-	//TEST
+
 	
-	public static void main (String[] args) {
-		System.out.println("Ciao collisioni");
-		
-		RectBoundingBox r1 = new RectBoundingBox(new P2d(0,0), new P2d(10,10));
-		RectBoundingBox r2 = new RectBoundingBox(new P2d(7,7), new P2d(15,15));
-		
-		
-		//System.out.println(r1.isCollidingWith(r2.getULCorner(), 10));
-		
-	}
+//	public static void main (String[] args) {
+//		System.out.println("Ciao collisioni");
+//
+//		RectBoundingBox r1 = new RectBoundingBox(new P2d(0,0), new P2d(10,10));
+//		RectBoundingBox r2 = new RectBoundingBox(new P2d(7,7), new P2d(15,15));
+//
+//
+//		//System.out.println(r1.isCollidingWith(r2.getULCorner(), 10));
+//
+//	}
 }
 	
 	

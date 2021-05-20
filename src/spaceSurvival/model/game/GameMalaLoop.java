@@ -26,6 +26,7 @@ import spaceSurvival.utilities.IdGUI;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.view.GUI.game.GUIGame;
 
+import java.awt.geom.AffineTransform;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -74,9 +75,10 @@ public class GameMalaLoop extends Thread implements WorldEventListener {
 //        });
         RectBoundingBox rbb = (RectBoundingBox) this.gameState.getSpaceship().getBoundingBox();
         System.out.println("INIT -> " + rbb);
-//        
-        //System.out.println("INIT -> " + rbb)
-        this.gameState.getSpaceship().getTransform().setToTranslation(Screen.POINT_CENTER_FULLSCREEN.getX(), Screen.POINT_CENTER_FULLSCREEN.getY());
+
+
+       // rbb.getTransform().translate(rbb.getULCorner().getX(), rbb.getULCorner().getY());
+        this.gameState.getSpaceship().getTransform().translate(Screen.POINT_CENTER_FULLSCREEN.getX(), Screen.POINT_CENTER_FULLSCREEN.getY());
         //System.out.println("INIT -> " + this.gameState.getWorld().getShip().getTransform().toString());
         
         this.panelGame.getPanelGame().addGameObject(this.gameState.getSpaceship(), this.gameState.getSpaceship().getTransform());  

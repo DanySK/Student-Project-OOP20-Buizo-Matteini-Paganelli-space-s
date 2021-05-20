@@ -35,11 +35,13 @@ public abstract class GameObject {
 	}
 
 	public void setTransform(AffineTransform transform) {
-		this.transform = transform;
+		this.transform.setTransform(transform);
 		//RectBoundingBox rectBB = (RectBoundingBox) this.getBoundingBox();
 		//rectBB.setTransform(transform);
 		this.position.x = transform.getTranslateX();
 		this.position.y = transform.getTranslateY();
+
+		this.boundingBox.setTransform(transform);
 	}
 	
 	
