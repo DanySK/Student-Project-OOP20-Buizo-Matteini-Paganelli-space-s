@@ -97,7 +97,9 @@ public class PanelGame extends JPanel {
         newAff.setToTranslation(transform.getTranslateX(), transform.getTranslateY());      
         newAff.rotate(angle, gameObject.getPosition().getX(), gameObject.getPosition().getY());
         newAff.translate(0, gameObject.getSize().getHeight());
-
+        
+        
+        System.out.println("qqqqqqqqqqqqqqqq" + gameObject.getSize().getHeight());
 
         g2d.setTransform(newAff);
         g2d.setColor(Color.WHITE);
@@ -109,7 +111,7 @@ public class PanelGame extends JPanel {
 
     private void drawLife(final Graphics2D g2d, final GameObject gameObject, final AffineTransform transform){
 
-        final BoundingBox rect = gameObject.getBoundingBox();
+        final RectBoundingBox rect = (RectBoundingBox)gameObject.getBoundingBox();
         
         double m00 = transform.getScaleX();
         double m01 = transform.getShearX();
@@ -124,7 +126,8 @@ public class PanelGame extends JPanel {
 
         newAff.setToTranslation(transform.getTranslateX(), transform.getTranslateY());      
         newAff.rotate(angle, gameObject.getPosition().getX(), gameObject.getPosition().getY());
-        newAff.translate(0, gameObject.getSize().getHeight() );
+        newAff.translate(0, rect.getHeight());
+        System.out.println("aaaaaaaaaaaaaaaaa" + rect.getHeight());
 
 
         g2d.setTransform(newAff);

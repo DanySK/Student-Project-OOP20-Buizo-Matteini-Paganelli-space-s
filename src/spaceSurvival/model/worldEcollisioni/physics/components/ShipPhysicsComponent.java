@@ -43,33 +43,33 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 			BoundaryCollision info = binfo.get();
 			P2d pos = ship.getPosition();
 			
-			switch (info.getEdge()) {
-			case TOP: 
-				//ship.setPosition(new P2d(60, 60));
-				ship.setVelocity(new V2d(ship.getVelocity().getX(), -ship.getVelocity().getY()));
-				ship.getTransform().translate(ship.getVelocity().getX(), ship.getVelocity().getY());
-				ship.setPosition(ship.getPosition().sum(ship.getVelocity()));
-			
-				//ship.getTransform()
-				w.notifyWorldEvent(new HitBorderEvent(info.getWhere()));
-				System.out.println("toccato il muro TOP fratellì");
-				break;
-			case BOTTOM: 
-				ship.setPosition(new P2d(pos.x, info.getWhere().y + boundingBox.getWidth()));
-				w.notifyWorldEvent(new HitBorderEvent(info.getWhere()));
-				System.out.println("toccato il muro BOTTOM fratellì");
-				break;
-			case LEFT: 
-				ship.setPosition(new P2d(info.getWhere().x + boundingBox.getWidth(), pos.y));
-				w.notifyWorldEvent(new HitBorderEvent(info.getWhere()));
-				System.out.println("toccato il muro LEFT fratellì");
-				break;
-			case RIGHT: 
-				ship.setPosition(new P2d(info.getWhere().x - boundingBox.getWidth(), pos.y));
-				w.notifyWorldEvent(new HitBorderEvent(info.getWhere()));
-				System.out.println("toccato il muro RIGHT fratellì");
-				break;
-			}
+//			switch (info.getEdge()) {
+//			case TOP: 
+//				//ship.setPosition(new P2d(60, 60));
+//				ship.setVelocity(new V2d(ship.getVelocity().getX(), -ship.getVelocity().getY()));
+//				ship.getTransform().translate(ship.getVelocity().getX(), ship.getVelocity().getY());
+//				ship.setPosition(ship.getPosition().sum(ship.getVelocity()));
+//			
+//				//ship.getTransform()
+//				w.notifyWorldEvent(new HitBorderEvent(info.getWhere()));
+//				System.out.println("toccato il muro TOP fratellì");
+//				break;
+//			case BOTTOM: 
+//				ship.setPosition(new P2d(pos.x, info.getWhere().y + boundingBox.getWidth()));
+//				w.notifyWorldEvent(new HitBorderEvent(info.getWhere()));
+//				System.out.println("toccato il muro BOTTOM fratellì");
+//				break;
+//			case LEFT: 
+//				ship.setPosition(new P2d(info.getWhere().x + boundingBox.getWidth(), pos.y));
+//				w.notifyWorldEvent(new HitBorderEvent(info.getWhere()));
+//				System.out.println("toccato il muro LEFT fratellì");
+//				break;
+//			case RIGHT: 
+//				ship.setPosition(new P2d(info.getWhere().x - boundingBox.getWidth(), pos.y));
+//				w.notifyWorldEvent(new HitBorderEvent(info.getWhere()));
+//				System.out.println("toccato il muro RIGHT fratellì");
+//				break;
+//			}
 		}
 		
 		Optional<MainGameObject> asteroid = w.checkCollisionWithAsteroids(ship.getPosition(), boundingBox);
