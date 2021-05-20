@@ -13,7 +13,7 @@ public class ScaleOf {
     public static final int ICON_HELP_PLURAL = 150;
 
     public static final int WIDTH_LIFEBAR_SHIP = 180;
-    public static final int HEIGHT_LIFEBAR_SHIP = 20;
+    public static final int HEIGHT_LIFEBAR_SHIP = 25;
 
     public static final int WIDTH_LIFEBAR_BOSS = 320;
     public static final int HEIGHT_LIFEBAR_BOSS = 30;

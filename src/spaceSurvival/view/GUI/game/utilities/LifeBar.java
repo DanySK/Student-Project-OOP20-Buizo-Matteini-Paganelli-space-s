@@ -10,7 +10,7 @@ public class LifeBar extends JProgressBar {
         super.setStringPainted(true);
     }
 
-    public void setValue(final int life){
+    public void setLife(final int life){
         super.setValue(life);
 
         if(life > 75){

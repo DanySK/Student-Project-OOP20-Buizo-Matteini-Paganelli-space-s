@@ -8,8 +8,8 @@ import java.awt.*;
 import java.util.List;
 
 public class FactoryGUIs {
-//    public static final int MAX_INSET = 10;
-//    public static final int MEDIUM_INSET = 5;
+    public static final int MAX_INSET = 10;
+    public static final int MEDIUM_INSET = 5;
     public static final int MIN_INSET = 3;
 
     public static JPanel createPanelTransparent(final LayoutManager layoutManager){
