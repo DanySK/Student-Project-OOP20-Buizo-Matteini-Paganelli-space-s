@@ -33,13 +33,17 @@ public class PanelGame extends JPanel {
             
             double m01 = value.getShearX();
             double angle = Math.atan2(-m01, m00);
-            
-            
+
+
+            drawPoint(g2d, key);
+
             AffineTransform newAff = new AffineTransform();
             newAff.setToTranslation(value.getTranslateX(), value.getTranslateY());
             
             newAff.rotate(angle, key.getPosition().getX(), key.getPosition().getY());
 
+            g2d.setColor(Color.green);
+            drawPoint(g2d, key);
             //newAff.translate(0, key.getSize().getHeight() * 2);
             
             //), gameObject.getSize().getWidth()/2, gameObject.getSize().getHeight()/2);
@@ -70,6 +74,12 @@ public class PanelGame extends JPanel {
         return icon.getImage();
     }
 
+
+    private void drawPoint(final  Graphics2D g2d, final GameObject gameObject){
+        g2d.setColor(Color.WHITE);
+
+        g2d.drawRect((int)gameObject.getPosition().x, (int)gameObject.getPosition().y, 5, 5);
+    }
 
     private void drawLifeBar(final Graphics2D g2d, final GameObject gameObject, final AffineTransform transform){
       
