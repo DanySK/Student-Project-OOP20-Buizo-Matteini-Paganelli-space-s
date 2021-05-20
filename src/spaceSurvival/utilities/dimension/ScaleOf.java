@@ -4,7 +4,7 @@ public class ScaleOf {
     public static final int GAME_OBJECT = 0;
 
     public static final int ICON_SKIN = 200;
-    public static final int ICON_FULL = 28;
+    public static final int ICON_FULL = 30;
     public static final int ICON_BIG = 40;
     public static final int ICON_MEDIUM = 43;
     public static final int ICON_SMALL = 45;

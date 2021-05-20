@@ -17,5 +17,5 @@ public interface GUIGame extends GUI, GraphicsGUIGame {
 
     public void repaintGameObjects();
 
-    public void addKeyListenerSpaceship(final KeyListener keyListener);
+    public void addKeyListenerSpaceShip(final KeyListener keyListener);
 }

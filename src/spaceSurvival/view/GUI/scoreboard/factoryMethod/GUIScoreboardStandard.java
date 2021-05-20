@@ -3,7 +3,7 @@ package spaceSurvival.view.GUI.scoreboard.factoryMethod;
 import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.utilities.pathImage.Icon;
-import spaceSurvival.utilities.DesignSpace;
+import spaceSurvival.view.utilities.DesignGraphics;
 import spaceSurvival.view.GUI.scoreboard.FactoryGUIScoreboard;
 import spaceSurvival.view.GUI.scoreboard.GUIScoreboard;
 import spaceSurvival.view.GUI.scoreboard.concrete.GUIScoreboardConcrete;
@@ -18,10 +18,10 @@ public class GUIScoreboardStandard implements FactoryGUIScoreboard {
     @Override
     public GUIScoreboard createGUI() {
         GUIScoreboardConcrete scoreboardConcrete = new GUIScoreboardConcrete();
-        scoreboardConcrete.setFontLbTitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_H1));
-        scoreboardConcrete.getTxtSearchName().setColumns(DesignSpace.SIZE_COLUMNS_TEXT);
-        scoreboardConcrete.setFontGUI(DesignSpace.FONT_MEDIUM_STANDARD);
-        scoreboardConcrete.setForegroundGUI(DesignSpace.color4);
+        scoreboardConcrete.setFontLbTitle(DesignGraphics.getFontForTitle(DesignGraphics.SIZE_FONT_H1));
+        scoreboardConcrete.getTxtSearchName().setColumns(DesignGraphics.SIZE_COLUMNS_TEXT);
+        scoreboardConcrete.setFontGUI(DesignGraphics.FONT_MEDIUM_STANDARD);
+        scoreboardConcrete.setForegroundGUI(DesignGraphics.color4);
         scoreboardConcrete.setBounds(Screen.RECTANGLE_MEDIUM);
         scoreboardConcrete.setBorder(3);
         this.createGraphics(scoreboardConcrete);

@@ -1,6 +1,6 @@
 package spaceSurvival.view.GUI.scoreboard.factoryMethod;
 
-import spaceSurvival.utilities.DesignSpace;
+import spaceSurvival.view.utilities.DesignGraphics;
 import spaceSurvival.view.GUI.scoreboard.FactoryGUIScoreboard;
 import spaceSurvival.view.GUI.scoreboard.GUIScoreboard;
 import spaceSurvival.view.GUI.scoreboard.concrete.GUIScoreboardConcrete;
@@ -14,10 +14,10 @@ public class GUIScoreboardReverse implements FactoryGUIScoreboard {
     @Override
     public GUIScoreboard createGUI() {
         GUIScoreboardConcrete scoreboardConcrete = new GUIScoreboardConcrete();
-        scoreboardConcrete.setFontLbTitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_H1));
-        scoreboardConcrete.getTxtSearchName().setColumns(DesignSpace.SIZE_COLUMNS_TEXT);
-        scoreboardConcrete.setFontGUI(DesignSpace.FONT_MEDIUM_STANDARD);
-        scoreboardConcrete.setForegroundGUI(DesignSpace.color4);
+        scoreboardConcrete.setFontLbTitle(DesignGraphics.getFontForTitle(DesignGraphics.SIZE_FONT_H1));
+        scoreboardConcrete.getTxtSearchName().setColumns(DesignGraphics.SIZE_COLUMNS_TEXT);
+        scoreboardConcrete.setFontGUI(DesignGraphics.FONT_MEDIUM_STANDARD);
+        scoreboardConcrete.setForegroundGUI(DesignGraphics.color4);
 
         this.createGraphics(scoreboardConcrete);
         return scoreboardConcrete;

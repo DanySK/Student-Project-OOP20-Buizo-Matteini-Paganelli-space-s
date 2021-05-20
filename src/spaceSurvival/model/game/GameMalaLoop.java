@@ -63,7 +63,7 @@ public class GameMalaLoop extends Thread implements WorldEventListener {
         this.controlGUI.linksCallerAudioLoopWith(this.callerAudioLoop);
         //this.controlGUI.linksCallerAudioEffectWith(this.callerAudioEffects);
 
-        this.panelGame.addKeyListenerSpaceship(controller);
+        this.panelGame.addKeyListenerSpaceShip(controller);
         //this.panelGame.getPanelGame().addGameObject(this.gameState.getSpaceship(), this.gameState.getSpaceship().getTransform());
         
 //        this.gameState.getWorld().getAllEnemies().forEach(enemy -> {
@@ -272,7 +272,7 @@ public class GameMalaLoop extends Thread implements WorldEventListener {
 
                     waitForNextFrame(current);
                     lastTime = current;
-                    updateGame(elapsed);
+//                    updateGame(elapsed);
                     //System.out.println("LoopMala -> "+ elapsed +" FPS");
                 }
             }

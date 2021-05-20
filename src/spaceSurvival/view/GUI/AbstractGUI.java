@@ -1,6 +1,6 @@
 package spaceSurvival.view.GUI;
 
-import spaceSurvival.utilities.DesignSpace;
+import spaceSurvival.view.utilities.DesignGraphics;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.utilities.IdGUI;
 import spaceSurvival.utilities.pathImage.Background;
@@ -30,7 +30,7 @@ public abstract class AbstractGUI extends JFrame{
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         super.setUndecorated(true);
         super.setResizable(false);
-        super.setBackground(DesignSpace.colorOpacityBlack);
+        super.setBackground(DesignGraphics.colorOpacityBlack);
     }
 
 
@@ -78,7 +78,7 @@ public abstract class AbstractGUI extends JFrame{
     }
 
     public void setBorder(final int thickness){
-        this.panelBackground.setBorder(BorderFactory.createLineBorder(DesignSpace.color4, thickness));
+        this.panelBackground.setBorder(BorderFactory.createLineBorder(DesignGraphics.color4, thickness));
     }
 
 }

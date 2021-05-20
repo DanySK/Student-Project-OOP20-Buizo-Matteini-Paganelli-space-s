@@ -1,11 +1,14 @@
-package spaceSurvival.utilities;
+package spaceSurvival.view.utilities;
 
 import java.awt.*;
 import java.net.URL;
 
-public class DesignSpace {
+public class DesignGraphics {
+    public static String INIT_TIMER_STRING = "00:00:00";
+    public static String ROUND_STRING = "Round ";
+
     public static int SIZE_FONT_H1 = 60;
-    public static int SIZE_FONT_H2 = 55;
+    public static int SIZE_FONT_H2 = 35;
     public static int SIZE_FONT_H3 = 30;
     public static int SIZE_FONT_H4 = 25;
     public static int SIZE_FONT_H5 = 20;

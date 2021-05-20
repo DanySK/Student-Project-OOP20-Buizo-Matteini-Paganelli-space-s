@@ -4,7 +4,7 @@ import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.utilities.pathImage.Icon;
 import spaceSurvival.utilities.DesignJComponent;
-import spaceSurvival.utilities.DesignSpace;
+import spaceSurvival.view.utilities.DesignGraphics;
 import spaceSurvival.view.GUI.settings.FactoryGUISettings;
 import spaceSurvival.view.GUI.settings.GUISettings;
 import spaceSurvival.view.GUI.settings.concrete.ConcreteGUISettings;
@@ -19,10 +19,10 @@ public class GUISettingsStandard implements FactoryGUISettings {
     @Override
     public GUISettings create() {
         final ConcreteGUISettings concreteSettings = new ConcreteGUISettings();
-        concreteSettings.setFontGUITitle(DesignSpace.getFontForTitle(DesignSpace.SIZE_FONT_H1));
-        concreteSettings.setFontTitleUnit(DesignSpace.FONT_BIG_STANDARD);
-        concreteSettings.setFontUnit(DesignSpace.FONT_MEDIUM_STANDARD);
-        concreteSettings.setForegroundGUI(DesignSpace.color4);
+        concreteSettings.setFontGUITitle(DesignGraphics.getFontForTitle(DesignGraphics.SIZE_FONT_H1));
+        concreteSettings.setFontTitleUnit(DesignGraphics.FONT_BIG_STANDARD);
+        concreteSettings.setFontUnit(DesignGraphics.FONT_MEDIUM_STANDARD);
+        concreteSettings.setForegroundGUI(DesignGraphics.color4);
         concreteSettings.setBounds(Screen.RECTANGLE_MEDIUM);
         concreteSettings.setBorder(3);
         this.createGraphics(concreteSettings);

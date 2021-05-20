@@ -1,6 +1,6 @@
 package spaceSurvival.view.GUI.Loading.factoryMethod;
 
-import spaceSurvival.utilities.DesignSpace;
+import spaceSurvival.view.utilities.DesignGraphics;
 import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.utilities.pathImage.Background;
@@ -19,8 +19,8 @@ public class GUILoadingStandard implements FactoryGUILoading {
         GUILoadingConcrete concrete = new GUILoadingConcrete();
         concrete.setBackgroundImage(Background.LOAD1);
 
-        concrete.setFontLbtitle(DesignSpace.getFontForTitle(100));
-        concrete.setForegroundGUI(DesignSpace.color4);
+        concrete.setFontLbtitle(DesignGraphics.getFontForTitle(100));
+        concrete.setForegroundGUI(DesignGraphics.color4);
 
 
         graphics(concrete);
@@ -46,7 +46,7 @@ public class GUILoadingStandard implements FactoryGUILoading {
         concrete.add(FactoryGUIs.encapsulateInPanelBorderOrientation(panel, BorderLayout.SOUTH),
                 BorderLayout.CENTER);
 
-        concrete.getProgressBar().setForeground(DesignSpace.color4);
+        concrete.getProgressBar().setForeground(DesignGraphics.color4);
 
         concrete.getProgressBar().setPreferredSize(new Dimension(
                 Screen.scaleRespectTo(ScaleOf.WIDTH_BAR_LOADING, Screen.WIDTH_FULL_SCREEN),

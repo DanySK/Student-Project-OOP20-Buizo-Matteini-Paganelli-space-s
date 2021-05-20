@@ -1,6 +1,6 @@
 package spaceSurvival.view.GUI.game.utilities;
 
-import spaceSurvival.utilities.DesignSpace;
+import spaceSurvival.view.utilities.DesignGraphics;
 import spaceSurvival.view.utilities.FactoryGUIs;
 
 import javax.swing.*;
@@ -17,11 +17,11 @@ public class CounterEnemies extends JPanel {
         this.stringEnemies = new JLabel("Enemies");
         this.counter = new JLabel("32");
 
-        this.stringEnemies.setFont(DesignSpace.getFontForGame(35));
-        this.counter.setFont(DesignSpace.getFontForGame(35));
+        this.stringEnemies.setFont(DesignGraphics.getFontForGame(35));
+        this.counter.setFont(DesignGraphics.getFontForGame(35));
 
-        this.stringEnemies.setForeground(DesignSpace.color4);
-        this.counter.setForeground(DesignSpace.color4);
+        this.stringEnemies.setForeground(DesignGraphics.color4);
+        this.counter.setForeground(DesignGraphics.color4);
 
         super.add(FactoryGUIs.createPanelGridBagUnionComponentsVertical(java.util.List.of(
                 this.stringEnemies, FactoryGUIs.encapsulatesInPanelFlow(this.counter)), 5));

@@ -1,6 +1,6 @@
 package spaceSurvival.view.GUI.game.utilities;
 
-import spaceSurvival.utilities.DesignSpace;
+import spaceSurvival.view.utilities.DesignGraphics;
 import spaceSurvival.view.utilities.FactoryGUIs;
 
 import javax.swing.*;
@@ -15,22 +15,29 @@ public class RoundTimer extends JPanel {
         super();
         super.setOpaque(false);
 
-        this.timer = new JLabel("00:00:00");
-        this.stringRound = new JLabel("Round ");
+        this.timer = new JLabel(DesignGraphics.INIT_TIMER_STRING);
+        this.stringRound = new JLabel(DesignGraphics.ROUND_STRING);
         this.round = new JLabel("3");
-
-        this.timer.setFont(DesignSpace.getFontForGame(35));
-        this.stringRound.setFont(DesignSpace.getFontForGame(35));
-        this.round.setFont(DesignSpace.getFontForGame(35));
-
-        this.timer.setForeground(DesignSpace.color4);
-        this.stringRound.setForeground(DesignSpace.color4);
-        this.round.setForeground(DesignSpace.color4);
 
         super.add(FactoryGUIs.encapsulatesInPanelFlow(this.timer));
         super.add(FactoryGUIs.createPanelFlowUnionComponents(java.util.List.of(this.stringRound, this.round)));
 
-        super.setLayout(new GridLayout(0, super.getComponentCount() - 1));
+//        super.setLayout(new GridLayout(0, super.getComponentCount() - 1));
+    }
+
+    public void setFontAll(final Font font){
+        this.timer.setFont(font);
+        this.stringRound.setFont(font);
+        this.round.setFont(font);
+//        this.timer.setFont(DesignGraphics.getFontForGame(DesignGraphics.SIZE_FONT_H2));
+//        this.stringRound.setFont(DesignGraphics.getFontForGame(DesignGraphics.SIZE_FONT_H2));
+//        this.round.setFont(DesignGraphics.getFontForGame(DesignGraphics.SIZE_FONT_H2));
+    }
+
+    public void setForegroundAll(final Color color){
+        this.timer.setForeground(color);
+        this.stringRound.setForeground(color);
+        this.round.setForeground(color);
     }
 
     public void setTimer(final String timer){

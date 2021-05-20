@@ -7,15 +7,20 @@ public class LifeBar extends JProgressBar {
 
     public LifeBar(){
         super();
-        super.setFont(new Font("Mv Boli", Font.BOLD, 15));
-        super.setValue(50);
         super.setStringPainted(true);
-        super.setForeground(Color.green);
-        super.setBackground(Color.black);
-
-
     }
 
+    public void setValue(final int life){
+        super.setValue(life);
+
+        if(life > 75){
+            super.setForeground(Color.green);
+        } else if(life > 40){
+            super.setForeground(Color.orange);
+        } else if(life > 20){
+            super.setForeground(Color.red);
+        }
+    }
 
     @Override
     public String getString() {

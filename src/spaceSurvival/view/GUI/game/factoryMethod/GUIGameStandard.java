@@ -6,6 +6,7 @@ import spaceSurvival.utilities.pathImage.Background;
 import spaceSurvival.view.GUI.game.FactoryGUIGame;
 import spaceSurvival.view.GUI.game.GUIGame;
 import spaceSurvival.view.GUI.game.concrete.GUIGameConcrete;
+import spaceSurvival.view.utilities.DesignGraphics;
 import spaceSurvival.view.utilities.FactoryGUIs;
 
 import javax.swing.*;
@@ -16,6 +17,10 @@ public class GUIGameStandard implements FactoryGUIGame {
     public GUIGame create() {
         final GUIGameConcrete concreteGame = new GUIGameConcrete();
         concreteGame.setBackgroundImage(Background.GAME);
+        concreteGame.setFontGUI(DesignGraphics.getFontForGame(DesignGraphics.SIZE_FONT_H2));
+        concreteGame.setFontGUI(DesignGraphics.getFontForGame(DesignGraphics.SIZE_FONT_H2));
+        concreteGame.setForegroundGUI(DesignGraphics.color4);
+
 
         this.graphics(concreteGame);
         concreteGame.validate();

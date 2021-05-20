@@ -1,6 +1,6 @@
 package spaceSurvival.view.GUI.game.utilities;
 
-import spaceSurvival.utilities.DesignSpace;
+import spaceSurvival.view.utilities.DesignGraphics;
 import spaceSurvival.view.utilities.FactoryGUIs;
 
 import javax.swing.*;
@@ -19,10 +19,10 @@ public class Score extends JPanel {
         this.stringScore.setOpaque(false);
         this.score.setOpaque(false);
 
-        this.stringScore.setFont(DesignSpace.getFontForGame(35));
-        this.stringScore.setForeground(DesignSpace.color4);
-        this.score.setFont(DesignSpace.getFontForGame(35));
-        this.score.setForeground(DesignSpace.color4);
+        this.stringScore.setFont(DesignGraphics.getFontForGame(35));
+        this.stringScore.setForeground(DesignGraphics.color4);
+        this.score.setFont(DesignGraphics.getFontForGame(35));
+        this.score.setForeground(DesignGraphics.color4);
 
 
         super.add(FactoryGUIs.createPanelGridBagUnionComponentsHorizontal(java.util.List.of(

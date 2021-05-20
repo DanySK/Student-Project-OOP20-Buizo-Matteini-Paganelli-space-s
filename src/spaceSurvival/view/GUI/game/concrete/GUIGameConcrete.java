@@ -6,6 +6,7 @@ import spaceSurvival.view.GUI.game.GUIGame;
 import spaceSurvival.view.GUI.game.utilities.*;
 import spaceSurvival.view.utilities.ButtonID;
 
+import java.awt.*;
 import java.awt.event.KeyListener;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
     private final LifeBar lifeBoss;
     private final Bullet bullet;
 
-    private PanelGame panelGame = new PanelGame();
+    private final PanelGame panelGame;
 
     public GUIGameConcrete(){
         super();
@@ -32,13 +33,73 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
         this.roundTimer = new RoundTimer();
         this.btnPause = new BtnPauseID();
         this.counterEnemies = new CounterEnemies();
+        this.panelGame = new PanelGame();
 
-        panelGame.setBounds(super.getBounds());
+        this.panelGame.setBounds(super.getBounds());
     }
 
     @Override
     public List<ButtonID> getButtonLinks() {
         return List.of(this.btnPause);
+    }
+
+
+    @Override
+    public void setTimer(final String timer) {
+        this.roundTimer.setTimer(timer);
+    }
+
+    @Override
+    public void setIdButtons(final List<IdGUI> linksID) {
+        this.btnPause.setIdGUICurrent(super.getId());
+        this.btnPause.setIdGUINext(linksID.get(0));
+    }
+
+    @Override
+    public PanelGame getPanelGame() {
+        return this.panelGame;
+    }
+
+    @Override
+    public void addKeyListenerSpaceShip(KeyListener keyListener) {
+        this.addKeyListener(keyListener);
+    }
+
+
+    @Override
+    public void setFontGUI(Font font) {
+        this.score.setFont(font);
+        this.roundTimer.setFontAll(font);
+        this.counterEnemies.setFont(font);
+        this.heartLife.setFontAll(font);
+    }
+
+    @Override
+    public void setFontLifeBars(Font font) {
+        this.lifeShip.setFont(font);
+        this.lifeBoss.setFont(font);
+    }
+
+    @Override
+    public void setForegroundGUI(Color color) {
+        this.score.setForeground(color);
+        this.roundTimer.setForegroundAll(color);
+        this.counterEnemies.setForeground(color);
+        this.heartLife.setForegroundAll(color);
+        this.lifeShip.setForeground(color);
+        this.lifeBoss.setForeground(color);
+    }
+
+    @Override
+    public void setBackgroundLifeBars(Color color) {
+        this.lifeShip.setBackground(color);
+        this.lifeBoss.setBackground(color);
+    }
+
+
+    @Override
+    public void repaintGameObjects(){
+        this.panelGame.repaint();
     }
 
     public LifeBar getLifeBoss() {
@@ -73,31 +134,5 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
         return btnPause;
     }
 
-
-    @Override
-    public void setTimer(String timer) {
-        this.roundTimer.setTimer(timer);
-    }
-
-    @Override
-    public void setIdButtons(List<IdGUI> linksID) {
-        this.btnPause.setIdGUICurrent(super.getId());
-        this.btnPause.setIdGUINext(linksID.get(0));
-    }
-
-    @Override
-    public PanelGame getPanelGame() {
-        return this.panelGame;
-    }
-
-    @Override
-    public void addKeyListenerSpaceship(KeyListener keyListener) {
-        this.addKeyListener(keyListener);
-    }
-
-    @Override
-    public void repaintGameObjects(){
-        this.panelGame.repaint();
-    }
 
 }
