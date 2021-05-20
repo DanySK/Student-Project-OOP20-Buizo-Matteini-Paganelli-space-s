@@ -32,8 +32,9 @@ import java.util.Optional;
 
 
 public class GameMalaLoop extends Thread implements WorldEventListener {
-    private long period = 30L;
+    private long period = 60L;
 
+    private final TwoThread twoThread;
     private final CtrlGUI controlGUI;
     private final GameState gameState;
     private CallerAudio callerAudioLoop;
@@ -48,6 +49,7 @@ public class GameMalaLoop extends Thread implements WorldEventListener {
         this.eventQueue = new LinkedList<>();
         this.gameState = new GameState();
         this.controlGUI = new CtrlGUI();
+        this.twoThread = new TwoThread();
     }
 
     public void initGame() {
@@ -83,6 +85,7 @@ public class GameMalaLoop extends Thread implements WorldEventListener {
 
         this.callerAudioLoop.execute(CmdAudioType.AUDIO_ON);
         this.controlGUI.startGUI();
+        this.twoThread.start();
     }
 
     public void run() {
@@ -92,15 +95,18 @@ public class GameMalaLoop extends Thread implements WorldEventListener {
             long current = System.currentTimeMillis();
             int elapsed = (int)(current - lastTime);
 
-            this.startTimer();
-            this.controlGUI.renderTimer();
-            this.updateSound();
+            System.out.println("Entro nel 1 thread");
+//            this.startTimer();
+//            this.controlGUI.renderTimer();
+//            this.updateSound();
 
-            inputSkin();
-            processInput();
+            synchronized (this) {
+                inputSkin();
+                processInput();
 
-            render();
-            renderMovement();
+                render();
+                renderMovement();
+            }
 
             waitForNextFrame(current);
             lastTime = current;
@@ -237,4 +243,49 @@ public class GameMalaLoop extends Thread implements WorldEventListener {
         eventQueue.add(ev);
     }
 
+    private class TwoThread extends Thread{
+
+        public void run(){
+            super.run();
+
+            while(!GameMalaLoop.this.gameState.isGameOver()){
+                long lastTime = System.currentTimeMillis();
+
+                while (!gameState.isGameOver()) {
+                    long current = System.currentTimeMillis();
+                    int elapsed = (int)(current - lastTime);
+
+                    System.out.println("Entro nel 2 thread");
+
+                    synchronized (GameMalaLoop.this) {
+                        GameMalaLoop.this.startTimer();
+                        GameMalaLoop.this.controlGUI.renderTimer();
+                        GameMalaLoop.this.updateSound();
+                    }
+
+
+//                    inputSkin();
+//                    processInput();
+//
+//                    render();
+//                    renderMovement();
+
+                    waitForNextFrame(current);
+                    lastTime = current;
+                    updateGame(elapsed);
+                    //System.out.println("LoopMala -> "+ elapsed +" FPS");
+                }
+            }
+        }
+
+        protected void waitForNextFrame(long current) {
+            long dt = System.currentTimeMillis() - current;
+            if (dt < period){
+                try {
+                    Thread.sleep(period - dt);
+                } catch (Exception ignored){}
+            }
+        }
+    }
 }
+
