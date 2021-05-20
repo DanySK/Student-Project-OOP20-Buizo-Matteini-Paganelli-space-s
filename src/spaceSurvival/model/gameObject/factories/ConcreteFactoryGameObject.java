@@ -65,7 +65,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 	@Override
 	public MainGameObject createFireEnemy() {
 		EngineImage engineImage = new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Skin.SPECIAL);
-		P2d position =new P2d(500, 500);// GameObjectUtils.generateSpawnPoint(engineImage.getSize());
+		P2d position =new P2d(400, 400);// GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.FIRE_ENEMY_VEL;
 		Movement movement = Movement.RANDOM;
 		int life = GameObjectUtils.FIRE_ENEMY_LIFE;

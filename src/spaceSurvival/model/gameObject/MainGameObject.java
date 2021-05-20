@@ -28,23 +28,26 @@ public abstract class MainGameObject extends MovableGameObject {
 		return life;
 	}
 
-    public void increaseLife(int heal) {
+    public void setLife(final int life) {
+		this.life = life;
+	}
+    
+    public void increaseLife(final int heal) {
 		this.life += heal;
 	}
     
-	public void decreaseLife(int damage) {
+	public void decreaseLife(final int damage) {
 		this.life -= damage;
-		System.out.println("Ahia danno" + this.life);
-		if (this.life <= 0) {
-			this.life = 0;
-		}
+		System.out.println(this.getPhys());
+		System.out.println("Ahia danno ricevuto: " + damage);
+		System.out.println("Vita rimasta: " + this.life);
 	}
 	
 	public int getImpactDamage() {
 		return impactDamage;
 	}
 
-	public void setImpactDamage(int impactDamage) {
+	public void setImpactDamage(final int impactDamage) {
 		this.impactDamage = impactDamage;
 	}
 	
@@ -53,7 +56,7 @@ public abstract class MainGameObject extends MovableGameObject {
 		return weapon;
 	}
 
-	public void setWeapon(Optional<Weapon> weapon) {
+	public void setWeapon(final Optional<Weapon> weapon) {
 		this.weapon = weapon;
 	}
 

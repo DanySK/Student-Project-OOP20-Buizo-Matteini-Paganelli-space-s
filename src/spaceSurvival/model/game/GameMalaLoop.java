@@ -23,6 +23,7 @@ import spaceSurvival.model.worldEcollisioni.hitEvents.HitPickableEvent;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import spaceSurvival.utilities.DesignSound;
 import spaceSurvival.utilities.IdGUI;
+import spaceSurvival.utilities.Score;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.view.GUI.game.GUIGame;
 
@@ -66,18 +67,17 @@ public class GameMalaLoop extends Thread implements WorldEventListener {
         this.panelGame.addKeyListenerSpaceship(controller);
         //this.panelGame.getPanelGame().addGameObject(this.gameState.getSpaceship(), this.gameState.getSpaceship().getTransform());
         
-//        this.gameState.getWorld().getAllEnemies().forEach(enemy -> {
-//        	System.out.println(enemy);        	
-//            RectBoundingBox rbbEnemy = (RectBoundingBox) enemy.getBoundingBox();
-//            enemy.getTransform().translate(rbbEnemy.getULCorner().getX(), rbbEnemy.getULCorner().getY());
-//        	this.panelGame.getPanelGame().addGameObject(enemy, enemy.getTransform());
-//        });
+        this.gameState.getWorld().getAllEnemies().forEach(enemy -> {
+        	System.out.println(enemy);        	
+            RectBoundingBox rbbEnemy = (RectBoundingBox) enemy.getBoundingBox();
+            enemy.getTransform().translate(rbbEnemy.getULCorner().getX(), rbbEnemy.getULCorner().getY());
+        	this.panelGame.getPanelGame().addGameObject(enemy, enemy.getTransform());
+        });
+        
         RectBoundingBox rbb = (RectBoundingBox) this.gameState.getSpaceship().getBoundingBox();
-        System.out.println("INIT -> " + rbb);
+        //System.out.println("INIT -> " + rbb);
 //        
-        //System.out.println("INIT -> " + rbb)
         this.gameState.getSpaceship().getTransform().setToTranslation(Screen.POINT_CENTER_FULLSCREEN.getX(), Screen.POINT_CENTER_FULLSCREEN.getY());
-        //System.out.println("INIT -> " + this.gameState.getWorld().getShip().getTransform().toString());
         
         this.panelGame.getPanelGame().addGameObject(this.gameState.getSpaceship(), this.gameState.getSpaceship().getTransform());  
 
@@ -95,7 +95,7 @@ public class GameMalaLoop extends Thread implements WorldEventListener {
             long current = System.currentTimeMillis();
             int elapsed = (int)(current - lastTime);
 
-            System.out.println("Entro nel 1 thread");
+//            System.out.println("Entro nel 1 thread");
 //            this.startTimer();
 //            this.controlGUI.renderTimer();
 //            this.updateSound();
@@ -155,7 +155,9 @@ public class GameMalaLoop extends Thread implements WorldEventListener {
             	final ChaseEnemy chaseEnemyCollided = (ChaseEnemy) chaseEnemyEvent.getCollisionObj();
             	chaseEnemyCollided.decreaseLife(ship.getImpactDamage());
             	if (isGameObjectDead(chaseEnemyCollided)) {
+            		System.out.println("ChaseEnemy morto e rimosso");
                 	scene.removeChaseEnemy(chaseEnemyCollided);
+                	gameState.increaseScore(Score.CHASE_ENEMY);
 				}
                 gameState.decreaseLife(chaseEnemyCollided.getImpactDamage());
                 // HitBorderEvent bEv = (HitBorderEvent) ev;
@@ -165,7 +167,9 @@ public class GameMalaLoop extends Thread implements WorldEventListener {
             	final FireEnemy fireEnemyCollided = (FireEnemy) fireEnemyEvent.getCollisionObj();
             	fireEnemyCollided.decreaseLife(ship.getImpactDamage());
             	if (isGameObjectDead(fireEnemyCollided)) {
+            		System.out.println("FireEnemy morto e rimosso");
                 	scene.removeFireEnemy(fireEnemyCollided);
+                	gameState.increaseScore(Score.FIRE_ENEMY);
 				}
                 gameState.decreaseLife(fireEnemyCollided.getImpactDamage());
                 // HitBorderEvent bEv = (HitBorderEvent) ev;
@@ -176,6 +180,7 @@ public class GameMalaLoop extends Thread implements WorldEventListener {
             	bossCollided.decreaseLife(ship.getImpactDamage());
             	if (isGameObjectDead(bossCollided)) {
                 	scene.setBoss(Optional.empty());
+                	gameState.increaseScore(Score.BOSS);
 				}
                 gameState.decreaseLife(bossCollided.getImpactDamage());
                 // HitBorderEvent bEv = (HitBorderEvent) ev;
@@ -255,7 +260,7 @@ public class GameMalaLoop extends Thread implements WorldEventListener {
                     long current = System.currentTimeMillis();
                     int elapsed = (int)(current - lastTime);
 
-                    System.out.println("Entro nel 2 thread");
+                    //System.out.println("Entro nel 2 thread");
 
                     synchronized (GameMalaLoop.this) {
                         GameMalaLoop.this.startTimer();
