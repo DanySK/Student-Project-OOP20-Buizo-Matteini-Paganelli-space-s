@@ -106,6 +106,7 @@ public class PanelGame extends JPanel {
         AffineTransform aff = new AffineTransform();
         aff.setTransform(transform);
 
+
         //aff.setToTranslation(transform.getTranslateX(), transform.getTranslateY());
         //newAff.rotate(angle, gameObject.getPosition().getX(), gameObject.getPosition().getY());
         //aff.setToTranslation(aff.getTranslateX(), aff.getTranslateY() + gameObject.getSize().getHeight());
@@ -114,6 +115,7 @@ public class PanelGame extends JPanel {
 
         //g2d.setTransform(aff);
         g2d.drawImage(this.getImageFromPath(new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Skin.ATOMIC)), aff, null);
+
 
         //g2d.setColor(Color.WHITE);
 
@@ -141,6 +143,7 @@ public class PanelGame extends JPanel {
         newAff.rotate(angle, gameObject.getPosition().getX(), gameObject.getPosition().getY());
         newAff.translate(0, gameObject.getEngineImage().getHeight());
 //        System.out.println("aaaaaaaaaaaaaaaaa" + gameObject.getEngineImage().getHeight());
+
 
 
         g2d.setTransform(newAff);

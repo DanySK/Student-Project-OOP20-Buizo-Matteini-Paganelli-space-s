@@ -38,6 +38,7 @@ public class World {
 
 		for (int i = 0; i < 1; i++) {
 			addChaseEnemy(factoryGameObject.createChaseEnemy());
+			//addFireEnemy(factoryGameObject.createFireEnemy());
 			//asteroids.add(factoryGameObject.createAsteroid());
 			//chaseEnemies.add(factoryGameObject.createChaseEnemy());
 			//fireEnemies.add(factoryGameObject.createFireEnemy());

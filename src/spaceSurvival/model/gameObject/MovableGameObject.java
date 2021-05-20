@@ -48,8 +48,9 @@ public abstract class MovableGameObject extends GameObject {
 		RectBoundingBox bbox2 = (RectBoundingBox) this.getBoundingBox();
 		System.out.println("RectBoundingBox transform -->" + bbox2.getTransform());
 
-		
+
 		System.out.println(this.getTransform());
+
 
 
 

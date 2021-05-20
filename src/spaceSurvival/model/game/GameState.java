@@ -9,6 +9,7 @@ import spaceSurvival.model.world.World;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import spaceSurvival.utilities.dimension.Screen;
 
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.util.Timer;
 
@@ -60,6 +61,10 @@ public class GameState {
 		this.score = score;
 	}
 
+	public void increaseScore(int points) {
+		this.score += points;
+	}
+	
 	public int getRound() {
 		return round;
 	}
@@ -92,7 +97,24 @@ public class GameState {
     public boolean isGameOver(){
         return this.gameOver;
     }
+	
+    public int getLife() {
+    	return this.getSpaceship().getLife();
+	}
+
+    public void increaseLife(int heal) {
+    	this.getSpaceship().increaseLife(heal);
+	}
     
+	public void decreaseLife(int damage) {
+    	this.getSpaceship().decreaseLife(damage);
+    	
+    	if (this.getLife() <= 0) {
+			System.out.println("Ho perso tutta la vita");
+			this.decreaseLives();
+		}
+	}
+	
     public int getLives() {
 		return lives;
 	}
@@ -107,10 +129,12 @@ public class GameState {
 
 	public void decreaseLives(){
 		this.lives--;
-		System.out.println("Decremento vita, vite " + this.lives);
+		System.out.println("Decremento vita, vite rimaste: " + this.lives);
 		if (getLives() == 0) {
 			this.setGameOver(true);
 		} else {
+			this.getSpaceship().setLife(GameObjectUtils.SPACESHIP_LIFE);
+			System.out.println("Ho ancora altre vite, ripristino la vita: " + this.getLife());
 			this.respawn();
 		}
 	}
@@ -118,24 +142,8 @@ public class GameState {
 	public void resetLives(){
 		this.lives = 5;
 	}
-	
-    public int getLife() {
-    	return this.getSpaceship().getLife();
-	}
-
-    public void increaseLife(int heal) {
-    	this.getSpaceship().increaseLife(heal);
-	}
-    
-	public void decreaseLife(int damage) {
-    	this.getSpaceship().decreaseLife(damage);
-    	if (this.getLife() == 0) {
-			this.increaseLife(GameObjectUtils.SPACESHIP_LIFE);
-			this.decreaseLives();
-		}
-	}
-	
 	public void respawn() {
+		this.getSpaceship().setTransform(new AffineTransform()); 
 		this.getSpaceship().setPosition(Screen.POINT_CENTER_FULLSCREEN);
 	}
 
