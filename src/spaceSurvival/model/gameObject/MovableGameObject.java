@@ -7,6 +7,8 @@ import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 
+import java.awt.geom.AffineTransform;
+
 public abstract class MovableGameObject extends GameObject {
 	private V2d velocity;
 	private Movement movement;
@@ -29,11 +31,23 @@ public abstract class MovableGameObject extends GameObject {
 	public void move() {
 		//this.getTransform().translate(this.getVelocity().getX(), this.getVelocity().getY());
 		//this.setPosition(this.getPosition().sum(this.getVelocity()));
-		
-		this.getTransform().translate(this.getVelocity().getX(), this.getVelocity().getY());
+		AffineTransform at = this.getTransform();
+		//at.transform()
+		at.translate(this.getVelocity().getX(), this.getVelocity().getY());
+		this.setTransform(this.getTransform());
+
+		//this.getTransform().translate(this.getVelocity().getX(), this.getVelocity().getY());
 		//this.getBoundingBox().getTransform()
-		RectBoundingBox bbox = (RectBoundingBox) this.getBoundingBox();
-		bbox.getTransform().translate(this.getVelocity().getX(), this.getVelocity().getY());
+		//RectBoundingBox bbox = (RectBoundingBox) this.getBoundingBox();
+		//bbox.getTransform().translate(this.getVelocity().getX(), this.getVelocity().getY());
+
+		System.out.println("RectBoundingBox -->" + this.getBoundingBox());
+		System.out.println("SpaceShip Position -->" + this.getPosition());
+		System.out.println("SpaceShip transform -->" + this.getTransform());
+
+		RectBoundingBox bbox2 = (RectBoundingBox) this.getBoundingBox();
+		System.out.println("RectBoundingBox transform -->" + bbox2.getTransform());
+
 		
 		
 //		double x = this.getTransform().getTranslateX();

@@ -60,11 +60,9 @@ public class RectBoundingBox implements BoundingBox {
 	public AffineTransform getTransform(){
 		return this.transform;
 	}
+	public void setTransform(AffineTransform transform){ this.transform.setTransform(transform); }
 	
-	public void setTransform(AffineTransform affineTranform){
-		this.transform = affineTranform;
-	}
-	
+
 	/**
 	 * @TODO to be implemented
 	 * Il raggio sarà il lato.
@@ -94,18 +92,18 @@ public class RectBoundingBox implements BoundingBox {
 		return "RectBoundingBox [p0=" + this.p0 + ", p1=" + this.p1 + "]";
 	}
 
-	//TEST
+
 	
-	public static void main (String[] args) {
-		System.out.println("Ciao collisioni");
-		
-		RectBoundingBox r1 = new RectBoundingBox(new P2d(0,0), new P2d(10,10));
-		RectBoundingBox r2 = new RectBoundingBox(new P2d(7,7), new P2d(15,15));
-		
-		
-		//System.out.println(r1.isCollidingWith(r2.getULCorner(), 10));
-		
-	}
+//	public static void main (String[] args) {
+//		System.out.println("Ciao collisioni");
+//
+//		RectBoundingBox r1 = new RectBoundingBox(new P2d(0,0), new P2d(10,10));
+//		RectBoundingBox r2 = new RectBoundingBox(new P2d(7,7), new P2d(15,15));
+//
+//
+//		//System.out.println(r1.isCollidingWith(r2.getULCorner(), 10));
+//
+//	}
 }
 	
 	
