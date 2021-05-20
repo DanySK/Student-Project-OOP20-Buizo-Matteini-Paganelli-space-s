@@ -64,8 +64,9 @@ public class PanelGame extends JPanel {
             //System.out.println("Width drawing: - >" + key.getEngineImage().getWidth());
             //System.out.println("Height drawing: - >" + key.getEngineImage().getHeight());
             
-            
-            this.drawLifeBar(g2d, (MainGameObject) key, value);
+            if (key instanceof MainGameObject) {
+                this.drawLifeBar(g2d, (MainGameObject) key, value);
+			}
             //this.drawLife(g2d, (MainGameObject) key, value);
         });
     }
@@ -111,7 +112,7 @@ public class PanelGame extends JPanel {
         //newAff.rotate(angle, gameObject.getPosition().getX(), gameObject.getPosition().getY());
         //aff.setToTranslation(aff.getTranslateX(), aff.getTranslateY() + gameObject.getSize().getHeight());
         aff.translate(0, gameObject.getSize().getHeight());
-    System.out.println("TranslateY -> "+aff.getTranslateY()+"TranslateX -> "+aff.getTranslateX()+"objectSizeHeight ->" +  gameObject.getSize().getHeight());
+        //System.out.println("TranslateY -> "+aff.getTranslateY()+"TranslateX -> "+aff.getTranslateX()+"objectSizeHeight ->" +  gameObject.getSize().getHeight());
 
         //g2d.setTransform(aff);
         g2d.drawImage(this.getImageFromPath(new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Skin.ATOMIC)), aff, null);

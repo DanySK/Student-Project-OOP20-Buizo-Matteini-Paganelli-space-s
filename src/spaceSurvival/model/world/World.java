@@ -38,14 +38,17 @@ public class World {
 
 		for (int i = 0; i < 1; i++) {
 			addChaseEnemy(factoryGameObject.createChaseEnemy());
+			addPickable(factoryGameObject.createPickable());
 			//addFireEnemy(factoryGameObject.createFireEnemy());
 			//asteroids.add(factoryGameObject.createAsteroid());
 			//chaseEnemies.add(factoryGameObject.createChaseEnemy());
 			//fireEnemies.add(factoryGameObject.createFireEnemy());
 		}
 		
-		System.out.println(getFireEnemies());
-		System.out.println(getChaseEnemies());
+//		System.out.println(getFireEnemies());
+//		System.out.println(getChaseEnemies());
+//		System.out.println(getPickables());
+
 
 	}
 
@@ -97,11 +100,11 @@ public class World {
 		fireEnemies.remove(obj);
 	}
 	
-	public void addPickablePerk(PickableGameObject obj) {
+	public void addPickable(PickableGameObject obj) {
 		pickables.add(obj);
 	}
 
-	public void removePickablePerk(PickableGameObject obj) {
+	public void removePickable(PickableGameObject obj) {
 		pickables.remove(obj);
 	}
 	
@@ -216,7 +219,7 @@ public class World {
 		this.boss = boss;
 	}
 	
-	public Set<PickableGameObject> getPickablePerks() {
+	public Set<PickableGameObject> getPickables() {
 		return this.pickables;
 	}
 
