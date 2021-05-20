@@ -4,8 +4,13 @@ import java.awt.*;
 import java.net.URL;
 
 public class DesignGraphics {
-    public static String INIT_TIMER_STRING = "00:00:00";
     public static String ROUND_STRING = "Round ";
+    public static String SCORE_STRING = "Score: ";
+    public static String ENEMIES_STRING = "Enemies";
+    public static String INIT_TIMER_STRING = "00:00:00";
+    public static String INIT_SCORE_STRING = "0";
+    public static String INIT_COUNT_ENEMIES_STRING = "0";
+
 
     public static int SIZE_FONT_H1 = 60;
     public static int SIZE_FONT_H2 = 35;

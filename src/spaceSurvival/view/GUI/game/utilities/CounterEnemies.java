@@ -14,17 +14,30 @@ public class CounterEnemies extends JPanel {
         super(new FlowLayout());
         super.setOpaque(false);
 
-        this.stringEnemies = new JLabel("Enemies");
-        this.counter = new JLabel("32");
-
-        this.stringEnemies.setFont(DesignGraphics.getFontForGame(35));
-        this.counter.setFont(DesignGraphics.getFontForGame(35));
-
-        this.stringEnemies.setForeground(DesignGraphics.color4);
-        this.counter.setForeground(DesignGraphics.color4);
+        this.stringEnemies = new JLabel(DesignGraphics.ENEMIES_STRING);
+        this.counter = new JLabel(DesignGraphics.INIT_COUNT_ENEMIES_STRING);
 
         super.add(FactoryGUIs.createPanelGridBagUnionComponentsVertical(java.util.List.of(
-                this.stringEnemies, FactoryGUIs.encapsulatesInPanelFlow(this.counter)), 5));
+                this.stringEnemies, FactoryGUIs.encapsulatesInPanelFlow(this.counter)),
+                FactoryGUIs.MEDIUM_INSET));
 
+    }
+
+    public void setCounter(final int count){
+        this.counter.setText(Integer.toString(count));
+    }
+
+    public void setCounter(final String count){
+        this.counter.setText(count);
+    }
+
+    public void setFontAll(final Font font) {
+        this.stringEnemies.setFont(font);
+        this.counter.setFont(font);
+    }
+
+    public void setForegroundAll(final Color color) {
+        this.stringEnemies.setForeground(color);
+        this.counter.setForeground(color);
     }
 }

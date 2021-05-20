@@ -18,12 +18,11 @@ public class GUIGameStandard implements FactoryGUIGame {
         final GUIGameConcrete concreteGame = new GUIGameConcrete();
         concreteGame.setBackgroundImage(Background.GAME);
         concreteGame.setFontGUI(DesignGraphics.getFontForGame(DesignGraphics.SIZE_FONT_H2));
-        concreteGame.setFontGUI(DesignGraphics.getFontForGame(DesignGraphics.SIZE_FONT_H2));
+        concreteGame.setFontLifeBars(DesignGraphics.getFontForGame(DesignGraphics.SIZE_FONT_H5));
+        concreteGame.setBackgroundLifeBars(DesignGraphics.colorOpacityBlack);
         concreteGame.setForegroundGUI(DesignGraphics.color4);
 
-
         this.graphics(concreteGame);
-        concreteGame.validate();
         return concreteGame;
     }
 
@@ -31,14 +30,14 @@ public class GUIGameStandard implements FactoryGUIGame {
         FactoryGUIs.setTransparentDesignJButton(concreteGame.getBtnPause());
         concreteGame.getBtnPause().setBorder(null);
 
-        final JPanel panelNorth = new JPanel(new GridLayout()) {{ setOpaque(false); }};
+        final JPanel panelNorth = FactoryGUIs.createPanelTransparent(new GridLayout());
 
         panelNorth.add(FactoryGUIs.encapsulatesInPanelFlowOrientation(FlowLayout.LEFT, concreteGame.getScore()));
         panelNorth.add(FactoryGUIs.encapsulatesInPanelFlow(concreteGame.getRoundTimer()));
         panelNorth.add(FactoryGUIs.encapsulatesInPanelFlowOrientation(FlowLayout.RIGHT,
                 FactoryGUIs.createPanelGridBagUnionComponentsHorizontal(
                         java.util.List.of(concreteGame.getBtnPause(), concreteGame.getCounterEnemies()),
-                        5)));
+                        FactoryGUIs.MEDIUM_INSET)));
 
         concreteGame.getLifeBoss().setPreferredSize(new Dimension(
                 Screen.scaleRespectTo(ScaleOf.WIDTH_LIFEBAR_BOSS, Screen.WIDTH_FULL_SCREEN),
@@ -55,7 +54,7 @@ public class GUIGameStandard implements FactoryGUIGame {
                 FactoryGUIs.createPanelGridBagUnionComponentsVerticalInsetExternalSX(
                     java.util.List.of(FactoryGUIs.encapsulatesInPanelFlowOrientation(
                         FlowLayout.LEFT,concreteGame.getHeartLife()),
-                        concreteGame.getLifeShip()), 6, 6));
+                        concreteGame.getLifeShip()), FactoryGUIs.MEDIUM_INSET, FactoryGUIs.MEDIUM_INSET));
 
 
         final JPanel panelSouth = new JPanel(new GridLayout()) {{setOpaque(false); }};

@@ -68,9 +68,9 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
 
     @Override
     public void setFontGUI(Font font) {
-        this.score.setFont(font);
+        this.score.setFontAll(font);
         this.roundTimer.setFontAll(font);
-        this.counterEnemies.setFont(font);
+        this.counterEnemies.setFontAll(font);
         this.heartLife.setFontAll(font);
     }
 
@@ -82,9 +82,9 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
 
     @Override
     public void setForegroundGUI(Color color) {
-        this.score.setForeground(color);
+        this.score.setForegroundAll(color);
         this.roundTimer.setForegroundAll(color);
-        this.counterEnemies.setForeground(color);
+        this.counterEnemies.setForegroundAll(color);
         this.heartLife.setForegroundAll(color);
         this.lifeShip.setForeground(color);
         this.lifeBoss.setForeground(color);

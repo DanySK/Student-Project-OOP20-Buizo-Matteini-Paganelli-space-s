@@ -6,4 +6,6 @@ public class Skin {
     public static final String DELUXE ="gameObjects/spaceship/ship3.png";
     public static final String NORMAL = "gameObjects/spaceship/ship4.png";
     public static final String ATOMIC = "gameObjects/spaceship/ship5.png";
+    public static final String LIFE = "gameObjects/spaceship/LifeShip.png";
+
 }
