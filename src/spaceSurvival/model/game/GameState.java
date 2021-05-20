@@ -13,15 +13,17 @@ import java.awt.geom.Point2D;
 import java.util.Timer;
 
 public class GameState {
-    private Timer timer;
-    private int score;
-    private int round;
+	
     private World world;
-    private CtrlGUI controllerGUI;
+    private int score;
+	private int lives;
+    private int round;
     
+    private CtrlGUI controllerGUI;
+    private Timer timer;
+
     private boolean gameOver = false;
 
-	private int lives;
 
     public GameState(){
     	Point2D UL_screen = EngineGame.DIMENSION.getLocation();
@@ -29,6 +31,9 @@ public class GameState {
     	P2d UL_P2d = new P2d(UL_screen.getX(), UL_screen.getY());
     	P2d BR_P2d = new P2d(UL_screen.getX() + EngineGame.DIMENSION.getWidth(), UL_screen.getY() + EngineGame.DIMENSION.getHeight());
         this.world = new World(new RectBoundingBox(UL_P2d, BR_P2d));
+        this.score = EngineGame.INITIAL_SCORE;
+        this.lives = GameObjectUtils.SPACESHIP_LIVES;
+        this.round = EngineGame.INITIAL_ROUND;
     }
 
     public World getWorld(){
@@ -63,6 +68,10 @@ public class GameState {
 		this.round = round;
 	}
 
+	public void increaseRound() {
+		this.round++;
+	}
+	
 	public CtrlGUI getControllerGUI() {
 		return controllerGUI;
 	}
@@ -98,7 +107,7 @@ public class GameState {
 
 	public void decreaseLives(){
 		this.lives--;
-		System.out.println("Decremento vita" + this.lives);
+		System.out.println("Decremento vita, vite " + this.lives);
 		if (getLives() == 0) {
 			this.setGameOver(true);
 		} else {

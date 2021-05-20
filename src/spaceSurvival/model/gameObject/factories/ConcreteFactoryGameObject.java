@@ -22,6 +22,7 @@ import spaceSurvival.model.worldEcollisioni.physics.components.ChaseEnemyPhysics
 import spaceSurvival.model.worldEcollisioni.physics.components.FireEnemyPhysicsComponent;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.utilities.pathImage.Icon;
+import spaceSurvival.utilities.pathImage.Skin;
 
 
 public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
@@ -34,72 +35,69 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 	public MainGameObject createAsteroid() {
 		EngineImage engineImage = new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN,
 				spaceSurvival.utilities.pathImage.Asteroid.NORMAL);
-		P2d point = new P2d(300, 300);//GameObjectUtils.generateSpawnPoint(engineImage.getSize());
+		P2d position = new P2d(300, 300);//GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.ASTEROID_VEL;
 		Movement movement = Movement.FIXED;
 		int life = GameObjectUtils.ASTEROID_LIFE;
 		int impactDamage = GameObjectUtils.ASTEROID_DAMAGE;
 		Optional<Weapon> weapon = Optional.empty();
 		
-		return new Asteroid(engineImage, point, new CircleBoundingBox(), new AsteroidPhysicsComponent(),
+		return new Asteroid(engineImage, position, new CircleBoundingBox(), new AsteroidPhysicsComponent(),
 				velocity, movement, life, impactDamage, weapon);
 	}
 
 
 	@Override
 	public MainGameObject createChaseEnemy() {
-		EngineImage engineImage = new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN,
-				spaceSurvival.utilities.pathImage.Asteroid.NORMAL);
-		P2d point = new P2d(200, 200);//GameObjectUtils.generateSpawnPoint(engineImage.getSize());
+		EngineImage engineImage = new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Skin.DELUXE);
+		P2d position = new P2d(200, 200);//GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.CHASE_ENEMY_VEL;
 		Movement movement = Movement.CHASE;
 		int life = GameObjectUtils.CHASE_ENEMY_LIFE;
 		int impactDamage = GameObjectUtils.CHASE_ENEMY_DAMAGE;		
 		Optional<Weapon> weapon = Optional.empty();
 		
-		return new ChaseEnemy(engineImage, point, new RectBoundingBox(), new ChaseEnemyPhysicsComponent(),
+		return new ChaseEnemy(engineImage, position, new RectBoundingBox(), new ChaseEnemyPhysicsComponent(),
 				velocity, movement, life, impactDamage, weapon);
 	}
 
 
 	@Override
 	public MainGameObject createFireEnemy() {
-		EngineImage engineImage = new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN,
-				spaceSurvival.utilities.pathImage.Asteroid.NORMAL);
-		P2d point =new P2d(500, 500);// GameObjectUtils.generateSpawnPoint(engineImage.getSize());
+		EngineImage engineImage = new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Skin.SPECIAL);
+		P2d position =new P2d(500, 500);// GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.FIRE_ENEMY_VEL;
 		Movement movement = Movement.RANDOM;
 		int life = GameObjectUtils.FIRE_ENEMY_LIFE;
 		int impactDamage = GameObjectUtils.FIRE_ENEMY_DAMAGE;		
 		Optional<Weapon> weapon = Optional.of(new Weapon());
 		
-		return new FireEnemy(engineImage, point, new RectBoundingBox(), new FireEnemyPhysicsComponent(),
+		return new FireEnemy(engineImage, position, new RectBoundingBox(), new FireEnemyPhysicsComponent(),
 				velocity, movement, life, impactDamage, weapon);
 	}
 
 
 	@Override
 	public MainGameObject createBoss() {
-		EngineImage engineImage = new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN,
-				spaceSurvival.utilities.pathImage.Asteroid.NORMAL);
-		P2d point = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
+		EngineImage engineImage = new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Skin.STANDARD);
+		P2d position = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.BOSS_VEL;
 		Movement movement = Movement.RANDOM;
 		int life = GameObjectUtils.BOSS_LIFE;
 		int impactDamage = GameObjectUtils.BOSS_DAMAGE;		
 		Optional<Weapon> weapon = Optional.of(new Weapon());
 		
-		return new Boss(engineImage, point, new RectBoundingBox(), new BossPhysicsComponent(),
+		return new Boss(engineImage, position, new RectBoundingBox(), new BossPhysicsComponent(),
 				velocity, movement, life, impactDamage, weapon);
 	}
 
 	@Override
 	public PickableGameObject createPickable() {
 		final EngineImage engineImage = new EngineImage(Icon.BULLET);
-		final P2d point = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
-	 	final EffectType effectType = EffectType.randomEffect();
+		final P2d position = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
+	 	final EffectType effectType = EffectType.random();
 		
-		return new PickableGameObject(engineImage, point, new CircleBoundingBox(), null, effectType);
+		return new PickableGameObject(engineImage, position, new CircleBoundingBox(), null, effectType);
 	}
 
 }

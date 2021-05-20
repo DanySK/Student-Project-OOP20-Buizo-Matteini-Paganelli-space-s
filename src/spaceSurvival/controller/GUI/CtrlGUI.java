@@ -16,6 +16,7 @@ import spaceSurvival.model.GUI.sound.EngineSound;
 import spaceSurvival.utilities.IdGUI;
 import spaceSurvival.utilities.SoundPath;
 import spaceSurvival.utilities.StateLevelGUI;
+import spaceSurvival.utilities.pathImage.Skin;
 import spaceSurvival.view.GUI.GUI;
 import spaceSurvival.view.GUI.game.GUIGame;
 import spaceSurvival.view.GUI.help.GUIHelp;
@@ -237,7 +238,8 @@ public class CtrlGUI {
 
 
     public String getCurrentSkin(){
-        return this.ctrlSettings.getCurrentSkin();
+    	return Skin.SPECIAL;
+        //return this.ctrlSettings.getCurrentSkin();
     }
 
     public void initTimer(){

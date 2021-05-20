@@ -3,7 +3,7 @@ package spaceSurvival.model.command.concreteCommand;
 import java.awt.geom.AffineTransform;
 
 import spaceSurvival.model.command.commandInterfaces.CommandMovement;
-import spaceSurvival.model.gameObject.MovableGameObject;
+import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 
@@ -13,7 +13,7 @@ public class RotateRightCommand implements CommandMovement{
 	public RotateRightCommand() {}
 
 	@Override
-	public void execute(MovableGameObject obj) {
+	public void execute(MainGameObject obj) {
 		System.out.println("Rotate Right");
 		
 //		System.out.println(obj);
@@ -54,7 +54,6 @@ public class RotateRightCommand implements CommandMovement{
 //		ship.setTransform(transform); 
 		SpaceShipSingleton ship = (SpaceShipSingleton) obj;
 		AffineTransform transform = ship.getTransform();
-
 		RectBoundingBox bbox = (RectBoundingBox) ship.getBoundingBox();
 		
 		

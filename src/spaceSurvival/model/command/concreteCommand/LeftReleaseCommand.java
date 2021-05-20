@@ -1,16 +1,17 @@
 package spaceSurvival.model.command.concreteCommand;
 
+
 import spaceSurvival.model.command.commandInterfaces.CommandMovement;
 import spaceSurvival.model.common.V2d;
-import spaceSurvival.model.gameObject.MovableGameObject;
+import spaceSurvival.model.gameObject.MainGameObject;
 
 public class LeftReleaseCommand implements CommandMovement {
 
 	@Override
-	public void execute(MovableGameObject ship) {
+	public void execute(MainGameObject ship) {
 		System.out.println("Release Left");
 		V2d vel = ship.getVelocity();
-		ship.setVelocity(ship.getVelocity().mul(0.5));	
+		ship.setVelocity(vel.mul(0.5));	
 		
 //		V2d vel = ship.getCurrentVel();
 ////
