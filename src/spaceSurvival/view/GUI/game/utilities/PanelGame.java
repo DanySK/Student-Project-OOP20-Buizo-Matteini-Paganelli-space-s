@@ -27,7 +27,7 @@ public class PanelGame extends JPanel {
 
         this.gameObject.forEach((key, value) -> {
             g2d.drawImage(this.getImageFromPath(key.getEngineImage()), value, null);
-            RectBoundingBox rbb = (RectBoundingBox) key.getBoundingBox();
+            //RectBoundingBox rbb = (RectBoundingBox) key.getBoundingBox();
             
             double m00 = value.getScaleX();
             
@@ -38,7 +38,7 @@ public class PanelGame extends JPanel {
             AffineTransform newAff = new AffineTransform();
             newAff.setToTranslation(value.getTranslateX(), value.getTranslateY());
             
-            newAff.rotate(angle, key.getPosition().getX(), key.getPosition().getY());
+            newAff.rotate(angle, key.getPosition().getX(),  key.getPosition().getY());
 
             //newAff.translate(0, key.getSize().getHeight() * 2);
             
@@ -48,7 +48,11 @@ public class PanelGame extends JPanel {
             //g2d.setColor(Color.GREEN);
 
             //g2d.setTransform(rbb.getTransform());
-            g2d.drawRect((int)value.getTranslateX(), (int)value.getTranslateY(), (int)rbb.getWidth(), (int)rbb.getHeight());
+            //g2d.drawRect((int)value.getTranslateX(), (int)value.getTranslateY(), (int)rbb.getWidth(), (int)rbb.getHeight());
+            g2d.drawRect((int)value.getTranslateX(), (int)value.getTranslateY(), (int) key.getEngineImage().getWidth(), (int) key.getEngineImage().getHeight()); 
+            System.out.println("Width drawing: - >" + key.getEngineImage().getWidth());          
+            System.out.println("Height drawing: - >" + key.getEngineImage().getHeight());
+            
             
             this.drawLifeBar(g2d, (MainGameObject) key, value);
             this.drawLife(g2d, (MainGameObject) key, value);
@@ -101,7 +105,7 @@ public class PanelGame extends JPanel {
 
     private void drawLife(final Graphics2D g2d, final GameObject gameObject, final AffineTransform transform){
 
-        final RectBoundingBox rect = (RectBoundingBox)gameObject.getBoundingBox();
+        //final RectBoundingBox rect = (RectBoundingBox) gameObject.getBoundingBox();
         
         double m00 = transform.getScaleX();
         double m01 = transform.getShearX();
@@ -116,8 +120,8 @@ public class PanelGame extends JPanel {
 
         newAff.setToTranslation(transform.getTranslateX(), transform.getTranslateY());      
         newAff.rotate(angle, gameObject.getPosition().getX(), gameObject.getPosition().getY());
-        newAff.translate(0, rect.getHeight());
-        System.out.println("aaaaaaaaaaaaaaaaa" + rect.getHeight());
+        newAff.translate(0, gameObject.getEngineImage().getHeight());
+        System.out.println("aaaaaaaaaaaaaaaaa" + gameObject.getEngineImage().getHeight());
 
 
         g2d.setTransform(newAff);
