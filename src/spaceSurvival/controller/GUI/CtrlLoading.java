@@ -6,7 +6,7 @@ import spaceSurvival.model.GUI.Visibility;
 import spaceSurvival.model.GUI.loading.EngineLoading;
 import spaceSurvival.utilities.IdGUI;
 import spaceSurvival.view.GUI.GUI;
-import spaceSurvival.view.GUI.Loading.GUILoading;
+import spaceSurvival.view.GUI.loading.GUILoading;
 
 
 public class CtrlLoading extends Thread implements ControllerGUI{

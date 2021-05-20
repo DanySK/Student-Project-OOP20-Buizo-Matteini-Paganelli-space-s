@@ -1,4 +1,4 @@
-package spaceSurvival.view.GUI.Loading;
+package spaceSurvival.view.GUI.loading;
 
 import spaceSurvival.view.GUI.GUI;
 

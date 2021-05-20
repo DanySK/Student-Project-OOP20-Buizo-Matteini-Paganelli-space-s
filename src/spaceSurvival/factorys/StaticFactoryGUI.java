@@ -1,8 +1,8 @@
 package spaceSurvival.factorys;
 
-import spaceSurvival.view.GUI.Loading.FactoryGUILoading;
-import spaceSurvival.view.GUI.Loading.GUILoading;
-import spaceSurvival.view.GUI.Loading.factoryMethod.GUILoadingStandard;
+import spaceSurvival.view.GUI.loading.FactoryGUILoading;
+import spaceSurvival.view.GUI.loading.GUILoading;
+import spaceSurvival.view.GUI.loading.factoryMethod.GUILoadingStandard;
 import spaceSurvival.view.GUI.game.FactoryGUIGame;
 import spaceSurvival.view.GUI.game.GUIGame;
 import spaceSurvival.view.GUI.game.factoryMethod.GUIGameStandard;

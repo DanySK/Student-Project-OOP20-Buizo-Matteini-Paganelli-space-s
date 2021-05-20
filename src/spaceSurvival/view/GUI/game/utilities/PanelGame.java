@@ -1,9 +1,7 @@
 package spaceSurvival.view.GUI.game.utilities;
 
 import spaceSurvival.model.gameObject.GameObject;
-import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.image.EngineImage;
-import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import spaceSurvival.view.utilities.JImage;
 import javax.swing.*;
 import java.awt.*;
@@ -26,12 +24,13 @@ public class PanelGame extends JPanel {
 
         this.gameObject.forEach((key, value) -> {
             g2d.setTransform(value);
-            g2d.drawImage(this.getImageFromPath(key.getEngineImage()), null, null);
+            g2d.drawImage(this.getImageFromEngine(key.getEngineImage()), null, null);
 
-            if (key instanceof MainGameObject) {
-                this.drawLifeBar(g2d, (MainGameObject) key, value);
-                this.drawLife(g2d, (MainGameObject) key, value);	
-			}
+            g2d.drawRect((int)key.getPosition().x, (int)key.getPosition().y, 5, 5);
+//            if (key instanceof MainGameObject) {
+                this.drawLifeBar(g2d, key, value);
+                this.drawLife(g2d, key, value);
+//			}
         });
     }
 
@@ -45,7 +44,7 @@ public class PanelGame extends JPanel {
         this.repaint();
     }
 
-    private Image getImageFromPath(final EngineImage image){
+    private Image getImageFromEngine(final EngineImage image){
         JImage icon = new JImage(image.getPath(), image.getSize());
         return icon.getImage();
     }
@@ -66,7 +65,6 @@ public class PanelGame extends JPanel {
 
         g2d.setColor(Color.WHITE);
         g2d.setTransform(aff);
-        RectBoundingBox bb = (RectBoundingBox) gameObject.getBoundingBox();
 
 
         g2d.drawRect((int) 0,0, (int)gameObject.getSize().getHeight(), 11);

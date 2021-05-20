@@ -1,7 +1,8 @@
-package spaceSurvival.view.GUI.Loading.concrete;
+package spaceSurvival.view.GUI.loading.concrete;
 
 import spaceSurvival.view.GUI.AbstractGUI;
-import spaceSurvival.view.GUI.Loading.GUILoading;
+import spaceSurvival.view.GUI.loading.GUILoading;
+import spaceSurvival.view.GUI.loading.utilities.LoadingBar;
 import spaceSurvival.view.utilities.ButtonID;
 
 import javax.swing.*;
@@ -10,12 +11,12 @@ import java.util.List;
 
 public class GUILoadingConcrete extends AbstractGUI implements GUILoading {
     private final JLabel lbTitle;
-    private final JProgressBar progressBar;
+    private final LoadingBar progressBar;
 
     public GUILoadingConcrete(){
         super();
-        this.lbTitle = new JLabel("SPACE MALAAAAaaaaaAA");
-        this.progressBar = new JProgressBar(JProgressBar.HORIZONTAL, 0, 100);
+        this.lbTitle = new JLabel("SPACE SURVIVAL");
+        this.progressBar = new LoadingBar();
     }
 
     @Override
@@ -44,4 +45,6 @@ public class GUILoadingConcrete extends AbstractGUI implements GUILoading {
     public void setLoading(int value) {
         this.progressBar.setValue(value);
     }
+
+
 }
