@@ -29,11 +29,13 @@ public class PanelGame extends JPanel {
         final Graphics2D g2d = (Graphics2D) g;
 
         this.gameObject.forEach((key, value) -> {
+
+
+
             g2d.setTransform(value);
             g2d.drawImage(this.getImageFromPath(key.getEngineImage()), null, null);
-
-            this.drawLifeBar(g2d, (MainGameObject) key, value);
-            this.drawLife(g2d, (MainGameObject) key, value);
+            this.drawLifeBar(g2d, key, value);
+            this.drawLife(g2d, key, value);
 
         });
     }

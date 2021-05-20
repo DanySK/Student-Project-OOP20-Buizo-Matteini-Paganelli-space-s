@@ -47,7 +47,7 @@ public class GUIGameStandard implements FactoryGUIGame {
                 Screen.scaleRespectTo(ScaleOf.WIDTH_LIFEBAR_SHIP, Screen.WIDTH_FULL_SCREEN),
                 Screen.scaleRespectTo(ScaleOf.HEIGHT_LIFEBAR_SHIP, Screen.HEIGHT_FULL_SCREEN)));
 
-        concreteGame.getLifeBoss().setForeground(Color.RED);
+//        concreteGame.getLifeBoss().setForeground(Color.RED);
         concreteGame.getLifeBoss().setVisible(false);
 
         final JPanel groupShip = FactoryGUIs.encapsulatesInPanelFlowOrientation(FlowLayout.LEFT,
