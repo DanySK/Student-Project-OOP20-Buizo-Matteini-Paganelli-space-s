@@ -20,6 +20,7 @@ import spaceSurvival.model.worldEcollisioni.physics.components.AsteroidPhysicsCo
 import spaceSurvival.model.worldEcollisioni.physics.components.BossPhysicsComponent;
 import spaceSurvival.model.worldEcollisioni.physics.components.ChaseEnemyPhysicsComponent;
 import spaceSurvival.model.worldEcollisioni.physics.components.FireEnemyPhysicsComponent;
+import spaceSurvival.model.worldEcollisioni.physics.components.PickablePhysicsComponent;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.utilities.pathImage.Icon;
 import spaceSurvival.utilities.pathImage.Skin;
@@ -93,11 +94,11 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 
 	@Override
 	public PickableGameObject createPickable() {
-		final EngineImage engineImage = new EngineImage(Icon.BULLET);
+		final EngineImage engineImage = new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Icon.BULLET);
 		final P2d position = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 	 	final EffectType effectType = EffectType.random();
 		
-		return new PickableGameObject(engineImage, position, new CircleBoundingBox(), null, effectType);
+		return new PickableGameObject(engineImage, position, new CircleBoundingBox(), new PickablePhysicsComponent(), effectType);
 	}
 
 }

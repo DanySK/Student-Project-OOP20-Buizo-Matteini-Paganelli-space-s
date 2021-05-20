@@ -3,6 +3,7 @@ package spaceSurvival.model.game;
 import spaceSurvival.controller.GUI.CtrlGUI;
 import spaceSurvival.controller.sound.CallerAudio;
 import spaceSurvival.model.gameObject.MainGameObject;
+import spaceSurvival.model.gameObject.PickableGameObject;
 import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
 import spaceSurvival.model.gameObject.mainGameObject.Boss;
 import spaceSurvival.model.gameObject.mainGameObject.ChaseEnemy;
@@ -20,6 +21,8 @@ import spaceSurvival.model.worldEcollisioni.hitEvents.HitBossEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitChaseEnemyEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitFireEnemyEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitPickableEvent;
+import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
+import spaceSurvival.model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import spaceSurvival.utilities.DesignSound;
 import spaceSurvival.utilities.IdGUI;
@@ -35,7 +38,7 @@ import java.util.Optional;
 public class GameMalaLoop extends Thread implements WorldEventListener {
     private long period = 60L;
 
-    private final TwoThread twoThread;
+//    private final TwoThread twoThread;
     private final CtrlGUI controlGUI;
     private final GameState gameState;
     private CallerAudio callerAudioLoop;
@@ -50,7 +53,7 @@ public class GameMalaLoop extends Thread implements WorldEventListener {
         this.eventQueue = new LinkedList<>();
         this.gameState = new GameState();
         this.controlGUI = new CtrlGUI();
-        this.twoThread = new TwoThread();
+//        this.twoThread = new TwoThread();
     }
 
     public void initGame() {
@@ -67,14 +70,32 @@ public class GameMalaLoop extends Thread implements WorldEventListener {
         this.panelGame.addKeyListenerSpaceShip(controller);
         //this.panelGame.getPanelGame().addGameObject(this.gameState.getSpaceship(), this.gameState.getSpaceship().getTransform());
         
-        this.gameState.getWorld().getAllEnemies().forEach(enemy -> {
-        	System.out.println(enemy);        	
-            RectBoundingBox rbbEnemy = (RectBoundingBox) enemy.getBoundingBox();
-            enemy.getTransform().translate(rbbEnemy.getULCorner().getX(), rbbEnemy.getULCorner().getY());
-        	this.panelGame.getPanelGame().addGameObject(enemy, enemy.getTransform());
+        
+    	System.out.println("Aggiungo tutti gli oggetti al panelGame");
+
+        this.gameState.getWorld().getAllEntities().forEach(entity -> {
+        	System.out.println(entity);
+        	System.out.println("X: " + entity.getPosition().getX() + ", Y: " + entity.getPosition().getX());
+
+            entity.getTransform().setToTranslation(entity.getPosition().getX(), entity.getPosition().getY());
+            this.panelGame.getPanelGame().addGameObject(entity, entity.getTransform());  
         });
         
-        RectBoundingBox rbb = (RectBoundingBox) this.gameState.getSpaceship().getBoundingBox();
+//        this.gameState.getWorld().getAllEnemies().forEach(enemy -> {
+//        	System.out.println(enemy);        	
+//            RectBoundingBox rbbEnemy = (RectBoundingBox) enemy.getBoundingBox();
+//            enemy.getTransform().translate(rbbEnemy.getULCorner().getX(), rbbEnemy.getULCorner().getY());
+//        	this.panelGame.getPanelGame().addGameObject(enemy, enemy.getTransform());
+//        });
+//        
+//        this.gameState.getWorld().getPickables().forEach(pickable -> {
+//        	System.out.println(pickable);        	
+//            RectBoundingBox rbbPickable = (RectBoundingBox) pickable.getBoundingBox();
+//            pickable.getTransform().translate(rbbEnemy.getULCorner().getX(), rbbEnemy.getULCorner().getY());
+//        	this.panelGame.getPanelGame().addGameObject(pickable, pickable.getTransform());
+//        });
+        
+        //RectBoundingBox rbb = (RectBoundingBox) this.gameState.getSpaceship().getBoundingBox();
 
 //        
         this.gameState.getSpaceship().getTransform().setToTranslation(Screen.POINT_CENTER_FULLSCREEN.getX(), Screen.POINT_CENTER_FULLSCREEN.getY());
@@ -85,7 +106,7 @@ public class GameMalaLoop extends Thread implements WorldEventListener {
 
         this.callerAudioLoop.execute(CmdAudioType.AUDIO_ON);
         this.controlGUI.startGUI();
-        this.twoThread.start();
+//        this.twoThread.start();
     }
 
     public void run() {
@@ -95,18 +116,17 @@ public class GameMalaLoop extends Thread implements WorldEventListener {
             long current = System.currentTimeMillis();
             int elapsed = (int)(current - lastTime);
 
-//            System.out.println("Entro nel 1 thread");
-//            this.startTimer();
-//            this.controlGUI.renderTimer();
-//            this.updateSound();
+            System.out.println("Entro nel 1 thread");
+            this.startTimer();
+            this.controlGUI.renderTimer();
+            this.updateSound();
 
-            synchronized (this) {
-                inputSkin();
-                processInput();
+            inputSkin();
+            processInput();
 
-                render();
-                renderMovement();
-            }
+            render();
+            renderMovement();
+
 
             waitForNextFrame(current);
             lastTime = current;
@@ -118,7 +138,7 @@ public class GameMalaLoop extends Thread implements WorldEventListener {
         renderGameOver();
     }
     
-	protected void waitForNextFrame(long current) {
+	protected void waitForNextFrame(final long current) {
         long dt = System.currentTimeMillis() - current;
         if (dt < period){
             try {
@@ -132,7 +152,7 @@ public class GameMalaLoop extends Thread implements WorldEventListener {
 
     }
 
-    protected void updateGame(int elapsed) {
+    protected void updateGame(final int elapsed) {
         gameState.getWorld().updateState(elapsed);
         checkEvents();
     }
@@ -199,7 +219,7 @@ public class GameMalaLoop extends Thread implements WorldEventListener {
         eventQueue.clear();
     }
 
-    private boolean isGameObjectDead(MainGameObject gameObjectCollided) {
+    private boolean isGameObjectDead(final MainGameObject gameObjectCollided) {
     	return gameObjectCollided.getLife() <= 0;
     }
     
@@ -244,11 +264,11 @@ public class GameMalaLoop extends Thread implements WorldEventListener {
         }
     }
 
-    public void notifyEvent(WorldEvent ev) {
+    public void notifyEvent(final WorldEvent ev) {
         eventQueue.add(ev);
     }
 
-    private class TwoThread extends Thread{
+    private class TwoThread extends Thread {
 
         public void run(){
             super.run();

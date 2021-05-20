@@ -1,13 +1,9 @@
 package spaceSurvival.view.GUI.game.utilities;
 
 import spaceSurvival.model.gameObject.GameObject;
-import spaceSurvival.model.gameObject.GameObjectUtils;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.image.EngineImage;
-import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
-import spaceSurvival.utilities.dimension.Screen;
-import spaceSurvival.utilities.pathImage.Skin;
 import spaceSurvival.view.utilities.JImage;
 import javax.swing.*;
 import java.awt.*;
@@ -29,14 +25,13 @@ public class PanelGame extends JPanel {
         final Graphics2D g2d = (Graphics2D) g;
 
         this.gameObject.forEach((key, value) -> {
-
-
-
             g2d.setTransform(value);
             g2d.drawImage(this.getImageFromPath(key.getEngineImage()), null, null);
-            this.drawLifeBar(g2d, key, value);
-            this.drawLife(g2d, key, value);
 
+            if (key instanceof MainGameObject) {
+                this.drawLifeBar(g2d, (MainGameObject) key, value);
+                this.drawLife(g2d, (MainGameObject) key, value);	
+			}
         });
     }
 

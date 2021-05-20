@@ -41,15 +41,14 @@ public abstract class MovableGameObject extends GameObject {
 		//RectBoundingBox bbox = (RectBoundingBox) this.getBoundingBox();
 		//bbox.getTransform().translate(this.getVelocity().getX(), this.getVelocity().getY());
 
-		System.out.println("RectBoundingBox -->" + this.getBoundingBox());
-		System.out.println("SpaceShip Position -->" + this.getPosition());
-		System.out.println("SpaceShip transform -->" + this.getTransform());
+		//System.out.println("RectBoundingBox -->" + this.getBoundingBox());
+		//System.out.println("SpaceShip Position -->" + this.getPosition());
+		//System.out.println("SpaceShip transform -->" + this.getTransform());
 
 		RectBoundingBox bbox2 = (RectBoundingBox) this.getBoundingBox();
-		System.out.println("RectBoundingBox transform -->" + bbox2.getTransform());
+		//System.out.println("RectBoundingBox transform -->" + bbox2.getTransform());
 
 
-		System.out.println(this.getTransform());
 
 
 
