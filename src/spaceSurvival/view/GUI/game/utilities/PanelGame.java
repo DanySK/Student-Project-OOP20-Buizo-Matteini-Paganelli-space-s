@@ -26,7 +26,11 @@ public class PanelGame extends JPanel {
             g2d.setTransform(value);
             g2d.drawImage(this.getImageFromEngine(key.getEngineImage()), null, null);
 
-            g2d.drawRect((int)key.getPosition().x, (int)key.getPosition().y, 5, 5);
+            g2d.setColor(Color.green);
+            g2d.drawRect((int)key.getTransform().getTranslateX(), (int)key.getTransform().getTranslateY(), 10, 10);
+
+            g2d.setColor(Color.WHITE);
+            g2d.drawRect((int)key.getTransform().getScaleX(), (int)key.getTransform().getScaleY(), 5, 5);
 //            if (key instanceof MainGameObject) {
                 this.drawLifeBar(g2d, key, value);
                 this.drawLife(g2d, key, value);
