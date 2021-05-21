@@ -3,7 +3,6 @@ package spaceSurvival.model.game;
 import spaceSurvival.controller.GUI.CtrlGUI;
 import spaceSurvival.controller.GUI.CtrlGame;
 import spaceSurvival.controller.GUI.CtrlSound;
-import spaceSurvival.controller.sound.CallerAudio;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
 import spaceSurvival.model.gameObject.mainGameObject.Boss;
@@ -11,7 +10,6 @@ import spaceSurvival.model.gameObject.mainGameObject.ChaseEnemy;
 import spaceSurvival.model.gameObject.mainGameObject.FireEnemy;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 import spaceSurvival.model.sound.CmdAudioType;
-import spaceSurvival.model.sound.category.SoundLoop;
 import spaceSurvival.model.GUI.game.World;
 import spaceSurvival.model.worldEcollisioni.WorldEvent;
 import spaceSurvival.model.worldEcollisioni.WorldEventListener;
@@ -21,11 +19,9 @@ import spaceSurvival.model.worldEcollisioni.hitEvents.HitBossEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitChaseEnemyEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitFireEnemyEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitPickableEvent;
-import spaceSurvival.utilities.DesignSound;
 import spaceSurvival.utilities.Score;
 import spaceSurvival.utilities.dimension.Screen;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -35,8 +31,6 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     private final CtrlGUI controlGUI;
     private final CtrlGame controlGame;
     private final CtrlSound controlSound;
-    private final CallerAudio callerAudioLoop;
-    private final List<CallerAudio> callerAudioEffects;
     
     private final List<WorldEvent> eventQueue;
 
@@ -45,13 +39,11 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         this.controlGUI = new CtrlGUI();
         this.controlGame = this.controlGUI.getCtrlGame();
         this.controlSound = this.controlGUI.getCtrlSound();
-        this.callerAudioLoop = new CallerAudio(new SoundLoop(this.controlGUI.getCurrentSound()));
-        this.callerAudioEffects = new ArrayList<>();
     }
 
     public void initGame() {
-        this.controlGUI.linksCallerAudioLoopWith(this.callerAudioLoop);
         this.controlGUI.initTimer();
+        this.controlGUI.assignSoundLoop();
 
         this.controlGame.assignMovementListenerInShip();
         this.controlGame.setEventListenerInWorld(this);
@@ -60,7 +52,8 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         this.controlGame.getShip().getTransform()
                 .setToTranslation(Screen.POINT_CENTER_FULLSCREEN.getX(), Screen.POINT_CENTER_FULLSCREEN.getY());
 
-        this.callerAudioLoop.execute(CmdAudioType.AUDIO_ON);
+        this.controlSound.setSoundLoop(this.controlGUI.getCurrentGUI());
+        this.controlSound.setCmdAudioLoop(CmdAudioType.AUDIO_ON);
         this.controlGUI.startGUI();
     }
 
@@ -72,8 +65,6 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             int elapsed = (int)(current - lastTime);
 
             processInput();
-            updateSound();
-
             renderMovement();
             render();
 
@@ -98,8 +89,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     }
 
     protected void processInput() {
-//        gameState.getWorld().getShip().updateInput(controller);		
-
+//        gameState.getWorld().getShip().updateInput(controller);
     }
 
     protected void updateGame(final int elapsed) {
@@ -184,12 +174,6 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
 
     protected void renderGameOver() {
 //        view.renderGameOver();
-    }
-
-    protected void updateSound() {
-        if(this.controlSound.isNewLoopSound(this.controlGUI.getCurrentGUI())) {
-            this.controlSound.changeNewLoopSound(this.controlGUI.getCurrentGUI());
-        }
     }
 
     public void notifyEvent(final WorldEvent ev) {

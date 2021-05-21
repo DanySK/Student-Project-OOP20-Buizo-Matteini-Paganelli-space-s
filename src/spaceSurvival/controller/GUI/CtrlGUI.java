@@ -204,16 +204,6 @@ public class CtrlGUI {
         return this.chronology.lastElementOfList();
     }
 
-    public SoundPath getCurrentSound(){
-        return this.chronology.lastElementOfList().getSound();
-    }
-
-    public void linksCallerAudioLoopWith(final CallerAudio callerAudioLoop){
-        this.ctrlSound.setCallerAudioLoop(callerAudioLoop);
-        this.ctrlSound.getCallerAudioLoop().setSound(callerAudioLoop.getSound());
-        this.ctrlSound.linksCallerAudioLoopWithListener();
-    }
-
     public void linksCallerAudioEffectWith(final List<CallerAudio> callerAudioEffects){
         this.ctrlSound.setCallerAudioEffect(callerAudioEffects);
         AtomicInteger index = new AtomicInteger(0);
@@ -256,6 +246,16 @@ public class CtrlGUI {
             }
         }
         return null;
+    }
+
+    public void assignSoundLoop(){
+        this.managerGui.values().forEach(ctrl -> ctrl.getGUI().getButtonLinks().forEach(
+                btn -> btn.addActionListener(l -> {
+                    if(CtrlGUI.this.ctrlSound.isNewLoopSound(btn.getIdGUINext())) {
+                        CtrlGUI.this.ctrlSound.changeNewLoopSound(btn.getIdGUINext());
+                    }
+                })
+        ));
     }
 
     public void initTimer(){

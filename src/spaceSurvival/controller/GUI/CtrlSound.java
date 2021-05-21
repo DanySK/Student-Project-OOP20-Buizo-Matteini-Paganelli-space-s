@@ -33,10 +33,12 @@ public class CtrlSound implements ControllerGUI{
         this.engine = engine;
         this.gui = gui;
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
+        this.callerAudioLoop = new CallerAudio();
 
         this.assignId();
         this.assignStrings();
         this.assignSound();
+        this.linksCallerAudioLoopWithListener();
         this.switchGUI.turn(this.engine.getVisibility());
     }
 
@@ -57,14 +59,13 @@ public class CtrlSound implements ControllerGUI{
         this.gui.setIconBtnSwitches(this.engine.getIconStateSounds());
     }
 
-    public CallerAudio getCallerAudioLoop(){
-        return this.callerAudioLoop;
+    public void setSoundLoop(final IdGUI idGUI){
+        this.callerAudioLoop.setSound(new SoundLoop(idGUI.getSound()));
     }
 
-    public void setCallerAudioLoop(final CallerAudio callerAudioLoop){
-        this.callerAudioLoop = callerAudioLoop;
+    public void setCmdAudioLoop(final CmdAudioType cmdAudioLoop){
+        this.callerAudioLoop.execute(cmdAudioLoop);
     }
-
 
     public List<CallerAudio> getCallerAudioEffect(){
         return this.callerAudioEffect;
@@ -77,10 +78,6 @@ public class CtrlSound implements ControllerGUI{
 
     public int getLoopVolume(){
         return this.engine.getValueUnitSound(TypeUnitSound.SLIDER_BACKGROUND);
-    }
-
-    public int getEffectVolume(){
-        return this.engine.getValueUnitSound(TypeUnitSound.SLIDER_EFFECT);
     }
 
     public boolean isActiveLoopUnitSound(){
