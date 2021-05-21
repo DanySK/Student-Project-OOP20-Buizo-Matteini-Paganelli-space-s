@@ -4,8 +4,7 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 
 import spaceSurvival.model.common.P2d;
-import spaceSurvival.model.image.EngineImage;
-import spaceSurvival.utilities.dimension.Screen;
+import spaceSurvival.model.EngineImage;
 
 public class RectBoundingBox implements BoundingBox {
 

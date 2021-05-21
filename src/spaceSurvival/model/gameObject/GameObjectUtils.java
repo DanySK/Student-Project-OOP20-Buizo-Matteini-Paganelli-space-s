@@ -5,7 +5,7 @@ import java.util.Random;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.common.V2d;
-import spaceSurvival.model.image.EngineImage;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;

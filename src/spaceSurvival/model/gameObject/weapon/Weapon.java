@@ -8,7 +8,7 @@ import spaceSurvival.model.common.V2d;
 import spaceSurvival.model.gameObject.GameObjectUtils;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.gameObject.Movement;
-import spaceSurvival.model.image.EngineImage;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 
 public class Weapon {

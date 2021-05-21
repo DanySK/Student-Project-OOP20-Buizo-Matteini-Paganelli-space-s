@@ -1,6 +1,6 @@
 package spaceSurvival.model.GUI.help;
 
-import spaceSurvival.model.image.EngineImage;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.pathImage.Icon;
 import spaceSurvival.utilities.DesignJComponent;

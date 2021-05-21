@@ -8,7 +8,7 @@ import spaceSurvival.model.gameObject.GameObjectUtils;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.gameObject.Movement;
 import spaceSurvival.model.gameObject.weapon.Weapon;
-import spaceSurvival.model.image.EngineImage;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 

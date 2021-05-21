@@ -1,6 +1,6 @@
 package spaceSurvival.view.GUI.settings.utilities;
 
-import spaceSurvival.model.image.EngineImage;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.view.utilities.FactoryGUIs;
 import spaceSurvival.view.utilities.JImage;
 

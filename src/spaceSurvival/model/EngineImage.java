@@ -1,14 +1,10 @@
-package spaceSurvival.model.image;
+package spaceSurvival.model;
 
 import spaceSurvival.model.gameObject.GameObjectUtils;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.utilities.pathImage.Skin;
 
 import javax.imageio.ImageIO;
-
-import spaceSurvival.model.gameObject.GameObjectUtils;
-import spaceSurvival.utilities.dimension.Screen;
-import spaceSurvival.utilities.pathImage.Skin;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -127,16 +123,5 @@ public class EngineImage {
                 "path='" + path + '\'' +
                 ", width=" + width + ", height=" + height +
                 ", scaleOf=" + scaleOf + ", respectTo=" + respectTo + '}';
-    }
-    
-//    public static void main(String[] srgs) {
-//    	EngineImage ei = new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Skin.NORMAL);
-//    	System.out.println(ei.toString());
-//    }
-
-    public static void main(String[] args) {
-        EngineImage engineImage = new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Skin.NORMAL);
-
-        System.out.println(engineImage);
     }
 }

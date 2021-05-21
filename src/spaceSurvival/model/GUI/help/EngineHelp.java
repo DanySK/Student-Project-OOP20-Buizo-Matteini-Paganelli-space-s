@@ -1,7 +1,7 @@
 package spaceSurvival.model.GUI.help;
 
 import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.model.image.EngineImage;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.utilities.DesignTitleGUI;
 import spaceSurvival.model.GUI.EngineGUI;
 import spaceSurvival.utilities.DesignJComponent;

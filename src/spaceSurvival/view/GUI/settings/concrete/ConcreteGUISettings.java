@@ -1,6 +1,6 @@
 package spaceSurvival.view.GUI.settings.concrete;
 
-import spaceSurvival.model.image.EngineImage;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.GUI.settings.Difficulty;
 import spaceSurvival.utilities.IdGUI;
 import spaceSurvival.view.GUI.AbstractGUI;

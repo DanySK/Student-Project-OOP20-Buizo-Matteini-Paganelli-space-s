@@ -2,7 +2,7 @@ package spaceSurvival.model.GUI.sound;
 
 import spaceSurvival.model.GUI.EngineGUI;
 import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.model.image.EngineImage;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.utilities.DesignSound;
 import spaceSurvival.utilities.DesignTitleGUI;
 

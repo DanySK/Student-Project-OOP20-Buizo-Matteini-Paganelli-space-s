@@ -1,7 +1,6 @@
 package spaceSurvival.view.GUI.loading.utilities;
 
-import spaceSurvival.model.image.EngineImage;
-import spaceSurvival.utilities.dimension.ScaleOf;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.view.utilities.JImage;
 

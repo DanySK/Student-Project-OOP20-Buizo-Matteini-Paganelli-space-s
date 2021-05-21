@@ -1,6 +1,6 @@
 package spaceSurvival.model.GUI.settings;
 
-import spaceSurvival.model.image.EngineImage;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.pathImage.Skin;
 

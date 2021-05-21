@@ -4,7 +4,7 @@ import java.awt.Dimension;
 import java.awt.geom.AffineTransform;
 
 import spaceSurvival.model.common.P2d;
-import spaceSurvival.model.image.EngineImage;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 import spaceSurvival.model.GUI.game.World;

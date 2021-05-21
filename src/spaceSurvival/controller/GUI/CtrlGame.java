@@ -7,7 +7,7 @@ import spaceSurvival.model.GUI.game.EngineGame;
 import spaceSurvival.model.GUI.game.World;
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
-import spaceSurvival.model.input.MovementKeyListener;
+import spaceSurvival.model.MovementKeyListener;
 import spaceSurvival.model.worldEcollisioni.WorldEventListener;
 import spaceSurvival.utilities.IdGUI;
 import spaceSurvival.view.GUI.GUI;

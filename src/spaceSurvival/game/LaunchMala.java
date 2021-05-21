@@ -4,7 +4,7 @@ import spaceSurvival.controller.GUI.CtrlLoading;
 import spaceSurvival.factorys.StaticFactoryEngineGUI;
 import spaceSurvival.factorys.StaticFactoryGUI;
 import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.model.game.EngineMalaLoop;
+import spaceSurvival.model.EngineMalaLoop;
 
 public class LaunchMala {
 

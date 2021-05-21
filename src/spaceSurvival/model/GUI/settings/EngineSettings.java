@@ -1,7 +1,7 @@
 package spaceSurvival.model.GUI.settings;
 
 import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.model.image.EngineImage;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.GUI.EngineGUI;
 import spaceSurvival.utilities.*;
 import spaceSurvival.utilities.dimension.Screen;

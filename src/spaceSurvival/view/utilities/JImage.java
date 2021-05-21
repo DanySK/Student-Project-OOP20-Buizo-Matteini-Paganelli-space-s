@@ -1,6 +1,6 @@
 package spaceSurvival.view.utilities;
 
-import spaceSurvival.model.image.EngineImage;
+import spaceSurvival.model.EngineImage;
 
 import javax.swing.*;
 import java.awt.*;

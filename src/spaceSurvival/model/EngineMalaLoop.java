@@ -1,4 +1,4 @@
-package spaceSurvival.model.game;
+package spaceSurvival.model;
 
 import spaceSurvival.controller.GUI.CtrlGUI;
 import spaceSurvival.controller.GUI.CtrlGame;
@@ -35,8 +35,8 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     private final List<WorldEvent> eventQueue;
 
     public EngineMalaLoop() {
-        this.eventQueue = new LinkedList<>();
         this.controlGUI = new CtrlGUI();
+        this.eventQueue = new LinkedList<>();
         this.controlGame = this.controlGUI.getCtrlGame();
         this.controlSound = this.controlGUI.getCtrlSound();
     }
@@ -59,7 +59,6 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
 
     public void run() {
         long lastTime = System.currentTimeMillis();
-
         while (!this.controlGame.isGameOver()) {
             long current = System.currentTimeMillis();
             int elapsed = (int)(current - lastTime);

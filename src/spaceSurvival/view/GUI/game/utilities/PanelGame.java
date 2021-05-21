@@ -3,7 +3,7 @@ package spaceSurvival.view.GUI.game.utilities;
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.MainGameObject;
-import spaceSurvival.model.image.EngineImage;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.view.utilities.JImage;
 import javax.swing.*;
 import java.awt.*;

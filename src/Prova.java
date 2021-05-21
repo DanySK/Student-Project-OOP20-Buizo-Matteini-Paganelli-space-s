@@ -1,4 +1,4 @@
-import spaceSurvival.model.image.EngineImage;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.view.utilities.JImage;
 
 import java.awt.*;
