@@ -117,6 +117,12 @@ public class CtrlSound implements ControllerGUI{
         });
     }
 
+    public void checkChangeSoundLoop(final IdGUI idGUI){
+        if(this.isNewLoopSound(idGUI)) {
+            this.changeNewLoopSound(idGUI);
+        }
+    }
+
     public boolean isNewLoopSound(final IdGUI idGUI){
         return this.callerAudioLoop.isNewSound(idGUI.getSound());
     }

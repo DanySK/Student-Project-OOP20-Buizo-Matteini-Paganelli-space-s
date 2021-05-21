@@ -167,6 +167,7 @@ public class CtrlGUI {
                         CtrlGUI.this.managerGui.get(chronology.get(sizeList)).turn(Visibility.HIDDEN);
                         chronology.remove(sizeList--);
                     }
+                    CtrlGUI.this.ctrlSound.checkChangeSoundLoop(CtrlGUI.this.getCurrentGUI());
                     System.out.println("list" + chronology);
                 }
             }
@@ -251,12 +252,16 @@ public class CtrlGUI {
     public void assignSoundLoop(){
         this.managerGui.values().forEach(ctrl -> ctrl.getGUI().getButtonLinks().forEach(
                 btn -> btn.addActionListener(l -> {
-                    if(CtrlGUI.this.ctrlSound.isNewLoopSound(btn.getIdGUINext())) {
-                        CtrlGUI.this.ctrlSound.changeNewLoopSound(btn.getIdGUINext());
+                    if(btn.getIdGUICurrent() == IdGUI.ID_PAUSE && btn.getIdGUINext() == IdGUI.ID_BACK) {
+                        CtrlGUI.this.ctrlSound.checkChangeSoundLoop(IdGUI.ID_GAME);
+                    } else {
+                        CtrlGUI.this.ctrlSound.checkChangeSoundLoop(btn.getIdGUINext());
                     }
                 })
         ));
     }
+
+
 
     public void initTimer(){
         this.ctrlGame.initTimer();
