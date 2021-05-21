@@ -38,6 +38,7 @@ public class CtrlGame implements ControllerGUI{
     }
 
     public void updateHUD(){
+        this.gui.setTimer(this.engine.getTimer());
         this.gui.setScore(this.engine.getScore());
         this.gui.setRound(this.engine.getRound());
         this.gui.setNEnemies(this.engine.getCountEnemies());
@@ -52,10 +53,6 @@ public class CtrlGame implements ControllerGUI{
 
     public void startTimer(){
         this.engine.startTimer();
-    }
-
-    public void assignTimer(){
-        this.gui.setTimer(this.engine.getTimer());
     }
 
     public World getWord(){
@@ -108,6 +105,10 @@ public class CtrlGame implements ControllerGUI{
 
     public void addGameObject(final GameObject gameObject, final AffineTransform transform){
         this.gui.addGameObject(gameObject, transform);
+    }
+
+    public void moveShip(){
+        this.engine.moveShip();
     }
 
     @Override

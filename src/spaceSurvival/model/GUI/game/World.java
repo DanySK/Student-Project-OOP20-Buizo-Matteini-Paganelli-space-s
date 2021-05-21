@@ -82,6 +82,10 @@ public class World {
 	public void setSkin(final String path) {
 		this.ship.getEngineImage().setPath(path);
 	}
+
+	public void moveShip(){
+		this.ship.move();
+	}
 	
 	public AbstractFactoryGameObject getFactoryGameObject() {
 		return factoryGameObject;

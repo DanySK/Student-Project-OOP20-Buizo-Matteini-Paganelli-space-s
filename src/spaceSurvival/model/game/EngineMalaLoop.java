@@ -74,10 +74,8 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             processInput();
             updateSound();
 
-            renderTimer();
-            render();
             renderMovement();
-
+            render();
 
             waitForNextFrame(current);
             lastTime = current;
@@ -100,7 +98,6 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     }
 
     protected void processInput() {
-        this.controlGame.updateHUD();
 //        gameState.getWorld().getShip().updateInput(controller);		
 
     }
@@ -178,10 +175,11 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     
     protected void render() {
         this.controlGame.repaintWorld();
+        this.controlGame.updateHUD();
     }
     
     private void renderMovement() {
-    	this.controlGame.getShip().move();
+    	this.controlGame.moveShip();
     }
 
     protected void renderGameOver() {
@@ -192,10 +190,6 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         if(this.controlSound.isNewLoopSound(this.controlGUI.getCurrentGUI())) {
             this.controlSound.changeNewLoopSound(this.controlGUI.getCurrentGUI());
         }
-    }
-
-    public void renderTimer() {
-        this.controlGUI.renderTimer();
     }
 
     public void notifyEvent(final WorldEvent ev) {

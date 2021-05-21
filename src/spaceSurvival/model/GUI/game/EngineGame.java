@@ -137,4 +137,8 @@ public class EngineGame implements EngineGUI {
     public void updateStateWorld(final int elapsed){
         this.world.updateState(elapsed);
     }
+
+    public void moveShip(){
+        this.world.moveShip();
+    }
 }
