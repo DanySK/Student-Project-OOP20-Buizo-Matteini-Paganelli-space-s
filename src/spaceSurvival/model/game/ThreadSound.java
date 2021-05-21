@@ -1,6 +1,7 @@
 package spaceSurvival.model.game;
 
 import spaceSurvival.controller.GUI.CtrlGUI;
+import spaceSurvival.controller.GUI.CtrlSound;
 import spaceSurvival.controller.sound.CallerAudio;
 import spaceSurvival.model.sound.CmdAudioType;
 import spaceSurvival.model.sound.category.SoundLoop;
@@ -9,14 +10,14 @@ import spaceSurvival.utilities.DesignSound;
 public class ThreadSound extends Thread{
     private boolean state = true;
     private CallerAudio callerAudio;
-    private CtrlGUI ctrlGUI;
+    private CtrlSound ctrlSound;
 
     public ThreadSound(){
     }
 
-    public ThreadSound(final CallerAudio callerAudio, final CtrlGUI ctrlGUI){
+    public ThreadSound(final CallerAudio callerAudio, final CtrlSound ctrlGUI){
         this.callerAudio = callerAudio;
-        this.ctrlGUI = ctrlGUI;
+        this.ctrlSound = ctrlGUI;
     }
 
     @Override
@@ -24,16 +25,16 @@ public class ThreadSound extends Thread{
 
         while(state){
             System.out.println("Cambio dal thread");
-            if(this.callerAudio.isNewSound(this.ctrlGUI.getCurrentSound())) {
-
-                this.callerAudio.execute(CmdAudioType.AUDIO_OFF);
-                this.callerAudio.setSound(new SoundLoop(this.ctrlGUI.getCurrentSound()));
-
-                this.callerAudio.changeVolume(this.ctrlGUI.isActiveLoopUnitSound() ?
-                        this.ctrlGUI.getCurrentLoopVolume() : DesignSound.SOUND_ZERO);
-
-                this.callerAudio.execute(CmdAudioType.AUDIO_ON);
-            }
+//            if(this.callerAudio.isNewSound(this.ctrlGUI.getCurrentSound())) {
+//
+//                this.callerAudio.execute(CmdAudioType.AUDIO_OFF);
+//                this.callerAudio.setSound(new SoundLoop(this.ctrlGUI.getCurrentSound()));
+//
+//                this.callerAudio.changeVolume(this.ctrlGUI.isActiveLoopUnitSound() ?
+//                        this.ctrlGUI.getCurrentLoopVolume() : DesignSound.SOUND_ZERO);
+//
+//                this.callerAudio.execute(CmdAudioType.AUDIO_ON);
+//            }
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
@@ -58,13 +59,13 @@ public class ThreadSound extends Thread{
         this.callerAudio = callerAudio;
     }
 
-    public CtrlGUI getCtrlGUI() {
-        return this.ctrlGUI;
-    }
-
-    public void setCtrlGUI(final CtrlGUI ctrlGUI) {
-        this.ctrlGUI = ctrlGUI;
-    }
+//    public CtrlGUI getCtrlGUI() {
+//        return this.ctrlGUI;
+//    }
+//
+//    public void setCtrlGUI(final CtrlGUI ctrlGUI) {
+//        this.ctrlGUI = ctrlGUI;
+//    }
 
     private void renderAudioLoop(){
 

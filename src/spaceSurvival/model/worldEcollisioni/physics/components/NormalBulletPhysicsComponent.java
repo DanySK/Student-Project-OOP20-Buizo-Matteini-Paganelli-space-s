@@ -3,7 +3,7 @@ package spaceSurvival.model.worldEcollisioni.physics.components;
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.common.V2d;
 import spaceSurvival.model.gameObject.GameObject;
-import spaceSurvival.model.world.World;
+import spaceSurvival.model.GUI.game.World;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import spaceSurvival.model.gameObject.weapon.NormalBullet;
 

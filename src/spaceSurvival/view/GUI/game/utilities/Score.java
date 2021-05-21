@@ -14,14 +14,14 @@ public class Score extends JPanel {
         super(new FlowLayout()); {{ setOpaque(false); }}
 
         this.stringScore = new JLabel(DesignGraphics.SCORE_STRING);
-        this.score = new JLabel(DesignGraphics.INIT_SCORE_STRING);
+        this.score = new JLabel();
 
         super.add(FactoryGUIs.createPanelGridBagUnionComponentsHorizontal(java.util.List.of(
                 this.stringScore, this.score), FactoryGUIs.MAX_INSET));
     }
 
-    public void setScore(final int score){
-        this.score.setText(Integer.toString(score));
+    public void setScore(final long score){
+        this.score.setText(Long.toString(score));
     }
 
     public void setScore(final String score){

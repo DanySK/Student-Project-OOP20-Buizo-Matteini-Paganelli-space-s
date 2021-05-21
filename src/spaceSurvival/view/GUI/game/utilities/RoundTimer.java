@@ -17,7 +17,7 @@ public class RoundTimer extends JPanel {
 
         this.timer = new JLabel(DesignGraphics.INIT_TIMER_STRING);
         this.stringRound = new JLabel(DesignGraphics.ROUND_STRING);
-        this.round = new JLabel("3");
+        this.round = new JLabel();
 
         super.add(FactoryGUIs.encapsulatesInPanelFlow(this.timer));
         super.add(FactoryGUIs.createPanelFlowUnionComponents(java.util.List.of(this.stringRound, this.round)));
@@ -37,7 +37,7 @@ public class RoundTimer extends JPanel {
     }
 
     public void setRound(final int round){
-        this.round.setText(Integer.toString(round));
+        this.round.setText(String.valueOf(round));
     }
 
     public void setRound(final String round){

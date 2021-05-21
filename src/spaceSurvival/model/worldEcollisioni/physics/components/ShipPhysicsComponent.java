@@ -6,9 +6,8 @@ import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.gameObject.PickableGameObject;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
-import spaceSurvival.model.world.World;
+import spaceSurvival.model.GUI.game.World;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitAsteroidEvent;
-import spaceSurvival.model.worldEcollisioni.hitEvents.HitBorderEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitBossEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitChaseEnemyEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitFireEnemyEvent;
@@ -16,7 +15,6 @@ import spaceSurvival.model.worldEcollisioni.hitEvents.HitPickableEvent;
 import spaceSurvival.model.worldEcollisioni.physics.BoundaryCollision;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import spaceSurvival.model.common.P2d;
-import spaceSurvival.model.common.V2d;
 
 public class ShipPhysicsComponent implements PhysicsComponent {
 	

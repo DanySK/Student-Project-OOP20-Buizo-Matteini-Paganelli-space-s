@@ -8,6 +8,8 @@ import java.awt.*;
 import java.util.List;
 
 public class FactoryGUIs {
+    public static final int EXTREME_INSET = 100;
+    public static final int INSET_H1 = 80;
     public static final int MAX_INSET = 10;
     public static final int MEDIUM_INSET = 5;
     public static final int MIN_INSET = 3;

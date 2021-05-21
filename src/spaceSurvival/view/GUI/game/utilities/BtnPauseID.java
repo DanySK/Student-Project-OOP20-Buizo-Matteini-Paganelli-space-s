@@ -15,6 +15,7 @@ public class BtnPauseID extends ButtonID implements MouseListener{
 
     public BtnPauseID(){
         super();
+        super.setBorder(null);
         this.pathIconExit = Icon.PAUSE;
         this.pathIconEnter = Icon.PAUSE_2FACE;
 

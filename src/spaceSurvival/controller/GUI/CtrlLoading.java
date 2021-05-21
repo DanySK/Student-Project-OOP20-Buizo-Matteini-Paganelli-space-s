@@ -27,12 +27,11 @@ public class CtrlLoading extends Thread implements ControllerGUI{
     @Override
     public void run() {
         super.run();
-
         while(!this.engine.isLoad()){
             this.engine.incrLoading();
-            this.gui.setLoading(this.engine.getLoading() / 25);
+            this.gui.setLoading(this.engine.getLoading() / 20);
 
-            if(this.engine.getLoading() >= 2500){
+            if(this.engine.getLoading() >= 2000){
                 this.engine.load();
             }
 

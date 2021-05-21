@@ -1,6 +1,8 @@
 package spaceSurvival.view.GUI.game.utilities;
 
+import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.gameObject.GameObject;
+import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.image.EngineImage;
 import spaceSurvival.view.utilities.JImage;
 import javax.swing.*;
@@ -26,15 +28,43 @@ public class PanelGame extends JPanel {
             g2d.setTransform(value);
             g2d.drawImage(this.getImageFromEngine(key.getEngineImage()), null, null);
 
-            g2d.setColor(Color.green);
-            g2d.drawRect((int)key.getTransform().getTranslateX(), (int)key.getTransform().getTranslateY(), 10, 10);
-
             g2d.setColor(Color.WHITE);
             g2d.drawRect((int)key.getTransform().getScaleX(), (int)key.getTransform().getScaleY(), 5, 5);
-//            if (key instanceof MainGameObject) {
+
+            g2d.setColor(Color.cyan);
+            g2d.drawRect((int)key.getTransform().getShearX(), (int)key.getTransform().getScaleY(),
+                    (int)key.getSize().getHeight()/2,
+                    (int)key.getSize().getHeight()/2);
+
+
+            this.drawPoint(g2d, (int)(key.getTransform().getShearX() + key.getSize().getHeight()/2),
+                    (int)(key.getTransform().getShearY() + key.getSize().getHeight()/2));
+
+            int x = (int)(key.getTransform().getShearX() + key.getSize().getHeight()/2);
+            int y =  (int)(key.getTransform().getShearY() + key.getSize().getHeight()/2);
+            int width = (int)key.getSize().getHeight()/2;
+
+            int distance = this.getDistanceTwoPoint(
+                    new P2d(key.getTransform().getTranslateX(), key.getTransform().getTranslateY()),
+                    new P2d(x, y));
+
+
+
+
+            if (key instanceof MainGameObject) {
                 this.drawLifeBar(g2d, key, value);
                 this.drawLife(g2d, key, value);
-//			}
+			}
+
+
+
+//            AffineTransform aff = new AffineTransform();
+//            aff.setTransform(key.getTransform());
+//
+//            aff.setToTranslation(key.getTransform().getShearX() - distance, key.getTransform().getShearY() - distance);
+//
+//            g2d.setTransform(aff);
+//            drawProva(g2d, x, y, width * 2);
         });
     }
 
@@ -54,22 +84,23 @@ public class PanelGame extends JPanel {
     }
 
 
-    private void drawPoint(final  Graphics2D g2d, final GameObject gameObject){
-        g2d.setColor(Color.WHITE);
+    private void drawPoint(final  Graphics2D g2d, int x, int y){
+        g2d.setColor(Color.RED);
+        g2d.fillRect(x, y, 5, 5);
+    }
 
-        g2d.drawRect((int)gameObject.getPosition().x, (int)gameObject.getPosition().y, 5, 5);
+    private void drawProva(final Graphics2D g2d, final int x, final int y, final int width){
+
+        g2d.drawRect(x, y, width, 11);
     }
 
     private void drawLifeBar(final Graphics2D g2d, final GameObject gameObject, final AffineTransform transform){
-
         AffineTransform aff = new AffineTransform();
         aff.setTransform(transform);
 
         aff.translate(0, gameObject.getSize().getHeight());
-
         g2d.setColor(Color.WHITE);
         g2d.setTransform(aff);
-
 
         g2d.drawRect((int) 0,0, (int)gameObject.getSize().getHeight(), 11);
 
@@ -77,31 +108,6 @@ public class PanelGame extends JPanel {
 
 
     private void drawLife(final Graphics2D g2d, final GameObject gameObject, final AffineTransform transform){
-
-        //final RectBoundingBox rect = (RectBoundingBox) gameObject.getBoundingBox();
-        
-//        double m00 = transform.getScaleX();
-//        double m01 = transform.getShearX();
-//
-//        final int x = (int) (transform.getTranslateX());
-//        final int y = (int) (transform.getTranslateY());
-//
-//
-//        double angle = Math.atan2(-m01, m00);
-//
-//        AffineTransform newAff = new AffineTransform();
-//
-//        newAff.setToTranslation(transform.getTranslateX(), transform.getTranslateY());
-//        newAff.rotate(angle, gameObject.getPosition().getX(), gameObject.getPosition().getY());
-//        newAff.translate(0, gameObject.getEngineImage().getHeight());
-//        System.out.println("aaaaaaaaaaaaaaaaa" + gameObject.getEngineImage().getHeight());
-//
-//
-//        g2d.setTransform(newAff);
-//        g2d.setColor(Color.GREEN);
-//
-//        g2d.fillRect(x, y, 50, 11);
-
         AffineTransform aff = new AffineTransform();
         aff.setTransform(transform);
 
@@ -110,6 +116,11 @@ public class PanelGame extends JPanel {
         g2d.setColor(Color.GREEN);
         g2d.setTransform(aff);
 
-        g2d.fillRect((int) 0,1, 50, 10);
+        g2d.fillRect(0,1, 50, 10);
+    }
+
+    private int getDistanceTwoPoint(final P2d p1 , final P2d p2){
+        return (int)Math.sqrt(Math.pow((p2.getX() - p1.getX()), 2) +
+                Math.pow((p2.getY() - p1.getY()), 2));
     }
 }

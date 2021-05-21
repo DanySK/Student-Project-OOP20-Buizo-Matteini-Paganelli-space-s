@@ -1,5 +1,6 @@
 package spaceSurvival.model.worldEcollisioni.physics.boundingType;
 
+import java.awt.*;
 import java.awt.geom.AffineTransform;
 
 import spaceSurvival.model.common.P2d;
@@ -33,6 +34,11 @@ public class RectBoundingBox implements BoundingBox {
 		this.transform = new AffineTransform();
 		this.transform.setToTranslation(center.getX() - (engineImage.getWidth() / 2), center.getY() - (engineImage.getHeight() / 2));
 			
+	}
+
+	public RectBoundingBox(final Rectangle rectangle){
+		this.p0 = new P2d(rectangle.getX(), rectangle.getY());
+		this.p1= new P2d(rectangle.getWidth(), rectangle.getHeight());
 	}
 	
 	public P2d getULCorner(){

@@ -28,7 +28,6 @@ public class GUIGameStandard implements FactoryGUIGame {
 
     private void graphics(final GUIGameConcrete concreteGame) {
         FactoryGUIs.setTransparentDesignJButton(concreteGame.getBtnPause());
-        concreteGame.getBtnPause().setBorder(null);
 
         final JPanel panelNorth = FactoryGUIs.createPanelTransparent(new GridLayout());
 

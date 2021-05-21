@@ -15,16 +15,15 @@ public class CounterEnemies extends JPanel {
         super.setOpaque(false);
 
         this.stringEnemies = new JLabel(DesignGraphics.ENEMIES_STRING);
-        this.counter = new JLabel(DesignGraphics.INIT_COUNT_ENEMIES_STRING);
+        this.counter = new JLabel();
 
         super.add(FactoryGUIs.createPanelGridBagUnionComponentsVertical(java.util.List.of(
                 this.stringEnemies, FactoryGUIs.encapsulatesInPanelFlow(this.counter)),
                 FactoryGUIs.MEDIUM_INSET));
-
     }
 
-    public void setCounter(final int count){
-        this.counter.setText(Integer.toString(count));
+    public void setCounter(final long count){
+        this.counter.setText(Long.toString(count));
     }
 
     public void setCounter(final String count){

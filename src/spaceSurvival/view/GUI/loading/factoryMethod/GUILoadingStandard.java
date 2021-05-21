@@ -19,12 +19,11 @@ public class GUILoadingStandard implements FactoryGUILoading {
         GUILoadingConcrete concrete = new GUILoadingConcrete();
         concrete.setBackgroundImage(Background.LOAD1);
 
-        concrete.setFontLbtitle(DesignGraphics.getFontForTitle(100));
+        concrete.setFontLbtitle(DesignGraphics.getFontForTitle(DesignGraphics.SIZE_FONT_H0));
         concrete.setForegroundGUI(DesignGraphics.color4);
 
 
         graphics(concrete);
-        concrete.validate();
         return concrete;
     }
 
@@ -33,14 +32,14 @@ public class GUILoadingStandard implements FactoryGUILoading {
 
         JPanel panel1 = FactoryGUIs.encapsulatesInPanelFlow(concrete.getLbTitle());
         FlowLayout flow1 = (FlowLayout) panel1.getLayout();
-        flow1.setVgap(80);
+        flow1.setVgap(FactoryGUIs.INSET_H1);
 
         concrete.add(panel1, BorderLayout.NORTH);
 
 
         JPanel panel = FactoryGUIs.encapsulatesInPanelFlow(concrete.getProgressBar());
         FlowLayout flow = (FlowLayout) panel.getLayout();
-        flow.setVgap(100);
+        flow.setVgap(FactoryGUIs.EXTREME_INSET);
 
 
         concrete.add(FactoryGUIs.encapsulateInPanelBorderOrientation(panel, BorderLayout.SOUTH),
@@ -51,7 +50,5 @@ public class GUILoadingStandard implements FactoryGUILoading {
         concrete.getProgressBar().setPreferredSize(new Dimension(
                 Screen.scaleRespectTo(ScaleOf.WIDTH_BAR_LOADING, Screen.WIDTH_FULL_SCREEN),
                 Screen.scaleRespectTo(ScaleOf.HEIGHT_BAR_LOADING, Screen.HEIGHT_FULL_SCREEN)));
-
-
     }
 }

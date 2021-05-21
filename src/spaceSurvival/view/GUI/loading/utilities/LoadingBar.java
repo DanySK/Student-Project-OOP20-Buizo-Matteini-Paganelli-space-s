@@ -1,6 +1,8 @@
 package spaceSurvival.view.GUI.loading.utilities;
 
 import spaceSurvival.model.image.EngineImage;
+import spaceSurvival.utilities.dimension.ScaleOf;
+import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.view.utilities.JImage;
 
 import javax.swing.*;
@@ -17,19 +19,12 @@ public class LoadingBar extends JProgressBar {
 
         Graphics2D g2d = (Graphics2D)g;
 
-        Image img = getImageFromEngine(new EngineImage("loading.png", 50, 50));
+        int i = Screen.scaleRespectTo(30, super.getWidth());
+        Image img = getImageFromEngine(new EngineImage("loading.png", i, i));
 
-        super.getValue();
-        super.getSize();
-
-        int i = 50;
-
-        for (int j = 0; j < (super.getValue()/3) + 1; j++){
+        for (int j = 0; j < (super.getWidth() * super.getValue() / (100 * i)) + 1; j++){
             g2d.drawImage(img, j * i,0, null);
         }
-
-
-
     }
 
     private Image getImageFromEngine(final EngineImage image){

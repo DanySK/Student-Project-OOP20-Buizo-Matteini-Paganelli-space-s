@@ -20,6 +20,7 @@ public class Boss extends MainGameObject {
 		super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, weapon);
     	this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage));
 	}
+
 	@Override
 	public String toString() {
 		return "Boss { " + super.toString() + " }";

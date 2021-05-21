@@ -16,7 +16,6 @@ import spaceSurvival.model.GUI.sound.EngineSound;
 import spaceSurvival.utilities.IdGUI;
 import spaceSurvival.utilities.SoundPath;
 import spaceSurvival.utilities.StateLevelGUI;
-import spaceSurvival.utilities.pathImage.Skin;
 import spaceSurvival.view.GUI.GUI;
 import spaceSurvival.view.GUI.game.GUIGame;
 import spaceSurvival.view.GUI.help.GUIHelp;
@@ -25,12 +24,14 @@ import spaceSurvival.view.GUI.pause.GUIPause;
 import spaceSurvival.view.GUI.scoreboard.GUIScoreboard;
 import spaceSurvival.view.GUI.settings.GUISettings;
 import spaceSurvival.view.GUI.sound.GUISound;
+import spaceSurvival.view.utilities.ButtonID;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class CtrlGUI {
@@ -103,8 +104,8 @@ public class CtrlGUI {
 
         this.linksAll();
         this.focusMenu();
-
-
+        this.assignSkin();
+        this.assignStartTimer();
     }
 
     public void startGUI(){
@@ -181,10 +182,6 @@ public class CtrlGUI {
         };
     }
 
-    public GUIGame getPanelGame(){
-        return this.guiGame;
-    }
-
     private EngineGUI getEngine(IdGUI id){
         for (ControllerGUI ctrlGUI : this.managerGui.values()) {
             if(ctrlGUI.getIdGUI() == id){
@@ -228,34 +225,45 @@ public class CtrlGUI {
         this.ctrlSound.linksCallerAudioEffectWithListener();
     }
 
-    public int getCurrentLoopVolume(){
-        return this.ctrlSound.getBackgroundVolume();
-    }
-
-    public boolean isActiveLoopUnitSound(){
-        return this.ctrlSound.isActiveLoopUnitSound();
-    }
-
-
     public String getCurrentSkin(){
-    	return Skin.SPECIAL;
-        //return this.ctrlSettings.getCurrentSkin();
+        return this.ctrlSettings.getCurrentSkin();
+    }
+
+    public CtrlGame getCtrlGame() {
+        return this.ctrlGame;
+    }
+
+    public CtrlSound getCtrlSound() {
+        return this.ctrlSound;
+    }
+
+    public void assignSkin(){
+        Objects.requireNonNull(this.getBtnGameFromMenu()).addActionListener(l -> {
+            this.ctrlGame.getWord().setSkin(CtrlGUI.this.getCurrentSkin());
+        });
+    }
+
+    private void assignStartTimer() {
+        Objects.requireNonNull(this.getBtnGameFromMenu()).addActionListener(l -> {
+            this.ctrlGame.startTimer();
+        });
+    }
+
+    private ButtonID getBtnGameFromMenu(){
+        for (ButtonID btn : this.ctrlMenu.getGUI().getButtonLinks()) {
+            if(btn.getIdGUINext() == IdGUI.ID_GAME){
+                return btn;
+            }
+        }
+        return null;
     }
 
     public void initTimer(){
         this.ctrlGame.initTimer();
     }
 
-    public void startTimer(){
-        this.ctrlGame.startTimer();
-    }
-
     public void renderTimer(){
         this.ctrlGame.assignTimer();
-    }
-
-    public boolean isStartTimer(){
-        return this.ctrlGame.isStartTimer();
     }
 
     private void quitAll(){

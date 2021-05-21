@@ -12,6 +12,7 @@ import spaceSurvival.model.GUI.sound.EngineSound;
 import spaceSurvival.model.GUI.sound.StateSlider;
 import spaceSurvival.model.GUI.sound.TypeUnitSound;
 import spaceSurvival.model.sound.CmdAudioType;
+import spaceSurvival.model.sound.category.SoundLoop;
 import spaceSurvival.utilities.DesignSound;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.utilities.IdGUI;
@@ -74,7 +75,7 @@ public class CtrlSound implements ControllerGUI{
     }
 
 
-    public int getBackgroundVolume(){
+    public int getLoopVolume(){
         return this.engine.getValueUnitSound(TypeUnitSound.SLIDER_BACKGROUND);
     }
 
@@ -117,6 +118,20 @@ public class CtrlSound implements ControllerGUI{
             FactoryGUIs.setIconJButtonFromRate(btnType,this.engine.getEngineImageUnitSound(type));
             this.callerAudioLoop.changeVolume(this.engine.getValueUnitSound(type));
         });
+    }
+
+    public boolean isNewLoopSound(final IdGUI idGUI){
+        return this.callerAudioLoop.isNewSound(idGUI.getSound());
+    }
+
+    public void changeNewLoopSound(final IdGUI idGUI){
+        this.callerAudioLoop.execute(CmdAudioType.AUDIO_OFF);
+        this.callerAudioLoop.setSound(new SoundLoop(idGUI.getSound()));
+
+        this.callerAudioLoop.changeVolume(this.isActiveLoopUnitSound() ?
+                this.getLoopVolume() : DesignSound.SOUND_ZERO);
+
+        this.callerAudioLoop.execute(CmdAudioType.AUDIO_ON);
     }
 
     public void setActionListenerChangeSwitchSoundLoop(final TypeUnitSound type){

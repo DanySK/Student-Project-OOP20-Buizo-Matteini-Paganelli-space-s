@@ -4,9 +4,17 @@ import spaceSurvival.controller.GUI.command.SwitchGUI;
 import spaceSurvival.model.GUI.EngineGUI;
 import spaceSurvival.model.GUI.Visibility;
 import spaceSurvival.model.GUI.game.EngineGame;
+import spaceSurvival.model.GUI.game.World;
+import spaceSurvival.model.gameObject.GameObject;
+import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
+import spaceSurvival.model.input.MovementKeyListener;
+import spaceSurvival.model.worldEcollisioni.WorldEventListener;
 import spaceSurvival.utilities.IdGUI;
 import spaceSurvival.view.GUI.GUI;
 import spaceSurvival.view.GUI.game.GUIGame;
+
+import java.awt.event.KeyListener;
+import java.awt.geom.AffineTransform;
 
 public class CtrlGame implements ControllerGUI{
     private final EngineGame engine;
@@ -20,6 +28,7 @@ public class CtrlGame implements ControllerGUI{
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
 
         this.init();
+        this.updateHUD();
         this.switchGUI.turn(this.engine.getVisibility());
     }
 
@@ -28,8 +37,13 @@ public class CtrlGame implements ControllerGUI{
         this.gui.setIdButtons(this.engine.getLinks());
     }
 
-    public boolean isStartTimer(){
-        return this.engine.isStartTimer();
+    public void updateHUD(){
+        this.gui.setScore(this.engine.getScore());
+        this.gui.setRound(this.engine.getRound());
+        this.gui.setNEnemies(this.engine.getCountEnemies());
+        this.gui.setNHeart(this.engine.getHeartShip());
+        this.gui.setLifeShip(this.engine.getLifeShip());
+        this.gui.setLifeBoss(this.engine.getLifeBoss());
     }
 
     public void initTimer(){
@@ -42,6 +56,58 @@ public class CtrlGame implements ControllerGUI{
 
     public void assignTimer(){
         this.gui.setTimer(this.engine.getTimer());
+    }
+
+    public World getWord(){
+        return this.engine.getWorld();
+    }
+
+    public SpaceShipSingleton getShip(){
+        return this.engine.getShip();
+    }
+
+    public void setEventListenerInWorld(final WorldEventListener worldEventListener){
+        this.engine.setEventListenerInWorld(worldEventListener);
+    }
+
+    private MovementKeyListener getMovementKeyListener(){
+        return new MovementKeyListener(this.engine.getShip());
+    }
+
+    public void assignMovementListenerInShip(){
+        this.addKeyListenerShip(this.getMovementKeyListener());
+    }
+
+    public boolean isGameOver(){
+        return this.engine.isGameOver();
+    }
+
+    public void decrLifeShip(final int damage){
+        this.engine.decrLifeShip(damage);
+    }
+
+    public void incrScore(final long score){
+        this.engine.incrScore(score);
+    }
+
+    public void repaintWorld(){
+        this.gui.repaintGameObjects();
+    }
+
+    public void updateStateWorld(final int elapsed){
+        this.engine.updateStateWorld(elapsed);
+    }
+
+    private void addKeyListenerShip(final KeyListener keyListener){
+        this.gui.addKeyListenerSpaceShip(keyListener);
+    }
+
+    public void addAllGameObjectsFromWorld(){
+        this.engine.getAllGameObject().forEach(objGame -> CtrlGame.this.gui.addGameObject(objGame, objGame.getTransform()));
+    }
+
+    public void addGameObject(final GameObject gameObject, final AffineTransform transform){
+        this.gui.addGameObject(gameObject, transform);
     }
 
     @Override

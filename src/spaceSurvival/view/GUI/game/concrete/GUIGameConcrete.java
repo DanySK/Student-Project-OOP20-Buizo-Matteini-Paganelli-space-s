@@ -1,5 +1,6 @@
 package spaceSurvival.view.GUI.game.concrete;
 
+import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.utilities.IdGUI;
 import spaceSurvival.view.GUI.AbstractGUI;
 import spaceSurvival.view.GUI.game.GUIGame;
@@ -8,6 +9,7 @@ import spaceSurvival.view.utilities.ButtonID;
 
 import java.awt.*;
 import java.awt.event.KeyListener;
+import java.awt.geom.AffineTransform;
 import java.util.List;
 
 public class GUIGameConcrete extends AbstractGUI implements GUIGame {
@@ -61,8 +63,48 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
     }
 
     @Override
+    public void addGameObject(final GameObject gameObject, final AffineTransform transform) {
+        this.panelGame.addGameObject(gameObject, transform);
+    }
+
+    @Override
     public void addKeyListenerSpaceShip(KeyListener keyListener) {
         this.addKeyListener(keyListener);
+    }
+
+    @Override
+    public void repaintGameObjects(){
+        this.panelGame.repaint();
+    }
+
+    @Override
+    public void setScore(final long score) {
+        this.score.setScore(score);
+    }
+
+    @Override
+    public void setRound(final int round) {
+        this.roundTimer.setRound(round);
+    }
+
+    @Override
+    public void setNEnemies(final long count) {
+        this.counterEnemies.setCounter(count);
+    }
+
+    @Override
+    public void setNHeart(final int nHeart) {
+        this.heartLife.setnHeart(nHeart);
+    }
+
+    @Override
+    public void setLifeShip(final int lifeShip) {
+        this.lifeShip.setLife(lifeShip);
+    }
+
+    @Override
+    public void setLifeBoss(int lifeShip) {
+        this.lifeBoss.setLife(lifeShip);
     }
 
 
@@ -96,11 +138,6 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
         this.lifeBoss.setBackground(color);
     }
 
-
-    @Override
-    public void repaintGameObjects(){
-        this.panelGame.repaint();
-    }
 
     public LifeBar getLifeBoss() {
         return this.lifeBoss;

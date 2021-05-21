@@ -6,7 +6,7 @@ import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.common.V2d;
 import spaceSurvival.model.gameObject.*;
 import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
-import spaceSurvival.model.world.World;
+import spaceSurvival.model.GUI.game.World;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 
 public class AsteroidPhysicsComponent implements PhysicsComponent {

@@ -2,10 +2,11 @@ package spaceSurvival.model.game;
 
 import spaceSurvival.controller.GUI.CtrlGUI;
 import spaceSurvival.model.GUI.game.EngineGame;
+import spaceSurvival.model.GUI.game.EngineHUD;
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.gameObject.GameObjectUtils;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
-import spaceSurvival.model.world.World;
+import spaceSurvival.model.GUI.game.World;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import spaceSurvival.utilities.dimension.Screen;
 
@@ -16,7 +17,7 @@ import java.util.Timer;
 public class GameState {
 	
     private World world;
-    private int score;
+    private long score;
 	private int lives;
     private int round;
     
@@ -32,9 +33,9 @@ public class GameState {
     	P2d UL_P2d = new P2d(UL_screen.getX(), UL_screen.getY());
     	P2d BR_P2d = new P2d(UL_screen.getX() + EngineGame.DIMENSION.getWidth(), UL_screen.getY() + EngineGame.DIMENSION.getHeight());
         this.world = new World(new RectBoundingBox(UL_P2d, BR_P2d));
-        this.score = EngineGame.INITIAL_SCORE;
+        this.score = EngineHUD.INIT_SCORE;
         this.lives = GameObjectUtils.SPACESHIP_LIVES;
-        this.round = EngineGame.INITIAL_ROUND;
+        this.round = EngineHUD.INIT_ROUND;
     }
 
     public World getWorld(){
@@ -53,7 +54,7 @@ public class GameState {
 		this.timer = timer;
 	}
 
-	public int getScore() {
+	public long getScore() {
 		return score;
 	}
 

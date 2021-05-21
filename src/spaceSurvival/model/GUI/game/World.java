@@ -1,5 +1,6 @@
-package spaceSurvival.model.world;
+package spaceSurvival.model.GUI.game;
 
+import java.awt.*;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -32,7 +33,7 @@ public class World {
 	private RectBoundingBox mainBBox;
 	private WorldEventListener evListener;
 	
-	public World(RectBoundingBox mainBBox) {
+	public World(final RectBoundingBox mainBBox) {
 		this.ship = SpaceShipSingleton.getSpaceShip();
 		this.mainBBox = mainBBox;
 
@@ -50,6 +51,20 @@ public class World {
 //		System.out.println(getPickables());
 
 
+	}
+
+	public World(final Rectangle rectangle){
+		this.ship = SpaceShipSingleton.getSpaceShip();
+		this.mainBBox = new RectBoundingBox(rectangle);
+
+		for (int i = 0; i < 1; i++) {
+			addChaseEnemy(factoryGameObject.createChaseEnemy());
+			addPickable(factoryGameObject.createPickable());
+			//addFireEnemy(factoryGameObject.createFireEnemy());
+			//asteroids.add(factoryGameObject.createAsteroid());
+			//chaseEnemies.add(factoryGameObject.createChaseEnemy());
+			//fireEnemies.add(factoryGameObject.createFireEnemy());
+		}
 	}
 
 	public void setEventListener(WorldEventListener l) {
@@ -244,5 +259,23 @@ public class World {
 		entities.addAll(pickables);
 		return entities;
 	}
-	
+
+	public int getUsBoss(){
+		return this.boss.isPresent() ? 1 : 0;
+	}
+
+	public long getCountEnemies(){
+		return this.asteroids.size() +
+				this.fireEnemies.size() +
+				this.chaseEnemies.size() +
+				this.getUsBoss();
+	}
+
+	public int getLifeShip(){
+		return this.ship.getLife();
+	}
+
+	public int getLifeBoss() {
+		return this.boss.map(MainGameObject::getLife).orElse(0);
+	}
 }
