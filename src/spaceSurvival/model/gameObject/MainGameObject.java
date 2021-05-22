@@ -12,7 +12,7 @@ import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 public abstract class MainGameObject extends MovableGameObject {
 	private int life;
 	private int impactDamage;
-	
+	private Status status;
 	private Optional<Weapon> weapon;
 	
 	public MainGameObject(final ImageDesign imageDesign, final P2d position, final BoundingBox bb,
@@ -21,6 +21,7 @@ public abstract class MainGameObject extends MovableGameObject {
 		super(imageDesign, position, bb, phys, velocity, movement);
 		this.life = life;
 		this.setImpactDamage(impactDamage);
+		this.status = Status.NORMAL;
 		this.weapon = weapon;
 	}
 
@@ -60,15 +61,22 @@ public abstract class MainGameObject extends MovableGameObject {
 		this.weapon = weapon;
 	}
 
-	@Override
-	public String toString() {
-		return "MainGameObject [life=" + life + ", impactDamage=" + impactDamage + ", "
-				+ "weapon=" + weapon + ", " + super.toString() + "]";
+	public Status getStatus() {
+		return this.status;
+	}
+	
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+	
+	public boolean isInvincible() {
+		return this.status == Status.INVINCIBLE;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "MainGameObject [life=" + life + ", weapon=" + weapon + "]";
-//	}
+	@Override
+	public String toString() {
+		return "MainGameObject [life=" + life + ", impactDamage=" + impactDamage + ", state=" + status 
+				+ ", weapon=" + weapon + ", " + super.toString() + "]";
+	}
 
 }

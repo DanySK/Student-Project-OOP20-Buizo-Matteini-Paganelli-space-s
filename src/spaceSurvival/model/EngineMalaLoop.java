@@ -9,6 +9,7 @@ import spaceSurvival.model.gameObject.mainGameObject.Boss;
 import spaceSurvival.model.gameObject.mainGameObject.ChaseEnemy;
 import spaceSurvival.model.gameObject.mainGameObject.FireEnemy;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
+import spaceSurvival.model.gameObject.Status;
 import spaceSurvival.model.sound.CmdAudioType;
 import spaceSurvival.model.worldEcollisioni.WorldEvent;
 import spaceSurvival.model.worldEcollisioni.WorldEventListener;
@@ -62,13 +63,13 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             long current = System.currentTimeMillis();
             int elapsed = (int)(current - lastTime);
 
-            processInput();
+            //processInput();
             renderMovement();
             render();
 
             waitForNextFrame(current);
             lastTime = current;
-            updateGame(elapsed);
+            //updateGame(elapsed);
 
             System.out.println("LoopMala -> "+ elapsed +" FPS");
         }
@@ -78,7 +79,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     
 	protected void waitForNextFrame(final long current) {
         long dt = System.currentTimeMillis() - current;
-        long period = 30L;
+        long period = 60L;
         if (dt < period){
             try {
                 Thread.sleep(period - dt);
@@ -100,13 +101,16 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         final SpaceShipSingleton ship = this.controlGame.getShip();
         
         eventQueue.forEach(ev -> {
+        	
         	if (ev instanceof HitAsteroidEvent){
             	HitAsteroidEvent asteroidEvent = (HitAsteroidEvent) ev;
             	final Asteroid asteroidCollided = (Asteroid) asteroidEvent.getCollisionObj();
-            	asteroidCollided.decreaseLife(ship.getImpactDamage());
-            	if (isGameObjectDead(asteroidCollided)) {
-                    scene.removeAsteroid(asteroidCollided);
-				}
+            	if (asteroidCollided.isInvincible()) {
+            		asteroidCollided.decreaseLife(ship.getImpactDamage());
+            		if (isGameObjectDead(asteroidCollided)) {
+            			scene.removeAsteroid(asteroidCollided);
+					}
+            	}
                 this.controlGame.decrLifeShip(asteroidCollided.getImpactDamage());
             } else if (ev instanceof HitChaseEnemyEvent) {
             	HitChaseEnemyEvent chaseEnemyEvent = (HitChaseEnemyEvent) ev;

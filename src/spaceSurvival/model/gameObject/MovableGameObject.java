@@ -13,8 +13,6 @@ public abstract class MovableGameObject extends GameObject {
 	private V2d velocity;
 	private Movement movement;
 	
-
-	
 	public MovableGameObject() {
 		super(new ImageDesign(), new P2d(0, 0), null, null);
 		this.velocity = new V2d();

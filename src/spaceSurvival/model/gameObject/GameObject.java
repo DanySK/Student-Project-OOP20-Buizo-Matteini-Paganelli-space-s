@@ -18,8 +18,6 @@ public abstract class GameObject {
 	private PhysicsComponent phys;
 	private AffineTransform transform;
 	
-	//DA CAMBIARE, SARà L'ENUM DEGLI STATI DEGLI OGGETTI
-	private String state = "NORMAL";
 	
 	public GameObject(final ImageDesign imageDesign, final P2d position, final BoundingBox bb,
 					  final PhysicsComponent phys) {
@@ -92,14 +90,6 @@ public abstract class GameObject {
 		phys.update(dt, this, w);
 	}
 	
-	public String getState(){
-		return this.state;
-	}
-	
-	public void setState(String state){
-		this.state = state;
-	}
-	
 	public Dimension getSize() {
 		return this.getEngineImage().getSize();
 	}
@@ -107,7 +97,7 @@ public abstract class GameObject {
 	@Override
 	public String toString() {
 		return "GameObject [engineImage=" + imageDesign + ", position=" + position + ", boundingBox=" + boundingBox
-				+ ", phys=" + phys + ", state=" + state + "]";
+				+ ", phys=" + phys + "]";
 	}
 
 }
