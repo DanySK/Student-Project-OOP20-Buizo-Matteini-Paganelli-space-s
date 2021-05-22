@@ -53,7 +53,6 @@ public abstract class MainGameObject extends MovableGameObject {
 		this.impactDamage = impactDamage;
 	}
 	
-
 	public Optional<Weapon> getWeapon() {
 		return weapon;
 	}

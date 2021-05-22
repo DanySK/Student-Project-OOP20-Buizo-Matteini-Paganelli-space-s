@@ -70,7 +70,7 @@ public class World {
 	}
 
 	public void moveShip(){
-		this.ship.move();
+		this.ship.draw();
 	}
 	
 	public AbstractFactoryGameObject getFactoryGameObject() {
