@@ -50,8 +50,10 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         this.controlGame.setEventListenerInWorld(this);
         this.controlGame.addAllGameObjectsFromWorld();
 
-        this.controlGame.getShip().getTransform()
-                .setToTranslation(Screen.POINT_CENTER_FULLSCREEN.getX(), Screen.POINT_CENTER_FULLSCREEN.getY());
+        //this.controlGame.getShip().getTransform()
+          //      .setToTranslation(Screen.POINT_CENTER_FULLSCREEN.getX(), Screen.POINT_CENTER_FULLSCREEN.getY());
+        this.controlGame.getShip().setPosition(Screen.POINT_CENTER_FULLSCREEN);
+        //      .setToTranslation(Screen.POINT_CENTER_FULLSCREEN.getX(), Screen.POINT_CENTER_FULLSCREEN.getY());
 
         this.controlSound.setSoundLoop(this.controlGUI.getCurrentGUI());
         this.controlSound.setCmdAudioLoop(CmdAudioType.AUDIO_ON);
