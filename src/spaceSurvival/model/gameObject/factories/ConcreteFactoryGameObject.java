@@ -5,7 +5,10 @@ import java.util.Optional;
 import spaceSurvival.model.gameObject.EffectType;
 import spaceSurvival.model.gameObject.GameObjectUtils;
 import spaceSurvival.model.gameObject.MainGameObject;
-import spaceSurvival.model.gameObject.Movement;
+import spaceSurvival.model.movement.ChasingMovement;
+import spaceSurvival.model.movement.DistantMovement;
+import spaceSurvival.model.movement.FixedMovement;
+import spaceSurvival.model.movement.Movement;
 import spaceSurvival.model.gameObject.PickableGameObject;
 import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
 import spaceSurvival.model.gameObject.mainGameObject.Boss;
@@ -38,7 +41,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 				spaceSurvival.utilities.pathImage.Asteroid.NORMAL);
 		P2d position = new P2d(300, 300);//GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.ASTEROID_VEL;
-		Movement movement = Movement.FIXED;
+		Movement movement = new FixedMovement();
 		int life = GameObjectUtils.ASTEROID_LIFE;
 		int impactDamage = GameObjectUtils.ASTEROID_DAMAGE;
 		Optional<Weapon> weapon = Optional.empty();
@@ -53,7 +56,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 		ImageDesign imageDesign = new ImageDesign(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Skin.DELUXE);
 		P2d position = new P2d(200, 200);//GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.CHASE_ENEMY_VEL;
-		Movement movement = Movement.CHASE;
+		Movement movement = new ChasingMovement();
 		int life = GameObjectUtils.CHASE_ENEMY_LIFE;
 		int impactDamage = GameObjectUtils.CHASE_ENEMY_DAMAGE;		
 		Optional<Weapon> weapon = Optional.empty();
@@ -68,7 +71,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 		ImageDesign imageDesign = new ImageDesign(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Skin.SPECIAL);
 		P2d position =new P2d(400, 400);// GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.FIRE_ENEMY_VEL;
-		Movement movement = Movement.RANDOM;
+		Movement movement = new DistantMovement();
 		int life = GameObjectUtils.FIRE_ENEMY_LIFE;
 		int impactDamage = GameObjectUtils.FIRE_ENEMY_DAMAGE;		
 		Optional<Weapon> weapon = Optional.of(new Weapon());
@@ -83,7 +86,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 		ImageDesign imageDesign = new ImageDesign(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Skin.STANDARD);
 		P2d position = GameObjectUtils.generateSpawnPoint(imageDesign.getSize());
 		V2d velocity = GameObjectUtils.BOSS_VEL;
-		Movement movement = Movement.RANDOM;
+		Movement movement = new DistantMovement();
 		int life = GameObjectUtils.BOSS_LIFE;
 		int impactDamage = GameObjectUtils.BOSS_DAMAGE;		
 		Optional<Weapon> weapon = Optional.of(new Weapon());

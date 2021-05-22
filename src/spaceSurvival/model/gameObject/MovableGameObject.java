@@ -2,6 +2,7 @@ package spaceSurvival.model.gameObject;
 
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.common.V2d;
+import spaceSurvival.model.movement.Movement;
 import spaceSurvival.model.ImageDesign;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;

@@ -4,7 +4,8 @@ import java.util.Optional;
 
 import spaceSurvival.model.gameObject.GameObjectUtils;
 import spaceSurvival.model.gameObject.MainGameObject;
-import spaceSurvival.model.gameObject.Movement;
+import spaceSurvival.model.movement.ControlledMovement;
+import spaceSurvival.model.movement.Movement;
 import spaceSurvival.model.common.*;
 import spaceSurvival.model.gameObject.weapon.Weapon;
 import spaceSurvival.model.ImageDesign;
@@ -24,7 +25,7 @@ public class SpaceShipSingleton extends MainGameObject {
    		new RectBoundingBox(),
    		new ShipPhysicsComponent(),
    		new V2d(),
-   		Movement.CONTROLLED,
+   		new ControlledMovement(),
     	GameObjectUtils.SPACESHIP_LIFE,
     	GameObjectUtils.ASTEROID_DAMAGE,
    		Optional.of(new Weapon())

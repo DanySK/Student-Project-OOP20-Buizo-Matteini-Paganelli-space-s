@@ -7,7 +7,8 @@ import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.common.V2d;
 import spaceSurvival.model.gameObject.GameObjectUtils;
 import spaceSurvival.model.gameObject.MainGameObject;
-import spaceSurvival.model.gameObject.Movement;
+import spaceSurvival.model.movement.FixedMovement;
+import spaceSurvival.model.movement.Movement;
 import spaceSurvival.model.ImageDesign;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 
@@ -50,7 +51,7 @@ public class Weapon {
 		System.out.println("Sparo");
 		P2d position = new P2d(600, 600);//owner.getPosition(); //GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.BULLET_VEL;
-		Movement movement = Movement.FIXED;
+		Movement movement = new FixedMovement();
 		
 		switch (ammoType) {
 		case NORMAL:
