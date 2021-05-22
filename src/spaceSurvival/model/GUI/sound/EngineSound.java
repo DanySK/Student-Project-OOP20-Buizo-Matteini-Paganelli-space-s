@@ -4,39 +4,43 @@ import spaceSurvival.model.GUI.EngineGUI;
 import spaceSurvival.model.GUI.Visibility;
 import spaceSurvival.model.ImageDesign;
 import spaceSurvival.utilities.DesignSound;
-import spaceSurvival.utilities.DesignTitleGUI;
 
 import spaceSurvival.utilities.dimension.Screen;
-import spaceSurvival.utilities.IdGUI;
+import spaceSurvival.utilities.ActionGUI;
 
 import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
 public class EngineSound implements EngineGUI {
-
-    public static final Rectangle DIMENSION = Screen.RECTANGLE_MEDIUM;
+    public static final Rectangle RECTANGLE = Screen.RECTANGLE_MEDIUM;
+    public static final String TITLE = "SOUND";
 
     public static int N_UNIT_SOUND = 2;
 
-    private final IdGUI id;
-    private final IdGUI idBack;
+    private final ActionGUI id;
+    private final ActionGUI idBack;
 
     private final EngineMixerSound mixerSound;
 
     private Visibility visibility;
 
     public EngineSound(){
-        this.id = IdGUI.ID_SOUND;
-        this.idBack = IdGUI.ID_BACK;
+        this.id = ActionGUI.ID_SOUND;
+        this.idBack = ActionGUI.ID_BACK;
         this.mixerSound = new EngineMixerSound(Arrays.asList(TypeUnitSound.values()));
 
         this.visibility = Visibility.HIDDEN;
     }
 
     @Override
-    public IdGUI getId() {
+    public ActionGUI getActionGUI() {
         return id;
+    }
+
+    @Override
+    public Rectangle getRectangle() {
+        return RECTANGLE;
     }
 
     @Override
@@ -55,16 +59,16 @@ public class EngineSound implements EngineGUI {
     }
 
     @Override
-    public List<IdGUI> getLinks() {
+    public List<ActionGUI> getLinks() {
         return List.of(this.idBack);
     }
 
 
     public String getTitle() {
-        return DesignTitleGUI.TITLE_SOUND;
+        return TITLE;
     }
 
-    public IdGUI getBackLink(){
+    public ActionGUI getBackLink(){
         return this.idBack;
     }
 

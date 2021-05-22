@@ -1,29 +1,29 @@
 package spaceSurvival.factories;
 
-import spaceSurvival.view.GUI.loading.FactoryGUILoading;
-import spaceSurvival.view.GUI.loading.GUILoading;
-import spaceSurvival.view.GUI.loading.factoryMethod.GUILoadingStandard;
-import spaceSurvival.view.GUI.game.FactoryGUIGame;
-import spaceSurvival.view.GUI.game.GUIGame;
-import spaceSurvival.view.GUI.game.factoryMethod.GUIGameStandard;
-import spaceSurvival.view.GUI.help.factoryMethod.GUIHelpStandard;
-import spaceSurvival.view.GUI.help.FactoryGUIHelp;
-import spaceSurvival.view.GUI.help.GUIHelp;
-import spaceSurvival.view.GUI.menu.factoryMethod.GUIMenuStandard;
-import spaceSurvival.view.GUI.menu.FactoryGUIMenu;
-import spaceSurvival.view.GUI.menu.GUIMenu;
-import spaceSurvival.view.GUI.pause.FactoryGUIPause;
-import spaceSurvival.view.GUI.pause.GUIPause;
-import spaceSurvival.view.GUI.pause.factoryMethod.GUIPauseStandard;
-import spaceSurvival.view.GUI.scoreboard.factoryMethod.GUIScoreboardStandard;
-import spaceSurvival.view.GUI.scoreboard.FactoryGUIScoreboard;
-import spaceSurvival.view.GUI.scoreboard.GUIScoreboard;
-import spaceSurvival.view.GUI.settings.factoryMethod.GUISettingsStandard;
-import spaceSurvival.view.GUI.settings.FactoryGUISettings;
-import spaceSurvival.view.GUI.settings.GUISettings;
-import spaceSurvival.view.GUI.sound.FactoryGUISound;
-import spaceSurvival.view.GUI.sound.GUISound;
-import spaceSurvival.view.GUI.sound.factoryMethod.GUISoundStandard;
+import spaceSurvival.view.loading.FactoryGUILoading;
+import spaceSurvival.view.loading.GUILoading;
+import spaceSurvival.view.loading.factoryMethod.GUILoadingStandard;
+import spaceSurvival.view.game.FactoryGUIGame;
+import spaceSurvival.view.game.GUIGame;
+import spaceSurvival.view.game.factoryMethod.GUIGameStandard;
+import spaceSurvival.view.help.factoryMethod.GUIHelpStandard;
+import spaceSurvival.view.help.FactoryGUIHelp;
+import spaceSurvival.view.help.GUIHelp;
+import spaceSurvival.view.menu.factoryMethod.GUIMenuStandard;
+import spaceSurvival.view.menu.FactoryGUIMenu;
+import spaceSurvival.view.menu.GUIMenu;
+import spaceSurvival.view.pause.FactoryGUIPause;
+import spaceSurvival.view.pause.GUIPause;
+import spaceSurvival.view.pause.factoryMethod.GUIPauseStandard;
+import spaceSurvival.view.scoreboard.factoryMethod.GUIScoreboardStandard;
+import spaceSurvival.view.scoreboard.FactoryGUIScoreboard;
+import spaceSurvival.view.scoreboard.GUIScoreboard;
+import spaceSurvival.view.settings.factoryMethod.GUISettingsStandard;
+import spaceSurvival.view.settings.FactoryGUISettings;
+import spaceSurvival.view.settings.GUISettings;
+import spaceSurvival.view.sound.FactoryGUISound;
+import spaceSurvival.view.sound.GUISound;
+import spaceSurvival.view.sound.factoryMethod.GUISoundStandard;
 
 public class StaticFactoryGUI {
 

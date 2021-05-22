@@ -9,9 +9,9 @@ import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 import spaceSurvival.model.MovementKeyListener;
 import spaceSurvival.model.worldEcollisioni.WorldEventListener;
-import spaceSurvival.utilities.IdGUI;
-import spaceSurvival.view.GUI.GUI;
-import spaceSurvival.view.GUI.game.GUIGame;
+import spaceSurvival.utilities.ActionGUI;
+import spaceSurvival.view.GUI;
+import spaceSurvival.view.game.GUIGame;
 
 import java.awt.event.KeyListener;
 import java.awt.geom.AffineTransform;
@@ -33,7 +33,7 @@ public class CtrlGame implements ControllerGUI{
     }
 
     private void init(){
-        this.gui.setId(this.engine.getId());
+        this.gui.setMainAction(this.engine.getActionGUI());
         this.gui.setIdButtons(this.engine.getLinks());
     }
 
@@ -112,8 +112,8 @@ public class CtrlGame implements ControllerGUI{
     }
 
     @Override
-    public IdGUI getIdGUI() {
-        return this.engine.getId();
+    public ActionGUI getIdGUI() {
+        return this.engine.getActionGUI();
     }
 
     @Override

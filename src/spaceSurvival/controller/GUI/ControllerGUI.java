@@ -2,11 +2,11 @@ package spaceSurvival.controller.GUI;
 
 import spaceSurvival.model.GUI.EngineGUI;
 import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.utilities.IdGUI;
-import spaceSurvival.view.GUI.GUI;
+import spaceSurvival.utilities.ActionGUI;
+import spaceSurvival.view.GUI;
 
 public interface ControllerGUI {
-    public IdGUI getIdGUI();
+    public ActionGUI getIdGUI();
 
     public GUI getGUI();
 

@@ -4,9 +4,9 @@ import spaceSurvival.controller.GUI.command.SwitchGUI;
 import spaceSurvival.model.GUI.EngineGUI;
 import spaceSurvival.model.GUI.Visibility;
 import spaceSurvival.model.GUI.help.EngineHelp;
-import spaceSurvival.utilities.IdGUI;
-import spaceSurvival.view.GUI.GUI;
-import spaceSurvival.view.GUI.help.GUIHelp;
+import spaceSurvival.utilities.ActionGUI;
+import spaceSurvival.view.GUI;
+import spaceSurvival.view.help.GUIHelp;
 
 public class CtrlHelp implements ControllerGUI {
     private final GUIHelp gui;
@@ -25,7 +25,7 @@ public class CtrlHelp implements ControllerGUI {
     }
 
     private void assignId() {
-        this.gui.setId(this.engine.getId());
+        this.gui.setMainAction(this.engine.getActionGUI());
         this.gui.setIdBtnBack(this.engine.getBackLink());
     }
 
@@ -38,8 +38,8 @@ public class CtrlHelp implements ControllerGUI {
     }
 
     @Override
-    public IdGUI getIdGUI() {
-        return this.engine.getId();
+    public ActionGUI getIdGUI() {
+        return this.engine.getActionGUI();
     }
 
     @Override

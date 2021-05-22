@@ -5,6 +5,7 @@ import spaceSurvival.model.ImageDesign;
 import spaceSurvival.model.GUI.EngineGUI;
 import spaceSurvival.utilities.*;
 import spaceSurvival.utilities.dimension.Screen;
+import spaceSurvival.utilities.ActionGUI;
 
 import java.awt.*;
 import java.util.*;
@@ -13,16 +14,17 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class EngineSettings implements EngineGUI {
-    public static final Rectangle DIMENSION = Screen.RECTANGLE_MEDIUM;
+    public static final Rectangle RECTANGLE = Screen.RECTANGLE_MEDIUM;
+    public static final String TITLE = "SETTING";
 
     public static final int INDEX_INIT_SKIN = 0;
     public static final int INDEX_INTI_DIFFICULT = 0;
     public static final int STEP_INDEX_SKIN = 1;
     public static final int FIRST_DIFFICULT_ON = 0;
 
-    private final IdGUI id;
+    private final ActionGUI id;
     private final List<NameSettingsGUI> namesButtons;
-    private final IdGUI linkBack;
+    private final ActionGUI linkBack;
 
     private final Map<Difficulty, DifficultActive> difficult;
     private final List<SkinSpaceShip> skinSpaceShip;
@@ -31,8 +33,8 @@ public class EngineSettings implements EngineGUI {
     private Visibility visibility = Visibility.HIDDEN;
 
     public EngineSettings(){
-        this.id = IdGUI.ID_SETTING;
-        this.linkBack = IdGUI.ID_BACK;
+        this.id = ActionGUI.ID_SETTING;
+        this.linkBack = ActionGUI.ID_BACK;
         this.chooseSkin = INDEX_INIT_SKIN;
 
         this.skinSpaceShip = Arrays.asList(SkinSpaceShip.values());
@@ -43,8 +45,13 @@ public class EngineSettings implements EngineGUI {
     }
 
     @Override
-    public IdGUI getId() {
+    public ActionGUI getActionGUI() {
         return this.id;
+    }
+
+    @Override
+    public Rectangle getRectangle() {
+        return RECTANGLE;
     }
 
     @Override
@@ -63,7 +70,7 @@ public class EngineSettings implements EngineGUI {
     }
 
     @Override
-    public List<IdGUI> getLinks() {
+    public List<ActionGUI> getLinks() {
         return List.of(this.linkBack);
     }
 
@@ -72,12 +79,12 @@ public class EngineSettings implements EngineGUI {
         return this.chooseSkin;
     }
 
-    public IdGUI getBackLink(){
+    public ActionGUI getBackLink(){
         return this.linkBack;
     }
 
     public String getTitleGUI() {
-        return DesignTitleGUI.TITLE_SETTINGS;
+        return TITLE;
     }
 
     public List<String> getListNameUnit(){

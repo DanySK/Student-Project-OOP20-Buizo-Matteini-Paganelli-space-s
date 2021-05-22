@@ -12,6 +12,7 @@ import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 import spaceSurvival.model.worldEcollisioni.physics.components.ShipPhysicsComponent;
+import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.utilities.pathImage.Skin;
 
@@ -19,7 +20,7 @@ public class SpaceShipSingleton extends MainGameObject {
     
     // Eager and unique instance of this class for Threadsafing
     private static SpaceShipSingleton spaceShip = new SpaceShipSingleton(
-    	new ImageDesign(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Skin.NORMAL),
+    	new ImageDesign(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, Skin.NORMAL),
    		Screen.POINT_CENTER_FULLSCREEN,
    		new RectBoundingBox(),
    		new ShipPhysicsComponent(),

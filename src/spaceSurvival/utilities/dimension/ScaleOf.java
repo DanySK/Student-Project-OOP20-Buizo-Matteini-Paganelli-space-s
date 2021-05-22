@@ -1,7 +1,7 @@
 package spaceSurvival.utilities.dimension;
 
 public class ScaleOf {
-    public static final int GAME_OBJECT = 0;
+    public static final int GAME_OBJECT = 30;
 
     public static final int ICON_SKIN = 200;
     public static final int ICON_FULL = 30;
@@ -20,9 +20,6 @@ public class ScaleOf {
 
     public static final int WIDTH_BAR_LOADING = 900;
     public static final int HEIGHT_BAR_LOADING = 50;
-
-    public static final int SHIP = 0;
-    public static final int ASTEROID = 80;
 
 
 }

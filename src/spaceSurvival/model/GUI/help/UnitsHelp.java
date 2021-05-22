@@ -9,16 +9,16 @@ import java.util.List;
 
 public enum UnitsHelp {
     PANEL_MOVE(DesignJComponent.NAME_UNIT_HELP_MOVEMENT, List.of(
-            new ImageDesign(ScaleOf.ICON_HELP_PLURAL, EngineHelp.DIMENSION.width, Icon.WASD),
-            new ImageDesign(ScaleOf.ICON_HELP_PLURAL, EngineHelp.DIMENSION.width, Icon.ROW))),
+            new ImageDesign(ScaleOf.ICON_HELP_PLURAL, EngineHelp.RECTANGLE.width, Icon.WASD),
+            new ImageDesign(ScaleOf.ICON_HELP_PLURAL, EngineHelp.RECTANGLE.width, Icon.ROW))),
 
     PANEL_SHOT(DesignJComponent.NAME_UNIT_HELP_SHOT, List.of(
-            new ImageDesign(ScaleOf.ICON_HELP_PLURAL, EngineHelp.DIMENSION.width, Icon.SPACEBAR),
-            new ImageDesign(ScaleOf.ICON_HELP_SINGULAR, EngineHelp.DIMENSION.width, Icon.KEY_K))),
+            new ImageDesign(ScaleOf.ICON_HELP_PLURAL, EngineHelp.RECTANGLE.width, Icon.SPACEBAR),
+            new ImageDesign(ScaleOf.ICON_HELP_SINGULAR, EngineHelp.RECTANGLE.width, Icon.KEY_K))),
 
     PANEL_PAUSE(DesignJComponent.NAME_UNIT_HELP_PAUSE, List.of(
-            new ImageDesign(ScaleOf.ICON_HELP_SINGULAR, EngineHelp.DIMENSION.width, Icon.KEY_P),
-            new ImageDesign(ScaleOf.ICON_HELP_SINGULAR, EngineHelp.DIMENSION.width, Icon.PAUSE_KEY)));
+            new ImageDesign(ScaleOf.ICON_HELP_SINGULAR, EngineHelp.RECTANGLE.width, Icon.KEY_P),
+            new ImageDesign(ScaleOf.ICON_HELP_SINGULAR, EngineHelp.RECTANGLE.width, Icon.PAUSE_KEY)));
 
     private final String name;
 

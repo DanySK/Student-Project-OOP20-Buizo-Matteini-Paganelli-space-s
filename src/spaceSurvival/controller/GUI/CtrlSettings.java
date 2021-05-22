@@ -5,9 +5,9 @@ import spaceSurvival.model.GUI.EngineGUI;
 import spaceSurvival.model.GUI.Visibility;
 import spaceSurvival.model.GUI.settings.Difficulty;
 import spaceSurvival.model.GUI.settings.EngineSettings;
-import spaceSurvival.utilities.IdGUI;
-import spaceSurvival.view.GUI.GUI;
-import spaceSurvival.view.GUI.settings.GUISettings;
+import spaceSurvival.utilities.ActionGUI;
+import spaceSurvival.view.GUI;
+import spaceSurvival.view.settings.GUISettings;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
@@ -29,8 +29,8 @@ public class CtrlSettings implements ControllerGUI {
     }
 
     private void assignId() {
-        this.gui.setId(this.engine.getId());
-        this.gui.setBtnBackID(this.engine.getBackLink());
+        this.gui.setMainAction(this.engine.getActionGUI());
+        this.gui.setBtnBackID(this.engine.getActionGUI(), this.engine.getBackLink());
     }
 
     private void assignStrings() {
@@ -78,8 +78,8 @@ public class CtrlSettings implements ControllerGUI {
     }
 
     @Override
-    public IdGUI getIdGUI() {
-        return this.engine.getId();
+    public ActionGUI getIdGUI() {
+        return this.engine.getActionGUI();
     }
 
     @Override

@@ -2,8 +2,7 @@ package spaceSurvival.model.GUI.scoreboard;
 
 import spaceSurvival.model.GUI.EngineGUI;
 import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.utilities.DesignTitleGUI;
-import spaceSurvival.utilities.IdGUI;
+import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.utilities.dimension.Screen;
 
 import java.awt.*;
@@ -12,25 +11,31 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class EngineScoreboard implements EngineGUI {
-    public static final Rectangle DIMENSION = Screen.RECTANGLE_MEDIUM;
+    public static final Rectangle RECTANGLE = Screen.RECTANGLE_MEDIUM;
+    public static String TITLE = "SCOREBOARD";
 
-    private final IdGUI id;
-    private final IdGUI linkBack;
+    private final ActionGUI id;
+    private final ActionGUI linkBack;
 
     private final List<NameScoreboardGUI> nameButtons;
 
     private Visibility visibility;
 
     public EngineScoreboard() {
-        this.id = IdGUI.ID_SCOREBOARD;
-        this.linkBack = IdGUI.ID_BACK;
+        this.id = ActionGUI.ID_SCOREBOARD;
+        this.linkBack = ActionGUI.ID_BACK;
         this.nameButtons = Arrays.asList(NameScoreboardGUI.values());
         this.visibility = Visibility.HIDDEN;
     }
 
     @Override
-    public IdGUI getId() {
+    public ActionGUI getActionGUI() {
         return this.id;
+    }
+
+    @Override
+    public Rectangle getRectangle() {
+        return RECTANGLE;
     }
 
     @Override
@@ -49,16 +54,16 @@ public class EngineScoreboard implements EngineGUI {
     }
 
     @Override
-    public List<IdGUI> getLinks() {
+    public List<ActionGUI> getLinks() {
         return List.of(this.linkBack);
     }
 
 
     public String getTitleGUI(){
-        return DesignTitleGUI.TITLE_SCOREBOARD;
+        return TITLE;
     }
 
-    public IdGUI getBackLink(){
+    public ActionGUI getBackLink(){
         return this.linkBack;
     }
 

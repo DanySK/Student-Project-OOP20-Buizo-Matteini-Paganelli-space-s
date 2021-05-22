@@ -4,9 +4,9 @@ import spaceSurvival.controller.GUI.command.SwitchGUI;
 import spaceSurvival.model.GUI.EngineGUI;
 import spaceSurvival.model.GUI.Visibility;
 import spaceSurvival.model.GUI.loading.EngineLoading;
-import spaceSurvival.utilities.IdGUI;
-import spaceSurvival.view.GUI.GUI;
-import spaceSurvival.view.GUI.loading.GUILoading;
+import spaceSurvival.utilities.ActionGUI;
+import spaceSurvival.view.GUI;
+import spaceSurvival.view.loading.GUILoading;
 
 
 public class CtrlLoading extends Thread implements ControllerGUI{
@@ -52,8 +52,8 @@ public class CtrlLoading extends Thread implements ControllerGUI{
         }
     }
 
-    public IdGUI getIdGUI(){
-        return this.engine.getId();
+    public ActionGUI getIdGUI(){
+        return this.engine.getActionGUI();
     }
 
     @Override

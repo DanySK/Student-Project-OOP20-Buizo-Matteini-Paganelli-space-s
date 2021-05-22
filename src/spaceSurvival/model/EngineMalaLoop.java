@@ -27,6 +27,8 @@ import java.util.Optional;
 
 
 public class EngineMalaLoop extends Thread implements WorldEventListener {
+    public static final int FPS = 60;
+
     private final CtrlGUI controlGUI;
     private final CtrlGame controlGame;
     private final CtrlSound controlSound;
@@ -78,10 +80,9 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     
 	protected void waitForNextFrame(final long current) {
         long dt = System.currentTimeMillis() - current;
-        long period = 30L;
-        if (dt < period){
+        if (dt < FPS){
             try {
-                Thread.sleep(period - dt);
+                Thread.sleep(FPS - dt);
             } catch (Exception ignored){}
         }
     }

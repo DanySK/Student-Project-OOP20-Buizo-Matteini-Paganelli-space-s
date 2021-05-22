@@ -1,18 +1,26 @@
 package spaceSurvival.model.GUI;
 
-import spaceSurvival.utilities.IdGUI;
+import spaceSurvival.utilities.ActionGUI;
 
+import java.awt.*;
 import java.util.List;
 
 public interface EngineGUI {
 
-    public IdGUI getId();
+    public ActionGUI getActionGUI();
+
+    public Rectangle getRectangle();
 
     public Visibility getVisibility();
+
+    public List<ActionGUI> getLinks();
+
 
     public void setVisibility(final Visibility state);
 
     public boolean isVisible();
 
-    public List<IdGUI> getLinks();
+
+
+
 }

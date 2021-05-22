@@ -4,9 +4,9 @@ import spaceSurvival.controller.GUI.command.SwitchGUI;
 import spaceSurvival.model.GUI.EngineGUI;
 import spaceSurvival.model.GUI.Visibility;
 import spaceSurvival.model.GUI.pause.EnginePause;
-import spaceSurvival.utilities.IdGUI;
-import spaceSurvival.view.GUI.GUI;
-import spaceSurvival.view.GUI.pause.GUIPause;
+import spaceSurvival.utilities.ActionGUI;
+import spaceSurvival.view.GUI;
+import spaceSurvival.view.pause.GUIPause;
 
 public class CtrlPause implements ControllerGUI{
     private final EnginePause engine;
@@ -27,8 +27,8 @@ public class CtrlPause implements ControllerGUI{
     }
 
     private void assignId(){
-        this.gui.setId(this.engine.getId());
-        this.gui.setIdButtons(this.engine.getLinks());
+        this.gui.setMainAction(this.engine.getActionGUI());
+        this.gui.setIdButtons(this.engine.getActionGUI(), this.engine.getLinks());
     }
 
     private void assignStrings(){
@@ -37,8 +37,8 @@ public class CtrlPause implements ControllerGUI{
     }
 
     @Override
-    public IdGUI getIdGUI() {
-        return this.engine.getId();
+    public ActionGUI getIdGUI() {
+        return this.engine.getActionGUI();
     }
 
     @Override
