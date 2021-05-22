@@ -10,6 +10,7 @@ public class RectBoundingBox implements BoundingBox {
 
 	private P2d p0,p1;
 	private AffineTransform transform;
+	private double width, height;
 	
 	public RectBoundingBox(){
 		this.p0 = new P2d(0, 0);
@@ -21,6 +22,8 @@ public class RectBoundingBox implements BoundingBox {
 		this();
 		this.p0 = p0;
 		this.p1 = p1;
+		this.width = Math.abs(this.p1.getX() - this.p0.getX());
+		this.height = Math.abs(this.p1.getY() - this.p0.getY());
 		this.transform = new AffineTransform();
 		this.transform.setToTranslation(p0.getX(), p0.getY());
 	}
@@ -29,6 +32,8 @@ public class RectBoundingBox implements BoundingBox {
 		
 		this.p0 = new P2d(center.getX() - (imageDesign.getWidth() / 2), center.getY() - (imageDesign.getHeight() / 2));
 		this.p1 = new P2d(center.getX() + (imageDesign.getWidth() / 2), center.getY() + (imageDesign.getHeight() / 2));
+		this.width = imageDesign.getWidth();
+		this.height = imageDesign.getHeight();
 		
 		this.transform = new AffineTransform();
 		this.transform.setToTranslation(center.getX() - (imageDesign.getWidth() / 2), center.getY() - (imageDesign.getHeight() / 2));
@@ -38,6 +43,9 @@ public class RectBoundingBox implements BoundingBox {
 	public RectBoundingBox(final Rectangle rectangle){
 		this.p0 = new P2d(rectangle.getX(), rectangle.getY());
 		this.p1= new P2d(rectangle.getWidth(), rectangle.getHeight());
+		this.width = rectangle.getWidth();
+		this.height = rectangle.getHeight();
+		this.transform = new AffineTransform();
 	}
 	
 	public P2d getULCorner(){
@@ -52,22 +60,33 @@ public class RectBoundingBox implements BoundingBox {
 
 	public double getWidth(){
 		
-		return Math.abs(this.p1.getX() - this.p0.getX());
+		//return Math.abs(this.p1.getX() - this.p0.getX());
+		return this.width;
 			
 		//DA RIMUOVERE DISTANZA FRA DUE PUNTI.
 		//return Math.sqrt(Math.pow(this.p1.getX() - this.p0.getX(), 2) + Math.pow(this.p1.getY() - this.p0.getY(), 2));
 	}
 	
 	public double getHeight(){
-		return Math.abs(this.p1.getY() - this.p0.getY());
+		//return Math.abs(this.p1.getY() - this.p0.getY());
+		return this.height;
 	}
 	
 	public AffineTransform getTransform(){
 		return this.transform;
 	}
-	public void setTransform(AffineTransform transform){ this.transform.setTransform(transform); }
+	public void setTransform(AffineTransform transform){ 
+		this.transform.setTransform(transform); 
 	
-
+		AffineTransform trans = new AffineTransform();
+		trans.setTransform(transform);
+		
+		this.p0 = new P2d(trans.getTranslateX(), trans.getTranslateY());
+		trans.translate(this.width, this.height);
+		this.p1 = new P2d(trans.getTranslateX(), trans.getTranslateY());
+		
+	}
+	
 	/**
 	 * @TODO to be implemented
 	 * Il raggio sarà il lato.

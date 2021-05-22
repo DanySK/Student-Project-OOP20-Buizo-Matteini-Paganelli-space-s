@@ -56,9 +56,9 @@ public abstract class GameObject {
 	public void setPosition(P2d position) {
 		AffineTransform newTransform = new AffineTransform();
 		newTransform.translate(position.getX(), position.getY());
-		this.transform = newTransform;
+		this.transform.setTransform(newTransform);
 		
-		//this.position = position;
+		this.boundingBox.setTransform(newTransform);
 	}
 	
 	public BoundingBox getBoundingBox() {

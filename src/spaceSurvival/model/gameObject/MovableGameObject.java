@@ -35,6 +35,8 @@ public abstract class MovableGameObject extends GameObject {
 		//at.transform()
 		at.translate(this.getVelocity().getX(), this.getVelocity().getY());
 		this.setTransform(this.getTransform());
+		
+		System.out.println(this.toString());
 
 		//this.getTransform().translate(this.getVelocity().getX(), this.getVelocity().getY());
 		//this.getBoundingBox().getTransform()
