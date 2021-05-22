@@ -2,8 +2,8 @@ package spaceSurvival.controller.GUI;
 
 import spaceSurvival.controller.sound.CallerAudio;
 import spaceSurvival.controller.utilities.ListGUI;
-import spaceSurvival.factorys.StaticFactoryEngineGUI;
-import spaceSurvival.factorys.StaticFactoryGUI;
+import spaceSurvival.factories.StaticFactoryEngineGUI;
+import spaceSurvival.factories.StaticFactoryGUI;
 import spaceSurvival.model.GUI.EngineGUI;
 import spaceSurvival.model.GUI.Visibility;
 import spaceSurvival.model.GUI.game.EngineGame;

@@ -1,8 +1,8 @@
 package spaceSurvival.game;
 
 import spaceSurvival.controller.GUI.CtrlLoading;
-import spaceSurvival.factorys.StaticFactoryEngineGUI;
-import spaceSurvival.factorys.StaticFactoryGUI;
+import spaceSurvival.factories.StaticFactoryEngineGUI;
+import spaceSurvival.factories.StaticFactoryGUI;
 import spaceSurvival.model.GUI.Visibility;
 import spaceSurvival.model.EngineMalaLoop;
 

@@ -1,4 +1,4 @@
-package spaceSurvival.factorys;
+package spaceSurvival.factories;
 
 import spaceSurvival.model.GUI.game.EngineGame;
 import spaceSurvival.model.GUI.help.EngineHelp;

@@ -1,4 +1,4 @@
-package spaceSurvival.factorys;
+package spaceSurvival.factories;
 
 import spaceSurvival.view.GUI.loading.FactoryGUILoading;
 import spaceSurvival.view.GUI.loading.GUILoading;
