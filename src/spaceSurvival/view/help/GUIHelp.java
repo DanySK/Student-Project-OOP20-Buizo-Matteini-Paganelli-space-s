@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface GUIHelp extends GUI, GraphicsGUIHelp {
 
-    public void setIdBtnBack(final ActionGUI intoID);
+    public void setIdBtnBack(final ActionGUI mainAction, final ActionGUI intoID);
 
     public void setNameUnitHelps(final List<String> listName);
 

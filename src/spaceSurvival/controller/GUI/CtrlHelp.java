@@ -26,7 +26,7 @@ public class CtrlHelp implements ControllerGUI {
 
     private void assignId() {
         this.gui.setMainAction(this.engine.getActionGUI());
-        this.gui.setIdBtnBack(this.engine.getBackLink());
+        this.gui.setIdBtnBack(this.engine.getActionGUI(), this.engine.getBackLink());
     }
 
     private void assignStrings() {

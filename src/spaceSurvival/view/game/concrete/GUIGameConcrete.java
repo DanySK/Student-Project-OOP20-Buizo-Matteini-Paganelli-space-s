@@ -52,8 +52,8 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
     }
 
     @Override
-    public void setIdButtons(final List<ActionGUI> linksID) {
-        this.btnPause.setActionCurrent(super.getMainAction());
+    public void setIdButtons(final ActionGUI mainAction, final List<ActionGUI> linksID) {
+        this.btnPause.setActionCurrent(mainAction);
         this.btnPause.setActionNext(linksID.get(0));
     }
 

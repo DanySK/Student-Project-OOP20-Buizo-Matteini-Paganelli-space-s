@@ -26,7 +26,7 @@ public class CtrlMenu implements ControllerGUI {
 
     private void assignId(){
         this.gui.setMainAction(this.engine.getActionGUI());
-        this.gui.setBtnActions(this.engine.getLinks());
+        this.gui.setBtnActions(this.engine.getActionGUI(), this.engine.getLinks());
     }
 
     private void assignStrings(){

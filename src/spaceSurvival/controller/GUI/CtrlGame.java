@@ -34,7 +34,7 @@ public class CtrlGame implements ControllerGUI{
 
     private void init(){
         this.gui.setMainAction(this.engine.getActionGUI());
-        this.gui.setIdButtons(this.engine.getLinks());
+        this.gui.setIdButtons(this.engine.getActionGUI(), this.engine.getLinks());
     }
 
     public void updateHUD(){

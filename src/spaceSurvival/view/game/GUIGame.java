@@ -13,7 +13,7 @@ public interface GUIGame extends GUI, GraphicsGUIGame {
 
     public void setTimer(final String timer);
 
-    public void setIdButtons(final List<ActionGUI> linksID);
+    public void setIdButtons(final ActionGUI mainAction, final List<ActionGUI> linksID);
 
     public PanelGame getPanelGame();
 

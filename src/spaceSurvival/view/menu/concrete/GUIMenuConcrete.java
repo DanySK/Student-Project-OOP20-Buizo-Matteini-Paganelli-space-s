@@ -39,9 +39,9 @@ public class GUIMenuConcrete extends AbstractGUI implements GUIMenu {
     }
 
     @Override
-    public void setBtnActions(final List<ActionGUI> linksID) {
+    public void setBtnActions(final ActionGUI mainAction, final List<ActionGUI> linksID) {
         for(int i = 0; i < linksID.size(); i++){
-            this.links.get(i).setActionCurrent(super.getMainAction());
+            this.links.get(i).setActionCurrent(mainAction);
             this.links.get(i).setActionNext(linksID.get(i));
         }
     }

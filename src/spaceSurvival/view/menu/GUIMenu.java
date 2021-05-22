@@ -11,7 +11,7 @@ public interface GUIMenu extends GUI, GraphicsGUIMenu{
 
     public void setNameButtons(final List<String> listNames);
 
-    public void setBtnActions(final List<ActionGUI> linksID);
+    public void setBtnActions(final ActionGUI mainAction, final List<ActionGUI> linksID);
 
 
 }
