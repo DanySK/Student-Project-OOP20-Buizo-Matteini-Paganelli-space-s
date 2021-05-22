@@ -88,13 +88,13 @@ public class CtrlGUI {
         this.ctrlPause = new CtrlPause(this.enginePause, this.guiPause);
 
         this.managerGui = new HashMap<>(){{
-            put(CtrlGUI.this.ctrlMenu.getIdGUI(), CtrlGUI.this.ctrlMenu);
-            put(CtrlGUI.this.ctrlGame.getIdGUI(), CtrlGUI.this.ctrlGame);
-            put(CtrlGUI.this.ctrlSettings.getIdGUI(), CtrlGUI.this.ctrlSettings);
-            put(CtrlGUI.this.ctrlScoreboard.getIdGUI(), CtrlGUI.this.ctrlScoreboard);
-            put(CtrlGUI.this.ctrlSound.getIdGUI(), CtrlGUI.this.ctrlSound);
-            put(CtrlGUI.this.ctrlHelp.getIdGUI(), CtrlGUI.this.ctrlHelp);
-            put(CtrlGUI.this.ctrlPause.getIdGUI(), CtrlGUI.this.ctrlPause);
+            put(CtrlGUI.this.ctrlMenu.getMainAction(), CtrlGUI.this.ctrlMenu);
+            put(CtrlGUI.this.ctrlGame.getMainAction(), CtrlGUI.this.ctrlGame);
+            put(CtrlGUI.this.ctrlSettings.getMainAction(), CtrlGUI.this.ctrlSettings);
+            put(CtrlGUI.this.ctrlScoreboard.getMainAction(), CtrlGUI.this.ctrlScoreboard);
+            put(CtrlGUI.this.ctrlSound.getMainAction(), CtrlGUI.this.ctrlSound);
+            put(CtrlGUI.this.ctrlHelp.getMainAction(), CtrlGUI.this.ctrlHelp);
+            put(CtrlGUI.this.ctrlPause.getMainAction(), CtrlGUI.this.ctrlPause);
         }};
 
         this.chronology = new ListGUI<>() {{ add(FIRST_GUI); }};
@@ -110,7 +110,7 @@ public class CtrlGUI {
     }
 
     private void linksAll(){
-        this.managerGui.values().forEach(managerGui -> managerGui.getGUI().getButtonLinks().forEach(btn -> {
+        this.managerGui.values().forEach(managerGui -> managerGui.getGUI().getBtnActionLinks().forEach(btn -> {
             btn.addActionListener(e -> {
                 System.out.println("Premuto in: " + btn.getActionCurrent() + " Vado in: " + btn.getActionNext());
 
@@ -146,7 +146,7 @@ public class CtrlGUI {
 
     private void focusMenu(){
         this.managerGui.values().forEach(managerGui ->
-                managerGui.getGUI().addMouseListener(this.getMouseListener(managerGui.getIdGUI())));
+                managerGui.getGUI().addMouseListener(this.getMouseListener(managerGui.getMainAction())));
     }
 
     private MouseListener getMouseListener(final ActionGUI id){
@@ -220,7 +220,7 @@ public class CtrlGUI {
     }
 
     private BtnAction getBtnGameFromMenu(){
-        for (BtnAction btn : this.ctrlMenu.getGUI().getButtonLinks()) {
+        for (BtnAction btn : this.ctrlMenu.getGUI().getBtnActionLinks()) {
             if(btn.getActionNext() == ActionGUI.ID_GAME){
                 return btn;
             }
@@ -229,7 +229,7 @@ public class CtrlGUI {
     }
 
     public void assignSoundLoop(){
-        this.managerGui.values().forEach(ctrl -> ctrl.getGUI().getButtonLinks().forEach(
+        this.managerGui.values().forEach(ctrl -> ctrl.getGUI().getBtnActionLinks().forEach(
                 btn -> btn.addActionListener(l -> {
                     if(btn.getActionCurrent() == ActionGUI.ID_PAUSE && btn.getActionNext() == ActionGUI.ID_BACK) {
                         CtrlGUI.this.ctrlSound.checkChangeSoundLoop(ActionGUI.ID_GAME);

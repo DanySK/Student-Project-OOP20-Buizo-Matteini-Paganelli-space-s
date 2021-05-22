@@ -20,7 +20,7 @@ public class GUILoadingConcrete extends AbstractGUI implements GUILoading {
     }
 
     @Override
-    public List<BtnAction> getButtonLinks() {
+    public List<BtnAction> getBtnActionLinks() {
         return List.of();
     }
 

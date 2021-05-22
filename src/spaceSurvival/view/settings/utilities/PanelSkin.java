@@ -1,6 +1,7 @@
 package spaceSurvival.view.settings.utilities;
 
-import spaceSurvival.model.ImageDesign;
+import spaceSurvival.model.EngineImage;
+import spaceSurvival.model.GUI.settings.EngineSettings;
 import spaceSurvival.view.utilities.FactoryGUIs;
 import spaceSurvival.view.utilities.JImage;
 
@@ -8,21 +9,20 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PanelSkin extends JPanel {
-    private JLabel lbTitle = new JLabel();
-    private JButton btSX = new JButton("<");
-    private JButton btDX = new JButton(">");;
+    private final JLabel lbTitle;
+    private final JButton btSX;
+    private final JButton btDX;
 
-    private JImage pnImage = new JImage();
-
-    public PanelSkin(final int width, final int height){
-        super(new BorderLayout());
-        this.setOpaque(false);
-        this.createGraphics();
-    }
+    private final JImage pnImage;
 
     public PanelSkin(){
         super(new BorderLayout());
-        this.setOpaque(false);
+        super.setOpaque(false);
+
+        this.lbTitle = new JLabel();
+        this.btSX  = new JButton(EngineSettings.DIR_SX);
+        this.btDX = new JButton(EngineSettings.DIR_DX);
+        this.pnImage = new JImage();
         this.createGraphics();
     }
 
@@ -63,7 +63,7 @@ public class PanelSkin extends JPanel {
     }
 
     public void setRateImg(final int rate, final int widthScreen) {
-         final Dimension dimension = ImageDesign.getSizeImageFromScale(
+         final Dimension dimension = EngineImage.getSizeImageFromScale(
                  this.pnImage.getPath(), rate, widthScreen);
         this.pnImage.setSize(dimension);
     }

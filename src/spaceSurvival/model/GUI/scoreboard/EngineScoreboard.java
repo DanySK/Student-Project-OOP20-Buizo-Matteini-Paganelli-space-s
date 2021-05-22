@@ -29,7 +29,7 @@ public class EngineScoreboard implements EngineGUI {
     }
 
     @Override
-    public ActionGUI getActionGUI() {
+    public ActionGUI getMainAction() {
         return this.id;
     }
 

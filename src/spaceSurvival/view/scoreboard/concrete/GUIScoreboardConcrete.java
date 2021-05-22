@@ -26,7 +26,7 @@ public class GUIScoreboardConcrete extends AbstractGUI implements GUIScoreboard 
     }
 
     @Override
-    public java.util.List<BtnAction> getButtonLinks() {
+    public java.util.List<BtnAction> getBtnActionLinks() {
         return java.util.List.of(this.btnBack);
     }
 

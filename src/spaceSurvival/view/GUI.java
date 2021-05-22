@@ -13,7 +13,7 @@ public interface GUI {
     public void addMouseListener(final MouseListener mouseListener);
 
 
-    public List<BtnAction> getButtonLinks();
+    public List<BtnAction> getBtnActionLinks();
 
 
     public void setMainAction(final ActionGUI actionGUI);

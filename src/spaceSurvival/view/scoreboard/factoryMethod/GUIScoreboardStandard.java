@@ -2,6 +2,7 @@ package spaceSurvival.view.scoreboard.factoryMethod;
 
 import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.dimension.Screen;
+import spaceSurvival.utilities.pathImage.Background;
 import spaceSurvival.utilities.pathImage.Icon;
 import spaceSurvival.view.utilities.DesignGraphics;
 import spaceSurvival.view.scoreboard.FactoryGUIScoreboard;
@@ -24,6 +25,7 @@ public class GUIScoreboardStandard implements FactoryGUIScoreboard {
         scoreboardConcrete.setForegroundGUI(DesignGraphics.color4);
         scoreboardConcrete.setBounds(Screen.RECTANGLE_MEDIUM);
         scoreboardConcrete.setBorder(DesignGraphics.color4, 3);
+        scoreboardConcrete.setImageBackground(Background.MAIN);
         this.createGraphics(scoreboardConcrete);
         return scoreboardConcrete;
     }

@@ -6,7 +6,7 @@ import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.view.GUI;
 
 public interface ControllerGUI {
-    public ActionGUI getIdGUI();
+    public ActionGUI getMainAction();
 
     public GUI getGUI();
 

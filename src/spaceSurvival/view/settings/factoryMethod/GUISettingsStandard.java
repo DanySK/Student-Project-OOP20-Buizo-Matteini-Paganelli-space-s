@@ -2,6 +2,7 @@ package spaceSurvival.view.settings.factoryMethod;
 
 import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.dimension.Screen;
+import spaceSurvival.utilities.pathImage.Background;
 import spaceSurvival.utilities.pathImage.Icon;
 import spaceSurvival.utilities.DesignJComponent;
 import spaceSurvival.view.utilities.DesignGraphics;
@@ -25,6 +26,7 @@ public class GUISettingsStandard implements FactoryGUISettings {
         concreteSettings.setForegroundGUI(DesignGraphics.color4);
         concreteSettings.setBounds(Screen.RECTANGLE_MEDIUM);
         concreteSettings.setBorder(DesignGraphics.color4, 3);
+        concreteSettings.setImageBackground(Background.MAIN);
         this.createGraphics(concreteSettings);
         return concreteSettings;
     }

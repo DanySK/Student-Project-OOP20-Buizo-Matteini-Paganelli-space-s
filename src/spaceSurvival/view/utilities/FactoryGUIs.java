@@ -1,6 +1,6 @@
 package spaceSurvival.view.utilities;
 
-import spaceSurvival.model.ImageDesign;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.utilities.DesignSound;
 import spaceSurvival.utilities.dimension.Screen;
 
@@ -135,14 +135,14 @@ public class FactoryGUIs {
 
     public static void setIconJButtonFromRate(final JButton button, final String pathIcon,
                                               final int scaleOf, final int respectTo) {
-        final ImageDesign imageDesign = new ImageDesign(scaleOf, respectTo, pathIcon);
-        final JImage imag = new JImage(pathIcon, imageDesign.getSize());
+        final EngineImage engineImage = new EngineImage(scaleOf, respectTo, pathIcon);
+        final JImage imag = new JImage(pathIcon, engineImage.getSize());
         button.setIcon(imag.getImageIcon());
     }
     
-    public static void setIconJButtonFromRate(final JButton button, final ImageDesign imageDesign) {
-    	FactoryGUIs.setIconJButtonFromRate(button, imageDesign.getPath(),
-                imageDesign.getScaleOf(), imageDesign.getRespectTo());
+    public static void setIconJButtonFromRate(final JButton button, final EngineImage engineImage) {
+    	FactoryGUIs.setIconJButtonFromRate(button, engineImage.getPath(),
+                engineImage.getScaleOf(), engineImage.getRespectTo());
     }
 
 
@@ -157,8 +157,8 @@ public class FactoryGUIs {
     public static void setDefaultJFrame(final JFrame frame){
         frame.setBounds(Screen.RECTANGLE_FULLSCREEN);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setUndecorated(true);
-        frame.setResizable(false);
-        frame.setBackground(DesignGraphics.colorOpacityBlack);
+//        frame.setUndecorated(true);
+//        frame.setResizable(false);
+//        frame.setBackground(DesignGraphics.colorOpacityBlack);
     }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface EngineGUI {
 
-    public ActionGUI getActionGUI();
+    public ActionGUI getMainAction();
 
     public Rectangle getRectangle();
 
@@ -19,8 +19,5 @@ public interface EngineGUI {
     public void setVisibility(final Visibility state);
 
     public boolean isVisible();
-
-
-
 
 }

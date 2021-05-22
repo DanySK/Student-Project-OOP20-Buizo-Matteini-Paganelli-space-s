@@ -2,7 +2,7 @@ package spaceSurvival.model.gameObject;
 
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.common.V2d;
-import spaceSurvival.model.ImageDesign;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
@@ -16,14 +16,14 @@ public abstract class MovableGameObject extends GameObject {
 
 	
 	public MovableGameObject() {
-		super(new ImageDesign(), new P2d(0, 0), null, null);
+		super(new EngineImage(), new P2d(0, 0), null, null);
 		this.velocity = new V2d();
 		this.movement = null;
 	}
 	
-	public MovableGameObject(final ImageDesign imageDesign, final P2d position, final BoundingBox bb,
-							 final PhysicsComponent phys, final V2d velocity, final Movement movement) {
-		super(imageDesign, position, bb, phys);
+	public MovableGameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
+                             final PhysicsComponent phys, final V2d velocity, final Movement movement) {
+		super(engineImage, position, bb, phys);
 		this.velocity = velocity;
 		this.movement = movement;
 	}

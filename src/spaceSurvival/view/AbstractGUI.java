@@ -17,7 +17,7 @@ public abstract class AbstractGUI extends JFrame{
 
     public AbstractGUI() {
         super();
-        this.panelBackground = new JPanelImage(Background.MAIN);
+        this.panelBackground = new JPanelImage();
         this.panelForeground = FactoryGUIs.createPanelTransparent(new BorderLayout());
 
         super.setContentPane(this.panelBackground);
@@ -38,7 +38,7 @@ public abstract class AbstractGUI extends JFrame{
     }
 
     public void setImageBackground(final String path){
-        this.panelBackground.setImage(path);
+        this.panelBackground.setImage(path, super.getSize());
     }
 
     public void setBorder(final Color color, final int thickness){
@@ -52,8 +52,14 @@ public abstract class AbstractGUI extends JFrame{
 
     public void visibleForegroundPanel(final Visibility visible){
         this.panelForeground.setVisible(visible.isVisible());
+
     }
 
+    public void paint(Graphics g){
+        this.panelBackground.setBounds(super.getBounds());
+        this.panelForeground.setBounds(super.getBounds());
+        super.paintComponents(g);
+    }
 
     public void close(){
         System.exit(0);

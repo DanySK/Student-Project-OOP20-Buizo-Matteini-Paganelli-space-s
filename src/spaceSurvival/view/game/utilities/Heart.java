@@ -1,6 +1,6 @@
 package spaceSurvival.view.game.utilities;
 
-import spaceSurvival.model.ImageDesign;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.utilities.pathImage.Icon;
@@ -16,7 +16,7 @@ public class Heart extends JPanel {
     public Heart(){
         super(new FlowLayout());
         super.setOpaque(false);
-        final Dimension dimension = ImageDesign.getSizeImageFromScale(
+        final Dimension dimension = EngineImage.getSizeImageFromScale(
                 Icon.HEART, ScaleOf.ICON_FULL, Screen.WIDTH_FULL_SCREEN);
 
         this.iconHeart = new JImage(Icon.HEART, dimension);

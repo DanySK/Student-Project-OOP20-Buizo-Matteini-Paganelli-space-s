@@ -2,6 +2,7 @@ package spaceSurvival.view.menu.factoryMethod;
 
 import spaceSurvival.model.GUI.game.EngineGame;
 import spaceSurvival.utilities.DesignJComponent;
+import spaceSurvival.utilities.pathImage.Background;
 import spaceSurvival.view.utilities.DesignGraphics;
 import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.view.menu.FactoryGUIMenu;
@@ -27,7 +28,7 @@ public class GUIMenuStandard implements FactoryGUIMenu {
         menuConcrete.setFontTitleGUI(DesignGraphics.getFontForTitle(DesignGraphics.SIZE_FONT_H1));
         menuConcrete.setColumnsNamePlayer(DesignJComponent.SIZE_COLUMNS_TEXT);
         menuConcrete.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
+        menuConcrete.setImageBackground(Background.MAIN);
 //        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 //    	System.out.println(gd.isFullScreenSupported());
 //
@@ -55,10 +56,10 @@ public class GUIMenuStandard implements FactoryGUIMenu {
         FactoryGUIs.resetGridBagConstraints(lim);
         lim.gridy++;
 
-        menu.getButtonLinks().forEach(FactoryGUIs::setTransparentDesignJButton);
+        menu.getBtnActionLinks().forEach(FactoryGUIs::setTransparentDesignJButton);
 
         menu.add(FactoryGUIs.createPanelFlowUnionComponents(List.of(menu.getTxfNamePlayer(),
-                menu.getButtonLinks().get(nBtnUsed++))), lim);
+                menu.getBtnActionLinks().get(nBtnUsed++))), lim);
 
         while(nBtnUsed < EngineGame.N_BUTTONS){
             lim.gridy++;

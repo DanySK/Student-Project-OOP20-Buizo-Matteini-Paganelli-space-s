@@ -1,23 +1,23 @@
 package spaceSurvival.model.GUI.settings;
 
-import spaceSurvival.model.ImageDesign;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.pathImage.Skin;
 
 public enum SkinSpaceShip {
-    SPECIAL(new ImageDesign(ScaleOf.ICON_SKIN, EngineSettings.RECTANGLE.width, Skin.SPECIAL)),
-    STANDARD(new ImageDesign(ScaleOf.ICON_SKIN, EngineSettings.RECTANGLE.width, Skin.STANDARD)),
-    DELUXE(new ImageDesign(ScaleOf.ICON_SKIN, EngineSettings.RECTANGLE.width, Skin.DELUXE)),
-    NORMAL(new ImageDesign(ScaleOf.ICON_SKIN, EngineSettings.RECTANGLE.width, Skin.NORMAL)),
-    ATOMIC(new ImageDesign(ScaleOf.ICON_SKIN, EngineSettings.RECTANGLE.width, Skin.ATOMIC));
+    SPECIAL(Skin.SPECIAL),
+    STANDARD(Skin.STANDARD),
+    DELUXE(Skin.DELUXE),
+    NORMAL(Skin.NORMAL),
+    ATOMIC(Skin.ATOMIC);
 
-    private ImageDesign imageDesign;
+    private String skin;
 
-    private SkinSpaceShip(final ImageDesign imageDesign){
-        this.imageDesign = imageDesign;
+    private SkinSpaceShip(final String skin){
+        this.skin = skin;
     }
 
-    public ImageDesign getEngineImage() {
-        return this.imageDesign;
+    public String getSkin() {
+        return this.skin;
     }
 }

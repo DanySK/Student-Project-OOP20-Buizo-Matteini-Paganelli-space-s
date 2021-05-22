@@ -6,28 +6,28 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class ImageDesign {
+public class EngineImage {
     private String path;
     private int width, height;
     private int scaleOf, respectTo;
 
-    public ImageDesign(){ }
+    public EngineImage(){ }
 
-    public ImageDesign(final String path){
+    public EngineImage(final String path){
         this.path = path;
-        this.setSize(ImageDesign.getSizeFromImage(path));
+        this.setSize(EngineImage.getSizeFromImage(path));
     }
 
-    public ImageDesign(final String path, final int width, final int height){
+    public EngineImage(final String path, final int width, final int height){
         this(path);
         this.setSize(width, height);
     }
 
-    public ImageDesign(final String path, final Dimension dimension){
+    public EngineImage(final String path, final Dimension dimension){
         this(path, dimension.width, dimension.height);
     }
 
-    public ImageDesign(final int scaleOf, final int respectTo, final String path){
+    public EngineImage(final int scaleOf, final int respectTo, final String path){
         this(path);
         this.setScale(scaleOf, respectTo);
     }
@@ -64,7 +64,7 @@ public class ImageDesign {
     }
 
     public void setScale(final int scaleOf, final int respectTo) {
-        final Dimension sizeScale = ImageDesign.getSizeImageFromScale(this.path, scaleOf, respectTo);
+        final Dimension sizeScale = EngineImage.getSizeImageFromScale(this.path, scaleOf, respectTo);
         this.scaleOf = scaleOf;
         this.respectTo = respectTo;
         this.setSize(sizeScale);

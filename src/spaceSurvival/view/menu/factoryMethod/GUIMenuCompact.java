@@ -36,15 +36,15 @@ public class GUIMenuCompact implements FactoryGUIMenu {
         FactoryGUIs.resetGridBagConstraints(lim);
         lim.gridy++;
 
-        menu.getButtonLinks().forEach(FactoryGUIs::setTransparentDesignJButton);
+        menu.getBtnActionLinks().forEach(FactoryGUIs::setTransparentDesignJButton);
 
         menu.add(FactoryGUIs.createPanelFlowUnionComponents(List.of(menu.getTxfNamePlayer(),
-                menu.getButtonLinks().get(nBtnUsed++))), lim);
+                menu.getBtnActionLinks().get(nBtnUsed++))), lim);
 
         while(nBtnUsed < EngineGame.N_BUTTONS){
             lim.gridy++;
-            menu.add(FactoryGUIs.createPanelFlowUnionComponents(List.of(menu.getButtonLinks().get(nBtnUsed++),
-                    nBtnUsed + 1 < EngineGame.N_BUTTONS ? menu.getButtonLinks().get(nBtnUsed++) : FactoryGUIs.getJComponentEmpty())), lim);
+            menu.add(FactoryGUIs.createPanelFlowUnionComponents(List.of(menu.getBtnActionLinks().get(nBtnUsed++),
+                    nBtnUsed + 1 < EngineGame.N_BUTTONS ? menu.getBtnActionLinks().get(nBtnUsed++) : FactoryGUIs.getJComponentEmpty())), lim);
         }
 
         nBtnUsed = 0;

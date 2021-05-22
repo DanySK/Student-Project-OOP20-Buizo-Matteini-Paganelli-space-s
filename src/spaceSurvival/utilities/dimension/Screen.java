@@ -11,15 +11,16 @@ public class Screen {
 
     public static final Point POINT_ZERO = new Point(0, 0);
 
-    public static final Dimension FULLSCREEN = Toolkit.getDefaultToolkit().getScreenSize();
-    public static final int WIDTH_FULL_SCREEN = (int) FULLSCREEN.getWidth();
-    public static final int HEIGHT_FULL_SCREEN = (int) FULLSCREEN.getHeight();
+//    public static final Dimension FULLSCREEN = Toolkit.getDefaultToolkit().getScreenSize();
+    public static final GraphicsDevice FULLSCREEN =  GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+    public static final int WIDTH_FULL_SCREEN = (int) FULLSCREEN.getDisplayMode().getWidth();
+    public static final int HEIGHT_FULL_SCREEN = (int) FULLSCREEN.getDisplayMode().getHeight();
     public static final P2d POINT_CENTER_FULLSCREEN = new P2d(WIDTH_FULL_SCREEN / 2, HEIGHT_FULL_SCREEN / 2);
-    public static final Rectangle RECTANGLE_FULLSCREEN = new Rectangle(POINT_ZERO, FULLSCREEN);
+    public static final Rectangle RECTANGLE_FULLSCREEN = new Rectangle(POINT_ZERO, new Dimension(WIDTH_FULL_SCREEN, HEIGHT_FULL_SCREEN));
 
 
-    public static final int WIDTH_BIG = (int) (FULLSCREEN.width / PROPORTION_BIG);
-    public static final int HEIGHT_BIG = (int) (FULLSCREEN.height / PROPORTION_BIG);
+    public static final int WIDTH_BIG = (int) (WIDTH_FULL_SCREEN / PROPORTION_BIG);
+    public static final int HEIGHT_BIG = (int) (HEIGHT_FULL_SCREEN / PROPORTION_BIG);
     public static final int CENTER_X_BIG = (int) (POINT_CENTER_FULLSCREEN.getX() - (WIDTH_BIG / 2));
     public static final int CENTER_Y_BIG = (int) (POINT_CENTER_FULLSCREEN.getY() - (HEIGHT_BIG / 2));
 
@@ -28,8 +29,8 @@ public class Screen {
     public static final Rectangle RECTANGLE_BIG = new Rectangle(POINT_CENTER_BIG, DIMENSION_BIG);
 
 
-    public static final int WIDTH_MEDIUM = (int) (FULLSCREEN.width / PROPORTION_MEDIUM);
-    public static final int HEIGHT_MEDIUM = (int) (FULLSCREEN.height / PROPORTION_MEDIUM);
+    public static final int WIDTH_MEDIUM = (int) (WIDTH_FULL_SCREEN/ PROPORTION_MEDIUM);
+    public static final int HEIGHT_MEDIUM = (int) (HEIGHT_FULL_SCREEN / PROPORTION_MEDIUM);
     public static final int CENTER_X_MEDIUM = (int) (POINT_CENTER_FULLSCREEN.getX() - (WIDTH_MEDIUM / 2));
     public static final int CENTER_Y_MEDIUM = (int) (POINT_CENTER_FULLSCREEN.getY() - (HEIGHT_MEDIUM / 2));
 
@@ -38,8 +39,8 @@ public class Screen {
     public static final Rectangle RECTANGLE_MEDIUM = new Rectangle(POINT_CENTER_MEDIUM, DIMENSION_MEDIUM);
 
 
-    public static final int WIDTH_MINI = (int) (FULLSCREEN.width / PROPORTION_MINI);
-    public static final int HEIGHT_MINI = (int) (FULLSCREEN.height / PROPORTION_MINI);
+    public static final int WIDTH_MINI = (int) (WIDTH_FULL_SCREEN / PROPORTION_MINI);
+    public static final int HEIGHT_MINI = (int) (HEIGHT_FULL_SCREEN / PROPORTION_MINI);
     public static final int CENTER_X_MINI = (int) (POINT_CENTER_FULLSCREEN.getX() - (WIDTH_MINI / 2));
     public static final int CENTER_Y_MINI = (int) (POINT_CENTER_FULLSCREEN.getY() - (HEIGHT_MINI / 2));
 

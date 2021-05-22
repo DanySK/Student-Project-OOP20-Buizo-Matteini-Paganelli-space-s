@@ -9,8 +9,8 @@ import spaceSurvival.view.GUI;
 import spaceSurvival.view.menu.GUIMenu;
 
 public class CtrlMenu implements ControllerGUI {
-    private GUIMenu gui;
-    private EngineMenu engine;
+    private final GUIMenu gui;
+    private final EngineMenu engine;
 
     private final SwitchGUI switchGUI;
 
@@ -19,24 +19,29 @@ public class CtrlMenu implements ControllerGUI {
         this.engine = menuEngine;
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
 
-        this.assignId();
+        this.assignAction();
         this.assignStrings();
+        this.assignRectangle();
         this.switchGUI.turn(this.engine.getVisibility());
     }
 
-    private void assignId(){
-        this.gui.setMainAction(this.engine.getActionGUI());
-        this.gui.setBtnActions(this.engine.getActionGUI(), this.engine.getLinks());
+    public void assignAction(){
+        this.gui.setMainAction(this.engine.getMainAction());
+        this.gui.setBtnActions(this.engine.getMainAction(), this.engine.getLinks());
     }
 
-    private void assignStrings(){
+    public void assignStrings(){
         this.gui.setTitleGUI(this.engine.getTitleGUI());
         this.gui.setNameButtons(this.engine.getListName());
     }
 
+    public void assignRectangle(){
+        this.gui.setBounds(this.engine.getRectangle());
+    }
+
     @Override
-    public ActionGUI getIdGUI() {
-        return this.engine.getActionGUI();
+    public ActionGUI getMainAction() {
+        return this.engine.getMainAction();
     }
 
     @Override

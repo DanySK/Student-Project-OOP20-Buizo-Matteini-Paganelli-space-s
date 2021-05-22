@@ -1,6 +1,6 @@
 package spaceSurvival.view.help.concrete;
 
-import spaceSurvival.model.ImageDesign;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.view.AbstractGUI;
 import spaceSurvival.view.help.GUIHelp;
@@ -29,7 +29,7 @@ public class GUIHelpConcrete extends AbstractGUI implements GUIHelp {
     }
 
     @Override
-    public List<BtnAction> getButtonLinks() {
+    public List<BtnAction> getBtnActionLinks() {
         return List.of(this.btnBack);
     }
 
@@ -53,9 +53,9 @@ public class GUIHelpConcrete extends AbstractGUI implements GUIHelp {
     }
 
     @Override
-    public void addIconInUnitHelp(final String panelName, final List<ImageDesign> imageDesigns) {
+    public void addIconInUnitHelp(final String panelName, final List<EngineImage> engineImages) {
         this.unitHelps.stream().filter(unit -> unit.getTitleUnit().contentEquals(panelName))
-                .forEach(unit -> imageDesigns.forEach(engine -> {
+                .forEach(unit -> engineImages.forEach(engine -> {
                     engine.setScale(engine.getScaleOf(), super.getWidth());
                     unit.addIconUnit(engine);
                 }));

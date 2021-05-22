@@ -29,20 +29,20 @@ public class CtrlSettings implements ControllerGUI {
     }
 
     private void assignId() {
-        this.gui.setMainAction(this.engine.getActionGUI());
-        this.gui.setBtnBackID(this.engine.getActionGUI(), this.engine.getBackLink());
+        this.gui.setMainAction(this.engine.getMainAction());
+        this.gui.setBtnBackID(this.engine.getMainAction(), this.engine.getBackLink());
     }
 
     private void assignStrings() {
         this.gui.setTitleGUI(this.engine.getTitleGUI());
-        this.gui.setNameUnits(this.engine.getListNameUnit());
+        this.gui.setUnitNames(this.engine.getListNameUnit());
         this.gui.setNameBtnBack(this.engine.getNameBtnBack());
     }
 
     private void assignSettings() {
         this.gui.setSkinSpaceShip(this.engine.getSkinSpaceShip());
-        this.gui.getUnitSkin().forEach(btn -> btn.addActionListener(this.changeSkin(btn)));
-        this.gui.getUnitDifficult().forEach(radio -> radio.addActionListener(this.changeDifficult(radio)));
+        this.gui.getBtnUnitSkin().forEach(btn -> btn.addActionListener(this.changeSkin(btn)));
+        this.gui.getRadioBtnUnitDifficult().forEach(radio -> radio.addActionListener(this.changeDifficult(radio)));
         this.gui.setDifficult(this.engine.getDifficultActivate());
     }
 
@@ -78,8 +78,8 @@ public class CtrlSettings implements ControllerGUI {
     }
 
     @Override
-    public ActionGUI getIdGUI() {
-        return this.engine.getActionGUI();
+    public ActionGUI getMainAction() {
+        return this.engine.getMainAction();
     }
 
     @Override

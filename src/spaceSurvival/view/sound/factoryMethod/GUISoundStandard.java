@@ -1,6 +1,7 @@
 package spaceSurvival.view.sound.factoryMethod;
 
 import spaceSurvival.utilities.dimension.ScaleOf;
+import spaceSurvival.utilities.pathImage.Background;
 import spaceSurvival.utilities.pathImage.Icon;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.view.utilities.DesignGraphics;
@@ -22,6 +23,7 @@ public class GUISoundStandard implements FactoryGUISound {
         soundGUI.setForegroundGUI(DesignGraphics.color4);
         soundGUI.setBounds(Screen.RECTANGLE_MEDIUM);
         soundGUI.setBorder(DesignGraphics.color4, 3);
+        soundGUI.setImageBackground(Background.MAIN);
         this.graphics(soundGUI);
         return soundGUI;
     }

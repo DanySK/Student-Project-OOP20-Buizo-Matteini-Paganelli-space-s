@@ -22,7 +22,7 @@ public enum LinksMenu {
         return this.name;
     }
 
-    public ActionGUI getIdGUI() {
+    public ActionGUI getActionGUI() {
         return this.actionGUI;
     }
 

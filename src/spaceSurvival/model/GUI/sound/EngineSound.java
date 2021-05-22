@@ -2,7 +2,7 @@ package spaceSurvival.model.GUI.sound;
 
 import spaceSurvival.model.GUI.EngineGUI;
 import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.model.ImageDesign;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.utilities.DesignSound;
 
 import spaceSurvival.utilities.dimension.Screen;
@@ -34,7 +34,7 @@ public class EngineSound implements EngineGUI {
     }
 
     @Override
-    public ActionGUI getActionGUI() {
+    public ActionGUI getMainAction() {
         return id;
     }
 
@@ -108,7 +108,7 @@ public class EngineSound implements EngineGUI {
         return this.mixerSound.isActiveSound(typeUnitSound);
     }
 
-    public ImageDesign getEngineImageUnitSound(final TypeUnitSound typeUnitSound){
+    public EngineImage getEngineImageUnitSound(final TypeUnitSound typeUnitSound){
         return this.mixerSound.getStateSound(typeUnitSound).getEngineImage();
     }
 

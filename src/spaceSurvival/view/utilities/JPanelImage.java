@@ -1,6 +1,7 @@
 package spaceSurvival.view.utilities;
 
 import spaceSurvival.utilities.dimension.Screen;
+import spaceSurvival.utilities.pathImage.Background;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,22 +11,11 @@ public class JPanelImage extends JPanel {
 
     public JPanelImage(){
         super();
-        this.icon = new ImageIcon();
-    }
-
-    public JPanelImage(final String path){
-        this();
-        this.icon.setImage(JImage.getImageFromPath(path));
+        this.icon = new ImageIcon(Background.PAUSE);
         JPanelImage.setSizeFromScreen(this.icon, Screen.RECTANGLE_FULLSCREEN);
     }
 
-    public JPanelImage(final String path, final Rectangle rectangleGUI){
-        this(path);
-        JPanelImage.setSizeFromScreen(this.icon, rectangleGUI);
-    }
-
-    public void setImage(final String path){
-        final Dimension dimension = new Dimension(this.icon.getIconWidth(), this.icon.getIconHeight());
+    public void setImage(final String path, final Dimension dimension){
         this.icon.setImage(JImage.getImageFromPath(path));
         JImage.resizeImageIcon(this.icon, dimension);
         super.repaint();

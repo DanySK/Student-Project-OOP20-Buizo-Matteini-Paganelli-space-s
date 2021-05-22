@@ -1,6 +1,6 @@
 package spaceSurvival.view.help;
 
-import spaceSurvival.model.ImageDesign;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.view.GUI;
 
@@ -14,5 +14,5 @@ public interface GUIHelp extends GUI, GraphicsGUIHelp {
 
     public void setNameButtons(final List<String> listName);
 
-    public void addIconInUnitHelp(final String panelName, final List<ImageDesign> pathImg);
+    public void addIconInUnitHelp(final String panelName, final List<EngineImage> pathImg);
 }

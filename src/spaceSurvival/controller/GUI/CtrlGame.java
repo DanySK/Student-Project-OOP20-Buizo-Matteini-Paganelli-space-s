@@ -33,8 +33,8 @@ public class CtrlGame implements ControllerGUI{
     }
 
     private void init(){
-        this.gui.setMainAction(this.engine.getActionGUI());
-        this.gui.setIdButtons(this.engine.getActionGUI(), this.engine.getLinks());
+        this.gui.setMainAction(this.engine.getMainAction());
+        this.gui.setIdButtons(this.engine.getMainAction(), this.engine.getLinks());
     }
 
     public void updateHUD(){
@@ -112,8 +112,8 @@ public class CtrlGame implements ControllerGUI{
     }
 
     @Override
-    public ActionGUI getIdGUI() {
-        return this.engine.getActionGUI();
+    public ActionGUI getMainAction() {
+        return this.engine.getMainAction();
     }
 
     @Override

@@ -25,8 +25,8 @@ public class CtrlHelp implements ControllerGUI {
     }
 
     private void assignId() {
-        this.gui.setMainAction(this.engine.getActionGUI());
-        this.gui.setIdBtnBack(this.engine.getActionGUI(), this.engine.getBackLink());
+        this.gui.setMainAction(this.engine.getMainAction());
+        this.gui.setIdBtnBack(this.engine.getMainAction(), this.engine.getBackLink());
     }
 
     private void assignStrings() {
@@ -38,8 +38,8 @@ public class CtrlHelp implements ControllerGUI {
     }
 
     @Override
-    public ActionGUI getIdGUI() {
-        return this.engine.getActionGUI();
+    public ActionGUI getMainAction() {
+        return this.engine.getMainAction();
     }
 
     @Override

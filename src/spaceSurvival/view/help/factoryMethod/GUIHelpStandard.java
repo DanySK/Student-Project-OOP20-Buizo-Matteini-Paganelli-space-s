@@ -1,6 +1,7 @@
 package spaceSurvival.view.help.factoryMethod;
 
 import spaceSurvival.utilities.dimension.ScaleOf;
+import spaceSurvival.utilities.pathImage.Background;
 import spaceSurvival.utilities.pathImage.Icon;
 import spaceSurvival.utilities.DesignJComponent;
 import spaceSurvival.utilities.dimension.Screen;
@@ -23,6 +24,7 @@ public class GUIHelpStandard implements FactoryGUIHelp {
         helpGUIConcrete.setForegroundGUI(DesignGraphics.color4);
         helpGUIConcrete.setBounds(Screen.RECTANGLE_MEDIUM);
         helpGUIConcrete.setBorder(DesignGraphics.color4, 3);
+        helpGUIConcrete.setImageBackground(Background.MAIN);
         this.createGraphics(helpGUIConcrete);
         return helpGUIConcrete;
     }

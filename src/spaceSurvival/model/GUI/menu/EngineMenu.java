@@ -15,20 +15,20 @@ public class EngineMenu implements EngineGUI {
     public static final String TITLE = "SPACE SURVMALA";
     public static final int N_BUTTONS = 6;
 
-    private final ActionGUI actionId;
+    private final ActionGUI mainAction;
     private final List<LinksMenu> linkButtons;
 
     private Visibility visibility;
 
     public EngineMenu(){
-        this.actionId = ActionGUI.ID_MENU;
+        this.mainAction = ActionGUI.ID_MENU;
         this.linkButtons = Arrays.asList(LinksMenu.values());
         this.visibility = Visibility.HIDDEN;
     }
 
     @Override
-    public ActionGUI getActionGUI()  {
-        return this.actionId;
+    public ActionGUI getMainAction()  {
+        return this.mainAction;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class EngineMenu implements EngineGUI {
     @Override
     public List<ActionGUI> getLinks() {
         return this.linkButtons.stream()
-                .map(LinksMenu::getIdGUI)
+                .map(LinksMenu::getActionGUI)
                 .collect(Collectors.toList());
     }
 
@@ -68,6 +68,5 @@ public class EngineMenu implements EngineGUI {
                 .map(LinksMenu::getName)
                 .collect(Collectors.toList());
     }
-
 }
 

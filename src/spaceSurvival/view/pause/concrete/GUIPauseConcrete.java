@@ -24,7 +24,7 @@ public class GUIPauseConcrete extends AbstractGUI implements GUIPause {
     }
 
     @Override
-    public List<BtnAction> getButtonLinks() {
+    public List<BtnAction> getBtnActionLinks() {
         return this.links;
     }
 

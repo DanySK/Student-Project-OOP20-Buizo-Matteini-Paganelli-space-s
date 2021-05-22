@@ -1,6 +1,6 @@
 package spaceSurvival.view.game.utilities;
 
-import spaceSurvival.model.ImageDesign;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.utilities.pathImage.Icon;
@@ -18,7 +18,7 @@ public class Bullet extends JPanel {
         super.setOpaque(false);
 
         this.nBullet = new JLabel();
-        final Dimension dimension = ImageDesign.getSizeImageFromScale(
+        final Dimension dimension = EngineImage.getSizeImageFromScale(
                 Icon.HEART, ScaleOf.ICON_FULL, Screen.WIDTH_FULL_SCREEN);
 
         this.icon = new JImage(Icon.BULLET, dimension);

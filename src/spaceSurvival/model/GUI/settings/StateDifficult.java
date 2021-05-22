@@ -1,12 +1,12 @@
 package spaceSurvival.model.GUI.settings;
 
-public enum DifficultActive {
+public enum StateDifficult {
     ON(true),
     OFF(false);
 
     private final boolean difficult;
 
-    private DifficultActive(final boolean difficult){
+    private StateDifficult(final boolean difficult){
         this.difficult = difficult;
     }
 
@@ -17,7 +17,6 @@ public enum DifficultActive {
     @Override
     public String toString() {
         return "DifficultActive{" +
-                "difficult=" + difficult +
-                '}';
+                "difficult=" + difficult + '}';
     }
 }

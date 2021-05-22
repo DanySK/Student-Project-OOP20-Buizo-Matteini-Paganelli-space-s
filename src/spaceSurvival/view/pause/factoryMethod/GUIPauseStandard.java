@@ -39,13 +39,13 @@ public class GUIPauseStandard implements FactoryGUIPause {
     private void createGraphics(final GUIPauseConcrete concrete){
         concrete.setLayout(new BorderLayout());
 
-        concrete.getButtonLinks().forEach(btn -> btn.setFocusable(false));
+        concrete.getBtnActionLinks().forEach(btn -> btn.setFocusable(false));
         concrete.add(FactoryGUIs.encapsulatesInPanelFlow(concrete.getLbTitle()), BorderLayout.NORTH);
 
-        concrete.add(FactoryGUIs.createPanelGridBagUnionComponentsVertical(concrete.getButtonLinks(), 5),
+        concrete.add(FactoryGUIs.createPanelGridBagUnionComponentsVertical(concrete.getBtnActionLinks(), 5),
                 BorderLayout.CENTER);
 
-        for (int i = 0; i < concrete.getButtonLinks().size(); i++){
+        for (int i = 0; i < concrete.getBtnActionLinks().size(); i++){
             FactoryGUIs.setIconJButtonFromRate(concrete.getButton(i), IconsButton.values()[i].getPath(),
                     ScaleOf.ICON_SMALL, EnginePause.RECTANGLE.width);
         }

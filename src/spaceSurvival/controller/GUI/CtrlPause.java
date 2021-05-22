@@ -27,8 +27,8 @@ public class CtrlPause implements ControllerGUI{
     }
 
     private void assignId(){
-        this.gui.setMainAction(this.engine.getActionGUI());
-        this.gui.setIdButtons(this.engine.getActionGUI(), this.engine.getLinks());
+        this.gui.setMainAction(this.engine.getMainAction());
+        this.gui.setIdButtons(this.engine.getMainAction(), this.engine.getLinks());
     }
 
     private void assignStrings(){
@@ -37,8 +37,8 @@ public class CtrlPause implements ControllerGUI{
     }
 
     @Override
-    public ActionGUI getIdGUI() {
-        return this.engine.getActionGUI();
+    public ActionGUI getMainAction() {
+        return this.engine.getMainAction();
     }
 
     @Override

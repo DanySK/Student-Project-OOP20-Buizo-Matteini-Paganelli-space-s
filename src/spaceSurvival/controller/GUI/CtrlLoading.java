@@ -52,8 +52,8 @@ public class CtrlLoading extends Thread implements ControllerGUI{
         }
     }
 
-    public ActionGUI getIdGUI(){
-        return this.engine.getActionGUI();
+    public ActionGUI getMainAction(){
+        return this.engine.getMainAction();
     }
 
     @Override

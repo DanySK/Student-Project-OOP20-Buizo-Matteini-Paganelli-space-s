@@ -41,7 +41,7 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
     }
 
     @Override
-    public List<BtnAction> getButtonLinks() {
+    public List<BtnAction> getBtnActionLinks() {
         return List.of(this.btnPause);
     }
 

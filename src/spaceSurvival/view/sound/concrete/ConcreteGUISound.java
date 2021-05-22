@@ -26,7 +26,7 @@ public class ConcreteGUISound extends AbstractGUI implements GUISound {
     }
 
     @Override
-    public List<BtnAction> getButtonLinks() {
+    public List<BtnAction> getBtnActionLinks() {
         return List.of(this.btnBack);
     }
 

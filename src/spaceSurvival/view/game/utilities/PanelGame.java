@@ -2,8 +2,7 @@ package spaceSurvival.view.game.utilities;
 
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.gameObject.GameObject;
-import spaceSurvival.model.gameObject.MainGameObject;
-import spaceSurvival.model.ImageDesign;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.view.utilities.JImage;
 import javax.swing.*;
 import java.awt.*;
@@ -65,7 +64,7 @@ public class PanelGame extends JPanel {
         this.repaint();
     }
 
-    private Image getImageFromEngine(final ImageDesign image){
+    private Image getImageFromEngine(final EngineImage image){
         JImage icon = new JImage(image.getPath(), image.getSize());
         return icon.getImage();
     }

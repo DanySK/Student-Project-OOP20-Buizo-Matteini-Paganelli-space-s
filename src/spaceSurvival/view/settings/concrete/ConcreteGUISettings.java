@@ -1,6 +1,6 @@
 package spaceSurvival.view.settings.concrete;
 
-import spaceSurvival.model.ImageDesign;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.GUI.settings.Difficulty;
 import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.view.AbstractGUI;
@@ -28,13 +28,23 @@ public class ConcreteGUISettings extends AbstractGUI implements GUISettings {
     }
 
     @Override
-    public List<BtnAction> getButtonLinks() {
+    public List<BtnAction> getBtnActionLinks() {
         return List.of(this.btnBack);
     }
 
 
     @Override
-    public void setNameUnits(final List<String> listName) {
+    public List<JButton> getBtnUnitSkin() {
+        return List.of(this.panelSkin.getBtSX(), this.panelSkin.getBtDX());
+    }
+
+    @Override
+    public List<JRadioButton> getRadioBtnUnitDifficult() {
+        return this.panelDifficult.getDifficult();
+    }
+
+    @Override
+    public void setUnitNames(final List<String> listName) {
         int i = 0;
         this.panelSkin.setLbTitle(listName.get(i++));
         this.panelDifficult.setTitle(listName.get(i));
@@ -46,24 +56,14 @@ public class ConcreteGUISettings extends AbstractGUI implements GUISettings {
     }
 
     @Override
-    public void setSkinSpaceShip(final ImageDesign imageEngine) {
+    public void setSkinSpaceShip(final EngineImage imageEngine) {
         this.panelSkin.setPnImage(imageEngine.getPath());
-        this.panelSkin.setRateImg(imageEngine.getScaleOf(), super.getWidth());
+        this.panelSkin.setRateImg(imageEngine.getScaleOf(), imageEngine.getRespectTo());
     }
 
     @Override
     public void setDifficult(final Difficulty difficulty) {
         this.panelDifficult.setDifficult(difficulty);
-    }
-
-    @Override
-    public List<JButton> getUnitSkin() {
-        return List.of(this.panelSkin.getBtSX(), this.panelSkin.getBtDX());
-    }
-
-    @Override
-    public List<JRadioButton> getUnitDifficult() {
-        return this.panelDifficult.getDifficult();
     }
 
     @Override

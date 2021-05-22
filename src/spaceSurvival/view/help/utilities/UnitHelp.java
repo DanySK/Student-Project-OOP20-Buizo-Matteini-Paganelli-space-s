@@ -1,6 +1,6 @@
 package spaceSurvival.view.help.utilities;
 
-import spaceSurvival.model.ImageDesign;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.view.utilities.JImage;
 
 import javax.swing.*;
@@ -37,8 +37,8 @@ public class UnitHelp extends JPanel {
         this.lbTitle.setForeground(color);
     }
 
-    public void addIconUnit(final ImageDesign imageDesign) {
-        final JImage pnImage = new JImage(imageDesign.getPath(), imageDesign.getSize());
+    public void addIconUnit(final EngineImage engineImage) {
+        final JImage pnImage = new JImage(engineImage.getPath(), engineImage.getSize());
         this.listIconCommand.add(pnImage);
         super.add(pnImage);
     }
