@@ -1,6 +1,6 @@
 package spaceSurvival.view.GUI.settings.concrete;
 
-import spaceSurvival.model.EngineImage;
+import spaceSurvival.model.ImageDesign;
 import spaceSurvival.model.GUI.settings.Difficulty;
 import spaceSurvival.utilities.IdGUI;
 import spaceSurvival.view.GUI.AbstractGUI;
@@ -46,7 +46,7 @@ public class ConcreteGUISettings extends AbstractGUI implements GUISettings {
     }
 
     @Override
-    public void setSkinSpaceShip(final EngineImage imageEngine) {
+    public void setSkinSpaceShip(final ImageDesign imageEngine) {
         this.panelSkin.setPnImage(imageEngine.getPath());
         this.panelSkin.setRateImg(imageEngine.getScaleOf(), super.getWidth());
     }

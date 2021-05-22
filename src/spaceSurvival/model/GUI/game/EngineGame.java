@@ -2,6 +2,7 @@ package spaceSurvival.model.GUI.game;
 
 import spaceSurvival.model.GUI.EngineGUI;
 import spaceSurvival.model.GUI.Visibility;
+import spaceSurvival.model.World;
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 import spaceSurvival.model.worldEcollisioni.WorldEventListener;

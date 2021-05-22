@@ -1,7 +1,7 @@
 package spaceSurvival.model.GUI.help;
 
 import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.model.EngineImage;
+import spaceSurvival.model.ImageDesign;
 import spaceSurvival.utilities.DesignTitleGUI;
 import spaceSurvival.model.GUI.EngineGUI;
 import spaceSurvival.utilities.DesignJComponent;
@@ -74,7 +74,7 @@ public class EngineHelp implements EngineGUI {
         return this.listName;
     }
 
-    public List<EngineImage> getPathIconUnit(final String unitName){
+    public List<ImageDesign> getPathIconUnit(final String unitName){
         return this.listNameHelpUnits.stream().filter(unit -> unit.getName().contentEquals(unitName))
                 .map(UnitsHelp::getPathFiles)
                 .flatMap(List::stream)

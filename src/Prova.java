@@ -1,4 +1,4 @@
-import spaceSurvival.model.EngineImage;
+import spaceSurvival.model.ImageDesign;
 import spaceSurvival.view.utilities.JImage;
 
 import java.awt.*;
@@ -136,7 +136,7 @@ public class Prova {
         }
     }
 
-    private Image getImageFromEngine(final EngineImage image){
+    private Image getImageFromEngine(final ImageDesign image){
         JImage icon = new JImage(image.getPath(), image.getSize());
         return icon.getImage();
     }

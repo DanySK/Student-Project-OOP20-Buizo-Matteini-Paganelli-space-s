@@ -1,6 +1,6 @@
 package spaceSurvival.view.GUI.settings;
 
-import spaceSurvival.model.EngineImage;
+import spaceSurvival.model.ImageDesign;
 import spaceSurvival.model.GUI.settings.Difficulty;
 import spaceSurvival.utilities.IdGUI;
 import spaceSurvival.view.GUI.GUI;
@@ -14,7 +14,7 @@ public interface GUISettings extends GUI, GraphicsGUISettings {
 
     public void setNameBtnBack(final String nameBtnBack);
 
-    public void setSkinSpaceShip(final EngineImage imageEngine);
+    public void setSkinSpaceShip(final ImageDesign imageEngine);
 
     public void setDifficult(final Difficulty difficulty);
 

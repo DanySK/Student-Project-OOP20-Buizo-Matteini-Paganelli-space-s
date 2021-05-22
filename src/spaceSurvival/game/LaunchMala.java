@@ -9,7 +9,7 @@ import spaceSurvival.model.EngineMalaLoop;
 public class LaunchMala {
 
     public static void main(String[] args) {
-        CtrlLoading ctrlLoading = new CtrlLoading(StaticFactoryEngineGUI.createLoading(),
+        final CtrlLoading ctrlLoading = new CtrlLoading(StaticFactoryEngineGUI.createLoading(),
                 StaticFactoryGUI.createLoading());
         ctrlLoading.start();
 

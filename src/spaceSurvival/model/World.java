@@ -1,4 +1,4 @@
-package spaceSurvival.model.GUI.game;
+package spaceSurvival.model;
 
 import java.awt.*;
 import java.util.HashSet;

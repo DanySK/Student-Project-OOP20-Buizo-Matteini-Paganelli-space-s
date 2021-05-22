@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 
 import spaceSurvival.model.common.P2d;
-import spaceSurvival.model.EngineImage;
+import spaceSurvival.model.ImageDesign;
 
 public class RectBoundingBox implements BoundingBox {
 
@@ -25,13 +25,13 @@ public class RectBoundingBox implements BoundingBox {
 		this.transform.setToTranslation(p0.getX(), p0.getY());
 	}
 	
-	public RectBoundingBox(P2d center, EngineImage engineImage){
+	public RectBoundingBox(P2d center, ImageDesign imageDesign){
 		
-		this.p0 = new P2d(center.getX() - (engineImage.getWidth() / 2), center.getY() - (engineImage.getHeight() / 2));
-		this.p1 = new P2d(center.getX() + (engineImage.getWidth() / 2), center.getY() + (engineImage.getHeight() / 2));
+		this.p0 = new P2d(center.getX() - (imageDesign.getWidth() / 2), center.getY() - (imageDesign.getHeight() / 2));
+		this.p1 = new P2d(center.getX() + (imageDesign.getWidth() / 2), center.getY() + (imageDesign.getHeight() / 2));
 		
 		this.transform = new AffineTransform();
-		this.transform.setToTranslation(center.getX() - (engineImage.getWidth() / 2), center.getY() - (engineImage.getHeight() / 2));
+		this.transform.setToTranslation(center.getX() - (imageDesign.getWidth() / 2), center.getY() - (imageDesign.getHeight() / 2));
 			
 	}
 

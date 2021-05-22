@@ -1,6 +1,6 @@
 package spaceSurvival.view.GUI.settings.utilities;
 
-import spaceSurvival.model.EngineImage;
+import spaceSurvival.model.ImageDesign;
 import spaceSurvival.view.utilities.FactoryGUIs;
 import spaceSurvival.view.utilities.JImage;
 
@@ -63,7 +63,7 @@ public class PanelSkin extends JPanel {
     }
 
     public void setRateImg(final int rate, final int widthScreen) {
-         final Dimension dimension = EngineImage.getSizeImageFromScale(
+         final Dimension dimension = ImageDesign.getSizeImageFromScale(
                  this.pnImage.getPath(), rate, widthScreen);
         this.pnImage.setSize(dimension);
     }

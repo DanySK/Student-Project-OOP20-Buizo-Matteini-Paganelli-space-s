@@ -4,7 +4,7 @@ import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.common.V2d;
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.mainGameObject.Boss;
-import spaceSurvival.model.GUI.game.World;
+import spaceSurvival.model.World;
 
 public class BossPhysicsComponent implements PhysicsComponent {
 
