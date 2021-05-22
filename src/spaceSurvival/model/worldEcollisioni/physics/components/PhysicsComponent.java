@@ -2,7 +2,7 @@
 package spaceSurvival.model.worldEcollisioni.physics.components;
 
 import spaceSurvival.model.gameObject.GameObject;
-import spaceSurvival.model.GUI.game.World;
+import spaceSurvival.model.World;
 
 public interface PhysicsComponent {
 

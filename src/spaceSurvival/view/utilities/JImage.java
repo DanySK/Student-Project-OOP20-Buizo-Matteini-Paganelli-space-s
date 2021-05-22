@@ -1,6 +1,6 @@
 package spaceSurvival.view.utilities;
 
-import spaceSurvival.model.EngineImage;
+import spaceSurvival.model.ImageDesign;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,7 +24,7 @@ public class JImage extends JComponent{
         this();
         this.path = path;
         this.imageIcon.setImage(JImage.getImageFromPath(path));
-        this.setSize(EngineImage.getSizeFromImage(path));
+        this.setSize(ImageDesign.getSizeFromImage(path));
     }
 
     public JImage(final String path, final int width, final int height){
@@ -84,7 +84,7 @@ public class JImage extends JComponent{
     }
 
     public void setScaleOfRespect(final int scaleOf, final int respectTo){
-        final Dimension dimension = EngineImage.getSizeImageFromScale(this.path, scaleOf, respectTo);
+        final Dimension dimension = ImageDesign.getSizeImageFromScale(this.path, scaleOf, respectTo);
         this.setSize(dimension);
     }
 

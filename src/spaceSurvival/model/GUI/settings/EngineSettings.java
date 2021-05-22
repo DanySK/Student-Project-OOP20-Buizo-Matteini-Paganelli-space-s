@@ -1,7 +1,7 @@
 package spaceSurvival.model.GUI.settings;
 
 import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.model.EngineImage;
+import spaceSurvival.model.ImageDesign;
 import spaceSurvival.model.GUI.EngineGUI;
 import spaceSurvival.utilities.*;
 import spaceSurvival.utilities.dimension.Screen;
@@ -88,7 +88,7 @@ public class EngineSettings implements EngineGUI {
         return this.linkBack.getIdName();
     }
 
-    public EngineImage getSkinSpaceShip() {
+    public ImageDesign getSkinSpaceShip() {
         return this.skinSpaceShip.get(this.chooseSkin).getEngineImage();
     }
 

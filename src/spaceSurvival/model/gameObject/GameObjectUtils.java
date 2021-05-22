@@ -5,7 +5,7 @@ import java.util.Random;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.common.V2d;
-import spaceSurvival.model.EngineImage;
+import spaceSurvival.model.ImageDesign;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
@@ -85,12 +85,12 @@ public class GameObjectUtils {
     }
 
     
-    public static BoundingBox createRectBoundingBox(P2d position, EngineImage engineImage) {
-    	return new RectBoundingBox(new P2d(position.getX() + engineImage.getWidth() / 2, position.getY() + engineImage.getHeight() / 2), engineImage);
+    public static BoundingBox createRectBoundingBox(P2d position, ImageDesign imageDesign) {
+    	return new RectBoundingBox(new P2d(position.getX() + imageDesign.getWidth() / 2, position.getY() + imageDesign.getHeight() / 2), imageDesign);
     		}
     
-    public static BoundingBox createCircleBoundingBox(P2d position, EngineImage engineImage) {
-    	return new CircleBoundingBox(position, engineImage.getWidth() / 2);
+    public static BoundingBox createCircleBoundingBox(P2d position, ImageDesign imageDesign) {
+    	return new CircleBoundingBox(position, imageDesign.getWidth() / 2);
     }
     
 

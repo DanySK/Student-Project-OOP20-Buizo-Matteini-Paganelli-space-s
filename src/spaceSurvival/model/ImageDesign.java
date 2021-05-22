@@ -1,37 +1,33 @@
 package spaceSurvival.model;
 
-import spaceSurvival.model.gameObject.GameObjectUtils;
-import spaceSurvival.utilities.dimension.Screen;
-import spaceSurvival.utilities.pathImage.Skin;
-
 import javax.imageio.ImageIO;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class EngineImage {
+public class ImageDesign {
     private String path;
     private int width, height;
     private int scaleOf, respectTo;
 
-    public EngineImage(){ }
+    public ImageDesign(){ }
 
-    public EngineImage(final String path){
+    public ImageDesign(final String path){
         this.path = path;
-        this.setSize(EngineImage.getSizeFromImage(path));
+        this.setSize(ImageDesign.getSizeFromImage(path));
     }
 
-    public EngineImage(final String path, final int width, final int height){
+    public ImageDesign(final String path, final int width, final int height){
         this(path);
         this.setSize(width, height);
     }
 
-    public EngineImage(final String path, final Dimension dimension){
+    public ImageDesign(final String path, final Dimension dimension){
         this(path, dimension.width, dimension.height);
     }
 
-    public EngineImage(final int scaleOf, final int respectTo, final String path){
+    public ImageDesign(final int scaleOf, final int respectTo, final String path){
         this(path);
         this.setScale(scaleOf, respectTo);
     }
@@ -68,7 +64,7 @@ public class EngineImage {
     }
 
     public void setScale(final int scaleOf, final int respectTo) {
-        final Dimension sizeScale = EngineImage.getSizeImageFromScale(this.path, scaleOf, respectTo);
+        final Dimension sizeScale = ImageDesign.getSizeImageFromScale(this.path, scaleOf, respectTo);
         this.scaleOf = scaleOf;
         this.respectTo = respectTo;
         this.setSize(sizeScale);

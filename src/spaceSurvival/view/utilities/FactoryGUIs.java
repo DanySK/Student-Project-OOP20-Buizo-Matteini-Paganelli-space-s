@@ -1,6 +1,6 @@
 package spaceSurvival.view.utilities;
 
-import spaceSurvival.model.EngineImage;
+import spaceSurvival.model.ImageDesign;
 import spaceSurvival.utilities.DesignSound;
 
 import javax.swing.*;
@@ -142,13 +142,13 @@ public class FactoryGUIs {
 
     public static void setIconJButtonFromRate(final JButton button, final String pathIcon,
                                               final int scaleOf, final int respectTo) {
-        final EngineImage engineImage = new EngineImage(scaleOf, respectTo, pathIcon);
-        final JImage imag = new JImage(pathIcon, engineImage.getSize());
+        final ImageDesign imageDesign = new ImageDesign(scaleOf, respectTo, pathIcon);
+        final JImage imag = new JImage(pathIcon, imageDesign.getSize());
         button.setIcon(imag.getImageIcon());
     }
     
-    public static void setIconJButtonFromRate(final JButton button, final EngineImage engineImage) {
-    	FactoryGUIs.setIconJButtonFromRate(button, engineImage.getPath(),
-                engineImage.getScaleOf(), engineImage.getRespectTo());
+    public static void setIconJButtonFromRate(final JButton button, final ImageDesign imageDesign) {
+    	FactoryGUIs.setIconJButtonFromRate(button, imageDesign.getPath(),
+                imageDesign.getScaleOf(), imageDesign.getRespectTo());
     }
 }
