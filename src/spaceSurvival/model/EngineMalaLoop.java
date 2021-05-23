@@ -3,6 +3,7 @@ package spaceSurvival.model;
 import spaceSurvival.controller.GUI.CtrlGUI;
 import spaceSurvival.controller.GUI.CtrlGame;
 import spaceSurvival.controller.GUI.CtrlSound;
+import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
 import spaceSurvival.model.gameObject.mainGameObject.Boss;
@@ -21,6 +22,11 @@ import spaceSurvival.model.worldEcollisioni.hitEvents.HitPickableEvent;
 import spaceSurvival.utilities.Score;
 import spaceSurvival.utilities.dimension.Screen;
 
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Toolkit;
+import java.awt.geom.AffineTransform;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -47,12 +53,11 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         this.controlGame.assignMovementListenerInShip();
         this.controlGame.setEventListenerInWorld(this);
         this.controlGame.addAllGameObjectsFromWorld();
-
-        //this.controlGame.getShip().getTransform()
-          //      .setToTranslation(Screen.POINT_CENTER_FULLSCREEN.getX(), Screen.POINT_CENTER_FULLSCREEN.getY());
-        this.controlGame.getShip().setPosition(Screen.POINT_CENTER_FULLSCREEN);
-        //      .setToTranslation(Screen.POINT_CENTER_FULLSCREEN.getX(), Screen.POINT_CENTER_FULLSCREEN.getY());
-
+        
+        double scale = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().getDefaultTransform().getScaleX();      
+        this.controlGame.getShip().setPosition(new P2d(Screen.POINT_CENTER_FULLSCREEN.getX() * scale, Screen.POINT_CENTER_FULLSCREEN.getY() * scale));
+        
+        
         this.controlSound.setSoundLoop(this.controlGUI.getCurrentGUI());
         this.controlSound.setCmdAudioLoop(CmdAudioType.AUDIO_ON);
         this.controlGUI.startGUI();
@@ -72,7 +77,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             lastTime = current;
             updateGame(elapsed);
 
-            System.out.println("LoopMala -> "+ elapsed +" FPS");
+            //System.out.println("LoopMala -> "+ elapsed +" FPS");
         }
         System.out.println("Sono fuori dal loop");
         renderGameOver();

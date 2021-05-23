@@ -137,18 +137,20 @@ public class World {
 		P2d br = mainBBox.getBRCorner();
 		
 		double heightRect = box.getHeight();
-		if (pos.y < -br.y){
+		if (pos.y < br.y){
 			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.TOP, new P2d(pos.x, ul.y)));
 		} 
-		//else if (pos.y - r < br.y){
-//			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.BOTTOM, new P2d(pos.x, br.y)));
-//		} else if (pos.x + r > br.x){
-//			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.RIGHT, new P2d(br.x, pos.y)));
-//		} else if (pos.x - r < ul.x){
-//			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.LEFT, new P2d(ul.x, pos.y)));
-//		} else {
+		else if (pos.y + box.getHeight() > br.y){
+			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.BOTTOM, new P2d(pos.x, br.y)));
+		} 
+		else if (pos.x + box.getWidth() > br.x){
+			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.RIGHT, new P2d(br.x, pos.y)));
+		} 
+		else if (pos.x < ul.x){
+			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.LEFT, new P2d(ul.x, pos.y)));
+		} else {
 			return Optional.empty();
-//		}
+		}
 	}
 
 	public Optional<MainGameObject> checkCollisionWithAsteroids(P2d pos, RectBoundingBox box) {
