@@ -11,7 +11,7 @@ public class Screen {
     private static final float PROPORTION_MINI = 2.7F;
 
     public static final Point POINT_ZERO = new Point(0, 0);
-    
+
     public static final Dimension FULLSCREEN = SystemVariables.SCREEN;
     public static final int WIDTH_FULL_SCREEN = (int) (FULLSCREEN.getWidth() * SystemVariables.SCALE_X);
     public static final int HEIGHT_FULL_SCREEN = (int) (FULLSCREEN.getHeight() * SystemVariables.SCALE_Y);

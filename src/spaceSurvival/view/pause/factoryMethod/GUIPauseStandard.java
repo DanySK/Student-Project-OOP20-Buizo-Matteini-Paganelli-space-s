@@ -25,7 +25,7 @@ public class GUIPauseStandard implements FactoryGUIPause {
         concrete.setBackgroundButtons(Color.WHITE);
 
         concrete.setBorder(DesignGraphics.color4, 3);
-        concrete.setImageBackground(Background.PAUSE);
+        concrete.setImageBackground(Background.TRANSPARENT);
 
         this.createGraphics(concrete);
 

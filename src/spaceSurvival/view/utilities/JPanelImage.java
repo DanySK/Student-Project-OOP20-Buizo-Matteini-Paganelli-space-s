@@ -11,7 +11,7 @@ public class JPanelImage extends JPanel {
 
     public JPanelImage(){
         super();
-        this.icon = new ImageIcon(Background.PAUSE);
+        this.icon = new ImageIcon(Background.TRANSPARENT);
         JPanelImage.setSizeFromScreen(this.icon, Screen.RECTANGLE_FULLSCREEN);
     }
 

@@ -17,7 +17,7 @@ public class GUILoadingStandard implements FactoryGUILoading {
     @Override
     public GUILoading create() {
         GUILoadingConcrete concrete = new GUILoadingConcrete();
-        concrete.setImageBackground(Background.LOAD1);
+        concrete.setImageBackground(Background.LOADING);
         concrete.setFontLbtitle(DesignGraphics.getFontForTitle(DesignGraphics.SIZE_FONT_H0));
         concrete.setForegroundGUI(DesignGraphics.color4);
 
