@@ -1,11 +1,10 @@
 package spaceSurvival.model.GUI.help;
 
 import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.model.ImageDesign;
-import spaceSurvival.utilities.DesignTitleGUI;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.GUI.EngineGUI;
 import spaceSurvival.utilities.DesignJComponent;
-import spaceSurvival.utilities.IdGUI;
+import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.utilities.dimension.Screen;
 
 import java.awt.*;
@@ -14,32 +13,44 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class EngineHelp implements EngineGUI {
-    public static final Rectangle DIMENSION = Screen.RECTANGLE_MEDIUM;
+    public static final Rectangle RECTANGLE = Screen.RECTANGLE_MEDIUM;
+    public static final int N_UNIT = 3;
+    public static final String TITLE = "HELP";
 
-    private final IdGUI id;
-    private final IdGUI linkBack;
+    private final ActionGUI mainAction;
+    private final ActionGUI actionBack;
 
-    private final List<UnitsHelp> listNameHelpUnits;
+    private final List<UnitsHelp> listNameUnits;
     private final List<String> listName;
 
     private Visibility visibility;
 
     public EngineHelp(){
-        this.id = IdGUI.ID_HELP;
-        this.linkBack = IdGUI.ID_BACK;
+        this.mainAction = ActionGUI.ID_HELP;
+        this.actionBack = ActionGUI.ID_BACK;
         this.listName = List.of(DesignJComponent.STRING_BACK_BUTTON);
-        this.listNameHelpUnits = Arrays.asList(UnitsHelp.values());
+        this.listNameUnits = Arrays.asList(UnitsHelp.values());
         this.visibility = Visibility.HIDDEN;
     }
 
     @Override
-    public IdGUI getId() {
-        return this.id;
+    public ActionGUI getMainAction() {
+        return this.mainAction;
+    }
+
+    @Override
+    public Rectangle getRectangle() {
+        return RECTANGLE;
     }
 
     @Override
     public Visibility getVisibility() {
         return this.visibility;
+    }
+
+    @Override
+    public List<ActionGUI> getLinks() {
+        return List.of(this.actionBack);
     }
 
     @Override
@@ -52,30 +63,25 @@ public class EngineHelp implements EngineGUI {
         return this.visibility.isVisible();
     }
 
-    @Override
-    public List<IdGUI> getLinks() {
-        return List.of(this.linkBack);
-    }
-
 
     public String getTitle() {
-        return DesignTitleGUI.TITLE_HELP;
+        return TITLE;
     }
 
-    public IdGUI getBackLink(){
-        return this.linkBack;
+    public ActionGUI getBackLink(){
+        return this.actionBack;
     }
 
-    public List<String> getListNameHelpUnits() {
-        return this.listNameHelpUnits.stream().map(UnitsHelp::getName).collect(Collectors.toList());
+    public List<String> getListNameUnits() {
+        return this.listNameUnits.stream().map(UnitsHelp::getName).collect(Collectors.toList());
     }
 
     public List<String> getListNameButtons() {
         return this.listName;
     }
 
-    public List<ImageDesign> getPathIconUnit(final String unitName){
-        return this.listNameHelpUnits.stream().filter(unit -> unit.getName().contentEquals(unitName))
+    public List<EngineImage> getPathIconUnit(final String unitName){
+        return this.listNameUnits.stream().filter(unit -> unit.getName().contentEquals(unitName))
                 .map(UnitsHelp::getPathFiles)
                 .flatMap(List::stream)
                 .collect(Collectors.toList());

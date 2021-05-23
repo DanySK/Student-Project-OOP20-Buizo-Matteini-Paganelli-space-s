@@ -9,9 +9,9 @@ import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 import spaceSurvival.model.MovementKeyListener;
 import spaceSurvival.model.worldEcollisioni.WorldEventListener;
-import spaceSurvival.utilities.IdGUI;
-import spaceSurvival.view.GUI.GUI;
-import spaceSurvival.view.GUI.game.GUIGame;
+import spaceSurvival.utilities.ActionGUI;
+import spaceSurvival.view.GUI;
+import spaceSurvival.view.game.GUIGame;
 
 import java.awt.event.KeyListener;
 import java.awt.geom.AffineTransform;
@@ -27,14 +27,56 @@ public class CtrlGame implements ControllerGUI{
         this.gui = gui;
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
 
-        this.init();
-        this.updateHUD();
+        this.assignAction();
+        this.assignStrings();
         this.switchGUI.turn(this.engine.getVisibility());
     }
 
-    private void init(){
-        this.gui.setId(this.engine.getId());
-        this.gui.setIdButtons(this.engine.getLinks());
+    @Override
+    public void assignAction() {
+        this.gui.setMainAction(this.engine.getMainAction());
+        this.gui.setIdButtons(this.engine.getMainAction(), this.engine.getLinks());
+    }
+
+    @Override
+    public void assignStrings() {
+        this.updateHUD();
+    }
+
+    @Override
+    public void assignRectangle() {
+        this.gui.setBounds(this.engine.getRectangle());
+    }
+
+    @Override
+    public ActionGUI getMainAction() {
+        return this.engine.getMainAction();
+    }
+
+    @Override
+    public GUI getGUI() {
+        return this.gui;
+    }
+
+    @Override
+    public EngineGUI getEngine() {
+        return this.engine;
+    }
+
+
+    @Override
+    public boolean isVisibility() {
+        return this.engine.isVisible();
+    }
+
+    @Override
+    public void turn(final Visibility visibility) {
+        this.switchGUI.turn(visibility);
+    }
+
+    @Override
+    public void changeVisibility() {
+        this.switchGUI.changeVisibility();
     }
 
     public void updateHUD(){
@@ -109,35 +151,5 @@ public class CtrlGame implements ControllerGUI{
 
     public void moveShip(){
         this.engine.moveShip();
-    }
-
-    @Override
-    public IdGUI getIdGUI() {
-        return this.engine.getId();
-    }
-
-    @Override
-    public GUI getGUI() {
-        return this.gui;
-    }
-
-    @Override
-    public EngineGUI getEngine() {
-        return this.engine;
-    }
-
-    @Override
-    public boolean isVisibility() {
-        return this.engine.isVisible();
-    }
-
-    @Override
-    public void turn(final Visibility visibility) {
-        this.switchGUI.turn(visibility);
-    }
-
-    @Override
-    public void changeVisibility() {
-        this.switchGUI.changeVisibility();
     }
 }

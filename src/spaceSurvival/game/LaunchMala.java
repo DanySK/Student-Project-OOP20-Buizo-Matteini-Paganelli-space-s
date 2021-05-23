@@ -1,10 +1,12 @@
 package spaceSurvival.game;
 
 import spaceSurvival.controller.GUI.CtrlLoading;
-import spaceSurvival.factorys.StaticFactoryEngineGUI;
-import spaceSurvival.factorys.StaticFactoryGUI;
+import spaceSurvival.factories.StaticFactoryEngineGUI;
+import spaceSurvival.factories.StaticFactoryGUI;
 import spaceSurvival.model.GUI.Visibility;
 import spaceSurvival.model.EngineMalaLoop;
+
+import java.awt.*;
 
 public class LaunchMala {
 
@@ -14,6 +16,7 @@ public class LaunchMala {
         ctrlLoading.start();
 
         final EngineMalaLoop engine = new EngineMalaLoop();
+
 
         while(!ctrlLoading.isLoad()){
             try {

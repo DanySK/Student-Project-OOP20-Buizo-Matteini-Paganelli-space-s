@@ -18,4 +18,14 @@ public enum Difficulty {
     public String getName(){
         return this.name;
     }
+
+
+
+    @Override
+    public String toString() {
+        return "Difficulty{" +
+                "name='" + name + '\'' +
+                ", difficult=" + difficult +
+                '}';
+    }
 }

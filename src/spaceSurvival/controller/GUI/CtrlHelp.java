@@ -4,9 +4,9 @@ import spaceSurvival.controller.GUI.command.SwitchGUI;
 import spaceSurvival.model.GUI.EngineGUI;
 import spaceSurvival.model.GUI.Visibility;
 import spaceSurvival.model.GUI.help.EngineHelp;
-import spaceSurvival.utilities.IdGUI;
-import spaceSurvival.view.GUI.GUI;
-import spaceSurvival.view.GUI.help.GUIHelp;
+import spaceSurvival.utilities.ActionGUI;
+import spaceSurvival.view.GUI;
+import spaceSurvival.view.help.GUIHelp;
 
 public class CtrlHelp implements ControllerGUI {
     private final GUIHelp gui;
@@ -19,27 +19,37 @@ public class CtrlHelp implements ControllerGUI {
         this.gui = gui;
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
 
-        this.assignId();
+        this.assignAction();
         this.assignStrings();
+        this.assignRectangle();
+
         this.switchGUI.turn(this.engine.getVisibility());
     }
 
-    private void assignId() {
-        this.gui.setId(this.engine.getId());
-        this.gui.setIdBtnBack(this.engine.getBackLink());
-    }
-
-    private void assignStrings() {
-        this.gui.setTitleGUI(this.engine.getTitle());
-        this.gui.setNameUnitHelps(this.engine.getListNameHelpUnits());
-        this.gui.setNameButtons(this.engine.getListNameButtons());
-        this.engine.getListNameHelpUnits().forEach(nameUnit ->
-                this.gui.addIconInUnitHelp(nameUnit, this.engine.getPathIconUnit(nameUnit)));
+    @Override
+    public void assignAction() {
+        this.gui.setMainAction(this.engine.getMainAction());
+        this.gui.setActionBtnBack(this.engine.getMainAction(), this.engine.getBackLink());
     }
 
     @Override
-    public IdGUI getIdGUI() {
-        return this.engine.getId();
+    public void assignStrings() {
+        this.gui.setTitleGUI(this.engine.getTitle());
+        this.gui.setNameUnit(this.engine.getListNameUnits());
+        this.gui.setBtnNames(this.engine.getListNameButtons());
+        this.engine.getListNameUnits().forEach(nameUnit ->
+                this.gui.addNameAndIconInUnit(nameUnit, this.engine.getPathIconUnit(nameUnit)));
+    }
+
+    @Override
+    public void assignRectangle() {
+        this.gui.setBounds(this.engine.getRectangle());
+    }
+
+
+    @Override
+    public ActionGUI getMainAction() {
+        return this.engine.getMainAction();
     }
 
     @Override
@@ -51,6 +61,7 @@ public class CtrlHelp implements ControllerGUI {
     public EngineGUI getEngine() {
         return this.engine;
     }
+
 
     @Override
     public boolean isVisibility() {

@@ -2,12 +2,15 @@ package spaceSurvival.model.GUI.loading;
 
 import spaceSurvival.model.GUI.EngineGUI;
 import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.utilities.IdGUI;
+import spaceSurvival.utilities.ActionGUI;
+import spaceSurvival.utilities.dimension.Screen;
 
+import java.awt.*;
 import java.util.List;
 
 public class EngineLoading implements EngineGUI {
-    private final IdGUI id;
+    public static final Rectangle RECTANGLE = Screen.RECTANGLE_FULLSCREEN;
+    private final ActionGUI id;
 
     private int loading;
     private boolean load;
@@ -15,15 +18,20 @@ public class EngineLoading implements EngineGUI {
     private Visibility visibility;
 
     public EngineLoading(){
-        this.id = IdGUI.ID_LOADING;
+        this.id = ActionGUI.ID_LOADING;
         this.loading = 0;
         this.load = false;
         this.visibility = Visibility.HIDDEN;
     }
 
     @Override
-    public IdGUI getId() {
+    public ActionGUI getMainAction() {
         return this.id;
+    }
+
+    @Override
+    public Rectangle getRectangle() {
+        return null;
     }
 
     @Override
@@ -42,7 +50,7 @@ public class EngineLoading implements EngineGUI {
     }
 
     @Override
-    public List<IdGUI> getLinks() {
+    public List<ActionGUI> getLinks() {
         return List.of();
     }
 

@@ -4,9 +4,9 @@ import spaceSurvival.controller.GUI.command.SwitchGUI;
 import spaceSurvival.model.GUI.EngineGUI;
 import spaceSurvival.model.GUI.Visibility;
 import spaceSurvival.model.GUI.scoreboard.EngineScoreboard;
-import spaceSurvival.utilities.IdGUI;
-import spaceSurvival.view.GUI.GUI;
-import spaceSurvival.view.GUI.scoreboard.GUIScoreboard;
+import spaceSurvival.utilities.ActionGUI;
+import spaceSurvival.view.GUI;
+import spaceSurvival.view.scoreboard.GUIScoreboard;
 
 public class CtrlScoreboard implements ControllerGUI {
     private final GUIScoreboard gui;
@@ -19,24 +19,33 @@ public class CtrlScoreboard implements ControllerGUI {
         this.engine = engine;
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
 
-        this.assignId();
+        this.assignAction();
         this.assignStrings();
+        this.assignRectangle();
         this.switchGUI.turn(this.engine.getVisibility());
     }
 
-    private void assignId(){
-        this.gui.setId(this.engine.getId());
-        this.gui.setBtnBackID(this.engine.getBackLink());
+    @Override
+    public void assignAction() {
+        this.gui.setMainAction(this.engine.getMainAction());
+        this.gui.setBtnBackID(this.engine.getMainAction(), this.engine.getBackLink());
+
     }
 
-    private void assignStrings(){
+    @Override
+    public void assignStrings(){
         this.gui.setTitleGUI(this.engine.getTitleGUI());
         this.gui.setNameButtons(this.engine.getListName());
     }
 
     @Override
-    public IdGUI getIdGUI() {
-        return this.engine.getId();
+    public void assignRectangle() {
+        this.gui.setBounds(this.engine.getRectangle());
+    }
+
+    @Override
+    public ActionGUI getMainAction() {
+        return this.engine.getMainAction();
     }
 
     @Override
