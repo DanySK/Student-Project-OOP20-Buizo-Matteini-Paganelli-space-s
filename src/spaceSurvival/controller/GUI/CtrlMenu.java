@@ -25,19 +25,23 @@ public class CtrlMenu implements ControllerGUI {
         this.switchGUI.turn(this.engine.getVisibility());
     }
 
+    @Override
     public void assignAction(){
         this.gui.setMainAction(this.engine.getMainAction());
         this.gui.setBtnActions(this.engine.getMainAction(), this.engine.getLinks());
     }
 
+    @Override
     public void assignStrings(){
         this.gui.setTitleGUI(this.engine.getTitleGUI());
         this.gui.setNameButtons(this.engine.getListName());
     }
 
+    @Override
     public void assignRectangle(){
         this.gui.setBounds(this.engine.getRectangle());
     }
+
 
     @Override
     public ActionGUI getMainAction() {
@@ -53,6 +57,7 @@ public class CtrlMenu implements ControllerGUI {
     public EngineGUI getEngine() {
         return this.engine;
     }
+
 
     @Override
     public boolean isVisibility() {

@@ -3,7 +3,6 @@ package spaceSurvival.view.pause.factoryMethod;
 import spaceSurvival.model.GUI.pause.EnginePause;
 import spaceSurvival.view.utilities.DesignGraphics;
 import spaceSurvival.utilities.dimension.ScaleOf;
-import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.utilities.pathImage.Background;
 import spaceSurvival.view.pause.FactoryGUIPause;
 import spaceSurvival.view.pause.GUIPause;
@@ -25,13 +24,10 @@ public class GUIPauseStandard implements FactoryGUIPause {
         concrete.setFontButtons(DesignGraphics.FONT_MEDIUM_STANDARD);
         concrete.setBackgroundButtons(Color.WHITE);
 
-
         concrete.setBorder(DesignGraphics.color4, 3);
-        concrete.setBounds(Screen.RECTANGLE_MINI);
         concrete.setImageBackground(Background.PAUSE);
 
         this.createGraphics(concrete);
-
 
         return concrete;
     }
@@ -42,11 +38,11 @@ public class GUIPauseStandard implements FactoryGUIPause {
         concrete.getBtnActionLinks().forEach(btn -> btn.setFocusable(false));
         concrete.add(FactoryGUIs.encapsulatesInPanelFlow(concrete.getLbTitle()), BorderLayout.NORTH);
 
-        concrete.add(FactoryGUIs.createPanelGridBagUnionComponentsVertical(concrete.getBtnActionLinks(), 5),
-                BorderLayout.CENTER);
+        concrete.add(FactoryGUIs.createPanelGridBagUnionComponentsVertical(concrete.getBtnActionLinks(),
+                FactoryGUIs.MEDIUM_INSET), BorderLayout.CENTER);
 
         for (int i = 0; i < concrete.getBtnActionLinks().size(); i++){
-            FactoryGUIs.setIconJButtonFromRate(concrete.getButton(i), IconsButton.values()[i].getPath(),
+            FactoryGUIs.setIconJButtonFromRate(concrete.getActionBtn(i), IconsButton.values()[i].getPath(),
                     ScaleOf.ICON_SMALL, EnginePause.RECTANGLE.width);
         }
 

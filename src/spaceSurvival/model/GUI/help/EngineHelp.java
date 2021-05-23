@@ -14,27 +14,28 @@ import java.util.stream.Collectors;
 
 public class EngineHelp implements EngineGUI {
     public static final Rectangle RECTANGLE = Screen.RECTANGLE_MEDIUM;
+    public static final int N_UNIT = 3;
     public static final String TITLE = "HELP";
 
-    private final ActionGUI id;
-    private final ActionGUI linkBack;
+    private final ActionGUI mainAction;
+    private final ActionGUI actionBack;
 
-    private final List<UnitsHelp> listNameHelpUnits;
+    private final List<UnitsHelp> listNameUnits;
     private final List<String> listName;
 
     private Visibility visibility;
 
     public EngineHelp(){
-        this.id = ActionGUI.ID_HELP;
-        this.linkBack = ActionGUI.ID_BACK;
+        this.mainAction = ActionGUI.ID_HELP;
+        this.actionBack = ActionGUI.ID_BACK;
         this.listName = List.of(DesignJComponent.STRING_BACK_BUTTON);
-        this.listNameHelpUnits = Arrays.asList(UnitsHelp.values());
+        this.listNameUnits = Arrays.asList(UnitsHelp.values());
         this.visibility = Visibility.HIDDEN;
     }
 
     @Override
     public ActionGUI getMainAction() {
-        return this.id;
+        return this.mainAction;
     }
 
     @Override
@@ -48,6 +49,11 @@ public class EngineHelp implements EngineGUI {
     }
 
     @Override
+    public List<ActionGUI> getLinks() {
+        return List.of(this.actionBack);
+    }
+
+    @Override
     public void setVisibility(final Visibility visibility) {
         this.visibility = visibility;
     }
@@ -57,22 +63,17 @@ public class EngineHelp implements EngineGUI {
         return this.visibility.isVisible();
     }
 
-    @Override
-    public List<ActionGUI> getLinks() {
-        return List.of(this.linkBack);
-    }
-
 
     public String getTitle() {
         return TITLE;
     }
 
     public ActionGUI getBackLink(){
-        return this.linkBack;
+        return this.actionBack;
     }
 
-    public List<String> getListNameHelpUnits() {
-        return this.listNameHelpUnits.stream().map(UnitsHelp::getName).collect(Collectors.toList());
+    public List<String> getListNameUnits() {
+        return this.listNameUnits.stream().map(UnitsHelp::getName).collect(Collectors.toList());
     }
 
     public List<String> getListNameButtons() {
@@ -80,7 +81,7 @@ public class EngineHelp implements EngineGUI {
     }
 
     public List<EngineImage> getPathIconUnit(final String unitName){
-        return this.listNameHelpUnits.stream().filter(unit -> unit.getName().contentEquals(unitName))
+        return this.listNameUnits.stream().filter(unit -> unit.getName().contentEquals(unitName))
                 .map(UnitsHelp::getPathFiles)
                 .flatMap(List::stream)
                 .collect(Collectors.toList());

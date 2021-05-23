@@ -28,7 +28,7 @@ public class EngineSettings implements EngineGUI {
             StateDifficult.ON, StateDifficult.OFF);
 
     private final ActionGUI mainAction;
-    private final ActionGUI linkBack;
+    private final ActionGUI actionBack;
     private final List<UnitSettingsGUI> unitNames;
 
     private final List<String> listSkin;
@@ -41,7 +41,7 @@ public class EngineSettings implements EngineGUI {
 
     public EngineSettings(){
         this.mainAction = ActionGUI.ID_SETTING;
-        this.linkBack = ActionGUI.ID_BACK;
+        this.actionBack = ActionGUI.ID_BACK;
 
         this.listSkin = Arrays.stream(SkinSpaceShip.values()).map(SkinSpaceShip::getSkin).collect(Collectors.toList());
         this.chooseSkin = INDEX_INIT_SKIN;
@@ -80,16 +80,16 @@ public class EngineSettings implements EngineGUI {
 
     @Override
     public List<ActionGUI> getLinks() {
-        return List.of(this.linkBack);
+        return List.of(this.actionBack);
     }
 
 
-    public int getChooseSkin() {
-        return this.chooseSkin;
+    public List<Difficulty> getListDifficult(){
+        return Arrays.asList(Difficulty.values());
     }
 
     public ActionGUI getBackLink(){
-        return this.linkBack;
+        return this.actionBack;
     }
 
     public String getTitleGUI() {
@@ -101,7 +101,7 @@ public class EngineSettings implements EngineGUI {
     }
 
     public String getNameBtnBack(){
-        return this.linkBack.getIdName();
+        return this.actionBack.getIdName();
     }
 
     public EngineImage getSkinSpaceShip() {

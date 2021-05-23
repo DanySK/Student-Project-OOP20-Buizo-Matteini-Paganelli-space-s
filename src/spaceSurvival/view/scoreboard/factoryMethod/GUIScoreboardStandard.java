@@ -1,5 +1,7 @@
 package spaceSurvival.view.scoreboard.factoryMethod;
 
+import spaceSurvival.model.GUI.scoreboard.EngineScoreboard;
+import spaceSurvival.model.GUI.settings.EngineSettings;
 import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.utilities.pathImage.Background;
@@ -23,7 +25,6 @@ public class GUIScoreboardStandard implements FactoryGUIScoreboard {
         scoreboardConcrete.getTxtSearchName().setColumns(DesignGraphics.SIZE_COLUMNS_TEXT);
         scoreboardConcrete.setFontGUI(DesignGraphics.FONT_MEDIUM_STANDARD);
         scoreboardConcrete.setForegroundGUI(DesignGraphics.color4);
-        scoreboardConcrete.setBounds(Screen.RECTANGLE_MEDIUM);
         scoreboardConcrete.setBorder(DesignGraphics.color4, 3);
         scoreboardConcrete.setImageBackground(Background.MAIN);
         this.createGraphics(scoreboardConcrete);
@@ -43,16 +44,16 @@ public class GUIScoreboardStandard implements FactoryGUIScoreboard {
         FactoryGUIs.setTransparentDesignJButton(scoreboardConcrete.getBtnBack());
 
         FactoryGUIs.setIconJButtonFromRate(scoreboardConcrete.getBtnSearch(), Icon.SEARCH,
-                ScaleOf.ICON_MEDIUM, scoreboardConcrete.getWidth());
+                ScaleOf.ICON_MEDIUM, EngineScoreboard.RECTANGLE.width);
         FactoryGUIs.setIconJButtonFromRate(scoreboardConcrete.getBtnBack(), Icon.BACK,
-                ScaleOf.ICON_MEDIUM, scoreboardConcrete.getWidth());
+                ScaleOf.ICON_MEDIUM, EngineScoreboard.RECTANGLE.width);
 
         JPanel panelScore = new JPanel(new BorderLayout()) {{ setOpaque(false); }};
 
         panelScore.add(FactoryGUIs.createPanelFlowUnionComponents(List.of(scoreboardConcrete.getTxtSearchName(),
                 scoreboardConcrete.getBtnSearch())), BorderLayout.NORTH);
 
-        panelScore.add(FactoryGUIs.encapsulatesInPanelFlow(scoreboardConcrete.getScoreboard()),
+        panelScore.add(FactoryGUIs.encapsulatesInPanelFlow(scoreboardConcrete.getScrollerScoreboard()),
                 BorderLayout.CENTER);
 
         scoreboardConcrete.add(panelScore, BorderLayout.CENTER);

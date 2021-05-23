@@ -19,23 +19,33 @@ public class CtrlHelp implements ControllerGUI {
         this.gui = gui;
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
 
-        this.assignId();
+        this.assignAction();
         this.assignStrings();
+        this.assignRectangle();
+
         this.switchGUI.turn(this.engine.getVisibility());
     }
 
-    private void assignId() {
+    @Override
+    public void assignAction() {
         this.gui.setMainAction(this.engine.getMainAction());
-        this.gui.setIdBtnBack(this.engine.getMainAction(), this.engine.getBackLink());
+        this.gui.setActionBtnBack(this.engine.getMainAction(), this.engine.getBackLink());
     }
 
-    private void assignStrings() {
+    @Override
+    public void assignStrings() {
         this.gui.setTitleGUI(this.engine.getTitle());
-        this.gui.setNameUnitHelps(this.engine.getListNameHelpUnits());
-        this.gui.setNameButtons(this.engine.getListNameButtons());
-        this.engine.getListNameHelpUnits().forEach(nameUnit ->
-                this.gui.addIconInUnitHelp(nameUnit, this.engine.getPathIconUnit(nameUnit)));
+        this.gui.setNameUnit(this.engine.getListNameUnits());
+        this.gui.setBtnNames(this.engine.getListNameButtons());
+        this.engine.getListNameUnits().forEach(nameUnit ->
+                this.gui.addNameAndIconInUnit(nameUnit, this.engine.getPathIconUnit(nameUnit)));
     }
+
+    @Override
+    public void assignRectangle() {
+        this.gui.setBounds(this.engine.getRectangle());
+    }
+
 
     @Override
     public ActionGUI getMainAction() {
@@ -51,6 +61,7 @@ public class CtrlHelp implements ControllerGUI {
     public EngineGUI getEngine() {
         return this.engine;
     }
+
 
     @Override
     public boolean isVisibility() {

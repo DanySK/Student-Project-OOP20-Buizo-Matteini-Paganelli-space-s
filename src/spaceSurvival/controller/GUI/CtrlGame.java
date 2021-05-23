@@ -27,14 +27,56 @@ public class CtrlGame implements ControllerGUI{
         this.gui = gui;
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
 
-        this.init();
-        this.updateHUD();
+        this.assignAction();
+        this.assignStrings();
         this.switchGUI.turn(this.engine.getVisibility());
     }
 
-    private void init(){
+    @Override
+    public void assignAction() {
         this.gui.setMainAction(this.engine.getMainAction());
         this.gui.setIdButtons(this.engine.getMainAction(), this.engine.getLinks());
+    }
+
+    @Override
+    public void assignStrings() {
+        this.updateHUD();
+    }
+
+    @Override
+    public void assignRectangle() {
+        this.gui.setBounds(this.engine.getRectangle());
+    }
+
+    @Override
+    public ActionGUI getMainAction() {
+        return this.engine.getMainAction();
+    }
+
+    @Override
+    public GUI getGUI() {
+        return this.gui;
+    }
+
+    @Override
+    public EngineGUI getEngine() {
+        return this.engine;
+    }
+
+
+    @Override
+    public boolean isVisibility() {
+        return this.engine.isVisible();
+    }
+
+    @Override
+    public void turn(final Visibility visibility) {
+        this.switchGUI.turn(visibility);
+    }
+
+    @Override
+    public void changeVisibility() {
+        this.switchGUI.changeVisibility();
     }
 
     public void updateHUD(){
@@ -109,35 +151,5 @@ public class CtrlGame implements ControllerGUI{
 
     public void moveShip(){
         this.engine.moveShip();
-    }
-
-    @Override
-    public ActionGUI getMainAction() {
-        return this.engine.getMainAction();
-    }
-
-    @Override
-    public GUI getGUI() {
-        return this.gui;
-    }
-
-    @Override
-    public EngineGUI getEngine() {
-        return this.engine;
-    }
-
-    @Override
-    public boolean isVisibility() {
-        return this.engine.isVisible();
-    }
-
-    @Override
-    public void turn(final Visibility visibility) {
-        this.switchGUI.turn(visibility);
-    }
-
-    @Override
-    public void changeVisibility() {
-        this.switchGUI.changeVisibility();
     }
 }

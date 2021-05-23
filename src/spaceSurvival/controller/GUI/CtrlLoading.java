@@ -23,6 +23,21 @@ public class CtrlLoading extends Thread implements ControllerGUI{
         this.turn(Visibility.VISIBLE);
     }
 
+    @Override
+    public void assignAction() {
+
+    }
+
+    @Override
+    public void assignStrings() {
+
+    }
+
+    @Override
+    public void assignRectangle() {
+
+    }
+
 
     @Override
     public void run() {
@@ -38,18 +53,6 @@ public class CtrlLoading extends Thread implements ControllerGUI{
             this.sleep(1);
         }
 
-    }
-
-    public boolean isLoad(){
-        return this.engine.isLoad();
-    }
-
-    private void sleep(final int millis){
-        try {
-            Thread.sleep(millis);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     public ActionGUI getMainAction(){
@@ -79,5 +82,18 @@ public class CtrlLoading extends Thread implements ControllerGUI{
     @Override
     public void changeVisibility() {
         this.switchGUI.changeVisibility();
+    }
+
+
+    public boolean isLoad(){
+        return this.engine.isLoad();
+    }
+
+    private void sleep(final int millis){
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

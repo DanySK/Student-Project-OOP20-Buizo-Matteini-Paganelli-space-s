@@ -20,20 +20,28 @@ public class CtrlPause implements ControllerGUI{
 
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
 
-        this.assignId();
+        this.assignAction();
         this.assignStrings();
+        this.assignRectangle();
 
         this.switchGUI.turn(this.engine.getVisibility());
     }
 
-    private void assignId(){
+    @Override
+    public void assignAction() {
         this.gui.setMainAction(this.engine.getMainAction());
-        this.gui.setIdButtons(this.engine.getMainAction(), this.engine.getLinks());
+        this.gui.setActionButtons(this.engine.getMainAction(), this.engine.getLinks());
     }
 
-    private void assignStrings(){
+    @Override
+    public void assignStrings(){
         this.gui.setTitleGUI(this.engine.getTitleGUI());
         this.gui.setNameButtons(this.engine.getListName());
+    }
+
+    @Override
+    public void assignRectangle() {
+        this.gui.setBounds(this.engine.getRectangle());
     }
 
     @Override

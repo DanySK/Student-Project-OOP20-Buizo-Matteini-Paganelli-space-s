@@ -14,6 +14,7 @@ public interface GraphicsGUIMenu {
 
     public void setBorder(final Color color, final int thickness);
 
+
     public void setColumnsNamePlayer(final int sizeColumn);
 
 }

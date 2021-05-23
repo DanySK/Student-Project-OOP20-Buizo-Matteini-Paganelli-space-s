@@ -1,6 +1,7 @@
 package spaceSurvival.view.help.concrete;
 
 import spaceSurvival.model.EngineImage;
+import spaceSurvival.model.GUI.help.EngineHelp;
 import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.view.AbstractGUI;
 import spaceSurvival.view.help.GUIHelp;
@@ -15,7 +16,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class GUIHelpConcrete extends AbstractGUI implements GUIHelp {
-    private static final int N_UNIT_HELP = 3;
     private final JLabel lbTitle;
     private final List<UnitHelp> unitHelps;
     private final BtnAction btnBack;
@@ -25,7 +25,7 @@ public class GUIHelpConcrete extends AbstractGUI implements GUIHelp {
         this.lbTitle = new JLabel();
         this.btnBack = new BtnAction();
         this.unitHelps = Stream.generate(UnitHelp::new)
-                .limit(N_UNIT_HELP).collect(Collectors.toList());
+                .limit(EngineHelp.N_UNIT).collect(Collectors.toList());
     }
 
     @Override
@@ -35,25 +35,25 @@ public class GUIHelpConcrete extends AbstractGUI implements GUIHelp {
 
 
     @Override
-    public void setIdBtnBack(final ActionGUI mainAction, final ActionGUI intoID) {
+    public void setActionBtnBack(final ActionGUI mainAction, final ActionGUI intoID) {
         this.btnBack.setActionCurrent(mainAction);
         this.btnBack.setActionNext(intoID);
     }
 
     @Override
-    public void setNameUnitHelps(final List<String> listName){
+    public void setNameUnit(final List<String> listName){
         AtomicInteger i = new AtomicInteger();
         this.unitHelps.forEach(unit -> unit.setTitleUnit(listName.get(i.getAndIncrement())));
     }
 
     @Override
-    public void setNameButtons(final List<String> listName) {
+    public void setBtnNames(final List<String> listName) {
         int i = 0;
         this.btnBack.setText(listName.get(i));
     }
 
     @Override
-    public void addIconInUnitHelp(final String panelName, final List<EngineImage> engineImages) {
+    public void addNameAndIconInUnit(final String panelName, final List<EngineImage> engineImages) {
         this.unitHelps.stream().filter(unit -> unit.getTitleUnit().contentEquals(panelName))
                 .forEach(unit -> engineImages.forEach(engine -> {
                     engine.setScale(engine.getScaleOf(), super.getWidth());

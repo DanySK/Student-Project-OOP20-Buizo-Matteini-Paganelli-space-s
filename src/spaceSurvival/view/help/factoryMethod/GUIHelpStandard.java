@@ -1,5 +1,6 @@
 package spaceSurvival.view.help.factoryMethod;
 
+import spaceSurvival.model.GUI.help.EngineHelp;
 import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.pathImage.Background;
 import spaceSurvival.utilities.pathImage.Icon;
@@ -22,7 +23,6 @@ public class GUIHelpStandard implements FactoryGUIHelp {
         helpGUIConcrete.setFontTitleGUI(DesignGraphics.getFontForTitle(DesignGraphics.SIZE_FONT_H1));
         helpGUIConcrete.setFontGUI(DesignGraphics.FONT_MEDIUM_STANDARD);
         helpGUIConcrete.setForegroundGUI(DesignGraphics.color4);
-        helpGUIConcrete.setBounds(Screen.RECTANGLE_MEDIUM);
         helpGUIConcrete.setBorder(DesignGraphics.color4, 3);
         helpGUIConcrete.setImageBackground(Background.MAIN);
         this.createGraphics(helpGUIConcrete);
@@ -41,6 +41,6 @@ public class GUIHelpStandard implements FactoryGUIHelp {
 
         FactoryGUIs.setTransparentDesignJButton(helpConcrete.getBtnBack());
         FactoryGUIs.setIconJButtonFromRate(helpConcrete.getBtnBack(), Icon.BACK,
-                ScaleOf.ICON_MEDIUM, helpConcrete.getWidth());
+                ScaleOf.ICON_MEDIUM, EngineHelp.RECTANGLE.width);
     }
 }

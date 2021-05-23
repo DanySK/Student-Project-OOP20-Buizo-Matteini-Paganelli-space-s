@@ -5,6 +5,7 @@ import spaceSurvival.model.GUI.settings.Difficulty;
 import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.view.AbstractGUI;
 import spaceSurvival.view.settings.GUISettings;
+import spaceSurvival.view.settings.utilities.JRadioDifficult;
 import spaceSurvival.view.settings.utilities.PanelDifficult;
 import spaceSurvival.view.settings.utilities.PanelSkin;
 import spaceSurvival.view.utilities.*;
@@ -39,7 +40,7 @@ public class ConcreteGUISettings extends AbstractGUI implements GUISettings {
     }
 
     @Override
-    public List<JRadioButton> getRadioBtnUnitDifficult() {
+    public List<JRadioDifficult> getRadioBtnUnitDifficult() {
         return this.panelDifficult.getDifficult();
     }
 
@@ -48,6 +49,11 @@ public class ConcreteGUISettings extends AbstractGUI implements GUISettings {
         int i = 0;
         this.panelSkin.setLbTitle(listName.get(i++));
         this.panelDifficult.setTitle(listName.get(i));
+    }
+
+    @Override
+    public void setDifficultNames(List<Difficulty> listDifficult) {
+        this.panelDifficult.setDifficultNames(listDifficult);
     }
 
     @Override

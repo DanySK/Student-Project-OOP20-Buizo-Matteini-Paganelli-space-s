@@ -11,24 +11,24 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class EnginePause implements EngineGUI{
-    public static final Rectangle RECTANGLE = Screen.RECTANGLE_MEDIUM;
+    public static final Rectangle RECTANGLE = Screen.RECTANGLE_MINI;
     public static final String TITLE = "PAUSE";
     public static final int N_BUTTONS = 4;
 
-    private final ActionGUI id;
+    private final ActionGUI mainAction;
     private final List<LinksPause>  linkButtons;
 
     private Visibility visibility;
 
     public EnginePause(){
-        this.id = ActionGUI.ID_PAUSE;
+        this.mainAction = ActionGUI.ID_PAUSE;
         this.linkButtons = Arrays.asList(LinksPause.values());
         this.visibility = Visibility.HIDDEN;
     }
 
     @Override
     public ActionGUI getMainAction() {
-        return this.id;
+        return this.mainAction;
     }
 
     @Override
@@ -56,6 +56,7 @@ public class EnginePause implements EngineGUI{
         return this.linkButtons.stream().map(LinksPause::getIdGUI).collect(Collectors.toList());
     }
 
+
     public String getTitleGUI(){
         return TITLE;
     }
@@ -63,4 +64,6 @@ public class EnginePause implements EngineGUI{
     public List<String> getListName(){
         return this.linkButtons.stream().map(LinksPause::getName).collect(Collectors.toList());
     }
+
+
 }

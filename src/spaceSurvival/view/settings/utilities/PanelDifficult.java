@@ -8,25 +8,34 @@ import java.awt.*;
 import java.util.List;
 
 public class PanelDifficult extends JPanel{
-    private JLabel lbTitle = new JLabel();
-    private ButtonGroup group = new ButtonGroup();
-    private JRadioButton rbtEasy = new JRadioButton("Easy");
-    private JRadioButton rbtMedium = new JRadioButton("Medium");
-    private JRadioButton rbtHard = new JRadioButton("Hard");
+    private final JLabel lbTitle;
+    private final ButtonGroup group;
+    private final JRadioDifficult rbtEasy;
+    private final JRadioDifficult rbtMedium;
+    private final JRadioDifficult rbtHard;
 
     public PanelDifficult(){
         super(new BorderLayout());
         super.setFocusable(false);
         super.setOpaque(false);
-        this.add(FactoryGUIs.encapsulatesInPanelFlow(this.lbTitle), BorderLayout.NORTH);
-        this.add(FactoryGUIs.createPanelFlowUnionComponents(List.of(this.rbtEasy,this.rbtMedium,this.rbtHard)), BorderLayout.CENTER);
+
+        this.lbTitle = new JLabel();
+        this.group = new ButtonGroup();
+        this.rbtEasy = new JRadioDifficult();
+        this.rbtMedium = new JRadioDifficult();
+        this.rbtHard = new JRadioDifficult();
+
+        this.createGraphics();
         this.createGroup();
     }
 
+    private void createGraphics(){
+        this.add(FactoryGUIs.encapsulatesInPanelFlow(this.lbTitle), BorderLayout.NORTH);
+        this.add(FactoryGUIs.createPanelFlowUnionComponents(List.of(this.rbtEasy,this.rbtMedium,this.rbtHard)), BorderLayout.CENTER);
+
+    }
+
     private void createGroup(){
-        this.rbtEasy.setOpaque(false);
-        this.rbtMedium.setOpaque(false);
-        this.rbtHard.setOpaque(false);
         this.group.add(this.rbtEasy);
         this.group.add(this.rbtMedium);
         this.group.add(this.rbtHard);
@@ -53,19 +62,21 @@ public class PanelDifficult extends JPanel{
         this.rbtHard.setForeground(color);
     }
 
-    public void setFocusable(final boolean focusable){
-        this.rbtEasy.setFocusable(focusable);
-        this.rbtMedium.setFocusable(focusable);
-        this.rbtHard.setFocusable(focusable);
+    public void setDifficultNames(final List<Difficulty> listDifficult){
+        List<JRadioDifficult> listRadio = List.of(this.rbtEasy, this.rbtMedium, this.rbtHard);
+        for (int i = 0; i < listDifficult.size(); i++){
+            listRadio.get(i).setDifficulty(listDifficult.get(i));
+            listRadio.get(i).setText(listDifficult.get(i).getName());
+        }
     }
 
     public void setDifficult(final Difficulty difficulty) {
         List.of(this.rbtEasy, this.rbtMedium, this.rbtHard).stream()
-                .filter(rbt -> rbt.getText().contains(difficulty.getName()))
+                .filter(rbt -> rbt.getDifficulty() == difficulty)
                 .forEach(rbt -> rbt.setSelected(true));
     }
 
-    public List<JRadioButton> getDifficult(){
+    public List<JRadioDifficult> getDifficult(){
         return  List.of(this.rbtEasy, this.rbtMedium, this.rbtHard);
     }
 

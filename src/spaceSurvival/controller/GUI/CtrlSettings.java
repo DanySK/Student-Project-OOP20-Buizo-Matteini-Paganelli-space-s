@@ -3,11 +3,11 @@ package spaceSurvival.controller.GUI;
 import spaceSurvival.controller.GUI.command.SwitchGUI;
 import spaceSurvival.model.GUI.EngineGUI;
 import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.model.GUI.settings.Difficulty;
 import spaceSurvival.model.GUI.settings.EngineSettings;
 import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.view.GUI;
 import spaceSurvival.view.settings.GUISettings;
+import spaceSurvival.view.settings.utilities.JRadioDifficult;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
@@ -23,54 +23,59 @@ public class CtrlSettings implements ControllerGUI {
         this.engine = engine;
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
 
-        this.assignId();
+        this.assignAction();
         this.assignStrings();
+        this.assignRectangle();
         this.assignSettings();
     }
 
-    private void assignId() {
+    @Override
+    public void assignAction() {
         this.gui.setMainAction(this.engine.getMainAction());
         this.gui.setBtnBackID(this.engine.getMainAction(), this.engine.getBackLink());
     }
 
-    private void assignStrings() {
+    @Override
+    public void assignStrings() {
         this.gui.setTitleGUI(this.engine.getTitleGUI());
         this.gui.setUnitNames(this.engine.getListNameUnit());
         this.gui.setNameBtnBack(this.engine.getNameBtnBack());
+        this.gui.setDifficultNames(this.engine.getListDifficult());
+    }
+
+    @Override
+    public void assignRectangle() {
+        this.gui.setBounds(this.engine.getRectangle());
     }
 
     private void assignSettings() {
         this.gui.setSkinSpaceShip(this.engine.getSkinSpaceShip());
-        this.gui.getBtnUnitSkin().forEach(btn -> btn.addActionListener(this.changeSkin(btn)));
-        this.gui.getRadioBtnUnitDifficult().forEach(radio -> radio.addActionListener(this.changeDifficult(radio)));
+        this.gui.getBtnUnitSkin().forEach(btn -> btn.addActionListener(this.changeSkin()));
+        this.gui.getRadioBtnUnitDifficult().forEach(radio -> radio.addActionListener(this.changeDifficult()));
         this.gui.setDifficult(this.engine.getDifficultActivate());
     }
 
-    private ActionListener changeSkin(JButton btn){
+    private ActionListener changeSkin(){
         return e -> {
-            if(btn.getText().equals("<")){
-                CtrlSettings.this.engine.changeSkinSx();
-                System.out.println("vado a sinitraaaaaaa");
-            } else {
-                CtrlSettings.this.engine.changeSkinDx();
-                System.out.println("vado a destraaaaa");
-            }
-            System.out.println(this.engine.getChooseSkin());
+            final JButton btn = (JButton)e.getSource();
+            CtrlSettings.this.changeSkinWithDir(btn.getText());
             CtrlSettings.this.gui.setSkinSpaceShip(CtrlSettings.this.engine.getSkinSpaceShip());
         };
     }
 
-    private ActionListener changeDifficult(JRadioButton rBtn){
+    private ActionListener changeDifficult(){
         return e -> {
-            switch (rBtn.getText()) {
-                case "Easy":
-                    CtrlSettings.this.engine.setDifficult(Difficulty.EASY); break;
-                case "Medium":
-                    CtrlSettings.this.engine.setDifficult(Difficulty.MEDIUM); break;
-                case "Hard":
-                    CtrlSettings.this.engine.setDifficult(Difficulty.HARD); break;
-            }
+            JRadioDifficult radio = (JRadioDifficult)e.getSource();
+            CtrlSettings.this.engine.setDifficult(radio.getDifficulty());
         };
+    }
+
+    public void changeSkinWithDir(final String dir){
+        if(dir.contentEquals(EngineSettings.DIR_SX)){
+            this.engine.changeSkinSx();
+        } else {
+            this.engine.changeSkinDx();
+        }
     }
 
     public String getCurrentSkin(){

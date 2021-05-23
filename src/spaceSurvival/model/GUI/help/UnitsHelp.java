@@ -21,7 +21,6 @@ public enum UnitsHelp {
             new EngineImage(ScaleOf.ICON_HELP_SINGULAR, EngineHelp.RECTANGLE.width, Icon.PAUSE_KEY)));
 
     private final String name;
-
     private final List<EngineImage> pathFiles;
 
     private UnitsHelp(final String name, final List<EngineImage> pathFiles){

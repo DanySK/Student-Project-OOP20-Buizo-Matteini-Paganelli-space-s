@@ -35,21 +35,30 @@ public class CtrlSound implements ControllerGUI{
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
         this.callerAudioLoop = new CallerAudio();
 
-        this.assignId();
+        this.assignAction();
         this.assignStrings();
+        this.assignRectangle();
         this.assignSound();
+
         this.linksCallerAudioLoopWithListener();
         this.switchGUI.turn(this.engine.getVisibility());
     }
 
-    private void assignId() {
+    @Override
+    public void assignAction() {
         this.gui.setMainAction(this.engine.getMainAction());
         this.gui.setBtnBackID(this.engine.getMainAction(), this.engine.getBackLink());
     }
 
-    private void assignStrings() {
+    @Override
+    public void assignStrings() {
         this.gui.setTitleGUI(this.engine.getTitle());
         this.gui.setNameButtonBack(this.engine.getNameBack());
+    }
+
+    @Override
+    public void assignRectangle() {
+        this.gui.setBounds(this.engine.getRectangle());
     }
 
     private void assignSound(){

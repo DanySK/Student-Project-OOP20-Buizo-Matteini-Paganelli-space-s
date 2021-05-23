@@ -14,6 +14,7 @@ public class GUIScoreboardConcrete extends AbstractGUI implements GUIScoreboard 
     private final JTextField txtSearchName;
     private final JButton btnSearch;
     private final List scoreboard;
+    private final JScrollPane scrollerScoreboard;
     private final BtnAction btnBack;
 
     public GUIScoreboardConcrete(){
@@ -22,6 +23,7 @@ public class GUIScoreboardConcrete extends AbstractGUI implements GUIScoreboard 
         this.txtSearchName = new JTextField();
         this.btnSearch = new JButton();
         this.scoreboard = new List();
+        this.scrollerScoreboard = new JScrollPane(scoreboard);
         this.btnBack = new BtnAction();
     }
 
@@ -87,7 +89,11 @@ public class GUIScoreboardConcrete extends AbstractGUI implements GUIScoreboard 
     }
 
     public List getScoreboard() {
-        return scoreboard;
+        return this.scoreboard;
+    }
+
+    public JScrollPane getScrollerScoreboard(){
+        return this.scrollerScoreboard;
     }
 
     public JButton getBtnBack() {

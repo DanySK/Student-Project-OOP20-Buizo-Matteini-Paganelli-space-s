@@ -1,5 +1,6 @@
 package spaceSurvival.view.settings.factoryMethod;
 
+import spaceSurvival.model.GUI.settings.EngineSettings;
 import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.utilities.pathImage.Background;
@@ -24,7 +25,6 @@ public class GUISettingsStandard implements FactoryGUISettings {
         concreteSettings.setFontTitleUnit(DesignGraphics.FONT_BIG_STANDARD);
         concreteSettings.setFontUnit(DesignGraphics.FONT_MEDIUM_STANDARD);
         concreteSettings.setForegroundGUI(DesignGraphics.color4);
-        concreteSettings.setBounds(Screen.RECTANGLE_MEDIUM);
         concreteSettings.setBorder(DesignGraphics.color4, 3);
         concreteSettings.setImageBackground(Background.MAIN);
         this.createGraphics(concreteSettings);
@@ -38,7 +38,7 @@ public class GUISettingsStandard implements FactoryGUISettings {
         concreteSettings.add(FactoryGUIs.encapsulatesInPanelFlow(concreteSettings.getBtnBack()), BorderLayout.SOUTH);
 
         FactoryGUIs.setIconJButtonFromRate(concreteSettings.getBtnBack(), Icon.BACK,
-                ScaleOf.ICON_MEDIUM, concreteSettings.getWidth());
+                ScaleOf.ICON_MEDIUM, EngineSettings.RECTANGLE.width);
         concreteSettings.setTransparentComponent();
 
         GridBagConstraints lim = FactoryGUIs.createGBConstraintsBase();

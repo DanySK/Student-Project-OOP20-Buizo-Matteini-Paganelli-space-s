@@ -2,11 +2,11 @@ package spaceSurvival.view;
 
 import spaceSurvival.model.GUI.Visibility;
 import spaceSurvival.utilities.ActionGUI;
-import spaceSurvival.utilities.pathImage.Background;
 import spaceSurvival.view.utilities.FactoryGUIs;
 import spaceSurvival.view.utilities.JPanelImage;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 public abstract class AbstractGUI extends JFrame{
@@ -42,7 +42,10 @@ public abstract class AbstractGUI extends JFrame{
     }
 
     public void setBorder(final Color color, final int thickness){
-        this.panelBackground.setBorder(BorderFactory.createLineBorder(color, thickness));
+        final Border lobstered = BorderFactory.createLoweredBevelBorder();
+        final Border line = BorderFactory.createLineBorder(color, thickness);
+
+        this.panelBackground.setBorder(BorderFactory.createCompoundBorder(lobstered, line));
     }
 
 
@@ -55,14 +58,13 @@ public abstract class AbstractGUI extends JFrame{
 
     }
 
-    public void paint(Graphics g){
-        this.panelBackground.setBounds(super.getBounds());
-        this.panelForeground.setBounds(super.getBounds());
-        super.paintComponents(g);
-    }
-
     public void close(){
         System.exit(0);
     }
 
+    //    public void paint(Graphics g){
+//        this.panelBackground.setBounds(super.getBounds());
+//        this.panelForeground.setBounds(super.getBounds());
+//        super.paintComponents(g);
+//    }
 }

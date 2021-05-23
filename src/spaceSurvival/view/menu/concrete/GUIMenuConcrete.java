@@ -46,6 +46,7 @@ public class GUIMenuConcrete extends AbstractGUI implements GUIMenu {
         }
     }
 
+
     @Override
     public void setForegroundGUI(final Color color) {
         this.lbTitle.setForeground(color);

@@ -30,6 +30,11 @@ public class GUIPauseConcrete extends AbstractGUI implements GUIPause {
 
 
     @Override
+    public BtnAction getActionBtn(int ind) {
+        return this.links.get(ind);
+    }
+
+    @Override
     public void setNameButtons(final List<String> listNames) {
         for(int i = 0; i < EnginePause.N_BUTTONS; i++){
             this.links.get(i).setText(listNames.get(i));
@@ -37,16 +42,11 @@ public class GUIPauseConcrete extends AbstractGUI implements GUIPause {
     }
 
     @Override
-    public void setIdButtons(final ActionGUI mainAction, final List<ActionGUI> linksID) {
+    public void setActionButtons(final ActionGUI mainAction, final List<ActionGUI> linksID) {
         for(int i = 0; i < linksID.size(); i++){
             this.links.get(i).setActionCurrent(mainAction);
             this.links.get(i).setActionNext(linksID.get(i));
         }
-    }
-
-    @Override
-    public BtnAction getButton(int ind) {
-        return this.links.get(ind);
     }
 
 
@@ -75,6 +75,7 @@ public class GUIPauseConcrete extends AbstractGUI implements GUIPause {
     public void setBackgroundButtons(final Color color) {
         this.links.forEach(btn -> btn.setBackground(color));
     }
+
 
     public JLabel getLbTitle(){
         return this.lbTitle;
