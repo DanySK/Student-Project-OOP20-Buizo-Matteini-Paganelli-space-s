@@ -27,7 +27,7 @@ public class GUIMenuStandard implements FactoryGUIMenu {
         menuConcrete.setForegroundGUI(DesignGraphics.color4);
         menuConcrete.setFontTitleGUI(DesignGraphics.getFontForTitle(DesignGraphics.SIZE_FONT_H1));
         menuConcrete.setColumnsNamePlayer(DesignJComponent.SIZE_COLUMNS_TEXT);
-        menuConcrete.setImageBackground(Background.MAIN);
+        menuConcrete.setImageBackground(Background.FIRE_EARTH);
 //        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 //    	System.out.println(gd.isFullScreenSupported());
 //

@@ -21,7 +21,9 @@ import spaceSurvival.model.worldEcollisioni.physics.components.BossPhysicsCompon
 import spaceSurvival.model.worldEcollisioni.physics.components.ChaseEnemyPhysicsComponent;
 import spaceSurvival.model.worldEcollisioni.physics.components.FireEnemyPhysicsComponent;
 import spaceSurvival.model.worldEcollisioni.physics.components.PickablePhysicsComponent;
+import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.dimension.Screen;
+import spaceSurvival.utilities.pathImage.Enemies;
 import spaceSurvival.utilities.pathImage.Icon;
 import spaceSurvival.utilities.pathImage.Skin;
 
@@ -34,7 +36,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 
 	@Override
 	public MainGameObject createAsteroid() {
-		EngineImage engineImage = new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN,
+		EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN,
 				spaceSurvival.utilities.pathImage.Asteroid.NORMAL);
 		P2d position = new P2d(300, 300);//GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.ASTEROID_VEL;
@@ -50,7 +52,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 
 	@Override
 	public MainGameObject createChaseEnemy() {
-		EngineImage engineImage = new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Skin.DELUXE);
+		EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, Enemies.CHASE);
 		P2d position = new P2d(200, 200);//GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.CHASE_ENEMY_VEL;
 		Movement movement = Movement.CHASE;
@@ -65,7 +67,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 
 	@Override
 	public MainGameObject createFireEnemy() {
-		EngineImage engineImage = new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Skin.SPECIAL);
+		EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, Enemies.CHASE);
 		P2d position =new P2d(400, 400);// GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.FIRE_ENEMY_VEL;
 		Movement movement = Movement.RANDOM;
@@ -80,7 +82,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 
 	@Override
 	public MainGameObject createBoss() {
-		EngineImage engineImage = new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Skin.STANDARD);
+		EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, Enemies.CHASE);
 		P2d position = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.BOSS_VEL;
 		Movement movement = Movement.RANDOM;
@@ -94,7 +96,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 
 	@Override
 	public PickableGameObject createPickable() {
-		final EngineImage engineImage = new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Icon.BULLET);
+		final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, Enemies.CHASE);
 		final P2d position = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 	 	final EffectType effectType = EffectType.random();
 		
