@@ -25,31 +25,12 @@ public class PanelGame extends JPanel {
 
         this.gameObject.forEach((key, value) -> {
 
-        	
         	g2d.setTransform(value);
-        	//affine.translate(0, key.getSize().getHeight());
         	
             g2d.drawImage(this.getImageFromEngine(key.getEngineImage()), null, null);
-            //g2d.setTransform(value);
-            //g2d.setTransform(value);
-           // AffineTransform affine = new AffineTransform();
-        //	affine.setTransform(value);
-            //affine.translate(0, key.getSize().getHeight());
-           // g2d.setTransform(affine);
-            //g2d.drawRect((int)value.getTranslateX(), (int)affine.getTranslateY(), (int) key.getSize().getWidth(), 11);
-            
-            
-            
-            
-            
-            
-            //g2d.drawRect((int)value.getTranslateX(), (int)affine.getTranslateY(), (int) key.getSize().getWidth(), 11);
-            g2d.drawRect(0, (int) key.getSize().getHeight(), (int) key.getSize().getWidth(), 11);
-            g2d.fillRect(0, (int) (int) key.getSize().getHeight() + 1, 50, 10);
-                //this.drawLifeBar(g2d, key, affine);
-                //this.drawLife(g2d, key, affine);
- 
 
+            g2d.drawRect(0, (int) key.getSize().getHeight() + 1, (int) key.getSize().getWidth(), 11);
+            g2d.fillRect(0, (int) key.getSize().getHeight(), 50, 10);
 
         });
     }

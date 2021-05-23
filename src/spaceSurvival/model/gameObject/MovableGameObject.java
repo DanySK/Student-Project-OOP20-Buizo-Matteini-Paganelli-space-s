@@ -29,56 +29,11 @@ public abstract class MovableGameObject extends GameObject {
 	}
 	
 	public void move() {
-		//this.getTransform().translate(this.getVelocity().getX(), this.getVelocity().getY());
-		//this.setPosition(this.getPosition().sum(this.getVelocity()));
+
 		AffineTransform at = this.getTransform();
-		//at.transform()
 		at.translate(this.getVelocity().getX(), this.getVelocity().getY());
 		this.setTransform(this.getTransform());
-		
-		System.out.println(this.toString());
 
-		//this.getTransform().translate(this.getVelocity().getX(), this.getVelocity().getY());
-		//this.getBoundingBox().getTransform()
-		//RectBoundingBox bbox = (RectBoundingBox) this.getBoundingBox();
-		//bbox.getTransform().translate(this.getVelocity().getX(), this.getVelocity().getY());
-
-		//System.out.println("RectBoundingBox -->" + this.getBoundingBox());
-		//System.out.println("SpaceShip Position -->" + this.getPosition());
-		//System.out.println("SpaceShip transform -->" + this.getTransform());
-
-		RectBoundingBox bbox2 = (RectBoundingBox) this.getBoundingBox();
-		//System.out.println("RectBoundingBox transform -->" + bbox2.getTransform());
-
-
-
-
-
-
-//		double x = this.getTransform().getTranslateX();
-//		double y = this.getTransform().getTranslateY();
-//
-//
-//		AffineTransform newAff = new AffineTransform();
-//        newAff.setToTranslation(x, y);
-//        double m00 = this.getTransform().getScaleX();
-//        double m01 = this.getTransform().getShearX();
-//        
-//        double angle = Math.atan2(-m01, m00);
-//        
-//        
-//        newAff.rotate(angle, this.getSize().getWidth() / 2, this.getSize().getHeight() / 2);
-//        
-//        bbox.setTransform(newAff);
-        
-
-		//BoundingBox newBox = new RectBoundingBox(new P2d(x,y), new P2d(x + this.getSize().getWidth(),y + this.getSize().getHeight()));
-		//RectBoundingBox newBox = new RectBoundingBox(new P2d(x,y), new P2d(x + this.getSize().getWidth(), y + this.getSize().getHeight()));
-		//BoundingBox newBox = new RectBoundingBox(new P2d(this.getPosition().getX(),this.getPosition().getY()), this.getEngineImage());
-
-		//RectBoundingBox rectBB = (RectBoundingBox) newBox;
-		//newBox.setTransform(this.getTransform());
-		//this.setBoundingBox(bbox);
 	}
 
 	public V2d getVelocity() {

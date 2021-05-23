@@ -13,9 +13,9 @@ public class Screen {
     public static final Point POINT_ZERO = new Point(0, 0);
 
     public static final Dimension FULLSCREEN = SystemVariables.SCREEN;
-    public static final int WIDTH_FULL_SCREEN = (int) (FULLSCREEN.getWidth() * SystemVariables.SCALE_X);
-    public static final int HEIGHT_FULL_SCREEN = (int) (FULLSCREEN.getHeight() * SystemVariables.SCALE_Y);
-    public static final P2d POINT_CENTER_FULLSCREEN = new P2d(WIDTH_FULL_SCREEN / 2, HEIGHT_FULL_SCREEN / 2);
+    public static final int WIDTH_FULL_SCREEN = (int) (FULLSCREEN.getWidth());
+    public static final int HEIGHT_FULL_SCREEN = (int) (FULLSCREEN.getHeight());
+    public static final P2d POINT_CENTER_FULLSCREEN = new P2d((WIDTH_FULL_SCREEN / 2) * SystemVariables.SCALE_X, (HEIGHT_FULL_SCREEN / 2) * SystemVariables.SCALE_Y);
     public static final Rectangle RECTANGLE_FULLSCREEN = new Rectangle(POINT_ZERO, new Dimension(WIDTH_FULL_SCREEN, HEIGHT_FULL_SCREEN));
 
 
