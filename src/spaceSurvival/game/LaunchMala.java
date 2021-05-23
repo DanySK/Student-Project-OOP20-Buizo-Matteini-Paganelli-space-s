@@ -6,6 +6,8 @@ import spaceSurvival.factories.StaticFactoryGUI;
 import spaceSurvival.model.GUI.Visibility;
 import spaceSurvival.model.EngineMalaLoop;
 
+import java.awt.*;
+
 public class LaunchMala {
 
     public static void main(String[] args) {
@@ -14,6 +16,7 @@ public class LaunchMala {
         ctrlLoading.start();
 
         final EngineMalaLoop engine = new EngineMalaLoop();
+
 
         while(!ctrlLoading.isLoad()){
             try {

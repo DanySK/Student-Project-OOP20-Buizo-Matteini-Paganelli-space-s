@@ -1,6 +1,7 @@
 package spaceSurvival.utilities.dimension;
 
 import spaceSurvival.model.common.P2d;
+import spaceSurvival.utilities.SystemVariables;
 
 import java.awt.*;
 
@@ -10,11 +11,10 @@ public class Screen {
     private static final float PROPORTION_MINI = 2.7F;
 
     public static final Point POINT_ZERO = new Point(0, 0);
-
-//    public static final Dimension FULLSCREEN = Toolkit.getDefaultToolkit().getScreenSize();
-    public static final GraphicsDevice FULLSCREEN =  GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-    public static final int WIDTH_FULL_SCREEN = (int) FULLSCREEN.getDisplayMode().getWidth();
-    public static final int HEIGHT_FULL_SCREEN = (int) FULLSCREEN.getDisplayMode().getHeight();
+    
+    public static final Dimension FULLSCREEN = SystemVariables.SCREEN;
+    public static final int WIDTH_FULL_SCREEN = (int) (FULLSCREEN.getWidth() * SystemVariables.SCALE_X);
+    public static final int HEIGHT_FULL_SCREEN = (int) (FULLSCREEN.getHeight() * SystemVariables.SCALE_Y);
     public static final P2d POINT_CENTER_FULLSCREEN = new P2d(WIDTH_FULL_SCREEN / 2, HEIGHT_FULL_SCREEN / 2);
     public static final Rectangle RECTANGLE_FULLSCREEN = new Rectangle(POINT_ZERO, new Dimension(WIDTH_FULL_SCREEN, HEIGHT_FULL_SCREEN));
 
