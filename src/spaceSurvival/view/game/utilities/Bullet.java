@@ -4,6 +4,7 @@ import spaceSurvival.model.EngineImage;
 import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.utilities.pathImage.Icon;
+import spaceSurvival.utilities.pathImage.Weapon;
 import spaceSurvival.view.utilities.JImage;
 
 import javax.swing.*;
@@ -22,7 +23,7 @@ public class Bullet extends JPanel {
                 Icon.HEART, ScaleOf.ICON_FULL, Screen.WIDTH_FULL_SCREEN);
 
         this.icon = new JImage(Icon.BULLET, dimension);
-        this.nBullet.setIcon(new JImage(Icon.WEAPON, dimension).getImageIcon());
+        this.nBullet.setIcon(new JImage(Weapon.ELECTRIC, dimension).getImageIcon());
 
         super.add(this.nBullet);
         super.add(this.icon);

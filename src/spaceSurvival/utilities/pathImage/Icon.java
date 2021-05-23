@@ -21,16 +21,9 @@ public class Icon {
     public static final String SOUND_OFF = Paths.get(MAIN_FOLDER, "volumeOFF.png").toString();
     public static final String SOUND_ON = Paths.get(MAIN_FOLDER, "volumeON.png").toString();
 
-    public static final String WASD = Paths.get("imgHelp", "wasd.png").toString();
-    public static final String ROW = Paths.get("imgHelp", "row.png").toString();
-    public static final String SPACEBAR = Paths.get("imgHelp", "space.png").toString();
-    public static final String KEY_K = Paths.get("imgHelp", "key_K.png").toString();
-    public static final String KEY_P = Paths.get("imgHelp", "key_P.png").toString();
-    public static final String PAUSE_KEY = Paths.get("imgHelp", "pause.png").toString();
-
     public static final String HEART = Paths.get(MAIN_FOLDER, "heart3.png").toString();
-    public static final String WEAPON = Paths.get(MAIN_FOLDER, "typeBullet", "fire.png").toString();
     public static final String BULLET = Paths.get(MAIN_FOLDER, "bullet", "bullet1.png").toString();
+
     public static final String PAUSE = Paths.get(MAIN_FOLDER, "pause.png").toString();
     public static final String PAUSE_2FACE = Paths.get(MAIN_FOLDER, "pause2Face.png").toString();
 
