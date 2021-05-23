@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 
 import spaceSurvival.model.common.P2d;
+import spaceSurvival.utilities.SystemVariables;
 import spaceSurvival.model.EngineImage;
 
 public class RectBoundingBox implements BoundingBox {
@@ -42,7 +43,7 @@ public class RectBoundingBox implements BoundingBox {
 
 	public RectBoundingBox(final Rectangle rectangle){
 		this.p0 = new P2d(rectangle.getX(), rectangle.getY());
-		this.p1= new P2d(rectangle.getWidth(), rectangle.getHeight());
+		this.p1= new P2d(rectangle.getWidth() * SystemVariables.SCALE_X, rectangle.getHeight() * SystemVariables.SCALE_Y);
 		this.width = rectangle.getWidth();
 		this.height = rectangle.getHeight();
 		this.transform = new AffineTransform();
