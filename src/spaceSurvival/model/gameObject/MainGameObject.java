@@ -65,7 +65,7 @@ public abstract class MainGameObject extends MovableGameObject {
 		return this.status;
 	}
 	
-	public void setStatus(Status status) {
+	public void setStatus(final Status status) {
 		this.status = status;
 	}
 	

@@ -1,6 +1,6 @@
 package spaceSurvival.model.movement;
 
-import spaceSurvival.model.command.caller.CallerMovement;
+import spaceSurvival.model.command.caller.CallerCommand;
 import spaceSurvival.model.gameObject.MovableGameObject;
 import spaceSurvival.utilities.CommandType;
 

@@ -1,19 +1,18 @@
 package spaceSurvival.model.command.concreteCommand;
 
-import spaceSurvival.model.command.commandInterfaces.CommandMovement;
+import spaceSurvival.model.command.commandInterfaces.CommandGameObject;
 import spaceSurvival.model.common.V2d;
 import spaceSurvival.model.gameObject.MainGameObject;
-import spaceSurvival.model.gameObject.MovableGameObject;
 
-public class RightReleaseCommand implements CommandMovement {
+public class RightReleaseCommand implements CommandGameObject {
 
 	@Override
-	public void execute(MovableGameObject ship) {
+	public void execute(MainGameObject object) {
 		System.out.println("Release Right");
 		
-		V2d vel = ship.getVelocity();
+		V2d vel = object.getVelocity();
 		System.out.println(vel);
-		ship.setVelocity(ship.getVelocity().mul(0.5));
+		object.setVelocity(object.getVelocity().mul(0.5));
 //		V2d vel = ship.getCurrentVel();
 //		ship.setVel(vel.sum(new V2d(-30,0)));
 		//ship.setVel(new V2d(0,0));

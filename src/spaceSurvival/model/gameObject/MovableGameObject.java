@@ -4,7 +4,7 @@ import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.common.V2d;
 import spaceSurvival.model.movement.Movement;
 import spaceSurvival.model.EngineImage;
-import spaceSurvival.model.command.caller.CallerMovement;
+import spaceSurvival.model.command.caller.CallerCommand;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 
@@ -13,7 +13,7 @@ import java.awt.geom.AffineTransform;
 public abstract class MovableGameObject extends GameObject {
 	private V2d velocity;
 	private Movement movement;
-	private CallerMovement caller;
+	private CallerCommand caller;
 	
 	public MovableGameObject() {
 		super(new EngineImage(), new P2d(0, 0), null, null);
@@ -58,11 +58,11 @@ public abstract class MovableGameObject extends GameObject {
 	}
 	
 
-	public CallerMovement getCaller() {
+	public CallerCommand getCaller() {
 		return caller;
 	}
 
-	public void setCaller(CallerMovement caller) {
+	public void setCaller(CallerCommand caller) {
 		this.caller = caller;
 	}
 	

@@ -1,13 +1,12 @@
 package spaceSurvival.model.command.concreteCommand;
 
-import spaceSurvival.model.command.commandInterfaces.CommandMovement;
+import spaceSurvival.model.command.commandInterfaces.CommandGameObject;
 import spaceSurvival.model.gameObject.MainGameObject;
-import spaceSurvival.model.gameObject.MovableGameObject;
 
-public class DownReleaseCommand implements CommandMovement {
+public class DownReleaseCommand implements CommandGameObject {
 
 	@Override
-	public void execute(MovableGameObject ship) {
+	public void execute(MainGameObject object) {
 		System.out.println("Release Down");
 		
 //		V2d vel = ship.getCurrentVel();
