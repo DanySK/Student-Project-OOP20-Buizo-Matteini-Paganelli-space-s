@@ -20,6 +20,7 @@ import spaceSurvival.model.worldEcollisioni.hitEvents.HitChaseEnemyEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitFireEnemyEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitPickableEvent;
 import spaceSurvival.utilities.Score;
+import spaceSurvival.utilities.SoundPath;
 import spaceSurvival.utilities.dimension.Screen;
 
 import java.util.LinkedList;
@@ -35,10 +36,14 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     private final CtrlSound controlSound;
     
     private final List<WorldEvent> eventQueue;
+    private final List<SoundPath> soundQueue;
+    
+    
 
     public EngineMalaLoop() {
         this.controlGUI = new CtrlGUI();
         this.eventQueue = new LinkedList<>();
+        this.soundQueue = new LinkedList<>();
         this.controlGame = this.controlGUI.getCtrlGame();
         this.controlSound = this.controlGUI.getCtrlSound();
     }
@@ -58,6 +63,12 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         
         this.controlSound.setSoundLoop(this.controlGUI.getCurrentGUI());
         this.controlSound.setCmdAudioLoop(CmdAudioType.AUDIO_ON);
+    
+
+        	
+        //this.controlSound.getCallerAudioEffect().get(2).execute(CmdAudioType.AUDIO_ON);
+        	
+        
         this.controlGUI.startGUI();
     }
 
@@ -76,8 +87,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             waitForNextFrame(current);
             lastTime = current;
             updateGame(elapsed);
-            controlGame.decrLifeShip(1);
-            controlGame.controlLivesShip();
+            controlGame.controlDecrLife(1);
             
             //System.out.println("LoopMala -> "+ elapsed +" FPS");
         }
@@ -103,6 +113,16 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         this.controlGame.updateStateWorld(elapsed);
         checkEvents();
     }
+    
+    protected void checkSoundEffects() {
+        final World scene = this.controlGame.getWord();
+        final SpaceShipSingleton ship = this.controlGame.getShip();
+        
+        soundQueue.forEach(ev -> {
+  
+        });
+        soundQueue.clear();
+    }
 
     protected void checkEvents() {
         final World scene = this.controlGame.getWord();
@@ -119,7 +139,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             			scene.removeAsteroid(asteroidCollided);
 					}
             	}
-                this.controlGame.decrLifeShip(asteroidCollided.getImpactDamage());
+                this.controlGame.controlDecrLife(asteroidCollided.getImpactDamage());
             } else if (ev instanceof HitChaseEnemyEvent) {
             	HitChaseEnemyEvent chaseEnemyEvent = (HitChaseEnemyEvent) ev;
             	final ChaseEnemy chaseEnemyCollided = (ChaseEnemy) chaseEnemyEvent.getCollisionObj();
@@ -129,7 +149,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                 	scene.removeChaseEnemy(chaseEnemyCollided);
                 	this.controlGame.incrScore(Score.CHASE_ENEMY);
 				}
-                this.controlGame.decrLifeShip(chaseEnemyCollided.getImpactDamage());
+                this.controlGame.controlDecrLife(chaseEnemyCollided.getImpactDamage());
                 // HitBorderEvent bEv = (HitBorderEvent) ev;
                 //gameState.decreaseLives();
             } else if (ev instanceof HitFireEnemyEvent) {
@@ -141,7 +161,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                 	scene.removeFireEnemy(fireEnemyCollided);
                 	this.controlGame.incrScore(Score.FIRE_ENEMY);
 				}
-                this.controlGame.decrLifeShip(fireEnemyCollided.getImpactDamage());
+                this.controlGame.controlDecrLife(fireEnemyCollided.getImpactDamage());
                 // HitBorderEvent bEv = (HitBorderEvent) ev;
                 //gameState.decreaseLives();
             } else if (ev instanceof HitBossEvent) {
@@ -152,7 +172,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                 	scene.setBoss(Optional.empty());
                     this.controlGame.incrScore(Score.BOSS);
 				}
-                this.controlGame.decrLifeShip(bossCollided.getImpactDamage());
+                this.controlGame.controlDecrLife(bossCollided.getImpactDamage());
                 // HitBorderEvent bEv = (HitBorderEvent) ev;
                 //gameState.decreaseLives();
             } else if (ev instanceof HitPickableEvent) {

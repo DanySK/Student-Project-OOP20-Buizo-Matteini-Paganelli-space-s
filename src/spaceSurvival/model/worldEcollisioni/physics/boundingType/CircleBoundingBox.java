@@ -15,15 +15,15 @@ public class CircleBoundingBox implements BoundingBox {
 		this.radius = 0;
 		this.transform = new AffineTransform();
 	}
-	
+
 	public CircleBoundingBox(final P2d center, final double radius, final AffineTransform transform) {
 		this.center = center;
 		this.radius = radius;
 		this.transform = transform;
 	}
-	
+
 	public boolean isCollidingWith(final P2d p, final double radius) {
-		return new V2d(p,center).module() <= radius+this.radius;		
+		return new V2d(p,center).module() <= radius+this.radius;
 	}
 
 	public AffineTransform getTransform() {

@@ -1,9 +1,12 @@
 package spaceSurvival.controller.GUI;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JSlider;
+
+
 
 import spaceSurvival.controller.GUI.command.SwitchGUI;
 import spaceSurvival.controller.sound.CallerAudio;
@@ -13,8 +16,10 @@ import spaceSurvival.model.GUI.sound.EngineSound;
 import spaceSurvival.model.GUI.sound.StateSlider;
 import spaceSurvival.model.GUI.sound.TypeUnitSound;
 import spaceSurvival.model.sound.CmdAudioType;
+import spaceSurvival.model.sound.category.SoundEffect;
 import spaceSurvival.model.sound.category.SoundLoop;
 import spaceSurvival.utilities.DesignSound;
+import spaceSurvival.utilities.SoundPath;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.view.GUI;
@@ -36,6 +41,17 @@ public class CtrlSound implements ControllerGUI{
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
         this.callerAudioLoop = new CallerAudio();
         this.callerAudioEffect = new ArrayList<CallerAudio>();
+        List<SoundPath> list = Arrays.asList(SoundPath.values());
+        
+        //List<SoundPath> listq = list.stream().filter(s -> s.ordinal() > 2);
+        for(int i = 2; i < list.size(); i++) {
+        	//CallerAudio tmpCallerAudio = new CallerAudio(new SoundEffect(list.get(i)));
+        	System.out.println(list.get(i));
+        	this.callerAudioEffect.add(new CallerAudio(new SoundEffect(list.get(i))));
+        	//this.callerAudioEffect.get(i).setSound(new SoundEffect(list.get(i)));
+        
+        }
+        
 
         this.assignAction();
         this.assignStrings();
@@ -79,6 +95,14 @@ public class CtrlSound implements ControllerGUI{
     public void setCmdAudioLoop(final CmdAudioType cmdAudioLoop){
         this.callerAudioLoop.execute(cmdAudioLoop);
     }
+    
+    public void setSoundEffect(final ActionGUI actionGUI){
+        this.callerAudioLoop.setSound(new SoundLoop(actionGUI.getSound()));
+    }
+
+//    public void setCmdAudioEffect(final CmdAudioType cmdAudioLoop, ){
+//        this.callerAudioLoop.execute(cmdAudioLoop);
+//    }
 
     public List<CallerAudio> getCallerAudioEffect(){
         return this.callerAudioEffect;
@@ -174,7 +198,7 @@ public class CtrlSound implements ControllerGUI{
     	
         this.engine.changeStateUnitSound(btn.getTypeSlider());
         FactoryGUIs.setIconJButtonFromRate(btn, this.engine.getPathIconUnitSound((btn.getTypeSlider())), 50, Screen.WIDTH_MEDIUM);
-        getCallerAudioEffect().forEach(callerAudioEffect -> callerAudioEffect.execute((callerAudioEffect.getSound().isPlaying()) ? CmdAudioType.AUDIO_OFF : CmdAudioType.AUDIO_ON));
+        //getCallerAudioEffect().forEach(callerAudioEffect -> callerAudioEffect.execute((callerAudioEffect.getSound().isPlaying()) ? CmdAudioType.AUDIO_OFF : CmdAudioType.AUDIO_ON));
     }
 
     @Override

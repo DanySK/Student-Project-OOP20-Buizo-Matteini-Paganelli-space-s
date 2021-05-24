@@ -121,21 +121,25 @@ public class CtrlGame implements ControllerGUI{
         return this.engine.isGameOver();
     }
 
-    public void decrLifeShip(final int damage){
-        this.engine.decrLifeShip(damage);
-    }
+    public void controlDecrLife(final int damage){
+        final int effectDamage = this.damageOverFlow(damage) ? this.engine.getLifeShip() : damage;
 
-    public void controlLivesShip(){
-        if(this.hasLiveShip()){
+        if(this.damageOverFlow(damage)){
+            if(this.hasLiveShip()){
+                this.engine.resetLifeShip();
+            }
             this.engine.decrHeart();
-            this.engine.resetLifeShip();
         }
 
-        System.out.println("aaaaaaaaaaaaaaaaaaaaaa" + this.engine.getLifeShip() + "---" + this.engine.getHeartShip());
+        this.engine.decrLifeShip(effectDamage);
+    }
+
+    private boolean damageOverFlow(final int damage){
+        return this.engine.getLifeShip() - damage < 0;
     }
 
     private boolean hasLiveShip(){
-        return this.engine.getHeartShip() > 1 && this.engine.getLifeShip() <= 0;
+        return this.engine.getHeartShip() > 1;
     }
 
 
