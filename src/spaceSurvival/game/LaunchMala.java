@@ -13,6 +13,7 @@ import java.lang.reflect.InvocationTargetException;
 public class LaunchMala {
 
     public static void main(String[] args) {
+
         final CtrlLoading ctrlLoading = new CtrlLoading(StaticFactoryEngineGUI.createLoading(),
                 StaticFactoryGUI.createLoading());
         ctrlLoading.start();
@@ -26,19 +27,10 @@ public class LaunchMala {
             }
         }
 
+        engine.initGame();
+        ctrlLoading.turn(Visibility.HIDDEN);
 
-        try {
-            SwingUtilities.invokeAndWait(new Runnable(){
-                public void run() {
-                    engine.initGame();
-                    ctrlLoading.turn(Visibility.HIDDEN);
-                    engine.start();
-                }
-            });
-        } catch (InterruptedException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
-
+        SwingUtilities.invokeLater(engine::start);
 
     }
 }
