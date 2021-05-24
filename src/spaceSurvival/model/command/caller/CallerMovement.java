@@ -77,6 +77,7 @@ public class CallerMovement {
 			 break;
 		 case KEY_SPACE_BAR:
 			 cmdShot.execute(ship);
+			 
 			 break;
 		 }
 	}

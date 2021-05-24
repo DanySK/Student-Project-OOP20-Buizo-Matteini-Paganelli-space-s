@@ -15,6 +15,7 @@ public class UpCommand implements CommandMovement{
 		ship.setVelocity(vel.sum(new V2d(0,-1)));
 		
 		System.out.println("Up " + ship.toString());
+		
 
 		//ship.setVel(vel.sum(new V2d(0,2)));
 		

@@ -24,10 +24,12 @@ public abstract class GameObject {
 	public GameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
                       final PhysicsComponent phys) {
 		this.engineImage = engineImage;
-		this.position = position;
+		
 		this.boundingBox = bb;
 		this.phys = phys;
-		this.transform = new AffineTransform();
+		this.setPosition(position);
+		//this.transform = new AffineTransform();
+		//this.transform.setToTranslation(this.position.getX(), this.position.getY());
 	}
 	
 	public AffineTransform getTransform() {
