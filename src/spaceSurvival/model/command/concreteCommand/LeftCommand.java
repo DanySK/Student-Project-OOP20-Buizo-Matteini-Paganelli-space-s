@@ -15,7 +15,7 @@ public class LeftCommand implements CommandGameObject{
 		V2d vel = object.getVelocity();
 
 		object.setVelocity(vel.sum(new V2d(-1,0)));
-		System.out.println("Left " + object.toString());
+		//System.out.println("Left " + object.toString());
 
 		
 //		if (ctrl.isMoveUp()){

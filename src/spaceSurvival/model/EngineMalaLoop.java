@@ -73,7 +73,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
 
             waitForNextFrame(current);
             lastTime = current;
-            //updateGame(elapsed);
+            updateGame(elapsed);
 
             //System.out.println("LoopMala -> "+ elapsed +" FPS");
         }
@@ -155,7 +155,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                 //stato = pEv.getCollisionObj().getType(???):
                 //gameState.getSpaceship().setState(stato);
             } else if (ev instanceof HitBorderEvent) {
-            	System.out.println("TOCCATO MURO E MANDATO EVENTO AL MONDO");
+            	//System.out.println("TOCCATO MURO E MANDATO EVENTO AL MONDO");
             	
                 // HitBorderEvent bEv = (HitBorderEvent) ev;
                 //gameState.decreaseLife();

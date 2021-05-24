@@ -4,7 +4,7 @@ import spaceSurvival.model.common.*;
 
 import java.awt.geom.AffineTransform;
 
-public class CircleBoundingBox implements BoundingBox{
+public class CircleBoundingBox implements BoundingBox {
 
 	private P2d center;
 	private double radius;
@@ -16,26 +16,31 @@ public class CircleBoundingBox implements BoundingBox{
 		this.transform = new AffineTransform();
 	}
 	
-	public CircleBoundingBox(final P2d center, final double radius, final AffineTransform transform){
+	public CircleBoundingBox(final P2d center, final double radius, final AffineTransform transform) {
 		this.center = center;
 		this.radius = radius;
 		this.transform = transform;
 	}
+	
+	public boolean isCollidingWith(final P2d p, final double radius) {
+		return new V2d(p,center).module() <= radius+this.radius;		
+	}
 
-	public AffineTransform getTransform(){
+	public AffineTransform getTransform() {
 		return this.transform;
 	}
 	
-	public void setTransform(AffineTransform transform) {
+	public void setTransform(final AffineTransform transform) {
 		System.out.println(this.transform);
 		this.transform.setTransform(transform);
 	}
 
-	public double getRadius(){
+	public double getRadius() {
 		return radius;
 	}
 	
-	public boolean isCollidingWith(P2d p, double radius){
-		return new V2d(p,center).module() <= radius+this.radius;		
+	public P2d getCenter() {
+		return center;
 	}
+
 }

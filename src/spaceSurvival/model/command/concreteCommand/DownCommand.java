@@ -18,8 +18,8 @@ public class DownCommand implements CommandGameObject{
 		
 
 		
-		System.out.println("Down ");
-		System.out.println("Position in concrete command " + object.getPosition());
+		//System.out.println("Down ");
+		//System.out.println("Position in concrete command " + object.getPosition());
 		
 		
 		//double speed = ship.getCurrentVel().module();

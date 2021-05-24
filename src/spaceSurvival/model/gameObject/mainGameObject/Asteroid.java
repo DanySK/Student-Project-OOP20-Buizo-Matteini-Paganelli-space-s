@@ -10,6 +10,7 @@ import spaceSurvival.model.movement.Movement;
 import spaceSurvival.model.gameObject.weapon.Weapon;
 import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
+import spaceSurvival.model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 
 public class Asteroid extends MainGameObject {
@@ -20,6 +21,9 @@ public class Asteroid extends MainGameObject {
 		
 		super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, weapon);
     	this.setBoundingBox(GameObjectUtils.createCircleBoundingBox(position, engineImage, this.getTransform()));
+    	CircleBoundingBox cbb = (CircleBoundingBox) this.getBoundingBox();
+    	System.out.println(cbb.getRadius());
+    	System.out.println(cbb.getCenter());
 	}
 
 	@Override

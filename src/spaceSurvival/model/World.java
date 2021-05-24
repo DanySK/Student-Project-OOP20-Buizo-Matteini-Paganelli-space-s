@@ -25,6 +25,7 @@ public class World {
 	private Set<MainGameObject> asteroids = new HashSet<>();
 	private Set<MainGameObject> fireEnemies = new HashSet<>();
 	private Set<MainGameObject> chaseEnemies = new HashSet<>();
+	private Set<MainGameObject> bullets = new HashSet<>();
 	private Optional<MainGameObject> boss = Optional.empty();
 	
 	private Set<PickableGameObject> pickables = new HashSet<>();
@@ -38,6 +39,7 @@ public class World {
 		this.mainBBox = mainBBox;
 
 		for (int i = 0; i < 1; i++) {
+			asteroids.add(factoryGameObject.createAsteroid());
 			chaseEnemies.add(factoryGameObject.createChaseEnemy());
 			pickables.add(factoryGameObject.createPickable());
 		}
@@ -48,6 +50,7 @@ public class World {
 		this.mainBBox = new RectBoundingBox(rectangle);
 
 		for (int i = 0; i < 1; i++) {
+			asteroids.add(factoryGameObject.createAsteroid());
 			chaseEnemies.add(factoryGameObject.createChaseEnemy());
 			pickables.add(factoryGameObject.createPickable());
 		}
@@ -143,8 +146,9 @@ public class World {
 
 	public Optional<MainGameObject> checkCollisionWithAsteroids(final P2d pos, final RectBoundingBox box) {
 		double radius = box.getWidth();
-		for (MainGameObject obj: asteroids){
-			if (obj.getBoundingBox().isCollidingWith(pos, radius)){
+		System.out.println("Questa è la width della ship" + radius);
+		for (MainGameObject obj: asteroids) {
+			if (obj.getBoundingBox().isCollidingWith(pos, radius)) {
 				return Optional.of(obj);
 			}
 		}
@@ -153,8 +157,8 @@ public class World {
 	
 	public Optional<MainGameObject> checkCollisionWithChaseEnemies(final P2d pos, final RectBoundingBox box) {
 		double radius = box.getWidth();
-		for (MainGameObject obj: chaseEnemies){
-			if (obj.getBoundingBox().isCollidingWith(pos, radius)){
+		for (MainGameObject obj: chaseEnemies) {
+			if (obj.getBoundingBox().isCollidingWith(pos, radius)) {
 				return Optional.of(obj);
 			}
 		}
@@ -163,8 +167,8 @@ public class World {
 	
 	public Optional<MainGameObject> checkCollisionWithFireEnemies(final P2d pos, final RectBoundingBox box) {
 		double radius = box.getWidth();
-		for (MainGameObject obj: fireEnemies){
-			if (obj.getBoundingBox().isCollidingWith(pos, radius)){
+		for (MainGameObject obj: fireEnemies) {
+			if (obj.getBoundingBox().isCollidingWith(pos, radius)) {
 				return Optional.of(obj);
 			}
 		}
@@ -172,11 +176,9 @@ public class World {
 	}
 
 	public Optional<MainGameObject> checkCollisionWithBoss(final P2d pos, final RectBoundingBox box) {
-		//System.out.println(boss);
 		if (boss.isPresent()) {
-			System.out.println("SONO DENTRO L IF");
 			double radius = box.getWidth();
-			if (this.getBoss().get().getBoundingBox().isCollidingWith(pos, radius)){
+			if (this.getBoss().get().getBoundingBox().isCollidingWith(pos, radius)) {
 				return this.getBoss();
 			}
 		}
@@ -185,8 +187,8 @@ public class World {
 	
 	public Optional<PickableGameObject> checkCollisionWithPickables(final P2d pos, final RectBoundingBox box) {
 		double radius = box.getWidth();
-		for (PickableGameObject obj: pickables){
-			if (obj.getBoundingBox().isCollidingWith(pos, radius)){
+		for (PickableGameObject obj: pickables) {
+			if (obj.getBoundingBox().isCollidingWith(pos, radius)) {
 				return Optional.of(obj);
 			}
 		}
@@ -218,6 +220,10 @@ public class World {
 	
 	public Set<MainGameObject> getChaseEnemies() {
 		return this.chaseEnemies;
+	}
+
+	public Set<MainGameObject> getBullets() {
+		return bullets;
 	}
 	
 	public Optional<MainGameObject> getBoss() {
@@ -272,4 +278,5 @@ public class World {
 	public int getLifeBoss() {
 		return this.boss.map(MainGameObject::getLife).orElse(0);
 	}
+
 }
