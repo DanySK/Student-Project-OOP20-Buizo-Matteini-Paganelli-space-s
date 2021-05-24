@@ -106,6 +106,10 @@ public class CtrlGUI {
         this.assignStartTimer();
     }
 
+    public boolean isStateIn(final ActionGUI actionGUI){
+        return this.chronology.contains(actionGUI);
+    }
+
     public void startGUI(){
         this.managerGui.get(FIRST_GUI).turn(Visibility.VISIBLE);
     }

@@ -12,7 +12,6 @@ public class LogicColorShip implements LogicColor{
         double greenValue = (value > (maxHealth / 2) ? 1.0 : 2 * value / maxHealth) * maxColValue;
         double blueValue = 0;
 
-        System.out.println("COLORRRR LIFE SHIP -> " + redValue + " " + greenValue + " " + blueValue);
         return value != 0 ?
                 new Color((int) redValue, (int) greenValue, (int) blueValue) : Color.RED;
     }

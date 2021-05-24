@@ -19,6 +19,7 @@ import spaceSurvival.model.worldEcollisioni.hitEvents.HitBossEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitChaseEnemyEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitFireEnemyEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitPickableEvent;
+import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.utilities.Score;
 import spaceSurvival.utilities.SoundPath;
 import spaceSurvival.utilities.dimension.Screen;
@@ -78,17 +79,23 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             long current = System.currentTimeMillis();
             int elapsed = (int)(current - lastTime);
 
-            //processInput();
-            renderMovement();
-            render();
+            if(this.controlGUI.isStateIn(ActionGUI.ID_GAME)){
+                if(!this.controlGUI.isStateIn(ActionGUI.ID_PAUSE)){
+                    //processInput();
+                    renderMovement();
+                    render();
 
+                    waitForNextFrame(current);
+                    lastTime = current;
 
+                    updateGame(elapsed);
+                    this.controlGame.controlDecrLife(1);
+                }
+            } else {
+                waitForNextFrame(current);
+                lastTime = current;
+            }
 
-            waitForNextFrame(current);
-            lastTime = current;
-            updateGame(elapsed);
-            controlGame.controlDecrLife(1);
-            
             //System.out.println("LoopMala -> "+ elapsed +" FPS");
         }
         System.out.println("Sono fuori dal loop");
