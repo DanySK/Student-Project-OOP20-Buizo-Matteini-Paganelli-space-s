@@ -23,6 +23,7 @@ import spaceSurvival.view.settings.GUISettings;
 import spaceSurvival.view.sound.GUISound;
 import spaceSurvival.view.utilities.BtnAction;
 
+import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.HashMap;

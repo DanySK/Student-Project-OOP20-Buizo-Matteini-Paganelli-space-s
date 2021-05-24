@@ -77,6 +77,7 @@ public class CallerCommand {
 			 break;
 		 case KEY_SPACE_BAR:
 			 cmdShot.execute(ship);
+			 
 			 break;
 		 }
 	}
