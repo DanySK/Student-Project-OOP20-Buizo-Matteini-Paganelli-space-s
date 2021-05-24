@@ -51,7 +51,7 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 			switch (info.getEdge()) {
 			case TOP: 
 				//P2d center =  Screen.POINT_CENTER_FULLSCREEN;
-				System.out.println(Screen.POINT_CENTER_FULLSCREEN);
+				System.out.println("Screeeeeennnnnn " + Screen.POINT_CENTER_FULLSCREEN);
 				P2d center = new P2d(1680, 1050);
 				double xAxesDiff = center.getX() - info.getWhere().getX();
 				double xAxesSpawn = center.getX() + xAxesDiff;

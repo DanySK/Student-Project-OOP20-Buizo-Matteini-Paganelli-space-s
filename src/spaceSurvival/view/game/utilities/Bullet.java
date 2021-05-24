@@ -23,7 +23,7 @@ public class Bullet extends JPanel {
                 Icon.HEART, ScaleOf.ICON_FULL, Screen.WIDTH_FULL_SCREEN);
 
         this.icon = new JImage(Icon.BULLET, dimension);
-        this.weapon.setIcon(new JImage(Weapon.ELECTRIC, dimension).getImageIcon());
+        this.weapon.setIcon(new JImage(Weapon.ICE, dimension).getImageIcon());
 
         super.add(this.weapon);
         super.add(this.icon);

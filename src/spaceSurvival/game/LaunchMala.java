@@ -6,7 +6,9 @@ import spaceSurvival.factories.StaticFactoryGUI;
 import spaceSurvival.model.GUI.Visibility;
 import spaceSurvival.model.EngineMalaLoop;
 
+import javax.swing.*;
 import java.awt.*;
+import java.lang.reflect.InvocationTargetException;
 
 public class LaunchMala {
 
@@ -14,9 +16,7 @@ public class LaunchMala {
         final CtrlLoading ctrlLoading = new CtrlLoading(StaticFactoryEngineGUI.createLoading(),
                 StaticFactoryGUI.createLoading());
         ctrlLoading.start();
-
         final EngineMalaLoop engine = new EngineMalaLoop();
-
 
         while(!ctrlLoading.isLoad()){
             try {
@@ -26,9 +26,19 @@ public class LaunchMala {
             }
         }
 
-        engine.initGame();
-        ctrlLoading.turn(Visibility.HIDDEN);
-        engine.start();
+
+        try {
+            SwingUtilities.invokeAndWait(new Runnable(){
+                public void run() {
+                    engine.initGame();
+                    ctrlLoading.turn(Visibility.HIDDEN);
+                    engine.start();
+                }
+            });
+        } catch (InterruptedException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
 
     }
 }
