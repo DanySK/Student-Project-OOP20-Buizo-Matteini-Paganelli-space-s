@@ -1,5 +1,6 @@
 package spaceSurvival.model.gameObject.mainGameObject;
 
+import java.awt.geom.AffineTransform;
 import java.util.Optional;
 
 import spaceSurvival.model.common.P2d;
@@ -19,7 +20,7 @@ public class Asteroid extends MainGameObject {
                     final int impactDamage, final Optional<Weapon> weapon) {
 		
 		super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, weapon);
-    	this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage));
+    	this.setBoundingBox(GameObjectUtils.createCircleBoundingBox(position, engineImage, new AffineTransform()));
 	}
 
 	@Override

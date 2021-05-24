@@ -20,6 +20,7 @@ import spaceSurvival.model.worldEcollisioni.hitEvents.HitChaseEnemyEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitFireEnemyEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitPickableEvent;
 import spaceSurvival.utilities.Score;
+import spaceSurvival.utilities.SoundPath;
 import spaceSurvival.utilities.dimension.Screen;
 
 import java.awt.GraphicsConfiguration;
@@ -40,10 +41,14 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     private final CtrlSound controlSound;
     
     private final List<WorldEvent> eventQueue;
+    private final List<SoundPath> soundQueue;
+    
+    
 
     public EngineMalaLoop() {
         this.controlGUI = new CtrlGUI();
         this.eventQueue = new LinkedList<>();
+        this.soundQueue = new LinkedList<>();
         this.controlGame = this.controlGUI.getCtrlGame();
         this.controlSound = this.controlGUI.getCtrlSound();
     }
@@ -63,6 +68,12 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         
         this.controlSound.setSoundLoop(this.controlGUI.getCurrentGUI());
         this.controlSound.setCmdAudioLoop(CmdAudioType.AUDIO_ON);
+    
+
+        	
+        //this.controlSound.getCallerAudioEffect().get(2).execute(CmdAudioType.AUDIO_ON);
+        	
+        
         this.controlGUI.startGUI();
     }
 
@@ -102,6 +113,16 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     protected void updateGame(final int elapsed) {
         this.controlGame.updateStateWorld(elapsed);
         checkEvents();
+    }
+    
+    protected void checkSoundEffects() {
+        final World scene = this.controlGame.getWord();
+        final SpaceShipSingleton ship = this.controlGame.getShip();
+        
+        soundQueue.forEach(ev -> {
+  
+        });
+        soundQueue.clear();
     }
 
     protected void checkEvents() {
