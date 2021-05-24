@@ -1,25 +1,22 @@
 package spaceSurvival.view.game.utilities;
 
+import spaceSurvival.view.game.utilities.logicColor.LogicColor;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class LifeBar extends JProgressBar {
+    private final LogicColor logicColor;
 
-    public LifeBar(){
+    public LifeBar(final LogicColor logicColor){
         super();
         super.setStringPainted(true);
+        this.logicColor = logicColor;
     }
 
     public void setLife(final int life){
         super.setValue(life);
-
-        if(life > 75){
-            super.setForeground(Color.green);
-        } else if(life > 40){
-            super.setForeground(Color.orange);
-        } else if(life > 20){
-            super.setForeground(Color.red);
-        }
+        super.setForeground(this.logicColor.setColor(life));
     }
 
     @Override

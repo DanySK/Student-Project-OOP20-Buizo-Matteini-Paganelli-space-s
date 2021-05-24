@@ -76,10 +76,14 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             renderMovement();
             render();
 
+
+
             waitForNextFrame(current);
             lastTime = current;
             updateGame(elapsed);
-
+            controlGame.decrLifeShip(1);
+            controlGame.controlLivesShip();
+            
             //System.out.println("LoopMala -> "+ elapsed +" FPS");
         }
         System.out.println("Sono fuori dal loop");

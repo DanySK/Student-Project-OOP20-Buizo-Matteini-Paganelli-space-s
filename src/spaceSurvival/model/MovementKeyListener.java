@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 
-import spaceSurvival.model.command.caller.CallerMovement;
+import spaceSurvival.controller.CallerMovement;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.utilities.CommandType;
 

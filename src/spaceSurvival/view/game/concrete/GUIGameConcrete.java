@@ -5,6 +5,8 @@ import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.view.AbstractGUI;
 import spaceSurvival.view.game.GUIGame;
 import spaceSurvival.view.game.utilities.*;
+import spaceSurvival.view.game.utilities.logicColor.LogicColorBoss;
+import spaceSurvival.view.game.utilities.logicColor.LogicColorShip;
 import spaceSurvival.view.utilities.BtnAction;
 
 import java.awt.*;
@@ -27,8 +29,8 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
 
     public GUIGameConcrete(){
         super();
-        this.lifeBoss = new LifeBar();
-        this.lifeShip = new LifeBar();
+        this.lifeBoss = new LifeBar(new LogicColorBoss());
+        this.lifeShip = new LifeBar(new LogicColorShip());
         this.score = new Score();
         this.heartLife = new Heart();
         this.bullet = new Bullet();

@@ -1,4 +1,4 @@
-package spaceSurvival.model.command.caller;
+package spaceSurvival.controller;
 
 import spaceSurvival.model.command.concreteCommand.SpaceBarCommand;
 import spaceSurvival.model.command.commandInterfaces.CommandMovement;

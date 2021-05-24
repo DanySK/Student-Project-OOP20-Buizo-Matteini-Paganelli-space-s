@@ -125,6 +125,23 @@ public class CtrlGame implements ControllerGUI{
         this.engine.decrLifeShip(damage);
     }
 
+    public void controlLivesShip(){
+        if(this.hasLiveShip()){
+            this.engine.decrHeart();
+            this.engine.resetLifeShip();
+        }
+
+        System.out.println("aaaaaaaaaaaaaaaaaaaaaa" + this.engine.getLifeShip() + "---" + this.engine.getHeartShip());
+    }
+
+    private boolean hasLiveShip(){
+        return this.engine.getHeartShip() >= 1 && this.engine.getLifeShip() <= 0;
+    }
+
+//    private boolean isDead(){
+//
+//    }
+
     public void incrScore(final long score){
         this.engine.incrScore(score);
     }

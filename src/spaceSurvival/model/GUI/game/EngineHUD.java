@@ -4,6 +4,7 @@ public class EngineHUD {
     public static final long INIT_SCORE = 0L;
     public static final int INIT_ROUND = 1;
     public static final int INIT_HEART = 3;
+    public static final int DECR_VALUE = 1;
     public static final int DEAD = 0;
 
     private final Chronometer chronometer;
@@ -35,7 +36,7 @@ public class EngineHUD {
     }
 
     public void incrRound(){
-        this.round++;
+        this.round += DECR_VALUE;
     }
 
     public int getHeartShip() {
@@ -47,7 +48,7 @@ public class EngineHUD {
     }
 
     public void decrHeartShip(){
-        this.heartShip--;
+        this.heartShip -= DECR_VALUE;
     }
 
     public boolean isGameOver(){

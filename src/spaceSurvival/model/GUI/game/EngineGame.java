@@ -112,12 +112,16 @@ public class EngineGame implements EngineGUI {
         this.world.getShip().decreaseLife(damage);
     }
 
-    public void decrHeartShip(){
+    public void decrHeart(){
         this.hud.decrHeartShip();
     }
 
+    public void resetLifeShip(){
+        this.world.getShip().increaseLife(100);
+    }
+
     public boolean isGameOver(){
-        return this.hud.isGameOver();
+        return this.hud.isGameOver() && this.world.getLifeShip() == 0;
     }
 
     public World getWorld(){
