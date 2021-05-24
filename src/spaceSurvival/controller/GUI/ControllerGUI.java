@@ -2,15 +2,24 @@ package spaceSurvival.controller.GUI;
 
 import spaceSurvival.model.GUI.EngineGUI;
 import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.utilities.IdGUI;
-import spaceSurvival.view.GUI.GUI;
+import spaceSurvival.utilities.ActionGUI;
+import spaceSurvival.view.GUI;
 
 public interface ControllerGUI {
-    public IdGUI getIdGUI();
+
+    public void assignAction();
+
+    public void assignStrings();
+
+    public void assignRectangle();
+
+
+    public ActionGUI getMainAction();
 
     public GUI getGUI();
 
     public EngineGUI getEngine();
+
 
     public boolean isVisibility();
 

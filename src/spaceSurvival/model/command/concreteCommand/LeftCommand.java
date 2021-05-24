@@ -3,6 +3,7 @@ package spaceSurvival.model.command.concreteCommand;
 
 import spaceSurvival.model.command.commandInterfaces.CommandMovement;
 import spaceSurvival.model.gameObject.MainGameObject;
+import spaceSurvival.model.gameObject.MovableGameObject;
 import spaceSurvival.model.common.V2d;
 
 public class LeftCommand implements CommandMovement{
@@ -10,7 +11,7 @@ public class LeftCommand implements CommandMovement{
 	public LeftCommand() {}
 
 	@Override
-	public void execute(MainGameObject ship) {
+	public void execute(MovableGameObject ship) {
 		
 		V2d vel = ship.getVelocity();
 

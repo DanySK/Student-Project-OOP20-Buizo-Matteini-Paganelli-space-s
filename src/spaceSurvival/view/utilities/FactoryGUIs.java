@@ -1,7 +1,8 @@
 package spaceSurvival.view.utilities;
 
-import spaceSurvival.model.ImageDesign;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.utilities.DesignSound;
+import spaceSurvival.utilities.dimension.Screen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -125,14 +126,6 @@ public class FactoryGUIs {
         return FactoryGUIs.createPanelTransparent(null);
     }
 
-    public static void setDefaultJSlider(final JSlider slider){
-        slider.setOpaque(false);
-        slider.setMajorTickSpacing(DesignSound.DEFAULT_MAJOR_TICK_SPACING);
-        slider.setMinorTickSpacing(DesignSound.DEFAULT_MINOR_TICK_SPACING);
-        slider.setPaintTicks(true);
-        slider.setPaintLabels(true);
-    }
-
 
     public static void setTransparentDesignJButton(final JButton button){
         button.setOpaque(false);
@@ -142,13 +135,30 @@ public class FactoryGUIs {
 
     public static void setIconJButtonFromRate(final JButton button, final String pathIcon,
                                               final int scaleOf, final int respectTo) {
-        final ImageDesign imageDesign = new ImageDesign(scaleOf, respectTo, pathIcon);
-        final JImage imag = new JImage(pathIcon, imageDesign.getSize());
+        final EngineImage engineImage = new EngineImage(scaleOf, respectTo, pathIcon);
+        final JImage imag = new JImage(pathIcon, engineImage.getSize());
         button.setIcon(imag.getImageIcon());
     }
     
-    public static void setIconJButtonFromRate(final JButton button, final ImageDesign imageDesign) {
-    	FactoryGUIs.setIconJButtonFromRate(button, imageDesign.getPath(),
-                imageDesign.getScaleOf(), imageDesign.getRespectTo());
+    public static void setIconJButtonFromRate(final JButton button, final EngineImage engineImage) {
+    	FactoryGUIs.setIconJButtonFromRate(button, engineImage.getPath(),
+                engineImage.getScaleOf(), engineImage.getRespectTo());
+    }
+
+
+    public static void setDefaultJSlider(final JSlider slider){
+        slider.setOpaque(false);
+        slider.setMajorTickSpacing(DesignSound.DEFAULT_MAJOR_TICK_SPACING);
+        slider.setMinorTickSpacing(DesignSound.DEFAULT_MINOR_TICK_SPACING);
+        slider.setPaintTicks(true);
+        slider.setPaintLabels(true);
+    }
+
+    public static void setDefaultJFrame(final JFrame frame){
+        frame.setBounds(Screen.RECTANGLE_FULLSCREEN);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setUndecorated(true);
+        frame.setResizable(false);
+        frame.setBackground(DesignGraphics.colorOpacityBlack);
     }
 }

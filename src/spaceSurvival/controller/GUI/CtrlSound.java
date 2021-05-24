@@ -15,10 +15,10 @@ import spaceSurvival.model.sound.CmdAudioType;
 import spaceSurvival.model.sound.category.SoundLoop;
 import spaceSurvival.utilities.DesignSound;
 import spaceSurvival.utilities.dimension.Screen;
-import spaceSurvival.utilities.IdGUI;
-import spaceSurvival.view.GUI.GUI;
-import spaceSurvival.view.GUI.sound.GUISound;
-import spaceSurvival.view.GUI.sound.utilities.ButtonSliderType;
+import spaceSurvival.utilities.ActionGUI;
+import spaceSurvival.view.GUI;
+import spaceSurvival.view.sound.GUISound;
+import spaceSurvival.view.sound.utilities.ButtonSliderType;
 import spaceSurvival.view.utilities.FactoryGUIs;
 
 public class CtrlSound implements ControllerGUI{
@@ -35,21 +35,30 @@ public class CtrlSound implements ControllerGUI{
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
         this.callerAudioLoop = new CallerAudio();
 
-        this.assignId();
+        this.assignAction();
         this.assignStrings();
+        this.assignRectangle();
         this.assignSound();
+
         this.linksCallerAudioLoopWithListener();
         this.switchGUI.turn(this.engine.getVisibility());
     }
 
-    private void assignId() {
-        this.gui.setId(this.engine.getId());
-        this.gui.setBtnBackID(this.engine.getBackLink());
+    @Override
+    public void assignAction() {
+        this.gui.setMainAction(this.engine.getMainAction());
+        this.gui.setBtnBackID(this.engine.getMainAction(), this.engine.getBackLink());
     }
 
-    private void assignStrings() {
+    @Override
+    public void assignStrings() {
         this.gui.setTitleGUI(this.engine.getTitle());
         this.gui.setNameButtonBack(this.engine.getNameBack());
+    }
+
+    @Override
+    public void assignRectangle() {
+        this.gui.setBounds(this.engine.getRectangle());
     }
 
     private void assignSound(){
@@ -59,8 +68,8 @@ public class CtrlSound implements ControllerGUI{
         this.gui.setIconBtnSwitches(this.engine.getIconStateSounds());
     }
 
-    public void setSoundLoop(final IdGUI idGUI){
-        this.callerAudioLoop.setSound(new SoundLoop(idGUI.getSound()));
+    public void setSoundLoop(final ActionGUI actionGUI){
+        this.callerAudioLoop.setSound(new SoundLoop(actionGUI.getSound()));
     }
 
     public void setCmdAudioLoop(final CmdAudioType cmdAudioLoop){
@@ -117,19 +126,19 @@ public class CtrlSound implements ControllerGUI{
         });
     }
 
-    public void checkChangeSoundLoop(final IdGUI idGUI){
-        if(this.isNewLoopSound(idGUI)) {
-            this.changeNewLoopSound(idGUI);
+    public void checkChangeSoundLoop(final ActionGUI actionGUI){
+        if(this.isNewLoopSound(actionGUI)) {
+            this.changeNewLoopSound(actionGUI);
         }
     }
 
-    public boolean isNewLoopSound(final IdGUI idGUI){
-        return this.callerAudioLoop.isNewSound(idGUI.getSound());
+    public boolean isNewLoopSound(final ActionGUI actionGUI){
+        return this.callerAudioLoop.isNewSound(actionGUI.getSound());
     }
 
-    public void changeNewLoopSound(final IdGUI idGUI){
+    public void changeNewLoopSound(final ActionGUI actionGUI){
         this.callerAudioLoop.execute(CmdAudioType.AUDIO_OFF);
-        this.callerAudioLoop.setSound(new SoundLoop(idGUI.getSound()));
+        this.callerAudioLoop.setSound(new SoundLoop(actionGUI.getSound()));
 
         this.callerAudioLoop.changeVolume(this.isActiveLoopUnitSound() ?
                 this.getLoopVolume() : DesignSound.SOUND_ZERO);
@@ -165,8 +174,8 @@ public class CtrlSound implements ControllerGUI{
     }
 
     @Override
-    public IdGUI getIdGUI() {
-        return this.engine.getId();
+    public ActionGUI getMainAction() {
+        return this.engine.getMainAction();
     }
 
     @Override

@@ -118,23 +118,27 @@ public class World {
 		//asteroids.forEach(a -> a.updatePhysics(dt, this));
 	}
 
-	public Optional<BoundaryCollision> checkCollisionWithBoundaries(final P2d pos, final RectBoundingBox box) {
-		P2d ul = mainBBox.getULCorner();
-		P2d br = mainBBox.getBRCorner();
+	public Optional<BoundaryCollision> checkCollisionWithBoundaries(P2d pos, RectBoundingBox box){
+		P2d ul = box.getULCorner();
+		P2d br = box.getBRCorner();
+
+		double xShip = pos.getX();
+		double yShip = pos.getY();
 		
-		double heightRect = box.getHeight();
-		if (pos.y < -br.y){
-			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.TOP, new P2d(pos.x, ul.y)));
+		if (yShip < ul.y){
+			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.TOP, new P2d(xShip, ul.y)));
 		} 
-		//else if (pos.y - r < br.y){
-//			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.BOTTOM, new P2d(pos.x, br.y)));
-//		} else if (pos.x + r > br.x){
-//			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.RIGHT, new P2d(br.x, pos.y)));
-//		} else if (pos.x - r < ul.x){
-//			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.LEFT, new P2d(ul.x, pos.y)));
-//		} else {
+		else if (yShip + ship.getSize().getHeight() > br.y){
+			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.BOTTOM, new P2d(pos.x, br.y)));
+		} 
+		else if (xShip + ship.getSize().getWidth() > br.x){
+			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.RIGHT, new P2d(br.x, pos.y)));
+		} 
+		else if (xShip < ul.x){
+			return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.LEFT, new P2d(ul.x, pos.y)));
+		} else {
 			return Optional.empty();
-//		}
+		}
 	}
 
 	public Optional<MainGameObject> checkCollisionWithAsteroids(final P2d pos, final RectBoundingBox box) {

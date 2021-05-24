@@ -1,11 +1,17 @@
 package spaceSurvival.utilities.pathImage;
 
+import java.nio.file.Paths;
+
 public class Skin {
-    public static final String SPECIAL = "gameObjects/spaceship/ship1.png";
-    public static final String STANDARD = "gameObjects/spaceship/ship2.png";
-    public static final String DELUXE ="gameObjects/spaceship/ship3.png";
-    public static final String NORMAL = "gameObjects/spaceship/ship4.png";
-    public static final String ATOMIC = "gameObjects/spaceship/ship5.png";
-    public static final String LIFE = "gameObjects/spaceship/LifeShip.png";
+
+    public static final String MAIN_FOLDER = "gameObjects";
+
+    public static final String SHIP_FOLDER = "spaceship";
+
+    public static final String SPECIAL = Paths.get(MAIN_FOLDER, SHIP_FOLDER, "ship1.png").toString();
+    public static final String STANDARD = Paths.get(MAIN_FOLDER, SHIP_FOLDER, "ship2.png").toString();
+    public static final String DELUXE =Paths.get(MAIN_FOLDER, SHIP_FOLDER, "ship3.png").toString();
+    public static final String NORMAL = Paths.get(MAIN_FOLDER,SHIP_FOLDER, "ship4.png").toString();
+    public static final String ATOMIC = Paths.get(MAIN_FOLDER, SHIP_FOLDER, "ship5.png").toString();
 
 }

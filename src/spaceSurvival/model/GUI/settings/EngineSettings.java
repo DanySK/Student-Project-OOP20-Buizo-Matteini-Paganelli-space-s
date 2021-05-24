@@ -1,10 +1,11 @@
 package spaceSurvival.model.GUI.settings;
 
 import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.model.ImageDesign;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.GUI.EngineGUI;
-import spaceSurvival.utilities.*;
+import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.dimension.Screen;
+import spaceSurvival.utilities.ActionGUI;
 
 import java.awt.*;
 import java.util.*;
@@ -13,38 +14,53 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class EngineSettings implements EngineGUI {
-    public static final Rectangle DIMENSION = Screen.RECTANGLE_MEDIUM;
+    public static final Rectangle RECTANGLE = Screen.RECTANGLE_MEDIUM;
+    public static final String TITLE = "SETTING";
 
+    public static final String DIR_SX = "<";
+    public static final String DIR_DX = ">";
     public static final int INDEX_INIT_SKIN = 0;
-    public static final int INDEX_INTI_DIFFICULT = 0;
     public static final int STEP_INDEX_SKIN = 1;
+
+    public static final int INDEX_INTI_DIFFICULT = 0;
     public static final int FIRST_DIFFICULT_ON = 0;
+    public static final List<StateDifficult> DEFAULT_DIFFICULTLY_ACTIVE = List.of(StateDifficult.OFF,
+            StateDifficult.ON, StateDifficult.OFF);
 
-    private final IdGUI id;
-    private final List<NameSettingsGUI> namesButtons;
-    private final IdGUI linkBack;
+    private final ActionGUI mainAction;
+    private final ActionGUI actionBack;
+    private final List<UnitSettingsGUI> unitNames;
 
-    private final Map<Difficulty, DifficultActive> difficult;
-    private final List<SkinSpaceShip> skinSpaceShip;
+    private final List<String> listSkin;
+    private final EngineImage skin;
     private int chooseSkin;
+
+    private final Map<Difficulty, StateDifficult> difficult;
 
     private Visibility visibility = Visibility.HIDDEN;
 
     public EngineSettings(){
-        this.id = IdGUI.ID_SETTING;
-        this.linkBack = IdGUI.ID_BACK;
-        this.chooseSkin = INDEX_INIT_SKIN;
+        this.mainAction = ActionGUI.ID_SETTING;
+        this.actionBack = ActionGUI.ID_BACK;
 
-        this.skinSpaceShip = Arrays.asList(SkinSpaceShip.values());
-        this.namesButtons = List.of(NameSettingsGUI.values());
+        this.listSkin = Arrays.stream(SkinSpaceShip.values()).map(SkinSpaceShip::getSkin).collect(Collectors.toList());
+        this.chooseSkin = INDEX_INIT_SKIN;
+        this.skin = new EngineImage(ScaleOf.ICON_SKIN, (int) RECTANGLE.getWidth(), this.listSkin.get(chooseSkin));
+
+        this.unitNames = List.of(UnitSettingsGUI.values());
 
         this.difficult = IntStream.range(INDEX_INTI_DIFFICULT, Difficulty.values().length).boxed()
-                .collect(Collectors.toMap(i -> Difficulty.values()[i], Engines.DEFAULT_DIFFICULTLY_ACTIVE::get));
+                .collect(Collectors.toMap(i -> Difficulty.values()[i], DEFAULT_DIFFICULTLY_ACTIVE::get));
     }
 
     @Override
-    public IdGUI getId() {
-        return this.id;
+    public ActionGUI getMainAction() {
+        return this.mainAction;
+    }
+
+    @Override
+    public Rectangle getRectangle() {
+        return RECTANGLE;
     }
 
     @Override
@@ -63,33 +79,34 @@ public class EngineSettings implements EngineGUI {
     }
 
     @Override
-    public List<IdGUI> getLinks() {
-        return List.of(this.linkBack);
+    public List<ActionGUI> getLinks() {
+        return List.of(this.actionBack);
     }
 
 
-    public int getChooseSkin() {
-        return this.chooseSkin;
+    public List<Difficulty> getListDifficult(){
+        return Arrays.asList(Difficulty.values());
     }
 
-    public IdGUI getBackLink(){
-        return this.linkBack;
+    public ActionGUI getBackLink(){
+        return this.actionBack;
     }
 
     public String getTitleGUI() {
-        return DesignTitleGUI.TITLE_SETTINGS;
+        return TITLE;
     }
 
     public List<String> getListNameUnit(){
-        return this.namesButtons.stream().map(NameSettingsGUI::getTitle).collect(Collectors.toList());
+        return this.unitNames.stream().map(UnitSettingsGUI::getTitle).collect(Collectors.toList());
     }
 
     public String getNameBtnBack(){
-        return this.linkBack.getIdName();
+        return this.actionBack.getIdName();
     }
 
-    public ImageDesign getSkinSpaceShip() {
-        return this.skinSpaceShip.get(this.chooseSkin).getEngineImage();
+    public EngineImage getSkinSpaceShip() {
+        this.skin.setPath(this.listSkin.get(this.chooseSkin));
+        return this.skin;
     }
 
     public void changeSkinDx(){
@@ -104,7 +121,7 @@ public class EngineSettings implements EngineGUI {
 
     public Difficulty getDifficultActivate(){
         return this.difficult.entrySet().stream()
-                .filter(e -> e.getValue().equals(DifficultActive.ON))
+                .filter(e -> e.getValue().equals(StateDifficult.ON))
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toList()).get(FIRST_DIFFICULT_ON);
     }
@@ -113,10 +130,10 @@ public class EngineSettings implements EngineGUI {
         this.resetDifficultlyOFF();
         this.difficult.entrySet().stream()
                 .filter(e -> e.getKey().equals(difficultyState))
-                .forEach(e -> e.setValue(DifficultActive.ON));
+                .forEach(e -> e.setValue(StateDifficult.ON));
     }
 
     private void resetDifficultlyOFF(){
-        this.difficult.entrySet().forEach(e -> e.setValue(DifficultActive.OFF));
+        this.difficult.entrySet().forEach(e -> e.setValue(StateDifficult.OFF));
     }
 }

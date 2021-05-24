@@ -6,7 +6,7 @@ import spaceSurvival.model.World;
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 import spaceSurvival.model.worldEcollisioni.WorldEventListener;
-import spaceSurvival.utilities.IdGUI;
+import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.utilities.dimension.Screen;
 
 import java.awt.*;
@@ -14,11 +14,11 @@ import java.util.List;
 import java.util.Set;
 
 public class EngineGame implements EngineGUI {
-    public static final Rectangle DIMENSION = Screen.RECTANGLE_FULLSCREEN;
+    public static final Rectangle RECTANGLE = Screen.RECTANGLE_FULLSCREEN;
     public static final int N_BUTTONS = 6;
 
-    private final IdGUI id;
-    private final IdGUI idPause;
+    private final ActionGUI id;
+    private final ActionGUI idPause;
 
     private final World world;
     private final EngineHUD hud;
@@ -26,16 +26,21 @@ public class EngineGame implements EngineGUI {
 	private Visibility visibility;
 
     public EngineGame(){
-        this.id = IdGUI.ID_GAME;
-        this.idPause = IdGUI.ID_PAUSE;
-        this.world = new World(DIMENSION);
+        this.id = ActionGUI.ID_GAME;
+        this.idPause = ActionGUI.ID_PAUSE;
+        this.world = new World(RECTANGLE);
         this.hud = new EngineHUD();
         this.visibility = Visibility.HIDDEN;
     }
 
     @Override
-    public IdGUI getId() {
+    public ActionGUI getMainAction() {
         return this.id;
+    }
+
+    @Override
+    public Rectangle getRectangle() {
+        return RECTANGLE;
     }
 
     @Override
@@ -54,14 +59,10 @@ public class EngineGame implements EngineGUI {
     }
 
     @Override
-    public List<IdGUI> getLinks() {
+    public List<ActionGUI> getLinks() {
         return List.of(this.idPause);
     }
 
-
-    public boolean isStartTimer(){
-        return this.hud.isStartTimer();
-    }
 
     public String getTimer(){
         return this.hud.getTimer();

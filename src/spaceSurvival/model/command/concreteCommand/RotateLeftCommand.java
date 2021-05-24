@@ -4,6 +4,7 @@ import java.awt.geom.AffineTransform;
 
 import spaceSurvival.model.command.commandInterfaces.CommandMovement;
 import spaceSurvival.model.gameObject.MainGameObject;
+import spaceSurvival.model.gameObject.MovableGameObject;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 
@@ -12,7 +13,7 @@ public class RotateLeftCommand implements CommandMovement{
 	public RotateLeftCommand() {}
 
 	@Override
-	public void execute(MainGameObject obj) {
+	public void execute(MovableGameObject obj) {
 		System.out.println("Rotate Left");
 		
 		

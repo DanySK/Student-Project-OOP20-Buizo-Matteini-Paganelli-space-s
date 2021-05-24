@@ -3,13 +3,13 @@ package spaceSurvival.model;
 import spaceSurvival.controller.GUI.CtrlGUI;
 import spaceSurvival.controller.GUI.CtrlGame;
 import spaceSurvival.controller.GUI.CtrlSound;
+import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
 import spaceSurvival.model.gameObject.mainGameObject.Boss;
 import spaceSurvival.model.gameObject.mainGameObject.ChaseEnemy;
 import spaceSurvival.model.gameObject.mainGameObject.FireEnemy;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
-import spaceSurvival.model.gameObject.Status;
 import spaceSurvival.model.sound.CmdAudioType;
 import spaceSurvival.model.worldEcollisioni.WorldEvent;
 import spaceSurvival.model.worldEcollisioni.WorldEventListener;
@@ -28,6 +28,8 @@ import java.util.Optional;
 
 
 public class EngineMalaLoop extends Thread implements WorldEventListener {
+    public static final int FPS = 60;
+
     private final CtrlGUI controlGUI;
     private final CtrlGame controlGame;
     private final CtrlSound controlSound;
@@ -48,10 +50,12 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         this.controlGame.assignMovementListenerInShip();
         this.controlGame.setEventListenerInWorld(this);
         this.controlGame.addAllGameObjectsFromWorld();
-
-        this.controlGame.getShip().getTransform()
-                .setToTranslation(Screen.POINT_CENTER_FULLSCREEN.getX(), Screen.POINT_CENTER_FULLSCREEN.getY());
-
+        
+        //double scale = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().getDefaultTransform().getScaleX();      
+        System.out.println(Screen.POINT_CENTER_FULLSCREEN);
+        this.controlGame.getShip().setPosition(new P2d(Screen.POINT_CENTER_FULLSCREEN.getX(), Screen.POINT_CENTER_FULLSCREEN.getY()));
+        
+        
         this.controlSound.setSoundLoop(this.controlGUI.getCurrentGUI());
         this.controlSound.setCmdAudioLoop(CmdAudioType.AUDIO_ON);
         this.controlGUI.startGUI();
@@ -71,7 +75,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             lastTime = current;
             //updateGame(elapsed);
 
-            System.out.println("LoopMala -> "+ elapsed +" FPS");
+            //System.out.println("LoopMala -> "+ elapsed +" FPS");
         }
         System.out.println("Sono fuori dal loop");
         renderGameOver();
@@ -79,10 +83,9 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     
 	protected void waitForNextFrame(final long current) {
         long dt = System.currentTimeMillis() - current;
-        long period = 60L;
-        if (dt < period){
+        if (dt < FPS){
             try {
-                Thread.sleep(period - dt);
+                Thread.sleep(FPS - dt);
             } catch (Exception ignored){}
         }
     }

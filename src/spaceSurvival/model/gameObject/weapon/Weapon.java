@@ -9,7 +9,7 @@ import spaceSurvival.model.gameObject.GameObjectUtils;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.movement.FixedMovement;
 import spaceSurvival.model.movement.Movement;
-import spaceSurvival.model.ImageDesign;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 
 public class Weapon {
@@ -47,7 +47,7 @@ public class Weapon {
 	}
 	
 	public void shot() {
-		ImageDesign imageDesign = new ImageDesign(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Icon.BULLET);
+		EngineImage engineImage = new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Icon.BULLET);
 		System.out.println("Sparo");
 		P2d position = new P2d(600, 600);//owner.getPosition(); //GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.BULLET_VEL;
@@ -55,19 +55,19 @@ public class Weapon {
 		
 		switch (ammoType) {
 		case NORMAL:
-			new NormalBullet(imageDesign, position, new RectBoundingBox(), new NormalBulletPhysicsComponent(), velocity,
+			new NormalBullet(engineImage, position, new RectBoundingBox(), new NormalBulletPhysicsComponent(), velocity,
 					movement, BulletUtils.NORMAL_BULLET_DAMAGE);
 			break;
 		case FIRE:
-			new FireBullet(imageDesign, position, new RectBoundingBox(), new NormalBulletPhysicsComponent(), velocity,
+			new FireBullet(engineImage, position, new RectBoundingBox(), new NormalBulletPhysicsComponent(), velocity,
 					movement, BulletUtils.FIRE_BULLET_DAMAGE);
 			break;
 		case ICE: 
-			new IceBullet(imageDesign, position, new RectBoundingBox(), new NormalBulletPhysicsComponent(), velocity,
+			new IceBullet(engineImage, position, new RectBoundingBox(), new NormalBulletPhysicsComponent(), velocity,
 					movement, BulletUtils.ICE_BULLET_DAMAGE);
 			break;
 		case ELECTRIC:
-			new ElectricBullet(imageDesign, position, new RectBoundingBox(), new NormalBulletPhysicsComponent(), velocity,
+			new ElectricBullet(engineImage, position, new RectBoundingBox(), new NormalBulletPhysicsComponent(), velocity,
 					movement, BulletUtils.ELECTRIC_BULLET_DAMAGE);
 			break;
 		default:

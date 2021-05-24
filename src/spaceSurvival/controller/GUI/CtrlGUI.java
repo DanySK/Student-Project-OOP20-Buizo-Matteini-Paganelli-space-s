@@ -4,7 +4,6 @@ import spaceSurvival.controller.sound.CallerAudio;
 import spaceSurvival.controller.utilities.ListGUI;
 import spaceSurvival.factories.StaticFactoryEngineGUI;
 import spaceSurvival.factories.StaticFactoryGUI;
-import spaceSurvival.model.GUI.EngineGUI;
 import spaceSurvival.model.GUI.Visibility;
 import spaceSurvival.model.GUI.game.EngineGame;
 import spaceSurvival.model.GUI.help.EngineHelp;
@@ -13,18 +12,16 @@ import spaceSurvival.model.GUI.pause.EnginePause;
 import spaceSurvival.model.GUI.scoreboard.EngineScoreboard;
 import spaceSurvival.model.GUI.settings.EngineSettings;
 import spaceSurvival.model.GUI.sound.EngineSound;
-import spaceSurvival.utilities.IdGUI;
-import spaceSurvival.utilities.SoundPath;
+import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.utilities.StateLevelGUI;
-import spaceSurvival.view.GUI.GUI;
-import spaceSurvival.view.GUI.game.GUIGame;
-import spaceSurvival.view.GUI.help.GUIHelp;
-import spaceSurvival.view.GUI.menu.GUIMenu;
-import spaceSurvival.view.GUI.pause.GUIPause;
-import spaceSurvival.view.GUI.scoreboard.GUIScoreboard;
-import spaceSurvival.view.GUI.settings.GUISettings;
-import spaceSurvival.view.GUI.sound.GUISound;
-import spaceSurvival.view.utilities.ButtonID;
+import spaceSurvival.view.game.GUIGame;
+import spaceSurvival.view.help.GUIHelp;
+import spaceSurvival.view.menu.GUIMenu;
+import spaceSurvival.view.pause.GUIPause;
+import spaceSurvival.view.scoreboard.GUIScoreboard;
+import spaceSurvival.view.settings.GUISettings;
+import spaceSurvival.view.sound.GUISound;
+import spaceSurvival.view.utilities.BtnAction;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -35,7 +32,7 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class CtrlGUI {
-    public static final IdGUI FIRST_GUI = IdGUI.ID_MENU;
+    public static final ActionGUI FIRST_GUI = ActionGUI.ID_MENU;
 
     private final GUIMenu guiMenu;
     private final GUIGame guiGame;
@@ -61,9 +58,9 @@ public class CtrlGUI {
     private final CtrlHelp ctrlHelp;
     private final CtrlPause ctrlPause;
 
-    private final Map<IdGUI, ControllerGUI> managerGui;
+    private final Map<ActionGUI, ControllerGUI> managerGui;
 
-    private final ListGUI<IdGUI> chronology;
+    private final ListGUI<ActionGUI> chronology;
 
     public CtrlGUI(){
         this.engineMenu = StaticFactoryEngineGUI.createEngineMenu();
@@ -91,13 +88,13 @@ public class CtrlGUI {
         this.ctrlPause = new CtrlPause(this.enginePause, this.guiPause);
 
         this.managerGui = new HashMap<>(){{
-            put(CtrlGUI.this.ctrlMenu.getIdGUI(), CtrlGUI.this.ctrlMenu);
-            put(CtrlGUI.this.ctrlGame.getIdGUI(), CtrlGUI.this.ctrlGame);
-            put(CtrlGUI.this.ctrlSettings.getIdGUI(), CtrlGUI.this.ctrlSettings);
-            put(CtrlGUI.this.ctrlScoreboard.getIdGUI(), CtrlGUI.this.ctrlScoreboard);
-            put(CtrlGUI.this.ctrlSound.getIdGUI(), CtrlGUI.this.ctrlSound);
-            put(CtrlGUI.this.ctrlHelp.getIdGUI(), CtrlGUI.this.ctrlHelp);
-            put(CtrlGUI.this.ctrlPause.getIdGUI(), CtrlGUI.this.ctrlPause);
+            put(CtrlGUI.this.ctrlMenu.getMainAction(), CtrlGUI.this.ctrlMenu);
+            put(CtrlGUI.this.ctrlGame.getMainAction(), CtrlGUI.this.ctrlGame);
+            put(CtrlGUI.this.ctrlSettings.getMainAction(), CtrlGUI.this.ctrlSettings);
+            put(CtrlGUI.this.ctrlScoreboard.getMainAction(), CtrlGUI.this.ctrlScoreboard);
+            put(CtrlGUI.this.ctrlSound.getMainAction(), CtrlGUI.this.ctrlSound);
+            put(CtrlGUI.this.ctrlHelp.getMainAction(), CtrlGUI.this.ctrlHelp);
+            put(CtrlGUI.this.ctrlPause.getMainAction(), CtrlGUI.this.ctrlPause);
         }};
 
         this.chronology = new ListGUI<>() {{ add(FIRST_GUI); }};
@@ -113,33 +110,33 @@ public class CtrlGUI {
     }
 
     private void linksAll(){
-        this.managerGui.values().forEach(managerGui -> managerGui.getGUI().getButtonLinks().forEach(btn -> {
+        this.managerGui.values().forEach(managerGui -> managerGui.getGUI().getBtnActionLinks().forEach(btn -> {
             btn.addActionListener(e -> {
-                System.out.println("Premuto in: " + btn.getIdGUICurrent() + " Vado in: " + btn.getIdGUINext());
+                System.out.println("Premuto in: " + btn.getActionCurrent() + " Vado in: " + btn.getActionNext());
 
-                switch (btn.getIdGUINext()) {
+                switch (btn.getActionNext()) {
                     case ID_GAME:
-                        this.chronology.add(btn.getIdGUINext());
-                        this.managerGui.get(btn.getIdGUINext()).turn(Visibility.VISIBLE);
-                        this.managerGui.get(btn.getIdGUICurrent()).turn(Visibility.HIDDEN); break;
+                        this.chronology.add(btn.getActionNext());
+                        this.managerGui.get(btn.getActionNext()).turn(Visibility.VISIBLE);
+                        this.managerGui.get(btn.getActionCurrent()).turn(Visibility.HIDDEN); break;
 
                     case ID_PAUSE:
-                        if (this.chronology.lastElementOfList() != IdGUI.ID_PAUSE) {
-                            this.chronology.add(btn.getIdGUINext());
+                        if (this.chronology.lastElementOfList() != ActionGUI.ID_PAUSE) {
+                            this.chronology.add(btn.getActionNext());
                         } else {
-                            this.chronology.remove(btn.getIdGUINext());
+                            this.chronology.remove(btn.getActionNext());
                         }
 
-                        this.managerGui.get(btn.getIdGUINext()).changeVisibility(); break;
+                        this.managerGui.get(btn.getActionNext()).changeVisibility(); break;
 
                     case ID_BACK:
-                        this.managerGui.get(btn.getIdGUICurrent()).turn(Visibility.HIDDEN);
+                        this.managerGui.get(btn.getActionCurrent()).turn(Visibility.HIDDEN);
                         this.chronology.remove(this.chronology.lastElementOfList()); break;
 
                     case ID_QUIT: this.quitAll(); break;
                     default:
-                        this.chronology.add(btn.getIdGUINext());
-                        this.managerGui.get(btn.getIdGUINext()).turn(Visibility.VISIBLE); break;
+                        this.chronology.add(btn.getActionNext());
+                        this.managerGui.get(btn.getActionNext()).turn(Visibility.VISIBLE); break;
                 }
                 System.out.println("list" + this.chronology);
 
@@ -149,10 +146,10 @@ public class CtrlGUI {
 
     private void focusMenu(){
         this.managerGui.values().forEach(managerGui ->
-                managerGui.getGUI().addMouseListener(this.getMouseListener(managerGui.getIdGUI())));
+                managerGui.getGUI().addMouseListener(this.getMouseListener(managerGui.getMainAction())));
     }
 
-    private MouseListener getMouseListener(final IdGUI id){
+    private MouseListener getMouseListener(final ActionGUI id){
         return new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) { }
@@ -183,25 +180,7 @@ public class CtrlGUI {
         };
     }
 
-    private EngineGUI getEngine(IdGUI id){
-        for (ControllerGUI ctrlGUI : this.managerGui.values()) {
-            if(ctrlGUI.getIdGUI() == id){
-                return ctrlGUI.getEngine();
-            }
-        }
-        return null;
-    }
-
-    private GUI getGUI(IdGUI id){
-        for (ControllerGUI ctrlGUI : this.managerGui.values()) {
-            if(ctrlGUI.getIdGUI() == id){
-                return ctrlGUI.getGUI();
-            }
-        }
-        return null;
-    }
-
-    public IdGUI getCurrentGUI(){
+    public ActionGUI getCurrentGUI(){
         return this.chronology.lastElementOfList();
     }
 
@@ -240,9 +219,9 @@ public class CtrlGUI {
         });
     }
 
-    private ButtonID getBtnGameFromMenu(){
-        for (ButtonID btn : this.ctrlMenu.getGUI().getButtonLinks()) {
-            if(btn.getIdGUINext() == IdGUI.ID_GAME){
+    private BtnAction getBtnGameFromMenu(){
+        for (BtnAction btn : this.ctrlMenu.getGUI().getBtnActionLinks()) {
+            if(btn.getActionNext() == ActionGUI.ID_GAME){
                 return btn;
             }
         }
@@ -250,12 +229,12 @@ public class CtrlGUI {
     }
 
     public void assignSoundLoop(){
-        this.managerGui.values().forEach(ctrl -> ctrl.getGUI().getButtonLinks().forEach(
+        this.managerGui.values().forEach(ctrl -> ctrl.getGUI().getBtnActionLinks().forEach(
                 btn -> btn.addActionListener(l -> {
-                    if(btn.getIdGUICurrent() == IdGUI.ID_PAUSE && btn.getIdGUINext() == IdGUI.ID_BACK) {
-                        CtrlGUI.this.ctrlSound.checkChangeSoundLoop(IdGUI.ID_GAME);
+                    if(btn.getActionCurrent() == ActionGUI.ID_PAUSE && btn.getActionNext() == ActionGUI.ID_BACK) {
+                        CtrlGUI.this.ctrlSound.checkChangeSoundLoop(ActionGUI.ID_GAME);
                     } else {
-                        CtrlGUI.this.ctrlSound.checkChangeSoundLoop(btn.getIdGUINext());
+                        CtrlGUI.this.ctrlSound.checkChangeSoundLoop(btn.getActionNext());
                     }
                 })
         ));

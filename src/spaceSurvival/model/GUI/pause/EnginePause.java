@@ -2,8 +2,7 @@ package spaceSurvival.model.GUI.pause;
 
 import spaceSurvival.model.GUI.EngineGUI;
 import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.utilities.DesignTitleGUI;
-import spaceSurvival.utilities.IdGUI;
+import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.utilities.dimension.Screen;
 
 import java.awt.*;
@@ -12,24 +11,29 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class EnginePause implements EngineGUI{
-
-    public static final Rectangle DIMENSION = Screen.RECTANGLE_MEDIUM;
+    public static final Rectangle RECTANGLE = Screen.RECTANGLE_MINI;
+    public static final String TITLE = "PAUSE";
     public static final int N_BUTTONS = 4;
 
-    private final IdGUI id;
+    private final ActionGUI mainAction;
     private final List<LinksPause>  linkButtons;
 
     private Visibility visibility;
 
     public EnginePause(){
-        this.id = IdGUI.ID_PAUSE;
+        this.mainAction = ActionGUI.ID_PAUSE;
         this.linkButtons = Arrays.asList(LinksPause.values());
         this.visibility = Visibility.HIDDEN;
     }
 
     @Override
-    public IdGUI getId() {
-        return this.id;
+    public ActionGUI getMainAction() {
+        return this.mainAction;
+    }
+
+    @Override
+    public Rectangle getRectangle() {
+        return RECTANGLE;
     }
 
     @Override
@@ -48,15 +52,18 @@ public class EnginePause implements EngineGUI{
     }
 
     @Override
-    public List<IdGUI> getLinks() {
+    public List<ActionGUI> getLinks() {
         return this.linkButtons.stream().map(LinksPause::getIdGUI).collect(Collectors.toList());
     }
 
+
     public String getTitleGUI(){
-        return DesignTitleGUI.TITLE_PAUSE;
+        return TITLE;
     }
 
     public List<String> getListName(){
         return this.linkButtons.stream().map(LinksPause::getName).collect(Collectors.toList());
     }
+
+
 }

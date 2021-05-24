@@ -4,14 +4,14 @@ import java.awt.Dimension;
 import java.awt.geom.AffineTransform;
 
 import spaceSurvival.model.common.P2d;
-import spaceSurvival.model.ImageDesign;
+import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 import spaceSurvival.model.World;
 
 
 public abstract class GameObject {
-	private ImageDesign imageDesign;
+	private EngineImage engineImage;
 	private P2d position;
 	private BoundingBox boundingBox;
 
@@ -19,9 +19,9 @@ public abstract class GameObject {
 	private AffineTransform transform;
 	
 	
-	public GameObject(final ImageDesign imageDesign, final P2d position, final BoundingBox bb,
-					  final PhysicsComponent phys) {
-		this.imageDesign = imageDesign;
+	public GameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
+                      final PhysicsComponent phys) {
+		this.engineImage = engineImage;
 		this.position = position;
 		this.boundingBox = bb;
 		this.phys = phys;
@@ -43,8 +43,8 @@ public abstract class GameObject {
 	}
 	
 	
-	public ImageDesign getEngineImage() {
-		return imageDesign;
+	public EngineImage getEngineImage() {
+		return engineImage;
 	}
 	
 	public P2d getPosition() {
@@ -54,9 +54,9 @@ public abstract class GameObject {
 	public void setPosition(P2d position) {
 		AffineTransform newTransform = new AffineTransform();
 		newTransform.translate(position.getX(), position.getY());
-		this.transform = newTransform;
+		this.transform.setTransform(newTransform);
 		
-		//this.position = position;
+		this.boundingBox.setTransform(newTransform);
 	}
 	
 	public BoundingBox getBoundingBox() {
@@ -68,8 +68,8 @@ public abstract class GameObject {
 		this.boundingBox = boundingBox;
 	}
 
-	public void setEngineImage(ImageDesign imageDesign) {
-		this.imageDesign = imageDesign;
+	public void setEngineImage(EngineImage engineImage) {
+		this.engineImage = engineImage;
 	}
 
 
@@ -96,7 +96,7 @@ public abstract class GameObject {
 
 	@Override
 	public String toString() {
-		return "GameObject [engineImage=" + imageDesign + ", position=" + position + ", boundingBox=" + boundingBox
+		return "GameObject [engineImage=" + engineImage + ", position=" + position + ", boundingBox=" + boundingBox
 				+ ", phys=" + phys + "]";
 	}
 

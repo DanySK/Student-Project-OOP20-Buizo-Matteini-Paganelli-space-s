@@ -1,0 +1,100 @@
+package spaceSurvival.view.help.concrete;
+
+import spaceSurvival.model.EngineImage;
+import spaceSurvival.model.GUI.help.EngineHelp;
+import spaceSurvival.utilities.ActionGUI;
+import spaceSurvival.view.AbstractGUI;
+import spaceSurvival.view.help.GUIHelp;
+import spaceSurvival.view.help.utilities.UnitHelp;
+import spaceSurvival.view.utilities.BtnAction;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class GUIHelpConcrete extends AbstractGUI implements GUIHelp {
+    private final JLabel lbTitle;
+    private final List<UnitHelp> unitHelps;
+    private final BtnAction btnBack;
+
+    public GUIHelpConcrete() {
+        super();
+        this.lbTitle = new JLabel();
+        this.btnBack = new BtnAction();
+        this.unitHelps = Stream.generate(UnitHelp::new)
+                .limit(EngineHelp.N_UNIT).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<BtnAction> getBtnActionLinks() {
+        return List.of(this.btnBack);
+    }
+
+
+    @Override
+    public void setActionBtnBack(final ActionGUI mainAction, final ActionGUI intoID) {
+        this.btnBack.setActionCurrent(mainAction);
+        this.btnBack.setActionNext(intoID);
+    }
+
+    @Override
+    public void setNameUnit(final List<String> listName){
+        AtomicInteger i = new AtomicInteger();
+        this.unitHelps.forEach(unit -> unit.setTitleUnit(listName.get(i.getAndIncrement())));
+    }
+
+    @Override
+    public void setBtnNames(final List<String> listName) {
+        int i = 0;
+        this.btnBack.setText(listName.get(i));
+    }
+
+    @Override
+    public void addNameAndIconInUnit(final String panelName, final List<EngineImage> engineImages) {
+        this.unitHelps.stream().filter(unit -> unit.getTitleUnit().contentEquals(panelName))
+                .forEach(unit -> engineImages.forEach(engine -> {
+                    engine.setScale(engine.getScaleOf(), super.getWidth());
+                    unit.addIconUnit(engine);
+                }));
+    }
+
+
+    @Override
+    public void setTitleGUI(final String title) {
+        this.lbTitle.setText(title);
+    }
+
+    @Override
+    public void setForegroundGUI(final Color color){
+        this.lbTitle.setForeground(color);
+        this.unitHelps.forEach(unit -> unit.setForegroundUnit(color));
+        this.btnBack.setForeground(color);
+    }
+
+    @Override
+    public void setFontTitleGUI(final Font font) {
+        this.lbTitle.setFont(font);
+    }
+
+    @Override
+    public void setFontGUI(final Font font) {
+        this.unitHelps.forEach(unit -> unit.setFontTitleUnit(font));
+        this.btnBack.setFont(font);
+    }
+
+
+    public JLabel getLbTitle(){
+        return this.lbTitle;
+    }
+
+    public BtnAction getBtnBack(){
+        return this.btnBack;
+    }
+
+    public List<UnitHelp> getUnitHelps(){
+        return this.unitHelps;
+    }
+}

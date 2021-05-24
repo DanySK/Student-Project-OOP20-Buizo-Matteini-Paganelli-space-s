@@ -1,11 +1,11 @@
 package spaceSurvival.model.movement;
 
-import spaceSurvival.model.command.caller.CallerMovement;
+import spaceSurvival.model.gameObject.MovableGameObject;
 
 public class ControlledMovement implements Movement {
 
 	@Override
-	public void move(CallerMovement caller) {
+	public void move(MovableGameObject object) {
 		// TODO Auto-generated method stub
 		
 	}

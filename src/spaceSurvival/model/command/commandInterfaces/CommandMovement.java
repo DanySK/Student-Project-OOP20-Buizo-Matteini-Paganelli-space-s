@@ -1,8 +1,8 @@
 package spaceSurvival.model.command.commandInterfaces;
 
-import spaceSurvival.model.gameObject.MainGameObject;
+import spaceSurvival.model.gameObject.MovableGameObject;
 
 public interface CommandMovement {
-    public void execute(MainGameObject ship);
+    public void execute(MovableGameObject ship);
 }
 	
