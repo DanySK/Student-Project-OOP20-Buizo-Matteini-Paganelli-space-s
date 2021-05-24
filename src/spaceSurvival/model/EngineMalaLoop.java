@@ -87,6 +87,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             //System.out.println("LoopMala -> "+ elapsed +" FPS");
         }
         System.out.println("Sono fuori dal loop");
+        render();
         renderGameOver();
     }
     
