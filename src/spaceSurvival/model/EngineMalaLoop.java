@@ -53,7 +53,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         
         //double scale = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().getDefaultTransform().getScaleX();      
         System.out.println(Screen.POINT_CENTER_FULLSCREEN);
-        this.controlGame.getShip().setPosition(new P2d(Screen.POINT_CENTER_FULLSCREEN.getX(), Screen.POINT_CENTER_FULLSCREEN.getY()));
+        //this.controlGame.getShip().setPosition(new P2d(Screen.POINT_CENTER_FULLSCREEN.getX(), Screen.POINT_CENTER_FULLSCREEN.getY()));
         
         
         this.controlSound.setSoundLoop(this.controlGUI.getCurrentGUI());

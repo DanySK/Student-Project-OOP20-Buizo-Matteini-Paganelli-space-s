@@ -26,6 +26,7 @@ public abstract class GameObject {
 		this.boundingBox = bb;
 		this.phys = phys;
 		this.transform = new AffineTransform();
+		this.transform.setToTranslation(this.position.getX(), this.position.getY());
 	}
 	
 	public AffineTransform getTransform() {

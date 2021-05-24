@@ -27,8 +27,6 @@ import spaceSurvival.model.worldEcollisioni.physics.components.PickablePhysicsCo
 import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.utilities.pathImage.Enemies;
-import spaceSurvival.utilities.pathImage.Icon;
-import spaceSurvival.utilities.pathImage.Skin;
 
 
 public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
@@ -71,7 +69,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 	@Override
 	public MainGameObject createFireEnemy() {
 		EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, Enemies.CHASE);
-		P2d position =new P2d(400, 400);// GameObjectUtils.generateSpawnPoint(engineImage.getSize());
+		P2d position = new P2d(400, 400);// GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.FIRE_ENEMY_VEL;
 		Movement movement = new DistantMovement();
 		int life = GameObjectUtils.FIRE_ENEMY_LIFE;

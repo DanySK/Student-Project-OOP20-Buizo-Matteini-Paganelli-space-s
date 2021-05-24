@@ -14,8 +14,8 @@ public class ElectricBullet extends Bullet {
 	}
 	
 	public ElectricBullet(final EngineImage engineImage, final P2d position, final BoundingBox bb,
-                          final PhysicsComponent phys, final V2d velocity, final Movement movement, final int damage) {
-		super(engineImage, position, bb, phys, velocity, movement, damage);
+                          final PhysicsComponent phys, final V2d velocity, final int damage) {
+		super(engineImage, position, bb, phys, velocity, damage);
 	}
 
 }
