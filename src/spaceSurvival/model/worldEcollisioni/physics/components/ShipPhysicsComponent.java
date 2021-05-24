@@ -26,16 +26,8 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 	public void update(int dt, GameObject abstractObj, World w) {
 		SpaceShipSingleton ship = (SpaceShipSingleton) abstractObj;
 
-		//System.out.println("Velocità: " + velocity);
-		
-		//w.checkBoundaries(ship);
-		
 		RectBoundingBox boundingBox = w.getMainBBox();
-		//System.out.println(boundingBox.toString());
-		//System.out.println(ship.getPosition());
-		
-		//System.out.println("Altezza Bounding Box:" + boundingBox.getHeight() + "Larghezza Bounding Box:" + boundingBox.getWidth() + 
-				//"UL:" + boundingBox.getULCorner() + "BR:" + boundingBox.getBRCorner());
+
 		Optional<BoundaryCollision> binfo = w.checkCollisionWithBoundaries(ship.getPosition(), boundingBox);
 		System.out.println(binfo);
 		//ship.setPosition(position.sum(velocity.mul(0.001 * dt)));		
@@ -50,35 +42,57 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 			
 			switch (info.getEdge()) {
 			case TOP: 
-				//P2d center =  Screen.POINT_CENTER_FULLSCREEN;
-				System.out.println(Screen.POINT_CENTER_FULLSCREEN);
-				P2d center = new P2d(1680, 1050);
-				double xAxesDiff = center.getX() - info.getWhere().getX();
-				double xAxesSpawn = center.getX() + xAxesDiff;
-				
-				P2d p2 = new P2d(xAxesSpawn, center.getX() * SystemVariables.SCALE_X);
-				System.out.println("xAxesDiff ->" + xAxesDiff);
-				System.out.println("xAxesSpawn ->" + xAxesSpawn);
-				System.out.println("p2 ->" + p2.toString());
-				System.out.println("Screen.POINT_CENTER_FULLSCREEN.getX() ->" + Screen.POINT_CENTER_FULLSCREEN.getX());
-				System.out.println("info.getWhere().getX() ->" + info.getWhere().getX());
-				System.out.println("SystemVariables.SCALE_X ->" + SystemVariables.SCALE_X);
+//				P2d center =  Screen.POINT_CENTER_FULLSCREEN;
+//				System.out.println(Screen.POINT_CENTER_FULLSCREEN);
+//				P2d centerTop = new P2d(1680, 1050);
+//				double xAxesDiffTop = centerTop.getX() - info.getWhere().getX();
+//				double xAxesSpawnTop = centerTop.getX() + xAxesDiffTop;
+//				
+//				
+//				P2d p2Top = new P2d(xAxesSpawnTop, centerTop.getX() * SystemVariables.SCALE_X);
+//				///P2d p2Top = new P2d(ship.getTransform().getTranslateX(), centerTop.getX() * SystemVariables.SCALE_X);
+//				double disTop = Math.sqrt(Math.pow(p2Top.getX()-pos.getX(), 2) + Math.pow(p2Top.getY()-pos.getY(), 2));
+//				//double dis=Math.sqrt( * (p2.getX()-pos.getX() + (p2.getY()-pos.getY()*(p2.getY()-pos.getY()));
+//				
+//				
+//				//ship.getTransform().translate(0, Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y);
+//				
+//				ship.getTransform().translate(0, disTop);
+//				//ship.setPosition(new P2d(ship.getPosition().getX(), Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y));
+//				w.notifyWorldEvent(new HitBorderEvent(info.getWhere()));		
+//				System.out.println(ship.getTransform());
+//				System.out.println("xAxesDiff ->" + xAxesDiffTop);
+//				System.out.println("xAxesSpawn ->" + xAxesSpawnTop);
+//				System.out.println("p2 ->" + p2Top.toString());
+//				System.out.println("Screen.POINT_CENTER_FULLSCREEN.getX() ->" + Screen.POINT_CENTER_FULLSCREEN.getX());
+//				System.out.println("info.getWhere().getX() ->" + info.getWhere().getX());
+//				System.out.println("SystemVariables.SCALE_X ->" + SystemVariables.SCALE_X);
 						
 				//double dis = Math.sqrt((pos.getX() - spawnPoint.getX())*(x2-x1) + (y2-y1)*(y2-y1));
 				//Math.pow(p2.getX()-pos.getX(), 2);
 				//Math.pow(p2.getY()-pos.getY(), 2);
-				double dis = Math.sqrt(Math.pow(p2.getX()-pos.getX(), 2) + Math.pow(p2.getY()-pos.getY(), 2));
+
+				break;
+			case BOTTOM:
+				
+				P2d centerBottom = new P2d(1680, 1050);
+				double xAxesDiffBottom = centerBottom.getX() - info.getWhere().getX();
+				double xAxesSpawnBottom = centerBottom.getX() + xAxesDiffBottom;
+				
+				
+				P2d p2Bottom = new P2d(ship.getTransform().getTranslateX(), 5);
+				
+				double disBottom = Math.sqrt(Math.pow(p2Bottom.getX()-pos.getX(), 2) + Math.pow(p2Bottom.getY()-pos.getY(), 2));
 				//double dis=Math.sqrt( * (p2.getX()-pos.getX() + (p2.getY()-pos.getY()*(p2.getY()-pos.getY()));
 				
 				
 				//ship.getTransform().translate(0, Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y);
 				
-				ship.getTransform().translate(0, dis);
+				ship.getTransform().translate(0, -disBottom);
 				//ship.setPosition(new P2d(ship.getPosition().getX(), Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y));
-				w.notifyWorldEvent(new HitBorderEvent(info.getWhere()));		
-				System.out.println(ship.getTransform());
-				break;
-			case BOTTOM: 
+				w.notifyWorldEvent(new HitBorderEvent(info.getWhere()));	
+				
+				
 //				ship.setPosition(new P2d(pos.x, info.getWhere().y + boundingBox.getWidth()));
 //				w.notifyWorldEvent(new HitBorderEvent(info.getWhere()));
 //				System.out.println("toccato il muro BOTTOM fratellì");
