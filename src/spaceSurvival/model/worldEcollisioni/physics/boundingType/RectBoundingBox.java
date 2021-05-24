@@ -19,24 +19,24 @@ public class RectBoundingBox implements BoundingBox {
 		this.transform = new AffineTransform();
 	}
 	
-	public RectBoundingBox(P2d p0, P2d p1){
+	public RectBoundingBox(final P2d p0, final P2d p1, final AffineTransform transform){
 		this();
 		this.p0 = p0;
 		this.p1 = p1;
 		this.width = Math.abs(this.p1.getX() - this.p0.getX());
 		this.height = Math.abs(this.p1.getY() - this.p0.getY());
-		this.transform = new AffineTransform();
+		this.transform = transform;
 		this.transform.setToTranslation(p0.getX(), p0.getY());
 	}
 	
-	public RectBoundingBox(P2d center, EngineImage engineImage){
+	public RectBoundingBox(final P2d center, final EngineImage engineImage, final AffineTransform transform){
 		
 		this.p0 = new P2d(center.getX() - (engineImage.getWidth() / 2), center.getY() - (engineImage.getHeight() / 2));
 		this.p1 = new P2d(center.getX() + (engineImage.getWidth() / 2), center.getY() + (engineImage.getHeight() / 2));
 		this.width = engineImage.getWidth();
 		this.height = engineImage.getHeight();
 		
-		this.transform = new AffineTransform();
+		this.transform = transform;
 		this.transform.setToTranslation(center.getX() - (engineImage.getWidth() / 2), center.getY() - (engineImage.getHeight() / 2));
 			
 	}
@@ -49,17 +49,16 @@ public class RectBoundingBox implements BoundingBox {
 		this.transform = new AffineTransform();
 	}
 	
-	public P2d getULCorner(){
+	public P2d getULCorner() {
 		return this.p0;
 	}
 	
-	public P2d getBRCorner(){
+	public P2d getBRCorner() {
 		return this.p1;
 	}
 	
 	
-
-	public double getWidth(){
+	public double getWidth() {
 		
 		//return Math.abs(this.p1.getX() - this.p0.getX());
 		return this.width;
@@ -68,15 +67,15 @@ public class RectBoundingBox implements BoundingBox {
 		//return Math.sqrt(Math.pow(this.p1.getX() - this.p0.getX(), 2) + Math.pow(this.p1.getY() - this.p0.getY(), 2));
 	}
 	
-	public double getHeight(){
+	public double getHeight() {
 		//return Math.abs(this.p1.getY() - this.p0.getY());
 		return this.height;
 	}
 	
-	public AffineTransform getTransform(){
+	public AffineTransform getTransform() {
 		return this.transform;
 	}
-	public void setTransform(AffineTransform transform){ 
+	public void setTransform(final AffineTransform transform) { 
 		this.transform.setTransform(transform); 
 	
 		AffineTransform trans = new AffineTransform();
@@ -92,7 +91,7 @@ public class RectBoundingBox implements BoundingBox {
 	 * @TODO to be implemented
 	 * Il raggio sarà il lato.
 	 */
-	public boolean isCollidingWith(P2d p, double radius){
+	public boolean isCollidingWith(final P2d p, final double radius){
 		
 		if(p.getX() <= this.getULCorner().getX() + this.getWidth() && 
 				p.getY() <= this.getULCorner().getY() + this.getHeight()) {
@@ -117,18 +116,6 @@ public class RectBoundingBox implements BoundingBox {
 		return "RectBoundingBox [p0=" + this.p0 + ", p1=" + this.p1 + "]";
 	}
 
-
-	
-//	public static void main (String[] args) {
-//		System.out.println("Ciao collisioni");
-//
-//		RectBoundingBox r1 = new RectBoundingBox(new P2d(0,0), new P2d(10,10));
-//		RectBoundingBox r2 = new RectBoundingBox(new P2d(7,7), new P2d(15,15));
-//
-//
-//		//System.out.println(r1.isCollidingWith(r2.getULCorner(), 10));
-//
-//	}
 }
 	
 	

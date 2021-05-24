@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 
-import spaceSurvival.controller.CallerMovement;
+import spaceSurvival.controller.CallerCommand;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.utilities.CommandType;
 
@@ -14,10 +14,10 @@ public class MovementKeyListener implements KeyListener {
 //    private static final int UP_KEY_CODE 	= 38;
 //    private static final int RIGHT_KEY_CODE = 39;
     private static final int DOWN_KEY_CODE  = 40;
-    CallerMovement caller;
+    CallerCommand caller;
 
     public MovementKeyListener(final MainGameObject ship) {
-    	caller = new CallerMovement(ship);
+    	caller = new CallerCommand(ship);
     }
         
 

@@ -7,7 +7,6 @@ import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.common.V2d;
 import spaceSurvival.model.gameObject.GameObjectUtils;
 import spaceSurvival.model.gameObject.MainGameObject;
-import spaceSurvival.model.gameObject.Movement;
 import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 
@@ -50,24 +49,23 @@ public class Weapon {
 		System.out.println("Sparo");
 		P2d position = new P2d(600, 600);//owner.getPosition(); //GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.BULLET_VEL;
-		Movement movement = Movement.FIXED;
 		
 		switch (ammoType) {
 		case NORMAL:
 			new NormalBullet(engineImage, position, new RectBoundingBox(), new NormalBulletPhysicsComponent(), velocity,
-					movement, BulletUtils.NORMAL_BULLET_DAMAGE);
+					BulletUtils.NORMAL_BULLET_DAMAGE);
 			break;
 		case FIRE:
 			new FireBullet(engineImage, position, new RectBoundingBox(), new NormalBulletPhysicsComponent(), velocity,
-					movement, BulletUtils.FIRE_BULLET_DAMAGE);
+					BulletUtils.FIRE_BULLET_DAMAGE);
 			break;
 		case ICE: 
 			new IceBullet(engineImage, position, new RectBoundingBox(), new NormalBulletPhysicsComponent(), velocity,
-					movement, BulletUtils.ICE_BULLET_DAMAGE);
+					BulletUtils.ICE_BULLET_DAMAGE);
 			break;
 		case ELECTRIC:
 			new ElectricBullet(engineImage, position, new RectBoundingBox(), new NormalBulletPhysicsComponent(), velocity,
-					movement, BulletUtils.ELECTRIC_BULLET_DAMAGE);
+					BulletUtils.ELECTRIC_BULLET_DAMAGE);
 			break;
 		default:
 			break;
@@ -83,7 +81,7 @@ public class Weapon {
 		return owner;
 	}
 
-	public void setOwner(MainGameObject owner) {
+	public void setOwner(final MainGameObject owner) {
 		this.owner = owner;
 	}
 	
@@ -91,7 +89,7 @@ public class Weapon {
 		return ammoType;
 	}
 
-	public void setAmmoType(AmmoType ammoType) {
+	public void setAmmoType(final AmmoType ammoType) {
 		this.ammoType = ammoType;
 		if (this.ammoType == AmmoType.NORMAL) {
 			setMagazine(Magazine.UNLIMITED);
@@ -106,7 +104,7 @@ public class Weapon {
 		return magazine;
 	}
 
-	private void setMagazine(Magazine magazine) {
+	private void setMagazine(final Magazine magazine) {
 		this.magazine = magazine;
 	}
 
@@ -114,7 +112,7 @@ public class Weapon {
 		return munitions;
 	}
 
-	private void setMunitions(int munitions) {
+	private void setMunitions(final int munitions) {
 		this.munitions = munitions;
 	}
 
@@ -122,7 +120,7 @@ public class Weapon {
 		return multiplierDamage;
 	}
 
-	public void setMultiplierDamage(int multiplierDamage) {
+	public void setMultiplierDamage(final int multiplierDamage) {
 		this.multiplierDamage = multiplierDamage;
 	}
 

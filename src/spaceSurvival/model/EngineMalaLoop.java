@@ -22,11 +22,6 @@ import spaceSurvival.model.worldEcollisioni.hitEvents.HitPickableEvent;
 import spaceSurvival.utilities.Score;
 import spaceSurvival.utilities.dimension.Screen;
 
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
-import java.awt.Toolkit;
-import java.awt.geom.AffineTransform;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -58,7 +53,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         
         //double scale = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().getDefaultTransform().getScaleX();      
         System.out.println(Screen.POINT_CENTER_FULLSCREEN);
-        this.controlGame.getShip().setPosition(new P2d(Screen.POINT_CENTER_FULLSCREEN.getX(), Screen.POINT_CENTER_FULLSCREEN.getY()));
+        //this.controlGame.getShip().setPosition(new P2d(Screen.POINT_CENTER_FULLSCREEN.getX(), Screen.POINT_CENTER_FULLSCREEN.getY()));
         
         
         this.controlSound.setSoundLoop(this.controlGUI.getCurrentGUI());
@@ -72,7 +67,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             long current = System.currentTimeMillis();
             int elapsed = (int)(current - lastTime);
 
-            processInput();
+            //processInput();
             renderMovement();
             render();
 
@@ -114,13 +109,16 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         final SpaceShipSingleton ship = this.controlGame.getShip();
         
         eventQueue.forEach(ev -> {
+        	
         	if (ev instanceof HitAsteroidEvent){
             	HitAsteroidEvent asteroidEvent = (HitAsteroidEvent) ev;
             	final Asteroid asteroidCollided = (Asteroid) asteroidEvent.getCollisionObj();
-            	asteroidCollided.decreaseLife(ship.getImpactDamage());
-            	if (isGameObjectDead(asteroidCollided)) {
-                    scene.removeAsteroid(asteroidCollided);
-				}
+            	if (asteroidCollided.isInvincible()) {
+            		asteroidCollided.decreaseLife(ship.getImpactDamage());
+            		if (isGameObjectDead(asteroidCollided)) {
+            			scene.removeAsteroid(asteroidCollided);
+					}
+            	}
                 this.controlGame.decrLifeShip(asteroidCollided.getImpactDamage());
             } else if (ev instanceof HitChaseEnemyEvent) {
             	HitChaseEnemyEvent chaseEnemyEvent = (HitChaseEnemyEvent) ev;
@@ -162,7 +160,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                 //stato = pEv.getCollisionObj().getType(???):
                 //gameState.getSpaceship().setState(stato);
             } else if (ev instanceof HitBorderEvent) {
-            	System.out.println("TOCCATO MURO E MANDATO EVENTO AL MONDO");
+            	//System.out.println("TOCCATO MURO E MANDATO EVENTO AL MONDO");
             	
                 // HitBorderEvent bEv = (HitBorderEvent) ev;
                 //gameState.decreaseLife();

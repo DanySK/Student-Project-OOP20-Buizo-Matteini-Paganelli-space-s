@@ -1,6 +1,7 @@
 package spaceSurvival.model.gameObject;
 
 import java.awt.Dimension;
+import java.awt.geom.AffineTransform;
 import java.util.Random;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.model.common.P2d;
@@ -85,12 +86,14 @@ public class GameObjectUtils {
     }
 
     
-    public static BoundingBox createRectBoundingBox(P2d position, EngineImage engineImage) {
-    	return new RectBoundingBox(new P2d(position.getX() + engineImage.getWidth() / 2, position.getY() + engineImage.getHeight() / 2), engineImage);
-    		}
+    public static BoundingBox createRectBoundingBox(final P2d position, final EngineImage engineImage, final AffineTransform transform) {
+    	return new RectBoundingBox(new P2d(position.getX() + engineImage.getWidth() / 2, position.getY() + engineImage.getHeight() / 2),
+    			engineImage, transform);
+    }
     
-    public static BoundingBox createCircleBoundingBox(P2d position, EngineImage engineImage) {
-    	return new CircleBoundingBox(position, engineImage.getWidth() / 2);
+    public static BoundingBox createCircleBoundingBox(final P2d position,
+    		final EngineImage engineImage, final AffineTransform transform) {
+    	return new CircleBoundingBox(position, engineImage.getWidth() / 2, transform);
     }
     
 

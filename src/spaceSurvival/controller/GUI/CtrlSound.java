@@ -1,5 +1,6 @@
 package spaceSurvival.controller.GUI;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JSlider;
@@ -34,6 +35,7 @@ public class CtrlSound implements ControllerGUI{
         this.gui = gui;
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
         this.callerAudioLoop = new CallerAudio();
+        this.callerAudioEffect = new ArrayList<CallerAudio>();
 
         this.assignAction();
         this.assignStrings();
@@ -41,6 +43,8 @@ public class CtrlSound implements ControllerGUI{
         this.assignSound();
 
         this.linksCallerAudioLoopWithListener();
+        this.linksCallerAudioEffectWithListener();
+        
         this.switchGUI.turn(this.engine.getVisibility());
     }
 

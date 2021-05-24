@@ -5,6 +5,7 @@ import java.util.Optional;
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.common.V2d;
 import spaceSurvival.model.gameObject.weapon.Weapon;
+import spaceSurvival.model.movement.Movement;
 import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
@@ -12,7 +13,7 @@ import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 public abstract class MainGameObject extends MovableGameObject {
 	private int life;
 	private int impactDamage;
-	
+	private Status status;
 	private Optional<Weapon> weapon;
 	
 	public MainGameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
@@ -21,6 +22,7 @@ public abstract class MainGameObject extends MovableGameObject {
 		super(engineImage, position, bb, phys, velocity, movement);
 		this.life = life;
 		this.setImpactDamage(impactDamage);
+		this.status = Status.NORMAL;
 		this.weapon = weapon;
 	}
 
@@ -51,7 +53,6 @@ public abstract class MainGameObject extends MovableGameObject {
 		this.impactDamage = impactDamage;
 	}
 	
-
 	public Optional<Weapon> getWeapon() {
 		return weapon;
 	}
@@ -60,15 +61,22 @@ public abstract class MainGameObject extends MovableGameObject {
 		this.weapon = weapon;
 	}
 
-	@Override
-	public String toString() {
-		return "MainGameObject [life=" + life + ", impactDamage=" + impactDamage + ", "
-				+ "weapon=" + weapon + ", " + super.toString() + "]";
+	public Status getStatus() {
+		return this.status;
+	}
+	
+	public void setStatus(final Status status) {
+		this.status = status;
+	}
+	
+	public boolean isInvincible() {
+		return this.status == Status.INVINCIBLE;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "MainGameObject [life=" + life + ", weapon=" + weapon + "]";
-//	}
+	@Override
+	public String toString() {
+		return "MainGameObject [life=" + life + ", impactDamage=" + impactDamage + ", state=" + status 
+				+ ", weapon=" + weapon + ", " + super.toString() + "]";
+	}
 
 }

@@ -1,7 +1,7 @@
 package spaceSurvival.controller;
 
 import spaceSurvival.model.command.concreteCommand.SpaceBarCommand;
-import spaceSurvival.model.command.commandInterfaces.CommandMovement;
+import spaceSurvival.model.command.commandInterfaces.CommandGameObject;
 import spaceSurvival.model.command.concreteCommand.DownCommand;
 import spaceSurvival.model.command.concreteCommand.DownReleaseCommand;
 import spaceSurvival.model.command.concreteCommand.LeftCommand;
@@ -15,27 +15,27 @@ import spaceSurvival.model.command.concreteCommand.UpReleaseCommand;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.utilities.CommandType;
 
-public class CallerMovement {
+public class CallerCommand {
 
-	private final CommandMovement cmdLeft;
-	private final CommandMovement cmdUp;
-	private final CommandMovement cmdRight;
-	private final CommandMovement cmdDown;
+	private final CommandGameObject cmdLeft;
+	private final CommandGameObject cmdUp;
+	private final CommandGameObject cmdRight;
+	private final CommandGameObject cmdDown;
 	
-	private final CommandMovement cmdReleaseLeft;
-	private final CommandMovement cmdReleaseUp;
-	private final CommandMovement cmdReleaseRight;
-	private final CommandMovement cmdReleaseDown;
+	private final CommandGameObject cmdReleaseLeft;
+	private final CommandGameObject cmdReleaseUp;
+	private final CommandGameObject cmdReleaseRight;
+	private final CommandGameObject cmdReleaseDown;
 	
-	private final CommandMovement cmdRotateLeft;
-	private final CommandMovement cmdRotateRight;
+	private final CommandGameObject cmdRotateLeft;
+	private final CommandGameObject cmdRotateRight;
 	
 	private final SpaceBarCommand cmdShot;
 
 	private final MainGameObject ship;
 	
 	
-	public CallerMovement(MainGameObject ship) {
+	public CallerCommand(MainGameObject ship) {
 		this.cmdLeft  = new LeftCommand();
 		this.cmdUp    = new UpCommand();
 		this.cmdRight = new RightCommand();
@@ -77,6 +77,7 @@ public class CallerMovement {
 			 break;
 		 case KEY_SPACE_BAR:
 			 cmdShot.execute(ship);
+			 
 			 break;
 		 }
 	}

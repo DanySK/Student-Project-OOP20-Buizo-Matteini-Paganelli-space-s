@@ -4,7 +4,8 @@ import java.util.Optional;
 
 import spaceSurvival.model.gameObject.GameObjectUtils;
 import spaceSurvival.model.gameObject.MainGameObject;
-import spaceSurvival.model.gameObject.Movement;
+import spaceSurvival.model.movement.ControlledMovement;
+import spaceSurvival.model.movement.Movement;
 import spaceSurvival.model.common.*;
 import spaceSurvival.model.gameObject.weapon.Weapon;
 import spaceSurvival.model.EngineImage;
@@ -25,7 +26,7 @@ public class SpaceShipSingleton extends MainGameObject {
    		new RectBoundingBox(),
    		new ShipPhysicsComponent(),
    		new V2d(),
-   		Movement.CONTROLLED,
+   		new ControlledMovement(),
     	GameObjectUtils.SPACESHIP_LIFE,
     	GameObjectUtils.ASTEROID_DAMAGE,
    		Optional.of(new Weapon())
@@ -38,7 +39,7 @@ public class SpaceShipSingleton extends MainGameObject {
                                final PhysicsComponent phys, final V2d velocity, final Movement movement, final int life,
                                final int impactDamage, final Optional<Weapon> weapon) {
 		super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, weapon);
-    	this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage));
+    	this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage, this.getTransform()));
     }
     
     /**

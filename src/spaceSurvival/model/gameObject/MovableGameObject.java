@@ -1,10 +1,11 @@
 package spaceSurvival.model.gameObject;
 
+import spaceSurvival.controller.CallerCommand;
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.common.V2d;
+import spaceSurvival.model.movement.Movement;
 import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
-import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 
 import java.awt.geom.AffineTransform;
@@ -12,8 +13,7 @@ import java.awt.geom.AffineTransform;
 public abstract class MovableGameObject extends GameObject {
 	private V2d velocity;
 	private Movement movement;
-	
-
+	private CallerCommand caller;
 	
 	public MovableGameObject() {
 		super(new EngineImage(), new P2d(0, 0), null, null);
@@ -29,7 +29,12 @@ public abstract class MovableGameObject extends GameObject {
 	}
 	
 	public void move() {
-
+		this.movement.move(this);
+	}
+	
+	public void draw() {
+		//this.getTransform().translate(this.getVelocity().getX(), this.getVelocity().getY());
+		//this.setPosition(this.getPosition().sum(this.getVelocity()));
 		AffineTransform at = this.getTransform();
 		at.translate(this.getVelocity().getX(), this.getVelocity().getY());
 		this.setTransform(this.getTransform());
@@ -53,10 +58,17 @@ public abstract class MovableGameObject extends GameObject {
 	}
 	
 
+	public CallerCommand getCaller() {
+		return caller;
+	}
+
+	public void setCaller(CallerCommand caller) {
+		this.caller = caller;
+	}
+	
 	@Override
 	public String toString() {
 		return "MovableGameObject [velocity=" + velocity + ", movement=" + movement + ", "
 				+ "transform=" + super.getTransform() + ", " + super.toString() +  "]";
 	}
-	
 }

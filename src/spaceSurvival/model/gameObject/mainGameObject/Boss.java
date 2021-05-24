@@ -3,7 +3,7 @@ package spaceSurvival.model.gameObject.mainGameObject;
 import java.util.Optional;
 import spaceSurvival.model.gameObject.GameObjectUtils;
 import spaceSurvival.model.gameObject.MainGameObject;
-import spaceSurvival.model.gameObject.Movement;
+import spaceSurvival.model.movement.Movement;
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.common.V2d;
 import spaceSurvival.model.gameObject.weapon.Weapon;
@@ -18,7 +18,7 @@ public class Boss extends MainGameObject {
                 final int impactDamage, final Optional<Weapon> weapon) {
 		
 		super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, weapon);
-    	this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage));
+    	this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage, this.getTransform()));
 	}
 
 	@Override
