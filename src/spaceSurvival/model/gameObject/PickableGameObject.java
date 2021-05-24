@@ -12,7 +12,7 @@ public class PickableGameObject extends GameObject {
 	public PickableGameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
                               final PhysicsComponent phys, final EffectType effectType) {
 		super(engineImage, position, bb, phys);
-		this.setBoundingBox(GameObjectUtils.createCircleBoundingBox(position, engineImage));
+		this.setBoundingBox(GameObjectUtils.createCircleBoundingBox(position, engineImage, this.getTransform()));
 		this.effectType = effectType;
 	}
 

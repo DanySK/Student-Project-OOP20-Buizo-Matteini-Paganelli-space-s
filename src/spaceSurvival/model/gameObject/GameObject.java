@@ -24,6 +24,8 @@ public abstract class GameObject {
 		this.engineImage = engineImage;	
 		this.boundingBox = bb;
 		this.phys = phys;
+		this.position = position;
+		this.transform = new AffineTransform();
 		this.setPosition(position);
 	}
 	

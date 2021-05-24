@@ -21,7 +21,7 @@ public abstract class Bullet extends MovableGameObject {
 	public Bullet(final EngineImage engineImage, final P2d position, final BoundingBox bb, final PhysicsComponent phys,
                   final V2d velocity, final int damage) {
 		super(engineImage, position, bb, phys, velocity, new FixedMovement());
-    	this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage));
+    	this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage, this.getTransform()));
 		this.damage = damage;
 	}
 

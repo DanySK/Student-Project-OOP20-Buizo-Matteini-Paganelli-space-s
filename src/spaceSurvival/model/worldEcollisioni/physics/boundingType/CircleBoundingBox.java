@@ -10,20 +10,26 @@ public class CircleBoundingBox implements BoundingBox{
 	private double radius;
 	AffineTransform transform;
 
-	public CircleBoundingBox(){
+	public CircleBoundingBox() {
 		this.center = new P2d(0, 0);
 		this.radius = 0;
+		this.transform = new AffineTransform();
 	}
 	
-	public CircleBoundingBox(P2d center, double radius){
+	public CircleBoundingBox(final P2d center, final double radius, final AffineTransform transform){
 		this.center = center;
 		this.radius = radius;
+		this.transform = transform;
 	}
 
 	public AffineTransform getTransform(){
 		return this.transform;
 	}
-	public void setTransform(AffineTransform transform){ this.transform.setTransform(transform); }
+	
+	public void setTransform(AffineTransform transform) {
+		System.out.println(this.transform);
+		this.transform.setTransform(transform);
+	}
 
 	public double getRadius(){
 		return radius;
