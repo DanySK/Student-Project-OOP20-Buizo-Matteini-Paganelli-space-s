@@ -43,7 +43,7 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 			
 			switch (info.getEdge()) {
 			case TOP: 
-
+				//EFFETTO SPACESHIP
 //				P2d center =  Screen.POINT_CENTER_FULLSCREEN;
 //				System.out.println(Screen.POINT_CENTER_FULLSCREEN);
 //				P2d centerTop = new P2d(1680, 1050);
@@ -59,101 +59,39 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 //				
 //				//ship.getTransform().translate(0, Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y);
 //				
-//				ship.getTransform().translate(0, disTop);
-				
-				
-
-//				System.out.println(Screen.POINT_CENTER_FULLSCREEN);
-//				P2d centerTop = new P2d(1680, 1050);
-//				double xAxesDiffTop = centerTop.getX() - info.getWhere().getX();
-//				double xAxesSpawnTop = centerTop.getX() + xAxesDiffTop;
-				
-				
-				//P2d p2Top = new P2d(xAxesSpawnTop, centerTop.getX() * SystemVariables.SCALE_X);
-				///P2d p2Top = new P2d(ship.getTransform().getTranslateX(), centerTop.getX() * SystemVariables.SCALE_X);
-				//double disTop = Math.sqrt(Math.pow(p2Top.getX()-pos.getX(), 2) + Math.pow(p2Top.getY()-pos.getY(), 2));
-				//double dis=Math.sqrt( * (p2.getX()-pos.getX() + (p2.getY()-pos.getY()*(p2.getY()-pos.getY()));
-				
-				
-				//ship.getTransform().translate(0, Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y);
-				//AffineTransform newTrans = ship.getTransform();
+//				ship.getTransform().translate(0, disTop);	
 				AffineTransform newTransTop = new AffineTransform(ship.getTransform().getScaleX(), 
 						ship.getTransform().getShearY(), ship.getTransform().getShearX(), 
 						ship.getTransform().getScaleY(), ship.getTransform().getTranslateX(), 
-						Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y - 10);
+						Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y - 100);
 				
 				w.notifyWorldEvent(new HitBorderEvent(info.getWhere()));
 				ship.setTransform(newTransTop);
-				
-				//ship.getTransform().setToTranslation(ship.getTransform().getTranslateX(), Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y);
-				//ship.getTransform().translate(0, disTop);
-				
-				
-				
-//				//ship.setPosition(new P2d(ship.getPosition().getX(), Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y));
-//				w.notifyWorldEvent(new HitBorderEvent(info.getWhere()));		
-//				System.out.println(ship.getTransform());
-//				System.out.println("xAxesDiff ->" + xAxesDiffTop);
-//				System.out.println("xAxesSpawn ->" + xAxesSpawnTop);
-//				System.out.println("p2 ->" + p2Top.toString());
-//				System.out.println("Screen.POINT_CENTER_FULLSCREEN.getX() ->" + Screen.POINT_CENTER_FULLSCREEN.getX());
-//				System.out.println("info.getWhere().getX() ->" + info.getWhere().getX());
-//				System.out.println("SystemVariables.SCALE_X ->" + SystemVariables.SCALE_X);
-
-						
-				//double dis = Math.sqrt((pos.getX() - spawnPoint.getX())*(x2-x1) + (y2-y1)*(y2-y1));
-				//Math.pow(p2.getX()-pos.getX(), 2);
-				//Math.pow(p2.getY()-pos.getY(), 2);
-
 				break;
-			case BOTTOM:
-				
-				
+			case BOTTOM:		
 				AffineTransform newTransBottom = new AffineTransform(ship.getTransform().getScaleX(), 
 						ship.getTransform().getShearY(), ship.getTransform().getShearX(), 
 						ship.getTransform().getScaleY(), ship.getTransform().getTranslateX(), 
-						10);
+						100);
 			 			
+				w.notifyWorldEvent(new HitBorderEvent(info.getWhere()));
 				ship.setTransform(newTransBottom);
-				
-//				P2d centerBottom = new P2d(1680, 1050);
-//				double xAxesDiffBottom = centerBottom.getX() - info.getWhere().getX();
-//				double xAxesSpawnBottom = centerBottom.getX() + xAxesDiffBottom;
-//				
-//				
-//				P2d p2Bottom = new P2d(ship.getTransform().getTranslateX(), 5);
-//				
-//				double disBottom = Math.sqrt(Math.pow(p2Bottom.getX()-pos.getX(), 2) + Math.pow(p2Bottom.getY()-pos.getY(), 2));
-//				//double dis=Math.sqrt( * (p2.getX()-pos.getX() + (p2.getY()-pos.getY()*(p2.getY()-pos.getY()));
-//				
-//				
-//				//ship.getTransform().translate(0, Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y);
-//				
-//				ship.getTransform().translate(0, -disBottom);
-//				//ship.setPosition(new P2d(ship.getPosition().getX(), Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y));
-//				w.notifyWorldEvent(new HitBorderEvent(info.getWhere()));	
-				
-				
-//				ship.setPosition(new P2d(pos.x, info.getWhere().y + boundingBox.getWidth()));
-//				w.notifyWorldEvent(new HitBorderEvent(info.getWhere()));
-//				System.out.println("toccato il muro BOTTOM fratellì");
 				break;
-			case LEFT: 
-				
+			case LEFT: 			
 				AffineTransform newTransLeft = new AffineTransform(ship.getTransform().getScaleX(), 
 						ship.getTransform().getShearY(), ship.getTransform().getShearX(), 
-						ship.getTransform().getScaleY(), Screen.WIDTH_FULL_SCREEN * SystemVariables.SCALE_X - 10, 
+						ship.getTransform().getScaleY(), Screen.WIDTH_FULL_SCREEN * SystemVariables.SCALE_X - 100, 
 						ship.getTransform().getTranslateY());
 			 			
 				ship.setTransform(newTransLeft);
-//				ship.setPosition(new P2d(info.getWhere().x + boundingBox.getWidth(), pos.y));
-//				w.notifyWorldEvent(new HitBorderEvent(info.getWhere()));
-//				System.out.println("toccato il muro LEFT fratellì");
 				break;
 			case RIGHT: 
-//				ship.setPosition(new P2d(info.getWhere().x - boundingBox.getWidth(), pos.y));
-//				w.notifyWorldEvent(new HitBorderEvent(info.getWhere()));
-//				System.out.println("toccato il muro RIGHT fratellì");
+				AffineTransform newTransRight = new AffineTransform(ship.getTransform().getScaleX(), 
+						ship.getTransform().getShearY(), ship.getTransform().getShearX(), 
+						ship.getTransform().getScaleY(), 100, 
+						ship.getTransform().getTranslateY());
+			 			
+				ship.setTransform(newTransRight);
 				break;
 			}
 		}
