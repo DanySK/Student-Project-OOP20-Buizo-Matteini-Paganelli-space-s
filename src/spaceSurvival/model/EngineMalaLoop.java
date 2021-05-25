@@ -3,6 +3,7 @@ package spaceSurvival.model;
 import spaceSurvival.controller.GUI.CtrlGUI;
 import spaceSurvival.controller.GUI.CtrlGame;
 import spaceSurvival.controller.GUI.CtrlSound;
+import spaceSurvival.controller.sound.CallerAudio;
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
@@ -12,6 +13,7 @@ import spaceSurvival.model.gameObject.mainGameObject.FireEnemy;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 import spaceSurvival.model.gameObject.weapon.NormalBullet;
 import spaceSurvival.model.sound.CmdAudioType;
+import spaceSurvival.model.sound.category.SoundEffect;
 import spaceSurvival.model.worldEcollisioni.WorldEvent;
 import spaceSurvival.model.worldEcollisioni.WorldEventListener;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitAsteroidEvent;
@@ -28,6 +30,8 @@ import spaceSurvival.utilities.dimension.Screen;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+
+import javax.sound.sampled.Clip;
 
 
 public class EngineMalaLoop extends Thread implements WorldEventListener {
@@ -68,7 +72,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     
 
         	
-        //this.controlSound.getCallerAudioEffect().get(2).execute(CmdAudioType.AUDIO_ON);
+        
         	
         
         this.controlGUI.startGUI();
@@ -119,17 +123,47 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     protected void updateGame(final int elapsed) {
         this.controlGame.updateStateWorld(elapsed);
         checkEvents();
+        checkSoundEffects();
     }
     
     protected void checkSoundEffects() {
         final World scene = this.controlGame.getWord();
         final SpaceShipSingleton ship = this.controlGame.getShip();
+        //soundQueue.add(ship.popEffect()); 
+        Optional<SoundPath> effect = ship.popEffect();
+        if(!effect.equals(Optional.empty())) {
+        	soundQueue.add(effect.get());       	
+        }
         
-        soundQueue.forEach(ev -> {
-  
+        
+        System.out.println(soundQueue);
+        soundQueue.forEach(currentEffect -> {           
+
+        //this.controlSound.getCallerAudioEffectFromSoundPath(currentEffect).get().execute(CmdAudioType.RESET_TIMING);
+        //this.controlSound.getCallerAudioEffectFromSoundPath(currentEffect).get().execute(CmdAudioType.AUDIO_ON);
+        playEffect(currentEffect);
+        //CallerAudio c = new CallerAudio(new SoundEffect(SoundPath.SHOOT));
+        //c.execute(CmdAudioType.AUDIO_ON);
+        //System.out.println("CURRENT EFFECTTTTTTTTT ->" + currentEffect);
+        //this.controlSound.getCallerAudioEffectFromSoundPath(currentEffect).get().execute(CmdAudioType.AUDIO_OFF);
+        
+        
+        //this.controlSound.getCallerAudioEffect().get().execute(CmdAudioType.AUDIO_ON);
         });
-        soundQueue.clear();
+//        
+         soundQueue.clear();
     }
+    
+//  protected void checkSoundShoots() {
+//  final World scene = this.controlGame.getWord();
+//  final SpaceShipSingleton ship = this.controlGame.getShip();
+//  
+//  soundQueue.forEach(ev -> {
+//  	System.out.println(ev);
+//  });
+//  
+//  soundQueue.clear();
+//}
 
     protected void checkEvents() {
         final World scene = this.controlGame.getWord();
@@ -183,10 +217,16 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                 // HitBorderEvent bEv = (HitBorderEvent) ev;
                 //gameState.decreaseLives();
             } else if (ev instanceof HitPickableEvent) {
+            	playEffect(SoundPath.PERK);
+            	//playEffect(SoundPath.);
                 //HitPerkEvent pEv = (HitPerkEvent) ev;
                 //stato = pEv.getCollisionObj().getType(???):
                 //gameState.getSpaceship().setState(stato);
             } else if (ev instanceof HitBorderEvent) {
+            	playEffect(SoundPath.WALL_COLLISION);
+            	
+            	
+            	
             	//System.out.println("TOCCATO MURO E MANDATO EVENTO AL MONDO");
             	
                 // HitBorderEvent bEv = (HitBorderEvent) ev;
@@ -221,11 +261,22 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     }
 
     protected void renderGameOver() {
+    	//playEffect(SoundPath.GAME_OVER);
 //        view.renderGameOver();
     }
 
     public void notifyEvent(final WorldEvent ev) {
         eventQueue.add(ev);
     }
+    
+    private void playEffect(SoundPath soundPath) {
+    	this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CmdAudioType.RESET_TIMING);
+        this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CmdAudioType.AUDIO_ON);
+    	
+    }
+    
+//    public void notifySoundEvent(final SoundPath ev) {
+//        soundQueue.add(ev);
+//    }
 }
 
