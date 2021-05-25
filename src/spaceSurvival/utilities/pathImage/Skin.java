@@ -33,7 +33,19 @@ public class Skin {
     public static final List<String> LIST_SHIP2 = List.of(STANDARD0, STANDARD1, STANDARD2, STANDARD3, STANDARD4, STANDARD5, STANDARD6);
 
 
-    public static final String DELUXE = Paths.get(MAIN_FOLDER, SHIP_FOLDER, "ship3.png").toString();
+    public static final String DELUXE0 = Paths.get(MAIN_FOLDER, SHIP_FOLDER, TYPE_SHIP_3, "ship3.png").toString();
+    public static final String DELUXE1 = Paths.get(MAIN_FOLDER, SHIP_FOLDER, TYPE_SHIP_3, "ship3_1.png").toString();
+    public static final String DELUXE2 = Paths.get(MAIN_FOLDER, SHIP_FOLDER, TYPE_SHIP_3, "ship3_2.png").toString();
+    public static final String DELUXE3 = Paths.get(MAIN_FOLDER, SHIP_FOLDER, TYPE_SHIP_3, "ship3_3.png").toString();
+    public static final String DELUXE4 = Paths.get(MAIN_FOLDER, SHIP_FOLDER, TYPE_SHIP_3, "ship3_4.png").toString();
+    public static final String DELUXE5 = Paths.get(MAIN_FOLDER, SHIP_FOLDER, TYPE_SHIP_3, "ship3_5.png").toString();
+    public static final String DELUXE6 = Paths.get(MAIN_FOLDER, SHIP_FOLDER, TYPE_SHIP_3, "ship3_6.png").toString();
+    public static final String DELUXE7 = Paths.get(MAIN_FOLDER, SHIP_FOLDER, TYPE_SHIP_3, "ship3_7.png").toString();
+
+    public static final List<String> LIST_SHIP3 = List.of(DELUXE0, DELUXE1, DELUXE2, DELUXE3, DELUXE4, DELUXE5, DELUXE6, DELUXE7);
+
+
+
     public static final String NORMAL = Paths.get(MAIN_FOLDER,SHIP_FOLDER, "ship4.png").toString();
     public static final String ATOMIC = Paths.get(MAIN_FOLDER, SHIP_FOLDER, "ship5.png").toString();
 

@@ -14,6 +14,8 @@ import spaceSurvival.model.gameObject.PickableGameObject;
 import spaceSurvival.model.gameObject.factories.AbstractFactoryGameObject;
 import spaceSurvival.model.gameObject.factories.ConcreteFactoryGameObject;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
+import spaceSurvival.model.gameObject.weapon.AmmoType;
+import spaceSurvival.model.gameObject.weapon.Weapon;
 import spaceSurvival.model.worldEcollisioni.WorldEvent;
 import spaceSurvival.model.worldEcollisioni.WorldEventListener;
 import spaceSurvival.model.worldEcollisioni.physics.BoundaryCollision;
@@ -29,7 +31,6 @@ public class World {
 	private Set<MainGameObject> asteroids = new HashSet<>();
 	private Set<MainGameObject> fireEnemies = new HashSet<>();
 	private Set<MainGameObject> chaseEnemies = new HashSet<>();
-	private Set<MainGameObject> bullets = new HashSet<>();
 	private Optional<MainGameObject> boss = Optional.empty();
 	
 	private Set<PickableGameObject> pickables = new HashSet<>();
@@ -40,6 +41,12 @@ public class World {
 	
 	public World(final RectBoundingBox mainBBox) {
 		this.ship = SpaceShipSingleton.getSpaceShip();
+		this.ship.setWeapon(Optional.of(new Weapon(AmmoType.NORMAL, ship)));
+		
+		System.out.println("BELLA RAGAAAAA");
+		System.out.println(this.ship.getWeapon());
+		System.out.println(this.ship.getWeapon().get());
+		
 		this.mainBBox = mainBBox;
 
 		for (int i = 0; i < 1; i++) {
@@ -51,6 +58,12 @@ public class World {
 
 	public World(final Rectangle rectangle) {
 		this.ship = SpaceShipSingleton.getSpaceShip();
+		this.ship.setWeapon(Optional.of(new Weapon(AmmoType.NORMAL, ship)));
+		
+		System.out.println("BELLA RAGAAAAA");
+		System.out.println(this.ship.getWeapon());
+		System.out.println(this.ship.getWeapon().get());
+		
 		this.mainBBox = new RectBoundingBox(rectangle);
 
 		for (int i = 0; i < 1; i++) {
@@ -77,15 +90,16 @@ public class World {
 
 		if(path.contentEquals(Skin.SPECIAL0)){
 			this.ship.setAnimation(Skin.LIST_SHIP1);
-		}
-		if(path.contentEquals(Skin.STANDARD0)){
+		}else if(path.contentEquals(Skin.STANDARD0)){
 			this.ship.setAnimation(Skin.LIST_SHIP2);
+		}else if(path.contentEquals(Skin.DELUXE0)){
+			this.ship.setAnimation(Skin.LIST_SHIP3);
 		}
 
 	}
 
 	public void moveShip(){
-		this.ship.draw();
+		this.ship.move();
 	}
 	
 	public AbstractFactoryGameObject getFactoryGameObject() {
@@ -158,7 +172,7 @@ public class World {
 
 	public Optional<MainGameObject> checkCollisionWithAsteroids(final P2d pos, final RectBoundingBox box) {
 		double radius = box.getWidth();
-		System.out.println("Questa è la width della ship" + radius);
+		//System.out.println("Questa è la width della ship" + radius);
 		for (MainGameObject obj: asteroids) {
 			if (obj.getBoundingBox().isCollidingWith(pos, radius)) {
 				return Optional.of(obj);
@@ -234,9 +248,9 @@ public class World {
 		return this.chaseEnemies;
 	}
 
-	public Set<MainGameObject> getBullets() {
-		return bullets;
-	}
+//	public Set<MainGameObject> getBullets() {
+//		return bullets;
+//	}
 	
 	public Optional<MainGameObject> getBoss() {
 		return boss;

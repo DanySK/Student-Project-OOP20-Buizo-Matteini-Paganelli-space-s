@@ -59,6 +59,7 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 //				//ship.getTransform().translate(0, Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y);
 //				
 //				ship.getTransform().translate(0, disTop);	
+				
 				AffineTransform newTransTop = new AffineTransform(ship.getTransform().getScaleX(), 
 						ship.getTransform().getShearY(), ship.getTransform().getShearX(), 
 						ship.getTransform().getScaleY(), ship.getTransform().getTranslateX(), 

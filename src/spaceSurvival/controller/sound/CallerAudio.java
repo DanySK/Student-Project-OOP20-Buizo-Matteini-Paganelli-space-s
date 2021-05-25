@@ -3,6 +3,7 @@ package spaceSurvival.controller.sound;
 
 import spaceSurvival.controller.sound.command.CommandAudio;
 import spaceSurvival.controller.sound.command.PlaySoundCommand;
+import spaceSurvival.controller.sound.command.ResetTiming;
 import spaceSurvival.controller.sound.command.StopSoundCommand;
 import spaceSurvival.model.sound.CmdAudioType;
 import spaceSurvival.model.sound.Sound;
@@ -11,12 +12,14 @@ import spaceSurvival.utilities.SoundPath;
 public class CallerAudio {
 	private final CommandAudio cmdAudioOn;
 	private final CommandAudio cmdAudioOff;
+	private final CommandAudio cmdResetTiming;
 	
 	private Sound sound;
 	
 	public CallerAudio() {
 		this.cmdAudioOn = new PlaySoundCommand();
 		this.cmdAudioOff = new StopSoundCommand();
+		this.cmdResetTiming = new ResetTiming();
 	}
 
 	public CallerAudio(final Sound sound) {
@@ -47,6 +50,8 @@ public class CallerAudio {
 		 	cmdAudioOn.execute(sound); break;
 		 case AUDIO_OFF:
 			 cmdAudioOff.execute(sound); break;
+		 case RESET_TIMING:
+			 cmdResetTiming.execute(sound); break;
 		 }
 	}
 }

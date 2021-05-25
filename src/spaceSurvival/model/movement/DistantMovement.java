@@ -10,4 +10,8 @@ public class DistantMovement implements Movement {
 		
 	}
 
+	@Override
+	public String toString() {
+		return "Distant Movement";
+	}
 }

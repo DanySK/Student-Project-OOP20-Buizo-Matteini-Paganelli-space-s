@@ -9,5 +9,10 @@ public class ControlledMovement implements Movement {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public String toString() {
+		return "Controlled Movement";
+	}
 
 }

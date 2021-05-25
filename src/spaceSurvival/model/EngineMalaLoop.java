@@ -26,6 +26,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.sound.sampled.Clip;
+
 
 public class EngineMalaLoop extends Thread implements WorldEventListener {
     public static final int FPS = 60;
@@ -63,7 +65,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         this.controlSound.setSoundLoop(this.controlGUI.getCurrentGUI());
         this.controlSound.setCmdAudioLoop(CmdAudioType.AUDIO_ON);
         	
-        //this.controlSound.getCallerAudioEffect().get(2).execute(CmdAudioType.AUDIO_ON);
+        
         	
         
         this.controlGUI.startGUI();
@@ -114,17 +116,47 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     protected void updateGame(final int elapsed) {
         this.controlGame.updateStateWorld(elapsed);
         checkEvents();
+        checkSoundEffects();
     }
     
     protected void checkSoundEffects() {
         final World scene = this.controlGame.getWord();
         final SpaceShipSingleton ship = this.controlGame.getShip();
+        //soundQueue.add(ship.popEffect()); 
+        Optional<SoundPath> effect = ship.popEffect();
+        if(!effect.equals(Optional.empty())) {
+        	soundQueue.add(effect.get());       	
+        }
         
-        soundQueue.forEach(ev -> {
-  
+        
+        System.out.println(soundQueue);
+        soundQueue.forEach(currentEffect -> {           
+
+        //this.controlSound.getCallerAudioEffectFromSoundPath(currentEffect).get().execute(CmdAudioType.RESET_TIMING);
+        //this.controlSound.getCallerAudioEffectFromSoundPath(currentEffect).get().execute(CmdAudioType.AUDIO_ON);
+        playEffect(currentEffect);
+        //CallerAudio c = new CallerAudio(new SoundEffect(SoundPath.SHOOT));
+        //c.execute(CmdAudioType.AUDIO_ON);
+        //System.out.println("CURRENT EFFECTTTTTTTTT ->" + currentEffect);
+        //this.controlSound.getCallerAudioEffectFromSoundPath(currentEffect).get().execute(CmdAudioType.AUDIO_OFF);
+        
+        
+        //this.controlSound.getCallerAudioEffect().get().execute(CmdAudioType.AUDIO_ON);
         });
-        soundQueue.clear();
+//        
+         soundQueue.clear();
     }
+    
+//  protected void checkSoundShoots() {
+//  final World scene = this.controlGame.getWord();
+//  final SpaceShipSingleton ship = this.controlGame.getShip();
+//  
+//  soundQueue.forEach(ev -> {
+//  	System.out.println(ev);
+//  });
+//  
+//  soundQueue.clear();
+//}
 
     protected void checkEvents() {
         final World scene = this.controlGame.getWord();
@@ -178,10 +210,16 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                 // HitBorderEvent bEv = (HitBorderEvent) ev;
                 //gameState.decreaseLives();
             } else if (ev instanceof HitPickableEvent) {
+            	playEffect(SoundPath.PERK);
+            	//playEffect(SoundPath.);
                 //HitPerkEvent pEv = (HitPerkEvent) ev;
                 //stato = pEv.getCollisionObj().getType(???):
                 //gameState.getSpaceship().setState(stato);
             } else if (ev instanceof HitBorderEvent) {
+            	playEffect(SoundPath.WALL_COLLISION);
+            	
+            	
+            	
             	//System.out.println("TOCCATO MURO E MANDATO EVENTO AL MONDO");
             	
                 // HitBorderEvent bEv = (HitBorderEvent) ev;
@@ -202,14 +240,36 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     
     private void renderMovement() {
     	this.controlGame.moveShip();
+
+//    	this.controlGame.getWord().getMovableEntities().forEach(entity -> {
+//    		entity.move();
+//    	});
+    	
+    	SpaceShipSingleton ship = this.controlGame.getShip();
+    	if (ship.getWeapon().isPresent()) {
+        	ship.getWeapon().get().getShootedBullets().forEach(bullet -> {
+        		bullet.move();
+        	});
+		}
     }
 
     protected void renderGameOver() {
+    	//playEffect(SoundPath.GAME_OVER);
 //        view.renderGameOver();
     }
 
     public void notifyEvent(final WorldEvent ev) {
         eventQueue.add(ev);
     }
+    
+    private void playEffect(SoundPath soundPath) {
+    	this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CmdAudioType.RESET_TIMING);
+        this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CmdAudioType.AUDIO_ON);
+    	
+    }
+    
+//    public void notifySoundEvent(final SoundPath ev) {
+//        soundQueue.add(ev);
+//    }
 }
 

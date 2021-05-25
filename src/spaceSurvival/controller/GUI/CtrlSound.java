@@ -3,6 +3,7 @@ package spaceSurvival.controller.GUI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import javax.swing.JSlider;
 
@@ -106,6 +107,17 @@ public class CtrlSound implements ControllerGUI{
 
     public List<CallerAudio> getCallerAudioEffect(){
         return this.callerAudioEffect;
+    }
+    
+    public Optional<CallerAudio> getCallerAudioEffectFromSoundPath(SoundPath soundPath){
+        
+        for(int i = 0; i < this.callerAudioEffect.size(); i++) {
+        	if(this.callerAudioEffect.get(i).getSound().getSoundType().equals(soundPath)) {
+        		return Optional.of(this.callerAudioEffect.get(i));
+        	}
+        }
+        
+        return Optional.empty();
     }
     
     public void setCallerAudioEffect(final List<CallerAudio> callerAudioEffect){

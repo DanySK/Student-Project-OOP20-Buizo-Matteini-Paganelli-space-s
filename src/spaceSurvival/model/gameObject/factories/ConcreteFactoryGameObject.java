@@ -15,6 +15,7 @@ import spaceSurvival.model.gameObject.mainGameObject.Boss;
 import spaceSurvival.model.gameObject.mainGameObject.ChaseEnemy;
 import spaceSurvival.model.gameObject.mainGameObject.FireEnemy;
 import spaceSurvival.model.common.*;
+import spaceSurvival.model.gameObject.weapon.AmmoType;
 import spaceSurvival.model.gameObject.weapon.Weapon;
 import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
@@ -74,10 +75,12 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 		Movement movement = new DistantMovement();
 		int life = GameObjectUtils.FIRE_ENEMY_LIFE;
 		int impactDamage = GameObjectUtils.FIRE_ENEMY_DAMAGE;		
-		Optional<Weapon> weapon = Optional.of(new Weapon());
+		Optional<Weapon> weapon = Optional.empty();
 		
-		return new FireEnemy(engineImage, position, new RectBoundingBox(), new FireEnemyPhysicsComponent(),
+		FireEnemy fireEnemy = new FireEnemy(engineImage, position, new RectBoundingBox(), new FireEnemyPhysicsComponent(),
 				velocity, movement, life, impactDamage, weapon);
+		fireEnemy.setWeapon(Optional.of(new Weapon(AmmoType.NORMAL, fireEnemy)));
+		return fireEnemy;
 	}
 
 
@@ -91,8 +94,10 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 		int impactDamage = GameObjectUtils.BOSS_DAMAGE;		
 		Optional<Weapon> weapon = Optional.of(new Weapon());
 		
-		return new Boss(engineImage, position, new RectBoundingBox(), new BossPhysicsComponent(),
+		Boss boss = new Boss(engineImage, position, new RectBoundingBox(), new BossPhysicsComponent(),
 				velocity, movement, life, impactDamage, weapon);
+		boss.setWeapon(Optional.of(new Weapon(AmmoType.NORMAL, boss)));
+		return boss;
 	}
 
 	@Override

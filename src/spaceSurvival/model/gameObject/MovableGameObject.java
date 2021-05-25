@@ -3,6 +3,7 @@ package spaceSurvival.model.gameObject;
 import spaceSurvival.controller.CallerCommand;
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.common.V2d;
+import spaceSurvival.model.gameObject.weapon.NormalBullet;
 import spaceSurvival.model.movement.Movement;
 import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
@@ -28,13 +29,15 @@ public abstract class MovableGameObject extends GameObject {
 		this.movement = movement;
 	}
 	
-	public void move() {
-		this.movement.move(this);
-	}
+//	public void move() {
+//		this.movement.move(this);
+//	}
 	
-	public void draw() {
-		//this.getTransform().translate(this.getVelocity().getX(), this.getVelocity().getY());
-		//this.setPosition(this.getPosition().sum(this.getVelocity()));
+	public void move() {
+		//this.movement.move(this);
+		if (this instanceof NormalBullet) {
+			System.out.println(this.getTransform().getTranslateX() + "   " + this.getTransform().getTranslateY());
+		}
 		AffineTransform at = this.getTransform();
 		at.translate(this.getVelocity().getX(), this.getVelocity().getY());
 		this.setTransform(this.getTransform());

@@ -1,12 +1,18 @@
 package spaceSurvival.model.gameObject.weapon;
 
 import spaceSurvival.model.worldEcollisioni.physics.components.NormalBulletPhysicsComponent;
+import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.utilities.pathImage.Icon;
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.common.V2d;
 import spaceSurvival.model.gameObject.GameObjectUtils;
 import spaceSurvival.model.gameObject.MainGameObject;
+import spaceSurvival.model.gameObject.weapon.exception.NoBulletTypeException;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 
@@ -18,13 +24,17 @@ public class Weapon {
 	private int munitions;
 	private int multiplierDamage = 1;
 	
+	private Set<Bullet> shootedBullets;
+	
 	public Weapon() {
 		this.ammoType = AmmoType.NORMAL;
 		this.magazine =  Magazine.UNLIMITED;
 		this.munitions = GameObjectUtils.INFINITY;
+		this.shootedBullets = new HashSet<>();
 	}
 	
 	public Weapon(final AmmoType ammoType, final MainGameObject owner) {
+		this.owner = owner;
 		this.ammoType = ammoType;
 		
 		switch (ammoType) {
@@ -41,40 +51,46 @@ public class Weapon {
 		default:
 			break;
 		}
-		
+		this.shootedBullets = new HashSet<>();		
 	}
 	
 	public void shot() {
-		EngineImage engineImage = new EngineImage(GameObjectUtils.SPACESHIP_SCALEOF, Screen.WIDTH_FULL_SCREEN, Icon.BULLET);
+		EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, Icon.BULLET);
 		System.out.println("Sparo");
-		P2d position = new P2d(600, 600);//owner.getPosition(); //GameObjectUtils.generateSpawnPoint(engineImage.getSize());
+		System.out.println(owner);
+		System.out.println(owner.getPosition());
+		P2d position = owner.getPosition();
 		V2d velocity = GameObjectUtils.BULLET_VEL;
+		Bullet bullet;
 		
 		switch (ammoType) {
 		case NORMAL:
-			new NormalBullet(engineImage, position, new RectBoundingBox(), new NormalBulletPhysicsComponent(), velocity,
-					BulletUtils.NORMAL_BULLET_DAMAGE);
+			bullet = new NormalBullet(engineImage, position, new RectBoundingBox(), new NormalBulletPhysicsComponent(), velocity,
+					BulletUtils.NORMAL_BULLET_DAMAGE * multiplierDamage);
 			break;
 		case FIRE:
-			new FireBullet(engineImage, position, new RectBoundingBox(), new NormalBulletPhysicsComponent(), velocity,
-					BulletUtils.FIRE_BULLET_DAMAGE);
+			bullet = new FireBullet(engineImage, position, new RectBoundingBox(), new NormalBulletPhysicsComponent(), velocity,
+					BulletUtils.FIRE_BULLET_DAMAGE * multiplierDamage);
 			break;
-		case ICE: 
-			new IceBullet(engineImage, position, new RectBoundingBox(), new NormalBulletPhysicsComponent(), velocity,
-					BulletUtils.ICE_BULLET_DAMAGE);
+		case ICE:  
+			bullet = new IceBullet(engineImage, position, new RectBoundingBox(), new NormalBulletPhysicsComponent(), velocity,
+					BulletUtils.ICE_BULLET_DAMAGE * multiplierDamage);
 			break;
 		case ELECTRIC:
-			new ElectricBullet(engineImage, position, new RectBoundingBox(), new NormalBulletPhysicsComponent(), velocity,
-					BulletUtils.ELECTRIC_BULLET_DAMAGE);
+			bullet = new ElectricBullet(engineImage, position, new RectBoundingBox(), new NormalBulletPhysicsComponent(), velocity,
+					BulletUtils.ELECTRIC_BULLET_DAMAGE * multiplierDamage);
 			break;
 		default:
-			break;
+			throw new NoBulletTypeException("No correct bullet type to fire a shot");
 		}
+		
+		bullet.setTransform(owner.getTransform());
 		
 		if (magazine == Magazine.LIMITED) {
 			munitions--;
 		}
-		
+		shootedBullets.add(bullet);
+		System.out.println(shootedBullets);
 	}
 	
 	public MainGameObject getOwner() {
@@ -122,6 +138,14 @@ public class Weapon {
 
 	public void setMultiplierDamage(final int multiplierDamage) {
 		this.multiplierDamage = multiplierDamage;
+	}
+
+	public Set<Bullet> getShootedBullets() {
+		return shootedBullets;
+	}
+
+	public void setShootedBullets(Set<Bullet> shootedBullets) {
+		this.shootedBullets = shootedBullets;
 	}
 
 
