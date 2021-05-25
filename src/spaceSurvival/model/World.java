@@ -19,6 +19,7 @@ import spaceSurvival.model.worldEcollisioni.WorldEventListener;
 import spaceSurvival.model.worldEcollisioni.physics.BoundaryCollision;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import spaceSurvival.model.common.*;
+import spaceSurvival.utilities.pathImage.Skin;
 import spaceSurvival.view.game.utilities.Bullet;
 
 public class World {
@@ -73,6 +74,14 @@ public class World {
 
 	public void setSkin(final String path) {
 		this.ship.getEngineImage().setPath(path);
+
+		if(path.contentEquals(Skin.SPECIAL0)){
+			this.ship.setAnimation(Skin.LIST_SHIP1);
+		}
+		if(path.contentEquals(Skin.STANDARD0)){
+			this.ship.setAnimation(Skin.LIST_SHIP2);
+		}
+
 	}
 
 	public void moveShip(){

@@ -1,12 +1,10 @@
 package spaceSurvival.model.GUI.settings;
 
-import spaceSurvival.model.EngineImage;
-import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.pathImage.Skin;
 
 public enum SkinSpaceShip {
-    SPECIAL(Skin.SPECIAL),
-    STANDARD(Skin.STANDARD),
+    SPECIAL(Skin.SPECIAL0),
+    STANDARD(Skin.STANDARD0),
     DELUXE(Skin.DELUXE),
     NORMAL(Skin.NORMAL),
     ATOMIC(Skin.ATOMIC);

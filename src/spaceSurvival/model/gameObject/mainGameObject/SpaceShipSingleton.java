@@ -48,4 +48,5 @@ public class SpaceShipSingleton extends MainGameObject {
     public static SpaceShipSingleton getSpaceShip() {
         return spaceShip;
     }
+
 }

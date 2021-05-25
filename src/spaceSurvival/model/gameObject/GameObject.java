@@ -21,7 +21,7 @@ public abstract class GameObject extends Thread{
 
 	private PhysicsComponent phys;
 	private AffineTransform transform;
-	private final List<String> animation;
+	private List<String> animation;
 	
 	public GameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
                       final PhysicsComponent phys) {
@@ -30,9 +30,12 @@ public abstract class GameObject extends Thread{
 		this.phys = phys;
 		this.position = position;
 		this.transform = new AffineTransform();
-		this.animation = new ArrayList<>() {{ addAll(List.of(Skin.SPECIAL, Skin.SPECIAL1, Skin.SPECIAL2, Skin.SPECIAL3, Skin.SPECIAL4)); }};
-
+		this.animation = new ArrayList<>();
 		this.setPosition(position);
+	}
+
+	public void setAnimation(final List<String> animation){
+		this.animation = animation;
 		this.start();
 	}
 
