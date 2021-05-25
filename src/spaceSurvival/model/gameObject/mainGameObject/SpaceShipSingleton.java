@@ -7,6 +7,7 @@ import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.movement.ControlledMovement;
 import spaceSurvival.model.movement.Movement;
 import spaceSurvival.model.common.*;
+import spaceSurvival.model.gameObject.weapon.AmmoType;
 import spaceSurvival.model.gameObject.weapon.Weapon;
 import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
@@ -29,7 +30,7 @@ public class SpaceShipSingleton extends MainGameObject {
    		new ControlledMovement(),
     	GameObjectUtils.SPACESHIP_LIFE,
     	GameObjectUtils.ASTEROID_DAMAGE,
-   		Optional.of(new Weapon())
+   		Optional.empty()
     	);
 
     /** 
@@ -48,4 +49,5 @@ public class SpaceShipSingleton extends MainGameObject {
     public static SpaceShipSingleton getSpaceShip() {
         return spaceShip;
     }
+
 }

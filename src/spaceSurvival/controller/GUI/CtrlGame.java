@@ -160,7 +160,7 @@ public class CtrlGame implements ControllerGUI{
     }
 
     public void addAllGameObjectsFromWorld(){
-        this.engine.getAllGameObject().forEach(objGame -> CtrlGame.this.gui.addGameObject(objGame, objGame.getTransform()));
+        this.engine.getAllEntities().forEach(objGame -> CtrlGame.this.gui.addGameObject(objGame, objGame.getTransform()));
     }
 
     public void addGameObject(final GameObject gameObject, final AffineTransform transform){

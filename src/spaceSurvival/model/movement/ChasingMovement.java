@@ -9,5 +9,10 @@ public class ChasingMovement implements Movement {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public String toString() {
+		return "Chasing Movement";
+	}
 
 }

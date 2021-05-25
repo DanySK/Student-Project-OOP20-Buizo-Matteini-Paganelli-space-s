@@ -10,6 +10,7 @@ import spaceSurvival.model.gameObject.mainGameObject.Boss;
 import spaceSurvival.model.gameObject.mainGameObject.ChaseEnemy;
 import spaceSurvival.model.gameObject.mainGameObject.FireEnemy;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
+import spaceSurvival.model.gameObject.weapon.NormalBullet;
 import spaceSurvival.model.sound.CmdAudioType;
 import spaceSurvival.model.worldEcollisioni.WorldEvent;
 import spaceSurvival.model.worldEcollisioni.WorldEventListener;
@@ -89,7 +90,6 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                     lastTime = current;
 
                     updateGame(elapsed);
-                    this.controlGame.controlDecrLife(1);
                 }
             } else {
                 waitForNextFrame(current);
@@ -207,6 +207,17 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     
     private void renderMovement() {
     	this.controlGame.moveShip();
+
+//    	this.controlGame.getWord().getMovableEntities().forEach(entity -> {
+//    		entity.move();
+//    	});
+    	
+    	SpaceShipSingleton ship = this.controlGame.getShip();
+    	if (ship.getWeapon().isPresent()) {
+        	ship.getWeapon().get().getShootedBullets().forEach(bullet -> {
+        		bullet.move();
+        	});
+		}
     }
 
     protected void renderGameOver() {

@@ -64,95 +64,95 @@ public class EngineGame implements EngineGUI {
     }
 
 
-    public String getTimer(){
+    public String getTimer() {
         return this.hud.getTimer();
     }
 
-    public void initTimer(){
+    public void initTimer() {
         this.hud.initTimer();
     }
 
-    public void startTimer(){
+    public void startTimer() {
         this.hud.startTimer();
     }
 
-    public long getScore(){
+    public long getScore() {
         return this.hud.getScore();
     }
 
-    public int getRound(){
+    public int getRound() {
         return this.hud.getRound();
     }
 
-    public long getCountEnemies(){
+    public long getCountEnemies() {
         return this.world.getCountEnemies();
     }
 
-    public int getHeartShip(){
+    public int getHeartShip() {
         return this.hud.getHeartShip();
     }
 
-    public int getLifeShip(){
+    public int getLifeShip() {
         return this.world.getLifeShip();
     }
 
-    public int getLifeBoss(){
+    public int getLifeBoss() {
         return this.world.getLifeBoss();
     }
 
-    public void incrScore(final long score){
+    public void incrScore(final long score) {
         this.hud.incrScore(score);
     }
 
-    public void incrRound(){
+    public void incrRound() {
         this.hud.incrRound();
     }
 
-    public void decrLifeShip(final int damage){
+    public void decrLifeShip(final int damage) {
         this.world.getShip().decreaseLife(damage);
     }
 
-    public void decrHeart(){
+    public void decrHeart() {
         this.hud.decrHeartShip();
     }
 
-    public boolean hasLostLife(){
+    public boolean hasLostLife() {
         return this.world.getLifeShip() == 0;
     }
 
-    public void setLifeShip(final int life){
+    public void setLifeShip(final int life) {
         this.world.getShip().setLife(life);
     }
 
-    public void resetLifeShip(){
+    public void resetLifeShip() {
         this.world.getShip().increaseLife(100);
     }
 
-    public boolean isGameOver(){
+    public boolean isGameOver() {
         return this.hud.isGameOver() && this.hasLostLife();
     }
 
-    public World getWorld(){
+    public World getWorld() {
         return this.world;
     }
 
-    public Set<GameObject> getAllGameObject(){
+    public Set<GameObject> getAllEntities() {
         return this.world.getAllEntities();
     }
 
-    public SpaceShipSingleton getShip(){
+    public SpaceShipSingleton getShip() {
         return this.world.getShip();
     }
 
-    public void setEventListenerInWorld(final WorldEventListener worldEventListener){
+    public void setEventListenerInWorld(final WorldEventListener worldEventListener) {
         this.world.setEventListener(worldEventListener);
     }
 
-    public void updateStateWorld(final int elapsed){
+    public void updateStateWorld(final int elapsed) {
         this.world.updateState(elapsed);
     }
 
-    public void moveShip(){
+    public void moveShip() {
         this.world.moveShip();
     }
 }
