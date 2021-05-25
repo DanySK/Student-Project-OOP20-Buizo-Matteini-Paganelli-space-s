@@ -106,6 +106,14 @@ public class CtrlGUI {
         this.assignStartTimer();
     }
 
+    public boolean isStateInGame(){
+        return this.chronology.contains(ActionGUI.ID_GAME);
+    }
+
+    public boolean isStateInPause(){
+        return this.chronology.contains(ActionGUI.ID_PAUSE);
+    }
+
     public boolean isStateIn(final ActionGUI actionGUI){
         return this.chronology.contains(actionGUI);
     }

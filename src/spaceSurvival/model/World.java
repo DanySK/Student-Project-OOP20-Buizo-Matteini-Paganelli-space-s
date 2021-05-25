@@ -1,9 +1,11 @@
 package spaceSurvival.model;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.List;
 
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.MainGameObject;
@@ -17,6 +19,7 @@ import spaceSurvival.model.worldEcollisioni.WorldEventListener;
 import spaceSurvival.model.worldEcollisioni.physics.BoundaryCollision;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import spaceSurvival.model.common.*;
+import spaceSurvival.view.game.utilities.Bullet;
 
 public class World {
 	

@@ -31,7 +31,6 @@ public class LaunchMala {
         ctrlLoading.turn(Visibility.HIDDEN);
 
         SwingUtilities.invokeLater(engine::start);
-
     }
 }
 

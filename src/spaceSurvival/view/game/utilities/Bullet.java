@@ -22,7 +22,7 @@ public class Bullet extends JPanel {
         final Dimension dimension = EngineImage.getSizeImageFromScale(
                 Icon.HEART, ScaleOf.ICON_FULL, Screen.WIDTH_FULL_SCREEN);
 
-        this.icon = new JImage(Icon.BULLET, dimension);
+        this.icon = new JImage("bullet/ice.png", dimension);
         this.weapon.setIcon(new JImage(Weapon.ICE, dimension).getImageIcon());
 
         super.add(this.weapon);

@@ -3,7 +3,6 @@ package spaceSurvival.model;
 import spaceSurvival.controller.GUI.CtrlGUI;
 import spaceSurvival.controller.GUI.CtrlGame;
 import spaceSurvival.controller.GUI.CtrlSound;
-import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
 import spaceSurvival.model.gameObject.mainGameObject.Boss;
@@ -19,7 +18,6 @@ import spaceSurvival.model.worldEcollisioni.hitEvents.HitBossEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitChaseEnemyEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitFireEnemyEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitPickableEvent;
-import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.utilities.Score;
 import spaceSurvival.utilities.SoundPath;
 import spaceSurvival.utilities.dimension.Screen;
@@ -58,14 +56,12 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         this.controlGame.addAllGameObjectsFromWorld();
         
         //double scale = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().getDefaultTransform().getScaleX();      
-        System.out.println(Screen.POINT_CENTER_FULLSCREEN);
+        System.out.println("centerrrr" + Screen.POINT_CENTER_FULLSCREEN);
         //this.controlGame.getShip().setPosition(new P2d(Screen.POINT_CENTER_FULLSCREEN.getX(), Screen.POINT_CENTER_FULLSCREEN.getY()));
         
         
         this.controlSound.setSoundLoop(this.controlGUI.getCurrentGUI());
         this.controlSound.setCmdAudioLoop(CmdAudioType.AUDIO_ON);
-    
-
         	
         //this.controlSound.getCallerAudioEffect().get(2).execute(CmdAudioType.AUDIO_ON);
         	
@@ -79,8 +75,8 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             long current = System.currentTimeMillis();
             int elapsed = (int)(current - lastTime);
 
-            if(this.controlGUI.isStateIn(ActionGUI.ID_GAME)){
-                if(!this.controlGUI.isStateIn(ActionGUI.ID_PAUSE)){
+            if(this.controlGUI.isStateInGame()){
+                if(!this.controlGUI.isStateInPause()){
                     //processInput();
                     renderMovement();
                     render();
@@ -89,14 +85,13 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                     lastTime = current;
 
                     updateGame(elapsed);
-                    this.controlGame.controlDecrLife(1);
                 }
-            } else {
+            }
+
+            if(this.controlGUI.isStateInGame() || !this.controlGUI.isStateInPause()) {
                 waitForNextFrame(current);
                 lastTime = current;
             }
-
-            //System.out.println("LoopMala -> "+ elapsed +" FPS");
         }
         System.out.println("Sono fuori dal loop");
         render();
