@@ -13,7 +13,7 @@ public enum SoundPath {
 	ASTEROID_EXPL	(Paths.get("sounds", "asteroidExpl.wav").toString()),
 	ENEMY_EXPL		(Paths.get("sounds", "enemyExpl.wav").toString()),
 	SHIP_EXPL		(Paths.get("sounds", "shipExpl.wav").toString()),
-	BOSS_EXPL		(Paths.get("sounds", "bossExpl.wav").toString()),
+//	BOSS_EXPL		(Paths.get("sounds", "bossExpl.wav").toString()),
 	WALL_COLLISION  (Paths.get("sounds", "wallCollision.wav").toString());
 //	START_GAME	("sounds/startGame.wav"),
 //	END_GAME	("sounds/endGame.wav"),
