@@ -57,9 +57,10 @@ public class Weapon {
 	public void shot() {
 		EngineImage engineImage = new EngineImage(ScaleOf.BULLET_OBJECT, Screen.WIDTH_FULL_SCREEN, "bullet/vertical/ice.png");
 		System.out.println("Sparo");
-		System.out.println(owner);
-		System.out.println(owner.getPosition());
-		P2d position = owner.getPosition();
+		System.out.println("Posizione Navicella : " + owner.getPosition());
+		P2d position = new P2d(owner.getPosition().getX() + owner.getSize().getWidth(),
+				owner.getPosition().getY());
+		System.out.println(position);
 		V2d velocity = GameObjectUtils.BULLET_VEL;
 		Bullet bullet;
 		
