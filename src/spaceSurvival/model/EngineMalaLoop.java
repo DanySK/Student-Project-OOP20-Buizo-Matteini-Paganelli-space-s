@@ -152,10 +152,12 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         	if (ev instanceof HitAsteroidEvent){
             	HitAsteroidEvent asteroidEvent = (HitAsteroidEvent) ev;
             	final Asteroid asteroidCollided = (Asteroid) asteroidEvent.getCollisionObj();
-            	if (asteroidCollided.isInvincible()) {
+            	if (!asteroidCollided.isInvincible()) {
             		asteroidCollided.decreaseLife(ship.getImpactDamage());
+            		
             		if (isGameObjectDead(asteroidCollided)) {
             			scene.removeAsteroid(asteroidCollided);
+            			playEffect(SoundPath.ASTEROID_EXPL);
 					}
             	}
                 this.controlGame.controlDecrLife(asteroidCollided.getImpactDamage());
@@ -166,6 +168,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             	if (isGameObjectDead(chaseEnemyCollided)) {
             		System.out.println("ChaseEnemy morto e rimosso");
                 	scene.removeChaseEnemy(chaseEnemyCollided);
+                	playEffect(SoundPath.ENEMY_EXPL);
                 	this.controlGame.incrScore(Score.CHASE_ENEMY);
 				}
                 this.controlGame.controlDecrLife(chaseEnemyCollided.getImpactDamage());
@@ -190,6 +193,8 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             	if (isGameObjectDead(bossCollided)) {
                 	scene.setBoss(Optional.empty());
                     this.controlGame.incrScore(Score.BOSS);
+                    playEffect(SoundPath.BOSS_EXPL);
+//                	BOSS_EXPL	("sounds/enemyExpl.wav"),
 				}
                 this.controlGame.controlDecrLife(bossCollided.getImpactDamage());
                 // HitBorderEvent bEv = (HitBorderEvent) ev;
