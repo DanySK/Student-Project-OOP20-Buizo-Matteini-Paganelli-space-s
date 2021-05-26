@@ -12,8 +12,10 @@ public class DownCommand implements CommandGameObject{
 	public void execute(MainGameObject object) {
 		
 		V2d vel = object.getVelocity();
-		object.setVelocity(vel.sum(new V2d(0,+1)));
 		
+		if (vel.getY() <= 15) {
+			object.setVelocity(vel.sum(new V2d(0, +1)));
+		}
 		//ship.getTransform()
 		
 

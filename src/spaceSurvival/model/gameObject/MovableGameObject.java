@@ -35,9 +35,9 @@ public abstract class MovableGameObject extends GameObject {
 	
 	public void move() {
 		//this.movement.move(this);
-		if (this instanceof NormalBullet) {
-			System.out.println(this.getTransform().getTranslateX() + "   " + this.getTransform().getTranslateY());
-		}
+//		if (this instanceof NormalBullet) {
+//			System.out.println(this.getTransform().getTranslateX() + "   " + this.getTransform().getTranslateY());
+//		}
 		AffineTransform at = this.getTransform();
 		at.translate(this.getVelocity().getX(), this.getVelocity().getY());
 		this.setTransform(this.getTransform());

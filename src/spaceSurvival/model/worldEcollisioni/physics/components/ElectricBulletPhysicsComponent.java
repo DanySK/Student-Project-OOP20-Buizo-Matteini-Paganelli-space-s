@@ -11,12 +11,12 @@ public class ElectricBulletPhysicsComponent implements PhysicsComponent {
 
 	@Override
 	public void update(int dt, GameObject abstractObj, World w) {
-		ElectricBullet obj = (ElectricBullet) abstractObj;
-		P2d position = obj.getPosition();
-		V2d velocity = obj.getVelocity();
-		obj.setPosition(position.sum(velocity.mul(0.001 * dt)));
-		
-		RectBoundingBox bbox = (RectBoundingBox) obj.getBoundingBox();
+//		ElectricBullet obj = (ElectricBullet) abstractObj;
+//		P2d position = obj.getPosition();
+//		V2d velocity = obj.getVelocity();
+//		obj.setPosition(position.sum(velocity.mul(0.001 * dt)));
+//		
+//		RectBoundingBox bbox = (RectBoundingBox) obj.getBoundingBox();
 		
 	}
 

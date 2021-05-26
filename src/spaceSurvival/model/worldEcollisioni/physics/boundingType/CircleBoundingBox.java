@@ -23,7 +23,7 @@ public class CircleBoundingBox implements BoundingBox {
 	}
 
 	public boolean isCollidingWith(final P2d p, final double radius) {
-		return new V2d(p,center).module() <= radius+this.radius;
+		return new V2d(p, center).module() <= radius + this.radius;
 	}
 
 	public AffineTransform getTransform() {

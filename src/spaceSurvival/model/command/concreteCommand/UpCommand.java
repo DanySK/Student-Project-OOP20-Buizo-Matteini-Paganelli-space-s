@@ -10,11 +10,11 @@ public class UpCommand implements CommandGameObject{
 
 	@Override
 	public void execute(MainGameObject object) {
-
 		V2d vel = object.getVelocity();
-		object.setVelocity(vel.sum(new V2d(0,-1)));
 	
-		//System.out.println("Up " + object.toString());
+		if (vel.getY() >= -15) {
+			object.setVelocity(vel.sum(new V2d(0, -1)));
+		}
 	}
 
 }
