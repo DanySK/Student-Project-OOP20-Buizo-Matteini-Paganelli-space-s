@@ -14,30 +14,17 @@ public class LeftCommand implements CommandGameObject{
 	@Override
 	public void execute(MainGameObject object) {
 		if (object instanceof SpaceShipSingleton) {
-			((SpaceShipSingleton) object).setAccelerating(true);
+			//((SpaceShipSingleton) object).setAccelerating(true);
+			((SpaceShipSingleton) object).setAcceleration(1.1);
 		}
 		
 		V2d vel = object.getVelocity();
 		
 		if (vel.getX() >= -15) {
-			object.setVelocity(vel.sum(new V2d(-GameObjectUtils.SPACESHIP_ACCELERATION, 0)));
+			object.setVelocity(new V2d(-15, vel.getY()));
+			//object.setVelocity(vel.sum(new V2d(-GameObjectUtils.SPACESHIP_ACCELERATION, 0)));
 		}
-		//System.out.println("Left " + object.toString());
 
-		
-//		if (ctrl.isMoveUp()){
-//			double speed = ball.getCurrentVel().module();
-//			ball.setVel(new V2d(0,1).mul(speed));
-//		} else if (ctrl.isMoveDown()){
-//			double speed = ball.getCurrentVel().module();
-//			ball.setVel(new V2d(0,-1).mul(speed));
-//		} else if (ctrl.isMoveLeft()){
-//			double speed = ball.getCurrentVel().module();
-//			ball.setVel(new V2d(-1,0).mul(speed));
-//		} else if (ctrl.isMoveRight()){
-//			double speed = ball.getCurrentVel().module();
-//			ball.setVel(new V2d(1,0).mul(speed));
-//		}
 	}
 
 

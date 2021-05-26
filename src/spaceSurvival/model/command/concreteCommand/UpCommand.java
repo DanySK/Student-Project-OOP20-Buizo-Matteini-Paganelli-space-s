@@ -14,7 +14,8 @@ public class UpCommand implements CommandGameObject{
 	@Override
 	public void execute(MainGameObject object) {
 		if (object instanceof SpaceShipSingleton) {
-			((SpaceShipSingleton) object).setAccelerating(true);
+			//((SpaceShipSingleton) object).setAccelerating(true);
+			((SpaceShipSingleton) object).setAcceleration(1.1);
 		}
 		V2d vel = object.getVelocity();
 	

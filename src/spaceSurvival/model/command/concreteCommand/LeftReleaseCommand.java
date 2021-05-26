@@ -11,7 +11,8 @@ public class LeftReleaseCommand implements CommandGameObject {
 		System.out.println("Release Left");
 
 		if (object instanceof SpaceShipSingleton) {
-			((SpaceShipSingleton) object).setAccelerating(false);
+			//((SpaceShipSingleton) object).setAccelerating(false);
+			((SpaceShipSingleton) object).setAcceleration(0.9);
 		}
 	}
 

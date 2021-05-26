@@ -11,7 +11,8 @@ public class UpReleaseCommand implements CommandGameObject {
 		System.out.println("Release Up");
 		
 		if (object instanceof SpaceShipSingleton) {
-			((SpaceShipSingleton) object).setAccelerating(false);
+			//((SpaceShipSingleton) object).setAccelerating(false);
+			((SpaceShipSingleton) object).setAcceleration(0.9);
 		}
 
 	}

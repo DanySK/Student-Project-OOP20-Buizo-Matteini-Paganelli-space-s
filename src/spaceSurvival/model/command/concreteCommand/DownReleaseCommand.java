@@ -11,7 +11,10 @@ public class DownReleaseCommand implements CommandGameObject {
 		System.out.println("Release Down");
 		
 		if (object instanceof SpaceShipSingleton) {
-			((SpaceShipSingleton) object).setAccelerating(false);
+			//double acceleration = ((SpaceShipSingleton) object).getAcceleration();
+			
+			((SpaceShipSingleton) object).setAcceleration(0.9);
+			
 		}
 
 	}

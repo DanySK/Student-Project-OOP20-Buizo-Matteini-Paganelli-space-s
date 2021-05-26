@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+
+
 import java.util.List;
 
 import spaceSurvival.model.gameObject.GameObject;
@@ -100,28 +102,39 @@ public class World {
 	}
 
 	public void moveShip() {
-		if (!this.ship.isAccelerating()) {
-			if (!this.ship.getVelocity().equals(new V2d(0, 0))) {
-				V2d vel = this.ship.getVelocity();
-
-				if (vel.getX() > 0) {
-					//System.out.println("Decremento la X");
-					this.ship.setVelocity(vel.sum(new V2d(-GameObjectUtils.SPACESHIP_DECELERATION, 0)));
-				}
-				if (vel.getX() < 0) {
-					//System.out.println("Incremento la X");
-					this.ship.setVelocity(vel.sum(new V2d(GameObjectUtils.SPACESHIP_DECELERATION, 0)));
-				}
-				if (vel.getY() > 0) {
-					//System.out.println("Decremento la Y");
-					this.ship.setVelocity(vel.sum(new V2d(0, -GameObjectUtils.SPACESHIP_DECELERATION)));
-				}
-				if (vel.getY() < 0) {
-					//System.out.println("Incremento la Y");
-					this.ship.setVelocity(vel.sum(new V2d(0, GameObjectUtils.SPACESHIP_DECELERATION)));
-				}
-			}
-		}
+//		if (!this.ship.isAccelerating()) {
+//			if (!this.ship.getVelocity().equals(new V2d(0, 0))) {
+//				V2d vel = this.ship.getVelocity();
+//
+//				if (vel.getX() > 0) {
+//					//System.out.println("Decremento la X");
+//					this.ship.setVelocity(vel.sum(new V2d(-GameObjectUtils.SPACESHIP_DECELERATION, 0)));
+//				}
+//				if (vel.getX() < 0) {
+//					//System.out.println("Incremento la X");
+//					this.ship.setVelocity(vel.sum(new V2d(GameObjectUtils.SPACESHIP_DECELERATION, 0)));
+//				}
+//				if (vel.getY() > 0) {
+//					//System.out.println("Decremento la Y");
+//					this.ship.setVelocity(vel.sum(new V2d(0, -GameObjectUtils.SPACESHIP_DECELERATION)));
+//				}
+//				if (vel.getY() < 0) {
+//					//System.out.println("Incremento la Y");
+//					this.ship.setVelocity(vel.sum(new V2d(0, GameObjectUtils.SPACESHIP_DECELERATION)));
+//				}
+//			}
+//		}
+		System.out.println("ACCELERATION ->" + this.ship.getAcceleration());
+		System.out.println("VELOCITY ->" + this.ship.getVelocity());
+		
+		
+		V2d vel = this.ship.getVelocity();
+		
+		
+		vel = vel.mul(this.ship.getAcceleration());
+		System.out.println("VELOCITY * ACCELERATION ->" + this.ship.getVelocity());
+		this.ship.setVelocity(vel);
+		
 		this.ship.move();
 	}
 	

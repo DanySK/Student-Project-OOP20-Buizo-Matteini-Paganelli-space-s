@@ -34,6 +34,9 @@ public abstract class MovableGameObject extends GameObject {
 //	}
 	
 	public void move() {
+//		if(this.velocity.equals(new V2d(0,0))) {
+//			
+//		}
 		AffineTransform at = this.getTransform();
 		at.translate(this.getVelocity().getX(), this.getVelocity().getY());
 		this.setTransform(this.getTransform());
