@@ -128,10 +128,9 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         	soundQueue.add(effect.get());       	
         }
 
-
         soundQueue.forEach(this::playEffect);
         
-         soundQueue.clear();
+        soundQueue.clear();
     }
     
 
@@ -233,12 +232,12 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
 //    		entity.move();
 //    	});
     	
-    	SpaceShipSingleton ship = this.controlGame.getShip();
-    	if (ship.getWeapon().isPresent()) {
-        	ship.getWeapon().get().getShootedBullets().forEach(bullet -> {
-        		bullet.move();
-        	});
-		}
+//    	SpaceShipSingleton ship = this.controlGame.getShip();
+//    	if (ship.getWeapon().isPresent()) {
+//        	ship.getWeapon().get().getShootedBullets().forEach(bullet -> {
+//        		bullet.move();
+//        	});
+//		}
     }
 
     protected void renderGameOver() {

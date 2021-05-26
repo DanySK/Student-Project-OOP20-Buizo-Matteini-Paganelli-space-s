@@ -98,7 +98,25 @@ public class World {
 
 	}
 
-	public void moveShip(){
+	public void moveShip() {
+		if (!this.ship.isAccelerating()) {
+			if (this.ship.getVelocity().getX() > 0) {
+				System.out.println("Decremento la X");
+				this.ship.getVelocity().sum(new V2d(-1, 0));
+			}
+			if (this.ship.getVelocity().getX() < 0) {
+				System.out.println("Incremento la X");
+				this.ship.getVelocity().sum(new V2d(1, 0));
+			}
+			if (this.ship.getVelocity().getY() > 0) {
+				System.out.println("Decremento la Y");
+				this.ship.getVelocity().sum(new V2d(0, -1));
+			}
+			if (this.ship.getVelocity().getY() < 0) {
+				System.out.println("Incremento la Y");
+				this.ship.getVelocity().sum(new V2d(0, 1));
+			}
+		}
 		this.ship.move();
 	}
 	
@@ -272,6 +290,9 @@ public class World {
 		entities.addAll(getAllEnemies());
 		if (boss.isPresent()) {
 			entities.add(boss.get());
+		}
+		if (ship.getWeapon().isPresent()) {
+			entities.addAll(ship.getWeapon().get().getShootedBullets());
 		}
 		return entities;
 	}
