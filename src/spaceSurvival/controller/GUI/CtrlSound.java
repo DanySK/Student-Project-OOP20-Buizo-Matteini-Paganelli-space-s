@@ -1,14 +1,9 @@
 package spaceSurvival.controller.GUI;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-
 import javax.swing.JSlider;
-
-
-
 import spaceSurvival.controller.GUI.command.SwitchGUI;
 import spaceSurvival.controller.sound.CallerAudio;
 import spaceSurvival.model.GUI.EngineGUI;

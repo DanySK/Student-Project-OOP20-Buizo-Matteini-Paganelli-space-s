@@ -1,6 +1,5 @@
 package spaceSurvival.controller.sound;
 
-
 import spaceSurvival.controller.sound.command.CommandAudio;
 import spaceSurvival.controller.sound.command.PlaySoundCommand;
 import spaceSurvival.controller.sound.command.ResetTiming;
@@ -54,4 +53,11 @@ public class CallerAudio {
 			 cmdResetTiming.execute(sound); break;
 		 }
 	}
+	
+    @Override
+    public String toString() {
+        return "CallerAudio{" +
+                "CommandAudio= cmdAudioOn, cmdAudioOff, cmdResetTiming, "
+                + "sound="+ this.getSound().toString() + '}';
+    }
 }
