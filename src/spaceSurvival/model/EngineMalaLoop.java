@@ -129,10 +129,9 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         	soundQueue.add(effect.get());       	
         }
 
-
         soundQueue.forEach(this::playEffect);
         
-         soundQueue.clear();
+        soundQueue.clear();
     }
     
 

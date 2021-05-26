@@ -7,7 +7,6 @@ import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.movement.ControlledMovement;
 import spaceSurvival.model.movement.Movement;
 import spaceSurvival.model.common.*;
-import spaceSurvival.model.gameObject.weapon.AmmoType;
 import spaceSurvival.model.gameObject.weapon.Weapon;
 import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
@@ -20,6 +19,8 @@ import spaceSurvival.utilities.pathImage.Skin;
 
 public class SpaceShipSingleton extends MainGameObject {
     
+	private boolean isAccelerating;
+	
     // Eager and unique instance of this class for Threadsafing
     private static SpaceShipSingleton spaceShip = new SpaceShipSingleton(
     	new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, Skin.NORMAL),
@@ -41,6 +42,7 @@ public class SpaceShipSingleton extends MainGameObject {
                                final int impactDamage, final Optional<Weapon> weapon) {
 		super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, weapon);
     	this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage, this.getTransform()));
+    	this.isAccelerating = false;
     }
     
     /**
@@ -49,5 +51,13 @@ public class SpaceShipSingleton extends MainGameObject {
     public static SpaceShipSingleton getSpaceShip() {
         return spaceShip;
     }
+
+	public boolean isAccelerating() {
+		return isAccelerating;
+	}
+
+	public void setAccelerating(boolean isAccelerating) {
+		this.isAccelerating = isAccelerating;
+	}
 
 }
