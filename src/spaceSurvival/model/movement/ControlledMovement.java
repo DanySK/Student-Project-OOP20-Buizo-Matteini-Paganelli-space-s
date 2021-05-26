@@ -1,13 +1,16 @@
 package spaceSurvival.model.movement;
 
+import java.awt.geom.AffineTransform;
+
 import spaceSurvival.model.gameObject.MovableGameObject;
 
 public class ControlledMovement implements Movement {
 
 	@Override
 	public void move(MovableGameObject object) {
-		// TODO Auto-generated method stub
-		
+		AffineTransform at = object.getTransform();
+		at.translate(object.getVelocity().getX(), object.getVelocity().getY());
+		object.setTransform(object.getTransform());
 	}
 	
 	@Override
