@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.List;
 
 import spaceSurvival.model.gameObject.GameObject;
+import spaceSurvival.model.gameObject.GameObjectUtils;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.gameObject.MovableGameObject;
 import spaceSurvival.model.gameObject.PickableGameObject;
@@ -98,7 +99,29 @@ public class World {
 
 	}
 
-	public void moveShip(){
+	public void moveShip() {
+		if (!this.ship.isAccelerating()) {
+			if (!this.ship.getVelocity().equals(new V2d(0, 0))) {
+				V2d vel = this.ship.getVelocity();
+
+				if (vel.getX() > 0) {
+					//System.out.println("Decremento la X");
+					this.ship.setVelocity(vel.sum(new V2d(-GameObjectUtils.SPACESHIP_DECELERATION, 0)));
+				}
+				if (vel.getX() < 0) {
+					//System.out.println("Incremento la X");
+					this.ship.setVelocity(vel.sum(new V2d(GameObjectUtils.SPACESHIP_DECELERATION, 0)));
+				}
+				if (vel.getY() > 0) {
+					//System.out.println("Decremento la Y");
+					this.ship.setVelocity(vel.sum(new V2d(0, -GameObjectUtils.SPACESHIP_DECELERATION)));
+				}
+				if (vel.getY() < 0) {
+					//System.out.println("Incremento la Y");
+					this.ship.setVelocity(vel.sum(new V2d(0, GameObjectUtils.SPACESHIP_DECELERATION)));
+				}
+			}
+		}
 		this.ship.move();
 	}
 	
@@ -272,6 +295,9 @@ public class World {
 		entities.addAll(getAllEnemies());
 		if (boss.isPresent()) {
 			entities.add(boss.get());
+		}
+		if (ship.getWeapon().isPresent()) {
+			entities.addAll(ship.getWeapon().get().getShootedBullets());
 		}
 		return entities;
 	}
