@@ -36,7 +36,7 @@ public abstract class Sound {
 	    	AudioInputStream audioInputStream = null;
 	    	
 	    	try {
-				audioInputStream = AudioSystem.getAudioInputStream(ClassLoader.getSystemResource(sound.getValue()));
+				audioInputStream = AudioSystem.getAudioInputStream(ClassLoader.getSystemResource(sound.getPath()));
 				setClip(AudioSystem.getClip());
 				getClip().get().open(audioInputStream);
 			} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {

@@ -58,7 +58,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         this.controlGame.addAllGameObjectsFromWorld();
         
         //double scale = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().getDefaultTransform().getScaleX();      
-        System.out.println("centerrrr" + Screen.POINT_CENTER_FULLSCREEN);
+        //System.out.println("centerrrr" + Screen.POINT_CENTER_FULLSCREEN);
         //this.controlGame.getShip().setPosition(new P2d(Screen.POINT_CENTER_FULLSCREEN.getX(), Screen.POINT_CENTER_FULLSCREEN.getY()));
         
         
@@ -96,7 +96,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             }
         }
         System.out.println("Sono fuori dal loop");
-        render();
+//        render();
         renderGameOver();
     }
     
@@ -114,6 +114,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     }
 
     protected void updateGame(final int elapsed) {
+        this.controlGame.updateHUD();
         this.controlGame.updateStateWorld(elapsed);
         checkEvents();
         checkSoundEffects();
@@ -221,8 +222,8 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     }
     
     protected void render() {
-        this.controlGame.repaintWorld();
-        this.controlGame.updateHUD();
+//        this.controlGame.repaintWorld();
+
     }
     
     private void renderMovement() {

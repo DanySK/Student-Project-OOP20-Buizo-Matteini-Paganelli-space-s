@@ -21,6 +21,7 @@ import spaceSurvival.model.sound.category.SoundEffect;
 import spaceSurvival.model.sound.category.SoundLoop;
 import spaceSurvival.utilities.DesignSound;
 import spaceSurvival.utilities.SoundPath;
+import spaceSurvival.utilities.SoundType;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.view.GUI;
@@ -42,17 +43,12 @@ public class CtrlSound implements ControllerGUI{
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
         this.callerAudioLoop = new CallerAudio();
         this.callerAudioEffect = new ArrayList<>();
-        List<SoundPath> list = Arrays.asList(SoundPath.values());
-        
-        //List<SoundPath> listq = list.stream().filter(s -> s.ordinal() > 2);
-        for(int i = 2; i < list.size(); i++) {
-        	//CallerAudio tmpCallerAudio = new CallerAudio(new SoundEffect(list.get(i)));
-        	System.out.println(list.get(i));
-        	this.callerAudioEffect.add(new CallerAudio(new SoundEffect(list.get(i))));
-        	//this.callerAudioEffect.get(i).setSound(new SoundEffect(list.get(i)));
-        
-        }
-        
+
+
+        SoundType.EFFECT.getSoundPaths().forEach(path ->
+        	this.callerAudioEffect.add(new CallerAudio(new SoundEffect(path)))
+        );
+
 
         this.assignAction();
         this.assignStrings();
