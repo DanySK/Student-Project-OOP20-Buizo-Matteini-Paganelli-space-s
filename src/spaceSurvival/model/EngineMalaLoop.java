@@ -134,36 +134,14 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         if(!effect.equals(Optional.empty())) {
         	soundQueue.add(effect.get());       	
         }
-        
-        
-        System.out.println(soundQueue);
-        soundQueue.forEach(currentEffect -> {           
 
-        //this.controlSound.getCallerAudioEffectFromSoundPath(currentEffect).get().execute(CmdAudioType.RESET_TIMING);
-        //this.controlSound.getCallerAudioEffectFromSoundPath(currentEffect).get().execute(CmdAudioType.AUDIO_ON);
-        playEffect(currentEffect);
-        //CallerAudio c = new CallerAudio(new SoundEffect(SoundPath.SHOOT));
-        //c.execute(CmdAudioType.AUDIO_ON);
-        //System.out.println("CURRENT EFFECTTTTTTTTT ->" + currentEffect);
-        //this.controlSound.getCallerAudioEffectFromSoundPath(currentEffect).get().execute(CmdAudioType.AUDIO_OFF);
-        
-        
-        //this.controlSound.getCallerAudioEffect().get().execute(CmdAudioType.AUDIO_ON);
+        soundQueue.forEach(currentEffect -> {           
+        	playEffect(currentEffect);
         });
-//        
+        
          soundQueue.clear();
     }
     
-//  protected void checkSoundShoots() {
-//  final World scene = this.controlGame.getWord();
-//  final SpaceShipSingleton ship = this.controlGame.getShip();
-//  
-//  soundQueue.forEach(ev -> {
-//  	System.out.println(ev);
-//  });
-//  
-//  soundQueue.clear();
-//}
 
     protected void checkEvents() {
         final World scene = this.controlGame.getWord();
