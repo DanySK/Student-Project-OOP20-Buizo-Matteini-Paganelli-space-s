@@ -12,16 +12,17 @@ public class DownCommand implements CommandGameObject{
 
 	@Override
 	public void execute(MainGameObject object) {
+		V2d vel = object.getVelocity();
+
 		if (object instanceof SpaceShipSingleton) {
-			((SpaceShipSingleton) object).setAccelerating(true);
+			SpaceShipSingleton ship = (SpaceShipSingleton) object;
+			ship.setAcceleration(GameObjectUtils.SPACESHIP_ACCELERATION);	
 		}
 		
-		V2d vel = object.getVelocity();
 		
-		if (vel.getY() <= 15) {
+		if (vel.getY() <= GameObjectUtils.SPACESHIP_MAXVEL) {
 			object.setVelocity(vel.sum(new V2d(0, GameObjectUtils.SPACESHIP_ACCELERATION)));
 		}
-		//ship.getTransform()
 		
 
 		

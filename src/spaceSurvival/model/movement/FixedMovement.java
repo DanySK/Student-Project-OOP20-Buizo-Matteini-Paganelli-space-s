@@ -3,7 +3,6 @@ package spaceSurvival.model.movement;
 import java.awt.geom.AffineTransform;
 
 import spaceSurvival.model.gameObject.MovableGameObject;
-import spaceSurvival.utilities.CommandType;
 
 public class FixedMovement implements Movement {
 
@@ -15,7 +14,7 @@ public class FixedMovement implements Movement {
 		
 		AffineTransform at = object.getTransform();
 		at.translate(object.getVelocity().getX(), object.getVelocity().getY());
-		at.rotate(15);
+		at.rotate(5);
 		object.setTransform(object.getTransform());
 
 	}

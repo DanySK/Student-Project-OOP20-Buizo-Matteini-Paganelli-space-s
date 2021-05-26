@@ -2,15 +2,29 @@ package spaceSurvival.model.movement;
 
 import java.awt.geom.AffineTransform;
 
+import spaceSurvival.model.common.V2d;
 import spaceSurvival.model.gameObject.MovableGameObject;
+import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 
 public class ControlledMovement implements Movement {
 
 	@Override
 	public void move(MovableGameObject object) {
-		AffineTransform at = object.getTransform();
-		at.translate(object.getVelocity().getX(), object.getVelocity().getY());
-		object.setTransform(object.getTransform());
+		if (object instanceof SpaceShipSingleton) {
+			SpaceShipSingleton ship = (SpaceShipSingleton) object;
+			
+			V2d vel = ship.getVelocity();
+			if (ship.getAcceleration() < 1) {
+				ship.setVelocity(vel.mul(ship.getAcceleration()));
+			}
+			System.out.println(ship.getVelocity());
+			System.out.println("Accelerazione: " + ship.getAcceleration());
+
+			AffineTransform at = ship.getTransform();
+			at.translate(ship.getVelocity().getX(), ship.getVelocity().getY());
+			ship.setTransform(ship.getTransform());
+		}
+
 	}
 	
 	@Override
