@@ -41,7 +41,7 @@ public class CtrlSound implements ControllerGUI{
         this.gui = gui;
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
         this.callerAudioLoop = new CallerAudio();
-        this.callerAudioEffect = new ArrayList<CallerAudio>();
+        this.callerAudioEffect = new ArrayList<>();
         List<SoundPath> list = Arrays.asList(SoundPath.values());
         
         //List<SoundPath> listq = list.stream().filter(s -> s.ordinal() > 2);

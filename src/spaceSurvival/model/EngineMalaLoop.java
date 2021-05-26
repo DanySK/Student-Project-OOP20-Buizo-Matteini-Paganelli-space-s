@@ -184,7 +184,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             	if (isGameObjectDead(bossCollided)) {
                 	scene.setBoss(Optional.empty());
                     this.controlGame.incrScore(Score.BOSS);
-                    playEffect(SoundPath.BOSS_EXPL);
+//                    playEffect(SoundPath.BOSS_EXPL);
 //                	BOSS_EXPL	("sounds/enemyExpl.wav"),
 				}
                 this.controlGame.controlDecrLife(bossCollided.getImpactDamage());
