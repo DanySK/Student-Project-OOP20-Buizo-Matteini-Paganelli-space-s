@@ -1,9 +1,9 @@
-package spaceSurvival.utilities.pathImage;
+package spaceSurvival.utilities.pathImage.Skin;
 
 import java.nio.file.Paths;
 import java.util.List;
 
-public class Skin {
+public class SkinShip {
 
     public static final String MAIN_FOLDER = "gameObjects";
     public static final String SHIP_FOLDER = "spaceship";
@@ -12,6 +12,7 @@ public class Skin {
     public static final String TYPE_SHIP_2 = "ship2";
     public static final String TYPE_SHIP_3 = "ship3";
     public static final String TYPE_SHIP_4 = "ship4";
+    public static final String TYPE_SHIP_5 = "ship5";
 
     public static final String SPECIAL0 = Paths.get(MAIN_FOLDER, SHIP_FOLDER, TYPE_SHIP_1, "ship1.png").toString();
     public static final String SPECIAL1 = Paths.get(MAIN_FOLDER, SHIP_FOLDER, TYPE_SHIP_1, "ship1_1.png").toString();
@@ -43,7 +44,6 @@ public class Skin {
     public static final String DELUXE7 = Paths.get(MAIN_FOLDER, SHIP_FOLDER, TYPE_SHIP_3, "ship3_7.png").toString();
 
     public static final List<String> LIST_SHIP3 = List.of(DELUXE0, DELUXE1, DELUXE2, DELUXE3, DELUXE4, DELUXE5, DELUXE6, DELUXE7);
-
 
 
     public static final String NORMAL = Paths.get(MAIN_FOLDER,SHIP_FOLDER, "ship4.png").toString();

@@ -5,7 +5,6 @@ import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
 
 import spaceSurvival.model.EngineMalaLoop;
@@ -15,7 +14,6 @@ import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 import spaceSurvival.utilities.SoundPath;
 import spaceSurvival.model.World;
-import spaceSurvival.utilities.pathImage.Skin;
 
 
 public abstract class GameObject extends Thread{

@@ -28,6 +28,7 @@ import spaceSurvival.model.worldEcollisioni.physics.components.PickablePhysicsCo
 import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.utilities.pathImage.Enemies;
+import spaceSurvival.utilities.pathImage.Skin.SkinPerk;
 
 
 public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
@@ -102,7 +103,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 
 	@Override
 	public PickableGameObject createPickable() {
-		final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, spaceSurvival.utilities.pathImage.Weapon.FIRE);
+		final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinPerk.FIRE);
 		final P2d position = new P2d(450, 450);
 	 	final EffectType effectType = EffectType.random();
 		

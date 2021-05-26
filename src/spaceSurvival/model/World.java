@@ -1,11 +1,9 @@
 package spaceSurvival.model;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-import java.util.List;
 
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.GameObjectUtils;
@@ -22,8 +20,7 @@ import spaceSurvival.model.worldEcollisioni.WorldEventListener;
 import spaceSurvival.model.worldEcollisioni.physics.BoundaryCollision;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import spaceSurvival.model.common.*;
-import spaceSurvival.utilities.pathImage.Skin;
-import spaceSurvival.view.game.utilities.Bullet;
+import spaceSurvival.utilities.pathImage.Skin.SkinShip;
 
 public class World {
 	
@@ -89,12 +86,12 @@ public class World {
 	public void setSkin(final String path) {
 		this.ship.getEngineImage().setPath(path);
 
-		if(path.contentEquals(Skin.SPECIAL0)){
-			this.ship.setAnimation(Skin.LIST_SHIP1);
-		}else if(path.contentEquals(Skin.STANDARD0)){
-			this.ship.setAnimation(Skin.LIST_SHIP2);
-		}else if(path.contentEquals(Skin.DELUXE0)){
-			this.ship.setAnimation(Skin.LIST_SHIP3);
+		if(path.contentEquals(SkinShip.SPECIAL0)){
+			this.ship.setAnimation(SkinShip.LIST_SHIP1);
+		}else if(path.contentEquals(SkinShip.STANDARD0)){
+			this.ship.setAnimation(SkinShip.LIST_SHIP2);
+		}else if(path.contentEquals(SkinShip.DELUXE0)){
+			this.ship.setAnimation(SkinShip.LIST_SHIP3);
 		}
 
 	}

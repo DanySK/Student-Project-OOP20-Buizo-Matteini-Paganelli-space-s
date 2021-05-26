@@ -22,7 +22,7 @@ public class Icon {
     public static final String SOUND_ON = Paths.get(MAIN_FOLDER, "volumeON.png").toString();
 
     public static final String HEART = Paths.get(MAIN_FOLDER, "heart3.png").toString();
-    public static final String BULLET = Paths.get(MAIN_FOLDER, "bullet", "bullet1.png").toString();
+    public static final String BULLET = Paths.get(MAIN_FOLDER, "shutBullet", "bullet1.png").toString();
 
     public static final String PAUSE = Paths.get(MAIN_FOLDER, "pause.png").toString();
     public static final String PAUSE_2FACE = Paths.get(MAIN_FOLDER, "pause2Face.png").toString();

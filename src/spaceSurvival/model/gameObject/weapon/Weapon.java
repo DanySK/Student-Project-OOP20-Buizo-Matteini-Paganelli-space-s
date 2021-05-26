@@ -3,7 +3,6 @@ package spaceSurvival.model.gameObject.weapon;
 import spaceSurvival.model.worldEcollisioni.physics.components.NormalBulletPhysicsComponent;
 import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.dimension.Screen;
-import spaceSurvival.utilities.pathImage.Icon;
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.common.V2d;
 import spaceSurvival.model.gameObject.GameObjectUtils;
@@ -55,7 +54,7 @@ public class Weapon {
 	}
 	
 	public void shot() {
-		EngineImage engineImage = new EngineImage(ScaleOf.BULLET_OBJECT, Screen.WIDTH_FULL_SCREEN, "bullet/vertical/ice.png");
+		EngineImage engineImage = new EngineImage(ScaleOf.BULLET_OBJECT, Screen.WIDTH_FULL_SCREEN, "shutBullet/vertical/ice.png");
 		System.out.println("Sparo");
 		System.out.println("Posizione Navicella : " + owner.getPosition());
 		P2d position = new P2d(owner.getPosition().getX() + owner.getSize().getWidth(),
