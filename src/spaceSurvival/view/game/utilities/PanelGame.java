@@ -53,7 +53,6 @@ public class PanelGame extends JPanel implements Runnable{
             g2d.setTransform(bullet.getTransform());
             g2d.drawImage(this.getImageFromEngine(bullet.getEngineImage()), null, null);
         });
-        System.out.println(this.listBullet.size() +  "      " + this.listBullet);
         this.listBullet.clear();
 
 
