@@ -56,7 +56,7 @@ public class PanelGame extends JPanel implements Runnable{
         System.out.println(this.listBullet.size() +  "      " + this.listBullet);
         this.listBullet.clear();
 
-git 
+
     }
 
     @Override
