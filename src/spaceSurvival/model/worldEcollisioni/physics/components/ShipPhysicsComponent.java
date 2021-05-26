@@ -65,7 +65,7 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 						ship.getTransform().getScaleY(), ship.getTransform().getTranslateX(), 
 						Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y - 100);
 				
-				w.notifyWorldEvent(new HitBorderEvent(info.getWhere()));
+				w.notifyWorldEvent(new HitBorderEvent(info.getWhere(), ship));
 				ship.setTransform(newTransTop);
 				break;
 			case BOTTOM:		
@@ -74,7 +74,7 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 						ship.getTransform().getScaleY(), ship.getTransform().getTranslateX(), 
 						100);
 			 			
-				w.notifyWorldEvent(new HitBorderEvent(info.getWhere()));
+				w.notifyWorldEvent(new HitBorderEvent(info.getWhere(), ship));
 				ship.setTransform(newTransBottom);
 				break;
 			case LEFT: 			

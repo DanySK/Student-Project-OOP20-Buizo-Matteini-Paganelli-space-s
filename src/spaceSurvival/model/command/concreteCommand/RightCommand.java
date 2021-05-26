@@ -10,10 +10,11 @@ public class RightCommand implements CommandGameObject{
 
 	@Override
 	public void execute(MainGameObject object) {
-		
 		V2d vel = object.getVelocity();
-		object.setVelocity(vel.sum(new V2d(1,0)));
 		
+		if (vel.getX() <= 15) {
+			object.setVelocity(vel.sum(new V2d(1, 0)));
+		}
 		//System.out.println("Right " + object.toString());
 
 	}

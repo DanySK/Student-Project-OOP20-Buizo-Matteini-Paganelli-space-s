@@ -130,8 +130,9 @@ public class World {
 	}
 	
 	public void updateState(int dt) {
-		ship.updatePhysics(dt, this);
-		//asteroids.forEach(a -> a.updatePhysics(dt, this));
+		//ship.updatePhysics(dt, this);
+		this.getAllEntities().forEach(entity -> entity.updatePhysics(dt, this));
+
 	}
 
 	public Optional<BoundaryCollision> checkCollisionWithBoundaries(P2d pos, RectBoundingBox box){
@@ -270,6 +271,9 @@ public class World {
 			entities.add(boss.get());
 		}
 		entities.addAll(pickables);
+		if (ship.getWeapon().isPresent()) {
+			entities.addAll(ship.getWeapon().get().getShootedBullets());
+		}
 		return entities;
 	}
 

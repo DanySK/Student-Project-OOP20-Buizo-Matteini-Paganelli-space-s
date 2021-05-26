@@ -6,11 +6,13 @@ import spaceSurvival.controller.GUI.CtrlSound;
 import spaceSurvival.controller.sound.CallerAudio;
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.gameObject.MainGameObject;
+import spaceSurvival.model.gameObject.MovableGameObject;
 import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
 import spaceSurvival.model.gameObject.mainGameObject.Boss;
 import spaceSurvival.model.gameObject.mainGameObject.ChaseEnemy;
 import spaceSurvival.model.gameObject.mainGameObject.FireEnemy;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
+import spaceSurvival.model.gameObject.weapon.Bullet;
 import spaceSurvival.model.gameObject.weapon.NormalBullet;
 import spaceSurvival.model.sound.CmdAudioType;
 import spaceSurvival.model.sound.category.SoundEffect;
@@ -136,7 +138,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         }
         
         
-        System.out.println(soundQueue);
+        //System.out.println(soundQueue);
         soundQueue.forEach(currentEffect -> {           
 
         //this.controlSound.getCallerAudioEffectFromSoundPath(currentEffect).get().execute(CmdAudioType.RESET_TIMING);
@@ -223,14 +225,20 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                 //stato = pEv.getCollisionObj().getType(???):
                 //gameState.getSpaceship().setState(stato);
             } else if (ev instanceof HitBorderEvent) {
-            	playEffect(SoundPath.WALL_COLLISION);
+                HitBorderEvent borderEvent = (HitBorderEvent) ev;
+
+            	if (borderEvent.getCollisionObj() instanceof SpaceShipSingleton) {
+                	playEffect(SoundPath.WALL_COLLISION);
+				}
             	
-            	
-            	
-            	//System.out.println("TOCCATO MURO E MANDATO EVENTO AL MONDO");
-            	
-                // HitBorderEvent bEv = (HitBorderEvent) ev;
-                //gameState.decreaseLife();
+                // If a bullet reach a border
+                if (borderEvent.getCollisionObj() instanceof Bullet) {
+                	Bullet bullet = (Bullet) borderEvent.getCollisionObj();
+                	if (ship.getWeapon().isPresent()) {
+                		System.out.println("Bullet ha toccato il muro, lo rimuovo");
+                    	ship.getWeapon().get().getShootedBullets().remove(bullet);
+					}
+				}
             }
         });
         eventQueue.clear();
