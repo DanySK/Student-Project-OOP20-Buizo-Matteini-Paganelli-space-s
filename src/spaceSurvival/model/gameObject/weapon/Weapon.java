@@ -55,7 +55,7 @@ public class Weapon {
 	}
 	
 	public void shot() {
-		EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, Icon.BULLET);
+		EngineImage engineImage = new EngineImage(ScaleOf.BULLET_OBJECT, Screen.WIDTH_FULL_SCREEN, "bullet/vertical/ice.png");
 		System.out.println("Sparo");
 		System.out.println(owner);
 		System.out.println(owner.getPosition());
