@@ -44,8 +44,7 @@ public class CtrlSound implements ControllerGUI{
         this.callerAudioLoop = new CallerAudio();
         this.callerAudioEffect = new ArrayList<>();
 
-
-        SoundType.EFFECT.getSoundPaths().stream().forEach(path -> 
+        SoundType.EFFECT.getSoundPaths().forEach(path ->
         	this.callerAudioEffect.add(new CallerAudio(new SoundEffect(path)))
         );
 
