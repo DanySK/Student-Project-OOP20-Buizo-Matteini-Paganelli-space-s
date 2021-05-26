@@ -96,7 +96,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             }
         }
         System.out.println("Sono fuori dal loop");
-        render();
+//        render();
         renderGameOver();
     }
     
@@ -114,6 +114,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     }
 
     protected void updateGame(final int elapsed) {
+        this.controlGame.updateHUD();
         this.controlGame.updateStateWorld(elapsed);
         checkEvents();
         checkSoundEffects();
@@ -222,8 +223,8 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     }
     
     protected void render() {
-        this.controlGame.repaintWorld();
-        this.controlGame.updateHUD();
+//        this.controlGame.repaintWorld();
+
     }
     
     private void renderMovement() {

@@ -18,7 +18,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class PanelGame extends JPanel implements Runnable{
     private final Map<GameObject, AffineTransform> gameObject;
-    private volatile List<Bullet> listBullet;
+    private final List<Bullet> listBullet;
     private final Thread secondDrawer;
 
     private final Lock _mutex;
@@ -30,15 +30,13 @@ public class PanelGame extends JPanel implements Runnable{
         this.secondDrawer = new Thread(this);
         this._mutex = new ReentrantLock(true);
 
-//        this.secondDrawer.start();
+        this.secondDrawer.start();
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
          Graphics2D g2d = (Graphics2D) g;
-
-
 
         this.gameObject.forEach((gameObject, objTransform) -> {
         	g2d.setTransform(objTransform);
@@ -53,30 +51,27 @@ public class PanelGame extends JPanel implements Runnable{
             g2d.setTransform(bullet.getTransform());
             g2d.drawImage(this.getImageFromEngine(bullet.getEngineImage()), null, null);
         });
-        System.out.println(this.listBullet.size() +  "      " + this.listBullet);
         this.listBullet.clear();
-
-
     }
 
     @Override
     public void run() {
-        long lastTime = System.currentTimeMillis();
         while (true) {
-            long current = System.currentTimeMillis();
-            int elapsed = (int)(current - lastTime);
-            this.updateBullet();
-            waitForNextFrame(current);
-            lastTime = current;
+            this.repaint();
 
+            try {
+                Thread.sleep(5);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     protected void waitForNextFrame(final long current) {
         long dt = System.currentTimeMillis() - current;
-        if (dt < EngineMalaLoop.FPS){
+        if (dt < 80){
             try {
-                Thread.sleep(EngineMalaLoop.FPS - dt);
+                Thread.sleep(120 - dt);
             } catch (Exception ignored){}
         }
     }

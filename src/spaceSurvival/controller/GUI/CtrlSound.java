@@ -45,6 +45,8 @@ public class CtrlSound implements ControllerGUI{
         List<SoundPath> list = Arrays.asList(SoundPath.values());
         
         //List<SoundPath> listq = list.stream().filter(s -> s.ordinal() > 2);
+
+
         for(int i = 2; i < list.size(); i++) {
         	//CallerAudio tmpCallerAudio = new CallerAudio(new SoundEffect(list.get(i)));
         	System.out.println(list.get(i));
