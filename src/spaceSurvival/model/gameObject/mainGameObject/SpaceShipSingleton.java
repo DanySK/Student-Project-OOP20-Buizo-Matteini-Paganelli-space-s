@@ -23,7 +23,7 @@ public class SpaceShipSingleton extends MainGameObject {
 	
     // Eager and unique instance of this class for Threadsafing
     private static SpaceShipSingleton spaceShip = new SpaceShipSingleton(
-    	new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinShip.NORMAL),
+    	new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinShip.NORMAL0),
    		Screen.POINT_CENTER_FULLSCREEN,
    		new RectBoundingBox(),
    		new ShipPhysicsComponent(),

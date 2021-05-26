@@ -90,8 +90,12 @@ public class World {
 			this.ship.setAnimation(SkinShip.LIST_SHIP1);
 		}else if(path.contentEquals(SkinShip.STANDARD0)){
 			this.ship.setAnimation(SkinShip.LIST_SHIP2);
-		}else if(path.contentEquals(SkinShip.DELUXE0)){
+		}else if(path.contentEquals(SkinShip.DELUXE0)) {
 			this.ship.setAnimation(SkinShip.LIST_SHIP3);
+		}else if(path.contentEquals(SkinShip.NORMAL0)) {
+			this.ship.setAnimation(SkinShip.LIST_SHIP4);
+		}else if(path.contentEquals(SkinShip.ATOMIC0)){
+			this.ship.setAnimation(SkinShip.LIST_SHIP5);
 		}
 
 	}

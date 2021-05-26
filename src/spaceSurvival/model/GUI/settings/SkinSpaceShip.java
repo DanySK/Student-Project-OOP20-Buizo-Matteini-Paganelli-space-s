@@ -6,8 +6,8 @@ public enum SkinSpaceShip {
     SPECIAL(SkinShip.SPECIAL0),
     STANDARD(SkinShip.STANDARD0),
     DELUXE(SkinShip.DELUXE0),
-    NORMAL(SkinShip.NORMAL),
-    ATOMIC(SkinShip.ATOMIC);
+    NORMAL(SkinShip.NORMAL0),
+    ATOMIC(SkinShip.ATOMIC0);
 
     private String skin;
 
