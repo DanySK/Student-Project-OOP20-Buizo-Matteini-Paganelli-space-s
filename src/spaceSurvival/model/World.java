@@ -304,7 +304,7 @@ public class World {
 	}
 	public Set<GameObject> getAllEntities() {
 		Set<GameObject> entities = new HashSet<>();
-		entities.add(ship);
+//		entities.add(ship);
 		entities.addAll(asteroids);
 		entities.addAll(getAllEnemies());
 		if (boss.isPresent()) {

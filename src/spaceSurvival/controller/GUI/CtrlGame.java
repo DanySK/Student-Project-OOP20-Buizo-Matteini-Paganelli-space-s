@@ -29,6 +29,7 @@ public class CtrlGame implements ControllerGUI{
 
         this.assignAction();
         this.assignStrings();
+        this.assignRectangle();
         this.switchGUI.turn(this.engine.getVisibility());
     }
 
@@ -89,6 +90,10 @@ public class CtrlGame implements ControllerGUI{
         this.gui.setLifeBoss(this.engine.getLifeBoss());
     }
 
+    public void assignWorld(){
+        this.gui.setWorld(this.engine.getWorld());
+    }
+
     public void initTimer(){
         this.engine.initTimer();
     }
@@ -142,6 +147,9 @@ public class CtrlGame implements ControllerGUI{
         return this.engine.getHeartShip() > 1;
     }
 
+    public void startPaint(){
+        this.gui.startPaint();
+    }
 
     public void incrScore(final long score){
         this.engine.incrScore(score);

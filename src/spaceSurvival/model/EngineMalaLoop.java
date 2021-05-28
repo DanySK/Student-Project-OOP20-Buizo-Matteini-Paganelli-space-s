@@ -39,7 +39,6 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     private final List<WorldEvent> eventQueue;
     private final List<SoundPath> soundQueue;
     
-    
 
     public EngineMalaLoop() {
         this.controlGUI = new CtrlGUI();
@@ -55,6 +54,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
 
         this.controlGame.assignMovementListenerInShip();
         this.controlGame.setEventListenerInWorld(this);
+        this.controlGame.assignWorld();
         this.controlGame.addAllGameObjectsFromWorld();
         
         //double scale = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().getDefaultTransform().getScaleX();      
@@ -96,7 +96,6 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             }
         }
         System.out.println("Sono fuori dal loop");
-//        render();
         renderGameOver();
     }
     
@@ -223,7 +222,6 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     
     protected void render() {
 //        this.controlGame.repaintWorld();
-
     }
     
     private void renderMovement() {
