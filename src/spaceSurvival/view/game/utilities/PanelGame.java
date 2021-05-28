@@ -51,8 +51,8 @@ public class PanelGame extends JPanel{
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
 
-        g2d.setTransform(this.world.getShip().getTransform());
-        g2d.drawImage(EngineImage.getImageFromEngine(this.world.getShip().getEngineImage()), null, null);
+//        g2d.setTransform(this.world.getShip().getTransform());
+//        g2d.drawImage(EngineImage.getImageFromEngine(this.world.getShip().getEngineImage()), null, null);
 
         this.world.getAllEntities().forEach(entity -> {
             g2d.setTransform(entity.getTransform());
@@ -79,7 +79,7 @@ public class PanelGame extends JPanel{
             this.repaint();
 
             try {
-                Thread.sleep(10);
+                Thread.sleep(5);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
