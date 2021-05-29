@@ -229,6 +229,7 @@ public class CtrlGUI {
     private void assignStartTimer() {
         Objects.requireNonNull(this.getBtnGameFromMenu()).addActionListener(l -> {
             this.ctrlGame.startTimer();
+            this.ctrlGame.startPaint();
         });
     }
 

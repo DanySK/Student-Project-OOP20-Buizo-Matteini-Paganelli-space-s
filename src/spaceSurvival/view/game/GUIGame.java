@@ -1,5 +1,6 @@
 package spaceSurvival.view.game;
 
+import spaceSurvival.model.World;
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.view.GUI;
@@ -18,6 +19,10 @@ public interface GUIGame extends GUI, GraphicsGUIGame {
     public PanelGame getPanelGame();
 
     public void addGameObject(final GameObject gameObject, final AffineTransform transform);
+
+    public void startPaint();
+
+    public void setWorld(final World world);
 
     public void repaintGameObjects();
 

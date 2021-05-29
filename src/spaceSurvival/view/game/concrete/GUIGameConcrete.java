@@ -1,5 +1,6 @@
 package spaceSurvival.view.game.concrete;
 
+import spaceSurvival.model.World;
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.view.AbstractGUI;
@@ -67,6 +68,16 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
     @Override
     public void addGameObject(final GameObject gameObject, final AffineTransform transform) {
         this.panelGame.addGameObject(gameObject, transform);
+    }
+
+    @Override
+    public void startPaint() {
+        this.panelGame.startPaint();
+    }
+
+    @Override
+    public void setWorld(final World world) {
+        this.panelGame.setWorld(world);
     }
 
     @Override

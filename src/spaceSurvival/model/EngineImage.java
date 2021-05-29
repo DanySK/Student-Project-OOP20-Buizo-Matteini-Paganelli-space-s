@@ -1,5 +1,7 @@
 package spaceSurvival.model;
 
+import spaceSurvival.view.utilities.JImage;
+
 import javax.imageio.ImageIO;
 
 import java.awt.*;
@@ -88,6 +90,15 @@ public class EngineImage {
     }
 
 
+    @Override
+    public String toString() {
+        return "EngineImage{" +
+                "path='" + path + '\'' +
+                ", width=" + width + ", height=" + height +
+                ", scaleOf=" + scaleOf + ", respectTo=" + respectTo + '}';
+    }
+
+
     public static Dimension getSizeImageFromScale(final String path, final int scaleOf, final int respectTo){
         final Dimension dimension = new Dimension();
         try{
@@ -112,12 +123,9 @@ public class EngineImage {
         return dimension;
     }
 
-
-    @Override
-    public String toString() {
-        return "EngineImage{" +
-                "path='" + path + '\'' +
-                ", width=" + width + ", height=" + height +
-                ", scaleOf=" + scaleOf + ", respectTo=" + respectTo + '}';
+    public static Image getImageFromEngine(final EngineImage image){
+        JImage icon = new JImage(image.getPath(), image.getSize());
+        return icon.getImage();
     }
+
 }

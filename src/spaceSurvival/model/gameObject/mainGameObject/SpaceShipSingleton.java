@@ -15,7 +15,7 @@ import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 import spaceSurvival.model.worldEcollisioni.physics.components.ShipPhysicsComponent;
 import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.dimension.Screen;
-import spaceSurvival.utilities.pathImage.Skin;
+import spaceSurvival.utilities.pathImage.Skin.SkinShip;
 
 public class SpaceShipSingleton extends MainGameObject {
     
@@ -23,7 +23,7 @@ public class SpaceShipSingleton extends MainGameObject {
 	
     // Eager and unique instance of this class for Threadsafing
     private static SpaceShipSingleton spaceShip = new SpaceShipSingleton(
-    	new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, Skin.NORMAL),
+    	new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinShip.NORMAL0),
    		Screen.POINT_CENTER_FULLSCREEN,
    		new RectBoundingBox(),
    		new ShipPhysicsComponent(),
