@@ -24,6 +24,19 @@ public class SkinPerk {
 
     public static final List<String> LIST_ICE = List.of(ICE0, ICE1, ICE2, ICE3, ICE4, ICE5, ICE6, ICE7, ICE8, ICE9, ICE10);
 
-    public static final String FIRE0 = Paths.get(MAIN_FOLDER, "fire.png").toString();
+
+    public static final String FIRE0 = Paths.get(MAIN_FOLDER, FIRE, "fire.png").toString();
+    public static final String FIRE1 = Paths.get(MAIN_FOLDER, FIRE, "fire_1.png").toString();
+    public static final String FIRE2 = Paths.get(MAIN_FOLDER, FIRE, "fire_2.png").toString();
+    public static final String FIRE3 = Paths.get(MAIN_FOLDER, FIRE, "fire_3.png").toString();
+    public static final String FIRE4 = Paths.get(MAIN_FOLDER, FIRE, "fire_4.png").toString();
+    public static final String FIRE5 = Paths.get(MAIN_FOLDER, FIRE, "fire_5.png").toString();
+    public static final String FIRE6 = Paths.get(MAIN_FOLDER, FIRE, "fire_6.png").toString();
+
+    public static final List<String> LIST_FIRE = List.of(FIRE0, FIRE1, FIRE2, FIRE3, FIRE4, FIRE5, FIRE6);
+
+
+
+
     public static final String ELECTRIC0 = Paths.get(MAIN_FOLDER, "electric.png").toString();
 }

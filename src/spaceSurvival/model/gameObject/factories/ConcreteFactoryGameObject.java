@@ -109,7 +109,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 		final P2d position = new P2d(450, 450);
 	 	final EffectType effectType = EffectType.random();
 		
-		return new PickableGameObject(engineImage, position, new CircleBoundingBox(), new PickablePhysicsComponent(), effectType, SkinPerk.LIST_ICE);
+		return new PickableGameObject(engineImage, position, new CircleBoundingBox(), new PickablePhysicsComponent(), effectType, SkinPerk.LIST_FIRE);
 	}
 
 }
