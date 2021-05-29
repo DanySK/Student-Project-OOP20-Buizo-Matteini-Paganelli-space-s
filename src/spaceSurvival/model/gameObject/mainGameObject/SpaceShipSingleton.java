@@ -15,20 +15,19 @@ import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 import spaceSurvival.model.worldEcollisioni.physics.components.ShipPhysicsComponent;
 import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.dimension.Screen;
-import spaceSurvival.utilities.pathImage.Skin;
+import spaceSurvival.utilities.pathImage.Skin.SkinShip;
 
 public class SpaceShipSingleton extends MainGameObject {
-    
-	//private boolean isAccelerating;
-	private double acceleration;
+
+	private V2d acceleration;
 	
     // Eager and unique instance of this class for Threadsafing
     private static SpaceShipSingleton spaceShip = new SpaceShipSingleton(
-    	new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, Skin.NORMAL),
+    	new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinShip.NORMAL0),
    		Screen.POINT_CENTER_FULLSCREEN,
    		new RectBoundingBox(),
    		new ShipPhysicsComponent(),
-   		new V2d(),
+   		GameObjectUtils.SPACESHIP_VEL,
    		new ControlledMovement(),
     	GameObjectUtils.SPACESHIP_LIFE,
     	GameObjectUtils.ASTEROID_DAMAGE,
@@ -43,7 +42,9 @@ public class SpaceShipSingleton extends MainGameObject {
                                final int impactDamage, final Optional<Weapon> weapon) {
 		super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, weapon);
     	this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage, this.getTransform()));
-    	this.acceleration = 1;
+
+    	this.acceleration = new V2d(1,1);
+
     }
     
     /**
@@ -53,20 +54,13 @@ public class SpaceShipSingleton extends MainGameObject {
         return spaceShip;
     }
 
-//	public boolean isAccelerating() {
-//		return isAccelerating;
-//	}
-//
-//	public void setAccelerating(boolean isAccelerating) {
-//		this.isAccelerating = isAccelerating;
-//	}
-    
-	public double getAcceleration() {
+
+	public V2d getAcceleration() {
 		return this.acceleration;
 	}
 
-	public void setAcceleration(double acceleration) {
-		this.acceleration = acceleration;
+	public void setAcceleration(V2d v2d) {
+		this.acceleration = v2d;
 	}
 
 }

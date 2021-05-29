@@ -1,13 +1,10 @@
 package spaceSurvival.model;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-
-import java.util.List;
 
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.GameObjectUtils;
@@ -24,8 +21,7 @@ import spaceSurvival.model.worldEcollisioni.WorldEventListener;
 import spaceSurvival.model.worldEcollisioni.physics.BoundaryCollision;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import spaceSurvival.model.common.*;
-import spaceSurvival.utilities.pathImage.Skin;
-import spaceSurvival.view.game.utilities.Bullet;
+import spaceSurvival.utilities.pathImage.Skin.SkinShip;
 
 public class World {
 	
@@ -91,50 +87,22 @@ public class World {
 	public void setSkin(final String path) {
 		this.ship.getEngineImage().setPath(path);
 
-		if(path.contentEquals(Skin.SPECIAL0)){
-			this.ship.setAnimation(Skin.LIST_SHIP1);
-		}else if(path.contentEquals(Skin.STANDARD0)){
-			this.ship.setAnimation(Skin.LIST_SHIP2);
-		}else if(path.contentEquals(Skin.DELUXE0)){
-			this.ship.setAnimation(Skin.LIST_SHIP3);
+		if(path.contentEquals(SkinShip.SPECIAL0)){
+			this.ship.setAnimation(SkinShip.LIST_SHIP1);
+		}else if(path.contentEquals(SkinShip.STANDARD0)){
+			this.ship.setAnimation(SkinShip.LIST_SHIP2);
+		}else if(path.contentEquals(SkinShip.DELUXE0)) {
+			this.ship.setAnimation(SkinShip.LIST_SHIP3);
+		}else if(path.contentEquals(SkinShip.NORMAL0)) {
+			this.ship.setAnimation(SkinShip.LIST_SHIP4);
+		}else if(path.contentEquals(SkinShip.ATOMIC0)){
+			this.ship.setAnimation(SkinShip.LIST_SHIP5);
 		}
 
 	}
 
 	public void moveShip() {
-//		if (!this.ship.isAccelerating()) {
-//			if (!this.ship.getVelocity().equals(new V2d(0, 0))) {
-//				V2d vel = this.ship.getVelocity();
-//
-//				if (vel.getX() > 0) {
-//					//System.out.println("Decremento la X");
-//					this.ship.setVelocity(vel.sum(new V2d(-GameObjectUtils.SPACESHIP_DECELERATION, 0)));
-//				}
-//				if (vel.getX() < 0) {
-//					//System.out.println("Incremento la X");
-//					this.ship.setVelocity(vel.sum(new V2d(GameObjectUtils.SPACESHIP_DECELERATION, 0)));
-//				}
-//				if (vel.getY() > 0) {
-//					//System.out.println("Decremento la Y");
-//					this.ship.setVelocity(vel.sum(new V2d(0, -GameObjectUtils.SPACESHIP_DECELERATION)));
-//				}
-//				if (vel.getY() < 0) {
-//					//System.out.println("Incremento la Y");
-//					this.ship.setVelocity(vel.sum(new V2d(0, GameObjectUtils.SPACESHIP_DECELERATION)));
-//				}
-//			}
-//		}
-		System.out.println("ACCELERATION ->" + this.ship.getAcceleration());
-		System.out.println("VELOCITY ->" + this.ship.getVelocity());
-		
-		
-		V2d vel = this.ship.getVelocity();
-		
-		
-		vel = vel.mul(this.ship.getAcceleration());
-		System.out.println("VELOCITY * ACCELERATION ->" + this.ship.getVelocity());
-		this.ship.setVelocity(vel);
-		
+
 		this.ship.move();
 	}
 	

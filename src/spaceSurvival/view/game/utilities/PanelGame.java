@@ -1,63 +1,91 @@
 package spaceSurvival.view.game.utilities;
 
-import spaceSurvival.model.EngineMalaLoop;
+import spaceSurvival.model.World;
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.gameObject.weapon.Bullet;
-import spaceSurvival.view.utilities.JImage;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.util.*;
 import java.util.List;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
-public class PanelGame extends JPanel implements Runnable{
+public class PanelGame extends JPanel{
     private final Map<GameObject, AffineTransform> gameObject;
     private final List<Bullet> listBullet;
-    private final Thread secondDrawer;
 
-    private final Lock _mutex;
+    private World world;
+
+    private final Thread firstDrawer;
+    private final Thread secondDrawer;
+    private final Thread thirdDrawer;
+    private final Thread fourthDrawer;
 
     public PanelGame() {
         super(); {{ setOpaque(false); }}
         this.gameObject = new HashMap<>();
         this.listBullet = new ArrayList<>();
-        this.secondDrawer = new Thread(this);
-        this._mutex = new ReentrantLock(true);
 
+        this.firstDrawer = new Thread(PanelGame.this::runSecondDrawer);
+        this.secondDrawer = new Thread(PanelGame.this::runSecondDrawer);
+        this.thirdDrawer = new Thread(PanelGame.this::runSecondDrawer);
+        this.fourthDrawer = new Thread(PanelGame.this::runSecondDrawer);
+    }
+
+    public void setWorld(final World world){
+        this.world = world;
+    }
+
+    public void startPaint(){
+        this.firstDrawer.start();
         this.secondDrawer.start();
+        this.thirdDrawer.start();
+        this.fourthDrawer.start();
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-         Graphics2D g2d = (Graphics2D) g;
+        Graphics2D g2d = (Graphics2D) g;
 
-        this.gameObject.forEach((gameObject, objTransform) -> {
-        	g2d.setTransform(objTransform);
-            g2d.drawImage(this.getImageFromEngine(gameObject.getEngineImage()), null, null);
+//        g2d.setTransform(this.world.getShip().getTransform());
+//        g2d.drawImage(EngineImage.getImageFromEngine(this.world.getShip().getEngineImage()), null, null);
 
-            g2d.drawRect(0, (int) gameObject.getSize().getHeight() + 1, (int) gameObject.getSize().getWidth(), 11);
-            g2d.fillRect(0, (int) gameObject.getSize().getHeight(), 50, 10);
+        this.world.getAllEntities().forEach(entity -> {
+            g2d.setTransform(entity.getTransform());
+            g2d.drawImage(EngineImage.getImageFromEngine(entity.getEngineImage()), null, null);
+            this.drawLifeBar(g2d, entity);
         });
 
-        updateBullet();
-        this.listBullet.forEach(bullet -> {
-            g2d.setTransform(bullet.getTransform());
-            g2d.drawImage(this.getImageFromEngine(bullet.getEngineImage()), null, null);
-        });
+//<<<<<<< HEAD
+//        updateBullet();
+//        this.listBullet.forEach(bullet -> {
+//            g2d.setTransform(bullet.getTransform());
+//            g2d.drawImage(this.getImageFromEngine(bullet.getEngineImage()), null, null);
+//        });
+//
+//        this.listBullet.clear();
+//=======
 
-        this.listBullet.clear();
+
+//
+//        this.world.getShip().getWeapon().get().getShootedBullets().forEach(bullet -> {
+//            g2d.setTransform(bullet.getTransform());
+//            g2d.drawImage(EngineImage.getImageFromEngine(bullet.getEngineImage()), null, null);
+//        });
+
+
+        System.out.println("N bullet -> " + this.world.getShip().getWeapon().get().getShootedBullets().size());
+
     }
 
-    @Override
-    public void run() {
-        while (true) {
+
+    public void runSecondDrawer(){
+        while (true){
+            super.repaint();
             this.repaint();
 
             try {
@@ -68,24 +96,11 @@ public class PanelGame extends JPanel implements Runnable{
         }
     }
 
-    protected void waitForNextFrame(final long current) {
-        long dt = System.currentTimeMillis() - current;
-        if (dt < 80){
-            try {
-                Thread.sleep(120 - dt);
-            } catch (Exception ignored){}
-        }
-    }
-
-    public synchronized void updateBullet(){
-        this._mutex.lock();
+    public void updateBullet(){
         this.gameObject.forEach((gameObject, objTransform) -> {
             if (gameObject instanceof MainGameObject) {
                 MainGameObject mainObject = (MainGameObject) gameObject;
                 if (mainObject.getWeapon().isPresent()) {
-//                    mainObject.getWeapon().get().getShootedBullets().forEach(bullet -> {
-//                        this.listBullet.add(bullet);
-//                    });
                     this.listBullet.addAll(mainObject.getWeapon().get().getShootedBullets());
                 }
             }
@@ -102,39 +117,21 @@ public class PanelGame extends JPanel implements Runnable{
         this.repaint();
     }
 
-    private Image getImageFromEngine(final EngineImage image){
-        JImage icon = new JImage(image.getPath(), image.getSize());
-        return icon.getImage();
-    }
 
+
+    private void drawLifeBar(final Graphics2D g2d, final GameObject gameObject){
+        this.drawBar(g2d, gameObject);
+        this.drawLife(g2d, gameObject);
+    }
     
-    private void drawLifeBar(final Graphics2D g2d, final GameObject gameObject, final AffineTransform transform){
-        AffineTransform aff = new AffineTransform();
-        aff.setTransform(transform);
-        
-        //System.out.println(g2d.getTransform());
-//
-        aff.translate(0, gameObject.getSize().getHeight());
+    private void drawBar(final Graphics2D g2d, final GameObject gameObject){
         g2d.setColor(Color.WHITE);
-   
-        //g2d.setTransform(gameObject.getTransform());
-        //g2d.getTransform().translate(0, gameObject.getSize().getHeight());
-        g2d.setTransform(aff);
-        g2d.drawRect(0, 0, (int)gameObject.getSize().getWidth(), 11);
-        aff.setToTranslation(0, 0);
-        g2d.setTransform(aff);
-
+        g2d.drawRect(0, (int) gameObject.getSize().getHeight(), (int) gameObject.getSize().getWidth(), 11);
     }
 
-    private void drawLife(final Graphics2D g2d, final GameObject gameObject, final AffineTransform transform){
-//        AffineTransform aff = new AffineTransform();
-//        aff.setTransform(transform);
-//
-//        aff.translate(0, gameObject.getSize().getHeight());
-//
-//        g2d.setColor(Color.GREEN);
-//        g2d.setTransform(aff);
-        g2d.fillRect(0, (int) gameObject.getSize().getHeight() + 1, 500, 10);
+    private void drawLife(final Graphics2D g2d, final GameObject gameObject){
+        g2d.setColor(Color.GREEN);
+        g2d.fillRect(0, (int) gameObject.getSize().getHeight() + 1, (int)(gameObject.getSize().getWidth() / 2), 10);
     }
 
     private int getDistanceTwoPoint(final P2d p1 , final P2d p2){

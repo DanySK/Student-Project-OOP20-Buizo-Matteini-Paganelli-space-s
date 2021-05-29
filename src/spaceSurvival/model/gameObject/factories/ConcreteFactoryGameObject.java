@@ -27,7 +27,10 @@ import spaceSurvival.model.worldEcollisioni.physics.components.FireEnemyPhysicsC
 import spaceSurvival.model.worldEcollisioni.physics.components.PickablePhysicsComponent;
 import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.dimension.Screen;
-import spaceSurvival.utilities.pathImage.Enemies;
+
+import spaceSurvival.utilities.pathImage.Skin.SkinAsteroid;
+import spaceSurvival.utilities.pathImage.Skin.SkinChase;
+import spaceSurvival.utilities.pathImage.Skin.SkinPerk;
 
 
 public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
@@ -39,7 +42,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 	@Override
 	public MainGameObject createAsteroid() {
 		EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN,
-				spaceSurvival.utilities.pathImage.Asteroid.NORMAL);
+				SkinAsteroid.ASTEROID1);
 		P2d position = new P2d(300, 300);//GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.ASTEROID_VEL;
 		Movement movement = new FixedMovement();
@@ -48,13 +51,13 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 		Optional<Weapon> weapon = Optional.empty();
 		
 		return new Asteroid(engineImage, position, new CircleBoundingBox(), new AsteroidPhysicsComponent(),
-				velocity, movement, life, impactDamage, weapon);
+				velocity, movement, life, impactDamage, weapon, SkinAsteroid.LIST_ASTEROID);
 	}
 
 
 	@Override
 	public MainGameObject createChaseEnemy() {
-		EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, Enemies.CHASE);
+		EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinChase.POOH0);
 		P2d position = new P2d(200, 200);//GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.CHASE_ENEMY_VEL;
 		Movement movement = new ChasingMovement();
@@ -63,13 +66,13 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 		Optional<Weapon> weapon = Optional.empty();
 		
 		return new ChaseEnemy(engineImage, position, new RectBoundingBox(), new ChaseEnemyPhysicsComponent(),
-				velocity, movement, life, impactDamage, weapon);
+				velocity, movement, life, impactDamage, weapon, SkinChase.LIST_POOH);
 	}
 
 
 	@Override
 	public MainGameObject createFireEnemy() {
-		EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, Enemies.CHASE);
+		EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinChase.CHASE0);
 		P2d position = new P2d(400, 400);// GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.FIRE_ENEMY_VEL;
 		Movement movement = new DistantMovement();
@@ -86,7 +89,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 
 	@Override
 	public MainGameObject createBoss() {
-		EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, Enemies.CHASE);
+		EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinChase.CHASE0);
 		P2d position = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.BOSS_VEL;
 		Movement movement = new DistantMovement();
@@ -102,7 +105,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 
 	@Override
 	public PickableGameObject createPickable() {
-		final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, spaceSurvival.utilities.pathImage.Weapon.FIRE);
+		final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinPerk.FIRE);
 		final P2d position = new P2d(450, 450);
 	 	final EffectType effectType = EffectType.random();
 		
