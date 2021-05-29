@@ -1,5 +1,7 @@
 package spaceSurvival.controller.GUI;
 
+import spaceSurvival.controller.GUI.strategy.LogicSwitchGUI;
+import spaceSurvival.controller.GUI.strategy.LogicSwitchGUIImpl;
 import spaceSurvival.controller.sound.CallerAudio;
 import spaceSurvival.controller.utilities.ListGUI;
 import spaceSurvival.factories.StaticFactoryEngineGUI;
@@ -14,6 +16,7 @@ import spaceSurvival.model.GUI.settings.EngineSettings;
 import spaceSurvival.model.GUI.sound.EngineSound;
 import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.utilities.StateLevelGUI;
+import spaceSurvival.utilities.pathImage.Background;
 import spaceSurvival.view.game.GUIGame;
 import spaceSurvival.view.help.GUIHelp;
 import spaceSurvival.view.menu.GUIMenu;
@@ -63,6 +66,8 @@ public class CtrlGUI {
 
     private final ListGUI<ActionGUI> chronology;
 
+    private final LogicSwitchGUI logicSwitchGUI;
+
     public CtrlGUI(){
         this.engineMenu = StaticFactoryEngineGUI.createEngineMenu();
         this.engineGame = StaticFactoryEngineGUI.createEngineGame();
@@ -100,17 +105,19 @@ public class CtrlGUI {
 
         this.chronology = new ListGUI<>() {{ add(FIRST_GUI); }};
 
+        this.logicSwitchGUI = new LogicSwitchGUIImpl();
+
         this.linksAll();
         this.focusMenu();
         this.assignSkin();
         this.assignStartTimer();
     }
 
-    public boolean isStateInGame(){
+    public boolean isInGame(){
         return this.chronology.contains(ActionGUI.ID_GAME);
     }
 
-    public boolean isStateInPause(){
+    public boolean isInPause(){
         return this.chronology.contains(ActionGUI.ID_PAUSE);
     }
 
@@ -143,13 +150,27 @@ public class CtrlGUI {
                         this.managerGui.get(btn.getActionNext()).changeVisibility(); break;
 
                     case ID_BACK:
-                        this.managerGui.get(btn.getActionCurrent()).turn(Visibility.HIDDEN);
-                        this.chronology.remove(this.chronology.lastElementOfList()); break;
-
+                        if(this.isInPause()){
+                            this.managerGui.get(btn.getActionCurrent()).turn(Visibility.HIDDEN);
+                            this.chronology.remove(this.chronology.lastElementOfList());
+                            this.managerGui.get(this.chronology.lastElementOfList()).turn(Visibility.VISIBLE);
+                        } else{
+                            this.managerGui.get(btn.getActionCurrent()).turn(Visibility.HIDDEN);
+                            this.chronology.remove(this.chronology.lastElementOfList());
+                        }
+                        break;
                     case ID_QUIT: this.quitAll(); break;
+
                     default:
-                        this.chronology.add(btn.getActionNext());
-                        this.managerGui.get(btn.getActionNext()).turn(Visibility.VISIBLE); break;
+                        if(this.isInPause()){
+                            this.chronology.add(btn.getActionNext());
+                            this.managerGui.get(btn.getActionNext()).turn(Visibility.VISIBLE);
+                            this.managerGui.get(btn.getActionCurrent()).turn(Visibility.HIDDEN);
+                        } else {
+                            this.chronology.add(btn.getActionNext());
+                            this.managerGui.get(btn.getActionNext()).turn(Visibility.VISIBLE);
+                        }
+                        break;
                 }
                 System.out.println("list" + this.chronology);
 
@@ -230,6 +251,12 @@ public class CtrlGUI {
         Objects.requireNonNull(this.getBtnGameFromMenu()).addActionListener(l -> {
             this.ctrlGame.startTimer();
             this.ctrlGame.startPaint();
+            this.managerGui.values().forEach(control -> {
+                if(control.getMainAction() != ActionGUI.ID_GAME){
+                    control.getGUI().setImageBackground(Background.TRANSPARENT);
+                }
+
+            });
         });
     }
 

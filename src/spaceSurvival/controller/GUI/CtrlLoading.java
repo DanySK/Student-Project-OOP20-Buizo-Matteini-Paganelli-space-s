@@ -84,6 +84,11 @@ public class CtrlLoading extends Thread implements ControllerGUI{
         this.switchGUI.changeVisibility();
     }
 
+    @Override
+    public void closeGUI() {
+        this.gui.close();
+    }
+
 
     public boolean isLoad(){
         return this.engine.isLoad();

@@ -73,4 +73,9 @@ public class CtrlPause implements ControllerGUI{
     public void changeVisibility() {
         this.switchGUI.changeVisibility();
     }
+
+    @Override
+    public void closeGUI() {
+        this.gui.close();
+    }
 }

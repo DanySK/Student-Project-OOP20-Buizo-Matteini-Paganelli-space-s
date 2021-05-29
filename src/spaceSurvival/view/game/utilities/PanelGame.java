@@ -84,7 +84,7 @@ public class PanelGame extends JPanel{
 //        });
 
 
-        System.out.println("N bullet -> " + this.world.getShip().getWeapon().get().getShootedBullets().size());
+//        System.out.println("N bullet -> " + this.world.getShip().getWeapon().get().getShootedBullets().size());
 
     }
 

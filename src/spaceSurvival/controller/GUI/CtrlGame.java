@@ -80,6 +80,11 @@ public class CtrlGame implements ControllerGUI{
         this.switchGUI.changeVisibility();
     }
 
+    @Override
+    public void closeGUI() {
+        this.gui.close();
+    }
+
     public void updateHUD(){
         this.gui.setTimer(this.engine.getTimer());
         this.gui.setScore(this.engine.getScore());

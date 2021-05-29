@@ -21,7 +21,6 @@ import spaceSurvival.model.worldEcollisioni.hitEvents.HitFireEnemyEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitPickableEvent;
 import spaceSurvival.utilities.Score;
 import spaceSurvival.utilities.SoundPath;
-import spaceSurvival.utilities.dimension.Screen;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -77,8 +76,8 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             long current = System.currentTimeMillis();
             int elapsed = (int)(current - lastTime);
 
-            if(this.controlGUI.isStateInGame()){
-                if(!this.controlGUI.isStateInPause()){
+            if(this.controlGUI.isInGame()){
+                if(!this.controlGUI.isInPause()){
                     //processInput();
                     renderMovement();
                     render();
@@ -90,7 +89,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                 }
             }
 
-            if(this.controlGUI.isStateInGame() || !this.controlGUI.isStateInPause()) {
+            if(this.controlGUI.isInGame() || !this.controlGUI.isInPause()) {
                 waitForNextFrame(current);
                 lastTime = current;
             }

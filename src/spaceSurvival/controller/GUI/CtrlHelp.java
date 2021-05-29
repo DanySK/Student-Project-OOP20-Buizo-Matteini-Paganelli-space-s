@@ -79,6 +79,11 @@ public class CtrlHelp implements ControllerGUI {
     }
 
     @Override
+    public void closeGUI() {
+        this.gui.close();
+    }
+
+    @Override
     public String toString() {
         return "CtrlHelp{" +
                 "gui=" + gui +

@@ -105,11 +105,12 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 
 	@Override
 	public PickableGameObject createPickable() {
-		final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinPerk.FIRE0);
+		final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinPerk.ELECTRIC0);
 		final P2d position = new P2d(450, 450);
 	 	final EffectType effectType = EffectType.random();
 		
-		return new PickableGameObject(engineImage, position, new CircleBoundingBox(), new PickablePhysicsComponent(), effectType, SkinPerk.LIST_FIRE);
+		return new PickableGameObject(engineImage, position, new CircleBoundingBox(), new PickablePhysicsComponent(),
+				effectType, SkinPerk.LIST_ELECTRIC);
 	}
 
 }
