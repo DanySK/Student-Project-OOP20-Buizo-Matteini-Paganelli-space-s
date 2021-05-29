@@ -137,6 +137,11 @@ public class CtrlGame implements ControllerGUI{
         }
 
         this.engine.decrLifeShip(effectDamage);
+
+        if(this.hasLiveShip() && this.engine.getLifeShip() == 0){
+            this.engine.decrHeart();
+            this.engine.resetLifeShip();
+        }
     }
 
     private boolean damageOverFlow(final int damage){
