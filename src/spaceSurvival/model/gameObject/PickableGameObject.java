@@ -3,6 +3,7 @@ package spaceSurvival.model.gameObject;
 import spaceSurvival.model.common.P2d;
 
 import java.awt.geom.AffineTransform;
+import java.util.List;
 
 import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
@@ -18,6 +19,15 @@ public class PickableGameObject extends GameObject {
 		this.setBoundingBox(GameObjectUtils.createCircleBoundingBox(position, engineImage, this.getTransform()));
 
 		this.effectType = effectType;
+	}
+
+	public PickableGameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
+							  final PhysicsComponent phys, final EffectType effectType, final List<String> animation) {
+		super(engineImage, position, bb, phys);
+		this.setBoundingBox(GameObjectUtils.createCircleBoundingBox(position, engineImage, this.getTransform()));
+
+		this.effectType = effectType;
+		super.setAnimation(animation);
 	}
 
 	public EffectType getEffectType() {
