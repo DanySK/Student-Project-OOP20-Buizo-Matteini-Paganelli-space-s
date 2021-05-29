@@ -27,9 +27,9 @@ public class World {
 	
 	private AbstractFactoryGameObject factoryGameObject = new ConcreteFactoryGameObject();
 
-	private Set<MainGameObject> asteroids = new HashSet<>();
-	private Set<MainGameObject> fireEnemies = new HashSet<>();
-	private Set<MainGameObject> chaseEnemies = new HashSet<>();
+	private final Set<MainGameObject> asteroids = new HashSet<>();
+	private final Set<MainGameObject> fireEnemies = new HashSet<>();
+	private final Set<MainGameObject> chaseEnemies = new HashSet<>();
 	private Optional<MainGameObject> boss = Optional.empty();
 	
 	private Set<PickableGameObject> pickables = new HashSet<>();
