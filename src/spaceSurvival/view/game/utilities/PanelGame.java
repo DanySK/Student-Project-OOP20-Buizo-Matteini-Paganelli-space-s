@@ -66,6 +66,15 @@ public class PanelGame extends JPanel{
             }
         });
 
+//<<<<<<< HEAD
+//        updateBullet();
+//        this.listBullet.forEach(bullet -> {
+//            g2d.setTransform(bullet.getTransform());
+//            g2d.drawImage(this.getImageFromEngine(bullet.getEngineImage()), null, null);
+//        });
+//
+//        this.listBullet.clear();
+//=======
 
 
 //
@@ -76,6 +85,7 @@ public class PanelGame extends JPanel{
 
 
         System.out.println("N bullet -> " + this.world.getShip().getWeapon().get().getShootedBullets().size());
+
     }
 
 

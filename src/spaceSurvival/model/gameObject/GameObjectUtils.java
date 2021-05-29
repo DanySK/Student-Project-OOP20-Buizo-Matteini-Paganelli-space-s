@@ -19,9 +19,10 @@ public class GameObjectUtils {
     public static final int SPACESHIP_LIVES = 3;
 
     public static final int SPACESHIP_SCALEOF = 50;
-    public static final double SPACESHIP_ACCELERATION = 1;
-    public static final double SPACESHIP_DECELERATION = 1;
 
+    public static final double SPACESHIP_ACCELERATION = 1.15;
+    public static final double SPACESHIP_DECELERATION = 0.8;
+    public static final double SPACESHIP_MAXVEL = 20;    
     
     public static final int ASTEROID_LIFE = 60;
     public static final int ASTEROID_LIFE_INCREMENT = 0;
@@ -35,6 +36,7 @@ public class GameObjectUtils {
     public static final int BOSS_LIFE = 300;
     public static final int BOSS_LIFE_INCREMENT = 20;
 
+    public static final V2d SPACESHIP_VEL = new V2d(0, 0);
     public static final V2d ASTEROID_VEL = new V2d();
     public static final V2d CHASE_ENEMY_VEL = new V2d();
     public static final V2d FIRE_ENEMY_VEL = new V2d();

@@ -4,9 +4,7 @@ public enum CmdAudioType {
 	
 	AUDIO_ON  						("AUDIO_ON"),
 	AUDIO_OFF  						("AUDIO_OFF"), 
-	RESET_TIMING  					("RESET_TIMING"), 
-	TURN_UP_VOLUME 					("TURN_UP_VOLUME"), 
-	TURN_DOWN_VOLUME 				("TURN_DOWN_VOLUME");
+	RESET_TIMING  					("RESET_TIMING");
 
 	private final String string;
 

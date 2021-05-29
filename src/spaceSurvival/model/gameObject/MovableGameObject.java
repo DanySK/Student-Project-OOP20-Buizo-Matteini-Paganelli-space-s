@@ -3,13 +3,11 @@ package spaceSurvival.model.gameObject;
 import spaceSurvival.controller.CallerCommand;
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.common.V2d;
-import spaceSurvival.model.gameObject.weapon.NormalBullet;
 import spaceSurvival.model.movement.Movement;
 import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 
-import java.awt.geom.AffineTransform;
 
 public abstract class MovableGameObject extends GameObject {
 	private V2d velocity;
@@ -34,10 +32,7 @@ public abstract class MovableGameObject extends GameObject {
 //	}
 	
 	public void move() {
-		AffineTransform at = this.getTransform();
-		at.translate(this.getVelocity().getX(), this.getVelocity().getY());
-		this.setTransform(this.getTransform());
-
+		this.movement.move(this);
 	}
 
 	public V2d getVelocity() {

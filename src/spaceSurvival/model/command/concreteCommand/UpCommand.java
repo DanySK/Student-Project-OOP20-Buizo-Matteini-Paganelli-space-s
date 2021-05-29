@@ -3,6 +3,7 @@ package spaceSurvival.model.command.concreteCommand;
 import spaceSurvival.model.command.commandInterfaces.CommandGameObject;
 import spaceSurvival.model.gameObject.GameObjectUtils;
 import spaceSurvival.model.gameObject.MainGameObject;
+import spaceSurvival.utilities.VelocityUtils;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 import spaceSurvival.model.common.V2d;
 
@@ -12,14 +13,20 @@ public class UpCommand implements CommandGameObject{
 
 	@Override
 	public void execute(MainGameObject object) {
+
 		if (object instanceof SpaceShipSingleton) {
-			((SpaceShipSingleton) object).setAccelerating(true);
+			SpaceShipSingleton ship = (SpaceShipSingleton) object;
+			V2d vel = ship.getVelocity();
+			
+			if(vel.getY() > -0.5 && vel.getY() < 0.5) {
+				vel = new V2d(vel.getX(), -1);
+				ship.setVelocity(vel);
+			}
+			
+			ship.setAcceleration(new V2d(ship.getAcceleration().getX(), GameObjectUtils.SPACESHIP_ACCELERATION));	
 		}
-		V2d vel = object.getVelocity();
-	
-		if (vel.getY() >= -15) {
-			object.setVelocity(vel.sum(new V2d(0, -GameObjectUtils.SPACESHIP_ACCELERATION)));
-		}
+
+		
 	}
 
 }

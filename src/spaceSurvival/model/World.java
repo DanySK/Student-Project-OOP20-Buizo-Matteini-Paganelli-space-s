@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.GameObjectUtils;
 import spaceSurvival.model.gameObject.MainGameObject;
@@ -101,28 +102,7 @@ public class World {
 	}
 
 	public void moveShip() {
-		if (!this.ship.isAccelerating()) {
-			if (!this.ship.getVelocity().equals(new V2d(0, 0))) {
-				V2d vel = this.ship.getVelocity();
 
-				if (vel.getX() > 0) {
-					//System.out.println("Decremento la X");
-					this.ship.setVelocity(vel.sum(new V2d(-GameObjectUtils.SPACESHIP_DECELERATION, 0)));
-				}
-				if (vel.getX() < 0) {
-					//System.out.println("Incremento la X");
-					this.ship.setVelocity(vel.sum(new V2d(GameObjectUtils.SPACESHIP_DECELERATION, 0)));
-				}
-				if (vel.getY() > 0) {
-					//System.out.println("Decremento la Y");
-					this.ship.setVelocity(vel.sum(new V2d(0, -GameObjectUtils.SPACESHIP_DECELERATION)));
-				}
-				if (vel.getY() < 0) {
-					//System.out.println("Incremento la Y");
-					this.ship.setVelocity(vel.sum(new V2d(0, GameObjectUtils.SPACESHIP_DECELERATION)));
-				}
-			}
-		}
 		this.ship.move();
 	}
 	
