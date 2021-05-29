@@ -14,7 +14,6 @@ public class DownReleaseCommand implements CommandGameObject {
 		
 		if (object instanceof SpaceShipSingleton) {
 			SpaceShipSingleton ship = (SpaceShipSingleton) object;
-			//new V2d(0, -GameObjectUtils.SPACESHIP_ACCELERATION);
 			ship.setAcceleration(new V2d(0, GameObjectUtils.SPACESHIP_DECELERATION));	
 
 		}

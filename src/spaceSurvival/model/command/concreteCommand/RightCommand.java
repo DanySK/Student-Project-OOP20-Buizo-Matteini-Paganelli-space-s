@@ -13,27 +13,17 @@ public class RightCommand implements CommandGameObject{
 	@Override
 	public void execute(MainGameObject object) {
 		V2d vel = object.getVelocity();
-//		
-		if (object instanceof SpaceShipSingleton) {
-//
-			SpaceShipSingleton ship = (SpaceShipSingleton) object;
-//			ship.setAcceleration(GameObjectUtils.SPACESHIP_ACCELERATION);	
-//		}
-//		
-//		if (vel.getX() <= GameObjectUtils.SPACESHIP_MAXVEL) {
-//			object.setVelocity(vel.sum(new V2d(GameObjectUtils.SPACESHIP_ACCELERATION, 0)));
-//		}
-		//System.out.println("Right " + object.toString());
 		
+		if (object instanceof SpaceShipSingleton) {
+
+		SpaceShipSingleton ship = (SpaceShipSingleton) object;
+
 		if(vel.getX() > -0.5 && vel.getX() < 0.5) {
 			vel = new V2d(1, vel.getY());
 			ship.setVelocity(vel);
 		}
 		
-//		if (object instanceof SpaceShipSingleton) {
-	//		SpaceShipSingleton ship = (SpaceShipSingleton) object;
-			//new V2d(0, -GameObjectUtils.SPACESHIP_ACCELERATION);
-			ship.setAcceleration(new V2d(GameObjectUtils.SPACESHIP_ACCELERATION, ship.getAcceleration().getY()));	
+		ship.setAcceleration(new V2d(GameObjectUtils.SPACESHIP_ACCELERATION, ship.getAcceleration().getY()));	
 
 		}
 
