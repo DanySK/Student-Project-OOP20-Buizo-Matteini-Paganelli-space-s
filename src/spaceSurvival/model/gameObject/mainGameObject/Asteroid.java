@@ -1,6 +1,5 @@
 package spaceSurvival.model.gameObject.mainGameObject;
 
-import java.awt.geom.AffineTransform;
 import java.util.List;
 import java.util.Optional;
 

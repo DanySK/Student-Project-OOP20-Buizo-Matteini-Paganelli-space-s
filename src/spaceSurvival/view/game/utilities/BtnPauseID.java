@@ -25,14 +25,14 @@ public class BtnPauseID extends BtnAction implements MouseListener{
 
     @Override
     public void mouseEntered(final MouseEvent e) {
-        FactoryGUIs.setIconJButtonFromRate(this,
-                this.pathIconEnter, ScaleOf.ICON_FULL, Screen.WIDTH_FULL_SCREEN);
+        //FactoryGUIs.setIconJButtonFromRate(this,
+        //        this.pathIconEnter, ScaleOf.ICON_FULL, Screen.WIDTH_FULL_SCREEN);
     }
 
     @Override
     public void mouseExited(final MouseEvent e) {
-        FactoryGUIs.setIconJButtonFromRate(this,
-                this.pathIconExit, ScaleOf.ICON_FULL, Screen.WIDTH_FULL_SCREEN);
+        //FactoryGUIs.setIconJButtonFromRate(this,
+        //        this.pathIconExit, ScaleOf.ICON_FULL, Screen.WIDTH_FULL_SCREEN);
     }
 
     @Override

@@ -6,6 +6,7 @@ import spaceSurvival.model.GUI.Visibility;
 import spaceSurvival.model.GUI.game.EngineGame;
 import spaceSurvival.model.World;
 import spaceSurvival.model.gameObject.GameObject;
+import spaceSurvival.model.gameObject.factories.AbstractFactoryGameObject;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 import spaceSurvival.model.MovementKeyListener;
 import spaceSurvival.model.worldEcollisioni.WorldEventListener;
@@ -15,6 +16,7 @@ import spaceSurvival.view.game.GUIGame;
 
 import java.awt.event.KeyListener;
 import java.awt.geom.AffineTransform;
+import java.util.Iterator;
 
 public class CtrlGame implements ControllerGUI{
     private final EngineGame engine;
@@ -63,6 +65,10 @@ public class CtrlGame implements ControllerGUI{
     public EngineGUI getEngine() {
         return this.engine;
     }
+    
+    private World getWorld() {
+		return this.engine.getWorld();
+	}
 
 
     @Override
@@ -94,7 +100,24 @@ public class CtrlGame implements ControllerGUI{
         this.gui.setLifeShip(this.engine.getLifeShip());
         this.gui.setLifeBoss(this.engine.getLifeBoss());
     }
-
+    
+    public void updateRoundState() {
+		if (this.engine.getCountEnemies() == 0) {
+			System.out.println("finiti nemici, incremento round");
+			this.engine.incrRound();
+			//this.resetEntities();
+		}
+	}
+    
+    public void resetEntities() {
+		this.getWord().removeAllEnemies();
+		this.getWord().addAsteroid();
+		this.getWord().addAsteroid();
+		this.getWord().addChaseEnemy();
+		this.getWord().addFireEnemy();
+	}
+    
+    
     public void assignWorld(){
         this.gui.setWorld(this.engine.getWorld());
     }
@@ -131,11 +154,11 @@ public class CtrlGame implements ControllerGUI{
         return this.engine.isGameOver();
     }
 
-    public void controlDecrLife(final int damage){
+    public void controlDecrLife(final int damage) {
         final int effectDamage = this.damageOverFlow(damage) ? this.engine.getLifeShip() : damage;
 
-        if(this.damageOverFlow(damage)){
-            if(this.hasLiveShip()){
+        if(this.damageOverFlow(damage)) {
+            if(this.hasLivesShip()){
                 this.engine.resetLifeShip();
             }
             this.engine.decrHeart();
@@ -143,37 +166,37 @@ public class CtrlGame implements ControllerGUI{
 
         this.engine.decrLifeShip(effectDamage);
 
-        if(this.hasLiveShip() && this.engine.getLifeShip() == 0){
+        if(this.hasLivesShip() && this.engine.getLifeShip() == 0) {
             this.engine.decrHeart();
             this.engine.resetLifeShip();
         }
     }
 
-    private boolean damageOverFlow(final int damage){
+    private boolean damageOverFlow(final int damage) {
         return this.engine.getLifeShip() - damage < 0;
     }
 
-    private boolean hasLiveShip(){
+    private boolean hasLivesShip() {
         return this.engine.getHeartShip() > 1;
     }
 
-    public void startPaint(){
+    public void startPaint() {
         this.gui.startPaint();
     }
 
-    public void incrScore(final long score){
+    public void incrScore(final long score) {
         this.engine.incrScore(score);
     }
 
-    public void repaintWorld(){
+    public void repaintWorld() {
         this.gui.repaintGameObjects();
     }
 
-    public void updateStateWorld(final int elapsed){
+    public void updateStateWorld(final int elapsed) {
         this.engine.updateStateWorld(elapsed);
     }
 
-    private void addKeyListenerShip(final KeyListener keyListener){
+    private void addKeyListenerShip(final KeyListener keyListener) {
         this.gui.addKeyListenerSpaceShip(keyListener);
     }
 
