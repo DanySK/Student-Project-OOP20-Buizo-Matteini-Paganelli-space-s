@@ -1,8 +1,8 @@
 package spaceSurvival.controller.GUI;
 
 import spaceSurvival.controller.GUI.strategy.LogicSwitchGUI;
-import spaceSurvival.controller.GUI.strategy.LogicSwitchGUIImpl;
-import spaceSurvival.controller.sound.CallerAudio;
+import spaceSurvival.controller.GUI.strategy.LogicSwitchGame;
+import spaceSurvival.controller.GUI.strategy.LogicSwitchMenu;
 import spaceSurvival.controller.utilities.ListGUI;
 import spaceSurvival.factories.StaticFactoryEngineGUI;
 import spaceSurvival.factories.StaticFactoryGUI;
@@ -26,14 +26,11 @@ import spaceSurvival.view.settings.GUISettings;
 import spaceSurvival.view.sound.GUISound;
 import spaceSurvival.view.utilities.BtnAction;
 
-import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class CtrlGUI {
     public static final ActionGUI FIRST_GUI = ActionGUI.ID_MENU;
@@ -66,7 +63,8 @@ public class CtrlGUI {
 
     private final ListGUI<ActionGUI> chronology;
 
-    private final LogicSwitchGUI logicSwitchGUI;
+    private final LogicSwitchGUI logicSwitchMenu;
+    private final LogicSwitchGUI logicSwitchGame;
 
     public CtrlGUI(){
         this.engineMenu = StaticFactoryEngineGUI.createEngineMenu();
@@ -105,11 +103,11 @@ public class CtrlGUI {
 
         this.chronology = new ListGUI<>() {{ add(FIRST_GUI); }};
 
-        this.logicSwitchGUI = new LogicSwitchGUIImpl();
+        this.logicSwitchMenu = new LogicSwitchMenu();
+        this.logicSwitchGame = new LogicSwitchGame();
 
         this.linksAll();
         this.focusMenu();
-        this.assignSkin();
         this.assignStartTimer();
     }
 
@@ -134,43 +132,12 @@ public class CtrlGUI {
             btn.addActionListener(e -> {
                 System.out.println("Premuto in: " + btn.getActionCurrent() + " Vado in: " + btn.getActionNext());
 
-                switch (btn.getActionNext()) {
-                    case ID_GAME:
-                        this.chronology.add(btn.getActionNext());
-                        this.managerGui.get(btn.getActionNext()).turn(Visibility.VISIBLE);
-                        this.managerGui.get(btn.getActionCurrent()).turn(Visibility.HIDDEN); break;
-
-                    case ID_PAUSE:
-                        if (this.chronology.lastElementOfList() != ActionGUI.ID_PAUSE) {
-                            this.chronology.add(btn.getActionNext());
-                        } else {
-                            this.chronology.remove(btn.getActionNext());
-                        }
-
-                        this.managerGui.get(btn.getActionNext()).changeVisibility(); break;
-
-                    case ID_BACK:
-                        if(this.isInPause()){
-                            this.managerGui.get(btn.getActionCurrent()).turn(Visibility.HIDDEN);
-                            this.chronology.remove(this.chronology.lastElementOfList());
-                            this.managerGui.get(this.chronology.lastElementOfList()).turn(Visibility.VISIBLE);
-                        } else{
-                            this.managerGui.get(btn.getActionCurrent()).turn(Visibility.HIDDEN);
-                            this.chronology.remove(this.chronology.lastElementOfList());
-                        }
-                        break;
-                    case ID_QUIT: this.quitAll(); break;
-
-                    default:
-                        if(this.isInPause()){
-                            this.chronology.add(btn.getActionNext());
-                            this.managerGui.get(btn.getActionNext()).turn(Visibility.VISIBLE);
-                            this.managerGui.get(btn.getActionCurrent()).turn(Visibility.HIDDEN);
-                        } else {
-                            this.chronology.add(btn.getActionNext());
-                            this.managerGui.get(btn.getActionNext()).turn(Visibility.VISIBLE);
-                        }
-                        break;
+                if(this.isInPause()){
+                    this.logicSwitchGame.algorithm(btn.getActionCurrent(), btn.getActionNext(),
+                            this.chronology, this.managerGui);
+                } else{
+                    this.logicSwitchMenu.algorithm(btn.getActionCurrent(), btn.getActionNext(),
+                            this.chronology, this.managerGui);
                 }
                 System.out.println("list" + this.chronology);
 
@@ -218,17 +185,6 @@ public class CtrlGUI {
         return this.chronology.lastElementOfList();
     }
 
-    public void linksCallerAudioEffectWith(final List<CallerAudio> callerAudioEffects){
-        this.ctrlSound.setCallerAudioEffect(callerAudioEffects);
-        AtomicInteger index = new AtomicInteger(0);
-        
-        callerAudioEffects.forEach(callerAudioEffect -> {   
-        	this.ctrlSound.getCallerAudioEffect().get(index.get()).setSound(callerAudioEffect.getSound());
-        	index.incrementAndGet();     	
-        });
-        this.ctrlSound.linksCallerAudioEffectWithListener();
-    }
-
     public String getCurrentSkin(){
         return this.ctrlSettings.getCurrentSkin();
     }
@@ -241,14 +197,9 @@ public class CtrlGUI {
         return this.ctrlSound;
     }
 
-    public void assignSkin(){
-        Objects.requireNonNull(this.getBtnGameFromMenu()).addActionListener(l -> {
-            this.ctrlGame.getWord().setSkin(CtrlGUI.this.getCurrentSkin());
-        });
-    }
-
     private void assignStartTimer() {
         Objects.requireNonNull(this.getBtnGameFromMenu()).addActionListener(l -> {
+            this.ctrlGame.getWord().setSkin(CtrlGUI.this.getCurrentSkin());
             this.ctrlGame.startTimer();
             this.ctrlGame.startPaint();
             this.managerGui.values().forEach(control -> {
@@ -287,7 +238,4 @@ public class CtrlGUI {
         this.ctrlGame.initTimer();
     }
 
-    private void quitAll(){
-        this.managerGui.values().forEach(managerGui -> managerGui.getGUI().close());
-    }
 }
