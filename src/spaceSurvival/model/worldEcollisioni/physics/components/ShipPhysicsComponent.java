@@ -96,40 +96,40 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 			}
 		}
 		
-		Optional<MainGameObject> asteroid = w.checkCollisionWithAsteroids(ship.getPosition(), shipBoundingBox);
+		Optional<MainGameObject> asteroid = w.checkCollisionWithAsteroids(shipBoundingBox);
 		//collisioni con asteroidi
 		if (asteroid.isPresent()) {
 			w.notifyWorldEvent(new HitAsteroidEvent(asteroid.get()));
 			System.out.println("Preso un asteroid Fratellì");
 		}
 		
-		Optional<MainGameObject> chaseEnemy = w.checkCollisionWithChaseEnemies(ship.getPosition(), shipBoundingBox);
-		//collisioni con chaseEnemy
-		if (chaseEnemy.isPresent()) {
-			w.notifyWorldEvent(new HitChaseEnemyEvent(chaseEnemy.get()));
-			System.out.println("Preso un chaseEnemy Fratellì");
-		}
-		
-		Optional<MainGameObject> fireEnemy = w.checkCollisionWithFireEnemies(ship.getPosition(), shipBoundingBox);
-		//collisioni con fireEnemy
-		if (fireEnemy.isPresent()) {
-			w.notifyWorldEvent(new HitFireEnemyEvent(fireEnemy.get()));
-			System.out.println("Preso un fireEnemy Fratellì");
-		}
-		
-		Optional<MainGameObject> boss = w.checkCollisionWithBoss(ship.getPosition(), shipBoundingBox);
-		//collisioni con boss
-		if (boss.isPresent()) {
-			w.notifyWorldEvent(new HitBossEvent(boss.get()));
-			//System.out.println("Preso il boss Fratellì");
-		}
-		
-		Optional<PickableGameObject> pickable = w.checkCollisionWithPickables(ship.getPosition(), shipBoundingBox);
-		//collisioni con pickable
-		if (pickable.isPresent()) {
-			w.notifyWorldEvent(new HitPickableEvent(pickable.get()));
-			System.out.println("Preso un pickable Fratellì");
-		}
+//		Optional<MainGameObject> chaseEnemy = w.checkCollisionWithChaseEnemies(ship.getPosition(), shipBoundingBox);
+//		//collisioni con chaseEnemy
+//		if (chaseEnemy.isPresent()) {
+//			w.notifyWorldEvent(new HitChaseEnemyEvent(chaseEnemy.get()));
+//			System.out.println("Preso un chaseEnemy Fratellì");
+//		}
+//		
+//		Optional<MainGameObject> fireEnemy = w.checkCollisionWithFireEnemies(ship.getPosition(), shipBoundingBox);
+//		//collisioni con fireEnemy
+//		if (fireEnemy.isPresent()) {
+//			w.notifyWorldEvent(new HitFireEnemyEvent(fireEnemy.get()));
+//			System.out.println("Preso un fireEnemy Fratellì");
+//		}
+//		
+//		Optional<MainGameObject> boss = w.checkCollisionWithBoss(ship.getPosition(), shipBoundingBox);
+//		//collisioni con boss
+//		if (boss.isPresent()) {
+//			w.notifyWorldEvent(new HitBossEvent(boss.get()));
+//			//System.out.println("Preso il boss Fratellì");
+//		}
+//		
+//		Optional<PickableGameObject> pickable = w.checkCollisionWithPickables(ship.getPosition(), shipBoundingBox);
+//		//collisioni con pickable
+//		if (pickable.isPresent()) {
+//			w.notifyWorldEvent(new HitPickableEvent(pickable.get()));
+//			System.out.println("Preso un pickable Fratellì");
+//		}
 	}
 
 }

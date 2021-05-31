@@ -55,8 +55,22 @@ public class PanelGame extends JPanel{
 //        g2d.drawImage(EngineImage.getImageFromEngine(this.world.getShip().getEngineImage()), null, null);
 
         this.world.getAllEntities().forEach(entity -> {
+        	
+//        	System.out.println("-------------------------------");
+//        	System.out.println(entity.toString());
+//        	System.out.println(entity.getBoundingBox().toString());
+//        	System.out.println(entity.getTransform());
+        	
+        	
             g2d.setTransform(entity.getTransform());
             g2d.drawImage(EngineImage.getImageFromEngine(entity.getEngineImage()), null, null);
+            
+            
+            //g2d.drawLine(x1, y1, x2, y2);
+            g2d.setColor(Color.WHITE);
+            g2d.drawRect(0, 0, (int)entity.getEngineImage().getSize().getWidth(), (int)entity.getEngineImage().getSize().getHeight());
+            
+            //g2d.drawRect((int)entity.getBoundingBox().getTransform().getTranslateX(), (int)entity.getBoundingBox().getTransform().getTranslateY(), (int)entity.getEngineImage().getSize().getWidth(), (int)entity.getEngineImage().getSize().getHeight());
             this.drawLifeBar(g2d, entity);
         });
 

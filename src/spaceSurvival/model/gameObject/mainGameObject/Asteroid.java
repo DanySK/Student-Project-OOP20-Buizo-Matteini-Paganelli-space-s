@@ -41,6 +41,7 @@ public class Asteroid extends MainGameObject {
 		this.setAnimation(animation);
 		System.out.println(cbb.getRadius());
 		System.out.println(cbb.getCenter());
+		System.out.println(this.getBoundingBox());
 
 	}
 

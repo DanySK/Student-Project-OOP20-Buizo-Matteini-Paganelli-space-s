@@ -17,7 +17,7 @@ public class DownCommand implements CommandGameObject{
 			
 		SpaceShipSingleton ship = (SpaceShipSingleton) object;
 
-		V2d vel = object.getVelocity();
+		V2d vel = object.getVelocity();// && ship.getAcceleration().getY() == 0
 		
 		if(vel.getY() > -0.5 && vel.getY() < 0.5) {
 			vel = new V2d(vel.getX(), 1);

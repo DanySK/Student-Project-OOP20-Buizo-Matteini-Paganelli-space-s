@@ -36,6 +36,11 @@ public class P2d implements java.io.Serializable {
     public V2d sub(P2d v){
         return new V2d(this.x-v.x, this.y-v.y);
     }
+    
+    public double distanceFrom(P2d otherPoint) {
+    	
+    	return Math.sqrt(Math.pow(this.getX() - otherPoint.getX(), 2) + Math.pow(this.getY() - otherPoint.getY(), 2));
+    }
 
     public String toString(){
     return "Point2D(" + this.x + "," + this.y + ")";
