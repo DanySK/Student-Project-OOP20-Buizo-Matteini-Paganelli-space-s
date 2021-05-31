@@ -10,7 +10,7 @@ import java.util.List;
 
 public class EngineDead implements EngineGUI {
     public static final Rectangle RECTANGLE = Screen.RECTANGLE_FULLSCREEN;
-    public static final String TITLE = "GAY OVER";
+    public static final String TITLE = "GAME OVER";
 
     private final ActionGUI mainAction;
 

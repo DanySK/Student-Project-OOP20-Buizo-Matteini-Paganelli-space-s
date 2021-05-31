@@ -167,7 +167,7 @@ public class CtrlGUI {
             this.ctrlGame.startTimer();
             this.ctrlGame.startPaint();
             this.managerGui.values().forEach(control -> {
-                if(control.getMainAction() != ActionGUI.ID_GAME && control.getMainAction() != ActionGUI.ID_DEAD){
+                if(control.getMainAction().getStateLevel().equals(StateLevelGUI.OVERLAY)){
                     control.getGUI().setImageBackground(Background.TRANSPARENT);
                 }
 
