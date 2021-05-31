@@ -19,7 +19,7 @@ public class GUILoadingStandard implements FactoryGUILoading {
         GUILoadingConcrete concrete = new GUILoadingConcrete();
         concrete.setImageBackground(Background.LOADING);
         concrete.setFontLbtitle(DesignGraphics.getFontForTitle(DesignGraphics.SIZE_FONT_H0));
-        concrete.setForegroundGUI(DesignGraphics.color4);
+        concrete.setForegroundGUI(DesignGraphics.COLOR_4);
 
 
         graphics(concrete);
@@ -44,7 +44,7 @@ public class GUILoadingStandard implements FactoryGUILoading {
         concrete.add(FactoryGUIs.encapsulateInPanelBorderOrientation(panel, BorderLayout.SOUTH),
                 BorderLayout.CENTER);
 
-        concrete.getProgressBar().setForeground(DesignGraphics.color4);
+        concrete.getProgressBar().setForeground(DesignGraphics.COLOR_4);
 
         concrete.getProgressBar().setPreferredSize(new Dimension(
                 Screen.scaleRespectTo(ScaleOf.WIDTH_BAR_LOADING, Screen.WIDTH_FULL_SCREEN),

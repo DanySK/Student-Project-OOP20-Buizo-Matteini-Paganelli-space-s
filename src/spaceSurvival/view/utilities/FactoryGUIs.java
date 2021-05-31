@@ -159,6 +159,6 @@ public class FactoryGUIs {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setUndecorated(true);
         frame.setResizable(false);
-        frame.setBackground(DesignGraphics.colorOpacityBlack);
+        frame.setBackground(DesignGraphics.COLOR_OPACITY_BLACK);
     }
 }

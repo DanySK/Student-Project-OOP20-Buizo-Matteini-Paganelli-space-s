@@ -17,7 +17,7 @@ public class GUIScoreboardReverse implements FactoryGUIScoreboard {
         scoreboardConcrete.setFontLbTitle(DesignGraphics.getFontForTitle(DesignGraphics.SIZE_FONT_H1));
         scoreboardConcrete.getTxtSearchName().setColumns(DesignGraphics.SIZE_COLUMNS_TEXT);
         scoreboardConcrete.setFontGUI(DesignGraphics.FONT_MEDIUM_STANDARD);
-        scoreboardConcrete.setForegroundGUI(DesignGraphics.color4);
+        scoreboardConcrete.setForegroundGUI(DesignGraphics.COLOR_4);
 
         this.createGraphics(scoreboardConcrete);
         return scoreboardConcrete;

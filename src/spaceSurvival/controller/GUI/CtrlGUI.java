@@ -28,6 +28,7 @@ public class CtrlGUI {
     private final CtrlSound ctrlSound;
     private final CtrlHelp ctrlHelp;
     private final CtrlPause ctrlPause;
+    private final CtrlDead ctrlDead;
 
     private final Map<ActionGUI, ControllerGUI> managerGui;
 
@@ -43,7 +44,8 @@ public class CtrlGUI {
         this.ctrlScoreboard = new CtrlScoreboard(StaticFactoryEngineGUI.createEngineScoreboard(), StaticFactoryGUI.createScoreboardGUI());
         this.ctrlSound = new CtrlSound(StaticFactoryEngineGUI.createEngineSound(), StaticFactoryGUI.createSoundGUI());
         this.ctrlHelp = new CtrlHelp(StaticFactoryEngineGUI.createEngineHelp(), StaticFactoryGUI.createHelpGUI());
-        this.ctrlPause = new CtrlPause(StaticFactoryEngineGUI.creEnginePause(), StaticFactoryGUI.createPauseGUI());
+        this.ctrlPause = new CtrlPause(StaticFactoryEngineGUI.createEnginePause(), StaticFactoryGUI.createPauseGUI());
+        this.ctrlDead = new CtrlDead(StaticFactoryEngineGUI.createEngineDead(), StaticFactoryGUI.createDeadGUI());
 
         this.managerGui = new HashMap<>(){{
             put(CtrlGUI.this.ctrlMenu.getMainAction(), CtrlGUI.this.ctrlMenu);
@@ -53,6 +55,7 @@ public class CtrlGUI {
             put(CtrlGUI.this.ctrlSound.getMainAction(), CtrlGUI.this.ctrlSound);
             put(CtrlGUI.this.ctrlHelp.getMainAction(), CtrlGUI.this.ctrlHelp);
             put(CtrlGUI.this.ctrlPause.getMainAction(), CtrlGUI.this.ctrlPause);
+            put(CtrlGUI.this.ctrlDead.getMainAction(), CtrlGUI.this.ctrlDead);
         }};
 
         this.chronology = new ListGUI<>() {{ add(FIRST_GUI); }};
@@ -151,13 +154,20 @@ public class CtrlGUI {
         return this.ctrlSound;
     }
 
+    public void EndGame(){
+        this.managerGui.get(this.chronology.lastElementOfList()).turn(Visibility.HIDDEN);
+        this.chronology.remove(this.chronology.lastElementOfList());
+        this.chronology.add(ActionGUI.ID_DEAD);
+        this.managerGui.get(ActionGUI.ID_DEAD).turn(Visibility.VISIBLE);
+    }
+
     private void assignStartTimer() {
         Objects.requireNonNull(this.getBtnGameFromMenu()).addActionListener(l -> {
             this.ctrlGame.getWord().setSkin(CtrlGUI.this.getCurrentSkin());
             this.ctrlGame.startTimer();
             this.ctrlGame.startPaint();
             this.managerGui.values().forEach(control -> {
-                if(control.getMainAction() != ActionGUI.ID_GAME){
+                if(control.getMainAction() != ActionGUI.ID_GAME && control.getMainAction() != ActionGUI.ID_DEAD){
                     control.getGUI().setImageBackground(Background.TRANSPARENT);
                 }
 
@@ -174,7 +184,7 @@ public class CtrlGUI {
         return null;
     }
 
-    public void assignSoundLoop(){
+    public void assignSoundLoop() {
         this.managerGui.values().forEach(ctrl -> ctrl.getGUI().getBtnActionLinks().forEach(
                 btn -> btn.addActionListener(l -> {
                     if(btn.getActionCurrent() == ActionGUI.ID_PAUSE && btn.getActionNext() == ActionGUI.ID_BACK) {

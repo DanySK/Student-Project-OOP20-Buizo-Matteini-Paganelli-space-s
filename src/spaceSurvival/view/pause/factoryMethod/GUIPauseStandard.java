@@ -3,7 +3,6 @@ package spaceSurvival.view.pause.factoryMethod;
 import spaceSurvival.model.GUI.pause.EnginePause;
 import spaceSurvival.view.utilities.DesignGraphics;
 import spaceSurvival.utilities.dimension.ScaleOf;
-import spaceSurvival.utilities.pathImage.Background;
 import spaceSurvival.view.pause.FactoryGUIPause;
 import spaceSurvival.view.pause.GUIPause;
 import spaceSurvival.view.pause.concrete.GUIPauseConcrete;
@@ -20,10 +19,10 @@ public class GUIPauseStandard implements FactoryGUIPause {
 
         concrete.setFontGUITitle(DesignGraphics.getFontForTitle(DesignGraphics.SIZE_FONT_H1));
 
-        concrete.setForegroundGUI(DesignGraphics.color4);
+        concrete.setForegroundGUI(DesignGraphics.COLOR_4);
         concrete.setFontButtons(DesignGraphics.FONT_MEDIUM_STANDARD);
 
-        concrete.setBorder(DesignGraphics.color4, FactoryGUIs.MIN_INSET);
+        concrete.setBorder(DesignGraphics.COLOR_4, FactoryGUIs.MIN_INSET);
 
         this.createGraphics(concrete);
 
