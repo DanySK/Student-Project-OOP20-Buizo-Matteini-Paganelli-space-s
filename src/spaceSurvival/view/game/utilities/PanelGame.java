@@ -5,9 +5,11 @@ import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.EngineImage;
+import spaceSurvival.model.gameObject.PickableGameObject;
 import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
 import spaceSurvival.model.gameObject.mainGameObject.ChaseEnemy;
 import spaceSurvival.model.gameObject.mainGameObject.FireEnemy;
+import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 import spaceSurvival.model.gameObject.weapon.Bullet;
 
 import javax.swing.*;
@@ -60,8 +62,8 @@ public class PanelGame extends JPanel{
         this.world.getAllEntities().forEach(entity -> {
             g2d.setTransform(entity.getTransform());
             g2d.drawImage(EngineImage.getImageFromEngine(entity.getEngineImage()), null, null);
-            
-            if(entity instanceof ChaseEnemy || entity instanceof FireEnemy || entity instanceof Asteroid) {
+
+            if(!(entity instanceof SpaceShipSingleton || entity instanceof PickableGameObject || entity instanceof Bullet)) {
                 this.drawLifeBar(g2d, entity);
             }
         });
