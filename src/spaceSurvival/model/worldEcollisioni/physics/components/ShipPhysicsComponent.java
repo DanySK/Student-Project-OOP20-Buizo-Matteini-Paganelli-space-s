@@ -10,15 +10,12 @@ import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 import spaceSurvival.model.World;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitAsteroidEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitBorderEvent;
-import spaceSurvival.model.worldEcollisioni.hitEvents.HitBossEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitChaseEnemyEvent;
-import spaceSurvival.model.worldEcollisioni.hitEvents.HitFireEnemyEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitPickableEvent;
 import spaceSurvival.model.worldEcollisioni.physics.BoundaryCollision;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import spaceSurvival.utilities.SystemVariables;
 import spaceSurvival.utilities.dimension.Screen;
-import spaceSurvival.model.common.P2d;
 
 public class ShipPhysicsComponent implements PhysicsComponent {
 	
@@ -38,7 +35,6 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 		//Optional<BoundaryCollision> binfo = w.checkCollisionWithBoundaries(ship.getPosition(), boundingBox);
 		if (binfo.isPresent()) {
 			BoundaryCollision info = binfo.get();
-			P2d pos = ship.getPosition();
 			
 			switch (info.getEdge()) {
 			case TOP: 
@@ -103,12 +99,12 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 			System.out.println("Preso un asteroid Fratellì");
 		}
 		
-//		Optional<MainGameObject> chaseEnemy = w.checkCollisionWithChaseEnemies(ship.getPosition(), shipBoundingBox);
-//		//collisioni con chaseEnemy
-//		if (chaseEnemy.isPresent()) {
-//			w.notifyWorldEvent(new HitChaseEnemyEvent(chaseEnemy.get()));
-//			System.out.println("Preso un chaseEnemy Fratellì");
-//		}
+		Optional<MainGameObject> chaseEnemy = w.checkCollisionWithChaseEnemies(shipBoundingBox);
+		//collisioni con chaseEnemy
+		if (chaseEnemy.isPresent()) {
+			w.notifyWorldEvent(new HitChaseEnemyEvent(chaseEnemy.get()));
+			System.out.println("Preso un chaseEnemy Fratellì");
+		}
 //		
 //		Optional<MainGameObject> fireEnemy = w.checkCollisionWithFireEnemies(ship.getPosition(), shipBoundingBox);
 //		//collisioni con fireEnemy
@@ -124,12 +120,12 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 //			//System.out.println("Preso il boss Fratellì");
 //		}
 //		
-//		Optional<PickableGameObject> pickable = w.checkCollisionWithPickables(ship.getPosition(), shipBoundingBox);
-//		//collisioni con pickable
-//		if (pickable.isPresent()) {
-//			w.notifyWorldEvent(new HitPickableEvent(pickable.get()));
-//			System.out.println("Preso un pickable Fratellì");
-//		}
+		Optional<TakeableGameObject> pickable = w.checkCollisionWithPickables(shipBoundingBox);
+		//collisioni con pickable
+		if (pickable.isPresent()) {
+			w.notifyWorldEvent(new HitPickableEvent(pickable.get()));
+			System.out.println("Preso un pickable Fratellì");
+		}
 	}
 
 }

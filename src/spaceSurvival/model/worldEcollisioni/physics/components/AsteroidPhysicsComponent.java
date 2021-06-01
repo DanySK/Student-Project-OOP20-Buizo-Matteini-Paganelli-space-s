@@ -22,8 +22,8 @@ public class AsteroidPhysicsComponent implements PhysicsComponent {
 //		//w.checkBoundaries(obj);
 //		CircleBoundingBox bbox = (CircleBoundingBox) obj.getBoundingBox();
 //		
-//		Optional<MainGameObject> asteroid = w.checkCollisionWithAsteroids(obj.getPosition(), bbox);
-		//collisioni con asteroidi
+//		Optional<MainGameObject> bullets = w.checkCollisionWithAsteroids(bbox);
+//		collisioni con asteroidi
 //		if (asteroid.isPresent()){
 //			w.notifyWorldEvent(new HitAsteroidEvent(asteroid.get()));
 //			System.out.println("Preso il asteroid Fratellì");

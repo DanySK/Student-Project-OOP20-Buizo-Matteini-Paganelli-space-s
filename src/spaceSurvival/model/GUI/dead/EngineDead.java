@@ -2,10 +2,13 @@ package spaceSurvival.model.GUI.dead;
 
 import spaceSurvival.model.GUI.EngineGUI;
 import spaceSurvival.model.GUI.Visibility;
+import spaceSurvival.model.GUI.menu.LinksMenu;
 import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.utilities.dimension.Screen;
 
+import javax.security.auth.login.AccountNotFoundException;
 import java.awt.*;
+import java.util.Arrays;
 import java.util.List;
 
 public class EngineDead implements EngineGUI {
@@ -14,11 +17,15 @@ public class EngineDead implements EngineGUI {
     public static final int N_BUTTONS = 2;
 
     private final ActionGUI mainAction;
+    private final List<LinksDead> linkButtons;
 
     private Visibility visibility;
 
     public EngineDead(){
         this.mainAction = ActionGUI.ID_DEAD;
+
+
+        this.linkButtons = Arrays.asList(LinksDead.values());
         this.visibility = Visibility.HIDDEN;
     }
 

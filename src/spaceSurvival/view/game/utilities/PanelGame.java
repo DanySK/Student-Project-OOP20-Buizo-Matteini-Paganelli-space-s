@@ -11,6 +11,7 @@ import spaceSurvival.model.gameObject.mainGameObject.ChaseEnemy;
 import spaceSurvival.model.gameObject.mainGameObject.FireEnemy;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 import spaceSurvival.model.gameObject.weapon.Bullet;
+import spaceSurvival.model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
 
 import javax.swing.*;
 import java.awt.*;
@@ -66,19 +67,22 @@ public class PanelGame extends JPanel{
 //        	System.out.println(entity.getBoundingBox().toString());
 //        	System.out.println(entity.getTransform());
         	
-        	
-            g2d.setTransform(entity.getTransform());
-            g2d.drawImage(EngineImage.getImageFromEngine(entity.getEngineImage()), null, null);
+        	if(entity.getBoundingBox() instanceof CircleBoundingBox) {
+        		AffineTransform transform = new AffineTransform();
+        		transform.setTransform(entity.getTransform());     		
+        		CircleBoundingBox cbb = (CircleBoundingBox) entity.getBoundingBox();
+        		transform.translate(-cbb.getRadius(), -cbb.getRadius());
+        		g2d.setTransform(transform);
+        	}
+        	else {
+        		g2d.setTransform(entity.getTransform());
+        	}
 
-            
-            
-            //g2d.drawLine(x1, y1, x2, y2);
+            g2d.drawImage(EngineImage.getImageFromEngine(entity.getEngineImage()), 0,0, null);
+
+
             g2d.setColor(Color.WHITE);
             g2d.drawRect(0, 0, (int)entity.getEngineImage().getSize().getWidth(), (int)entity.getEngineImage().getSize().getHeight());
-            
-            //g2d.drawRect((int)entity.getBoundingBox().getTransform().getTranslateX(), (int)entity.getBoundingBox().getTransform().getTranslateY(), (int)entity.getEngineImage().getSize().getWidth(), (int)entity.getEngineImage().getSize().getHeight());
-            //this.drawLifeBar(g2d, entity);
-
 
             if(!(entity instanceof SpaceShipSingleton || entity instanceof TakeableGameObject || entity instanceof Bullet)) {
                 this.drawLifeBar(g2d, entity);
