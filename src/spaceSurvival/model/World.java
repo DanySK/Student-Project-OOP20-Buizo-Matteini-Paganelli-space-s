@@ -45,9 +45,6 @@ public class World {
 		this.ship = SpaceShipSingleton.getSpaceShip();
 		this.ship.setWeapon(Optional.of(new Weapon(AmmoType.NORMAL, ship)));
 		
-		System.out.println(this.ship.getWeapon());
-		System.out.println(this.ship.getWeapon().get());
-		
 		this.mainBBox = mainBBox;
 
 		for (int i = 0; i < 3; i++) {
@@ -60,10 +57,7 @@ public class World {
 	public World(final Rectangle rectangle) {
 		this.ship = SpaceShipSingleton.getSpaceShip();
 		this.ship.setWeapon(Optional.of(new Weapon(AmmoType.NORMAL, ship)));
-		
-		System.out.println("BELLA RAGAAAAA");
-		System.out.println(this.ship.getWeapon());
-		System.out.println(this.ship.getWeapon().get());
+
 		
 		this.mainBBox = new RectBoundingBox(rectangle);
 
@@ -223,7 +217,6 @@ public class World {
 		//double radius = box.getWidth();
 		//System.out.println("Questa è la width della ship" + radius);
 		for (MainGameObject obj: asteroids) {
-			System.out.println(obj.getBoundingBox());
 			if (checker.testRectangleToCircle(shipBoundingBox, (CircleBoundingBox) obj.getBoundingBox())) {
 				
 			    System.out.println("MANDATO UN EVENTO");

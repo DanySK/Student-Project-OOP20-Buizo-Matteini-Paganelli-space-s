@@ -31,7 +31,7 @@ public class FactoryGUIs {
         return encapsulate;
     }
 
-    public static JPanel createPanelFlowUnionComponents(final List<Component> list){
+    public static JPanel createPanelFlowUnionComponents(final List<? extends Component> list){
         final JPanel unionComponent =  FactoryGUIs.createPanelTransparent(new FlowLayout());
         for (final Component component : list) {
             unionComponent.add(component);

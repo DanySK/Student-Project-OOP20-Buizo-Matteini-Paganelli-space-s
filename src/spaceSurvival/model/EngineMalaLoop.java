@@ -84,7 +84,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                     waitForNextFrame(current);
                     lastTime = current;
 
-                    //this.controlGame.controlDecrLife(1);
+                    this.controlGame.controlDecrLife(1);
                     updateGame(elapsed);
                 }
             }
