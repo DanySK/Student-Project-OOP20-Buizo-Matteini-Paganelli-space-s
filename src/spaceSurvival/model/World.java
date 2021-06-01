@@ -50,7 +50,7 @@ public class World {
 		
 		this.mainBBox = mainBBox;
 
-		for (int i = 0; i < 1; i++) {
+		for (int i = 0; i < 3; i++) {
 			asteroids.add(factoryGameObject.createAsteroid());
 			chaseEnemies.add(factoryGameObject.createChaseEnemy());
 			pickables.add(factoryGameObject.createPickable());

@@ -142,7 +142,7 @@ public class CollisionChecker {
 //	    		testCircleToSegment(cbb, new Line(new P2d(cx+rbb.getWidth()/2, cy-rbb.getHeight()/2), new P2d(cx-rbb.getWidth()/2, cy-rbb.getHeight()/2))) ||
 //	    		testCircleToSegment(cbb, new Line(new P2d(cx-rbb.getWidth()/2, cy-rbb.getHeight()/2), new P2d(cx-rbb.getWidth()/2, cy+rbb.getHeight()/2)));
 //	}
-	
+	 
 //	public boolean testRectangleToCircle(RectBoundingBox rbb, CircleBoundingBox cbb) {
 //		
 //		AffineTransform transform = new AffineTransform();
@@ -195,27 +195,66 @@ public class CollisionChecker {
 		//areaB.getBounds2D().intersects(areaA.getBounds2D());
 		
 	//	areaA.subtract(areaB);
-	
 		
-		Rectangle2D rectangle = new Rectangle2D.Double(rbb.getTransform().getTranslateX(), rbb.getTransform().getTranslateY(), rbb.getWidth(), rbb.getHeight());
+		Rectangle2D rectangle = new Rectangle2D.Double(0,0, rbb.getWidth(), rbb.getHeight());
  		AffineTransform rectTransform = new AffineTransform();
- 		rectTransform.rotate(this.getRotationAngleInRadiant(rbb.getTransform()));
+ 		rectTransform.setTransform(rbb.getTransform());
+ 		//rectTransform.rotate(this.getRotationAngleInRadiant(rbb.getTransform()), rbb.getWidth()/2, rbb.getHeight()/2);
 		Shape rotatedRect = rectTransform.createTransformedShape(rectangle);
 		
 		
-		Ellipse2D ellipse = new Ellipse2D.Double(cbb.getCenter().getX(), cbb.getCenter().getY(), 50, 50);
+		Ellipse2D ellipse = new Ellipse2D.Double(0, 0, 100, 100);
  		AffineTransform circleTransform = new AffineTransform();
+ 		circleTransform.setTransform(cbb.getTransform());
  		circleTransform.rotate(this.getRotationAngleInRadiant(cbb.getTransform()));
 		//circleTransform.setTransform(cbb.getTransform());
 		Shape rotatedEllipse = circleTransform.createTransformedShape(ellipse);	
 		
 		
 		
+		//return rotatedRect.intersects(rotatedEllipse);
+		return rotatedEllipse.getBounds2D().intersects(rotatedRect.getBounds2D());
+	
+		//PROVA OGGI 
+//		Rectangle2D rectangle = new Rectangle2D.Double(rbb.getTransform().getTranslateX(),rbb.getTransform().getTranslateY(), rbb.getWidth(), rbb.getHeight());
+// 		AffineTransform rectTransform = new AffineTransform();
+// 		rectTransform.rotate(this.getRotationAngleInRadiant(rbb.getTransform()), rbb.getWidth()/2, rbb.getHeight()/2);
+//		Shape rotatedRect = rectTransform.createTransformedShape(rectangle);
+//		
+//		
+//		Ellipse2D ellipse = new Ellipse2D.Double(cbb.getTransform().getTranslateX(),cbb.getTransform().getTranslateY(), 50, 50);
+// 		AffineTransform circleTransform = new AffineTransform();
+// 		circleTransform.rotate(this.getRotationAngleInRadiant(cbb.getTransform()), cbb.getRadius(), cbb.getRadius());
+//		//circleTransform.setTransform(cbb.getTransform());
+//		Shape rotatedEllipse = circleTransform.createTransformedShape(ellipse);	
+//		
+//		
+//		
+//		//return rotatedRect.intersects(rotatedEllipse);
+//		return rotatedEllipse.getBounds2D().intersects(rotatedRect.getBounds2D());
+		//PROVA OGGI 
+		
+//		Area areaA = new Area(rotatedRect);
+//		Area areaB = new Area(rotatedEllipse);
+//		
+//		
+//		return false;
+//		
+//		System.out.println("areaA ->" + areaA.isEmpty());
+//		System.out.println("areaB ->" + areaB.isEmpty());
+//		areaA.intersect(areaB);
+//		//areaA.in
+//		return !areaA.isEmpty();		
 		
 		
-		Area areaA = new Area(rotatedRect);
-		areaA.in
-		return rotatedRect.intersects(rotatedEllipse.getBounds2D());
+//		Area areaA = new Area(rotatedRect);
+//		Area areaB = new Area(rotatedEllipse);
+//		
+//		System.out.println("areaA ->" + areaA.isEmpty());
+//		System.out.println("areaB ->" + areaB.isEmpty());
+//		areaA.intersect(areaB);
+//		//areaA.in
+//		return !areaA.isEmpty();
 		
 //		Area areaB = new Area(rotatedEllipse);
 // 
@@ -323,24 +362,24 @@ public class CollisionChecker {
 	}
 	
  
-	
-	public static void main (String[] args) {
-		CollisionChecker checker = new CollisionChecker();
-		AffineTransform a = new AffineTransform();
-		//a.rotate(Math.toRadians(30));
-		System.out.println(checker.getRotationAngleInDegrees(a));
-		System.out.println(checker.getRotationAngleInRadiant(a));
-		
-		
-		
-		RectBoundingBox rbox = new RectBoundingBox(new P2d(0,0), new P2d(10,10), a);
-		rbox.getTransform().rotate(Math.toDegrees(0), rbox.getWidth(), rbox.getHeight());
-		System.out.println(rbox.getTransform());
-		P2d point = new P2d(5,5);
-		
-		System.out.println(checker.testRectangleToPoint(rbox, point));
-		
-		
-	}
+//	
+//	public static void main (String[] args) {
+//		CollisionChecker checker = new CollisionChecker();
+//		AffineTransform a = new AffineTransform();
+//		//a.rotate(Math.toRadians(30));
+//		System.out.println(checker.getRotationAngleInDegrees(a));
+//		System.out.println(checker.getRotationAngleInRadiant(a));
+//		
+//		
+//		
+//		RectBoundingBox rbox = new RectBoundingBox(new P2d(0,0), new P2d(10,10), a);
+//		rbox.getTransform().rotate(Math.toDegrees(0), rbox.getWidth(), rbox.getHeight());
+//		System.out.println(rbox.getTransform());
+//		P2d point = new P2d(5,5);
+//		
+//		System.out.println(checker.testRectangleToPoint(rbox, point));
+//		
+//		
+//	}
 
 }
