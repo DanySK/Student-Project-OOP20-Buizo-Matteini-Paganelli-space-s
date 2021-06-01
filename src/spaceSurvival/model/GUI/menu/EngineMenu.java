@@ -44,7 +44,7 @@ public class EngineMenu implements EngineGUI {
     @Override
     public List<ActionGUI> getLinks() {
         return this.linkButtons.stream()
-                .map(LinksMenu::getActionGUI)
+                .map(LinksMenu::getAction)
                 .collect(Collectors.toList());
     }
 
