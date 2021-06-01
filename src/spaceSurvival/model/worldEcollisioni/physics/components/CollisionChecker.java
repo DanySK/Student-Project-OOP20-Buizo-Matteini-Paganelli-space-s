@@ -11,9 +11,12 @@ import spaceSurvival.model.common.Line;
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
+import spaceSurvival.utilities.SystemVariables;
 
 public class CollisionChecker {
 	
+	private static final double TOLLERANCE = 3;
+
 	/** Rectangle To Point. */
 	//RectBoundingBox rbb, P2d point
 	public boolean testRectangleToPoint(RectBoundingBox rbb, P2d point) {
@@ -202,8 +205,8 @@ public class CollisionChecker {
  		//rectTransform.rotate(this.getRotationAngleInRadiant(rbb.getTransform()), rbb.getWidth()/2, rbb.getHeight()/2);
 		Shape rotatedRect = rectTransform.createTransformedShape(rectangle);
 		
-		
-		Ellipse2D ellipse = new Ellipse2D.Double(0, 0, 100, 100);
+		System.out.println(cbb.getRadius());
+		Ellipse2D ellipse = new Ellipse2D.Double(0, 0, (cbb.getRadius() - TOLLERANCE) * SystemVariables.SCALE_X, (cbb.getRadius() - TOLLERANCE) * SystemVariables.SCALE_Y);
  		AffineTransform circleTransform = new AffineTransform();
  		circleTransform.setTransform(cbb.getTransform());
  		circleTransform.rotate(this.getRotationAngleInRadiant(cbb.getTransform()));
