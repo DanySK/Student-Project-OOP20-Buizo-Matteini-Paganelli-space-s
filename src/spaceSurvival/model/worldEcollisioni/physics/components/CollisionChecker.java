@@ -179,117 +179,38 @@ public class CollisionChecker {
 //	    
 //	    return false;
 //	}
+
+	public boolean testRectangleToRectangle(RectBoundingBox rbb1, RectBoundingBox rbb2) {
+
+		Rectangle2D rectangle1 = new Rectangle2D.Double(0,0, rbb1.getWidth(), rbb1.getHeight());
+ 		AffineTransform rectTransform1 = new AffineTransform();
+ 		rectTransform1.setTransform(rbb1.getTransform());
+		Shape rotatedRect1 = rectTransform1.createTransformedShape(rectangle1);
+		
+		Rectangle2D rectangle2 = new Rectangle2D.Double(0,0, rbb2.getWidth(), rbb2.getHeight());
+ 		AffineTransform rectTransform2 = new AffineTransform();
+ 		rectTransform2.setTransform(rbb2.getTransform());
+		Shape rotatedRect2 = rectTransform2.createTransformedShape(rectangle2);
+
+		return rotatedRect1.intersects(rotatedRect2.getBounds2D());
+		}
+	
+	
 	
 	public boolean testRectangleToCircle(RectBoundingBox rbb, CircleBoundingBox cbb) {
-		
 
-		//Rectangle2D rectangle = new Rectangle2D.Double(rbb.getTransform().getTranslateX(), rbb.getTransform().getTranslateY(), rbb.getWidth(), rbb.getHeight());
-//		Rectangle2D rectangle = new Rectangle2D.Double(rbb.getTransform().getTranslateX(), rbb.getTransform().getTranslateY(), rbb.getWidth(), rbb.getHeight());
-//		AffineTransform rectTransform = new AffineTransform();
-//		rectTransform.setTransform(rbb.getTransform());
-//		Shape rotatedRect = rectTransform.createTransformedShape(rectangle);
-//		
-//		//Ellipse2D myCircle = new Ellipse2D()
-//		Ellipse2D ellipse = new Ellipse2D.Double(cbb.getCenter().getX(), cbb.getCenter().getY(), 50, 50);
-//		AffineTransform circleTransform = new AffineTransform();
-//		circleTransform.setTransform(cbb.getTransform());
-//		Shape rotatedEllipse = circleTransform.createTransformedShape(ellipse);	
-//		
-//		Area areaA = new Area(rotatedRect);
-//		Area areaB = new Area(rotatedEllipse);
-//		
-		
-		//areaB.getBounds2D().intersects(areaA.getBounds2D());
-		
-	//	areaA.subtract(areaB);
-		
-		Rectangle2D rectangle = new Rectangle2D.Double(0,0, rbb.getWidth() * SystemVariables.SCALE_X, rbb.getHeight() * SystemVariables.SCALE_Y);
+		Rectangle2D rectangle = new Rectangle2D.Double(0,0, rbb.getWidth(), rbb.getHeight());
  		AffineTransform rectTransform = new AffineTransform();
  		rectTransform.setTransform(rbb.getTransform());
- 		//rectTransform.rotate(this.getRotationAngleInRadiant(rbb.getTransform()), rbb.getWidth()/2, rbb.getHeight()/2);
 		Shape rotatedRect = rectTransform.createTransformedShape(rectangle);
 		
-		System.out.println(cbb.getRadius());
-		Ellipse2D ellipse = new Ellipse2D.Double(0,0, ( cbb.getRadius() - TOLLERANCE) * SystemVariables.SCALE_X, (cbb.getRadius() - TOLLERANCE));
+		Ellipse2D ellipse = new Ellipse2D.Double(-cbb.getRadius(),-cbb.getRadius(), (cbb.getRadius() - TOLLERANCE) * SystemVariables.SCALE_X, (cbb.getRadius() - TOLLERANCE) * SystemVariables.SCALE_Y);
  		AffineTransform circleTransform = new AffineTransform();
  		circleTransform.setTransform(cbb.getTransform());
  		circleTransform.rotate(this.getRotationAngleInRadiant(cbb.getTransform()));
-		//circleTransform.setTransform(cbb.getTransform());
 		Shape rotatedEllipse = circleTransform.createTransformedShape(ellipse);	
-		
-		
-		
-		//return rotatedRect.intersects(rotatedEllipse);
+
 		return rotatedEllipse.intersects(rotatedRect.getBounds2D());
-	
-		//PROVA OGGI 
-//		Rectangle2D rectangle = new Rectangle2D.Double(rbb.getTransform().getTranslateX(),rbb.getTransform().getTranslateY(), rbb.getWidth(), rbb.getHeight());
-// 		AffineTransform rectTransform = new AffineTransform();
-// 		rectTransform.rotate(this.getRotationAngleInRadiant(rbb.getTransform()), rbb.getWidth()/2, rbb.getHeight()/2);
-//		Shape rotatedRect = rectTransform.createTransformedShape(rectangle);
-//		
-//		
-//		Ellipse2D ellipse = new Ellipse2D.Double(cbb.getTransform().getTranslateX(),cbb.getTransform().getTranslateY(), 50, 50);
-// 		AffineTransform circleTransform = new AffineTransform();
-// 		circleTransform.rotate(this.getRotationAngleInRadiant(cbb.getTransform()), cbb.getRadius(), cbb.getRadius());
-//		//circleTransform.setTransform(cbb.getTransform());
-//		Shape rotatedEllipse = circleTransform.createTransformedShape(ellipse);	
-//		
-//		
-//		
-//		//return rotatedRect.intersects(rotatedEllipse);
-//		return rotatedEllipse.getBounds2D().intersects(rotatedRect.getBounds2D());
-		//PROVA OGGI 
-		
-//		Area areaA = new Area(rotatedRect);
-//		Area areaB = new Area(rotatedEllipse);
-//		
-//		
-//		return false;
-//		
-//		System.out.println("areaA ->" + areaA.isEmpty());
-//		System.out.println("areaB ->" + areaB.isEmpty());
-//		areaA.intersect(areaB);
-//		//areaA.in
-//		return !areaA.isEmpty();		
-		
-		
-//		Area areaA = new Area(rotatedRect);
-//		Area areaB = new Area(rotatedEllipse);
-//		
-//		System.out.println("areaA ->" + areaA.isEmpty());
-//		System.out.println("areaB ->" + areaB.isEmpty());
-//		areaA.intersect(areaB);
-//		//areaA.in
-//		return !areaA.isEmpty();
-		
-//		Area areaB = new Area(rotatedEllipse);
-// 
-//		   areaA.intersect(areaB);
-//		   areaA.
-//		  //areaA.subtract(areaB);
-//		   return !areaA.isEmpty();
-		
-		
-		//areaB.getBounds2D().intersects(areaA.getBounds2D());
-		
-	//	areaA.subtract(areaB);
-		
-		//return areaB.getBounds2D().intersects(areaA.getBounds2D());
-				
-//				new Rectangle2D.Double(rbb.getTransform().getTranslateX(), rbb.getTransform().getTranslateY(), rbb.getWidth(), rbb.getHeight());
-//		AffineTransform at = new AffineTransform();
-//		at.setTransform(rbb.getTransform());
-//		Shape rotatedRect = at.createTransformedShape(myRect);
-		
-		
-//		
- 		
-//		   
-//		   
-//		   areaA.intersect(new Area(shapeB));
-//		   return !areaA.isEmpty();
-//		return false;
 		}
 
 	/** Rectangle To Circle. */
@@ -318,40 +239,7 @@ public class CollisionChecker {
 //	            testCircleToSegment(tx, ty, circleRadius, cx-rectWidth/2, cy-rectHeight/2, cx-rectWidth/2, cy+rectHeight/2);
 //	}
 	
-	public boolean testRectangleToRectangle(RectBoundingBox rbb1, RectBoundingBox rbb2) {
-		
-		return false;
-//		AffineTransform transform = new AffineTransform();
-//		transform.setTransform(rbb.getTransform());
-//
-//		transform.translate(rbb.getWidth()/2, rbb.getHeight()/2);
-//	
-//		P2d rectCenter = new P2d(transform.getTranslateX(), transform.getTranslateY());
-//		double rotation = getRotationAngleInDegrees(rbb.getTransform());
-//		
-//		double tx, ty, cx, cy;
-//
-//	    if(rotation == 0.0) { // Higher Efficiency for Rectangles with 0 rotation.
-//	        tx = cbb.getCenter().getX();
-//	        ty = cbb.getCenter().getY();
-//
-//	        cx = rectCenter.getX();
-//	        cy = rectCenter.getY();
-//	    } else {
-//	        tx = Math.cos(rotation)*cbb.getCenter().getX() - Math.sin(rotation)*cbb.getCenter().getY();
-//	        ty = Math.cos(rotation)*cbb.getCenter().getY() + Math.sin(rotation)*cbb.getCenter().getX();
-//
-//	        cx = Math.cos(rotation)*rectCenter.getX() - Math.sin(rotation)*rectCenter.getY();
-//	        cy = Math.cos(rotation)*rectCenter.getY() + Math.sin(rotation)*rectCenter.getX();
-//	    }
-//	    
-//	    
-//	    return testRectangleToPoint(rbb, new P2d(cbb.getCenter().getX(), cbb.getCenter().getY())) || 
-//	    		testCircleToSegment(cbb, new Line(new P2d(cx-rbb.getWidth()/2, cy+rbb.getHeight()/2), new P2d(cx+rbb.getWidth()/2, cy+rbb.getHeight()/2))) ||
-//	    		testCircleToSegment(cbb, new Line(new P2d(cx+rbb.getWidth()/2, cy+rbb.getHeight()/2), new P2d(cx+rbb.getWidth()/2, cy-rbb.getHeight()/2))) ||
-//	    		testCircleToSegment(cbb, new Line(new P2d(cx+rbb.getWidth()/2, cy-rbb.getHeight()/2), new P2d(cx-rbb.getWidth()/2, cy-rbb.getHeight()/2))) ||
-//	    		testCircleToSegment(cbb, new Line(new P2d(cx-rbb.getWidth()/2, cy-rbb.getHeight()/2), new P2d(cx-rbb.getWidth()/2, cy+rbb.getHeight()/2)));
-	}
+
 	
 
 	public double getRotationAngleInDegrees(AffineTransform transform) {

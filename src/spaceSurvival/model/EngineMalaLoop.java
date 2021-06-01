@@ -3,6 +3,7 @@ package spaceSurvival.model;
 import spaceSurvival.controller.GUI.CtrlGUI;
 import spaceSurvival.controller.GUI.CtrlGame;
 import spaceSurvival.controller.GUI.CtrlSound;
+import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
 import spaceSurvival.model.gameObject.mainGameObject.Boss;
@@ -16,6 +17,7 @@ import spaceSurvival.model.worldEcollisioni.WorldEventListener;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitAsteroidEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitBorderEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitBossEvent;
+import spaceSurvival.model.worldEcollisioni.hitEvents.HitBulletEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitChaseEnemyEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitFireEnemyEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitPickableEvent;
@@ -173,7 +175,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             		System.out.println("FireEnemy morto e rimosso");
                 	world.removeFireEnemy(fireEnemyCollided);
                 	this.controlGame.incrScore(Score.FIRE_ENEMY);
-                	this.controlGame.updateRoundState();
+                	//this.controlGame.updateRoundState();
 				}
                 this.controlGame.controlDecrLife(fireEnemyCollided.getImpactDamage());
                 //gameState.decreaseLives();
@@ -211,7 +213,52 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                    	//ship.getWeapon().get().getShootedBullets().remove(bullet);
 				}
                 
+            } else if (ev instanceof HitBulletEvent) {
+            	HitBulletEvent bulletEvent = (HitBulletEvent) ev;
+
+//            	if (bulletEvent.getCollisionObj().get(0) instanceof SpaceShipSingleton) {
+//                	playEffect(SoundPath.WALL_COLLISION);
+//				}
+            	
+            	Bullet bullet = (Bullet) bulletEvent.getCollisionObj().get(0);
+           		System.out.println("Bullet ha preso al volo qualcosa, lo rimuovo");
+           		world.removeBullet(bullet);
+           		MainGameObject gameObj = (MainGameObject) bulletEvent.getCollisionObj().get(1);
+            	
+                // If a bullet reach a border
+                if (gameObj instanceof Asteroid) {
+   
+               		System.out.println("Bullet ha preso al volo un asteroid, lo rimuovo");
+               		world.removeAsteroid(gameObj);
+                   	//ship.getWeapon().get().getShootedBullets().remove(bullet);
+				}
+                if (gameObj instanceof ChaseEnemy) {
+                	   
+               		System.out.println("Bullet ha preso al volo un chase enemy, lo rimuovo");
+               		world.removeChaseEnemy(gameObj);
+                   	//ship.getWeapon().get().getShootedBullets().remove(bullet);
+				}
+                if (gameObj instanceof FireEnemy) {
+                	   
+               		System.out.println("Bullet ha preso al volo un fire enemy, lo rimuovo");
+               		world.removeFireEnemy(gameObj);
+                   	//ship.getWeapon().get().getShootedBullets().remove(bullet);
+				}
+                if (gameObj instanceof Boss) {
+                	   
+               		System.out.println("Bullet ha preso al volo il boss, lo rimuovo");
+               		//world.removeBoss(gameObj);
+                   	//ship.getWeapon().get().getShootedBullets().remove(bullet);
+				}
+                if (gameObj instanceof SpaceShipSingleton) {
+             	   
+               		System.out.println("Oh nooooo! Un bullet ha preso al volo la ship!");
+               		//world.removeBullet(bullet);
+                   	//ship.getWeapon().get().getShootedBullets().remove(bullet);
+				}
+                
             }
+        	this.controlGame.updateRoundState();
         });
         eventQueue.clear();
     }
