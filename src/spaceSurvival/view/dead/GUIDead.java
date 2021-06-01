@@ -1,12 +1,14 @@
 package spaceSurvival.view.dead;
 
+import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.view.GUI;
 
-import java.awt.*;
+
+import java.util.List;
 
 public interface GUIDead extends GUI, GraphicsGUIDead {
 
-    public void setFontTitleGUI(final Font font);
+    public void setNameButtons(final List<String> listNames);
 
-    public void setTitleGUI(final String title);
+    public void setBtnActions(final ActionGUI mainAction, final List<ActionGUI> actions);
 }

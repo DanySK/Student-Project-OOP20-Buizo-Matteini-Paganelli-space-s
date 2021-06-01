@@ -17,7 +17,7 @@ public class GUIDeadStandard implements FactoryGUIDead {
 
         concrete.setFontTitleGUI(DesignGraphics.getFontForDead(DesignGraphics.SIZE_FONT_END));
         concrete.setForegroundTitle(Color.RED);
-        concrete.setImageBackground(Background.DEAD);
+        concrete.setImageBackground(Background.DEAD2);
 
         this.createGraphics(concrete);
 
@@ -29,5 +29,7 @@ public class GUIDeadStandard implements FactoryGUIDead {
         
 
         concrete.add(FactoryGUIs.encapsulatesInPanelFlow(concrete.getLbTitleDead()), BorderLayout.SOUTH);
+
+
     }
 }

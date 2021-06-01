@@ -11,6 +11,7 @@ import java.util.List;
 public class EngineDead implements EngineGUI {
     public static final Rectangle RECTANGLE = Screen.RECTANGLE_FULLSCREEN;
     public static final String TITLE = "GAME OVER";
+    public static final int N_BUTTONS = 2;
 
     private final ActionGUI mainAction;
 
