@@ -68,7 +68,7 @@ public class PanelGame extends JPanel{
         	
         	
             g2d.setTransform(entity.getTransform());
-            g2d.drawImage(EngineImage.getImageFromEngine(entity.getEngineImage()), null, null);
+            g2d.drawImage(EngineImage.getImageFromEngine(entity.getEngineImage()), 0,0, null);
 
             
             

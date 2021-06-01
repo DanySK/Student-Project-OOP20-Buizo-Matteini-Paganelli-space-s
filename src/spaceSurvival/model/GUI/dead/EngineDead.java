@@ -23,8 +23,10 @@ public class EngineDead implements EngineGUI {
 
     public EngineDead(){
         this.mainAction = ActionGUI.ID_DEAD;
-        
+
+
         this.linkButtons = Arrays.asList(LinksDead.values());
+        this.visibility = Visibility.HIDDEN;
     }
 
     @Override
