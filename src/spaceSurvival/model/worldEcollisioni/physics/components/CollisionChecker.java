@@ -15,7 +15,11 @@ import spaceSurvival.utilities.SystemVariables;
 
 public class CollisionChecker {
 	
-	private static final double TOLLERANCE = 1.5 * SystemVariables.SCALE_X;
+ 
+	//private static final double TOLLERANCE = 1.5 * SystemVariables.SCALE_X;
+ 
+	private static final double TOLLERANCE = 0;
+ 
 
 	/** Rectangle To Point. */
 	//RectBoundingBox rbb, P2d point
@@ -199,14 +203,14 @@ public class CollisionChecker {
 		
 	//	areaA.subtract(areaB);
 		
-		Rectangle2D rectangle = new Rectangle2D.Double(0,0, rbb.getWidth(), rbb.getHeight());
+		Rectangle2D rectangle = new Rectangle2D.Double(0,0, rbb.getWidth() * SystemVariables.SCALE_X, rbb.getHeight() * SystemVariables.SCALE_Y);
  		AffineTransform rectTransform = new AffineTransform();
  		rectTransform.setTransform(rbb.getTransform());
  		//rectTransform.rotate(this.getRotationAngleInRadiant(rbb.getTransform()), rbb.getWidth()/2, rbb.getHeight()/2);
 		Shape rotatedRect = rectTransform.createTransformedShape(rectangle);
 		
 		System.out.println(cbb.getRadius());
-		Ellipse2D ellipse = new Ellipse2D.Double(0, 0, (cbb.getRadius() - TOLLERANCE) * SystemVariables.SCALE_X, (cbb.getRadius() - TOLLERANCE) * SystemVariables.SCALE_Y);
+		Ellipse2D ellipse = new Ellipse2D.Double(0,0, ( cbb.getRadius() - TOLLERANCE) * SystemVariables.SCALE_X, (cbb.getRadius() - TOLLERANCE));
  		AffineTransform circleTransform = new AffineTransform();
  		circleTransform.setTransform(cbb.getTransform());
  		circleTransform.rotate(this.getRotationAngleInRadiant(cbb.getTransform()));
@@ -216,7 +220,7 @@ public class CollisionChecker {
 		
 		
 		//return rotatedRect.intersects(rotatedEllipse);
-		return rotatedEllipse.getBounds2D().intersects(rotatedRect.getBounds2D());
+		return rotatedEllipse.intersects(rotatedRect.getBounds2D());
 	
 		//PROVA OGGI 
 //		Rectangle2D rectangle = new Rectangle2D.Double(rbb.getTransform().getTranslateX(),rbb.getTransform().getTranslateY(), rbb.getWidth(), rbb.getHeight());
