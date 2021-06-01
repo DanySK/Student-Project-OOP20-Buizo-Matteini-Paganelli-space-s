@@ -47,7 +47,7 @@ public class World {
 		
 		this.mainBBox = mainBBox;
 
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 1; i++) {
 			asteroids.add(factoryGameObject.createAsteroid());
 			chaseEnemies.add(factoryGameObject.createChaseEnemy());
 			pickables.add(factoryGameObject.createPickable());
@@ -187,91 +187,33 @@ public class World {
 		}
 	}
 
-	/** Rectangle To Circle. */
-//	boolean testRectangleToCircle(double rectWidth, double rectHeight, double rectRotation, double rectCenterX, double rectCenterY, double circleCenterX, double circleCenterY, double circleRadius) {
-//	    double tx, ty, cx, cy;
-//
-//	    if(rectRotation == 0) { // Higher Efficiency for Rectangles with 0 rotation.
-//	        tx = circleCenterX;
-//	        ty = circleCenterY;
-//
-//	        cx = rectCenterX;
-//	        cy = rectCenterY;
-//	    } else {
-//	        tx = Math.cos(rectRotation)*circleCenterX - Math.sin(rectRotation)*circleCenterY;
-//	        ty = Math.cos(rectRotation)*circleCenterY + Math.sin(rectRotation)*circleCenterX;
-//
-//	        cx = Math.cos(rectRotation)*rectCenterX - Math.sin(rectRotation)*rectCenterY;
-//	        cy = Math.cos(rectRotation)*rectCenterY + Math.sin(rectRotation)*rectCenterX;
-//	    }
-//
-//	    return testRectangleToPoint(rectWidth, rectHeight, rectRotation, rectCenterX, rectCenterY, circleCenterX, circleCenterY) ||
-//	            testCircleToSegment(tx, ty, circleRadius, cx-rectWidth/2, cy+rectHeight/2, cx+rectWidth/2, cy+rectHeight/2) ||
-//	            testCircleToSegment(tx, ty, circleRadius, cx+rectWidth/2, cy+rectHeight/2, cx+rectWidth/2, cy-rectHeight/2) ||
-//	            testCircleToSegment(tx, ty, circleRadius, cx+rectWidth/2, cy-rectHeight/2, cx-rectWidth/2, cy-rectHeight/2) ||
-//	            testCircleToSegment(tx, ty, circleRadius, cx-rectWidth/2, cy-rectHeight/2, cx-rectWidth/2, cy+rectHeight/2);
-//	}
 	CollisionChecker checker = new CollisionChecker();
 	
-	public Optional<MainGameObject> checkCollisionWithAsteroids(final RectBoundingBox shipBoundingBox) {
+	public Optional<MainGameObject> checkCollisionWithAsteroids(final RectBoundingBox rectBoundingBox) {
 		//double radius = box.getWidth();
 		//System.out.println("Questa è la width della ship" + radius);
 		for (MainGameObject obj: asteroids) {
-			if (checker.testRectangleToCircle(shipBoundingBox, (CircleBoundingBox) obj.getBoundingBox())) {
-				
-			    System.out.println("MANDATO UN EVENTO");
+			if (checker.testRectangleToCircle(rectBoundingBox, (CircleBoundingBox) obj.getBoundingBox())) {		
+			    System.out.println("MANDATO UN EVENTO ASTEROID");
 				return Optional.of(obj);
 			}
-			
-//			if (obj.getBoundingBox().isCollidingWith(pos, radius)) {
-//				return Optional.of(obj);
-//			}
+
 		}
 		return Optional.empty();
 	}
 	
+	public Optional<MainGameObject> checkCollisionWithChaseEnemies(final RectBoundingBox rectBoundingBox) {
+	//double radius = box.getWidth();
+		for (MainGameObject obj: chaseEnemies) {
+			if(checker.testRectangleToRectangle(rectBoundingBox, (RectBoundingBox) obj.getBoundingBox())) {
+				System.out.println("MANDATO UN EVENTO ENEMIES");
+				return Optional.of(obj);
+			}
+		}
+		return Optional.empty();
+	}
 	
-//	public Optional<MainGameObject> checkCollisionWithChaseEnemies(final RectBoundingBox box) {
-//	//double radius = box.getWidth();
-//	for (MainGameObject obj: chaseEnemies) {
-//		if(checker) {
-//			return Optional.of(obj);
-//		}
-//	}
-//	return Optional.empty();
-//}
-	
-	
-//	public Optional<MainGameObject> checkCollisionWithAsteroids(final P2d pos, final RectBoundingBox box) {
-//		double radius = box.getWidth();
-//		//System.out.println("Questa è la width della ship" + radius);
-//		for (MainGameObject obj: asteroids) {
-//			if (obj.getBoundingBox().isCollidingWith(pos, radius)) {
-//				return Optional.of(obj);
-//			}
-//		}
-//		return Optional.empty();
-//	}
-	
-//	public Optional<MainGameObject> checkCollisionWithChaseEnemies(final P2d pos, final RectBoundingBox box) {
-//		double radius = box.getWidth();
-//		for (MainGameObject obj: chaseEnemies) {
-//			if (obj.getBoundingBox().isCollidingWith(pos, radius)) {
-//				return Optional.of(obj);
-//			}
-//		}
-//		return Optional.empty();
-//	}
-//	
-//	public Optional<MainGameObject> checkCollisionWithFireEnemies(final P2d pos, final RectBoundingBox box) {
-//		double radius = box.getWidth();
-//		for (MainGameObject obj: fireEnemies) {
-//			if (obj.getBoundingBox().isCollidingWith(pos, radius)) {
-//				return Optional.of(obj);
-//			}
-//		}
-//		return Optional.empty();
-//	}
+
 //
 //	public Optional<MainGameObject> checkCollisionWithBoss(final P2d pos, final RectBoundingBox box) {
 //		if (boss.isPresent()) {
@@ -283,15 +225,15 @@ public class World {
 //		return Optional.empty();
 //	}
 //	
-//	public Optional<PickableGameObject> checkCollisionWithPickables(final P2d pos, final RectBoundingBox box) {
-//		double radius = box.getWidth();
-//		for (PickableGameObject obj: pickables) {
-//			if (obj.getBoundingBox().isCollidingWith(pos, radius)) {
-//				return Optional.of(obj);
-//			}
-//		}
-//		return Optional.empty();
-//	}
+	public Optional<PickableGameObject> checkCollisionWithPickables(final RectBoundingBox rectBoundingBox) {
+		for (PickableGameObject obj: pickables) {
+			if (checker.testRectangleToCircle(rectBoundingBox, (CircleBoundingBox) obj.getBoundingBox())) {		
+			    System.out.println("MANDATO UN EVENTO PICKABLE");
+				return Optional.of(obj);
+			}
+		}
+		return Optional.empty();
+	}
 	
 	public void notifyWorldEvent(final WorldEvent ev) {
 		evListener.notifyEvent(ev);

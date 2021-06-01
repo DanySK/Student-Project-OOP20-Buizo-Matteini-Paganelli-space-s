@@ -69,6 +69,10 @@ public class CtrlGUI {
         this.restartGame();
     }
 
+    public boolean isInGameOver(){
+        return this.chronology.contains(ActionGUI.ID_DEAD);
+    }
+
     public boolean isInGame(){
         return this.chronology.contains(ActionGUI.ID_GAME);
     }
@@ -175,11 +179,11 @@ public class CtrlGUI {
     }
 
     private void restartGame(){
-        Objects.requireNonNull(this.getBtnMenuFromDead()).addActionListener(l ->
-                this.managerGui.values().forEach(control ->{
-                        System.out.println("IDDDDDDD GUIIII -> " + control.getMainAction());
-                        control.getGUI().setImageBackground(control.getMainAction().getBackground());
-                }));
+        Objects.requireNonNull(this.getBtnMenuFromDead()).addActionListener(l -> {
+            this.chronology.remove(this.chronology.lastElementOfList());
+            this.managerGui.values().forEach(control ->
+                    control.getGUI().setImageBackground(control.getMainAction().getBackground()));
+        });
     }
 
 
