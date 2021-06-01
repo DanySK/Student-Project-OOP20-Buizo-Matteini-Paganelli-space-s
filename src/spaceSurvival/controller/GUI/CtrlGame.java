@@ -64,7 +64,6 @@ public class CtrlGame implements ControllerGUI{
         return this.engine;
     }
 
-
     @Override
     public boolean isVisibility() {
         return this.engine.isVisible();
@@ -94,7 +93,25 @@ public class CtrlGame implements ControllerGUI{
         this.gui.setLifeShip(this.engine.getLifeShip());
         this.gui.setLifeBoss(this.engine.getLifeBoss());
     }
-
+    
+    public void updateRoundState() {
+		if (this.engine.getCountEnemies() == 0) {
+			System.out.println("finiti nemici, incremento round");
+			this.engine.incrRound();
+			this.resetEntities();
+		}
+	}
+    
+    public void resetEntities() {
+		this.getWorld().removeAllEnemies();
+		this.getWorld().addAsteroid();
+		this.getWorld().addAsteroid();
+		this.getWorld().addChaseEnemy();
+		this.getWorld().addFireEnemy();
+		System.out.println(this.getWorld().getAllEntities());
+	}
+    
+    
     public void assignWorld(){
         this.gui.setWorld(this.engine.getWorld());
     }
@@ -107,9 +124,9 @@ public class CtrlGame implements ControllerGUI{
         this.engine.startTimer();
     }
 
-    public World getWord(){
-        return this.engine.getWorld();
-    }
+    public World getWorld() {
+		return this.engine.getWorld();
+	}
 
     public SpaceShipSingleton getShip(){
         return this.engine.getShip();
@@ -131,11 +148,11 @@ public class CtrlGame implements ControllerGUI{
         return this.engine.isGameOver();
     }
 
-    public void controlDecrLife(final int damage){
+    public void controlDecrLife(final int damage) {
         final int effectDamage = this.damageOverFlow(damage) ? this.engine.getLifeShip() : damage;
 
-        if(this.damageOverFlow(damage)){
-            if(this.hasLiveShip()){
+        if(this.damageOverFlow(damage)) {
+            if(this.hasLivesShip()){
                 this.engine.resetLifeShip();
             }
             this.engine.decrHeart();
@@ -143,37 +160,37 @@ public class CtrlGame implements ControllerGUI{
 
         this.engine.decrLifeShip(effectDamage);
 
-        if(this.hasLiveShip() && this.engine.getLifeShip() == 0){
+        if(this.hasLivesShip() && this.engine.getLifeShip() == 0) {
             this.engine.decrHeart();
             this.engine.resetLifeShip();
         }
     }
 
-    private boolean damageOverFlow(final int damage){
+    private boolean damageOverFlow(final int damage) {
         return this.engine.getLifeShip() - damage < 0;
     }
 
-    private boolean hasLiveShip(){
+    private boolean hasLivesShip() {
         return this.engine.getHeartShip() > 1;
     }
 
-    public void startPaint(){
+    public void startPaint() {
         this.gui.startPaint();
     }
 
-    public void incrScore(final long score){
+    public void incrScore(final long score) {
         this.engine.incrScore(score);
     }
 
-    public void repaintWorld(){
+    public void repaintWorld() {
         this.gui.repaintGameObjects();
     }
 
-    public void updateStateWorld(final int elapsed){
+    public void updateStateWorld(final int elapsed) {
         this.engine.updateStateWorld(elapsed);
     }
 
-    private void addKeyListenerShip(final KeyListener keyListener){
+    private void addKeyListenerShip(final KeyListener keyListener) {
         this.gui.addKeyListenerSpaceShip(keyListener);
     }
 

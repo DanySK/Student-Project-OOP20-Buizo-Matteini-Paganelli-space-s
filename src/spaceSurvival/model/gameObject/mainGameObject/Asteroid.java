@@ -1,6 +1,5 @@
 package spaceSurvival.model.gameObject.mainGameObject;
 
-import java.awt.geom.AffineTransform;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,6 +40,7 @@ public class Asteroid extends MainGameObject {
 		this.setAnimation(animation);
 		System.out.println(cbb.getRadius());
 		System.out.println(cbb.getCenter());
+		System.out.println(this.getBoundingBox());
 
 	}
 

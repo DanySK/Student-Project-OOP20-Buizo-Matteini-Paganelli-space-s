@@ -42,5 +42,10 @@ public class CircleBoundingBox implements BoundingBox {
 	public P2d getCenter() {
 		return center;
 	}
+	
+	@Override
+	public String toString() {
+		return "CircleBoundingBox [radius=" + this.radius + ", center=" + this.center.toString() + ", transform=" + this.transform.toString() + "]";
+	}
 
 }

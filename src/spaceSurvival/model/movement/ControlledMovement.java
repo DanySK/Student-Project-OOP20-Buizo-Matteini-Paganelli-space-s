@@ -24,8 +24,7 @@ public class ControlledMovement implements Movement {
 			
 			
 			//}
-			System.out.println(ship.getVelocity());
-			System.out.println("Accelerazione: " + ship.getAcceleration());
+
 
 			AffineTransform at = ship.getTransform();
 			at.translate(ship.getVelocity().getX(), ship.getVelocity().getY());

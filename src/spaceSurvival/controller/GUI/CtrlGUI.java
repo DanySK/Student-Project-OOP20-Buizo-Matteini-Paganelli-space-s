@@ -163,7 +163,7 @@ public class CtrlGUI {
 
     private void assignStartTimer() {
         Objects.requireNonNull(this.getBtnGameFromMenu()).addActionListener(l -> {
-            this.ctrlGame.getWord().setSkin(CtrlGUI.this.getCurrentSkin());
+            this.ctrlGame.getWorld().setSkin(CtrlGUI.this.getCurrentSkin());
             this.ctrlGame.startTimer();
             this.ctrlGame.startPaint();
             this.managerGui.values().forEach(control -> {
