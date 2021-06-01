@@ -6,7 +6,6 @@ import spaceSurvival.model.GUI.Visibility;
 import spaceSurvival.model.GUI.game.EngineGame;
 import spaceSurvival.model.World;
 import spaceSurvival.model.gameObject.GameObject;
-import spaceSurvival.model.gameObject.factories.AbstractFactoryGameObject;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 import spaceSurvival.model.MovementKeyListener;
 import spaceSurvival.model.worldEcollisioni.WorldEventListener;
@@ -16,7 +15,6 @@ import spaceSurvival.view.game.GUIGame;
 
 import java.awt.event.KeyListener;
 import java.awt.geom.AffineTransform;
-import java.util.Iterator;
 
 public class CtrlGame implements ControllerGUI{
     private final EngineGame engine;

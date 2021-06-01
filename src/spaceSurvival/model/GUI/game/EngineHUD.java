@@ -12,7 +12,7 @@ public class EngineHUD {
     private int round;
     private int heartShip;
 
-    public EngineHUD(){
+    public EngineHUD() {
         this.chronometer = new Chronometer();
         this.score = INIT_SCORE;
         this.round = INIT_ROUND;

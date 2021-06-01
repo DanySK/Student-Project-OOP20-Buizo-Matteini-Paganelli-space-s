@@ -13,7 +13,6 @@ import spaceSurvival.model.gameObject.MovableGameObject;
 import spaceSurvival.model.gameObject.PickableGameObject;
 import spaceSurvival.model.gameObject.factories.AbstractFactoryGameObject;
 import spaceSurvival.model.gameObject.factories.ConcreteFactoryGameObject;
-import spaceSurvival.model.gameObject.mainGameObject.FireEnemy;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 import spaceSurvival.model.gameObject.weapon.AmmoType;
 import spaceSurvival.model.gameObject.weapon.Bullet;
@@ -44,7 +43,6 @@ public class World {
 		this.ship = SpaceShipSingleton.getSpaceShip();
 		this.ship.setWeapon(Optional.of(new Weapon(AmmoType.NORMAL, ship)));
 		
-		System.out.println("BELLA RAGAAAAA");
 		System.out.println(this.ship.getWeapon());
 		System.out.println(this.ship.getWeapon().get());
 		

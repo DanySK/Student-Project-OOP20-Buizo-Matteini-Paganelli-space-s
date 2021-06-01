@@ -27,7 +27,6 @@ import java.util.List;
 import java.util.Optional;
 
 
-
 public class EngineMalaLoop extends Thread implements WorldEventListener {
     public static final int FPS = 60;
 
@@ -85,7 +84,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                     waitForNextFrame(current);
                     lastTime = current;
 
-                    this.controlGame.controlDecrLife(1);
+                    //this.controlGame.controlDecrLife(1);
                     updateGame(elapsed);
                 }
             }
@@ -156,6 +155,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             	HitChaseEnemyEvent chaseEnemyEvent = (HitChaseEnemyEvent) ev;
             	final ChaseEnemy chaseEnemyCollided = (ChaseEnemy) chaseEnemyEvent.getCollisionObj();
             	chaseEnemyCollided.decreaseLife(ship.getImpactDamage());
+            	System.out.println(ship.getImpactDamage());
             	if (isGameObjectDead(chaseEnemyCollided)) {
             		System.out.println("ChaseEnemy morto e rimosso");
                 	world.removeChaseEnemy(chaseEnemyCollided);
