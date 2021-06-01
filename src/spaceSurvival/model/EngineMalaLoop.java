@@ -21,12 +21,10 @@ import spaceSurvival.model.worldEcollisioni.hitEvents.HitFireEnemyEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitPickableEvent;
 import spaceSurvival.utilities.Score;
 import spaceSurvival.utilities.SoundPath;
-import spaceSurvival.utilities.dimension.Screen;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-
 
 
 public class EngineMalaLoop extends Thread implements WorldEventListener {
@@ -77,8 +75,8 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             long current = System.currentTimeMillis();
             int elapsed = (int)(current - lastTime);
 
-            if(this.controlGUI.isStateInGame()){
-                if(!this.controlGUI.isStateInPause()){
+            if(this.controlGUI.isInGame()){
+                if(!this.controlGUI.isInPause()){
                     //processInput();
                     renderMovement();
                     render();
@@ -86,11 +84,12 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                     waitForNextFrame(current);
                     lastTime = current;
 
+                    //this.controlGame.controlDecrLife(1);
                     updateGame(elapsed);
                 }
             }
 
-            if(this.controlGUI.isStateInGame() || !this.controlGUI.isStateInPause()) {
+            if(this.controlGUI.isInGame() || !this.controlGUI.isInPause()) {
                 waitForNextFrame(current);
                 lastTime = current;
             }
@@ -120,7 +119,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     }
     
     protected void checkSoundEffects() {
-        final World scene = this.controlGame.getWord();
+        final World scene = this.controlGame.getWorld();
         final SpaceShipSingleton ship = this.controlGame.getShip();
         //soundQueue.add(ship.popEffect()); 
         Optional<SoundPath> effect = ship.popEffect();
@@ -135,11 +134,10 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     
 
     protected void checkEvents() {
-        final World scene = this.controlGame.getWord();
+        final World world = this.controlGame.getWorld();
         final SpaceShipSingleton ship = this.controlGame.getShip();
         
         eventQueue.forEach(ev -> {
-        	
         	if (ev instanceof HitAsteroidEvent){
             	HitAsteroidEvent asteroidEvent = (HitAsteroidEvent) ev;
             	final Asteroid asteroidCollided = (Asteroid) asteroidEvent.getCollisionObj();
@@ -147,8 +145,9 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             		asteroidCollided.decreaseLife(ship.getImpactDamage());
             		
             		if (isGameObjectDead(asteroidCollided)) {
-            			scene.removeAsteroid(asteroidCollided);
+            			world.removeAsteroid(asteroidCollided);
             			playEffect(SoundPath.ASTEROID_EXPL);
+                    	this.controlGame.incrScore(Score.ASTEROID);
 					}
             	}
                 this.controlGame.controlDecrLife(asteroidCollided.getImpactDamage());
@@ -156,14 +155,15 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             	HitChaseEnemyEvent chaseEnemyEvent = (HitChaseEnemyEvent) ev;
             	final ChaseEnemy chaseEnemyCollided = (ChaseEnemy) chaseEnemyEvent.getCollisionObj();
             	chaseEnemyCollided.decreaseLife(ship.getImpactDamage());
+            	System.out.println(ship.getImpactDamage());
             	if (isGameObjectDead(chaseEnemyCollided)) {
             		System.out.println("ChaseEnemy morto e rimosso");
-                	scene.removeChaseEnemy(chaseEnemyCollided);
+                	world.removeChaseEnemy(chaseEnemyCollided);
                 	playEffect(SoundPath.ENEMY_EXPL);
                 	this.controlGame.incrScore(Score.CHASE_ENEMY);
+                	this.controlGame.updateRoundState();
 				}
                 this.controlGame.controlDecrLife(chaseEnemyCollided.getImpactDamage());
-                // HitBorderEvent bEv = (HitBorderEvent) ev;
                 //gameState.decreaseLives();
             } else if (ev instanceof HitFireEnemyEvent) {
             	HitFireEnemyEvent fireEnemyEvent = (HitFireEnemyEvent) ev;
@@ -171,24 +171,24 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             	fireEnemyCollided.decreaseLife(ship.getImpactDamage());
             	if (isGameObjectDead(fireEnemyCollided)) {
             		System.out.println("FireEnemy morto e rimosso");
-                	scene.removeFireEnemy(fireEnemyCollided);
+                	world.removeFireEnemy(fireEnemyCollided);
                 	this.controlGame.incrScore(Score.FIRE_ENEMY);
+                	this.controlGame.updateRoundState();
 				}
                 this.controlGame.controlDecrLife(fireEnemyCollided.getImpactDamage());
-                // HitBorderEvent bEv = (HitBorderEvent) ev;
                 //gameState.decreaseLives();
             } else if (ev instanceof HitBossEvent) {
             	HitBossEvent bossEvent = (HitBossEvent) ev;
             	final Boss bossCollided = (Boss) bossEvent.getCollisionObj();
             	bossCollided.decreaseLife(ship.getImpactDamage());
             	if (isGameObjectDead(bossCollided)) {
-                	scene.setBoss(Optional.empty());
+                	world.setBoss(Optional.empty());
                     this.controlGame.incrScore(Score.BOSS);
+                	this.controlGame.updateRoundState();
 //                    playEffect(SoundPath.BOSS_EXPL);
 //                	BOSS_EXPL	("sounds/enemyExpl.wav"),
 				}
                 this.controlGame.controlDecrLife(bossCollided.getImpactDamage());
-                // HitBorderEvent bEv = (HitBorderEvent) ev;
                 //gameState.decreaseLives();
             } else if (ev instanceof HitPickableEvent) {
             	playEffect(SoundPath.PERK);
@@ -206,11 +206,11 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                 // If a bullet reach a border
                 if (borderEvent.getCollisionObj() instanceof Bullet) {
                 	Bullet bullet = (Bullet) borderEvent.getCollisionObj();
-                	if (ship.getWeapon().isPresent()) {
-                		System.out.println("Bullet ha toccato il muro, lo rimuovo");
-                    	ship.getWeapon().get().getShootedBullets().remove(bullet);
-					}
+               		System.out.println("Bullet ha toccato il muro, lo rimuovo");
+               		world.removeBullet(bullet);
+                   	//ship.getWeapon().get().getShootedBullets().remove(bullet);
 				}
+                
             }
         });
         eventQueue.clear();
@@ -240,6 +240,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     }
 
     protected void renderGameOver() {
+        this.controlGUI.EndGame();
     	//playEffect(SoundPath.GAME_OVER);
 //        view.renderGameOver();
     }

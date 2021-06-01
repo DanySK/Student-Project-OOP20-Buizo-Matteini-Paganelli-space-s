@@ -5,7 +5,6 @@ import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.pathImage.Background;
 import spaceSurvival.utilities.pathImage.Icon;
 import spaceSurvival.utilities.DesignJComponent;
-import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.view.help.concrete.GUIHelpConcrete;
 import spaceSurvival.view.help.FactoryGUIHelp;
 import spaceSurvival.view.help.GUIHelp;
@@ -22,8 +21,8 @@ public class GUIHelpStandard implements FactoryGUIHelp {
         GUIHelpConcrete helpGUIConcrete = new GUIHelpConcrete();
         helpGUIConcrete.setFontTitleGUI(DesignGraphics.getFontForTitle(DesignGraphics.SIZE_FONT_H1));
         helpGUIConcrete.setFontGUI(DesignGraphics.FONT_MEDIUM_STANDARD);
-        helpGUIConcrete.setForegroundGUI(DesignGraphics.color4);
-        helpGUIConcrete.setBorder(DesignGraphics.color4, 3);
+        helpGUIConcrete.setForegroundGUI(DesignGraphics.COLOR_4);
+        helpGUIConcrete.setBorder(DesignGraphics.COLOR_4, 3);
         helpGUIConcrete.setImageBackground(Background.MAIN);
         this.createGraphics(helpGUIConcrete);
         return helpGUIConcrete;

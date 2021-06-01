@@ -19,7 +19,7 @@ public class GUIMenuCompact implements FactoryGUIMenu {
         final GUIMenuConcrete menuConcrete = new GUIMenuConcrete();
 
         menuConcrete.setFontGUI(DesignGraphics.FONT_MEDIUM_STANDARD);
-        menuConcrete.setForegroundGUI(DesignGraphics.color4);
+        menuConcrete.setForegroundGUI(DesignGraphics.COLOR_4);
         menuConcrete.setFontTitleGUI(DesignGraphics.getFontForTitle(DesignGraphics.SIZE_FONT_H1));
         menuConcrete.setColumnsNamePlayer(DesignJComponent.SIZE_COLUMNS_TEXT);
         this.createGraphics(menuConcrete);

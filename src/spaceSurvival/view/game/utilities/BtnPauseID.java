@@ -10,8 +10,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class BtnPauseID extends BtnAction implements MouseListener{
-    private String pathIconEnter;
-    private String pathIconExit;
+    private final String pathIconEnter;
+    private final String pathIconExit;
 
     public BtnPauseID(){
         super();
@@ -25,14 +25,14 @@ public class BtnPauseID extends BtnAction implements MouseListener{
 
     @Override
     public void mouseEntered(final MouseEvent e) {
-        FactoryGUIs.setIconJButtonFromRate(this,
-                this.pathIconEnter, ScaleOf.ICON_FULL, Screen.WIDTH_FULL_SCREEN);
+        //FactoryGUIs.setIconJButtonFromRate(this,
+        //        this.pathIconEnter, ScaleOf.ICON_FULL, Screen.WIDTH_FULL_SCREEN);
     }
 
     @Override
     public void mouseExited(final MouseEvent e) {
-        FactoryGUIs.setIconJButtonFromRate(this,
-                this.pathIconExit, ScaleOf.ICON_FULL, Screen.WIDTH_FULL_SCREEN);
+        //FactoryGUIs.setIconJButtonFromRate(this,
+        //        this.pathIconExit, ScaleOf.ICON_FULL, Screen.WIDTH_FULL_SCREEN);
     }
 
     @Override

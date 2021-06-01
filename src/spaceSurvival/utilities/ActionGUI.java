@@ -10,7 +10,8 @@ public enum ActionGUI {
     ID_QUIT(6, "Quit", SoundPath.MENU_SOUND, StateLevelGUI.NOTHING),
     ID_PAUSE(7, "Pause", SoundPath.MENU_SOUND, StateLevelGUI.OVERLAY),
     ID_LOADING(8, "Loading", SoundPath.MENU_SOUND, StateLevelGUI.FOREGROUND),
-    ID_BACK(9, "Back", SoundPath.MENU_SOUND, StateLevelGUI.NOTHING);
+    ID_BACK(9, "Back", SoundPath.MENU_SOUND, StateLevelGUI.NOTHING),
+    ID_DEAD(10, "DEAD", SoundPath.MENU_SOUND, StateLevelGUI.FOREGROUND);
 
     private final int id;
     private final String name;

@@ -26,4 +26,6 @@ public interface ControllerGUI {
     public void turn(final Visibility visibility);
 
     public void changeVisibility();
+
+    public void closeGUI();
 }

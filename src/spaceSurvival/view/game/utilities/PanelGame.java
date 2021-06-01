@@ -5,6 +5,11 @@ import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.EngineImage;
+import spaceSurvival.model.gameObject.PickableGameObject;
+import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
+import spaceSurvival.model.gameObject.mainGameObject.ChaseEnemy;
+import spaceSurvival.model.gameObject.mainGameObject.FireEnemy;
+import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 import spaceSurvival.model.gameObject.weapon.Bullet;
 
 import javax.swing.*;
@@ -64,6 +69,7 @@ public class PanelGame extends JPanel{
         	
             g2d.setTransform(entity.getTransform());
             g2d.drawImage(EngineImage.getImageFromEngine(entity.getEngineImage()), null, null);
+
             
             
             //g2d.drawLine(x1, y1, x2, y2);
@@ -71,7 +77,13 @@ public class PanelGame extends JPanel{
             g2d.drawRect(0, 0, (int)entity.getEngineImage().getSize().getWidth(), (int)entity.getEngineImage().getSize().getHeight());
             
             //g2d.drawRect((int)entity.getBoundingBox().getTransform().getTranslateX(), (int)entity.getBoundingBox().getTransform().getTranslateY(), (int)entity.getEngineImage().getSize().getWidth(), (int)entity.getEngineImage().getSize().getHeight());
-            this.drawLifeBar(g2d, entity);
+            //this.drawLifeBar(g2d, entity);
+
+
+            if(!(entity instanceof SpaceShipSingleton || entity instanceof PickableGameObject || entity instanceof Bullet)) {
+                this.drawLifeBar(g2d, entity);
+            }
+
         });
 
 //<<<<<<< HEAD
@@ -92,7 +104,7 @@ public class PanelGame extends JPanel{
 //        });
 
 
-        //System.out.println("N bullet -> " + this.world.getShip().getWeapon().get().getShootedBullets().size());
+
 
     }
 

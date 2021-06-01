@@ -3,7 +3,6 @@ package spaceSurvival.view.pause.factoryMethod;
 import spaceSurvival.model.GUI.pause.EnginePause;
 import spaceSurvival.view.utilities.DesignGraphics;
 import spaceSurvival.utilities.dimension.ScaleOf;
-import spaceSurvival.utilities.pathImage.Background;
 import spaceSurvival.view.pause.FactoryGUIPause;
 import spaceSurvival.view.pause.GUIPause;
 import spaceSurvival.view.pause.concrete.GUIPauseConcrete;
@@ -20,12 +19,10 @@ public class GUIPauseStandard implements FactoryGUIPause {
 
         concrete.setFontGUITitle(DesignGraphics.getFontForTitle(DesignGraphics.SIZE_FONT_H1));
 
-        concrete.setForegroundGUI(DesignGraphics.color4);
+        concrete.setForegroundGUI(DesignGraphics.COLOR_4);
         concrete.setFontButtons(DesignGraphics.FONT_MEDIUM_STANDARD);
-        concrete.setBackgroundButtons(Color.WHITE);
 
-        concrete.setBorder(DesignGraphics.color4, 3);
-        concrete.setImageBackground(Background.TRANSPARENT);
+        concrete.setBorder(DesignGraphics.COLOR_4, FactoryGUIs.MIN_INSET);
 
         this.createGraphics(concrete);
 
@@ -34,6 +31,8 @@ public class GUIPauseStandard implements FactoryGUIPause {
 
     private void createGraphics(final GUIPauseConcrete concrete){
         concrete.setLayout(new BorderLayout());
+
+        concrete.getBtnActionLinks().forEach(FactoryGUIs::setTransparentDesignJButton);
 
         concrete.getBtnActionLinks().forEach(btn -> btn.setFocusable(false));
         concrete.add(FactoryGUIs.encapsulatesInPanelFlow(concrete.getLbTitle()), BorderLayout.NORTH);

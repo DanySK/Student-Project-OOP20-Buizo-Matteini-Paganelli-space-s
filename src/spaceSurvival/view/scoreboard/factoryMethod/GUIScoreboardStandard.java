@@ -1,9 +1,7 @@
 package spaceSurvival.view.scoreboard.factoryMethod;
 
 import spaceSurvival.model.GUI.scoreboard.EngineScoreboard;
-import spaceSurvival.model.GUI.settings.EngineSettings;
 import spaceSurvival.utilities.dimension.ScaleOf;
-import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.utilities.pathImage.Background;
 import spaceSurvival.utilities.pathImage.Icon;
 import spaceSurvival.view.utilities.DesignGraphics;
@@ -24,8 +22,8 @@ public class GUIScoreboardStandard implements FactoryGUIScoreboard {
         scoreboardConcrete.setFontLbTitle(DesignGraphics.getFontForTitle(DesignGraphics.SIZE_FONT_H1));
         scoreboardConcrete.getTxtSearchName().setColumns(DesignGraphics.SIZE_COLUMNS_TEXT);
         scoreboardConcrete.setFontGUI(DesignGraphics.FONT_MEDIUM_STANDARD);
-        scoreboardConcrete.setForegroundGUI(DesignGraphics.color4);
-        scoreboardConcrete.setBorder(DesignGraphics.color4, 3);
+        scoreboardConcrete.setForegroundGUI(DesignGraphics.COLOR_4);
+        scoreboardConcrete.setBorder(DesignGraphics.COLOR_4, 3);
         scoreboardConcrete.setImageBackground(Background.MAIN);
         this.createGraphics(scoreboardConcrete);
         return scoreboardConcrete;

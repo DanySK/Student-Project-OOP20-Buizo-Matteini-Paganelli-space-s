@@ -20,8 +20,8 @@ public class GUIGameStandard implements FactoryGUIGame {
         concreteGame.setImageBackground(Background.GAME);
         concreteGame.setFontGUI(DesignGraphics.getFontForGame(DesignGraphics.SIZE_FONT_H2));
         concreteGame.setFontLifeBars(DesignGraphics.getFontForGame(DesignGraphics.SIZE_FONT_H5));
-        concreteGame.setBackgroundLifeBars(DesignGraphics.colorOpacityBlack);
-        concreteGame.setForegroundGUI(DesignGraphics.color4);
+        concreteGame.setBackgroundLifeBars(DesignGraphics.COLOR_OPACITY_BLACK);
+        concreteGame.setForegroundGUI(DesignGraphics.COLOR_4);
 
         this.graphics(concreteGame);
         return concreteGame;

@@ -43,7 +43,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 	public MainGameObject createAsteroid() {
 		EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN,
 				SkinAsteroid.ASTEROID1);
-		P2d position = new P2d(300, 300);//GameObjectUtils.generateSpawnPoint(engineImage.getSize());
+		P2d position = GameObjectUtils.generateRandomPoint();//GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.ASTEROID_VEL;
 		Movement movement = new FixedMovement();
 		int life = GameObjectUtils.ASTEROID_LIFE;
@@ -58,7 +58,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 	@Override
 	public MainGameObject createChaseEnemy() {
 		EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinChase.POOH0);
-		P2d position = new P2d(200, 200);//GameObjectUtils.generateSpawnPoint(engineImage.getSize());
+		P2d position = GameObjectUtils.generateRandomPoint();//GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.CHASE_ENEMY_VEL;
 		Movement movement = new ChasingMovement();
 		int life = GameObjectUtils.CHASE_ENEMY_LIFE;
@@ -73,7 +73,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 	@Override
 	public MainGameObject createFireEnemy() {
 		EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinChase.CHASE0);
-		P2d position = new P2d(400, 400);// GameObjectUtils.generateSpawnPoint(engineImage.getSize());
+		P2d position = GameObjectUtils.generateRandomPoint();// GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.FIRE_ENEMY_VEL;
 		Movement movement = new DistantMovement();
 		int life = GameObjectUtils.FIRE_ENEMY_LIFE;
@@ -90,7 +90,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 	@Override
 	public MainGameObject createBoss() {
 		EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinChase.CHASE0);
-		P2d position = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
+		P2d position = GameObjectUtils.generateRandomPoint();//GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		V2d velocity = GameObjectUtils.BOSS_VEL;
 		Movement movement = new DistantMovement();
 		int life = GameObjectUtils.BOSS_LIFE;
@@ -105,11 +105,12 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 
 	@Override
 	public PickableGameObject createPickable() {
-		final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinPerk.FIRE);
-		final P2d position = new P2d(450, 450);
+		final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinPerk.ELECTRIC0);
+		final P2d position = GameObjectUtils.generateRandomPoint();
 	 	final EffectType effectType = EffectType.random();
 		
-		return new PickableGameObject(engineImage, position, new CircleBoundingBox(), new PickablePhysicsComponent(), effectType);
+		return new PickableGameObject(engineImage, position, new CircleBoundingBox(), new PickablePhysicsComponent(),
+				effectType, SkinPerk.LIST_ELECTRIC);
 	}
 
 }

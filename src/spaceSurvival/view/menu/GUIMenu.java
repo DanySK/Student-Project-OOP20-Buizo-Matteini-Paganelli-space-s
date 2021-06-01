@@ -1,9 +1,7 @@
 package spaceSurvival.view.menu;
 
-import spaceSurvival.model.GUI.Visibility;
 import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.view.GUI;
-import spaceSurvival.view.utilities.BtnAction;
 
 import java.util.List;
 

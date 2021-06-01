@@ -78,17 +78,21 @@ public class GameObjectUtils {
 		break;
 		case LEFT:
 			xAxis = 0 - (int) objectDim.getWidth();
-    		yAxis = random.nextInt(Screen.WIDTH_FULL_SCREEN);
+    		yAxis = random.nextInt(Screen.HEIGHT_FULL_SCREEN);
 		break;
 		case RIGHT:
 			xAxis = Screen.WIDTH_FULL_SCREEN;
-    		yAxis = random.nextInt(Screen.WIDTH_FULL_SCREEN);
+    		yAxis = random.nextInt(Screen.HEIGHT_FULL_SCREEN);
 		break;
 		}
 
     	return new P2d(xAxis, yAxis);
     }
 
+    public static P2d generateRandomPoint() {
+    	Random random = new Random();
+    	return new P2d(random.nextInt(Screen.WIDTH_FULL_SCREEN), random.nextInt(Screen.HEIGHT_FULL_SCREEN));
+    }
     
     public static BoundingBox createRectBoundingBox(final P2d position, final EngineImage engineImage, final AffineTransform transform) {
     	return new RectBoundingBox(new P2d(position.getX() + engineImage.getWidth() / 2, position.getY() + engineImage.getHeight() / 2),
