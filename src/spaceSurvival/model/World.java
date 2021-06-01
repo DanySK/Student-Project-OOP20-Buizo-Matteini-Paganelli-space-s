@@ -10,7 +10,7 @@ import java.util.Set;
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.gameObject.MovableGameObject;
-import spaceSurvival.model.gameObject.PickableGameObject;
+import spaceSurvival.model.gameObject.TakeableGameObject;
 import spaceSurvival.model.gameObject.factories.AbstractFactoryGameObject;
 import spaceSurvival.model.gameObject.factories.ConcreteFactoryGameObject;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
@@ -35,7 +35,7 @@ public class World {
 	private final Set<MainGameObject> chaseEnemies = new HashSet<>();
 	private Optional<MainGameObject> boss = Optional.empty();
 	
-	private final Set<PickableGameObject> pickables = new HashSet<>();
+	private final Set<TakeableGameObject> pickables = new HashSet<>();
 
 	private SpaceShipSingleton ship;
 	private RectBoundingBox mainBBox;
@@ -144,7 +144,7 @@ public class World {
 		pickables.add(factoryGameObject.createPickable());
 	}
 
-	public void removePickable(final PickableGameObject obj) {
+	public void removePickable(final TakeableGameObject obj) {
 		pickables.remove(obj);
 	}
 	
@@ -359,7 +359,7 @@ public class World {
 		this.boss = boss;
 	}
 	
-	public Set<PickableGameObject> getPickables() {
+	public Set<TakeableGameObject> getPickables() {
 		return this.pickables;
 	}
 

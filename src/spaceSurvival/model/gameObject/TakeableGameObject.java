@@ -9,20 +9,20 @@ import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 
-public class PickableGameObject extends GameObject {
+public class TakeableGameObject extends GameObject {
 	
-	private EffectType effectType;
+	private Effect effectType;
 
-	public PickableGameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
-                              final PhysicsComponent phys, final EffectType effectType) {
+	public TakeableGameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
+                              final PhysicsComponent phys, final Effect effectType) {
 		super(engineImage, position, bb, phys);
 		this.setBoundingBox(GameObjectUtils.createCircleBoundingBox(position, engineImage, this.getTransform()));
 
 		this.effectType = effectType;
 	}
 
-	public PickableGameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
-							  final PhysicsComponent phys, final EffectType effectType, final List<String> animation) {
+	public TakeableGameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
+							  final PhysicsComponent phys, final Effect effectType, final List<String> animation) {
 		super(engineImage, position, bb, phys);
 		this.setBoundingBox(GameObjectUtils.createCircleBoundingBox(position, engineImage, this.getTransform()));
 
@@ -30,11 +30,11 @@ public class PickableGameObject extends GameObject {
 		super.setAnimation(animation);
 	}
 
-	public EffectType getEffectType() {
+	public Effect getEffectType() {
 		return effectType;
 	}
 
-	public void setEffectType(EffectType effectType) {
+	public void setEffectType(Effect effectType) {
 		this.effectType = effectType;
 	}
 }

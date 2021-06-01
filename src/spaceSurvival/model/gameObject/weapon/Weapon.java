@@ -89,6 +89,9 @@ public class Weapon {
 
 		if (magazine == Magazine.LIMITED) {
 			munitions--;
+			if (munitions == 0) {
+				setAmmoType(AmmoType.NORMAL);
+			}
 		}
 		shootedBullets.add(bullet);
 		System.out.println(shootedBullets);

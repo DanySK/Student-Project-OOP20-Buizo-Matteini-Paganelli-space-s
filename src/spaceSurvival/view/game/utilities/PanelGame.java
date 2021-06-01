@@ -5,7 +5,7 @@ import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.EngineImage;
-import spaceSurvival.model.gameObject.PickableGameObject;
+import spaceSurvival.model.gameObject.TakeableGameObject;
 import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
 import spaceSurvival.model.gameObject.mainGameObject.ChaseEnemy;
 import spaceSurvival.model.gameObject.mainGameObject.FireEnemy;
@@ -80,7 +80,7 @@ public class PanelGame extends JPanel{
             //this.drawLifeBar(g2d, entity);
 
 
-            if(!(entity instanceof SpaceShipSingleton || entity instanceof PickableGameObject || entity instanceof Bullet)) {
+            if(!(entity instanceof SpaceShipSingleton || entity instanceof TakeableGameObject || entity instanceof Bullet)) {
                 this.drawLifeBar(g2d, entity);
             }
 

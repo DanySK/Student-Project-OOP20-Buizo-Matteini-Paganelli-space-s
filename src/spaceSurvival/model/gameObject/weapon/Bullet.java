@@ -10,7 +10,7 @@ import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 
-public abstract class Bullet extends MovableGameObject implements Runnable {
+public abstract class Bullet extends MovableGameObject {
 	private int damage;
 	
 	public Bullet() {

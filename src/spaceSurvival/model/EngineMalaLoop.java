@@ -3,7 +3,9 @@ package spaceSurvival.model;
 import spaceSurvival.controller.GUI.CtrlGUI;
 import spaceSurvival.controller.GUI.CtrlGame;
 import spaceSurvival.controller.GUI.CtrlSound;
+import spaceSurvival.model.gameObject.Effect;
 import spaceSurvival.model.gameObject.MainGameObject;
+import spaceSurvival.model.gameObject.Status;
 import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
 import spaceSurvival.model.gameObject.mainGameObject.Boss;
 import spaceSurvival.model.gameObject.mainGameObject.ChaseEnemy;
@@ -62,9 +64,6 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         
         this.controlSound.setSoundLoop(this.controlGUI.getCurrentGUI());
         this.controlSound.setCmdAudioLoop(CmdAudioType.AUDIO_ON);
-        	
-        
-        	
         
         this.controlGUI.startGUI();
     }
@@ -143,7 +142,6 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             	final Asteroid asteroidCollided = (Asteroid) asteroidEvent.getCollisionObj();
             	if (!asteroidCollided.isInvincible()) {
             		asteroidCollided.decreaseLife(ship.getImpactDamage());
-            		
             		if (isGameObjectDead(asteroidCollided)) {
             			world.removeAsteroid(asteroidCollided);
             			playEffect(SoundPath.ASTEROID_EXPL);
@@ -193,9 +191,9 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             } else if (ev instanceof HitPickableEvent) {
             	playEffect(SoundPath.PERK);
             	//playEffect(SoundPath.);
-                //HitPerkEvent pEv = (HitPerkEvent) ev;
-                //stato = pEv.getCollisionObj().getType(???):
-                //gameState.getSpaceship().setState(stato);
+            	HitPickableEvent pickableEvent = (HitPickableEvent) ev;
+                Effect effect = pickableEvent.getCollisionObj().getEffectType();
+                world.getShip().setStatus(effect.getStatus());
             } else if (ev instanceof HitBorderEvent) {
                 HitBorderEvent borderEvent = (HitBorderEvent) ev;
 

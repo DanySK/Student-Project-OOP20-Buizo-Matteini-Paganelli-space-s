@@ -4,9 +4,11 @@ import java.util.Optional;
 
 import spaceSurvival.model.gameObject.GameObjectUtils;
 import spaceSurvival.model.gameObject.MainGameObject;
+import spaceSurvival.model.gameObject.TakeableGameObject;
 import spaceSurvival.model.movement.ControlledMovement;
 import spaceSurvival.model.movement.Movement;
 import spaceSurvival.model.common.*;
+import spaceSurvival.model.gameObject.weapon.AmmoType;
 import spaceSurvival.model.gameObject.weapon.Weapon;
 import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
@@ -59,8 +61,33 @@ public class SpaceShipSingleton extends MainGameObject {
 		return this.acceleration;
 	}
 
-	public void setAcceleration(V2d v2d) {
-		this.acceleration = v2d;
+	public void setAcceleration(V2d acceleration) {
+		this.acceleration = acceleration;
+	}
+	
+	public void take(TakeableGameObject takeableGameObject) {
+		switch (takeableGameObject.getEffectType()) {
+		case FIRE_AMMO:
+			this.getWeapon().get().setAmmoType(AmmoType.FIRE);
+			break;
+		case ICE_AMMO:
+			this.getWeapon().get().setAmmoType(AmmoType.ICE);
+			break;
+		case ELECTRIC_AMMO:
+			this.getWeapon().get().setAmmoType(AmmoType.ELECTRIC);
+			break;
+		case HEAL:
+			this.increaseLife(GameObjectUtils.LIFE_GAINED);
+//			setAnimation(SkinShip.LIST_SHIP1);
+//			waitStatusDuration(GameObjectUtils.HEALED_DURATION);
+			break;
+//		case LIFE_UP:
+//			setAnimation(SkinShip.LIST_SHIP1);
+//			waitStatusDuration(GameObjectUtils.LIVES_INCREASED_DURATION);
+//			break;
+		default:
+			break;
+		}
 	}
 
 }

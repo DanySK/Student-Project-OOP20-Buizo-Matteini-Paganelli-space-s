@@ -2,14 +2,14 @@ package spaceSurvival.model.gameObject.factories;
 
 import java.util.Optional;
 
-import spaceSurvival.model.gameObject.EffectType;
+import spaceSurvival.model.gameObject.Effect;
 import spaceSurvival.model.gameObject.GameObjectUtils;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.movement.ChasingMovement;
 import spaceSurvival.model.movement.DistantMovement;
 import spaceSurvival.model.movement.FixedMovement;
 import spaceSurvival.model.movement.Movement;
-import spaceSurvival.model.gameObject.PickableGameObject;
+import spaceSurvival.model.gameObject.TakeableGameObject;
 import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
 import spaceSurvival.model.gameObject.mainGameObject.Boss;
 import spaceSurvival.model.gameObject.mainGameObject.ChaseEnemy;
@@ -104,12 +104,12 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 	}
 
 	@Override
-	public PickableGameObject createPickable() {
+	public TakeableGameObject createPickable() {
 		final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinPerk.ELECTRIC0);
 		final P2d position = GameObjectUtils.generateRandomPoint();
-	 	final EffectType effectType = EffectType.random();
+	 	final Effect effectType = Effect.random();
 		
-		return new PickableGameObject(engineImage, position, new CircleBoundingBox(), new PickablePhysicsComponent(),
+		return new TakeableGameObject(engineImage, position, new CircleBoundingBox(), new PickablePhysicsComponent(),
 				effectType, SkinPerk.LIST_ELECTRIC);
 	}
 
