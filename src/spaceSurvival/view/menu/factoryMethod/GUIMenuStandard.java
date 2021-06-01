@@ -11,8 +11,6 @@ import spaceSurvival.view.menu.concrete.GUIMenuConcrete;
 import spaceSurvival.view.menu.utilities.IconsButton;
 import spaceSurvival.view.utilities.FactoryGUIs;
 
-import javax.swing.*;
-
 import java.awt.*;
 
 import java.util.List;
@@ -24,7 +22,7 @@ public class GUIMenuStandard implements FactoryGUIMenu {
     public GUIMenu createGUI() {
         final GUIMenuConcrete menuConcrete = new GUIMenuConcrete();
         menuConcrete.setFontGUI(DesignGraphics.FONT_MEDIUM_STANDARD);
-        menuConcrete.setForegroundGUI(DesignGraphics.color4);
+        menuConcrete.setForegroundGUI(DesignGraphics.COLOR_4);
         menuConcrete.setFontTitleGUI(DesignGraphics.getFontForTitle(DesignGraphics.SIZE_FONT_H1));
         menuConcrete.setColumnsNamePlayer(DesignJComponent.SIZE_COLUMNS_TEXT);
         menuConcrete.setImageBackground(Background.MAIN);

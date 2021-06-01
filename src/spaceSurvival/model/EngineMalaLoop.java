@@ -85,6 +85,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                     waitForNextFrame(current);
                     lastTime = current;
 
+                    this.controlGame.controlDecrLife(1);
                     updateGame(elapsed);
                 }
             }
@@ -239,6 +240,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     }
 
     protected void renderGameOver() {
+        this.controlGUI.EndGame();
     	//playEffect(SoundPath.GAME_OVER);
 //        view.renderGameOver();
     }

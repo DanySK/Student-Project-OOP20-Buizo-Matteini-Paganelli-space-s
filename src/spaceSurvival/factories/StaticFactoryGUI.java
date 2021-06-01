@@ -1,5 +1,8 @@
 package spaceSurvival.factories;
 
+import spaceSurvival.view.dead.FactoryGUIDead;
+import spaceSurvival.view.dead.GUIDead;
+import spaceSurvival.view.dead.factoryMethod.GUIDeadStandard;
 import spaceSurvival.view.loading.FactoryGUILoading;
 import spaceSurvival.view.loading.GUILoading;
 import spaceSurvival.view.loading.factoryMethod.GUILoadingStandard;
@@ -66,4 +69,10 @@ public class StaticFactoryGUI {
         FactoryGUIPause pauseGUI = new GUIPauseStandard();
         return pauseGUI.create();
     }
+
+    public static GUIDead createDeadGUI(){
+        FactoryGUIDead deadGUI = new GUIDeadStandard();
+        return deadGUI.create();
+    }
+
 }

@@ -1,5 +1,6 @@
 package spaceSurvival.factories;
 
+import spaceSurvival.model.GUI.dead.EngineDead;
 import spaceSurvival.model.GUI.game.EngineGame;
 import spaceSurvival.model.GUI.help.EngineHelp;
 import spaceSurvival.model.GUI.loading.EngineLoading;
@@ -39,7 +40,11 @@ public class StaticFactoryEngineGUI {
         return new EngineHelp();
     }
 
-    public static EnginePause creEnginePause(){
+    public static EnginePause createEnginePause(){
         return new EnginePause();
+    }
+
+    public static EngineDead createEngineDead(){
+        return new EngineDead();
     }
 }

@@ -17,4 +17,6 @@ public class Background {
     public static final String GAME1 = Paths.get(MAIN_FOLDER, "game2.jpg").toString();
     public static final String GAME2 = Paths.get(MAIN_FOLDER, "game3.jpg").toString();
 
+    public static final String DEAD = Paths.get(MAIN_FOLDER, "dead.png").toString();
+
 }

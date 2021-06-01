@@ -2,7 +2,6 @@ package spaceSurvival.view.settings.factoryMethod;
 
 import spaceSurvival.model.GUI.settings.EngineSettings;
 import spaceSurvival.utilities.dimension.ScaleOf;
-import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.utilities.pathImage.Background;
 import spaceSurvival.utilities.pathImage.Icon;
 import spaceSurvival.utilities.DesignJComponent;
@@ -24,8 +23,8 @@ public class GUISettingsStandard implements FactoryGUISettings {
         concreteSettings.setFontGUITitle(DesignGraphics.getFontForTitle(DesignGraphics.SIZE_FONT_H1));
         concreteSettings.setFontTitleUnit(DesignGraphics.FONT_BIG_STANDARD);
         concreteSettings.setFontUnit(DesignGraphics.FONT_MEDIUM_STANDARD);
-        concreteSettings.setForegroundGUI(DesignGraphics.color4);
-        concreteSettings.setBorder(DesignGraphics.color4, 3);
+        concreteSettings.setForegroundGUI(DesignGraphics.COLOR_4);
+        concreteSettings.setBorder(DesignGraphics.COLOR_4, 3);
         concreteSettings.setImageBackground(Background.MAIN);
         this.createGraphics(concreteSettings);
         return concreteSettings;

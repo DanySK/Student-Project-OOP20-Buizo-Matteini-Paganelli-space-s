@@ -7,23 +7,9 @@ import spaceSurvival.controller.utilities.ListGUI;
 import spaceSurvival.factories.StaticFactoryEngineGUI;
 import spaceSurvival.factories.StaticFactoryGUI;
 import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.model.GUI.game.EngineGame;
-import spaceSurvival.model.GUI.help.EngineHelp;
-import spaceSurvival.model.GUI.menu.EngineMenu;
-import spaceSurvival.model.GUI.pause.EnginePause;
-import spaceSurvival.model.GUI.scoreboard.EngineScoreboard;
-import spaceSurvival.model.GUI.settings.EngineSettings;
-import spaceSurvival.model.GUI.sound.EngineSound;
 import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.utilities.StateLevelGUI;
 import spaceSurvival.utilities.pathImage.Background;
-import spaceSurvival.view.game.GUIGame;
-import spaceSurvival.view.help.GUIHelp;
-import spaceSurvival.view.menu.GUIMenu;
-import spaceSurvival.view.pause.GUIPause;
-import spaceSurvival.view.scoreboard.GUIScoreboard;
-import spaceSurvival.view.settings.GUISettings;
-import spaceSurvival.view.sound.GUISound;
 import spaceSurvival.view.utilities.BtnAction;
 
 import java.awt.event.MouseEvent;
@@ -35,22 +21,6 @@ import java.util.Objects;
 public class CtrlGUI {
     public static final ActionGUI FIRST_GUI = ActionGUI.ID_MENU;
 
-    private final GUIMenu guiMenu;
-    private final GUIGame guiGame;
-    private final GUISettings guiSettings;
-    private final GUIScoreboard guiScoreboard;
-    private final GUISound guiSound;
-    private final GUIHelp guiHelp;
-    private final GUIPause guiPause;
-
-    private final EngineMenu engineMenu;
-    private final EngineGame engineGame;
-    private final EngineSettings engineSettings;
-    private final EngineScoreboard engineScoreboard;
-    private final EngineSound engineSound;
-    private final EngineHelp engineHelp;
-    private final EnginePause enginePause;
-
     private final CtrlMenu ctrlMenu;
     private final CtrlGame ctrlGame;
     private final CtrlSettings ctrlSettings;
@@ -58,6 +28,7 @@ public class CtrlGUI {
     private final CtrlSound ctrlSound;
     private final CtrlHelp ctrlHelp;
     private final CtrlPause ctrlPause;
+    private final CtrlDead ctrlDead;
 
     private final Map<ActionGUI, ControllerGUI> managerGui;
 
@@ -67,29 +38,14 @@ public class CtrlGUI {
     private final LogicSwitchGUI logicSwitchGame;
 
     public CtrlGUI(){
-        this.engineMenu = StaticFactoryEngineGUI.createEngineMenu();
-        this.engineGame = StaticFactoryEngineGUI.createEngineGame();
-        this.engineSettings = StaticFactoryEngineGUI.createEngineSettings();
-        this.engineScoreboard = StaticFactoryEngineGUI.createEngineScoreboard();
-        this.engineSound = StaticFactoryEngineGUI.createEngineSound();
-        this.engineHelp = StaticFactoryEngineGUI.createEngineHelp();
-        this.enginePause = StaticFactoryEngineGUI.creEnginePause();
-
-        this.guiMenu = StaticFactoryGUI.createMenuGUI();
-        this.guiGame = StaticFactoryGUI.createGameGUI();
-        this.guiSettings = StaticFactoryGUI.createSettingsGUI();
-        this.guiScoreboard = StaticFactoryGUI.createScoreboardGUI();
-        this.guiSound = StaticFactoryGUI.createSoundGUI();
-        this.guiHelp = StaticFactoryGUI.createHelpGUI();
-        this.guiPause = StaticFactoryGUI.createPauseGUI();
-
-        this.ctrlMenu = new CtrlMenu(this.engineMenu, this.guiMenu);
-        this.ctrlGame = new CtrlGame(this.engineGame, this.guiGame);
-        this.ctrlSettings = new CtrlSettings(this.engineSettings, this.guiSettings);
-        this.ctrlScoreboard = new CtrlScoreboard(this.engineScoreboard, this.guiScoreboard);
-        this.ctrlSound = new CtrlSound(this.engineSound, this.guiSound);
-        this.ctrlHelp = new CtrlHelp(this.engineHelp, this.guiHelp);
-        this.ctrlPause = new CtrlPause(this.enginePause, this.guiPause);
+        this.ctrlMenu = new CtrlMenu(StaticFactoryEngineGUI.createEngineMenu(), StaticFactoryGUI.createMenuGUI());
+        this.ctrlGame = new CtrlGame(StaticFactoryEngineGUI.createEngineGame(), StaticFactoryGUI.createGameGUI());
+        this.ctrlSettings = new CtrlSettings(StaticFactoryEngineGUI.createEngineSettings(), StaticFactoryGUI.createSettingsGUI());
+        this.ctrlScoreboard = new CtrlScoreboard(StaticFactoryEngineGUI.createEngineScoreboard(), StaticFactoryGUI.createScoreboardGUI());
+        this.ctrlSound = new CtrlSound(StaticFactoryEngineGUI.createEngineSound(), StaticFactoryGUI.createSoundGUI());
+        this.ctrlHelp = new CtrlHelp(StaticFactoryEngineGUI.createEngineHelp(), StaticFactoryGUI.createHelpGUI());
+        this.ctrlPause = new CtrlPause(StaticFactoryEngineGUI.createEnginePause(), StaticFactoryGUI.createPauseGUI());
+        this.ctrlDead = new CtrlDead(StaticFactoryEngineGUI.createEngineDead(), StaticFactoryGUI.createDeadGUI());
 
         this.managerGui = new HashMap<>(){{
             put(CtrlGUI.this.ctrlMenu.getMainAction(), CtrlGUI.this.ctrlMenu);
@@ -99,6 +55,7 @@ public class CtrlGUI {
             put(CtrlGUI.this.ctrlSound.getMainAction(), CtrlGUI.this.ctrlSound);
             put(CtrlGUI.this.ctrlHelp.getMainAction(), CtrlGUI.this.ctrlHelp);
             put(CtrlGUI.this.ctrlPause.getMainAction(), CtrlGUI.this.ctrlPause);
+            put(CtrlGUI.this.ctrlDead.getMainAction(), CtrlGUI.this.ctrlDead);
         }};
 
         this.chronology = new ListGUI<>() {{ add(FIRST_GUI); }};
@@ -197,13 +154,20 @@ public class CtrlGUI {
         return this.ctrlSound;
     }
 
+    public void EndGame(){
+        this.managerGui.get(this.chronology.lastElementOfList()).turn(Visibility.HIDDEN);
+        this.chronology.remove(this.chronology.lastElementOfList());
+        this.chronology.add(ActionGUI.ID_DEAD);
+        this.managerGui.get(ActionGUI.ID_DEAD).turn(Visibility.VISIBLE);
+    }
+
     private void assignStartTimer() {
         Objects.requireNonNull(this.getBtnGameFromMenu()).addActionListener(l -> {
             this.ctrlGame.getWorld().setSkin(CtrlGUI.this.getCurrentSkin());
             this.ctrlGame.startTimer();
             this.ctrlGame.startPaint();
             this.managerGui.values().forEach(control -> {
-                if(control.getMainAction() != ActionGUI.ID_GAME){
+                if(control.getMainAction().getStateLevel().equals(StateLevelGUI.OVERLAY)){
                     control.getGUI().setImageBackground(Background.TRANSPARENT);
                 }
 
@@ -220,7 +184,7 @@ public class CtrlGUI {
         return null;
     }
 
-    public void assignSoundLoop(){
+    public void assignSoundLoop() {
         this.managerGui.values().forEach(ctrl -> ctrl.getGUI().getBtnActionLinks().forEach(
                 btn -> btn.addActionListener(l -> {
                     if(btn.getActionCurrent() == ActionGUI.ID_PAUSE && btn.getActionNext() == ActionGUI.ID_BACK) {

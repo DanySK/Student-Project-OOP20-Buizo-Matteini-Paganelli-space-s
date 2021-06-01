@@ -10,8 +10,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class BtnPauseID extends BtnAction implements MouseListener{
-    private String pathIconEnter;
-    private String pathIconExit;
+    private final String pathIconEnter;
+    private final String pathIconExit;
 
     public BtnPauseID(){
         super();

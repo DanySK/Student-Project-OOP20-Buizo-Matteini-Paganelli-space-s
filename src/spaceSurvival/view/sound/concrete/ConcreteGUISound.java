@@ -1,5 +1,6 @@
 package spaceSurvival.view.sound.concrete;
 
+import spaceSurvival.model.GUI.sound.EngineSound;
 import spaceSurvival.model.GUI.sound.TypeUnitSound;
 import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.view.AbstractGUI;
@@ -42,7 +43,7 @@ public class ConcreteGUISound extends AbstractGUI implements GUISound {
     }
 
     @Override
-    public void setTitleUnitSound(List<String> listTitle) {
+    public void setTitleUnitSound(final List<String> listTitle) {
         this.mixerSound.setTitleSlider(listTitle);
     }
 
@@ -80,7 +81,7 @@ public class ConcreteGUISound extends AbstractGUI implements GUISound {
 
     @Override
     public void setIconBtnSwitches(final List<String> paths) {
-        this.mixerSound.setIconBtnSwitches(paths, super.getWidth());
+        this.mixerSound.setIconBtnSwitches(paths, (int)EngineSound.RECTANGLE.getWidth());
     }
 
 
