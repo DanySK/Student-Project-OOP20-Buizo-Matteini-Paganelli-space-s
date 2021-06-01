@@ -15,7 +15,7 @@ import spaceSurvival.utilities.SystemVariables;
 
 public class CollisionChecker {
 	
-	private static final double TOLLERANCE = 3;
+	private static final double TOLLERANCE = 1.5 * SystemVariables.SCALE_X;
 
 	/** Rectangle To Point. */
 	//RectBoundingBox rbb, P2d point
