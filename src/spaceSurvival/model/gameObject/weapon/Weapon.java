@@ -7,7 +7,7 @@ import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.common.V2d;
 import spaceSurvival.model.gameObject.GameObjectUtils;
 import spaceSurvival.model.gameObject.MainGameObject;
-import spaceSurvival.model.gameObject.weapon.exception.NoBulletTypeException;
+import spaceSurvival.model.gameObject.takeableGameObject.AmmoType;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -60,28 +60,8 @@ public class Weapon {
 		P2d position = new P2d(0, 0);
 		System.out.println(position);
 		V2d velocity = GameObjectUtils.BULLET_VEL;
-		Bullet bullet;
-		
-		switch (ammoType) {
-		case NORMAL:
-			bullet = new NormalBullet(engineImage, position, new RectBoundingBox(), new NormalBulletPhysicsComponent(), velocity,
-					BulletUtils.NORMAL_BULLET_DAMAGE * multiplierDamage);
-			break;
-		case FIRE:
-			bullet = new FireBullet(engineImage, position, new RectBoundingBox(), new NormalBulletPhysicsComponent(), velocity,
-					BulletUtils.FIRE_BULLET_DAMAGE * multiplierDamage);
-			break;
-		case ICE:  
-			bullet = new IceBullet(engineImage, position, new RectBoundingBox(), new NormalBulletPhysicsComponent(), velocity,
-					BulletUtils.ICE_BULLET_DAMAGE * multiplierDamage);
-			break;
-		case ELECTRIC:
-			bullet = new ElectricBullet(engineImage, position, new RectBoundingBox(), new NormalBulletPhysicsComponent(), velocity,
-					BulletUtils.ELECTRIC_BULLET_DAMAGE * multiplierDamage);
-			break;
-		default:
-			throw new NoBulletTypeException("No correct bullet type to fire a shot");
-		}
+		Bullet bullet = new Bullet(engineImage, position, new RectBoundingBox(), new NormalBulletPhysicsComponent(),
+				velocity, BulletUtils.NORMAL_BULLET_DAMAGE * multiplierDamage, ammoType.getEffect());
 		
 		bullet.setTransform(owner.getTransform());
 		bullet.getTransform().translate(owner.getSize().getWidth() / 2 - bullet.getSize().getWidth() / 2,

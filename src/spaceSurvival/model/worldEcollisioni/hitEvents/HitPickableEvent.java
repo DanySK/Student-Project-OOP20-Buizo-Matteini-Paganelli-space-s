@@ -1,6 +1,6 @@
 package spaceSurvival.model.worldEcollisioni.hitEvents;
 
-import spaceSurvival.model.gameObject.TakeableGameObject;
+import spaceSurvival.model.gameObject.takeableGameObject.TakeableGameObject;
 import spaceSurvival.model.worldEcollisioni.WorldEvent;
 
 public class HitPickableEvent implements WorldEvent {

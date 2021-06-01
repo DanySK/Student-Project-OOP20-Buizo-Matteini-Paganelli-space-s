@@ -2,7 +2,7 @@ package spaceSurvival.model.worldEcollisioni.physics.components;
 
 import java.util.Optional;
 import spaceSurvival.model.gameObject.GameObject;
-import spaceSurvival.model.gameObject.TakeableGameObject;
+import spaceSurvival.model.gameObject.takeableGameObject.TakeableGameObject;
 import spaceSurvival.model.World;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;

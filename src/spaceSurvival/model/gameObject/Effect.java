@@ -6,11 +6,15 @@ import java.util.List;
 import java.util.Random;
 
 public enum Effect {
-	FIRE_AMMO(Status.ON_FIRE),
-	ICE_AMMO(Status.FROZEN),
-	ELECTRIC_AMMO(Status.PARALIZED),
-	HEAL(Status.HEALED),
-	LIFE_UP(Status.LIVES_INCREASED);
+	NONE,
+	FIRE(Status.ON_FIRE),
+	ICE(Status.FROZEN),
+	ELECTRIC(Status.PARALIZED);
+//	FIRE_AMMO(Status.ON_FIRE),
+//	ICE_AMMO(Status.FROZEN),
+//	ELECTRIC_AMMO(Status.PARALIZED),
+//	HEAL(Status.HEALED),
+//	LIFE_UP(Status.LIVES_INCREASED);
 
 	private Status status;
 	
@@ -22,6 +26,9 @@ public enum Effect {
 		this.status = status;
 	}
 
+	private Effect() {
+	}
+	
 	public static Effect random()  {
 		return VALUES.get(RANDOM.nextInt(SIZE));
 	}

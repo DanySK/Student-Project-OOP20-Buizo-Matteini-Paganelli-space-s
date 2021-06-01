@@ -9,13 +9,16 @@ import spaceSurvival.model.movement.ChasingMovement;
 import spaceSurvival.model.movement.DistantMovement;
 import spaceSurvival.model.movement.FixedMovement;
 import spaceSurvival.model.movement.Movement;
-import spaceSurvival.model.gameObject.TakeableGameObject;
 import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
 import spaceSurvival.model.gameObject.mainGameObject.Boss;
 import spaceSurvival.model.gameObject.mainGameObject.ChaseEnemy;
 import spaceSurvival.model.gameObject.mainGameObject.FireEnemy;
+import spaceSurvival.model.gameObject.takeableGameObject.Ammo;
+import spaceSurvival.model.gameObject.takeableGameObject.AmmoType;
+import spaceSurvival.model.gameObject.takeableGameObject.Health;
+import spaceSurvival.model.gameObject.takeableGameObject.HealthType;
+import spaceSurvival.model.gameObject.takeableGameObject.TakeableGameObject;
 import spaceSurvival.model.common.*;
-import spaceSurvival.model.gameObject.weapon.AmmoType;
 import spaceSurvival.model.gameObject.weapon.Weapon;
 import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
@@ -104,13 +107,21 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 	}
 
 	@Override
-	public TakeableGameObject createPickable() {
+	public TakeableGameObject createAmmo() {
 		final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinPerk.ELECTRIC0);
 		final P2d position = GameObjectUtils.generateRandomPoint();
-	 	final Effect effectType = Effect.random();
 		
-		return new TakeableGameObject(engineImage, position, new CircleBoundingBox(), new PickablePhysicsComponent(),
-				effectType, SkinPerk.LIST_ELECTRIC);
+		return new Ammo(engineImage, position, new CircleBoundingBox(), new PickablePhysicsComponent(),
+				SkinPerk.LIST_ELECTRIC, AmmoType.ELECTRIC);
+	}
+	
+	@Override
+	public TakeableGameObject createHealth() {
+		final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinPerk.FIRE0);
+		final P2d position = GameObjectUtils.generateRandomPoint();
+		
+		return new Health(engineImage, position, new CircleBoundingBox(), new PickablePhysicsComponent(),
+				SkinPerk.LIST_FIRE, HealthType.random());
 	}
 
 }

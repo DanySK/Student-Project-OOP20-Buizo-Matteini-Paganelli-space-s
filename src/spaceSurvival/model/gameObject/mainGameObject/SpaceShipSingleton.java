@@ -4,11 +4,12 @@ import java.util.Optional;
 
 import spaceSurvival.model.gameObject.GameObjectUtils;
 import spaceSurvival.model.gameObject.MainGameObject;
-import spaceSurvival.model.gameObject.TakeableGameObject;
+import spaceSurvival.model.gameObject.takeableGameObject.Ammo;
+import spaceSurvival.model.gameObject.takeableGameObject.Health;
+import spaceSurvival.model.gameObject.takeableGameObject.TakeableGameObject;
 import spaceSurvival.model.movement.ControlledMovement;
 import spaceSurvival.model.movement.Movement;
 import spaceSurvival.model.common.*;
-import spaceSurvival.model.gameObject.weapon.AmmoType;
 import spaceSurvival.model.gameObject.weapon.Weapon;
 import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
@@ -44,9 +45,7 @@ public class SpaceShipSingleton extends MainGameObject {
                                final int impactDamage, final Optional<Weapon> weapon) {
 		super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, weapon);
     	this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage, this.getTransform()));
-
     	this.acceleration = new V2d(1,1);
-
     }
     
     /**
@@ -66,27 +65,12 @@ public class SpaceShipSingleton extends MainGameObject {
 	}
 	
 	public void take(TakeableGameObject takeableGameObject) {
-		switch (takeableGameObject.getEffectType()) {
-		case FIRE_AMMO:
-			this.getWeapon().get().setAmmoType(AmmoType.FIRE);
-			break;
-		case ICE_AMMO:
-			this.getWeapon().get().setAmmoType(AmmoType.ICE);
-			break;
-		case ELECTRIC_AMMO:
-			this.getWeapon().get().setAmmoType(AmmoType.ELECTRIC);
-			break;
-		case HEAL:
-			this.increaseLife(GameObjectUtils.LIFE_GAINED);
-//			setAnimation(SkinShip.LIST_SHIP1);
-//			waitStatusDuration(GameObjectUtils.HEALED_DURATION);
-			break;
-//		case LIFE_UP:
-//			setAnimation(SkinShip.LIST_SHIP1);
-//			waitStatusDuration(GameObjectUtils.LIVES_INCREASED_DURATION);
-//			break;
-		default:
-			break;
+		if (takeableGameObject instanceof Ammo) {
+			Ammo ammo = (Ammo) takeableGameObject;
+			this.getWeapon().get().setAmmoType(ammo.getType());
+		} else if (takeableGameObject instanceof Health) {
+			Health health = (Health) takeableGameObject;
+			// DA FARE
 		}
 	}
 
