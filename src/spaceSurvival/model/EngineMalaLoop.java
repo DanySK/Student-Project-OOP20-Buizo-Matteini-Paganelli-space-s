@@ -119,7 +119,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     }
     
     protected void checkSoundEffects() {
-        final World scene = this.controlGame.getWord();
+        final World scene = this.controlGame.getWorld();
         final SpaceShipSingleton ship = this.controlGame.getShip();
         //soundQueue.add(ship.popEffect()); 
         Optional<SoundPath> effect = ship.popEffect();
@@ -134,7 +134,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     
 
     protected void checkEvents() {
-        final World world = this.controlGame.getWord();
+        final World world = this.controlGame.getWorld();
         final SpaceShipSingleton ship = this.controlGame.getShip();
         
         eventQueue.forEach(ev -> {

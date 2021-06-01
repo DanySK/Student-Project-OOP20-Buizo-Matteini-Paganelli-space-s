@@ -65,11 +65,6 @@ public class CtrlGame implements ControllerGUI{
     public EngineGUI getEngine() {
         return this.engine;
     }
-    
-    private World getWorld() {
-		return this.engine.getWorld();
-	}
-
 
     @Override
     public boolean isVisibility() {
@@ -105,16 +100,17 @@ public class CtrlGame implements ControllerGUI{
 		if (this.engine.getCountEnemies() == 0) {
 			System.out.println("finiti nemici, incremento round");
 			this.engine.incrRound();
-			//this.resetEntities();
+			this.resetEntities();
 		}
 	}
     
     public void resetEntities() {
-		this.getWord().removeAllEnemies();
-		this.getWord().addAsteroid();
-		this.getWord().addAsteroid();
-		this.getWord().addChaseEnemy();
-		this.getWord().addFireEnemy();
+		this.getWorld().removeAllEnemies();
+		this.getWorld().addAsteroid();
+		this.getWorld().addAsteroid();
+		this.getWorld().addChaseEnemy();
+		this.getWorld().addFireEnemy();
+		System.out.println(this.getWorld().getAllEntities());
 	}
     
     
@@ -130,9 +126,9 @@ public class CtrlGame implements ControllerGUI{
         this.engine.startTimer();
     }
 
-    public World getWord(){
-        return this.engine.getWorld();
-    }
+    public World getWorld() {
+		return this.engine.getWorld();
+	}
 
     public SpaceShipSingleton getShip(){
         return this.engine.getShip();
