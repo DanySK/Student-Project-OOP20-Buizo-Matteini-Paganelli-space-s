@@ -193,8 +193,8 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             	//playEffect(SoundPath.);
             	HitPickableEvent pickableEvent = (HitPickableEvent) ev;
 
-                Effect effect = pickableEvent.getCollisionObj().getEffectType();
-                world.getShip().setStatus(effect.getStatus());
+                //Effect effect = pickableEvent.getCollisionObj().getEffectType();
+                //world.getShip().setStatus(effect.getStatus());
             } else if (ev instanceof HitBorderEvent) {
                 HitBorderEvent borderEvent = (HitBorderEvent) ev;
 

@@ -6,16 +6,14 @@ import java.util.List;
 import java.util.Random;
 
 import spaceSurvival.model.gameObject.Effect;
-import spaceSurvival.utilities.pathImage.Skin.SkinPerk;
 
 public enum AmmoType {
-	NORMAL(Effect.NONE, SkinPerk.NORMAL),
+	NORMAL(Effect.NONE),
 	FIRE(Effect.FIRE),
 	ELECTRIC(Effect.ELECTRIC),
 	ICE(Effect.ICE);
 	
 	private Effect effect;
-	private SkinPerk skin;
 	
 	private static final List<AmmoType> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
 	private static final int SIZE = VALUES.size();
@@ -24,10 +22,8 @@ public enum AmmoType {
 	private AmmoType() {
 	}
 	
-	private AmmoType(Effect effect, SkinPerk skin) {
+	private AmmoType(Effect effect) {
 		this.effect = effect;
-		this.skin = skin;
-		SkinPerk.
 	}
 	
 	public Effect getEffect() {

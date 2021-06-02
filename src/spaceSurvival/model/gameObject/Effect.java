@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 public enum Effect {
-	NONE,
+	NONE(Status.NORMAL),
 	FIRE(Status.ON_FIRE),
 	ICE(Status.FROZEN),
 	ELECTRIC(Status.PARALIZED);
@@ -24,9 +24,6 @@ public enum Effect {
 	
 	private Effect(Status status) {
 		this.status = status;
-	}
-
-	private Effect() {
 	}
 	
 	public static Effect random()  {

@@ -1,6 +1,6 @@
 package spaceSurvival.model.gameObject.weapon;
 
-import spaceSurvival.model.worldEcollisioni.physics.components.NormalBulletPhysicsComponent;
+import spaceSurvival.model.worldEcollisioni.physics.components.BulletPhysicsComponent;
 import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.model.common.P2d;
@@ -60,7 +60,7 @@ public class Weapon {
 		P2d position = new P2d(0, 0);
 		System.out.println(position);
 		V2d velocity = GameObjectUtils.BULLET_VEL;
-		Bullet bullet = new Bullet(engineImage, position, new RectBoundingBox(), new NormalBulletPhysicsComponent(),
+		Bullet bullet = new Bullet(engineImage, position, new RectBoundingBox(), new BulletPhysicsComponent(),
 				velocity, BulletUtils.NORMAL_BULLET_DAMAGE * multiplierDamage, ammoType.getEffect());
 		
 		bullet.setTransform(owner.getTransform());

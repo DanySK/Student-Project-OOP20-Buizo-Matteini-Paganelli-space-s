@@ -1,11 +1,9 @@
 package spaceSurvival.model.gameObject.takeableGameObject;
 
 import spaceSurvival.model.common.P2d;
-import spaceSurvival.model.gameObject.Effect;
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.GameObjectUtils;
 
-import java.awt.geom.AffineTransform;
 import java.util.List;
 
 import spaceSurvival.model.EngineImage;

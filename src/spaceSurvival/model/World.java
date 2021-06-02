@@ -53,7 +53,7 @@ public class World {
 		for (int i = 0; i < 1; i++) {
 			asteroids.add(factoryGameObject.createAsteroid());
 			chaseEnemies.add(factoryGameObject.createChaseEnemy());
-			takeables.add(factoryGameObject.createPickable());
+			takeables.add(factoryGameObject.createAmmo());
 		}
 	}
 
@@ -70,7 +70,7 @@ public class World {
 		for (int i = 0; i < 1; i++) {
 			asteroids.add(factoryGameObject.createAsteroid());
 			chaseEnemies.add(factoryGameObject.createChaseEnemy());
-			takeables.add(factoryGameObject.createPickable());
+			takeables.add(factoryGameObject.createAmmo());
 		}
 	}
 
@@ -141,7 +141,7 @@ public class World {
 	}
 	
 	public void addPickable() {
-		takeables.add(factoryGameObject.createPickable());
+		takeables.add(factoryGameObject.createAmmo());
 	}
 
 	public void removePickable(final TakeableGameObject obj) {
