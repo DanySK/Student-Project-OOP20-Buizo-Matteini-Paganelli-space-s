@@ -214,6 +214,19 @@ public class World {
 	}
 	
 
+	public Optional<MainGameObject> checkCollisionWithFireEnemies(final RectBoundingBox rectBoundingBox) {
+	//double radius = box.getWidth();
+		for (MainGameObject obj: fireEnemies) {
+			if(checker.testRectangleToRectangle(rectBoundingBox, (RectBoundingBox) obj.getBoundingBox())) {
+				System.out.println("MANDATO UN EVENTO ENEMIES");
+				return Optional.of(obj);
+			}
+		}
+		return Optional.empty();
+	}
+	
+
+
 //
 //	public Optional<MainGameObject> checkCollisionWithBoss(final P2d pos, final RectBoundingBox box) {
 //		if (boss.isPresent()) {

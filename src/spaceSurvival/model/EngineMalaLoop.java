@@ -73,31 +73,42 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
 
     public void run() {
         long lastTime = System.currentTimeMillis();
+        long current = 0L;
         while (!this.controlGame.isGameOver()) {
-            long current = System.currentTimeMillis();
-            int elapsed = (int)(current - lastTime);
+            if(!this.controlGame.isGameOver()){
+                current = System.currentTimeMillis();
+                int elapsed = (int)(current - lastTime);
 
-            if(this.controlGUI.isInGame()){
-                if(!this.controlGUI.isInPause()){
-                    //processInput();
-                    renderMovement();
-                    render();
+                if(this.controlGUI.isInGame()){
+                    if(!this.controlGUI.isInPause()){
+                        //processInput();
+                        renderMovement();
+                        render();
 
+                        waitForNextFrame(current);
+                        lastTime = current;
+
+                        this.controlGame.controlDecrLife(1);
+                        updateGame(elapsed);
+                    }
+                }
+
+                if(this.controlGUI.isInGame() || !this.controlGUI.isInPause()) {
                     waitForNextFrame(current);
                     lastTime = current;
-
-                    this.controlGame.controlDecrLife(1);
-                    updateGame(elapsed);
+                }
+            } else {
+                renderGameOver();
+                while(this.controlGUI.isInGameOver()){
+                    waitForNextFrame(current);
+                    lastTime = current;
+                    System.out.println("Allloraaaa vuoiiii rigiocare o nooo o nooo");
                 }
             }
 
-            if(this.controlGUI.isInGame() || !this.controlGUI.isInPause()) {
-                waitForNextFrame(current);
-                lastTime = current;
-            }
         }
         System.out.println("Sono fuori dal loop");
-        renderGameOver();
+
     }
     
 	protected void waitForNextFrame(final long current) {
