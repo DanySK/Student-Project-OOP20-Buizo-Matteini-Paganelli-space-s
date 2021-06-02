@@ -85,7 +85,7 @@ public class PanelGame extends JPanel{
         	}
 
             g2d.drawImage(EngineImage.getImageFromEngine(entity.getEngineImage()), 0,0, null);
-
+            g2d.drawImage(EngineImage.getImageFromEngine(entity.getEngineEffect()), 0,0, null);
 
             g2d.setColor(Color.WHITE);
             g2d.drawRect(0, 0, (int)entity.getEngineImage().getSize().getWidth(), (int)entity.getEngineImage().getSize().getHeight());

@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.Set;
 
 
+import spaceSurvival.model.GUI.settings.SkinSpaceShip;
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.gameObject.MovableGameObject;
@@ -80,21 +81,9 @@ public class World {
 		return this.ship;
 	}
 
-	public void setSkin(final String path) {
-		this.ship.getEngineImage().setPath(path);
-
-		if(path.contentEquals(SkinShip.SPECIAL0)){
-			this.ship.setAnimation(SkinShip.LIST_SHIP1);
-		}else if(path.contentEquals(SkinShip.STANDARD0)){
-			this.ship.setAnimation(SkinShip.LIST_SHIP2);
-		}else if(path.contentEquals(SkinShip.DELUXE0)) {
-			this.ship.setAnimation(SkinShip.LIST_SHIP3);
-		}else if(path.contentEquals(SkinShip.NORMAL0)) {
-			this.ship.setAnimation(SkinShip.LIST_SHIP4);
-		}else if(path.contentEquals(SkinShip.ATOMIC0)){
-			this.ship.setAnimation(SkinShip.LIST_SHIP5);
-		}
-
+	public void setSkin(final SkinSpaceShip skin) {
+		this.ship.getEngineImage().setPath(skin.getSkin());
+		this.ship.setAnimation(skin.getAnimation());
 	}
 
 	public void moveShip() {

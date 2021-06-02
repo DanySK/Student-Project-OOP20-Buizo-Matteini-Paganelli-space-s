@@ -14,43 +14,58 @@ import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 import spaceSurvival.utilities.SoundPath;
 import spaceSurvival.model.World;
+import spaceSurvival.utilities.pathImage.Background;
+import spaceSurvival.utilities.pathImage.Effect;
+import spaceSurvival.utilities.pathImage.Skin.SkinShip;
 
 
 public abstract class GameObject extends Thread{
-	private EngineImage engineImage;
 	private P2d position;
-	private BoundingBox boundingBox;
-
-	private PhysicsComponent phys;
 	private AffineTransform transform;
+	private BoundingBox boundingBox;
+	private PhysicsComponent phys;
+
+	private EngineImage engineImage;
+	private EngineImage engineEffect;
+
 	private List<String> animation;
+	private List<String> animationEffect;
+
 	private List<SoundPath> effectSounds;
 
 	
 	public GameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
                       final PhysicsComponent phys) {
-		this.engineImage = engineImage;	
+		this.engineImage = engineImage;
+		this.engineEffect = new EngineImage(engineImage.getScaleOf(), engineImage.getRespectTo(), engineImage.getPath());
+
 		this.boundingBox = bb;
 		this.phys = phys;
 		this.position = position;
 		this.setEffectSounds(new LinkedList<>());
 		this.transform = new AffineTransform();
 		this.animation = new ArrayList<>();
+		this.animationEffect = new ArrayList<>();
 		this.setPosition(position);
 		this.start();
+
+		this.setAnimationEffect(Effect.LIST_BURN);
 	}
 
 	public void setAnimation(final List<String> animation){
 		this.animation = animation;
 	}
 
+	public void setAnimationEffect(final List<String> animation){
+		this.animationEffect = animation;
+	}
+
 	public void run(){
 		long lastTime = System.currentTimeMillis();
-		int i = 0;
+		int i = 0, j = 0;
 		while (true){
 			long current = System.currentTimeMillis();
 			int elapsed = (int)(current - lastTime);
-
 
 			waitForNextFrame(current);
 			lastTime = current;
@@ -59,6 +74,12 @@ public abstract class GameObject extends Thread{
 				this.engineImage.setPath(this.animation.get(i++));
 				i = i + 1 > this.animation.size() ? 0 : i;
 			}
+
+			if(this.animationEffect.size() > 0) {
+				this.engineEffect.setPath(this.animationEffect.get(j++));
+				j = j + 1 > this.animationEffect.size() ? 0 : j;
+			}
+
 		}
 	}
 
@@ -117,7 +138,11 @@ public abstract class GameObject extends Thread{
 	public EngineImage getEngineImage() {
 		return engineImage;
 	}
-	
+
+	public EngineImage getEngineEffect() {
+		return engineEffect;
+	}
+
 	public P2d getPosition() {
 		return new P2d(this.transform.getTranslateX(), this.getTransform().getTranslateY());
 	}
