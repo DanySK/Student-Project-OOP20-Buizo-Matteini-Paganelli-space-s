@@ -45,9 +45,6 @@ public class World {
 		this.ship = SpaceShipSingleton.getSpaceShip();
 		this.ship.setWeapon(Optional.of(new Weapon(AmmoType.NORMAL, ship)));
 		
-		System.out.println(this.ship.getWeapon());
-		System.out.println(this.ship.getWeapon().get());
-		
 		this.mainBBox = mainBBox;
 
 		for (int i = 0; i < 1; i++) {
@@ -60,10 +57,7 @@ public class World {
 	public World(final Rectangle rectangle) {
 		this.ship = SpaceShipSingleton.getSpaceShip();
 		this.ship.setWeapon(Optional.of(new Weapon(AmmoType.NORMAL, ship)));
-		
-		System.out.println("BELLA RAGAAAAA");
-		System.out.println(this.ship.getWeapon());
-		System.out.println(this.ship.getWeapon().get());
+
 		
 		this.mainBBox = new RectBoundingBox(rectangle);
 
@@ -219,6 +213,7 @@ public class World {
 		return Optional.empty();
 	}
 	
+
 	public Optional<MainGameObject> checkCollisionWithFireEnemies(final RectBoundingBox rectBoundingBox) {
 	//double radius = box.getWidth();
 		for (MainGameObject obj: fireEnemies) {
@@ -230,6 +225,7 @@ public class World {
 		return Optional.empty();
 	}
 	
+
 
 //
 //	public Optional<MainGameObject> checkCollisionWithBoss(final P2d pos, final RectBoundingBox box) {

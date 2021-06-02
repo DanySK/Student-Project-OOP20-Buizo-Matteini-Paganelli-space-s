@@ -2,14 +2,13 @@ package spaceSurvival.model.GUI.dead;
 
 import spaceSurvival.model.GUI.EngineGUI;
 import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.model.GUI.menu.LinksMenu;
 import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.utilities.dimension.Screen;
 
-import javax.security.auth.login.AccountNotFoundException;
 import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class EngineDead implements EngineGUI {
     public static final Rectangle RECTANGLE = Screen.RECTANGLE_FULLSCREEN;
@@ -23,7 +22,6 @@ public class EngineDead implements EngineGUI {
 
     public EngineDead(){
         this.mainAction = ActionGUI.ID_DEAD;
-
 
         this.linkButtons = Arrays.asList(LinksDead.values());
         this.visibility = Visibility.HIDDEN;
@@ -46,7 +44,7 @@ public class EngineDead implements EngineGUI {
 
     @Override
     public List<ActionGUI> getLinks() {
-        return List.of();
+        return this.linkButtons.stream().map(LinksDead::getAction).collect(Collectors.toList());
     }
 
     @Override
@@ -59,7 +57,12 @@ public class EngineDead implements EngineGUI {
         return this.visibility.isVisible();
     }
 
+
     public String getTitleGUI() {
         return TITLE;
+    }
+
+    public List<String> getListNameLinks(){
+        return this.linkButtons.stream().map(LinksDead::getName).collect(Collectors.toList());
     }
 }

@@ -10,6 +10,10 @@ public interface GraphicsGUIDead {
 
     public void setForegroundTitle(final Color color);
 
+    public void setFontGUI(final Font font);
+
+    public void setForegroundGUI(final Color color);
+
     public void setBorder(final Color color, final int thickness);
 
 }

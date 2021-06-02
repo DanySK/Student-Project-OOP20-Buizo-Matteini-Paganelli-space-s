@@ -33,7 +33,7 @@ public abstract class GameObject extends Thread{
 		this.boundingBox = bb;
 		this.phys = phys;
 		this.position = position;
-		this.setEffectSounds(new LinkedList<SoundPath>());
+		this.setEffectSounds(new LinkedList<>());
 		this.transform = new AffineTransform();
 		this.animation = new ArrayList<>();
 		this.setPosition(position);

@@ -65,7 +65,12 @@ public class CtrlGUI {
 
         this.linksAll();
         this.focusMenu();
-        this.assignStartTimer();
+        this.startElementWhenInGame();
+        this.restartGame();
+    }
+
+    public boolean isInGameOver(){
+        return this.chronology.contains(ActionGUI.ID_DEAD);
     }
 
     public boolean isInGame(){
@@ -85,21 +90,18 @@ public class CtrlGUI {
     }
 
     private void linksAll(){
-        this.managerGui.values().forEach(managerGui -> managerGui.getGUI().getBtnActionLinks().forEach(btn -> {
-            btn.addActionListener(e -> {
-                System.out.println("Premuto in: " + btn.getActionCurrent() + " Vado in: " + btn.getActionNext());
-
-                if(this.isInPause()){
-                    this.logicSwitchGame.algorithm(btn.getActionCurrent(), btn.getActionNext(),
-                            this.chronology, this.managerGui);
-                } else{
-                    this.logicSwitchMenu.algorithm(btn.getActionCurrent(), btn.getActionNext(),
-                            this.chronology, this.managerGui);
-                }
-                System.out.println("list" + this.chronology);
-
-            });
-        }));
+        this.managerGui.values().forEach(managerGui -> managerGui.getGUI().getBtnActionLinks().forEach(btn ->
+                btn.addActionListener(e -> {
+                    System.out.println("Premuto in: " + btn.getActionCurrent() + " Vado in: " + btn.getActionNext());
+                    if(this.isInPause()){
+                        this.logicSwitchGame.algorithm(btn.getActionCurrent(), btn.getActionNext(),
+                        this.chronology, this.managerGui);
+                    } else {
+                        this.logicSwitchMenu.algorithm(btn.getActionCurrent(), btn.getActionNext(),
+                        this.chronology, this.managerGui);
+                    }
+                    System.out.println("list" + this.chronology);
+        })));
     }
 
     private void focusMenu(){
@@ -159,9 +161,10 @@ public class CtrlGUI {
         this.chronology.remove(this.chronology.lastElementOfList());
         this.chronology.add(ActionGUI.ID_DEAD);
         this.managerGui.get(ActionGUI.ID_DEAD).turn(Visibility.VISIBLE);
+        System.out.println("list" + chronology);
     }
 
-    private void assignStartTimer() {
+    private void startElementWhenInGame() {
         Objects.requireNonNull(this.getBtnGameFromMenu()).addActionListener(l -> {
             this.ctrlGame.getWorld().setSkin(CtrlGUI.this.getCurrentSkin());
             this.ctrlGame.startTimer();
@@ -175,6 +178,15 @@ public class CtrlGUI {
         });
     }
 
+    private void restartGame(){
+        Objects.requireNonNull(this.getBtnMenuFromDead()).addActionListener(l -> {
+            this.chronology.remove(this.chronology.lastElementOfList());
+            this.managerGui.values().forEach(control ->
+                    control.getGUI().setImageBackground(control.getMainAction().getBackground()));
+        });
+    }
+
+
     private BtnAction getBtnGameFromMenu(){
         for (BtnAction btn : this.ctrlMenu.getGUI().getBtnActionLinks()) {
             if(btn.getActionNext() == ActionGUI.ID_GAME){
@@ -184,9 +196,21 @@ public class CtrlGUI {
         return null;
     }
 
+    private BtnAction getBtnMenuFromDead(){
+        for (BtnAction btn : this.ctrlDead.getGUI().getBtnActionLinks()) {
+            if(btn.getActionNext() == ActionGUI.ID_MENU){
+                return btn;
+            }
+        }
+        return null;
+    }
+
     public void assignSoundLoop() {
         this.managerGui.values().forEach(ctrl -> ctrl.getGUI().getBtnActionLinks().forEach(
                 btn -> btn.addActionListener(l -> {
+
+                    System.out.println("Bottone dopo ---------- " + btn.getActionNext());
+
                     if(btn.getActionCurrent() == ActionGUI.ID_PAUSE && btn.getActionNext() == ActionGUI.ID_BACK) {
                         CtrlGUI.this.ctrlSound.checkChangeSoundLoop(ActionGUI.ID_GAME);
                     } else {

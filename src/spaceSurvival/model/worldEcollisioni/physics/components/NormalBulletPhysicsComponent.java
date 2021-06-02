@@ -38,6 +38,7 @@ public class NormalBulletPhysicsComponent implements PhysicsComponent {
 			w.notifyWorldEvent(new HitBulletEvent(normalBullet, chaseEnemy.get()));
 			System.out.println("Preso al volo un chaseEnemy Fratellì");
 		}
+
 		
 		Optional<MainGameObject> fireEnemy = w.checkCollisionWithFireEnemies((RectBoundingBox)abstractObj.getBoundingBox());
 		//collisioni con chaseEnemy

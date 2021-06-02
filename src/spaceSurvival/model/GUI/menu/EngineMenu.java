@@ -63,7 +63,7 @@ public class EngineMenu implements EngineGUI {
         return TITLE;
     }
 
-    public List<String> getListName() {
+    public List<String> getListNameLinks() {
         return this.linkButtons.stream()
                 .map(LinksMenu::getName)
                 .collect(Collectors.toList());
