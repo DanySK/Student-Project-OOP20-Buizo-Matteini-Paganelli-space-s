@@ -14,9 +14,11 @@ public class LogicSwitchMenu implements LogicSwitchGUI{
                           final ListGUI<ActionGUI> chronology, final Map<ActionGUI, ControllerGUI> manager) {
 
         switch (actionNext) {
+            case ID_MENU:
             case ID_GAME:
                 chronology.add(actionNext);
                 manager.get(actionNext).turn(Visibility.VISIBLE);
+                chronology.remove(actionCurrent);
                 manager.get(actionCurrent).turn(Visibility.HIDDEN);
                 break;
 

@@ -37,11 +37,11 @@ public abstract class GameObject extends Thread{
 		this.transform = new AffineTransform();
 		this.animation = new ArrayList<>();
 		this.setPosition(position);
+		this.start();
 	}
 
 	public void setAnimation(final List<String> animation){
 		this.animation = animation;
-		this.start();
 	}
 
 	public void run(){
@@ -51,11 +51,14 @@ public abstract class GameObject extends Thread{
 			long current = System.currentTimeMillis();
 			int elapsed = (int)(current - lastTime);
 
+
 			waitForNextFrame(current);
 			lastTime = current;
 
-			this.engineImage.setPath(this.animation.get(i++));
-			i = i + 1 > this.animation.size() ? 0 : i;
+			if(this.animation.size() > 0) {
+				this.engineImage.setPath(this.animation.get(i++));
+				i = i + 1 > this.animation.size() ? 0 : i;
+			}
 		}
 	}
 

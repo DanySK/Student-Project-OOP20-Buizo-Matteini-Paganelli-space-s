@@ -30,15 +30,22 @@ public class PanelGame extends JPanel{
     private final Thread thirdDrawer;
     private final Thread fourthDrawer;
 
+    private boolean isDraw;
+
     public PanelGame() {
         super(); {{ setOpaque(false); }}
         this.gameObject = new HashMap<>();
         this.listBullet = new ArrayList<>();
+        this.isDraw = false;
 
         this.firstDrawer = new Thread(PanelGame.this::runSecondDrawer);
         this.secondDrawer = new Thread(PanelGame.this::runSecondDrawer);
         this.thirdDrawer = new Thread(PanelGame.this::runSecondDrawer);
         this.fourthDrawer = new Thread(PanelGame.this::runSecondDrawer);
+        this.firstDrawer.start();
+        this.secondDrawer.start();
+        this.thirdDrawer.start();
+        this.fourthDrawer.start();
     }
 
     public void setWorld(final World world){
@@ -46,10 +53,12 @@ public class PanelGame extends JPanel{
     }
 
     public void startPaint(){
-        this.firstDrawer.start();
-        this.secondDrawer.start();
-        this.thirdDrawer.start();
-        this.fourthDrawer.start();
+        this.isDraw = true;
+
+    }
+
+    public void stopDrawer(){
+        this.isDraw = true;
     }
 
     @Override
@@ -115,8 +124,12 @@ public class PanelGame extends JPanel{
 
     public void runSecondDrawer(){
         while (true){
-            super.repaint();
-            this.repaint();
+
+            if(this.isDraw){
+                super.repaint();
+                this.repaint();
+            }
+
 
             try {
                 Thread.sleep(5);

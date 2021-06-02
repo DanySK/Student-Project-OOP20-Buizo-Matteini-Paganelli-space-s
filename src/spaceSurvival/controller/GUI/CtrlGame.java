@@ -116,12 +116,13 @@ public class CtrlGame implements ControllerGUI{
         this.gui.setWorld(this.engine.getWorld());
     }
 
-    public void initTimer(){
-        this.engine.initTimer();
-    }
 
     public void startTimer(){
         this.engine.startTimer();
+    }
+
+    public void stopTimer(){
+        this.engine.stopTimer();
     }
 
     public World getWorld() {
@@ -146,6 +147,10 @@ public class CtrlGame implements ControllerGUI{
 
     public boolean isGameOver(){
         return this.engine.isGameOver();
+    }
+
+    public void restartGame(){
+        this.engine.restartGame();
     }
 
     public void controlDecrLife(final int damage) {
@@ -178,13 +183,15 @@ public class CtrlGame implements ControllerGUI{
         this.gui.startPaint();
     }
 
+
+    public void stopPaint(){
+        this.gui.stopPaint();
+    }
+
     public void incrScore(final long score) {
         this.engine.incrScore(score);
     }
 
-    public void repaintWorld() {
-        this.gui.repaintGameObjects();
-    }
 
     public void updateStateWorld(final int elapsed) {
         this.engine.updateStateWorld(elapsed);

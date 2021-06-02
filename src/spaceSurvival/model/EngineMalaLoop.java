@@ -49,7 +49,6 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     }
 
     public void initGame() {
-        this.controlGUI.initTimer();
         this.controlGUI.assignSoundLoop();
 
         this.controlGame.assignMovementListenerInShip();
@@ -74,7 +73,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     public void run() {
         long lastTime = System.currentTimeMillis();
         long current = 0L;
-        while (!this.controlGame.isGameOver()) {
+        while (true) {
             if(!this.controlGame.isGameOver()){
                 current = System.currentTimeMillis();
                 int elapsed = (int)(current - lastTime);
@@ -88,7 +87,6 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                         waitForNextFrame(current);
                         lastTime = current;
 
-                        this.controlGame.controlDecrLife(1);
                         updateGame(elapsed);
                     }
                 }
@@ -99,16 +97,15 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                 }
             } else {
                 renderGameOver();
+
                 while(this.controlGUI.isInGameOver()){
                     waitForNextFrame(current);
                     lastTime = current;
-                    System.out.println("Allloraaaa vuoiiii rigiocare o nooo o nooo");
                 }
+
             }
 
         }
-        System.out.println("Sono fuori dal loop");
-
     }
     
 	protected void waitForNextFrame(final long current) {
@@ -298,7 +295,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     }
 
     protected void renderGameOver() {
-        this.controlGUI.EndGame();
+        this.controlGUI.endGame();
     	//playEffect(SoundPath.GAME_OVER);
 //        view.renderGameOver();
     }
