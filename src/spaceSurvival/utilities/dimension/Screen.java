@@ -28,8 +28,8 @@ public class Screen {
     public static final int CENTER_Y_BIG = (int) (POINT_CENTER_FULLSCREEN.getY() - (HEIGHT_BIG / 2));
     public static final Dimension DIMENSION_BIG = new Dimension(WIDTH_BIG, HEIGHT_BIG);
 
-    public static final P2d POINT_CENTER_BIG = new P2d(CENTER_X_BIG * SystemVariables.SCALE_X,
-            CENTER_Y_BIG * SystemVariables.SCALE_Y);
+    public static final P2d POINT_CENTER_BIG = new P2d(CENTER_X_BIG / SystemVariables.SCALE_X,
+            CENTER_Y_BIG / SystemVariables.SCALE_Y);
     public static final Rectangle RECTANGLE_BIG = new Rectangle(new Point((int)POINT_CENTER_BIG.x, (int)POINT_CENTER_BIG.y), DIMENSION_BIG);
 
 
@@ -39,7 +39,7 @@ public class Screen {
     public static final int CENTER_Y_MEDIUM = (int) (POINT_CENTER_FULLSCREEN.getY() - (HEIGHT_MEDIUM / 2));
 
     public static final Dimension DIMENSION_MEDIUM = new Dimension(WIDTH_MEDIUM, HEIGHT_MEDIUM);
-    public static final P2d POINT_CENTER_MEDIUM = new P2d(CENTER_X_MEDIUM  * SystemVariables.SCALE_X, CENTER_Y_MEDIUM  * SystemVariables.SCALE_Y);
+    public static final P2d POINT_CENTER_MEDIUM = new P2d(CENTER_X_MEDIUM / SystemVariables.SCALE_X, CENTER_Y_MEDIUM / SystemVariables.SCALE_Y);
     public static final Rectangle RECTANGLE_MEDIUM = new Rectangle(new Point((int)POINT_CENTER_MEDIUM.x, (int)POINT_CENTER_MEDIUM.y), DIMENSION_MEDIUM);
 
 
@@ -49,7 +49,7 @@ public class Screen {
     public static final int CENTER_Y_MINI = (int) (POINT_CENTER_FULLSCREEN.getY() - (HEIGHT_MINI / 2));
 
     public static final Dimension DIMENSION_MINI = new Dimension(WIDTH_MINI, HEIGHT_MINI);
-    public static final P2d POINT_CENTER_MINI = new P2d(CENTER_X_MINI * SystemVariables.SCALE_X, CENTER_Y_MINI * SystemVariables.SCALE_Y);
+    public static final P2d POINT_CENTER_MINI = new P2d(CENTER_X_MINI / SystemVariables.SCALE_X, CENTER_Y_MINI / SystemVariables.SCALE_Y);
     public static final Rectangle RECTANGLE_MINI = new Rectangle(new Point((int)POINT_CENTER_MINI.x, (int)POINT_CENTER_MINI.y), DIMENSION_MINI);
 
 
