@@ -151,7 +151,7 @@ public class World {
 		}
 		boolean found = false;
 		Iterator<MainGameObject> fireEnemiesIterator = fireEnemies.iterator();
-		while (fireEnemiesIterator.hasNext() || found != true) {
+		while (!found || fireEnemiesIterator.hasNext()) {
 			if (getFireEnemyBullets(fireEnemiesIterator.next()).remove(bullet)) {
 				found = true;
 			}
