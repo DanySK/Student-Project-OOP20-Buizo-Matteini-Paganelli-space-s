@@ -68,7 +68,7 @@ public class CollisionChecker {
 		return rotatedEllipse.intersects(rotatedRect.getBounds2D());
 		}
 
-
+ 
 	
 
 	public double getRotationAngleInDegrees(AffineTransform transform) {

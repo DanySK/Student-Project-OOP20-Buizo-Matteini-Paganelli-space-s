@@ -5,10 +5,10 @@ import spaceSurvival.controller.GUI.CtrlGame;
 import spaceSurvival.controller.GUI.CtrlSound;
 import spaceSurvival.model.gameObject.Effect;
 import spaceSurvival.model.gameObject.MainGameObject;
+import spaceSurvival.model.gameObject.enemy.Boss;
+import spaceSurvival.model.gameObject.enemy.ChaseEnemy;
+import spaceSurvival.model.gameObject.enemy.FireEnemy;
 import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
-import spaceSurvival.model.gameObject.mainGameObject.Boss;
-import spaceSurvival.model.gameObject.mainGameObject.ChaseEnemy;
-import spaceSurvival.model.gameObject.mainGameObject.FireEnemy;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 import spaceSurvival.model.gameObject.weapon.Bullet;
 import spaceSurvival.model.sound.CmdAudioType;
@@ -85,7 +85,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                         waitForNextFrame(current);
                         lastTime = current;
 
-                        this.controlGame.controlDecrLife(1);
+                        //this.controlGame.controlDecrLife(1);
                         updateGame(elapsed);
                     }
                 }
@@ -171,7 +171,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                 	playEffect(SoundPath.ENEMY_EXPL);
                 	this.controlGame.incrScore(Score.CHASE_ENEMY);
                 	this.controlGame.updateRoundState();
-				}
+				} 
                 this.controlGame.controlDecrLife(chaseEnemyCollided.getImpactDamage());
                 //gameState.decreaseLives();
             } else if (ev instanceof HitFireEnemyEvent) {
@@ -280,18 +280,18 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     }
     
     private void renderMovement() {
-    	this.controlGame.moveShip();
+    	//this.controlGame.moveShip();
 
-//    	this.controlGame.getWord().getMovableEntities().forEach(entity -> {
-//    		entity.move();
-//    	});
+    	this.controlGame.getWorld().getMovableEntities().forEach(entity -> {
+    		entity.move();
+    	});
     	
-    	SpaceShipSingleton ship = this.controlGame.getShip();
-    	if (ship.getWeapon().isPresent()) {
-        	ship.getWeapon().get().getShootedBullets().forEach(bullet -> {
-        		bullet.move();
-        	});
-		}
+//    	SpaceShipSingleton ship = this.controlGame.getShip();
+//    	if (ship.getWeapon().isPresent()) {
+//        	ship.getWeapon().get().getShootedBullets().forEach(bullet -> {
+//        		bullet.move();
+//        	});
+//		}
     }
 
     protected void renderGameOver() {

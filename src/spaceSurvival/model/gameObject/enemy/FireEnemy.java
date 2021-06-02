@@ -1,6 +1,7 @@
-package spaceSurvival.model.gameObject.mainGameObject;
+package spaceSurvival.model.gameObject.enemy;
 
 import java.util.Optional;
+
 import spaceSurvival.model.gameObject.GameObjectUtils;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.movement.Movement;
@@ -11,19 +12,19 @@ import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 
-public class Boss extends MainGameObject {
+public class FireEnemy extends Enemy {
 
-	public Boss(final EngineImage engineImage, final P2d position, final BoundingBox bb,
-                final PhysicsComponent phys, final V2d velocity, final Movement movement, final int life,
-                final int impactDamage, final Optional<Weapon> weapon) {
+	public FireEnemy(final EngineImage engineImage, final P2d position, final BoundingBox bb,
+                     final PhysicsComponent phys, final V2d velocity, final Movement movement, final int life,
+                     final int impactDamage, final Optional<Weapon> weapon, P2d target) {
 		
-		super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, weapon);
+		super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, weapon, target);
     	this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage, this.getTransform()));
 	}
 
 	@Override
 	public String toString() {
-		return "Boss { " + super.toString() + " }";
+		return "FireEnemy { " + super.toString() + " }";
 	}
 
 }

@@ -3,7 +3,7 @@ package spaceSurvival.model.worldEcollisioni.physics.components;
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.common.V2d;
 import spaceSurvival.model.gameObject.GameObject;
-import spaceSurvival.model.gameObject.mainGameObject.ChaseEnemy;
+import spaceSurvival.model.gameObject.enemy.ChaseEnemy;
 import spaceSurvival.model.World;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 
