@@ -43,23 +43,6 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 			switch (info.getEdge()) {
 			case TOP: 
 				//EFFETTO SPACESHIP
-//				P2d center =  Screen.POINT_CENTER_FULLSCREEN;
-//				System.out.println(Screen.POINT_CENTER_FULLSCREEN);
-//				P2d centerTop = new P2d(1680, 1050);
-//				double xAxesDiffTop = centerTop.getX() - info.getWhere().getX();
-//				double xAxesSpawnTop = centerTop.getX() + xAxesDiffTop;
-//				
-//				
-//				P2d p2Top = new P2d(xAxesSpawnTop, centerTop.getX() * SystemVariables.SCALE_X);
-//				///P2d p2Top = new P2d(ship.getTransform().getTranslateX(), centerTop.getX() * SystemVariables.SCALE_X);
-//				double disTop = Math.sqrt(Math.pow(p2Top.getX()-pos.getX(), 2) + Math.pow(p2Top.getY()-pos.getY(), 2));
-//				//double dis=Math.sqrt( * (p2.getX()-pos.getX() + (p2.getY()-pos.getY()*(p2.getY()-pos.getY()));
-//				
-//				
-//				//ship.getTransform().translate(0, Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y);
-//				
-//				ship.getTransform().translate(0, disTop);	
-				
 				AffineTransform newTransTop = new AffineTransform(ship.getTransform().getScaleX(), 
 						ship.getTransform().getShearY(), ship.getTransform().getShearX(), 
 						ship.getTransform().getScaleY(), ship.getTransform().getTranslateX(), 

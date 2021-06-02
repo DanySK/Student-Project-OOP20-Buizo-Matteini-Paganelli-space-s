@@ -1,9 +1,7 @@
 package spaceSurvival.model.worldEcollisioni.physics.components;
 
-import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 
@@ -21,165 +19,22 @@ public class CollisionChecker {
 	private static final double TOLLERANCE = 0;
  
 
-	/** Rectangle To Point. */
+ 
 	//RectBoundingBox rbb, P2d point
 	public boolean testRectangleToPoint(RectBoundingBox rbb, P2d point) {
 	    
-		AffineTransform transform = new AffineTransform();
-		transform.setTransform(rbb.getTransform());
-		transform.translate(rbb.getWidth()/2, rbb.getHeight()/2);
-	
-		P2d rectCenter = new P2d(transform.getTranslateX(), transform.getTranslateY());
-		double rotation = getRotationAngleInDegrees(rbb.getTransform());
-		
-		
-		// Higher Efficiency for Rectangles with 0 rotation.
-		if(rotation == 0) {
-	        return Math.abs(rectCenter.getX()-point.getX()) < rbb.getWidth()/2 && Math.abs(rectCenter.getY()-point.getY()) < rbb.getHeight()/2;
-		}
-	    double tx = Math.cos(rotation)*point.getX() - Math.sin(rotation)*point.getY();
-	    double ty = Math.cos(rotation)*point.getY() + Math.sin(rotation)*point.getX();
-
-	    double cx = Math.cos(rotation)*rectCenter.getX() - Math.sin(rotation)*rectCenter.getY();
-	    double cy = Math.cos(rotation)*rectCenter.getY() + Math.sin(rotation)*rectCenter.getX();
-
-	    return Math.abs(cx-tx) < rbb.getWidth()/2 && Math.abs(cy-ty) < rbb.getHeight()/2; 
+		return false;
 	}
 	
-	
-	/** Rectangle To Point. */
-//	boolean testRectangleToPoint(double rectWidth, double rectHeight, double rectRotation, double rectCenterX, double rectCenterY, double pointX, double pointY) {
-//	    if(rectRotation == 0)   // Higher Efficiency for Rectangles with 0 rotation.
-//	        return Math.abs(rectCenterX-pointX) < rectWidth/2 && Math.abs(rectCenterY-pointY) < rectHeight/2;
-//
-//	    double tx = Math.cos(rectRotation)*pointX - Math.sin(rectRotation)*pointY;
-//	    double ty = Math.cos(rectRotation)*pointY + Math.sin(rectRotation)*pointX;
-//
-//	    double cx = Math.cos(rectRotation)*rectCenterX - Math.sin(rectRotation)*rectCenterY;
-//	    double cy = Math.cos(rectRotation)*rectCenterY + Math.sin(rectRotation)*rectCenterX;
-//
-//	    return Math.abs(cx-tx) < rectWidth/2 && Math.abs(cy-ty) < rectHeight/2;
-//	}
 
-	/** Circle To Segment. */
 	//CircleBoundingBox, Line 
 	public boolean testCircleToSegment(CircleBoundingBox cbb, Line line) {
 		
-		double lineLength = line.getLineLength();
-	    double distance;
 
-	    if (lineLength == 0.0) {
-	        distance = Math.sqrt(Math.pow(cbb.getCenter().getX()-line.getStartPoint().getX(), 2) + Math.pow(cbb.getCenter().getY()-line.getStartPoint().getY(), 2));
-	        return distance < cbb.getRadius();
-	    }
-
-	    double u = ((cbb.getCenter().getX() - line.getStartPoint().getX()) * (line.getEndPoint().getX() - line.getStartPoint().getX()) + (cbb.getCenter().getY() - line.getStartPoint().getY()) * (line.getEndPoint().getY() - line.getStartPoint().getY())) / (lineLength * lineLength);
-
-	    if (u < 0) {
-	        distance = Math.sqrt(Math.pow(cbb.getCenter().getX()-line.getStartPoint().getX(), 2) + Math.pow(cbb.getCenter().getY()-line.getStartPoint().getY(), 2));
-	    } else if (u > 1) {
-	        distance = Math.sqrt(Math.pow(cbb.getCenter().getX()-line.getEndPoint().getX(), 2) + Math.pow(cbb.getCenter().getY()-line.getEndPoint().getY(), 2));
-	    } else {
-	        double ix = line.getStartPoint().getX() + u * (line.getEndPoint().getX() - line.getStartPoint().getX());
-	        double iy = line.getStartPoint().getY() + u * (line.getEndPoint().getY() - line.getStartPoint().getY());
-	        distance = Math.sqrt(Math.pow(cbb.getCenter().getX()-ix, 2) + Math.pow(cbb.getCenter().getY()-iy, 2));
-	    }
-
-	    return distance < cbb.getRadius();
+	    return false;
 	}
 	
 	
-//	boolean testCircleToSegment(double circleCenterX, double circleCenterY, double circleRadius, double lineAX, double lineAY, double lineBX, double lineBY) {
-//	    double lineSize = Math.sqrt(Math.pow(lineAX-lineBX, 2) + Math.pow(lineAY-lineBY, 2));
-//	    double distance;
-//
-//	    if (lineSize == 0) {
-//	        distance = Math.sqrt(Math.pow(circleCenterX-lineAX, 2) + Math.pow(circleCenterY-lineAY, 2));
-//	        return distance < circleRadius;
-//	    }
-//
-//	    double u = ((circleCenterX - lineAX) * (lineBX - lineAX) + (circleCenterY - lineAY) * (lineBY - lineAY)) / (lineSize * lineSize);
-//
-//	    if (u < 0) {
-//	        distance = Math.sqrt(Math.pow(circleCenterX-lineAX, 2) + Math.pow(circleCenterY-lineAY, 2));
-//	    } else if (u > 1) {
-//	        distance = Math.sqrt(Math.pow(circleCenterX-lineBX, 2) + Math.pow(circleCenterY-lineBY, 2));
-//	    } else {
-//	        double ix = lineAX + u * (lineBX - lineAX);
-//	        double iy = lineAY + u * (lineBY - lineAY);
-//	        distance = Math.sqrt(Math.pow(circleCenterX-ix, 2) + Math.pow(circleCenterY-iy, 2));
-//	    }
-//
-//	    return distance < circleRadius;
-//	}		AffineTransform transform = rbb.getTransform();
-	//transform.translate(rbb.getWidth()/2, rbb.getHeight()/2);
-	
-	//P2d rectCenter = new P2d(transform.getTranslateX(), transform.getTranslateY());
-	
-//	public boolean testRectangleToCircle(RectBoundingBox rbb, CircleBoundingBox cbb) {
-//		
-//		AffineTransform transform = new AffineTransform();
-//		transform.setTransform(rbb.getTransform());
-//
-//		transform.translate(rbb.getWidth()/2, rbb.getHeight()/2);
-//	
-//		P2d rectCenter = new P2d(transform.getTranslateX(), transform.getTranslateY());
-//		double rotation = getRotationAngleInDegrees(rbb.getTransform());
-//		
-//		double tx, ty, cx, cy;
-//
-//	    if(rotation == 0.0) { // Higher Efficiency for Rectangles with 0 rotation.
-//	        tx = cbb.getCenter().getX();
-//	        ty = cbb.getCenter().getY();
-//
-//	        cx = rectCenter.getX();
-//	        cy = rectCenter.getY();
-//	    } else {
-//	        tx = Math.cos(rotation)*cbb.getCenter().getX() - Math.sin(rotation)*cbb.getCenter().getY();
-//	        ty = Math.cos(rotation)*cbb.getCenter().getY() + Math.sin(rotation)*cbb.getCenter().getX();
-//
-//	        cx = Math.cos(rotation)*rectCenter.getX() - Math.sin(rotation)*rectCenter.getY();
-//	        cy = Math.cos(rotation)*rectCenter.getY() + Math.sin(rotation)*rectCenter.getX();
-//	    }
-//	    
-//	    
-//	    return testRectangleToPoint(rbb, new P2d(cbb.getCenter().getX(), cbb.getCenter().getY())) || 
-//	    		testCircleToSegment(cbb, new Line(new P2d(cx-rbb.getWidth()/2, cy+rbb.getHeight()/2), new P2d(cx+rbb.getWidth()/2, cy+rbb.getHeight()/2))) ||
-//	    		testCircleToSegment(cbb, new Line(new P2d(cx+rbb.getWidth()/2, cy+rbb.getHeight()/2), new P2d(cx+rbb.getWidth()/2, cy-rbb.getHeight()/2))) ||
-//	    		testCircleToSegment(cbb, new Line(new P2d(cx+rbb.getWidth()/2, cy-rbb.getHeight()/2), new P2d(cx-rbb.getWidth()/2, cy-rbb.getHeight()/2))) ||
-//	    		testCircleToSegment(cbb, new Line(new P2d(cx-rbb.getWidth()/2, cy-rbb.getHeight()/2), new P2d(cx-rbb.getWidth()/2, cy+rbb.getHeight()/2)));
-//	}
-	 
-//	public boolean testRectangleToCircle(RectBoundingBox rbb, CircleBoundingBox cbb) {
-//		
-//		AffineTransform transform = new AffineTransform();
-//		transform.setTransform(rbb.getTransform());
-//
-//		transform.translate(rbb.getWidth()/2, rbb.getHeight()/2);
-//	
-//		P2d rectCenter = new P2d(transform.getTranslateX(), transform.getTranslateY());
-//		double rotation = getRotationAngleInDegrees(rbb.getTransform());
-//		
-//		double tx, ty, cx, cy;
-//
-//	    if(rotation == 0.0) { // Higher Efficiency for Rectangles with 0 rotation.
-//	        tx = cbb.getCenter().getX();
-//	        ty = cbb.getCenter().getY();
-//
-//	        cx = rectCenter.getX();
-//	        cy = rectCenter.getY();
-//	    } else {
-//	        tx = Math.cos(rotation)*cbb.getCenter().getX() - Math.sin(rotation)*cbb.getCenter().getY();
-//	        ty = Math.cos(rotation)*cbb.getCenter().getY() + Math.sin(rotation)*cbb.getCenter().getX();
-//
-//	        cx = Math.cos(rotation)*rectCenter.getX() - Math.sin(rotation)*rectCenter.getY();
-//	        cy = Math.cos(rotation)*rectCenter.getY() + Math.sin(rotation)*rectCenter.getX();
-//	    }
-//	    
-//	    
-//	    return false;
-//	}
-
 	public boolean testRectangleToRectangle(RectBoundingBox rbb1, RectBoundingBox rbb2) {
 
 		Rectangle2D rectangle1 = new Rectangle2D.Double(0,0, rbb1.getWidth(), rbb1.getHeight());
@@ -213,32 +68,6 @@ public class CollisionChecker {
 		return rotatedEllipse.intersects(rotatedRect.getBounds2D());
 		}
 
-	/** Rectangle To Circle. */
-//	boolean testRectangleToCircle(double rectWidth, double rectHeight, double rectRotation, double rectCenterX, double rectCenterY, double circleCenterX, double circleCenterY, double circleRadius) {
-//
-//		double tx, ty, cx, cy;
-//
-//	    if(rectRotation == 0) { // Higher Efficiency for Rectangles with 0 rotation.
-//	        tx = circleCenterX;
-//	        ty = circleCenterY;
-//
-//	        cx = rectCenterX;
-//	        cy = rectCenterY;
-//	    } else {
-//	        tx = Math.cos(rectRotation)*circleCenterX - Math.sin(rectRotation)*circleCenterY;
-//	        ty = Math.cos(rectRotation)*circleCenterY + Math.sin(rectRotation)*circleCenterX;
-//
-//	        cx = Math.cos(rectRotation)*rectCenterX - Math.sin(rectRotation)*rectCenterY;
-//	        cy = Math.cos(rectRotation)*rectCenterY + Math.sin(rectRotation)*rectCenterX;
-//	    }
-//
-//	    return testRectangleToPoint(rectWidth, rectHeight, rectRotation, rectCenterX, rectCenterY, circleCenterX, circleCenterY) ||
-//	            testCircleToSegment(tx, ty, circleRadius, cx-rectWidth/2, cy+rectHeight/2, cx+rectWidth/2, cy+rectHeight/2) ||
-//	            testCircleToSegment(tx, ty, circleRadius, cx+rectWidth/2, cy+rectHeight/2, cx+rectWidth/2, cy-rectHeight/2) ||
-//	            testCircleToSegment(tx, ty, circleRadius, cx+rectWidth/2, cy-rectHeight/2, cx-rectWidth/2, cy-rectHeight/2) ||
-//	            testCircleToSegment(tx, ty, circleRadius, cx-rectWidth/2, cy-rectHeight/2, cx-rectWidth/2, cy+rectHeight/2);
-//	}
-	
 
 	
 
