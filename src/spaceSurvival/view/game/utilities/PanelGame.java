@@ -5,11 +5,11 @@ import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.EngineImage;
-import spaceSurvival.model.gameObject.PickableGameObject;
 import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
 import spaceSurvival.model.gameObject.mainGameObject.ChaseEnemy;
 import spaceSurvival.model.gameObject.mainGameObject.FireEnemy;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
+import spaceSurvival.model.gameObject.takeableGameObject.TakeableGameObject;
 import spaceSurvival.model.gameObject.weapon.Bullet;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
 
@@ -84,7 +84,7 @@ public class PanelGame extends JPanel{
             g2d.setColor(Color.WHITE);
             g2d.drawRect(0, 0, (int)entity.getEngineImage().getSize().getWidth(), (int)entity.getEngineImage().getSize().getHeight());
 
-            if(!(entity instanceof SpaceShipSingleton || entity instanceof PickableGameObject || entity instanceof Bullet)) {
+            if(!(entity instanceof SpaceShipSingleton || entity instanceof TakeableGameObject || entity instanceof Bullet)) {
                 this.drawLifeBar(g2d, entity);
             }
 

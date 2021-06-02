@@ -16,7 +16,7 @@ import spaceSurvival.utilities.SoundPath;
 import spaceSurvival.model.World;
 
 
-public abstract class GameObject extends Thread{
+public abstract class GameObject extends Thread {
 	private EngineImage engineImage;
 	private P2d position;
 	private BoundingBox boundingBox;
@@ -37,11 +37,6 @@ public abstract class GameObject extends Thread{
 		this.transform = new AffineTransform();
 		this.animation = new ArrayList<>();
 		this.setPosition(position);
-	}
-
-	public void setAnimation(final List<String> animation){
-		this.animation = animation;
-		this.start();
 	}
 
 	public void run(){
@@ -163,6 +158,15 @@ public abstract class GameObject extends Thread{
 		return this.getEngineImage().getSize();
 	}
 
+	public List<String> getAnimation() {
+		return animation;
+	}
+	
+	public void setAnimation(final List<String> animation){
+		this.animation = animation;
+		this.start();
+	}
+	
 	@Override
 	public String toString() {
 		return "GameObject [engineImage=" + engineImage + ", position=" + position + ", boundingBox=" + boundingBox

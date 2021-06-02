@@ -4,6 +4,9 @@ import java.util.Optional;
 
 import spaceSurvival.model.gameObject.GameObjectUtils;
 import spaceSurvival.model.gameObject.MainGameObject;
+import spaceSurvival.model.gameObject.takeableGameObject.Ammo;
+import spaceSurvival.model.gameObject.takeableGameObject.Health;
+import spaceSurvival.model.gameObject.takeableGameObject.TakeableGameObject;
 import spaceSurvival.model.movement.ControlledMovement;
 import spaceSurvival.model.movement.Movement;
 import spaceSurvival.model.common.*;
@@ -42,9 +45,7 @@ public class SpaceShipSingleton extends MainGameObject {
                                final int impactDamage, final Optional<Weapon> weapon) {
 		super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, weapon);
     	this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage, this.getTransform()));
-
     	this.acceleration = new V2d(1,1);
-
     }
     
     /**
@@ -59,8 +60,18 @@ public class SpaceShipSingleton extends MainGameObject {
 		return this.acceleration;
 	}
 
-	public void setAcceleration(V2d v2d) {
-		this.acceleration = v2d;
+	public void setAcceleration(V2d acceleration) {
+		this.acceleration = acceleration;
+	}
+	
+	public void take(TakeableGameObject takeableGameObject) {
+		if (takeableGameObject instanceof Ammo) {
+			Ammo ammo = (Ammo) takeableGameObject;
+			this.getWeapon().get().setAmmoType(ammo.getType());
+		} else if (takeableGameObject instanceof Health) {
+			Health health = (Health) takeableGameObject;
+			// DA FARE
+		}
 	}
 
 }

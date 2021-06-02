@@ -27,10 +27,6 @@ public abstract class MovableGameObject extends GameObject {
 		this.movement = movement;
 	}
 	
-//	public void move() {
-//		this.movement.move(this);
-//	}
-	
 	public void move() {
 		this.movement.move(this);
 	}

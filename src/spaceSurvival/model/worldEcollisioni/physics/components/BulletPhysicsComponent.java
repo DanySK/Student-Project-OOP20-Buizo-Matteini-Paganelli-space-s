@@ -10,13 +10,13 @@ import spaceSurvival.model.worldEcollisioni.hitEvents.HitBorderEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitBulletEvent;
 import spaceSurvival.model.worldEcollisioni.physics.BoundaryCollision;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
-import spaceSurvival.model.gameObject.weapon.NormalBullet;
+import spaceSurvival.model.gameObject.weapon.Bullet;
 
-public class NormalBulletPhysicsComponent implements PhysicsComponent {
+public class BulletPhysicsComponent implements PhysicsComponent {
 
 	@Override
 	public void update(int dt, GameObject abstractObj, World w) {
-		NormalBullet normalBullet = (NormalBullet) abstractObj;
+		Bullet normalBullet = (Bullet) abstractObj;
 		RectBoundingBox boundingBox = w.getMainBBox();
 
 		Optional<BoundaryCollision> borderInfo = w.checkCollisionWithBoundaries(normalBullet.getPosition(), boundingBox);
