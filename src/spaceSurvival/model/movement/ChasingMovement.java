@@ -28,27 +28,78 @@ public class ChasingMovement implements Movement {
 //	else {
 //		yMultiplier = -1;
 //	}
+	int i = 0;
+	AffineTransform newTransform;
+	
 	@Override
 	public void move(MovableGameObject object) {
+		
 		
 		if(object instanceof ChaseEnemy) {
 			ChaseEnemy chase = (ChaseEnemy) object;
 			P2d target = chase.getTarget();
 			
+			//if(i == 0) {
 			
-			System.out.println(Math.toDegrees(Math.atan2(target.getY() - chase.getPosition().getY(), target.getX() - chase.getPosition().getX())));
-			double degRotation = Math.toDegrees(Math.atan2(target.getY() - chase.getPosition().getY(), target.getX() - chase.getPosition().getX()));
+			
+			//mi devo trovare la nuova differenza di angolo.
+				CollisionChecker c = new CollisionChecker();
+				double rightRotation = Math.toDegrees(Math.atan2(chase.getPosition().getY() - target.getY(), chase.getPosition().getX() - target.getX()));
+				double complementary = 180 - (rightRotation * -1);
+				double newAngle = 90 + complementary;
+				
+				AffineTransform oldTransform = chase.getTransform();
+				double oldAngle = c.getRotationAngleInDegrees(oldTransform);
+				
+				System.out.println("OLD ANGLEEEE ->"  + oldAngle);
+				System.out.println("NEW ANGLEEEE ->"  + newAngle);
+				System.out.println("DA RUOTAREEEEEE  ->"  + (oldAngle - newAngle));
+				
+				double diffAngle = (oldAngle - newAngle);
+				
+				
+				newTransform = new AffineTransform();				
+				newTransform.translate(chase.getPosition().getX(), chase.getPosition().getY());
+				
+				newTransform.rotate(Math.toRadians(newAngle), chase.getSize().getWidth() / 2, chase.getSize().getHeight() / 2);
+				newTransform.translate(chase.getVelocity().getX(), chase.getVelocity().getY());
+				chase.setTransform(newTransform);
+				
+				
+				//System.out.println(Math.toDegrees(Math.atan2(chase.getPosition().getY() - target.getY(), chase.getPosition().getX() - target.getX())));
+//			}
+//			i++;
+//			System.out.println(i);
+			
+//			CollisionChecker c = new CollisionChecker();
+//			double oldRotation = c.getRotationAngleInDegrees(chase.getTransform());
+//			System.out.println(Math.toDegrees(Math.atan2(chase.getPosition().getY() - target.getY(), chase.getPosition().getX() - target.getX())));
+//			System.out.println(oldRotation);
+			
 			//AffineTransform at = chase.getTransform();
 			//AffineTransform newTransform = new AffineTransform().;
-			AffineTransform newTransform = new AffineTransform();
-			CollisionChecker c = new CollisionChecker();
-			double oldRotation = c.getRotationAngleInDegrees(chase.getTransform());
+//			AffineTransform newTransform = new AffineTransform();
+//			AffineTransform oldTransform = chase.getTransform();
+//			
+//			
+//			CollisionChecker c = new CollisionChecker();
+//			double oldRotation = c.getRotationAngleInDegrees(oldTransform);
+//			double RightDegRotation = Math.toDegrees(Math.atan2(target.getY() - chase.getPosition().getY(), target.getX() - chase.getPosition().getX()));
+//			
+			//System.out.println(Math.toDegrees(Math.atan2(chase.getPosition().getY() - target.getY(), chase.getPosition().getX() - target.getX())));
+//			
+//			if(oldRotation != RightDegRotation) {
+//				newTransform.rotate(RightDegRotation, chase.getSize().getWidth() / 2, chase.getSize().getHeight() / 2);
+//				newTransform.translate(oldTransform.getTranslateX(), oldTransform.getTranslateY());
+//				newTransform.translate(chase.getVelocity().getX(), chase.getVelocity().getY());
+//				chase.setTransform(newTransform);
+//			}
 			
 			
 			
-			newTransform.rotate(oldRotation - degRotation, chase.getSize().getWidth() / 2, chase.getSize().getHeight() / 2);
-			newTransform.translate(chase.getVelocity().getX(), chase.getVelocity().getY());
-			chase.setTransform(newTransform);
+			//newTransform.rotate(RightDegRotation, chase.getSize().getWidth() / 2, chase.getSize().getHeight() / 2);
+			//newTransform.translate(chase.getVelocity().getX(), chase.getVelocity().getY());
+			//chase.setTransform(newTransform);
 			
 			
 		}	
