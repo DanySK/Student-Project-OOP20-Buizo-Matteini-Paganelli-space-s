@@ -8,25 +8,31 @@ public class Chronometer extends Thread{
     private int hours;
 
     private boolean play;
-    private boolean state;
 
     public Chronometer(){
         super();
         this.timer = "00:00:00";
         this.play = false;
-        this.state = false;
+        this.start();
+    }
+
+    public void restart(){
+        this.seconds = 0;
+        this.minutes = 0;
+        this.hours = 0;
+        this.timer = "00:00:00";
     }
 
     public String getTimer(){
         return this.timer;
     }
 
-    public void finishGame(){
-        this.state = false;
-    }
-
     public void play(){
         this.play = true;
+    }
+
+    public void stopTimer(){
+        this.play = false;
     }
 
     public boolean isPlay(){
@@ -69,19 +75,17 @@ public class Chronometer extends Thread{
 
     @Override
     public void run(){
-        this.state = true;
-
-        while(this.state){
-
-            if(this.play) {
-                this.incrSecond();
-                this.control60();
-                this.pause(1000);
+        while(true){
+                if (this.play) {
+                    this.incrSecond();
+                    this.control60();
+                    this.pause(1000);
+                }
+                this.timer = this.makeFormatTimer(
+                        this.controlFormat(this.hours),
+                        this.controlFormat(this.minutes),
+                        this.controlFormat(this.seconds), ":");
             }
-            this.timer = this.makeFormatTimer(
-                    this.controlFormat(this.hours),
-                    this.controlFormat(this.minutes),
-                    this.controlFormat(this.seconds), ":");
-        }
+
     }
 }

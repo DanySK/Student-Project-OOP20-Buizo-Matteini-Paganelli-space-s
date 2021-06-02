@@ -68,12 +68,12 @@ public class EngineGame implements EngineGUI {
         return this.hud.getTimer();
     }
 
-    public void initTimer() {
-        this.hud.initTimer();
-    }
-
     public void startTimer() {
         this.hud.startTimer();
+    }
+
+    public void stopTimer(){
+        this.hud.stopTimer();
     }
 
     public long getScore() {
@@ -136,6 +136,12 @@ public class EngineGame implements EngineGUI {
         return this.world;
     }
 
+    public void restartGame(){
+        this.resetLifeShip();
+        this.hud.restartHear();
+        this.hud.resetTimer();
+    }
+
     public Set<GameObject> getAllEntities() {
         return this.world.getAllEntities();
     }
@@ -155,4 +161,5 @@ public class EngineGame implements EngineGUI {
     public void moveShip() {
         this.world.moveShip();
     }
+
 }

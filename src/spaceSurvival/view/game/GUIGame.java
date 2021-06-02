@@ -22,6 +22,8 @@ public interface GUIGame extends GUI, GraphicsGUIGame {
 
     public void startPaint();
 
+    public void stopPaint();
+
     public void setWorld(final World world);
 
     public void repaintGameObjects();
@@ -39,4 +41,6 @@ public interface GUIGame extends GUI, GraphicsGUIGame {
     public void setLifeShip(final int lifeShip);
 
     public void setLifeBoss(final int lifeShip);
+
+
 }
