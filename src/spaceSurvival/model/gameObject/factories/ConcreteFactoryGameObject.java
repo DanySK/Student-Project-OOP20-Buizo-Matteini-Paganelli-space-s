@@ -15,8 +15,8 @@ import spaceSurvival.model.gameObject.mainGameObject.ChaseEnemy;
 import spaceSurvival.model.gameObject.mainGameObject.FireEnemy;
 import spaceSurvival.model.gameObject.takeableGameObject.Ammo;
 import spaceSurvival.model.gameObject.takeableGameObject.AmmoType;
-import spaceSurvival.model.gameObject.takeableGameObject.Health;
-import spaceSurvival.model.gameObject.takeableGameObject.HealthType;
+import spaceSurvival.model.gameObject.takeableGameObject.Heart;
+import spaceSurvival.model.gameObject.takeableGameObject.HeartType;
 import spaceSurvival.model.gameObject.takeableGameObject.TakeableGameObject;
 import spaceSurvival.model.common.*;
 import spaceSurvival.model.gameObject.weapon.Weapon;
@@ -28,6 +28,7 @@ import spaceSurvival.model.worldEcollisioni.physics.components.BossPhysicsCompon
 import spaceSurvival.model.worldEcollisioni.physics.components.ChaseEnemyPhysicsComponent;
 import spaceSurvival.model.worldEcollisioni.physics.components.FireEnemyPhysicsComponent;
 import spaceSurvival.model.worldEcollisioni.physics.components.PickablePhysicsComponent;
+import spaceSurvival.utilities.Score;
 import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.dimension.Screen;
 
@@ -54,7 +55,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 		Optional<Weapon> weapon = Optional.empty();
 		
 		return new Asteroid(engineImage, position, new CircleBoundingBox(), new AsteroidPhysicsComponent(),
-				velocity, movement, life, impactDamage, weapon, SkinAsteroid.LIST_ASTEROID);
+				velocity, movement, life, impactDamage, weapon, Score.ASTEROID, SkinAsteroid.LIST_ASTEROID);
 	}
 
 
@@ -69,7 +70,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 		Optional<Weapon> weapon = Optional.empty();
 		
 		return new ChaseEnemy(engineImage, position, new RectBoundingBox(), new ChaseEnemyPhysicsComponent(),
-				velocity, movement, life, impactDamage, weapon, SkinChase.LIST_POOH);
+				velocity, movement, life, impactDamage, weapon, Score.CHASE_ENEMY, SkinChase.LIST_POOH);
 	}
 
 
@@ -84,7 +85,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 		Optional<Weapon> weapon = Optional.empty();
 		
 		FireEnemy fireEnemy = new FireEnemy(engineImage, position, new RectBoundingBox(), new FireEnemyPhysicsComponent(),
-				velocity, movement, life, impactDamage, weapon);
+				velocity, movement, life, impactDamage, weapon, Score.FIRE_ENEMY);
 		fireEnemy.setWeapon(Optional.of(new Weapon(AmmoType.NORMAL, fireEnemy)));
 		return fireEnemy;
 	}
@@ -101,7 +102,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 		Optional<Weapon> weapon = Optional.of(new Weapon());
 		
 		Boss boss = new Boss(engineImage, position, new RectBoundingBox(), new BossPhysicsComponent(),
-				velocity, movement, life, impactDamage, weapon);
+				velocity, movement, life, impactDamage, weapon, Score.BOSS);
 		boss.setWeapon(Optional.of(new Weapon(AmmoType.NORMAL, boss)));
 		return boss;
 	}
@@ -116,12 +117,12 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 	}
 	
 	@Override
-	public TakeableGameObject createHealth() {
+	public TakeableGameObject createHeart() {
 		final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinPerk.FIRE0);
 		final P2d position = GameObjectUtils.generateRandomPoint();
 		
-		return new Health(engineImage, position, new CircleBoundingBox(), new PickablePhysicsComponent(),
-				SkinPerk.LIST_FIRE, HealthType.random());
+		return new Heart(engineImage, position, new CircleBoundingBox(), new PickablePhysicsComponent(),
+				SkinPerk.LIST_FIRE, HeartType.random());
 	}
 
 }

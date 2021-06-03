@@ -88,8 +88,8 @@ public class EngineGame implements EngineGUI {
         return this.world.getCountEnemies();
     }
 
-    public int getHeartShip() {
-        return this.hud.getHeartShip();
+    public int getLives() {
+        return this.hud.getLives();
     }
 
     public int getLifeShip() {
@@ -108,12 +108,16 @@ public class EngineGame implements EngineGUI {
         this.hud.incrRound();
     }
 
-    public void decrLifeShip(final int damage) {
+    public void decreaseLifeShip(final int damage) {
         this.world.getShip().decreaseLife(damage);
     }
 
-    public void decrHeart() {
-        this.hud.decrHeartShip();
+    public void decreaseLives() {
+        this.hud.decreaseLives();
+    }
+    
+    public void increaseLives(final int amount) {
+        this.hud.increaseLives(amount);
     }
 
     public boolean hasLostLife() {

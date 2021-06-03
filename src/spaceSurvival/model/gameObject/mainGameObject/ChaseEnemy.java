@@ -17,17 +17,17 @@ public class ChaseEnemy extends MainGameObject {
 	
 	public ChaseEnemy(final EngineImage engineImage, final P2d position, final BoundingBox bb,
                       final PhysicsComponent phys, final V2d velocity, final Movement movement, final int life,
-                      final int impactDamage, final Optional<Weapon> weapon) {
+                      final int impactDamage, final Optional<Weapon> weapon, final int score) {
 		
-		super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, weapon);
+		super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, weapon, score);
     	this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage, this.getTransform()));
 	}
 
 	public ChaseEnemy(final EngineImage engineImage, final P2d position, final BoundingBox bb,
 					  final PhysicsComponent phys, final V2d velocity, final Movement movement, final int life,
-					  final int impactDamage, final Optional<Weapon> weapon, final List<String> animation) {
+					  final int impactDamage, final Optional<Weapon> weapon, final int score, final List<String> animation) {
 
-		super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, weapon);
+		super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, weapon, score);
 		this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage, this.getTransform()));
 		this.setAnimation(animation);
 	}

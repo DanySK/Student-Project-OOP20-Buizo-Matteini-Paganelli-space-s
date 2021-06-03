@@ -1,28 +1,26 @@
 package spaceSurvival.model.worldEcollisioni.hitEvents;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.MainGameObject;
-import spaceSurvival.model.gameObject.MovableGameObject;
+import spaceSurvival.model.gameObject.weapon.Bullet;
 import spaceSurvival.model.worldEcollisioni.WorldEvent;
 
 public class HitBulletEvent implements WorldEvent {
 
-	private GameObject bullet;
-	private GameObject gameObject;
+	private Bullet bullet;
+	private MainGameObject collidedObject;
 	
 	
-	public HitBulletEvent(MovableGameObject obj, MainGameObject gameObject){
-		this.bullet = obj;
-		this.gameObject = gameObject;
+	public HitBulletEvent(Bullet bullet, MainGameObject collidedObject){
+		this.bullet = bullet;
+		this.collidedObject = collidedObject;
 	}
 	
-	public List<GameObject> getCollisionObj(){
-		List<GameObject> list = new ArrayList<>();
-		list.add(this.bullet);
-		list.add(this.gameObject);
-		return list;
+	public MainGameObject getCollidedObject() {
+		return this.collidedObject;
 	}
+	
+	public Bullet getBullet() {
+		return this.bullet;
+	}
+
 }
