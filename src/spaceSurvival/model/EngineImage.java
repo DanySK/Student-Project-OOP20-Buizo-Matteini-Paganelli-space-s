@@ -1,5 +1,6 @@
 package spaceSurvival.model;
 
+import spaceSurvival.utilities.pathImage.Background;
 import spaceSurvival.view.utilities.JImage;
 
 import javax.imageio.ImageIO;
@@ -33,6 +34,8 @@ public class EngineImage {
         this(path);
         this.setScale(scaleOf, respectTo);
     }
+
+
 
 
     public String getPath() {
@@ -126,6 +129,12 @@ public class EngineImage {
     public static Image getImageFromEngine(final EngineImage image){
         JImage icon = new JImage(image.getPath(), image.getSize());
         return icon.getImage();
+    }
+
+    public static EngineImage getTransparentEngineImage(final EngineImage engineImage){
+        final EngineImage transparent = engineImage;
+        transparent.setPath(Background.TRANSPARENT);
+        return transparent;
     }
 
 }

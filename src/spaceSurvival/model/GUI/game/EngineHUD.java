@@ -59,19 +59,23 @@ public class EngineHUD {
         return this.lives == DEAD;
     }
 
-    public boolean isStartTimer(){
-        return this.chronometer.isPlay();
-    }
-
     public String getTimer(){
         return this.chronometer.getTimer();
     }
 
-    public void initTimer(){
-        this.chronometer.start();
-    }
-
     public void startTimer(){
         this.chronometer.play();
+    }
+
+    public void stopTimer(){
+        this.chronometer.stopTimer();
+    }
+
+    public void restartHear(){
+        this.heartShip = EngineHUD.INIT_HEART;
+    }
+
+    public void resetTimer(){
+        this.chronometer.restart();
     }
 }

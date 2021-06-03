@@ -40,6 +40,7 @@ public class BulletPhysicsComponent implements PhysicsComponent {
 			w.notifyWorldEvent(new HitBulletEvent(bullet, chaseEnemy.get()));
 			System.out.println("Preso al volo un chaseEnemy Fratellì");
 		}
+
 		
 		Optional<MainGameObject> fireEnemy = w.checkCollisionWithFireEnemies(objectBoundingBox);
 		//collisioni con chaseEnemy

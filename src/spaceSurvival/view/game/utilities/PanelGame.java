@@ -4,10 +4,14 @@ import spaceSurvival.model.World;
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.MainGameObject;
+import spaceSurvival.model.gameObject.enemy.ChaseEnemy;
+import spaceSurvival.model.gameObject.enemy.FireEnemy;
 import spaceSurvival.model.EngineImage;
+
 import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
-import spaceSurvival.model.gameObject.mainGameObject.ChaseEnemy;
-import spaceSurvival.model.gameObject.mainGameObject.FireEnemy;
+
+
+
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 import spaceSurvival.model.gameObject.takeableGameObject.TakeableGameObject;
 import spaceSurvival.model.gameObject.weapon.Bullet;
@@ -30,15 +34,22 @@ public class PanelGame extends JPanel{
     private final Thread thirdDrawer;
     private final Thread fourthDrawer;
 
+    private boolean isDraw;
+
     public PanelGame() {
         super(); {{ setOpaque(false); }}
         this.gameObject = new HashMap<>();
         this.listBullet = new ArrayList<>();
+        this.isDraw = false;
 
         this.firstDrawer = new Thread(PanelGame.this::runSecondDrawer);
         this.secondDrawer = new Thread(PanelGame.this::runSecondDrawer);
         this.thirdDrawer = new Thread(PanelGame.this::runSecondDrawer);
         this.fourthDrawer = new Thread(PanelGame.this::runSecondDrawer);
+        this.firstDrawer.start();
+        this.secondDrawer.start();
+        this.thirdDrawer.start();
+        this.fourthDrawer.start();
     }
 
     public void setWorld(final World world){
@@ -46,10 +57,12 @@ public class PanelGame extends JPanel{
     }
 
     public void startPaint(){
-        this.firstDrawer.start();
-        this.secondDrawer.start();
-        this.thirdDrawer.start();
-        this.fourthDrawer.start();
+        this.isDraw = true;
+
+    }
+
+    public void stopDrawer(){
+        this.isDraw = true;
     }
 
     @Override
@@ -79,7 +92,7 @@ public class PanelGame extends JPanel{
         	}
 
             g2d.drawImage(EngineImage.getImageFromEngine(entity.getEngineImage()), 0,0, null);
-
+            g2d.drawImage(EngineImage.getImageFromEngine(entity.getEngineEffect()), 0,0, null);
 
             g2d.setColor(Color.WHITE);
             g2d.drawRect(0, 0, (int)entity.getEngineImage().getSize().getWidth(), (int)entity.getEngineImage().getSize().getHeight());
@@ -115,8 +128,12 @@ public class PanelGame extends JPanel{
 
     public void runSecondDrawer(){
         while (true){
-            super.repaint();
-            this.repaint();
+
+            if(this.isDraw){
+                super.repaint();
+                this.repaint();
+            }
+
 
             try {
                 Thread.sleep(5);

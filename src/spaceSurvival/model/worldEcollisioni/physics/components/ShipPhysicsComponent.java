@@ -28,6 +28,46 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 		if (binfo.isPresent()) {
 			BoundaryCollision info = binfo.get();
 			w.notifyWorldEvent(new HitBorderEvent(info.getWhere(), info.getEdge(), ship));
+//=======
+//			
+//			switch (info.getEdge()) {
+//			case TOP: 
+//				//EFFETTO SPACESHIP
+//				AffineTransform newTransTop = new AffineTransform(ship.getTransform().getScaleX(), 
+//						ship.getTransform().getShearY(), ship.getTransform().getShearX(), 
+//						ship.getTransform().getScaleY(), ship.getTransform().getTranslateX(), 
+//						Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y - 100);
+//				
+//				w.notifyWorldEvent(new HitBorderEvent(info.getWhere(), ship));
+//				ship.setTransform(newTransTop);
+//				break;
+//			case BOTTOM:		
+//				AffineTransform newTransBottom = new AffineTransform(ship.getTransform().getScaleX(), 
+//						ship.getTransform().getShearY(), ship.getTransform().getShearX(), 
+//						ship.getTransform().getScaleY(), ship.getTransform().getTranslateX(), 
+//						100);
+//			 			
+//				w.notifyWorldEvent(new HitBorderEvent(info.getWhere(), ship));
+//				ship.setTransform(newTransBottom);
+//				break;
+//			case LEFT: 			
+//				AffineTransform newTransLeft = new AffineTransform(ship.getTransform().getScaleX(), 
+//						ship.getTransform().getShearY(), ship.getTransform().getShearX(), 
+//						ship.getTransform().getScaleY(), Screen.WIDTH_FULL_SCREEN * SystemVariables.SCALE_X - 100, 
+//						ship.getTransform().getTranslateY());
+//			 			
+//				ship.setTransform(newTransLeft);
+//				break;
+//			case RIGHT: 
+//				AffineTransform newTransRight = new AffineTransform(ship.getTransform().getScaleX(), 
+//						ship.getTransform().getShearY(), ship.getTransform().getShearX(), 
+//						ship.getTransform().getScaleY(), 100, 
+//						ship.getTransform().getTranslateY());
+//			 			
+//				ship.setTransform(newTransRight);
+//				break;
+//			}
+//>>>>>>> paganelli
 		}
 		
 		final Optional<MainGameObject> asteroid = w.checkCollisionWithAsteroids(shipBoundingBox);

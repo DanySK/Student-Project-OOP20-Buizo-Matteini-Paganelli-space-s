@@ -41,7 +41,7 @@ public class GUIDeadConcrete extends AbstractGUI implements GUIDead {
     public void setBtnActions(final ActionGUI mainAction, final List<ActionGUI> actions) {
         for(int i = 0; i < actions.size(); i++){
             this.links.get(i).setActionCurrent(mainAction);
-            this.links.get(i).setActionCurrent(actions.get(i));
+            this.links.get(i).setActionNext(actions.get(i));
         }
     }
 
@@ -56,15 +56,22 @@ public class GUIDeadConcrete extends AbstractGUI implements GUIDead {
         this.lbTitleDead.setText(titleGUI);
     }
 
-
-    public JLabel getLbTitleDead() {
-        return this.lbTitleDead;
-    }
-
     @Override
     public void setForegroundTitle(final Color color) {
         this.lbTitleDead.setForeground(color);
     }
 
+    @Override
+    public void setFontGUI(final Font font) {
+        this.links.forEach(link -> link.setFont(font));
+    }
 
+    @Override
+    public void setForegroundGUI(final Color color) {
+        this.links.forEach(link -> link.setForeground(color));
+    }
+
+    public JLabel getLbTitleDead() {
+        return this.lbTitleDead;
+    }
 }

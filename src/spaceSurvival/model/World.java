@@ -7,15 +7,16 @@ import java.util.Optional;
 import java.util.Set;
 
 
+import spaceSurvival.model.GUI.settings.SkinSpaceShip;
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.gameObject.MovableGameObject;
+import spaceSurvival.model.gameObject.enemy.Boss;
+import spaceSurvival.model.gameObject.enemy.ChaseEnemy;
+import spaceSurvival.model.gameObject.enemy.FireEnemy;
 import spaceSurvival.model.gameObject.factories.AbstractFactoryGameObject;
 import spaceSurvival.model.gameObject.factories.ConcreteFactoryGameObject;
 import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
-import spaceSurvival.model.gameObject.mainGameObject.Boss;
-import spaceSurvival.model.gameObject.mainGameObject.ChaseEnemy;
-import spaceSurvival.model.gameObject.mainGameObject.FireEnemy;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 import spaceSurvival.model.gameObject.takeableGameObject.Ammo;
 import spaceSurvival.model.gameObject.takeableGameObject.AmmoType;
@@ -55,9 +56,6 @@ public class World {
 		this.ship = SpaceShipSingleton.getSpaceShip();
 		this.ship.setWeapon(Optional.of(new Weapon(AmmoType.NORMAL, ship)));
 		
-		System.out.println(this.ship.getWeapon());
-		System.out.println(this.ship.getWeapon().get());
-		
 		this.mainBBox = mainBBox;
 
 		for (int i = 0; i < 1; i++) {
@@ -71,10 +69,6 @@ public class World {
 	public World(final Rectangle rectangle) {
 		this.ship = SpaceShipSingleton.getSpaceShip();
 		this.ship.setWeapon(Optional.of(new Weapon(AmmoType.NORMAL, ship)));
-		
-		System.out.println(this.ship.getWeapon());
-		System.out.println(this.ship.getWeapon().get());
-		
 		this.mainBBox = new RectBoundingBox(rectangle);
 
 		for (int i = 0; i < 1; i++) {
@@ -97,21 +91,9 @@ public class World {
 		return this.ship;
 	}
 
-	public void setSkin(final String path) {
-		this.ship.getEngineImage().setPath(path);
-
-		if (path.contentEquals(SkinShip.SPECIAL0)) {
-			this.ship.setAnimation(SkinShip.LIST_SHIP1);
-		} else if (path.contentEquals(SkinShip.STANDARD0)) {
-			this.ship.setAnimation(SkinShip.LIST_SHIP2);
-		} else if (path.contentEquals(SkinShip.DELUXE0)) {
-			this.ship.setAnimation(SkinShip.LIST_SHIP3);
-		} else if (path.contentEquals(SkinShip.NORMAL0)) {
-			this.ship.setAnimation(SkinShip.LIST_SHIP4);
-		} else if (path.contentEquals(SkinShip.ATOMIC0)) {
-			this.ship.setAnimation(SkinShip.LIST_SHIP5);
-		}
-
+	public void setSkin(final SkinSpaceShip skin) {
+		this.ship.getEngineImage().setPath(skin.getSkin());
+		this.ship.setAnimation(skin.getAnimation());
 	}
 
 	public void moveShip() {
@@ -264,6 +246,7 @@ public class World {
 		return Optional.empty();
 	}
 	
+
 	public Optional<MainGameObject> checkCollisionWithFireEnemies(final RectBoundingBox rectBoundingBox) {
 	//double radius = box.getWidth();
 		for (MainGameObject obj: fireEnemies) {

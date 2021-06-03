@@ -5,14 +5,14 @@ import java.util.Optional;
 import spaceSurvival.model.gameObject.Effect;
 import spaceSurvival.model.gameObject.GameObjectUtils;
 import spaceSurvival.model.gameObject.MainGameObject;
+import spaceSurvival.model.gameObject.enemy.ChaseEnemy;
+import spaceSurvival.model.gameObject.enemy.FireEnemy;
 import spaceSurvival.model.movement.ChasingMovement;
 import spaceSurvival.model.movement.DistantMovement;
 import spaceSurvival.model.movement.FixedMovement;
 import spaceSurvival.model.movement.Movement;
 import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
-import spaceSurvival.model.gameObject.mainGameObject.Boss;
-import spaceSurvival.model.gameObject.mainGameObject.ChaseEnemy;
-import spaceSurvival.model.gameObject.mainGameObject.FireEnemy;
+import spaceSurvival.model.gameObject.mainGameObject.enemy.Boss;
 import spaceSurvival.model.gameObject.takeableGameObject.Ammo;
 import spaceSurvival.model.gameObject.takeableGameObject.AmmoType;
 import spaceSurvival.model.gameObject.takeableGameObject.Heart;
@@ -70,7 +70,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 		Optional<Weapon> weapon = Optional.empty();
 		
 		return new ChaseEnemy(engineImage, position, new RectBoundingBox(), new ChaseEnemyPhysicsComponent(),
-				velocity, movement, life, impactDamage, weapon, Score.CHASE_ENEMY, SkinChase.LIST_POOH);
+				velocity, movement, life, impactDamage, weapon, Score.CHASE_ENEMY, SkinChase.LIST_POOH, Screen.POINT_CENTER_FULLSCREEN);
 	}
 
 
@@ -85,7 +85,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 		Optional<Weapon> weapon = Optional.empty();
 		
 		FireEnemy fireEnemy = new FireEnemy(engineImage, position, new RectBoundingBox(), new FireEnemyPhysicsComponent(),
-				velocity, movement, life, impactDamage, weapon, Score.FIRE_ENEMY);
+				velocity, movement, life, impactDamage, weapon, Score.FIRE_ENEMY, Screen.POINT_CENTER_FULLSCREEN);
 		fireEnemy.setWeapon(Optional.of(new Weapon(AmmoType.NORMAL, fireEnemy)));
 		return fireEnemy;
 	}
@@ -102,7 +102,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 		Optional<Weapon> weapon = Optional.of(new Weapon());
 		
 		Boss boss = new Boss(engineImage, position, new RectBoundingBox(), new BossPhysicsComponent(),
-				velocity, movement, life, impactDamage, weapon, Score.BOSS);
+				velocity, movement, life, impactDamage, weapon, Score.BOSS, Screen.POINT_CENTER_FULLSCREEN);
 		boss.setWeapon(Optional.of(new Weapon(AmmoType.NORMAL, boss)));
 		return boss;
 	}

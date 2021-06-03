@@ -4,6 +4,7 @@ import spaceSurvival.controller.GUI.command.SwitchGUI;
 import spaceSurvival.model.GUI.EngineGUI;
 import spaceSurvival.model.GUI.Visibility;
 import spaceSurvival.model.GUI.settings.EngineSettings;
+import spaceSurvival.model.GUI.settings.SkinSpaceShip;
 import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.view.GUI;
 import spaceSurvival.view.settings.GUISettings;
@@ -49,7 +50,7 @@ public class CtrlSettings implements ControllerGUI {
     }
 
     private void assignSettings() {
-        this.gui.setSkinSpaceShip(this.engine.getSkinSpaceShip());
+        this.gui.setSkinSpaceShip(this.engine.getEngineSkinShip());
         this.gui.getBtnUnitSkin().forEach(btn -> btn.addActionListener(this.changeSkin()));
         this.gui.getRadioBtnUnitDifficult().forEach(radio -> radio.addActionListener(this.changeDifficult()));
         this.gui.setDifficult(this.engine.getDifficultActivate());
@@ -59,7 +60,7 @@ public class CtrlSettings implements ControllerGUI {
         return e -> {
             final JButton btn = (JButton)e.getSource();
             CtrlSettings.this.changeSkinWithDir(btn.getText());
-            CtrlSettings.this.gui.setSkinSpaceShip(CtrlSettings.this.engine.getSkinSpaceShip());
+            CtrlSettings.this.gui.setSkinSpaceShip(CtrlSettings.this.engine.getEngineSkinShip());
         };
     }
 
@@ -78,8 +79,8 @@ public class CtrlSettings implements ControllerGUI {
         }
     }
 
-    public String getCurrentSkin(){
-        return this.engine.getSkinSpaceShip().getPath();
+    public SkinSpaceShip getCurrentSkin(){
+        return this.engine.getSkinShip();
     }
 
     @Override

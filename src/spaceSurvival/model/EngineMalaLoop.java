@@ -7,10 +7,11 @@ import spaceSurvival.model.gameObject.Effect;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.gameObject.MovableGameObject;
 import spaceSurvival.model.gameObject.Status;
+import spaceSurvival.model.gameObject.enemy.Boss;
+import spaceSurvival.model.gameObject.enemy.ChaseEnemy;
+import spaceSurvival.model.gameObject.enemy.Enemy;
+import spaceSurvival.model.gameObject.enemy.FireEnemy;
 import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
-import spaceSurvival.model.gameObject.mainGameObject.Boss;
-import spaceSurvival.model.gameObject.mainGameObject.ChaseEnemy;
-import spaceSurvival.model.gameObject.mainGameObject.FireEnemy;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 import spaceSurvival.model.gameObject.takeableGameObject.Ammo;
 import spaceSurvival.model.gameObject.takeableGameObject.AmmoType;
@@ -63,7 +64,6 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     }
 
     public void initGame() {
-        this.controlGUI.initTimer();
         this.controlGUI.assignSoundLoop();
 
         this.controlGame.assignMovementListenerInShip();
@@ -84,31 +84,41 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
 
     public void run() {
         long lastTime = System.currentTimeMillis();
-        while (!this.controlGame.isGameOver()) {
-            long current = System.currentTimeMillis();
-            int elapsed = (int)(current - lastTime);
+        long current = 0L;
+        while (true) {
+            if(!this.controlGame.isGameOver()){
+                current = System.currentTimeMillis();
+                int elapsed = (int)(current - lastTime);
 
-            if(this.controlGUI.isInGame()){
-                if(!this.controlGUI.isInPause()){
-                    //processInput();
-                    renderMovement();
-                    //render();
 
+                if(this.controlGUI.isInGame()){
+                    if(!this.controlGUI.isInPause()){
+                        //processInput();
+                        renderMovement();
+                        //render();
+
+                        waitForNextFrame(current);
+                        lastTime = current;
+
+                        updateGame(elapsed);
+                    }
+                }
+
+                if(this.controlGUI.isInGame() || !this.controlGUI.isInPause()) {
                     waitForNextFrame(current);
                     lastTime = current;
-
-                    //this.controlGame.controlDecrLife(1);
-                    updateGame(elapsed);
                 }
+            } else {
+                renderGameOver();
+
+                while(this.controlGUI.isInGameOver()){
+                    waitForNextFrame(current);
+                    lastTime = current;
+                }
+
             }
 
-            if(this.controlGUI.isInGame() || !this.controlGUI.isInPause()) {
-                waitForNextFrame(current);
-                lastTime = current;
-            }
         }
-        System.out.println("Sono fuori dal loop");
-        renderGameOver();
     }
     
 	protected void waitForNextFrame(final long current) {
@@ -246,6 +256,63 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
 //				} else if (heartType == HeartType.LIFE_UP) {
 //					this.controlGame.increaseLives(heartType.getAmount());
 //				}
+//=======
+//        	if (ev instanceof HitAsteroidEvent){
+//            	HitAsteroidEvent asteroidEvent = (HitAsteroidEvent) ev;
+//            	final Asteroid asteroidCollided = (Asteroid) asteroidEvent.getCollisionObj();
+//            	if (!asteroidCollided.isInvincible()) {
+//            		asteroidCollided.decreaseLife(ship.getImpactDamage());
+//            		if (isGameObjectDead(asteroidCollided)) {
+//            			world.removeAsteroid(asteroidCollided);
+//            			playEffect(SoundPath.ASTEROID_EXPL);
+//                    	this.controlGame.incrScore(Score.ASTEROID);
+//					}
+//            	}
+//                this.controlGame.controlDecrLife(asteroidCollided.getImpactDamage());
+//            } else if (ev instanceof HitChaseEnemyEvent) {
+//            	HitChaseEnemyEvent chaseEnemyEvent = (HitChaseEnemyEvent) ev;
+//            	final ChaseEnemy chaseEnemyCollided = (ChaseEnemy) chaseEnemyEvent.getCollisionObj();
+//            	chaseEnemyCollided.decreaseLife(ship.getImpactDamage());
+//            	System.out.println(ship.getImpactDamage());
+//            	if (isGameObjectDead(chaseEnemyCollided)) {
+//            		System.out.println("ChaseEnemy morto e rimosso");
+//                	world.removeChaseEnemy(chaseEnemyCollided);
+//                	playEffect(SoundPath.ENEMY_EXPL);
+//                	this.controlGame.incrScore(Score.CHASE_ENEMY);
+//                	this.controlGame.updateRoundState();
+//				} 
+//                this.controlGame.controlDecrLife(chaseEnemyCollided.getImpactDamage());
+//                //gameState.decreaseLives();
+//            } else if (ev instanceof HitFireEnemyEvent) {
+//            	HitFireEnemyEvent fireEnemyEvent = (HitFireEnemyEvent) ev;
+//            	final FireEnemy fireEnemyCollided = (FireEnemy) fireEnemyEvent.getCollisionObj();
+//            	fireEnemyCollided.decreaseLife(ship.getImpactDamage());
+//            	if (isGameObjectDead(fireEnemyCollided)) {
+//            		System.out.println("FireEnemy morto e rimosso");
+//                	world.removeFireEnemy(fireEnemyCollided);
+//                	this.controlGame.incrScore(Score.FIRE_ENEMY);
+//                	//this.controlGame.updateRoundState();
+//				}
+//                this.controlGame.controlDecrLife(fireEnemyCollided.getImpactDamage());
+//                //gameState.decreaseLives();
+//            } else if (ev instanceof HitBossEvent) {
+//            	HitBossEvent bossEvent = (HitBossEvent) ev;
+//            	final Boss bossCollided = (Boss) bossEvent.getCollisionObj();
+//            	bossCollided.decreaseLife(ship.getImpactDamage());
+//            	if (isGameObjectDead(bossCollided)) {
+//                	world.setBoss(Optional.empty());
+//                    this.controlGame.incrScore(Score.BOSS);
+//                	this.controlGame.updateRoundState();
+////                    playEffect(SoundPath.BOSS_EXPL);
+////                	BOSS_EXPL	("sounds/enemyExpl.wav"),
+//				}
+//                this.controlGame.controlDecrLife(bossCollided.getImpactDamage());
+//                //gameState.decreaseLives();
+//            } else if (ev instanceof HitPickableEvent) {
+//            	playEffect(SoundPath.PERK);
+//            	//playEffect(SoundPath.);
+//            	HitPickableEvent pickableEvent = (HitPickableEvent) ev;
+//>>>>>>> paganelli
 
                 //Effect effect = pickableEvent.getCollisionObj().getEffectType();
                 //world.getShip().setStatus(effect.getStatus());
@@ -386,6 +453,13 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     	this.controlGame.getWorld().getMovableEntities().forEach(entity -> {
     		entity.move();
     	});
+
+    	this.controlGame.getWorld().getAllEnemies().forEach(enemy -> {
+
+    	    //DA CAMBIARE MAIN IN ENEMY IN GET ALL ENEMIES
+            Enemy enemy2 = (Enemy) enemy;
+            enemy2.setTarget(this.controlGame.getShip().getPosition());
+        });
     	
 //    	SpaceShipSingleton ship = this.controlGame.getShip();
 //    	if (ship.getWeapon().isPresent()) {
@@ -396,7 +470,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     }
 
     protected void renderGameOver() {
-        this.controlGUI.EndGame();
+        this.controlGUI.endGame();
     	//playEffect(SoundPath.GAME_OVER);
 //        view.renderGameOver();
     }
