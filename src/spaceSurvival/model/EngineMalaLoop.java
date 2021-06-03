@@ -285,6 +285,8 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     	});
 
     	this.controlGame.getWorld().getAllEnemies().forEach(enemy -> {
+
+    	    //DA CAMBIARE MAIN IN ENEMY IN GET ALL ENEMIES
             Enemy enemy2 = (Enemy) enemy;
             enemy2.setTarget(this.controlGame.getShip().getPosition());
         });
