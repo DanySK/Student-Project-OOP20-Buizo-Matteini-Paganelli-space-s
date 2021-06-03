@@ -8,9 +8,9 @@ public enum Status {
 	NORMAL(List.of()),
 	INVINCIBLE(AnimationEffect.LIST_INVINCIBLE),
 	ON_FIRE(AnimationEffect.LIST_BURN),
-	FROZEN(List.of()),
+	FROZEN(AnimationEffect.LIST_ICE),
 	PARALIZED(List.of()),
-	HEALED(List.of()),
+	HEALED(AnimationEffect.LIST_LIFE_UP),
 	LIVES_INCREASED(List.of());
 
 	private final List<String> animation;

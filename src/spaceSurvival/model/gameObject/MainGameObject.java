@@ -30,7 +30,7 @@ public abstract class MainGameObject extends MovableGameObject {
 		this.statusThread = new Thread(MainGameObject.this::statusLoop);
 		this.statusThread.start();
 
-		this.setStatus(Status.INVINCIBLE);
+		this.setStatus(Status.HEALED);
 	}
 
     public int getLife() {
