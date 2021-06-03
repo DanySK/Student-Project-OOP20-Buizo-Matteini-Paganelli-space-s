@@ -2,7 +2,6 @@ package spaceSurvival.model.gameObject.factories;
 
 import java.util.Optional;
 
-import spaceSurvival.model.gameObject.Effect;
 import spaceSurvival.model.gameObject.GameObjectUtils;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.gameObject.enemy.ChaseEnemy;
@@ -12,7 +11,7 @@ import spaceSurvival.model.movement.DistantMovement;
 import spaceSurvival.model.movement.FixedMovement;
 import spaceSurvival.model.movement.Movement;
 import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
-import spaceSurvival.model.gameObject.mainGameObject.enemy.Boss;
+import spaceSurvival.model.gameObject.enemy.Boss;
 import spaceSurvival.model.gameObject.takeableGameObject.Ammo;
 import spaceSurvival.model.gameObject.takeableGameObject.AmmoType;
 import spaceSurvival.model.gameObject.takeableGameObject.Heart;

@@ -71,8 +71,8 @@ public class EngineHUD {
         this.chronometer.stopTimer();
     }
 
-    public void restartHear(){
-        this.heartShip = EngineHUD.INIT_HEART;
+    public void resetLives(){
+        this.lives = EngineHUD.INIT_HEART;
     }
 
     public void resetTimer(){

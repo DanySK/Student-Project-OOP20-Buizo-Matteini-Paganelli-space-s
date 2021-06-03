@@ -142,7 +142,7 @@ public class EngineGame implements EngineGUI {
 
     public void restartGame(){
         this.resetLifeShip();
-        this.hud.restartHear();
+        this.hud.resetLives();
         this.hud.resetTimer();
     }
 
