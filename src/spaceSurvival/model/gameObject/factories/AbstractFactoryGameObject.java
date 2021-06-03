@@ -10,5 +10,5 @@ public abstract class AbstractFactoryGameObject {
 	public abstract MainGameObject createFireEnemy();
 	public abstract MainGameObject createBoss();
 	public abstract TakeableGameObject createAmmo();
-	public abstract TakeableGameObject createHealth();
+	public abstract TakeableGameObject createHeart();
 }

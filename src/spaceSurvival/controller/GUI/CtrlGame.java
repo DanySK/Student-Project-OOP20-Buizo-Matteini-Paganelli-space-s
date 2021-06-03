@@ -16,7 +16,7 @@ import spaceSurvival.view.game.GUIGame;
 import java.awt.event.KeyListener;
 import java.awt.geom.AffineTransform;
 
-public class CtrlGame implements ControllerGUI{
+public class CtrlGame implements ControllerGUI {
     private final EngineGame engine;
     private final GUIGame gui;
 
@@ -89,7 +89,7 @@ public class CtrlGame implements ControllerGUI{
         this.gui.setScore(this.engine.getScore());
         this.gui.setRound(this.engine.getRound());
         this.gui.setNEnemies(this.engine.getCountEnemies());
-        this.gui.setNHeart(this.engine.getHeartShip());
+        this.gui.setNHeart(this.engine.getLives());
         this.gui.setLifeShip(this.engine.getLifeShip());
         this.gui.setLifeBoss(this.engine.getLifeBoss());
     }
@@ -154,22 +154,30 @@ public class CtrlGame implements ControllerGUI{
         this.engine.restartGame();
     }
 
-    public void controlDecrLife(final int damage) {
+    public void decreaseLife(final int damage) {
         final int effectDamage = this.damageOverFlow(damage) ? this.engine.getLifeShip() : damage;
 
-        if(this.damageOverFlow(damage)) {
-            if(this.hasLivesShip()){
+        if (this.damageOverFlow(damage)) {
+            if (this.hasLivesShip()) {
                 this.engine.resetLifeShip();
             }
-            this.engine.decrHeart();
+            this.engine.decreaseLives();
         }
 
-        this.engine.decrLifeShip(effectDamage);
+        this.engine.decreaseLifeShip(effectDamage);
 
-        if(this.hasLivesShip() && this.engine.getLifeShip() == 0) {
-            this.engine.decrHeart();
+        if (this.hasLivesShip() && this.engine.getLifeShip() == 0) {
+            this.engine.decreaseLives();
             this.engine.resetLifeShip();
         }
+    }
+    
+    public void increaseLife(final int healAmount) {
+        this.getShip().increaseLife(healAmount);
+    }
+    
+    public void increaseLives(final int amount) {
+        this.engine.increaseLives(amount);
     }
 
     private boolean damageOverFlow(final int damage) {
@@ -177,7 +185,7 @@ public class CtrlGame implements ControllerGUI{
     }
 
     private boolean hasLivesShip() {
-        return this.engine.getHeartShip() > 1;
+        return this.engine.getLives() > 1;
     }
 
     public void startPaint() {
@@ -206,7 +214,12 @@ public class CtrlGame implements ControllerGUI{
         this.engine.getAllEntities().forEach(objGame -> CtrlGame.this.gui.addGameObject(objGame, objGame.getTransform()));
     }
 
-    public void moveShip(){
-        this.engine.moveShip();
+    public void addGameObject(final GameObject gameObject, final AffineTransform transform){
+        this.gui.addGameObject(gameObject, transform);
     }
+
+//    public void moveShip(){
+//        this.engine.moveShip();
+//    }
+
 }

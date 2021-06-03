@@ -11,7 +11,6 @@ import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 import spaceSurvival.utilities.pathImage.Skin.SkinShip;
-import spaceSurvival.view.game.utilities.PanelGame;
 
 public abstract class MainGameObject extends MovableGameObject {
 	private int life;
@@ -19,10 +18,11 @@ public abstract class MainGameObject extends MovableGameObject {
 	private Status status;
 	private Optional<Weapon> weapon;
 	private Thread statusThread;
+	private int score;
 	
 	public MainGameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
                           final PhysicsComponent phys, final V2d velocity, final Movement movement, final int life,
-                          final int impactDamage, final Optional<Weapon> weapon) {
+                          final int impactDamage, final Optional<Weapon> weapon, final int score) {
 		super(engineImage, position, bb, phys, velocity, movement);
 		this.life = life;
 		this.setImpactDamage(impactDamage);
@@ -30,6 +30,7 @@ public abstract class MainGameObject extends MovableGameObject {
 		this.weapon = weapon;
 		this.statusThread = new Thread(MainGameObject.this::statusLoop);
 		this.statusThread.start();
+		this.score = score;
 	}
 
     public int getLife() {
@@ -109,15 +110,20 @@ public abstract class MainGameObject extends MovableGameObject {
 				setAnimation(normalList);
 				this.status = Status.NORMAL;
 			}
+			mySleep(5);
 		}
 	}
 	
-	public void waitStatusDuration(int milliseconds) {
+	public void mySleep(int milliseconds) {
 		try {
 			sleep(milliseconds);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void waitStatusDuration(int milliseconds) {
+		mySleep(milliseconds);
 	}
 	
 	public void onFire() {
@@ -144,6 +150,14 @@ public abstract class MainGameObject extends MovableGameObject {
 		while (this.status == Status.PARALIZED);
 		this.setVelocity(initialVel);
 
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
 	}
 
 	@Override

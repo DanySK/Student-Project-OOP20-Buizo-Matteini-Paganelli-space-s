@@ -1,6 +1,5 @@
 package spaceSurvival.model.worldEcollisioni.physics.components;
 
-import java.awt.geom.AffineTransform;
 import java.util.Optional;
 
 import spaceSurvival.model.gameObject.GameObject;
@@ -8,14 +7,11 @@ import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 import spaceSurvival.model.gameObject.takeableGameObject.TakeableGameObject;
 import spaceSurvival.model.World;
-import spaceSurvival.model.worldEcollisioni.hitEvents.HitAsteroidEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitBorderEvent;
-import spaceSurvival.model.worldEcollisioni.hitEvents.HitChaseEnemyEvent;
-import spaceSurvival.model.worldEcollisioni.hitEvents.HitPickableEvent;
+import spaceSurvival.model.worldEcollisioni.hitEvents.HitMainGameObject;
+import spaceSurvival.model.worldEcollisioni.hitEvents.HitTakeableGameObject;
 import spaceSurvival.model.worldEcollisioni.physics.BoundaryCollision;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
-import spaceSurvival.utilities.SystemVariables;
-import spaceSurvival.utilities.dimension.Screen;
 
 public class ShipPhysicsComponent implements PhysicsComponent {
 
@@ -24,94 +20,52 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 	@Override
 	public void update(int dt, GameObject abstractObj, World w) {
 		//System.out.println("Sono nell'update");
-		SpaceShipSingleton ship = (SpaceShipSingleton) abstractObj;
+		final SpaceShipSingleton ship = (SpaceShipSingleton) abstractObj;
 
-		RectBoundingBox boundingBox = w.getMainBBox();
+		final RectBoundingBox boundingBox = w.getMainBBox();
+		final RectBoundingBox shipBoundingBox = (RectBoundingBox) abstractObj.getBoundingBox();
 
-		Optional<BoundaryCollision> binfo = w.checkCollisionWithBoundaries(ship.getPosition(), boundingBox);
-		//System.out.println(binfo);
-//		//super.update(dt, obj, w);
-//		
-//		//w.checkBoundaries(obj);
-		RectBoundingBox shipBoundingBox = (RectBoundingBox) abstractObj.getBoundingBox();
+		final Optional<BoundaryCollision> binfo = w.checkCollisionWithBoundaries(ship.getPosition(), boundingBox);
 		//Optional<BoundaryCollision> binfo = w.checkCollisionWithBoundaries(ship.getPosition(), boundingBox);
 		if (binfo.isPresent()) {
 			BoundaryCollision info = binfo.get();
-			
-			switch (info.getEdge()) {
-			case TOP: 
-				//EFFETTO SPACESHIP
-				AffineTransform newTransTop = new AffineTransform(ship.getTransform().getScaleX(), 
-						ship.getTransform().getShearY(), ship.getTransform().getShearX(), 
-						ship.getTransform().getScaleY(), ship.getTransform().getTranslateX(), 
-						Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y - ship.getSize().getHeight() - TOLLERANCE);
-				
-				w.notifyWorldEvent(new HitBorderEvent(info.getWhere(), ship));
-				ship.setTransform(newTransTop);
-				break;
-			case BOTTOM:		
-				AffineTransform newTransBottom = new AffineTransform(ship.getTransform().getScaleX(), 
-						ship.getTransform().getShearY(), ship.getTransform().getShearX(), 
-						ship.getTransform().getScaleY(), ship.getTransform().getTranslateX(),
-						ship.getSize().getHeight() + TOLLERANCE);
-			 			
-				w.notifyWorldEvent(new HitBorderEvent(info.getWhere(), ship));
-				ship.setTransform(newTransBottom);
-				break;
-			case LEFT: 			
-				AffineTransform newTransLeft = new AffineTransform(ship.getTransform().getScaleX(), 
-						ship.getTransform().getShearY(), ship.getTransform().getShearX(), 
-						ship.getTransform().getScaleY(), Screen.WIDTH_FULL_SCREEN * SystemVariables.SCALE_X - ship.getSize().getWidth() - TOLLERANCE,
-						ship.getTransform().getTranslateY());
 
-				w.notifyWorldEvent(new HitBorderEvent(info.getWhere(), ship));
-				ship.setTransform(newTransLeft);
-				break;
-			case RIGHT: 
-				AffineTransform newTransRight = new AffineTransform(ship.getTransform().getScaleX(), 
-						ship.getTransform().getShearY(), ship.getTransform().getShearX(), 
-						ship.getTransform().getScaleY(), ship.getSize().getWidth() + TOLLERANCE,
-						ship.getTransform().getTranslateY());
-
-				w.notifyWorldEvent(new HitBorderEvent(info.getWhere(), ship));
-				ship.setTransform(newTransRight);
-				break;
-			}
+			w.notifyWorldEvent(new HitBorderEvent(info.getWhere(), info.getEdge(), ship));
 		}
 		
-		Optional<MainGameObject> asteroid = w.checkCollisionWithAsteroids(shipBoundingBox);
+		final Optional<MainGameObject> asteroid = w.checkCollisionWithAsteroids(shipBoundingBox);
 		//collisioni con asteroidi
 		if (asteroid.isPresent()) {
-			w.notifyWorldEvent(new HitAsteroidEvent(asteroid.get()));
+			w.notifyWorldEvent(new HitMainGameObject(ship, asteroid.get()));
 			System.out.println("Preso un asteroid Fratellì");
 		}
 		
-		Optional<MainGameObject> chaseEnemy = w.checkCollisionWithChaseEnemies(shipBoundingBox);
+		final Optional<MainGameObject> chaseEnemy = w.checkCollisionWithChaseEnemies(shipBoundingBox);
 		//collisioni con chaseEnemy
 		if (chaseEnemy.isPresent()) {
-			w.notifyWorldEvent(new HitChaseEnemyEvent(chaseEnemy.get()));
+			w.notifyWorldEvent(new HitMainGameObject(ship, chaseEnemy.get()));
 			System.out.println("Preso un chaseEnemy Fratellì");
 		}
-//		
-//		Optional<MainGameObject> fireEnemy = w.checkCollisionWithFireEnemies(ship.getPosition(), shipBoundingBox);
-//		//collisioni con fireEnemy
-//		if (fireEnemy.isPresent()) {
-//			w.notifyWorldEvent(new HitFireEnemyEvent(fireEnemy.get()));
-//			System.out.println("Preso un fireEnemy Fratellì");
-//		}
-//		
-//		Optional<MainGameObject> boss = w.checkCollisionWithBoss(ship.getPosition(), shipBoundingBox);
-//		//collisioni con boss
-//		if (boss.isPresent()) {
-//			w.notifyWorldEvent(new HitBossEvent(boss.get()));
-//			//System.out.println("Preso il boss Fratellì");
-//		}
-//		
-		Optional<TakeableGameObject> pickable = w.checkCollisionWithPickables(shipBoundingBox);
+		
+		final Optional<MainGameObject> fireEnemy = w.checkCollisionWithFireEnemies(shipBoundingBox);
+		//collisioni con chaseEnemy
+		if (fireEnemy.isPresent()) {
+			w.notifyWorldEvent(new HitMainGameObject(ship, fireEnemy.get()));
+			System.out.println("Preso un fireEnemy Fratellì");
+		}
+		
+		final Optional<TakeableGameObject> ammo = w.checkCollisionWithAmmo(shipBoundingBox);
 		//collisioni con pickable
-		if (pickable.isPresent()) {
-			w.notifyWorldEvent(new HitPickableEvent(pickable.get()));
-			System.out.println("Preso un pickable Fratellì");
+		if (ammo.isPresent()) {
+			w.notifyWorldEvent(new HitTakeableGameObject(ammo.get()));
+			System.out.println("Preso un ammo Fratellì");
+		}
+		
+		final Optional<TakeableGameObject> heart = w.checkCollisionWithHearts(shipBoundingBox);
+		//collisioni con pickable
+		if (heart.isPresent()) {
+			w.notifyWorldEvent(new HitTakeableGameObject(heart.get()));
+			System.out.println("Preso un heart Fratellì");
 		}
 	}
 

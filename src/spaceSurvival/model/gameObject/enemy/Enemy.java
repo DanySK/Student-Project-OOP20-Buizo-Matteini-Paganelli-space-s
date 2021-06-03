@@ -16,8 +16,8 @@ public class Enemy extends MainGameObject {
 	P2d target = new P2d(0,0);
 
 	public Enemy(EngineImage engineImage, P2d position, BoundingBox bb, PhysicsComponent phys, V2d velocity,
-			Movement movement, int life, int impactDamage, Optional<Weapon> weapon, P2d target) {
-		super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, weapon);
+			Movement movement, int life, int impactDamage, Optional<Weapon> weapon, int score, P2d target) {
+		super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, weapon, score);
 		this.target = target;
 	}
 	
