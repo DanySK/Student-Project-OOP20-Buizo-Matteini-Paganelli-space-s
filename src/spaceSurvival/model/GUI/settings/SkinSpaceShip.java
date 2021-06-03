@@ -14,6 +14,7 @@ public enum SkinSpaceShip {
     private final String skin;
 
     private final List<String> animation;
+
     private SkinSpaceShip(final String skin, final List<String> animation){
         this.skin = skin;
         this.animation = animation;
@@ -21,5 +22,9 @@ public enum SkinSpaceShip {
 
     public String getSkin() {
         return this.skin;
+    }
+
+    public List<String> getAnimation() {
+        return this.animation;
     }
 }

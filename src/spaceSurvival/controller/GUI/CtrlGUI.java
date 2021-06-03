@@ -7,6 +7,7 @@ import spaceSurvival.controller.utilities.ListGUI;
 import spaceSurvival.factories.StaticFactoryEngineGUI;
 import spaceSurvival.factories.StaticFactoryGUI;
 import spaceSurvival.model.GUI.Visibility;
+import spaceSurvival.model.GUI.settings.SkinSpaceShip;
 import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.utilities.StateLevelGUI;
 import spaceSurvival.utilities.pathImage.Background;
@@ -141,10 +142,6 @@ public class CtrlGUI {
         return this.chronology.lastElementOfList();
     }
 
-    public String getCurrentSkin(){
-        return this.ctrlSettings.getCurrentSkin();
-    }
-
     public CtrlGame getCtrlGame() {
         return this.ctrlGame;
     }
@@ -165,9 +162,7 @@ public class CtrlGUI {
 
     private void startElementWhenInGame() {
         Objects.requireNonNull(this.getBtnGameFromMenu()).addActionListener(l -> {
-            this.ctrlGame.getWorld().setSkin(CtrlGUI.this.getCurrentSkin());
-
-
+            this.ctrlGame.getWorld().setSkin(CtrlGUI.this.ctrlSettings.getCurrentSkin());
             this.ctrlGame.startTimer();
             this.ctrlGame.startPaint();
             this.managerGui.values().forEach(control -> {

@@ -3,6 +3,7 @@ package spaceSurvival.model.GUI.settings;
 import spaceSurvival.model.GUI.Visibility;
 import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.GUI.EngineGUI;
+import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.utilities.ActionGUI;
@@ -31,7 +32,7 @@ public class EngineSettings implements EngineGUI {
     private final ActionGUI actionBack;
     private final List<UnitSettingsGUI> unitNames;
 
-    private final List<String> listSkin;
+    private final List<SkinSpaceShip> listSkin;
     private final EngineImage skin;
     private int chooseSkin;
 
@@ -43,9 +44,9 @@ public class EngineSettings implements EngineGUI {
         this.mainAction = ActionGUI.ID_SETTING;
         this.actionBack = ActionGUI.ID_BACK;
 
-        this.listSkin = Arrays.stream(SkinSpaceShip.values()).map(SkinSpaceShip::getSkin).collect(Collectors.toList());
+        this.listSkin = Arrays.asList(SkinSpaceShip.values());
         this.chooseSkin = INDEX_INIT_SKIN;
-        this.skin = new EngineImage(ScaleOf.ICON_SKIN, (int) RECTANGLE.getWidth(), this.listSkin.get(chooseSkin));
+        this.skin = new EngineImage(ScaleOf.ICON_SKIN, (int) RECTANGLE.getWidth(), this.listSkin.get(chooseSkin).getSkin());
 
         this.unitNames = List.of(UnitSettingsGUI.values());
 
@@ -104,8 +105,12 @@ public class EngineSettings implements EngineGUI {
         return this.actionBack.getIdName();
     }
 
-    public EngineImage getSkinSpaceShip() {
-        this.skin.setPath(this.listSkin.get(this.chooseSkin));
+    public SkinSpaceShip getSkinShip(){
+        return this.listSkin.get(this.chooseSkin);
+    }
+
+    public EngineImage getEngineSkinShip() {
+        this.skin.setPath(this.listSkin.get(this.chooseSkin).getSkin());
         return this.skin;
     }
 
