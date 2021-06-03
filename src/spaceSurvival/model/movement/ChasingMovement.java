@@ -29,7 +29,7 @@ public class ChasingMovement implements Movement {
 //		yMultiplier = -1;
 //	}
 	int i = 0;
-	AffineTransform newTransform;
+	//AffineTransform newTransform;
 	
 	@Override
 	public void move(MovableGameObject object) {
@@ -48,6 +48,7 @@ public class ChasingMovement implements Movement {
 				double complementary = 180 - (rightRotation * -1);
 				double newAngle = 90 + complementary;
 				
+				
 				AffineTransform oldTransform = chase.getTransform();
 				double oldAngle = c.getRotationAngleInDegrees(oldTransform);
 				
@@ -58,13 +59,20 @@ public class ChasingMovement implements Movement {
 				double diffAngle = (oldAngle - newAngle);
 				
 				
-				newTransform = new AffineTransform();				
-				newTransform.translate(chase.getPosition().getX(), chase.getPosition().getY());
+				AffineTransform newTransform = new AffineTransform();
+				//oldTransform.translate(chase.getVelocity().getX(), chase.getVelocity().getY());
+				newTransform.setTransform(oldTransform);
+				newTransform.setToRotation(0);
+				
+				//newTransform.translate(chase.getPosition().getX(), chase.getPosition().getY());
 				
 				newTransform.rotate(Math.toRadians(newAngle), chase.getSize().getWidth() / 2, chase.getSize().getHeight() / 2);
-				newTransform.translate(chase.getVelocity().getX(), chase.getVelocity().getY());
-				chase.setTransform(newTransform);
+				newTransform.translate(chase.getVelocity().getX(), -6);
 				
+				chase.setTransform(newTransform);
+				System.out.println(chase.getTransform());
+				System.out.println(newTransform);
+				System.out.println(chase.getVelocity());
 				
 				//System.out.println(Math.toDegrees(Math.atan2(chase.getPosition().getY() - target.getY(), chase.getPosition().getX() - target.getX())));
 //			}
