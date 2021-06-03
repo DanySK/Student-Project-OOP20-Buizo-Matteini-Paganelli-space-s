@@ -18,7 +18,9 @@ import spaceSurvival.utilities.SystemVariables;
 import spaceSurvival.utilities.dimension.Screen;
 
 public class ShipPhysicsComponent implements PhysicsComponent {
-	
+
+	private static final int TOLLERANCE = 10;
+
 	@Override
 	public void update(int dt, GameObject abstractObj, World w) {
 		//System.out.println("Sono nell'update");
@@ -42,7 +44,7 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 				AffineTransform newTransTop = new AffineTransform(ship.getTransform().getScaleX(), 
 						ship.getTransform().getShearY(), ship.getTransform().getShearX(), 
 						ship.getTransform().getScaleY(), ship.getTransform().getTranslateX(), 
-						Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y - 100);
+						Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y - ship.getSize().getHeight() - TOLLERANCE);
 				
 				w.notifyWorldEvent(new HitBorderEvent(info.getWhere(), ship));
 				ship.setTransform(newTransTop);
@@ -50,8 +52,8 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 			case BOTTOM:		
 				AffineTransform newTransBottom = new AffineTransform(ship.getTransform().getScaleX(), 
 						ship.getTransform().getShearY(), ship.getTransform().getShearX(), 
-						ship.getTransform().getScaleY(), ship.getTransform().getTranslateX(), 
-						100);
+						ship.getTransform().getScaleY(), ship.getTransform().getTranslateX(),
+						ship.getSize().getHeight() + TOLLERANCE);
 			 			
 				w.notifyWorldEvent(new HitBorderEvent(info.getWhere(), ship));
 				ship.setTransform(newTransBottom);
@@ -59,17 +61,19 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 			case LEFT: 			
 				AffineTransform newTransLeft = new AffineTransform(ship.getTransform().getScaleX(), 
 						ship.getTransform().getShearY(), ship.getTransform().getShearX(), 
-						ship.getTransform().getScaleY(), Screen.WIDTH_FULL_SCREEN * SystemVariables.SCALE_X - 100, 
+						ship.getTransform().getScaleY(), Screen.WIDTH_FULL_SCREEN * SystemVariables.SCALE_X - ship.getSize().getWidth() - TOLLERANCE,
 						ship.getTransform().getTranslateY());
-			 			
+
+				w.notifyWorldEvent(new HitBorderEvent(info.getWhere(), ship));
 				ship.setTransform(newTransLeft);
 				break;
 			case RIGHT: 
 				AffineTransform newTransRight = new AffineTransform(ship.getTransform().getScaleX(), 
 						ship.getTransform().getShearY(), ship.getTransform().getShearX(), 
-						ship.getTransform().getScaleY(), 100, 
+						ship.getTransform().getScaleY(), ship.getSize().getWidth() + TOLLERANCE,
 						ship.getTransform().getTranslateY());
-			 			
+
+				w.notifyWorldEvent(new HitBorderEvent(info.getWhere(), ship));
 				ship.setTransform(newTransRight);
 				break;
 			}
