@@ -11,11 +11,11 @@ import spaceSurvival.model.GUI.settings.SkinSpaceShip;
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.gameObject.MovableGameObject;
-import spaceSurvival.model.gameObject.PickableGameObject;
 import spaceSurvival.model.gameObject.factories.AbstractFactoryGameObject;
 import spaceSurvival.model.gameObject.factories.ConcreteFactoryGameObject;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
-import spaceSurvival.model.gameObject.weapon.AmmoType;
+import spaceSurvival.model.gameObject.takeableGameObject.AmmoType;
+import spaceSurvival.model.gameObject.takeableGameObject.TakeableGameObject;
 import spaceSurvival.model.gameObject.weapon.Bullet;
 import spaceSurvival.model.gameObject.weapon.Weapon;
 import spaceSurvival.model.worldEcollisioni.WorldEvent;
@@ -36,7 +36,7 @@ public class World {
 	private final Set<MainGameObject> chaseEnemies = new HashSet<>();
 	private Optional<MainGameObject> boss = Optional.empty();
 	
-	private final Set<PickableGameObject> pickables = new HashSet<>();
+	private final Set<TakeableGameObject> takeables = new HashSet<>();
 
 	private SpaceShipSingleton ship;
 	private RectBoundingBox mainBBox;
@@ -51,7 +51,7 @@ public class World {
 		for (int i = 0; i < 1; i++) {
 			asteroids.add(factoryGameObject.createAsteroid());
 			chaseEnemies.add(factoryGameObject.createChaseEnemy());
-			pickables.add(factoryGameObject.createPickable());
+			takeables.add(factoryGameObject.createAmmo());
 		}
 	}
 
@@ -65,7 +65,7 @@ public class World {
 		for (int i = 0; i < 1; i++) {
 			asteroids.add(factoryGameObject.createAsteroid());
 			chaseEnemies.add(factoryGameObject.createChaseEnemy());
-			pickables.add(factoryGameObject.createPickable());
+			takeables.add(factoryGameObject.createAmmo());
 		}
 	}
 
@@ -124,11 +124,11 @@ public class World {
 	}
 	
 	public void addPickable() {
-		pickables.add(factoryGameObject.createPickable());
+		takeables.add(factoryGameObject.createAmmo());
 	}
 
-	public void removePickable(final PickableGameObject obj) {
-		pickables.remove(obj);
+	public void removePickable(final TakeableGameObject obj) {
+		takeables.remove(obj);
 	}
 	
 	public boolean removeBullet(final Bullet bullet) {
@@ -227,8 +227,8 @@ public class World {
 //		return Optional.empty();
 //	}
 //	
-	public Optional<PickableGameObject> checkCollisionWithPickables(final RectBoundingBox rectBoundingBox) {
-		for (PickableGameObject obj: pickables) {
+	public Optional<TakeableGameObject> checkCollisionWithPickables(final RectBoundingBox rectBoundingBox) {
+		for (TakeableGameObject obj: takeables) {
 			if (checker.testRectangleToCircle(rectBoundingBox, (CircleBoundingBox) obj.getBoundingBox())) {		
 			    System.out.println("MANDATO UN EVENTO PICKABLE");
 				return Optional.of(obj);
@@ -296,8 +296,8 @@ public class World {
 		this.boss = boss;
 	}
 	
-	public Set<PickableGameObject> getPickables() {
-		return this.pickables;
+	public Set<TakeableGameObject> getTakeables() {
+		return this.takeables;
 	}
 
 	public Set<MainGameObject> getAllEnemies() {
@@ -331,7 +331,7 @@ public class World {
 		if (boss.isPresent()) {
 			entities.add(boss.get());
 		}
-		entities.addAll(pickables);
+		entities.addAll(takeables);
 		if (ship.getWeapon().isPresent()) {
 			entities.addAll(ship.getWeapon().get().getShootedBullets());
 		}

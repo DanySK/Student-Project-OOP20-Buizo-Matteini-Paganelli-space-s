@@ -84,7 +84,7 @@ public class CtrlGame implements ControllerGUI{
         this.gui.close();
     }
 
-    public void updateHUD(){
+    public void updateHUD() {
         this.gui.setTimer(this.engine.getTimer());
         this.gui.setScore(this.engine.getScore());
         this.gui.setRound(this.engine.getRound());
@@ -108,6 +108,7 @@ public class CtrlGame implements ControllerGUI{
 		this.getWorld().addAsteroid();
 		this.getWorld().addChaseEnemy();
 		this.getWorld().addFireEnemy();
+		this.addAllGameObjectsFromWorld();
 		System.out.println(this.getWorld().getAllEntities());
 	}
     

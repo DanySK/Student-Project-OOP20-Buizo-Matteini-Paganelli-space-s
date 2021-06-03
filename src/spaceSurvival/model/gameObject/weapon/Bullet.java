@@ -3,6 +3,7 @@ package spaceSurvival.model.gameObject.weapon;
 
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.common.V2d;
+import spaceSurvival.model.gameObject.Effect;
 import spaceSurvival.model.gameObject.GameObjectUtils;
 import spaceSurvival.model.gameObject.MovableGameObject;
 import spaceSurvival.model.movement.FixedMovement;
@@ -10,18 +11,20 @@ import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 
-public abstract class Bullet extends MovableGameObject implements Runnable {
+public class Bullet extends MovableGameObject {
 	private int damage;
+	private Effect effect;
 	
 	public Bullet() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	public Bullet(final EngineImage engineImage, final P2d position, final BoundingBox bb, final PhysicsComponent phys,
-                  final V2d velocity, final int damage) {
+                  final V2d velocity, final int damage, final Effect effect) {
 		super(engineImage, position, bb, phys, velocity, new FixedMovement());
     	this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage, this.getTransform()));
 		this.damage = damage;
+		this.setEffect(effect);
 	}
 
 	public int getDamage() {
@@ -32,5 +35,12 @@ public abstract class Bullet extends MovableGameObject implements Runnable {
 		this.damage = damage;
 	}
 
+	public Effect getEffect() {
+		return effect;
+	}
+
+	public void setEffect(Effect effect) {
+		this.effect = effect;
+	}
 	
 }

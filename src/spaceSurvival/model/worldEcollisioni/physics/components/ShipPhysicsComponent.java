@@ -5,20 +5,17 @@ import java.util.Optional;
 
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.MainGameObject;
-import spaceSurvival.model.gameObject.PickableGameObject;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
+import spaceSurvival.model.gameObject.takeableGameObject.TakeableGameObject;
 import spaceSurvival.model.World;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitAsteroidEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitBorderEvent;
-import spaceSurvival.model.worldEcollisioni.hitEvents.HitBossEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitChaseEnemyEvent;
-import spaceSurvival.model.worldEcollisioni.hitEvents.HitFireEnemyEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitPickableEvent;
 import spaceSurvival.model.worldEcollisioni.physics.BoundaryCollision;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import spaceSurvival.utilities.SystemVariables;
 import spaceSurvival.utilities.dimension.Screen;
-import spaceSurvival.model.common.P2d;
 
 public class ShipPhysicsComponent implements PhysicsComponent {
 	
@@ -38,7 +35,6 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 		//Optional<BoundaryCollision> binfo = w.checkCollisionWithBoundaries(ship.getPosition(), boundingBox);
 		if (binfo.isPresent()) {
 			BoundaryCollision info = binfo.get();
-			P2d pos = ship.getPosition();
 			
 			switch (info.getEdge()) {
 			case TOP: 
@@ -124,7 +120,7 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 //			//System.out.println("Preso il boss Fratellì");
 //		}
 //		
-		Optional<PickableGameObject> pickable = w.checkCollisionWithPickables(shipBoundingBox);
+		Optional<TakeableGameObject> pickable = w.checkCollisionWithPickables(shipBoundingBox);
 		//collisioni con pickable
 		if (pickable.isPresent()) {
 			w.notifyWorldEvent(new HitPickableEvent(pickable.get()));

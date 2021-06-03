@@ -191,6 +191,10 @@ public abstract class GameObject extends Thread{
 		return this.getEngineImage().getSize();
 	}
 
+	public List<String> getAnimation() {
+		return animation;
+	}
+	
 	@Override
 	public String toString() {
 		return "GameObject [engineImage=" + engineImage + ", position=" + position + ", boundingBox=" + boundingBox
