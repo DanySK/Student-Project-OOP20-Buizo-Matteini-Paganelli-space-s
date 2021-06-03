@@ -43,36 +43,58 @@ public class ChasingMovement implements Movement {
 			
 			
 			//mi devo trovare la nuova differenza di angolo.
-				CollisionChecker c = new CollisionChecker();
+				//CollisionChecker c = new CollisionChecker();
 				double rightRotation = Math.toDegrees(Math.atan2(chase.getPosition().getY() - target.getY(), chase.getPosition().getX() - target.getX()));
 				double complementary = 180 - (rightRotation * -1);
 				double newAngle = 90 + complementary;
 				
 				
-				AffineTransform oldTransform = chase.getTransform();
-				double oldAngle = c.getRotationAngleInDegrees(oldTransform);
-				
-				System.out.println("OLD ANGLEEEE ->"  + oldAngle);
-				System.out.println("NEW ANGLEEEE ->"  + newAngle);
-				System.out.println("DA RUOTAREEEEEE  ->"  + (oldAngle - newAngle));
-				
-				double diffAngle = (oldAngle - newAngle);
-				
-				
+	//			AffineTransform oldTransform = chase.getTransform();
+	//			//oldTransform.translate(chase.getVelocity().getX(),-3);
+	//			oldTransform.setToRotation(0, chase.getSize().getWidth() / 2, chase.getSize().getHeight() / 2);
+	//			oldTransform.rotate(Math.toRadians(newAngle), chase.getSize().getWidth() / 2, chase.getSize().getHeight() / 2);
+	//			chase.setTransform(oldTransform);
+
 				AffineTransform newTransform = new AffineTransform();
-				//oldTransform.translate(chase.getVelocity().getX(), chase.getVelocity().getY());
-				newTransform.setTransform(oldTransform);
-				newTransform.setToRotation(0);
+				//newTransform.setTransform(chase.getTransform());
+
+			newTransform.setToRotation(0, chase.getSize().getWidth() / 2, chase.getSize().getHeight() / 2);
+			newTransform.setToTranslation(chase.getTransform().getTranslateX(), chase.getTransform().getTranslateY());
+			//newTransform.translate(newTransform.getTranslateX(),newTransform.getTranslateY());
+			newTransform.rotate(Math.toRadians(newAngle), chase.getSize().getWidth() / 2, chase.getSize().getHeight() / 2);
+				newTransform.translate(chase.getVelocity().getX(),chase.getVelocity().getY());
+				chase.setTransform(newTransform);
+		//		object = chase;
+				//double oldAngle = c.getRotationAngleInDegrees(oldTransform);
+				
+				System.out.println("chase ->"  + chase);
+		//		System.out.println("NEW ANGLEEEE ->"  + newAngle);
+		//		System.out.println("DA RUOTAREEEEEE  ->"  + (oldAngle - newAngle));
+				
+				//double diffAngle = (oldAngle - newAngle);
+				
+				
+				//AffineTransform newTransform = new AffineTransform();
+
+			//oldTransform.translate(chase.getVelocity().getX(),-3);
+			//oldTransform.setToRotation(0);
 				
 				//newTransform.translate(chase.getPosition().getX(), chase.getPosition().getY());
 				
-				newTransform.rotate(Math.toRadians(newAngle), chase.getSize().getWidth() / 2, chase.getSize().getHeight() / 2);
-				newTransform.translate(chase.getVelocity().getX(), -6);
+				//oldTransform.rotate(Math.toRadians(newAngle), chase.getSize().getWidth() / 2, chase.getSize().getHeight() / 2);
+				//System.out.println("OLD TRANSFORM 1-> " + oldTransform);
+
+				//System.out.println("OLD TRANSFORM 2-> " + oldTransform);
+
+				System.out.println("VELOCITY -> " + chase.getVelocity());
+
+
+				//newTransform.translate(100, 100);
 				
-				chase.setTransform(newTransform);
-				System.out.println(chase.getTransform());
-				System.out.println(newTransform);
-				System.out.println(chase.getVelocity());
+				//chase.setTransform(oldTransform);
+				//System.out.println(chase.getTransform());
+				//System.out.println(newTransform);
+				//System.out.println(chase.getVelocity());
 				
 				//System.out.println(Math.toDegrees(Math.atan2(chase.getPosition().getY() - target.getY(), chase.getPosition().getX() - target.getX())));
 //			}
@@ -103,12 +125,7 @@ public class ChasingMovement implements Movement {
 //				chase.setTransform(newTransform);
 //			}
 			
-			
-			
-			//newTransform.rotate(RightDegRotation, chase.getSize().getWidth() / 2, chase.getSize().getHeight() / 2);
-			//newTransform.translate(chase.getVelocity().getX(), chase.getVelocity().getY());
-			//chase.setTransform(newTransform);
-			
+
 			
 		}	
 		

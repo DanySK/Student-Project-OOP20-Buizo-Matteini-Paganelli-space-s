@@ -7,6 +7,7 @@ import spaceSurvival.model.gameObject.Effect;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.gameObject.enemy.Boss;
 import spaceSurvival.model.gameObject.enemy.ChaseEnemy;
+import spaceSurvival.model.gameObject.enemy.Enemy;
 import spaceSurvival.model.gameObject.enemy.FireEnemy;
 import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
@@ -282,6 +283,11 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     	this.controlGame.getWorld().getMovableEntities().forEach(entity -> {
     		entity.move();
     	});
+
+    	this.controlGame.getWorld().getAllEnemies().forEach(enemy -> {
+            Enemy enemy2 = (Enemy) enemy;
+            enemy2.setTarget(this.controlGame.getShip().getPosition());
+        });
     	
 //    	SpaceShipSingleton ship = this.controlGame.getShip();
 //    	if (ship.getWeapon().isPresent()) {
