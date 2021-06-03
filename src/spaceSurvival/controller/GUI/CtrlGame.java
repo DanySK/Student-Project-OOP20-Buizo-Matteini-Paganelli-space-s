@@ -108,7 +108,6 @@ public class CtrlGame implements ControllerGUI{
 		this.getWorld().addAsteroid();
 		this.getWorld().addChaseEnemy();
 		this.getWorld().addFireEnemy();
-		this.addAllGameObjectsFromWorld();
 		System.out.println(this.getWorld().getAllEntities());
 	}
     
@@ -200,10 +199,6 @@ public class CtrlGame implements ControllerGUI{
 
     private void addKeyListenerShip(final KeyListener keyListener) {
         this.gui.addKeyListenerSpaceShip(keyListener);
-    }
-
-    public void addAllGameObjectsFromWorld(){
-        this.engine.getAllEntities().forEach(objGame -> CtrlGame.this.gui.addGameObject(objGame, objGame.getTransform()));
     }
 
     public void moveShip(){

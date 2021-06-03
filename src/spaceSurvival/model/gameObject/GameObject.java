@@ -14,10 +14,6 @@ import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 import spaceSurvival.utilities.SoundPath;
 import spaceSurvival.model.World;
-import spaceSurvival.utilities.pathImage.Background;
-import spaceSurvival.utilities.pathImage.Effect;
-import spaceSurvival.utilities.pathImage.Skin.SkinShip;
-
 
 public abstract class GameObject extends Thread{
 	private P2d position;
@@ -48,8 +44,6 @@ public abstract class GameObject extends Thread{
 		this.animationEffect = new ArrayList<>();
 		this.setPosition(position);
 		this.start();
-
-		this.setAnimationEffect(Effect.LIST_BURN);
 	}
 
 	public void setAnimation(final List<String> animation){
@@ -67,9 +61,6 @@ public abstract class GameObject extends Thread{
 			long current = System.currentTimeMillis();
 			int elapsed = (int)(current - lastTime);
 
-			waitForNextFrame(current);
-			lastTime = current;
-
 			if(this.animation.size() > 0) {
 				this.engineImage.setPath(this.animation.get(i++));
 				i = i + 1 > this.animation.size() ? 0 : i;
@@ -79,6 +70,9 @@ public abstract class GameObject extends Thread{
 				this.engineEffect.setPath(this.animationEffect.get(j++));
 				j = j + 1 > this.animationEffect.size() ? 0 : j;
 			}
+
+			waitForNextFrame(current);
+			lastTime = current;
 
 		}
 	}

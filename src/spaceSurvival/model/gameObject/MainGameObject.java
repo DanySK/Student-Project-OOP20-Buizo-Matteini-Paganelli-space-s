@@ -11,7 +11,6 @@ import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 import spaceSurvival.utilities.pathImage.Skin.SkinShip;
-import spaceSurvival.view.game.utilities.PanelGame;
 
 public abstract class MainGameObject extends MovableGameObject {
 	private int life;
@@ -30,6 +29,8 @@ public abstract class MainGameObject extends MovableGameObject {
 		this.weapon = weapon;
 		this.statusThread = new Thread(MainGameObject.this::statusLoop);
 		this.statusThread.start();
+
+		this.setStatus(Status.INVINCIBLE);
 	}
 
     public int getLife() {
@@ -73,6 +74,7 @@ public abstract class MainGameObject extends MovableGameObject {
 	
 	public void setStatus(final Status status) {
 		this.status = status;
+		super.setAnimationEffect(status.getAnimation());
 	}
 	
 	public boolean isInvincible() {
