@@ -17,31 +17,17 @@ public class ChasingMovement implements Movement {
 		if(object instanceof ChaseEnemy) {
 			ChaseEnemy chase = (ChaseEnemy) object;
 			P2d target = chase.getTarget();
-			//EUREKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA.
 
-				double rightRotation = Math.toDegrees(Math.atan2(chase.getPosition().getY() - target.getY(), chase.getPosition().getX() - target.getX()));
-				double complementary = 180 - (rightRotation * -1);
-				double newAngle = 90 + complementary;
+			double rightRotation = Math.toDegrees(Math.atan2(chase.getPosition().getY() - target.getY(), chase.getPosition().getX() - target.getX()));
+			double complementary = 180 - (rightRotation * -1);
+			double newAngle = 90 + complementary;
 
 			AffineTransform newTransform = new AffineTransform();
+			newTransform.translate(chase.getTransform().getTranslateX(), chase.getTransform().getTranslateY());
+			newTransform.rotate(Math.toRadians(newAngle), 0, 0);
 
-			newTransform.setToRotation(0, chase.getSize().getWidth() / 2, chase.getSize().getHeight() / 2);
-			newTransform.setToTranslation(chase.getTransform().getTranslateX(), chase.getTransform().getTranslateY());
-			newTransform.rotate(Math.toRadians(newAngle));
-			newTransform.translate(chase.getVelocity().getX(),chase.getVelocity().getY());
+			newTransform.translate(chase.getVelocity().getX(), chase.getVelocity().getY());
 			chase.setTransform(newTransform);
-			//EUREKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA.
-
-//			double rightRotation = Math.toDegrees(Math.atan2(chase.getPosition().getY() - target.getY(), chase.getPosition().getX() - target.getX()));
-//			double complementary = 180 - (rightRotation * -1);
-//			double newAngle = 90 + complementary;
-//
-//			AffineTransform newTransform = new AffineTransform();
-//			newTransform.translate(chase.getTransform().getTranslateX(), chase.getTransform().getTranslateY());
-//			newTransform.rotate(Math.toRadians(newAngle), 0, 0);
-//
-//			newTransform.translate(chase.getVelocity().getX(), chase.getVelocity().getY());
-//			chase.setTransform(newTransform);
 
 		}
 	}
