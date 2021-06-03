@@ -311,12 +311,12 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     	if (!object.isInvincible()) {
     		if (object instanceof SpaceShipSingleton) {
             	this.controlGame.decreaseLife(damage);
-            	this.controlGame.incrScore(object.getScore());
 			} else {
 				object.decreaseLife(damage);
            		System.out.println("VITA DEL NEMICO:  " + object.getLife());
 				if (isGameObjectDead(object)) {
 	    			playSoundOf(object);
+	            	this.controlGame.incrScore(object.getScore());
 	    			this.controlGame.getWorld().removeMainObject(object);
 				}
 			}

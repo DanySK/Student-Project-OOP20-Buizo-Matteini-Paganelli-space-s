@@ -27,6 +27,7 @@ public class BulletPhysicsComponent implements PhysicsComponent {
 		}
 
 		Optional<MainGameObject> asteroid = w.checkCollisionWithAsteroids(objectBoundingBox);
+		System.out.println("STO CERCANDO DI PRENDERE UN ASTEROID " + asteroid);
 		//collisioni con asteroidi
 		if (asteroid.isPresent()) {
 			w.notifyWorldEvent(new HitBulletEvent(bullet, asteroid.get()));

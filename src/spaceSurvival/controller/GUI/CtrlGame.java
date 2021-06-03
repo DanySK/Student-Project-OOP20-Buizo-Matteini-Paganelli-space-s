@@ -152,8 +152,8 @@ public class CtrlGame implements ControllerGUI {
     public void decreaseLife(final int damage) {
         final int effectDamage = this.damageOverFlow(damage) ? this.engine.getLifeShip() : damage;
 
-        if(this.damageOverFlow(damage)) {
-            if(this.hasLivesShip()){
+        if (this.damageOverFlow(damage)) {
+            if (this.hasLivesShip()) {
                 this.engine.resetLifeShip();
             }
             this.engine.decreaseLives();
@@ -161,7 +161,7 @@ public class CtrlGame implements ControllerGUI {
 
         this.engine.decreaseLifeShip(effectDamage);
 
-        if(this.hasLivesShip() && this.engine.getLifeShip() == 0) {
+        if (this.hasLivesShip() && this.engine.getLifeShip() == 0) {
             this.engine.decreaseLives();
             this.engine.resetLifeShip();
         }
