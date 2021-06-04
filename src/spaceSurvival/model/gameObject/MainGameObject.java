@@ -25,12 +25,11 @@ public abstract class MainGameObject extends MovableGameObject {
 		super(engineImage, position, bb, phys, velocity, movement);
 		this.life = life;
 		this.impactDamage = impactDamage;
-		this.status = Status.NORMAL;
 		this.weapon = weapon;
+		this.setStatus(Status.NORMAL);
 		this.statusThread = new Thread(MainGameObject.this::statusLoop);
 		this.statusThread.start();
 		this.score = score;
-		this.setStatus(Status.HEALED);
 	}
 
     public int getLife() {
@@ -125,6 +124,7 @@ public abstract class MainGameObject extends MovableGameObject {
 	public void onFire() {
 		while (this.status == Status.ON_FIRE) {
 			this.decreaseLife(GameObjectUtils.FIRE_DAMAGE);
+			System.out.println("SONO ANDATO A FUOCO " + GameObjectUtils.FIRE_DAMAGE + " DANNO");
 			try {
 				sleep(GameObjectUtils.FIRE_INTERVAL_DAMAGE);
 			} catch (InterruptedException e) {
@@ -136,14 +136,16 @@ public abstract class MainGameObject extends MovableGameObject {
 	public void frozen() {
 		final V2d initialVel = this.getVelocity();
 		this.setVelocity(getVelocity().mul(GameObjectUtils.FROZEN_SLOWDOWN));
-		while (this.status == Status.FROZEN);
+		while (this.status == Status.FROZEN) {
+		}
 		this.setVelocity(initialVel);
 	}
 	
 	public void paralized() {
 		final V2d initialVel = this.getVelocity();
 		this.setVelocity(GameObjectUtils.NO_VEL);
-		while (this.status == Status.PARALIZED);
+		while (this.status == Status.PARALIZED) {
+		}
 		this.setVelocity(initialVel);
 
 	}

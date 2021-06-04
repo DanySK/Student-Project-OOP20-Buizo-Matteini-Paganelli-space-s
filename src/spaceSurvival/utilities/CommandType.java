@@ -18,7 +18,7 @@ public enum CommandType {
 
 	public static CommandType getValue(Integer value) {
 		for(CommandType cmd : CommandType.values()) {
-			if(cmd.keyCode == value) {
+			if(cmd.keyCode.equals(value)) {
 				return cmd;
 			}
 		}

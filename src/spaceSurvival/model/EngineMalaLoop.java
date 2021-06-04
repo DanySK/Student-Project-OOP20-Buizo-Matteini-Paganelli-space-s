@@ -161,8 +161,8 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
 
         		if (takeableGameObject instanceof Ammo) {
         			final AmmoType ammoType = ((Ammo) takeableGameObject).getType();
-        			world.getShip().getWeapon().get().setAmmoType(ammoType);
         			System.out.println("PRENDO MUNIZIONI DI TIPO " + ammoType);
+        			world.getShip().getWeapon().get().setAmmoType(ammoType);
         			
         		} else if (takeableGameObject instanceof Heart) {
         			final HeartType heartType = ((Heart) takeableGameObject).getType();
