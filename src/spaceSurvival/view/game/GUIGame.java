@@ -18,8 +18,6 @@ public interface GUIGame extends GUI, GraphicsGUIGame {
 
     public PanelGame getPanelGame();
 
-    public void addGameObject(final GameObject gameObject, final AffineTransform transform);
-
     public void startPaint();
 
     public void stopPaint();

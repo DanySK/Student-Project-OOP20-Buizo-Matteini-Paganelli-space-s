@@ -3,7 +3,6 @@ package spaceSurvival.view.game.utilities;
 import spaceSurvival.model.World;
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.gameObject.GameObject;
-import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 import spaceSurvival.model.gameObject.takeableGameObject.TakeableGameObject;
@@ -17,8 +16,6 @@ import java.util.*;
 import java.util.List;
 
 public class PanelGame extends JPanel{
-    private final Map<GameObject, AffineTransform> gameObject;
-    private final List<Bullet> listBullet;
 
     private World world;
 
@@ -31,8 +28,6 @@ public class PanelGame extends JPanel{
 
     public PanelGame() {
         super(); {{ setOpaque(false); }}
-        this.gameObject = new HashMap<>();
-        this.listBullet = new ArrayList<>();
         this.isDraw = false;
 
         this.firstDrawer = new Thread(PanelGame.this::runSecondDrawer);
@@ -137,30 +132,7 @@ public class PanelGame extends JPanel{
         }
     }
 
-    public void updateBullet() {
-        this.gameObject.forEach((gameObject, objTransform) -> {
-            if (gameObject instanceof MainGameObject) {
-                MainGameObject mainObject = (MainGameObject) gameObject;
-                if (mainObject.getWeapon().isPresent()) {
-                    this.listBullet.addAll(mainObject.getWeapon().get().getShootedBullets());
-                }
-            }
-        });
-    }
-
-    public void addGameObject(final GameObject gameObject, final AffineTransform transform) {
-        this.gameObject.put(gameObject, transform);
-        this.repaint();
-    }
-
-    public void deleteGameObject(final GameObject gameObject) {
-        this.gameObject.remove(gameObject);
-        this.repaint();
-    }
-
-
-
-    private void drawLifeBar(final Graphics2D g2d, final GameObject gameObject) {
+    private void drawLifeBar(final Graphics2D g2d, final GameObject gameObject){
         this.drawBar(g2d, gameObject);
         this.drawLife(g2d, gameObject);
     }

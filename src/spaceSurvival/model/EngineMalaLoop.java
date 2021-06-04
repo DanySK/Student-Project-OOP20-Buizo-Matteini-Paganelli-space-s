@@ -3,7 +3,6 @@ package spaceSurvival.model;
 import spaceSurvival.controller.GUI.CtrlGUI;
 import spaceSurvival.controller.GUI.CtrlGame;
 import spaceSurvival.controller.GUI.CtrlSound;
-import spaceSurvival.model.gameObject.Effect;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.gameObject.MovableGameObject;
 import spaceSurvival.model.gameObject.Status;
@@ -22,17 +21,11 @@ import spaceSurvival.model.gameObject.weapon.Bullet;
 import spaceSurvival.model.sound.CmdAudioType;
 import spaceSurvival.model.worldEcollisioni.WorldEvent;
 import spaceSurvival.model.worldEcollisioni.WorldEventListener;
-import spaceSurvival.model.worldEcollisioni.hitEvents.HitAsteroidEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitBorderEvent;
-import spaceSurvival.model.worldEcollisioni.hitEvents.HitBossEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitBulletEvent;
-import spaceSurvival.model.worldEcollisioni.hitEvents.HitChaseEnemyEvent;
-import spaceSurvival.model.worldEcollisioni.hitEvents.HitFireEnemyEvent;
-import spaceSurvival.model.worldEcollisioni.hitEvents.HitHeartEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitMainGameObject;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitTakeableGameObject;
 import spaceSurvival.model.worldEcollisioni.physics.BoundaryCollision.CollisionEdge;
-import spaceSurvival.model.worldEcollisioni.hitEvents.HitAmmoEvent;
 import spaceSurvival.utilities.Score;
 import spaceSurvival.utilities.SoundPath;
 import spaceSurvival.utilities.SystemVariables;
@@ -42,7 +35,6 @@ import java.awt.geom.AffineTransform;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-
 
 public class EngineMalaLoop extends Thread implements WorldEventListener {
     public static final int FPS = 60;
@@ -69,12 +61,6 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         this.controlGame.assignMovementListenerInShip();
         this.controlGame.setEventListenerInWorld(this);
         this.controlGame.assignWorld();
-        this.controlGame.addAllGameObjectsFromWorld();
-        
-        //double scale = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().getDefaultTransform().getScaleX();      
-        //System.out.println("centerrrr" + Screen.POINT_CENTER_FULLSCREEN);
-        //this.controlGame.getShip().setPosition(new P2d(Screen.POINT_CENTER_FULLSCREEN.getX(), Screen.POINT_CENTER_FULLSCREEN.getY()));
-        
         
         this.controlSound.setSoundLoop(this.controlGUI.getCurrentGUI());
         this.controlSound.setCmdAudioLoop(CmdAudioType.AUDIO_ON);
@@ -142,7 +128,6 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     }
     
     protected void checkSoundEffects() {
-        final World scene = this.controlGame.getWorld();
         final SpaceShipSingleton ship = this.controlGame.getShip();
         //soundQueue.add(ship.popEffect()); 
         Optional<SoundPath> effect = ship.popEffect();
@@ -158,7 +143,6 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
 
     protected void checkEvents() {
         final World world = this.controlGame.getWorld();
-        final SpaceShipSingleton ship = this.controlGame.getShip();
         
         eventQueue.forEach(ev -> {
         	if (ev instanceof HitMainGameObject) {
@@ -167,8 +151,8 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             	final MainGameObject collidedObject = asteroidEvent.getCollidedObject();
             	this.controlGame.incrScore(Score.ASTEROID);
             	
-            	collisionDamageObject(object, collidedObject.getImpactDamage());
-            	collisionDamageObject(collidedObject, object.getImpactDamage());
+            	damageObject(object, collidedObject.getImpactDamage(), Status.INVINCIBLE);
+            	damageObject(collidedObject, object.getImpactDamage(), Status.INVINCIBLE);
 
         	} else if (ev instanceof HitTakeableGameObject) {
         		HitTakeableGameObject takeableEvent = (HitTakeableGameObject) ev;
@@ -341,40 +325,14 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
            		world.removeBullet(bullet);
            		MainGameObject object = bulletEvent.getCollidedObject();
             	
-           		fireDamageObject(object, bullet.getDamage(), bullet.getEffect().getStatus());
-//              if (gameObj instanceof Asteroid) {
-//               		System.out.println("Bullet ha preso al volo un asteroid, lo rimuovo");
-//               		world.removeAsteroid(gameObj);
-//               		world.removeBullet(bullet);
-//				}
-//                if (gameObj instanceof ChaseEnemy) {
-//               		System.out.println("Bullet ha preso al volo un chase enemy, lo rimuovo");
-//               		world.removeChaseEnemy(gameObj);
-//               		world.removeBullet(bullet);
-//				}
-//                if (gameObj instanceof FireEnemy) {
-//               		System.out.println("Bullet ha preso al volo un fire enemy, lo rimuovo");
-//               		world.removeFireEnemy(gameObj);
-//               		world.removeBullet(bullet);
-//				}
-//                if (gameObj instanceof Boss) {
-//               		System.out.println("Bullet ha preso al volo il boss, lo rimuovo");
-//               		//world.removeBoss(gameObj);
-//                   	//ship.getWeapon().get().getShootedBullets().remove(bullet);
-//				}
-//                if (gameObj instanceof SpaceShipSingleton) {
-//               		System.out.println("Oh nooooo! Un bullet ha preso al volo la ship!");
-//					this.controlGame.decreaseLife(bullet.getDamage());
-//               		world.removeBullet(bullet);
-//				}
-                
+           		damageObject(object, bullet.getDamage(), bullet.getEffect().getStatus());
             }
         	this.controlGame.updateRoundState();
         });
         eventQueue.clear();
     }
     
-    public void collisionDamageObject(MainGameObject object, final int damage) {
+    public void damageObject(MainGameObject object, final int damage, final Status status) {
     	if (!object.isInvincible()) {
     		if (object instanceof SpaceShipSingleton) {
             	this.controlGame.decreaseLife(damage);
@@ -387,15 +345,15 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
 	    			this.controlGame.getWorld().removeMainObject(object);
 				}
 			}
-        	object.setStatus(Status.INVINCIBLE);
+        	object.setStatus(status);
 		}
 	}
     
-    public void fireDamageObject(MainGameObject object, final int damage, final Status status) {
-    	System.out.println("COLPISCO UN : " + object.getClass());
-    	collisionDamageObject(object, damage);
-    	object.setStatus(status);
-	}
+//    public void fireDamageObject(MainGameObject object, final int damage, final Status status) {
+//    	System.out.println("COLPISCO UN : " + object.getClass());
+//    	damageObject(object, damage);
+//    	object.setStatus(status);
+//	}
     
     public void playSoundOf(MainGameObject object) {
 		if (object instanceof Asteroid) {

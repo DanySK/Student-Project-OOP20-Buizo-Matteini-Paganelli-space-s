@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.Optional;
 import java.util.Set;
 
-
 import spaceSurvival.model.GUI.settings.SkinSpaceShip;
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.MainGameObject;
@@ -31,7 +30,6 @@ import spaceSurvival.model.worldEcollisioni.physics.boundingType.CircleBoundingB
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.CollisionChecker;
 import spaceSurvival.model.common.*;
-import spaceSurvival.utilities.pathImage.Skin.SkinShip;
 
 public class World {
 	

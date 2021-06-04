@@ -10,8 +10,6 @@ import spaceSurvival.model.movement.Movement;
 import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
-import spaceSurvival.utilities.pathImage.Effect;
-import spaceSurvival.utilities.pathImage.Skin.SkinShip;
 
 public abstract class MainGameObject extends MovableGameObject {
 	private int life;
@@ -32,6 +30,7 @@ public abstract class MainGameObject extends MovableGameObject {
 		this.statusThread = new Thread(MainGameObject.this::statusLoop);
 		this.statusThread.start();
 		this.score = score;
+		this.setStatus(Status.HEALED);
 	}
 
     public int getLife() {
@@ -75,6 +74,7 @@ public abstract class MainGameObject extends MovableGameObject {
 	
 	public void setStatus(final Status status) {
 		this.status = status;
+		super.setAnimationEffect(status.getAnimation());
 	}
 	
 	public boolean isInvincible() {
@@ -83,27 +83,29 @@ public abstract class MainGameObject extends MovableGameObject {
 	
 	public void statusLoop() {
 		while (true) {
+			//System.out.println("THREAD ATTIVI " + Thread.activeCount());
+
 			if (this.status != Status.NORMAL) {
 				System.out.println("HO UNO STATUS " + this.status);
 				List<String> normalList = getAnimation();
 				switch (this.status) {
 				case INVINCIBLE:
-					setAnimationEffect(Effect.LIST_BURN);
+					setStatus(Status.INVINCIBLE);
 					waitStatusDuration(GameObjectUtils.INVINCIBLE_DURATION);
 					break;
 				case ON_FIRE:
 					new Thread(MainGameObject.this::onFire).start();
-					setAnimationEffect(Effect.LIST_BURN);
+					setStatus(Status.ON_FIRE);
 					waitStatusDuration(GameObjectUtils.ON_FIRE_DURATION);
 					break;
 				case FROZEN:
 					new Thread(MainGameObject.this::frozen).start();
-					setAnimation(SkinShip.LIST_SHIP1);
+					setStatus(Status.FROZEN);
 					waitStatusDuration(GameObjectUtils.FROZEN_DURATION);
 					break;
 				case PARALIZED:
 					new Thread(MainGameObject.this::paralized).start();
-					setAnimation(SkinShip.LIST_SHIP1);
+					setStatus(Status.PARALIZED);
 					waitStatusDuration(GameObjectUtils.PARALIZED_DURATION);
 					break;
 				default:
@@ -111,17 +113,8 @@ public abstract class MainGameObject extends MovableGameObject {
 				}
 				setAnimationEffect(normalList);
 				System.out.println("FINITO LO STATUS " + this.status);
-				this.status = Status.NORMAL;
-			}
+				setStatus(Status.NORMAL);			}
 			mySleep(5);
-		}
-	}
-	
-	public void mySleep(int milliseconds) {
-		try {
-			sleep(milliseconds);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
 		}
 	}
 	
@@ -163,6 +156,14 @@ public abstract class MainGameObject extends MovableGameObject {
 		this.score = score;
 	}
 
+	public void mySleep(int milliseconds) {
+		try {
+			sleep(milliseconds);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@Override
 	public String toString() {
 		return "MainGameObject [life=" + life + ", impactDamage=" + impactDamage + ", state=" + status 

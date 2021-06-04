@@ -47,7 +47,6 @@ public abstract class GameObject extends Thread{
 		this.start();
 	}
 
-
 	public void setAnimation(final List<String> animation){
 		this.animation = animation;
 	}
@@ -57,16 +56,12 @@ public abstract class GameObject extends Thread{
 		this.animationEffect = animation;
 	}
 
-
 	public void run(){
 		long lastTime = System.currentTimeMillis();
 		int i = 0, j = 0;
 		while (true){
 			long current = System.currentTimeMillis();
 			int elapsed = (int)(current - lastTime);
-
-			waitForNextFrame(current);
-			lastTime = current;
 
 			if(this.animation.size() > 0) {
 				this.engineImage.setPath(this.animation.get(i++));
@@ -77,6 +72,9 @@ public abstract class GameObject extends Thread{
 				this.engineEffect.setPath(this.animationEffect.get(j++));
 				j = j + 1 > this.animationEffect.size() ? 0 : j;
 			}
+
+			waitForNextFrame(current);
+			lastTime = current;
 
 		}
 	}
@@ -193,14 +191,10 @@ public abstract class GameObject extends Thread{
 		return animation;
 	}
 	
-
-	
 	@Override
 	public String toString() {
 		return "GameObject [engineImage=" + engineImage + ", position=" + position + ", boundingBox=" + boundingBox
 				+ ", phys=" + phys + "]";
 	}
-
-
 
 }
