@@ -10,6 +10,7 @@ import spaceSurvival.model.movement.Movement;
 import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
+import spaceSurvival.utilities.pathImage.Effect;
 import spaceSurvival.utilities.pathImage.Skin.SkinShip;
 
 public abstract class MainGameObject extends MovableGameObject {
@@ -25,7 +26,7 @@ public abstract class MainGameObject extends MovableGameObject {
                           final int impactDamage, final Optional<Weapon> weapon, final int score) {
 		super(engineImage, position, bb, phys, velocity, movement);
 		this.life = life;
-		this.setImpactDamage(impactDamage);
+		this.impactDamage = impactDamage;
 		this.status = Status.NORMAL;
 		this.weapon = weapon;
 		this.statusThread = new Thread(MainGameObject.this::statusLoop);
@@ -83,15 +84,16 @@ public abstract class MainGameObject extends MovableGameObject {
 	public void statusLoop() {
 		while (true) {
 			if (this.status != Status.NORMAL) {
+				System.out.println("HO UNO STATUS " + this.status);
 				List<String> normalList = getAnimation();
 				switch (this.status) {
 				case INVINCIBLE:
-					setAnimation(SkinShip.LIST_SHIP1);
+					setAnimationEffect(Effect.LIST_BURN);
 					waitStatusDuration(GameObjectUtils.INVINCIBLE_DURATION);
 					break;
 				case ON_FIRE:
 					new Thread(MainGameObject.this::onFire).start();
-					setAnimation(SkinShip.LIST_SHIP1);
+					setAnimationEffect(Effect.LIST_BURN);
 					waitStatusDuration(GameObjectUtils.ON_FIRE_DURATION);
 					break;
 				case FROZEN:
@@ -107,7 +109,8 @@ public abstract class MainGameObject extends MovableGameObject {
 				default:
 					break;
 				}
-				setAnimation(normalList);
+				setAnimationEffect(normalList);
+				System.out.println("FINITO LO STATUS " + this.status);
 				this.status = Status.NORMAL;
 			}
 			mySleep(5);

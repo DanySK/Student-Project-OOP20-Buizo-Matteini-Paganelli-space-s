@@ -4,14 +4,7 @@ import spaceSurvival.model.World;
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.MainGameObject;
-import spaceSurvival.model.gameObject.enemy.ChaseEnemy;
-import spaceSurvival.model.gameObject.enemy.FireEnemy;
 import spaceSurvival.model.EngineImage;
-
-import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
-
-
-
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 import spaceSurvival.model.gameObject.takeableGameObject.TakeableGameObject;
 import spaceSurvival.model.gameObject.weapon.Bullet;
@@ -97,8 +90,10 @@ public class PanelGame extends JPanel{
             g2d.setColor(Color.WHITE);
             g2d.drawRect(0, 0, (int)entity.getEngineImage().getSize().getWidth(), (int)entity.getEngineImage().getSize().getHeight());
 
-            if(!(entity instanceof SpaceShipSingleton || entity instanceof TakeableGameObject || entity instanceof Bullet)) {
-                this.drawLifeBar(g2d, entity);
+            if (!(entity instanceof SpaceShipSingleton || 
+            	  entity instanceof TakeableGameObject || 
+            	  entity instanceof Bullet)) {
+            	this.drawLifeBar(g2d, entity);
             }
 
         });
@@ -126,14 +121,13 @@ public class PanelGame extends JPanel{
     }
 
 
-    public void runSecondDrawer(){
-        while (true){
+    public void runSecondDrawer() {
+        while (true) {
 
             if(this.isDraw){
                 super.repaint();
                 this.repaint();
             }
-
 
             try {
                 Thread.sleep(5);
@@ -143,7 +137,7 @@ public class PanelGame extends JPanel{
         }
     }
 
-    public void updateBullet(){
+    public void updateBullet() {
         this.gameObject.forEach((gameObject, objTransform) -> {
             if (gameObject instanceof MainGameObject) {
                 MainGameObject mainObject = (MainGameObject) gameObject;
@@ -159,14 +153,14 @@ public class PanelGame extends JPanel{
         this.repaint();
     }
 
-    public void deleteGameObject(final GameObject gameObject){
+    public void deleteGameObject(final GameObject gameObject) {
         this.gameObject.remove(gameObject);
         this.repaint();
     }
 
 
 
-    private void drawLifeBar(final Graphics2D g2d, final GameObject gameObject){
+    private void drawLifeBar(final Graphics2D g2d, final GameObject gameObject) {
         this.drawBar(g2d, gameObject);
         this.drawLife(g2d, gameObject);
     }

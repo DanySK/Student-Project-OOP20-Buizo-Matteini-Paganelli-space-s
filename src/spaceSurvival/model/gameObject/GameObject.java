@@ -14,11 +14,6 @@ import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 import spaceSurvival.utilities.SoundPath;
 import spaceSurvival.model.World;
-import spaceSurvival.utilities.pathImage.Background;
-import spaceSurvival.utilities.pathImage.Effect;
-import spaceSurvival.utilities.pathImage.Skin.SkinShip;
-
-
 
 public abstract class GameObject extends Thread{
 
@@ -50,8 +45,6 @@ public abstract class GameObject extends Thread{
 		this.animationEffect = new ArrayList<>();
 		this.setPosition(position);
 		this.start();
-
-		this.setAnimationEffect(Effect.LIST_BURN);
 	}
 
 

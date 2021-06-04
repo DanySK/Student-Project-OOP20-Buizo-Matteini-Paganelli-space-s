@@ -228,7 +228,6 @@ public class World {
 		//double radius = box.getWidth();
 		for (MainGameObject obj: asteroids) {
 			if (collisionChecker.testRectangleToCircle(rectBoundingBox, (CircleBoundingBox) obj.getBoundingBox())) {		
-			    System.out.println("MANDATO UN EVENTO ASTEROID");
 				return Optional.of(obj);
 			}
 		}
@@ -239,7 +238,6 @@ public class World {
 	//double radius = box.getWidth();
 		for (MainGameObject obj: chaseEnemies) {
 			if(collisionChecker.testRectangleToRectangle(rectBoundingBox, (RectBoundingBox) obj.getBoundingBox())) {
-				System.out.println("MANDATO UN EVENTO ENEMIES");
 				return Optional.of(obj);
 			}
 		}
@@ -251,7 +249,6 @@ public class World {
 	//double radius = box.getWidth();
 		for (MainGameObject obj: fireEnemies) {
 			if(collisionChecker.testRectangleToRectangle(rectBoundingBox, (RectBoundingBox) obj.getBoundingBox())) {
-				System.out.println("MANDATO UN EVENTO ENEMIES");
 				return Optional.of(obj);
 			}
 		}
