@@ -112,7 +112,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 		final P2d position = GameObjectUtils.generateRandomPoint();
 		
 		return new Ammo(engineImage, position, new CircleBoundingBox(), new PickablePhysicsComponent(),
-				SkinPerk.LIST_ELECTRIC, AmmoType.ELECTRIC);
+				SkinPerk.LIST_ICE, AmmoType.ICE);
 	}
 	
 	@Override

@@ -76,7 +76,7 @@ public class GameObjectUtils {
     public static final int FIRE_DAMAGE = 10;
     public static final int FIRE_INTERVAL_DAMAGE = 1000;
     
-    public static final double FROZEN_SLOWDOWN = 0.5;
+    public static final double FROZEN_SLOWDOWN = 0.3;
 
     public static final int LIFE_GAINED = 50;
 

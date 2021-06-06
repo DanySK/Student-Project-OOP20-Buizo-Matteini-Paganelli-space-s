@@ -16,7 +16,6 @@ public abstract class MainGameObject extends MovableGameObject {
 	private int impactDamage;
 	private Status status;
 	private Optional<Weapon> weapon;
-	private Thread statusThread;
 	private int score;
 	
 	public MainGameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
@@ -27,8 +26,6 @@ public abstract class MainGameObject extends MovableGameObject {
 		this.impactDamage = impactDamage;
 		this.weapon = weapon;
 		this.setStatus(Status.NORMAL);
-		this.statusThread = new Thread(MainGameObject.this::statusLoop);
-		this.statusThread.start();
 		this.score = score;
 	}
 
@@ -72,79 +69,70 @@ public abstract class MainGameObject extends MovableGameObject {
 	}
 	
 	public void setStatus(final Status status) {
-		this.status = status;
-		super.setAnimationEffect(status.getAnimation());
+
+		if (!(this.status == status) || this.status != Status.NORMAL || status == Status.INVINCIBLE) {
+			System.out.println("STATUS   " + status);
+
+			this.status = status;
+			super.setAnimationEffect(status.getAnimation());
+
+			this.onStatus();
+		}
 	}
 	
 	public boolean isInvincible() {
 		return this.status == Status.INVINCIBLE;
 	}
 	
-	public void statusLoop() {
-		while (true) {
-			//System.out.println("THREAD ATTIVI " + Thread.activeCount());
-
-			if (this.status != Status.NORMAL) {
-				System.out.println("HO UNO STATUS " + this.status);
-				List<String> normalList = getAnimation();
-				switch (this.status) {
-				case INVINCIBLE:
-					setStatus(Status.INVINCIBLE);
-					waitStatusDuration(GameObjectUtils.INVINCIBLE_DURATION);
-					break;
-				case ON_FIRE:
-					new Thread(MainGameObject.this::onFire).start();
-					setStatus(Status.ON_FIRE);
-					waitStatusDuration(GameObjectUtils.ON_FIRE_DURATION);
-					break;
-				case FROZEN:
-					new Thread(MainGameObject.this::frozen).start();
-					setStatus(Status.FROZEN);
-					waitStatusDuration(GameObjectUtils.FROZEN_DURATION);
-					break;
-				case PARALIZED:
-					new Thread(MainGameObject.this::paralized).start();
-					setStatus(Status.PARALIZED);
-					waitStatusDuration(GameObjectUtils.PARALIZED_DURATION);
-					break;
-				default:
-					break;
-				}
-				setAnimationEffect(normalList);
-				System.out.println("FINITO LO STATUS " + this.status);
-				setStatus(Status.NORMAL);			}
-			mySleep(5);
+	public void onStatus() {
+		switch (this.status) {
+		case INVINCIBLE:
+			break;
+		case ON_FIRE:
+			new Thread(MainGameObject.this::onFire).start();
+			break;
+		case FROZEN:
+			new Thread(MainGameObject.this::frozen).start();
+			break;
+		case PARALIZED:
+			new Thread(MainGameObject.this::paralized).start();
+			break;
+		default:
+			break;
 		}
+		new Thread(() -> waitStatusDuration(status.getDuration())).start();
 	}
-	
+
 	public void waitStatusDuration(int milliseconds) {
 		mySleep(milliseconds);
+		this.status = Status.NORMAL;
+		super.setAnimationEffect(Status.NORMAL.getAnimation());
 	}
 	
 	public void onFire() {
 		while (this.status == Status.ON_FIRE) {
 			this.decreaseLife(GameObjectUtils.FIRE_DAMAGE);
 			System.out.println("SONO ANDATO A FUOCO " + GameObjectUtils.FIRE_DAMAGE + " DANNO");
-			try {
-				sleep(GameObjectUtils.FIRE_INTERVAL_DAMAGE);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			mySleep(GameObjectUtils.FIRE_INTERVAL_DAMAGE);
 		}
 	}
 	
 	public void frozen() {
 		final V2d initialVel = this.getVelocity();
+		System.out.println("SALVO VELOCITA INIZIALE " + initialVel);
 		this.setVelocity(getVelocity().mul(GameObjectUtils.FROZEN_SLOWDOWN));
 		while (this.status == Status.FROZEN) {
+			mySleep(20);
 		}
 		this.setVelocity(initialVel);
+		System.out.println("RISETTO VELOCITA INIZIALE " + this.getVelocity());
 	}
 	
 	public void paralized() {
 		final V2d initialVel = this.getVelocity();
 		this.setVelocity(GameObjectUtils.NO_VEL);
 		while (this.status == Status.PARALIZED) {
+			mySleep(20);
 		}
 		this.setVelocity(initialVel);
 

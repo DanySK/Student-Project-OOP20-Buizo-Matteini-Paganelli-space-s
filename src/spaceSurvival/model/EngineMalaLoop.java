@@ -72,32 +72,31 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         long lastTime = System.currentTimeMillis();
         long current = 0L;
         while (true) {
-            if(!this.controlGame.isGameOver()){
+            if(!this.controlGame.isGameOver()) {
                 current = System.currentTimeMillis();
                 int elapsed = (int)(current - lastTime);
 
+    			//System.out.println("THREAD ATTIVI " + Thread.activeCount());
 
-                if(this.controlGUI.isInGame()){
-                    if(!this.controlGUI.isInPause()){
+                if (this.controlGUI.isInGame()) {
+                    if (!this.controlGUI.isInPause()) {
                         //processInput();
                         renderMovement();
                         //render();
-
                         waitForNextFrame(current);
                         lastTime = current;
-
                         updateGame(elapsed);
                     }
                 }
 
-                if(this.controlGUI.isInGame() || !this.controlGUI.isInPause()) {
+                if (this.controlGUI.isInGame() || !this.controlGUI.isInPause()) {
                     waitForNextFrame(current);
                     lastTime = current;
                 }
             } else {
                 renderGameOver();
 
-                while(this.controlGUI.isInGameOver()){
+                while (this.controlGUI.isInGameOver()) {
                     waitForNextFrame(current);
                     lastTime = current;
                 }
@@ -162,7 +161,9 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         		if (takeableGameObject instanceof Ammo) {
         			final AmmoType ammoType = ((Ammo) takeableGameObject).getType();
         			System.out.println("PRENDO MUNIZIONI DI TIPO " + ammoType);
-        			world.getShip().getWeapon().get().setAmmoType(ammoType);
+        			if (world.getShip().getWeapon().isPresent()) {
+            			world.getShip().getWeapon().get().setAmmoType(ammoType);
+					}
         			
         		} else if (takeableGameObject instanceof Heart) {
         			final HeartType heartType = ((Heart) takeableGameObject).getType();
@@ -333,6 +334,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     }
     
     public void damageObject(MainGameObject object, final int damage, final Status status) {
+    	System.out.println("SONO INVINCIBILE ?  " + object.isInvincible());
     	if (!object.isInvincible()) {
     		if (object instanceof SpaceShipSingleton) {
             	this.controlGame.decreaseLife(damage);
@@ -345,6 +347,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
 	    			this.controlGame.getWorld().removeMainObject(object);
 				}
 			}
+    		System.out.println("DURATA INVINCIBILITA " + status.getDuration());
         	object.setStatus(status);
 		}
 	}
