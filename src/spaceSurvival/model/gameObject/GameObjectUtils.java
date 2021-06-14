@@ -39,7 +39,7 @@ public class GameObjectUtils {
     public static final int BOSS_LIFE_INCREMENT = 20;
 
     public static final V2d SPACESHIP_VEL = new V2d(0, 0);
-    public static final V2d ASTEROID_VEL = new V2d();
+    public static final V2d ASTEROID_VEL = new V2d(5, 0);
     public static final V2d CHASE_ENEMY_VEL = new V2d(0,-3);
     public static final V2d FIRE_ENEMY_VEL = new V2d();
     public static final V2d BOSS_VEL = new V2d();

@@ -32,7 +32,7 @@ import spaceSurvival.model.worldEcollisioni.physics.components.CollisionChecker;
 import spaceSurvival.model.common.*;
 
 public class World {
-	
+
 	private AbstractFactoryGameObject factoryGameObject = new ConcreteFactoryGameObject();
 
 	private final Set<MainGameObject> asteroids = new HashSet<>();
@@ -62,6 +62,7 @@ public class World {
 			ammo.add(factoryGameObject.createAmmo());
 			hearts.add(factoryGameObject.createHeart());
 		}
+		this.boss = Optional.of(factoryGameObject.createBoss());
 	}
 
 	public World(final Rectangle rectangle) {
@@ -75,6 +76,7 @@ public class World {
 			ammo.add(factoryGameObject.createAmmo());
 			hearts.add(factoryGameObject.createHeart());
 		}
+		this.boss = Optional.of(factoryGameObject.createBoss());
 	}
 
 	public void setEventListener(final WorldEventListener l) {

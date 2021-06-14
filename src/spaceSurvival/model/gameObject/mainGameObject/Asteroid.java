@@ -1,7 +1,9 @@
 package spaceSurvival.model.gameObject.mainGameObject;
 
+import java.awt.geom.AffineTransform;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.common.V2d;
@@ -11,7 +13,6 @@ import spaceSurvival.model.movement.Movement;
 import spaceSurvival.model.gameObject.weapon.Weapon;
 import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
-import spaceSurvival.model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 
 public class Asteroid extends MainGameObject {
@@ -21,12 +22,8 @@ public class Asteroid extends MainGameObject {
                     final int impactDamage, final Optional<Weapon> weapon, final int score) {
 		
 		super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, weapon, score);
-
     	this.setBoundingBox(GameObjectUtils.createCircleBoundingBox(position, engineImage, this.getTransform()));
-    	CircleBoundingBox cbb = (CircleBoundingBox) this.getBoundingBox();
-//    	System.out.println(cbb.getRadius());
-//    	System.out.println(cbb.getCenter());
-
+    	initializeRotation();
 	}
 
 	public Asteroid(final EngineImage engineImage, final P2d position, final BoundingBox bb,
@@ -34,16 +31,19 @@ public class Asteroid extends MainGameObject {
 					final int impactDamage, final Optional<Weapon> weapon, final int score, final List<String> animation) {
 
 		super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, weapon, score);
-
 		this.setBoundingBox(GameObjectUtils.createCircleBoundingBox(position, engineImage, this.getTransform()));
-		CircleBoundingBox cbb = (CircleBoundingBox) this.getBoundingBox();
 		this.setAnimation(animation);
-//		System.out.println(cbb.getRadius());
-//		System.out.println(cbb.getCenter());
-//		System.out.println(this.getBoundingBox());
-
+		initializeRotation();
 	}
 
+	public void initializeRotation() {
+	    final Random random = new Random();
+	    final int randomAngle = random.nextInt();
+	    AffineTransform at = getTransform();
+        at.rotate(randomAngle, getSize().getWidth() / 2, getSize().getHeight() / 2);
+        setTransform(at);
+    }
+	
 	@Override
 	public String toString() {
 		return "Asteroid { " + super.toString() + " }";

@@ -1,5 +1,6 @@
 package spaceSurvival.model.gameObject.factories;
 
+import java.util.List;
 import java.util.Optional;
 
 import spaceSurvival.model.gameObject.GameObjectUtils;
@@ -44,63 +45,64 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 
 	@Override
 	public MainGameObject createAsteroid() {
-		EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN,
+	    final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN,
 				SkinAsteroid.ASTEROID1);
-		P2d position = GameObjectUtils.generateRandomPoint();//GameObjectUtils.generateSpawnPoint(engineImage.getSize());
-		V2d velocity = GameObjectUtils.ASTEROID_VEL;
-		Movement movement = new FixedMovement();
-		int life = GameObjectUtils.ASTEROID_LIFE;
-		int impactDamage = GameObjectUtils.ASTEROID_DAMAGE;
-		Optional<Weapon> weapon = Optional.empty();
+	    final P2d position = GameObjectUtils.generateRandomPoint();
+        //final P2d position = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
+	    final V2d velocity = GameObjectUtils.ASTEROID_VEL;
+	    final Movement movement = new FixedMovement();
+	    final int life = GameObjectUtils.ASTEROID_LIFE;
+	    final int impactDamage = GameObjectUtils.ASTEROID_DAMAGE;
+	    final Optional<Weapon> weapon = Optional.empty();
 		
 		return new Asteroid(engineImage, position, new CircleBoundingBox(), new AsteroidPhysicsComponent(),
 				velocity, movement, life, impactDamage, weapon, Score.ASTEROID, SkinAsteroid.LIST_ASTEROID);
 	}
 
-
 	@Override
 	public MainGameObject createChaseEnemy() {
-		EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinChase.POOH0);
-		P2d position = GameObjectUtils.generateRandomPoint();//GameObjectUtils.generateSpawnPoint(engineImage.getSize());
-		V2d velocity = GameObjectUtils.CHASE_ENEMY_VEL;
-		Movement movement = new ChasingMovement();
-		int life = GameObjectUtils.CHASE_ENEMY_LIFE;
-		int impactDamage = GameObjectUtils.CHASE_ENEMY_DAMAGE;		
-		Optional<Weapon> weapon = Optional.empty();
+	    final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinChase.POOH0);
+	    //final P2d position = GameObjectUtils.generateRandomPoint();
+        final P2d position = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
+	    final V2d velocity = GameObjectUtils.CHASE_ENEMY_VEL;
+	    final Movement movement = new ChasingMovement();
+	    final int life = GameObjectUtils.CHASE_ENEMY_LIFE;
+	    final int impactDamage = GameObjectUtils.CHASE_ENEMY_DAMAGE;		
+	    final Optional<Weapon> weapon = Optional.empty();
 		
 		return new ChaseEnemy(engineImage, position, new RectBoundingBox(), new ChaseEnemyPhysicsComponent(),
 				velocity, movement, life, impactDamage, weapon, Score.CHASE_ENEMY, SkinChase.LIST_POOH, Screen.POINT_CENTER_FULLSCREEN);
 	}
 
-
 	@Override
 	public MainGameObject createFireEnemy() {
-		EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinChase.CHASE0);
-		P2d position = GameObjectUtils.generateRandomPoint();// GameObjectUtils.generateSpawnPoint(engineImage.getSize());
-		V2d velocity = GameObjectUtils.FIRE_ENEMY_VEL;
-		Movement movement = new DistantMovement();
-		int life = GameObjectUtils.FIRE_ENEMY_LIFE;
-		int impactDamage = GameObjectUtils.FIRE_ENEMY_DAMAGE;		
-		Optional<Weapon> weapon = Optional.empty();
+	    final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinChase.CHASE0);
+	    //final P2d position = GameObjectUtils.generateRandomPoint();
+        final P2d position = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
+	    final V2d velocity = GameObjectUtils.FIRE_ENEMY_VEL;
+	    final Movement movement = new DistantMovement();
+	    final int life = GameObjectUtils.FIRE_ENEMY_LIFE;
+	    final int impactDamage = GameObjectUtils.FIRE_ENEMY_DAMAGE;		
+	    final Optional<Weapon> weapon = Optional.empty();
 		
-		FireEnemy fireEnemy = new FireEnemy(engineImage, position, new RectBoundingBox(), new FireEnemyPhysicsComponent(),
+	    final FireEnemy fireEnemy = new FireEnemy(engineImage, position, new RectBoundingBox(), new FireEnemyPhysicsComponent(),
 				velocity, movement, life, impactDamage, weapon, Score.FIRE_ENEMY, Screen.POINT_CENTER_FULLSCREEN);
 		fireEnemy.setWeapon(Optional.of(new Weapon(AmmoType.NORMAL, fireEnemy)));
 		return fireEnemy;
 	}
 
-
 	@Override
 	public MainGameObject createBoss() {
-		EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinChase.CHASE0);
-		P2d position = GameObjectUtils.generateRandomPoint();//GameObjectUtils.generateSpawnPoint(engineImage.getSize());
-		V2d velocity = GameObjectUtils.BOSS_VEL;
-		Movement movement = new DistantMovement();
-		int life = GameObjectUtils.BOSS_LIFE;
-		int impactDamage = GameObjectUtils.BOSS_DAMAGE;		
-		Optional<Weapon> weapon = Optional.of(new Weapon());
+		final EngineImage engineImage = new EngineImage(ScaleOf.BOSS, Screen.WIDTH_FULL_SCREEN, SkinChase.CHASE0);
+		//P2d position = GameObjectUtils.generateRandomPoint();
+		final P2d position = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
+		final V2d velocity = GameObjectUtils.BOSS_VEL;
+		final Movement movement = new DistantMovement();
+		final int life = GameObjectUtils.BOSS_LIFE;
+		final int impactDamage = GameObjectUtils.BOSS_DAMAGE;		
+		final Optional<Weapon> weapon = Optional.of(new Weapon());
 		
-		Boss boss = new Boss(engineImage, position, new RectBoundingBox(), new BossPhysicsComponent(),
+		final Boss boss = new Boss(engineImage, position, new RectBoundingBox(), new BossPhysicsComponent(),
 				velocity, movement, life, impactDamage, weapon, Score.BOSS, Screen.POINT_CENTER_FULLSCREEN);
 		boss.setWeapon(Optional.of(new Weapon(AmmoType.NORMAL, boss)));
 		return boss;
@@ -121,7 +123,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 		final P2d position = GameObjectUtils.generateRandomPoint();
 		
 		return new Heart(engineImage, position, new CircleBoundingBox(), new PickablePhysicsComponent(),
-				SkinPerk.LIST_FIRE, HeartType.random());
+				List.of(), HeartType.random());
 	}
 
 }

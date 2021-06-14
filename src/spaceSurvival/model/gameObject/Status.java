@@ -21,7 +21,7 @@ public enum Status {
 		this.duration = GameObjectUtils.INFINITY;
 	}
 	
-	private Status(final List<String> animation, int duration){
+	private Status(final List<String> animation, final int duration){
 		this.animation = animation;
 		this.duration = duration;
 	}
