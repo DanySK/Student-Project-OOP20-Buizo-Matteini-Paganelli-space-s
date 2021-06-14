@@ -186,6 +186,14 @@ public abstract class GameObject extends Thread{
 	public Dimension getSize() {
 		return this.getEngineImage().getSize();
 	}
+	
+	public double getWidth() {
+        return this.getEngineImage().getSize().getWidth();
+    }
+	
+	public double getHeight() {
+        return this.getEngineImage().getSize().getHeight();
+    }
 
 	public List<String> getAnimation() {
 		return animation;

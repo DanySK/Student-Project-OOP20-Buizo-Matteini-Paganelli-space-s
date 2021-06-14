@@ -151,8 +151,16 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             	this.controlGame.incrScore(Score.ASTEROID);
             	
             	damageObject(object, collidedObject.getImpactDamage(), Status.INVINCIBLE);
-            	damageObject(collidedObject, object.getImpactDamage(), Status.INVINCIBLE);
-
+                damageObject(collidedObject, object.getImpactDamage(), Status.INVINCIBLE); 
+            	
+            	if (object instanceof ChaseEnemy) {
+                    world.removeChaseEnemy(object);
+                    playEffect(SoundPath.ENEMY_EXPL);
+                }
+            	if (collidedObject instanceof ChaseEnemy) {
+                    world.removeChaseEnemy(collidedObject);
+                    playEffect(SoundPath.ENEMY_EXPL);
+            	}
         	} else if (ev instanceof HitTakeableGameObject) {
         		HitTakeableGameObject takeableEvent = (HitTakeableGameObject) ev;
         		TakeableGameObject takeableGameObject = takeableEvent.getCollidedObject();

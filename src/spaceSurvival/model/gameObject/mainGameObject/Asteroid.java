@@ -39,7 +39,7 @@ public class Asteroid extends MainGameObject {
 	    final Random random = new Random();
 	    final int randomAngle = random.nextInt(360);
 	    AffineTransform at = getTransform();
-        at.rotate(randomAngle, getSize().getWidth() / 2, getSize().getHeight() / 2);
+        at.rotate(Math.toRadians(randomAngle), getSize().getWidth() / 2, getSize().getHeight() / 2);
         setTransform(at);
     }
 	

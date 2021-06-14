@@ -91,7 +91,7 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 			System.out.println("Preso un fireEnemy Fratellì");
 		}
 		
-		final Optional<MainGameObject> boss = w.checkCollisionWithFireEnemies(shipBoundingBox);
+		final Optional<MainGameObject> boss = w.checkCollisionWithBoss(shipBoundingBox);
         //collisioni con chaseEnemy
         if (boss.isPresent()) {
             w.notifyWorldEvent(new HitMainGameObject(ship, boss.get()));
