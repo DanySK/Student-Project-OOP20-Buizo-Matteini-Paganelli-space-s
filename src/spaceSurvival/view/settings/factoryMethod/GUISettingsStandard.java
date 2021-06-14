@@ -8,7 +8,7 @@ import spaceSurvival.utilities.DesignJComponent;
 import spaceSurvival.view.utilities.DesignGraphics;
 import spaceSurvival.view.settings.FactoryGUISettings;
 import spaceSurvival.view.settings.GUISettings;
-import spaceSurvival.view.settings.concrete.ConcreteGUISettings;
+import spaceSurvival.view.settings.concrete.GUISettingsConcrete;
 import spaceSurvival.view.utilities.FactoryGUIs;
 
 import javax.swing.*;
@@ -19,7 +19,7 @@ public class GUISettingsStandard implements FactoryGUISettings {
 
     @Override
     public GUISettings create() {
-        final ConcreteGUISettings concreteSettings = new ConcreteGUISettings();
+        final GUISettingsConcrete concreteSettings = new GUISettingsConcrete();
         concreteSettings.setFontGUITitle(DesignGraphics.getFontForTitle(DesignGraphics.SIZE_FONT_H1));
         concreteSettings.setFontTitleUnit(DesignGraphics.FONT_BIG_STANDARD);
         concreteSettings.setFontUnit(DesignGraphics.FONT_MEDIUM_STANDARD);
@@ -30,7 +30,7 @@ public class GUISettingsStandard implements FactoryGUISettings {
         return concreteSettings;
     }
 
-    private void createGraphics(final ConcreteGUISettings concreteSettings) {
+    private void createGraphics(final GUISettingsConcrete concreteSettings) {
         concreteSettings.setLayout(new BorderLayout());
 
         concreteSettings.add(FactoryGUIs.encapsulatesInPanelFlow(concreteSettings.getLbTitle()), BorderLayout.NORTH);

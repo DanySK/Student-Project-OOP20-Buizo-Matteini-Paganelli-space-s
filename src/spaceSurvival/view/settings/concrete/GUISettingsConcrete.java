@@ -14,13 +14,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-public class ConcreteGUISettings extends AbstractGUI implements GUISettings {
+public class GUISettingsConcrete extends AbstractGUI implements GUISettings {
     private final JLabel lbTitle;
     private final PanelSkin panelSkin;
     private final PanelDifficult panelDifficult;
     private final BtnAction btnBack;
 
-    public ConcreteGUISettings() {
+    public GUISettingsConcrete() {
         super();
         this.lbTitle = new JLabel();
         this.panelSkin = new PanelSkin();
