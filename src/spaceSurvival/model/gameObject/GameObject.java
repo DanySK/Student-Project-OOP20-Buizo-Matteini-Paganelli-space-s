@@ -16,6 +16,7 @@ import spaceSurvival.utilities.SoundPath;
 import spaceSurvival.model.World;
 
 public abstract class GameObject extends Thread{
+
 	private P2d position;
 	private AffineTransform transform;
 	private BoundingBox boundingBox;
@@ -50,6 +51,7 @@ public abstract class GameObject extends Thread{
 		this.animation = animation;
 	}
 
+	
 	public void setAnimationEffect(final List<String> animation){
 		this.animationEffect = animation;
 	}
@@ -188,7 +190,7 @@ public abstract class GameObject extends Thread{
 	public List<String> getAnimation() {
 		return animation;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "GameObject [engineImage=" + engineImage + ", position=" + position + ", boundingBox=" + boundingBox

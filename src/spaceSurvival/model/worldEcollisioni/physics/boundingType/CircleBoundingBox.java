@@ -35,7 +35,6 @@ public class CircleBoundingBox implements BoundingBox {
 	}
 	
 	public void setTransform(final AffineTransform transform) {
-		System.out.println(this.transform);
 		this.transform.setTransform(transform);
 	}
 

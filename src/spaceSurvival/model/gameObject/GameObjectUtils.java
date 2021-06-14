@@ -3,6 +3,8 @@ package spaceSurvival.model.gameObject;
 import java.awt.Dimension;
 import java.awt.geom.AffineTransform;
 import java.util.Random;
+
+import spaceSurvival.utilities.SystemVariables;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.common.V2d;
@@ -38,7 +40,7 @@ public class GameObjectUtils {
 
     public static final V2d SPACESHIP_VEL = new V2d(0, 0);
     public static final V2d ASTEROID_VEL = new V2d();
-    public static final V2d CHASE_ENEMY_VEL = new V2d();
+    public static final V2d CHASE_ENEMY_VEL = new V2d(0,-3);
     public static final V2d FIRE_ENEMY_VEL = new V2d();
     public static final V2d BOSS_VEL = new V2d();
     public static final V2d BULLET_VEL = new V2d(0, -60);
@@ -66,6 +68,9 @@ public class GameObjectUtils {
     public static final int PARALIZED_DURATION = 3000;
     public static final int FROZEN_DURATION = 5000;
     public static final int HEALED_DURATION = 1000;
+    public static final int HEAL_AMOUNT = 30;
+    public static final int LIFE_UP_AMOUNT = 1;
+
     public static final int LIVES_INCREASED_DURATION = 1000;
 
     public static final int FIRE_DAMAGE = 10;
@@ -108,7 +113,7 @@ public class GameObjectUtils {
 
     public static P2d generateRandomPoint() {
     	Random random = new Random();
-    	return new P2d(random.nextInt(Screen.WIDTH_FULL_SCREEN), random.nextInt(Screen.HEIGHT_FULL_SCREEN));
+    	return new P2d(random.nextInt((int) (Screen.WIDTH_FULL_SCREEN * SystemVariables.SCALE_X)),  random.nextInt((int) (Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y)));
     }
     
     public static BoundingBox createRectBoundingBox(final P2d position, final EngineImage engineImage, final AffineTransform transform) {

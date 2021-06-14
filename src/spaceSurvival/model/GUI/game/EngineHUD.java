@@ -10,13 +10,13 @@ public class EngineHUD {
     private final Chronometer chronometer;
     private long score;
     private int round;
-    private int heartShip;
+    private int lives;
 
     public EngineHUD() {
         this.chronometer = new Chronometer();
         this.score = INIT_SCORE;
         this.round = INIT_ROUND;
-        this.heartShip = INIT_HEART;
+        this.lives = INIT_HEART;
     }
 
     public long getScore() {
@@ -39,20 +39,24 @@ public class EngineHUD {
         this.round += DECR_VALUE;
     }
 
-    public int getHeartShip() {
-        return this.heartShip;
+    public int getLives() {
+        return this.lives;
     }
 
     public void setHeartShip(final int heartShip) {
-        this.heartShip = heartShip;
+        this.lives = heartShip;
     }
 
-    public void decrHeartShip(){
-        this.heartShip -= DECR_VALUE;
+    public void increaseLives(final int amount){
+        this.lives += amount;
+    }
+    
+    public void decreaseLives(){
+        this.lives -= DECR_VALUE;
     }
 
     public boolean isGameOver(){
-        return this.heartShip == DEAD;
+        return this.lives == DEAD;
     }
 
     public String getTimer(){
@@ -67,8 +71,8 @@ public class EngineHUD {
         this.chronometer.stopTimer();
     }
 
-    public void restartHear(){
-        this.heartShip = EngineHUD.INIT_HEART;
+    public void resetLives(){
+        this.lives = EngineHUD.INIT_HEART;
     }
 
     public void resetTimer(){
