@@ -17,7 +17,7 @@ import spaceSurvival.utilities.CommandType;
 
 public class CallerCommand {
 
-	private final CommandGameObject cmdLeft;
+    private final CommandGameObject cmdLeft;
 	private final CommandGameObject cmdUp;
 	private final CommandGameObject cmdRight;
 	private final CommandGameObject cmdDown;

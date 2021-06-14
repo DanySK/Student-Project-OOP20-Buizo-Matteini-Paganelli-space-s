@@ -40,7 +40,6 @@ public abstract class Sound {
 				setClip(AudioSystem.getClip());
 				getClip().get().open(audioInputStream);
 			} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 

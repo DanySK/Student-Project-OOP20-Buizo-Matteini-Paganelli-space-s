@@ -68,7 +68,7 @@ public abstract class GameObject extends Thread{
 	public void run(){
 		long lastTime = System.currentTimeMillis();
 		int i = 0, j = 0;
-		while (true){
+        while (true){
 			long current = System.currentTimeMillis();
 			int elapsed = (int)(current - lastTime);
 
