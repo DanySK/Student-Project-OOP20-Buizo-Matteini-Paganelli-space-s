@@ -79,6 +79,10 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     public void run() {
         long lastTime = System.currentTimeMillis();
         long current = 0L;
+        int nbThreadsss =  Thread.getAllStackTraces().keySet().size();
+        
+        System.out.println("Numero dei thread current init -> " + nbThreadsss);
+    
         while (true) {
             if(!this.controlGame.isGameOver()){
                 current = System.currentTimeMillis();
@@ -86,6 +90,9 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
 
 
                 if(this.controlGUI.isInGame()){
+                    int nbThreads =  Thread.getAllStackTraces().keySet().size();
+           
+                
                     if(!this.controlGUI.isInPause()){
                         //processInput();
                         renderMovement();
@@ -95,6 +102,9 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                         lastTime = current;
 
                         updateGame(elapsed);
+                        nbThreads =  Thread.getAllStackTraces().keySet().size();
+                        
+                        System.out.println("Numero dei thread current -> " + nbThreads);
                     }
                 }
 
