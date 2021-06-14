@@ -20,7 +20,6 @@ public class Asteroid extends MainGameObject {
 	public Asteroid(final EngineImage engineImage, final P2d position, final BoundingBox bb,
                     final PhysicsComponent phys, final V2d velocity, final Movement movement, final int life,
                     final int impactDamage, final Optional<Weapon> weapon, final int score) {
-		
 		super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, weapon, score);
     	this.setBoundingBox(GameObjectUtils.createCircleBoundingBox(position, engineImage, this.getTransform()));
     	initializeRotation();
@@ -38,7 +37,7 @@ public class Asteroid extends MainGameObject {
 
 	public void initializeRotation() {
 	    final Random random = new Random();
-	    final int randomAngle = random.nextInt();
+	    final int randomAngle = random.nextInt(360);
 	    AffineTransform at = getTransform();
         at.rotate(randomAngle, getSize().getWidth() / 2, getSize().getHeight() / 2);
         setTransform(at);

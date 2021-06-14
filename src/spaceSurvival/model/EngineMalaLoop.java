@@ -175,138 +175,12 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         		}
         		this.controlGame.getWorld().removeTakeableObject(takeableGameObject);
 			}
-//        	else if (ev instanceof HitAsteroidEvent){
-//            	HitAsteroidEvent asteroidEvent = (HitAsteroidEvent) ev;
-//            	final Asteroid asteroidCollided = (Asteroid) asteroidEvent.getCollisionObj();
-//            	if (!asteroidCollided.isInvincible()) {
-//            		asteroidCollided.decreaseLife(ship.getImpactDamage());
-//            		if (isGameObjectDead(asteroidCollided)) {
-//            			world.removeAsteroid(asteroidCollided);
-//            			playEffect(SoundPath.ASTEROID_EXPL);
-//                    	this.controlGame.incrScore(Score.ASTEROID);
-//					}
-//            	}
-//                this.controlGame.decreaseLife(asteroidCollided.getImpactDamage());
-//            } else if (ev instanceof HitChaseEnemyEvent) {
-//            	HitChaseEnemyEvent chaseEnemyEvent = (HitChaseEnemyEvent) ev;
-//            	final ChaseEnemy chaseEnemyCollided = (ChaseEnemy) chaseEnemyEvent.getCollisionObj();
-//            	chaseEnemyCollided.decreaseLife(ship.getImpactDamage());
-//            	System.out.println(ship.getImpactDamage());
-//            	if (isGameObjectDead(chaseEnemyCollided)) {
-//            		System.out.println("ChaseEnemy morto e rimosso");
-//                	world.removeChaseEnemy(chaseEnemyCollided);
-//                	playEffect(SoundPath.ENEMY_EXPL);
-//                	this.controlGame.incrScore(Score.CHASE_ENEMY);
-//                	this.controlGame.updateRoundState();
-//				}
-//                this.controlGame.decreaseLife(chaseEnemyCollided.getImpactDamage());
-//                //gameState.decreaseLives();
-//            } else if (ev instanceof HitFireEnemyEvent) {
-//            	HitFireEnemyEvent fireEnemyEvent = (HitFireEnemyEvent) ev;
-//            	final FireEnemy fireEnemyCollided = (FireEnemy) fireEnemyEvent.getCollisionObj();
-//            	fireEnemyCollided.decreaseLife(ship.getImpactDamage());
-//            	if (isGameObjectDead(fireEnemyCollided)) {
-//            		System.out.println("FireEnemy morto e rimosso");
-//                	world.removeFireEnemy(fireEnemyCollided);
-//                	this.controlGame.incrScore(Score.FIRE_ENEMY);
-//                	//this.controlGame.updateRoundState();
-//				}
-//                this.controlGame.decreaseLife(fireEnemyCollided.getImpactDamage());
-//                //gameState.decreaseLives();
-//            } else if (ev instanceof HitBossEvent) {
-//            	HitBossEvent bossEvent = (HitBossEvent) ev;
-//            	final Boss bossCollided = (Boss) bossEvent.getCollisionObj();
-//            	bossCollided.decreaseLife(ship.getImpactDamage());
-//            	if (isGameObjectDead(bossCollided)) {
-//                	world.setBoss(Optional.empty());
-//                    this.controlGame.incrScore(Score.BOSS);
-//                	this.controlGame.updateRoundState();
-////                    playEffect(SoundPath.BOSS_EXPL);
-////                	BOSS_EXPL	("sounds/enemyExpl.wav"),
-//				}
-//                this.controlGame.decreaseLife(bossCollided.getImpactDamage());
-//                //gameState.decreaseLives();
-//            } else if (ev instanceof HitAmmoEvent) {
-//            	playEffect(SoundPath.PERK);
-//            	HitAmmoEvent ammoEvent = (HitAmmoEvent) ev;
-//            	final AmmoType ammoType = ((Ammo) ammoEvent.getCollisionObj()).getType();
-//                world.getShip().getWeapon().get().setAmmoType(ammoType);
-//                System.out.println("PRENDO MUNIZIONI DI TIPO " + ammoType);
-//            } else if (ev instanceof HitHeartEvent) {
-//            	playEffect(SoundPath.PERK);
-//            	HitHeartEvent heartEvent = (HitHeartEvent) ev;
-//            	final HeartType heartType = ((Heart) heartEvent.getCollisionObj()).getType();
-//            	if (heartType == HeartType.HEAL) {
-//					this.controlGame.increaseLife(heartType.getAmount());
-//				} else if (heartType == HeartType.LIFE_UP) {
-//					this.controlGame.increaseLives(heartType.getAmount());
-//				}
-//=======
-//        	if (ev instanceof HitAsteroidEvent){
-//            	HitAsteroidEvent asteroidEvent = (HitAsteroidEvent) ev;
-//            	final Asteroid asteroidCollided = (Asteroid) asteroidEvent.getCollisionObj();
-//            	if (!asteroidCollided.isInvincible()) {
-//            		asteroidCollided.decreaseLife(ship.getImpactDamage());
-//            		if (isGameObjectDead(asteroidCollided)) {
-//            			world.removeAsteroid(asteroidCollided);
-//            			playEffect(SoundPath.ASTEROID_EXPL);
-//                    	this.controlGame.incrScore(Score.ASTEROID);
-//					}
-//            	}
-//                this.controlGame.controlDecrLife(asteroidCollided.getImpactDamage());
-//            } else if (ev instanceof HitChaseEnemyEvent) {
-//            	HitChaseEnemyEvent chaseEnemyEvent = (HitChaseEnemyEvent) ev;
-//            	final ChaseEnemy chaseEnemyCollided = (ChaseEnemy) chaseEnemyEvent.getCollisionObj();
-//            	chaseEnemyCollided.decreaseLife(ship.getImpactDamage());
-//            	System.out.println(ship.getImpactDamage());
-//            	if (isGameObjectDead(chaseEnemyCollided)) {
-//            		System.out.println("ChaseEnemy morto e rimosso");
-//                	world.removeChaseEnemy(chaseEnemyCollided);
-//                	playEffect(SoundPath.ENEMY_EXPL);
-//                	this.controlGame.incrScore(Score.CHASE_ENEMY);
-//                	this.controlGame.updateRoundState();
-//				} 
-//                this.controlGame.controlDecrLife(chaseEnemyCollided.getImpactDamage());
-//                //gameState.decreaseLives();
-//            } else if (ev instanceof HitFireEnemyEvent) {
-//            	HitFireEnemyEvent fireEnemyEvent = (HitFireEnemyEvent) ev;
-//            	final FireEnemy fireEnemyCollided = (FireEnemy) fireEnemyEvent.getCollisionObj();
-//            	fireEnemyCollided.decreaseLife(ship.getImpactDamage());
-//            	if (isGameObjectDead(fireEnemyCollided)) {
-//            		System.out.println("FireEnemy morto e rimosso");
-//                	world.removeFireEnemy(fireEnemyCollided);
-//                	this.controlGame.incrScore(Score.FIRE_ENEMY);
-//                	//this.controlGame.updateRoundState();
-//				}
-//                this.controlGame.controlDecrLife(fireEnemyCollided.getImpactDamage());
-//                //gameState.decreaseLives();
-//            } else if (ev instanceof HitBossEvent) {
-//            	HitBossEvent bossEvent = (HitBossEvent) ev;
-//            	final Boss bossCollided = (Boss) bossEvent.getCollisionObj();
-//            	bossCollided.decreaseLife(ship.getImpactDamage());
-//            	if (isGameObjectDead(bossCollided)) {
-//                	world.setBoss(Optional.empty());
-//                    this.controlGame.incrScore(Score.BOSS);
-//                	this.controlGame.updateRoundState();
-////                    playEffect(SoundPath.BOSS_EXPL);
-////                	BOSS_EXPL	("sounds/enemyExpl.wav"),
-//				}
-//                this.controlGame.controlDecrLife(bossCollided.getImpactDamage());
-//                //gameState.decreaseLives();
-//            } else if (ev instanceof HitPickableEvent) {
-//            	playEffect(SoundPath.PERK);
-//            	//playEffect(SoundPath.);
-//            	HitPickableEvent pickableEvent = (HitPickableEvent) ev;
-//>>>>>>> paganelli
-
-                //Effect effect = pickableEvent.getCollisionObj().getEffectType();
-                //world.getShip().setStatus(effect.getStatus());
-             else if (ev instanceof HitBorderEvent) {
+            else if (ev instanceof HitBorderEvent) {
                 HitBorderEvent borderEvent = (HitBorderEvent) ev;
                 MovableGameObject object = (MovableGameObject) borderEvent.getCollisionObj();
                 CollisionEdge edge = borderEvent.getEdge();
                 
-             // If a bullet reach a border
+                // If a bullet reach a border
                 if (object instanceof Bullet) {
                 	Bullet bullet = (Bullet) borderEvent.getCollisionObj();
                		System.out.println("Bullet ha toccato il muro, lo rimuovo");
@@ -325,7 +199,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
            		System.out.println("Bullet ha preso al volo qualcosa, lo rimuovo");
            		world.removeBullet(bullet);
            		MainGameObject object = bulletEvent.getCollidedObject();
-            	
+           		System.out.println(object);
            		damageObject(object, bullet.getDamage(), bullet.getEffect().getStatus());
             }
         	this.controlGame.updateRoundState();

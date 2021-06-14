@@ -94,8 +94,8 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 	@Override
 	public MainGameObject createBoss() {
 		final EngineImage engineImage = new EngineImage(ScaleOf.BOSS, Screen.WIDTH_FULL_SCREEN, SkinChase.CHASE0);
-		//P2d position = GameObjectUtils.generateRandomPoint();
-		final P2d position = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
+		final P2d position = GameObjectUtils.generateRandomPoint();
+		//final P2d position = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 		final V2d velocity = GameObjectUtils.BOSS_VEL;
 		final Movement movement = new DistantMovement();
 		final int life = GameObjectUtils.BOSS_LIFE;

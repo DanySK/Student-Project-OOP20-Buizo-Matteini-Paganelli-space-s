@@ -225,7 +225,6 @@ public class World {
 	}
 	
 	public Optional<MainGameObject> checkCollisionWithAsteroids(final RectBoundingBox rectBoundingBox) {
-		//double radius = box.getWidth();
 		for (MainGameObject obj: asteroids) {
 			if (collisionChecker.testRectangleToCircle(rectBoundingBox, (CircleBoundingBox) obj.getBoundingBox())) {		
 				return Optional.of(obj);
@@ -235,7 +234,6 @@ public class World {
 	}
 	
 	public Optional<MainGameObject> checkCollisionWithChaseEnemies(final RectBoundingBox rectBoundingBox) {
-	//double radius = box.getWidth();
 		for (MainGameObject obj: chaseEnemies) {
 			if(collisionChecker.testRectangleToRectangle(rectBoundingBox, (RectBoundingBox) obj.getBoundingBox())) {
 				return Optional.of(obj);
@@ -246,7 +244,6 @@ public class World {
 	
 
 	public Optional<MainGameObject> checkCollisionWithFireEnemies(final RectBoundingBox rectBoundingBox) {
-	//double radius = box.getWidth();
 		for (MainGameObject obj: fireEnemies) {
 			if(collisionChecker.testRectangleToRectangle(rectBoundingBox, (RectBoundingBox) obj.getBoundingBox())) {
 				return Optional.of(obj);
@@ -255,15 +252,14 @@ public class World {
 		return Optional.empty();
 	}
 	
-//	public Optional<MainGameObject> checkCollisionWithBoss(final P2d pos, final RectBoundingBox box) {
-//		if (boss.isPresent()) {
-//			double radius = box.getWidth();
-//			if (this.getBoss().get().getBoundingBox().isCollidingWith(pos, radius)) {
-//				return this.getBoss();
-//			}
-//		}
-//		return Optional.empty();
-//	}
+	public Optional<MainGameObject> checkCollisionWithBoss(final RectBoundingBox rectBoundingBox) {
+		if (boss.isPresent()) {
+			if(collisionChecker.testRectangleToRectangle(rectBoundingBox, (RectBoundingBox) boss.get().getBoundingBox())) {
+				return this.boss;
+			}
+		}
+		return Optional.empty();
+	}
 
 	public Optional<TakeableGameObject> checkCollisionWithAmmo(final RectBoundingBox rectBoundingBox) {
 		for (TakeableGameObject obj: ammo) {

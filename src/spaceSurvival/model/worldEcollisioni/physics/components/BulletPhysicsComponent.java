@@ -27,7 +27,6 @@ public class BulletPhysicsComponent implements PhysicsComponent {
 		}
 
 		Optional<MainGameObject> asteroid = w.checkCollisionWithAsteroids(objectBoundingBox);
-		System.out.println("STO CERCANDO DI PRENDERE UN ASTEROID " + asteroid);
 		//collisioni con asteroidi
 		if (asteroid.isPresent()) {
 			w.notifyWorldEvent(new HitBulletEvent(bullet, asteroid.get()));
@@ -49,12 +48,12 @@ public class BulletPhysicsComponent implements PhysicsComponent {
 			System.out.println("Preso al volo un fireEnemy Fratellì");
 		}
 
-//		Optional<MainGameObject> boss = w.checkCollisionWithBoss(objectBoundingBox);
-//		//collisioni con boss
-//		if (boss.isPresent()) {
-//			w.notifyWorldEvent(new HitBossEvent(boss.get()));
-//			//System.out.println("Preso il boss Fratellì");
-//		}
+		Optional<MainGameObject> boss = w.checkCollisionWithBoss(objectBoundingBox);
+		//collisioni con boss
+		if (boss.isPresent()) {
+			w.notifyWorldEvent(new HitBulletEvent(bullet, boss.get()));
+			//System.out.println("Preso il boss Fratellì");
+		}
 	}
 
 }
