@@ -16,7 +16,7 @@ public enum CommandType {
 		this.keyCode = keyCode;
 	}
 
-	public static CommandType getValue(Integer value) {
+	public static CommandType getValue(Integer value){
 		for(CommandType cmd : CommandType.values()) {
 			if(cmd.keyCode.equals(value)) {
 				return cmd;
