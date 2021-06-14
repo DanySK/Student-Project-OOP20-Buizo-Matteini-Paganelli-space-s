@@ -47,8 +47,8 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 	public MainGameObject createAsteroid() {
 	    final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN,
 				SkinAsteroid.ASTEROID1);
-	    final P2d position = GameObjectUtils.generateRandomPoint();
-        //final P2d position = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
+	    //final P2d position = GameObjectUtils.generateRandomPoint();
+        final P2d position = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
 	    final V2d velocity = GameObjectUtils.ASTEROID_VEL;
 	    final Movement movement = new FixedMovement();
 	    final int life = GameObjectUtils.ASTEROID_LIFE;

@@ -23,11 +23,11 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 		final RectBoundingBox boundingBox = w.getMainBBox();
 		final RectBoundingBox shipBoundingBox = (RectBoundingBox) abstractObj.getBoundingBox();
 
-		final Optional<BoundaryCollision> binfo = w.checkCollisionWithBoundaries(ship.getPosition(), boundingBox);
-		//Optional<BoundaryCollision> binfo = w.checkCollisionWithBoundaries(ship.getPosition(), boundingBox);
-		if (binfo.isPresent()) {
-			BoundaryCollision info = binfo.get();
+		final Optional<BoundaryCollision> borderInfo = w.checkCollisionWithBoundaries(ship.getPosition(), boundingBox);
+		if (borderInfo.isPresent()) {
+			BoundaryCollision info = borderInfo.get();
 			w.notifyWorldEvent(new HitBorderEvent(info.getWhere(), info.getEdge(), ship));
+		}
 //=======
 //			
 //			switch (info.getEdge()) {
@@ -68,7 +68,7 @@ public class ShipPhysicsComponent implements PhysicsComponent {
 //				break;
 //			}
 //>>>>>>> paganelli
-		}
+		
 		
 		final Optional<MainGameObject> asteroid = w.checkCollisionWithAsteroids(shipBoundingBox);
 		//collisioni con asteroidi
