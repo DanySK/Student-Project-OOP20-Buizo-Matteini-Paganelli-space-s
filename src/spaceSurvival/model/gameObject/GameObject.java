@@ -14,11 +14,6 @@ import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 import spaceSurvival.utilities.SoundPath;
 import spaceSurvival.model.World;
-import spaceSurvival.utilities.pathImage.Background;
-import spaceSurvival.utilities.pathImage.Effect;
-import spaceSurvival.utilities.pathImage.Skin.SkinShip;
-
-
 
 public abstract class GameObject extends Thread{
 
@@ -50,10 +45,7 @@ public abstract class GameObject extends Thread{
 		this.animationEffect = new ArrayList<>();
 		this.setPosition(position);
 		this.start();
-
-		this.setAnimationEffect(Effect.LIST_BURN);
 	}
-
 
 	public void setAnimation(final List<String> animation){
 		this.animation = animation;
@@ -64,16 +56,12 @@ public abstract class GameObject extends Thread{
 		this.animationEffect = animation;
 	}
 
-
 	public void run(){
 		long lastTime = System.currentTimeMillis();
 		int i = 0, j = 0;
         while (true){
 			long current = System.currentTimeMillis();
 			int elapsed = (int)(current - lastTime);
-
-			waitForNextFrame(current);
-			lastTime = current;
 
 			if(this.animation.size() > 0) {
 				this.engineImage.setPath(this.animation.get(i++));
@@ -84,6 +72,9 @@ public abstract class GameObject extends Thread{
 				this.engineEffect.setPath(this.animationEffect.get(j++));
 				j = j + 1 > this.animationEffect.size() ? 0 : j;
 			}
+
+			waitForNextFrame(current);
+			lastTime = current;
 
 		}
 	}
@@ -199,9 +190,7 @@ public abstract class GameObject extends Thread{
 	public List<String> getAnimation() {
 		return animation;
 	}
-	
 
-	
 	@Override
 	public String toString() {
 		return "GameObject [engineImage=" + engineImage + ", position=" + position + ", boundingBox=" + boundingBox

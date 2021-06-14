@@ -56,8 +56,10 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
 
     @Override
     public void setIdButtons(final ActionGUI mainAction, final List<ActionGUI> linksID) {
-        this.btnPause.setActionCurrent(mainAction);
-        this.btnPause.setActionNext(linksID.get(0));
+        for(int i = 0; i< linksID.size(); i++){
+            this.btnPause.setActionCurrent(mainAction);
+            this.btnPause.setActionNext(linksID.get(i));
+        }
     }
 
     @Override
@@ -65,10 +67,6 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
         return this.panelGame;
     }
 
-    @Override
-    public void addGameObject(final GameObject gameObject, final AffineTransform transform) {
-        this.panelGame.addGameObject(gameObject, transform);
-    }
 
     @Override
     public void startPaint() {

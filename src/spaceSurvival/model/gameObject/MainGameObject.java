@@ -30,6 +30,7 @@ public abstract class MainGameObject extends MovableGameObject {
 		this.weapon = weapon;
 		this.statusThread = new Thread(MainGameObject.this::statusLoop);
 		this.statusThread.start();
+		this.setStatus(Status.HEALED);
 		this.score = score;
 	}
 
@@ -74,6 +75,7 @@ public abstract class MainGameObject extends MovableGameObject {
 	
 	public void setStatus(final Status status) {
 		this.status = status;
+		super.setAnimationEffect(status.getAnimation());
 	}
 	
 	public boolean isInvincible() {
