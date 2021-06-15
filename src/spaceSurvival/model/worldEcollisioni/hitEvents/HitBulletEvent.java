@@ -5,7 +5,6 @@ import spaceSurvival.model.gameObject.weapon.Bullet;
 import spaceSurvival.model.worldEcollisioni.WorldEvent;
 
 public class HitBulletEvent implements WorldEvent {
-
     private final Bullet bullet;
     private final MainGameObject collidedObject;
 

@@ -6,7 +6,6 @@ import spaceSurvival.model.worldEcollisioni.WorldEvent;
 import spaceSurvival.model.worldEcollisioni.physics.BoundaryCollision.CollisionEdge;
 
 public class HitBorderEvent implements WorldEvent {
-
     private final P2d where;
     private final CollisionEdge edge;
     private final MovableGameObject object;
