@@ -1,11 +1,9 @@
 package spaceSurvival.view.game.utilities;
 
 import spaceSurvival.model.World;
-import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.gameObject.GameObject;
 
 import spaceSurvival.model.EngineImage;
-import spaceSurvival.model.EngineMalaLoop;
 import spaceSurvival.model.Pair;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 import spaceSurvival.model.gameObject.takeableGameObject.TakeableGameObject;
@@ -25,9 +23,10 @@ public class PanelGame extends JPanel{
     private static final long serialVersionUID = -6158413043296871948L;
 
     private final Map<GameObject, Pair<Image, Image>> objects;
+    private final Map<Bullet, Pair<Image, Image>> bullets;
     
     private final Thread taskObjects;
-    private final Thread firstDrawer;
+    private final Thread taskDrawer;
     
     private Optional<World> world;
 
@@ -38,17 +37,17 @@ public class PanelGame extends JPanel{
         super(); {{ setOpaque(false); }}
       
         this.taskObjects = new Thread(PanelGame.this::runUpdateGameObjects);
-        this.firstDrawer = new Thread(PanelGame.this::runDrawer);
+        this.taskDrawer = new Thread(PanelGame.this::runDrawer);
         
-        this.objects = new HashMap<>();
-        
+        this.objects = new HashMap<GameObject, Pair<Image, Image>>();
+        this.bullets = new HashMap<Bullet, Pair<Image,Image>>();
         this.isDraw = false;
         this.isUpdate = false;
         
         this.world = Optional.empty();
         
         this.taskObjects.start();
-        this.firstDrawer.start();
+        this.taskDrawer.start();
     }
 
     public void setWorld(final World world) {
@@ -69,6 +68,12 @@ public class PanelGame extends JPanel{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         final Graphics2D g2d = (Graphics2D) g;
+        
+        this.bullets.entrySet().stream().forEach(bullet -> {
+            g2d.setTransform(bullet.getKey().getTransform());
+            g2d.drawImage(bullet.getValue().getX(), 0, 0, null);
+            g2d.drawImage(bullet.getValue().getY(), 0, 0, null);
+        });
         
         this.objects.entrySet().stream().forEach(entity -> {
             if(entity.getKey().getBoundingBox() instanceof CircleBoundingBox) {
@@ -111,13 +116,44 @@ public class PanelGame extends JPanel{
     }
     
     private void updateGameObjects() {
-        this.putMapFromWorld();
+        this.putObjectFromWorld();
         this.deletGameObject();
         
     }
     
-    private void putMapFromWorld() {
-        this.world.get().getAllEntities().forEach(obj -> {
+    private void updateBulletObject() {
+        this.world.get().getAllBullets().forEach(bullet -> {
+            final Bullet entity = bullet;
+            final Pair<Image, Image> pair = new Pair<>(EngineImage.getImageFromEngine(entity.getEngineImage()), 
+                    EngineImage.getImageFromEngine(entity.getEngineEffect()));
+            
+            if(this.bullets.containsKey(entity)) {
+                this.bullets.replace(entity, pair);
+            } else {
+                this.bullets.put(entity, pair);
+            }     
+            this.bullets.put(entity, pair);
+        });
+        
+        final Set<Bullet> bulletDelet = new HashSet<>();
+        
+        this.bullets.entrySet().forEach(obj -> {
+            if(!this.world.get().getAllBullets().contains(obj.getKey())) {
+                bulletDelet.add(obj.getKey());
+            }
+        });
+        
+        bulletDelet.forEach(obj -> {
+            if(this.bullets.containsKey(obj)) {
+                this.bullets.remove(obj);
+            }
+        });
+        
+    }
+    
+    private void putObjectFromWorld() {
+
+        this.world.get().getAllEntitiesException().forEach(obj -> {
             final GameObject entity = obj;
             final Pair<Image, Image> pair = new Pair<>(EngineImage.getImageFromEngine(entity.getEngineImage()), 
                     EngineImage.getImageFromEngine(entity.getEngineEffect()));
@@ -135,7 +171,7 @@ public class PanelGame extends JPanel{
         final Set<GameObject> objDelet = new HashSet<>();
         
         this.objects.entrySet().forEach(obj -> {
-            if(!this.world.get().getAllEntities().contains(obj.getKey())) {
+            if(!this.world.get().getAllEntitiesException().contains(obj.getKey())) {
                 objDelet.add(obj.getKey());
             }
         });
@@ -170,6 +206,7 @@ public class PanelGame extends JPanel{
             long current = System.currentTimeMillis();
             
            if(this.isUpdate && this.world.isPresent()) {
+               this.updateBulletObject();
                this.updateGameObjects();
            }
             
@@ -180,9 +217,9 @@ public class PanelGame extends JPanel{
     
     protected void waitForNextFrame(final long current) {
         long dt = System.currentTimeMillis() - current;
-        if (dt < 80){
+        if (dt < 60){
             try {
-                Thread.sleep(80 - dt);
+                Thread.sleep(60 - dt);
             } catch (Exception ignored){}
         }
     }

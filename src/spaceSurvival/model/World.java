@@ -37,7 +37,7 @@ public class World {
 	private final Set<MainGameObject> fireEnemies = new HashSet<>();
 	private Optional<MainGameObject> boss = Optional.empty();
 	
-	private final Set<TakeableGameObject> ammo = new HashSet<>();
+        private final Set<TakeableGameObject> ammo = new HashSet<>();
 	private final Set<TakeableGameObject> hearts = new HashSet<>();
 
 	private SpaceShipSingleton ship;
@@ -354,12 +354,14 @@ public class World {
 	}
 	
 	public Set<Bullet> getAllBullets() {
-		HashSet<Bullet> allBullets = new HashSet<>();
+		Set<Bullet> allBullets = new HashSet<>();
 		allBullets.addAll(getShipBullets());
 		this.fireEnemies.forEach(fireEnemy -> {
 			allBullets.addAll(getFireEnemyBullets(fireEnemy));
 		});
 		allBullets.addAll(getBossBullets());
+		
+		
 		return allBullets;
 	}
 	
@@ -392,6 +394,18 @@ public class World {
 		return entities;
 	}
 	
+	public Set<GameObject> getAllEntitiesException(){
+	    Set<GameObject> entities = new HashSet<>();
+	    entities.add(ship);
+        entities.addAll(asteroids);
+        entities.addAll(getAllEnemies());
+        if (boss.isPresent()) {
+                entities.add(boss.get());
+        }
+        entities.addAll(ammo);
+        entities.addAll(hearts);
+	    return entities;
+	}
 	
 	public Set<GameObject> getAllEntities() {
 		Set<GameObject> entities = new HashSet<>();
