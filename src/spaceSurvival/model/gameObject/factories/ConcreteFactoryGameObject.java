@@ -84,9 +84,9 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
         final int life = GameObjectUtils.FIRE_ENEMY_LIFE;
         final int impactDamage = GameObjectUtils.FIRE_ENEMY_DAMAGE;
         final Weapon weapon = new Weapon();
-
+        final ShootingLogic shootingLogic = new ControlledShooting();
         final FireEnemy fireEnemy = new FireEnemy(engineImage, position, new RectBoundingBox(), new FireEnemyPhysicsComponent(),
-                velocity, movement, life, impactDamage, Score.FIRE_ENEMY, Optional.empty(), weapon, new ControlledShooting());
+                velocity, movement, life, impactDamage, Score.FIRE_ENEMY, Optional.empty(), weapon, shootingLogic);
         fireEnemy.setWeapon(new Weapon(AmmoType.NORMAL, fireEnemy));
         return fireEnemy;
     }
@@ -101,9 +101,9 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
         final int life = GameObjectUtils.BOSS_LIFE;
         final int impactDamage = GameObjectUtils.BOSS_DAMAGE;
         final Weapon weapon = new Weapon();
-
+        final ShootingLogic shootingLogic = new ControlledShooting();
         final Boss boss = new Boss(engineImage, position, new RectBoundingBox(), new BossPhysicsComponent(),
-                velocity, movement, life, impactDamage, Score.BOSS, Optional.empty(), weapon, new ControlledShooting());
+                velocity, movement, life, impactDamage, Score.BOSS, Optional.empty(), weapon, shootingLogic);
         boss.setWeapon(new Weapon(AmmoType.NORMAL, boss));
         return boss;
     }
@@ -114,7 +114,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
         final P2d position = GameObjectUtils.generateRandomPoint();
 
         return new Ammo(engineImage, position, new CircleBoundingBox(), new PickablePhysicsComponent(),
-                SkinPerk.LIST_FIRE, AmmoType.FIRE);
+                AmmoType.FIRE,  SkinPerk.LIST_FIRE);
     }
 	
     @Override

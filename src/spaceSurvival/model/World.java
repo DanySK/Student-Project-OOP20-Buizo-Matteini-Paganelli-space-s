@@ -43,7 +43,7 @@ public class World {
     private final Set<TakeableGameObject> ammo = new HashSet<>();
     private final Set<TakeableGameObject> hearts = new HashSet<>();
     private SpaceShipSingleton ship;
-    private RectBoundingBox mainBBox;
+    private final RectBoundingBox mainBBox;
     private WorldEventListener evListener;
     private final CollisionChecker collisionChecker = new CollisionChecker();
 	

@@ -23,7 +23,7 @@ public class Boss extends FireableObject {
         this.setAnimation(animation);
         new Thread(Boss.this::fire).start();
     }
-    
+
     public Boss(final EngineImage engineImage, final P2d position, final BoundingBox bb,
             final PhysicsComponent phys, final V2d velocity, final Movement movement, final int life,
             final int impactDamage, final int score, final Optional<P2d> target, final Weapon weapon,
@@ -44,8 +44,7 @@ public class Boss extends FireableObject {
             this.getWeapon().shoot();
         }
     }
-	
-	
+
     @Override
     public String toString() {
         return "Boss { " + super.toString() + " }";

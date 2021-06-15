@@ -37,6 +37,9 @@ import java.util.List;
 import java.util.Optional;
 
 public class EngineMalaLoop extends Thread implements WorldEventListener {
+    /**
+     * Frame per seconds of the game.
+     */
     public static final int FPS = 60;
 
     private final CtrlGUI controlGUI;
@@ -213,31 +216,31 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     }
 
     public void damageObject(MainGameObject object, final int damage, final Status status) {
-    	System.out.println("SONO INVINCIBILE ?  " + object.isInvincible());
-    	if (!object.isInvincible()) {
-    		if (object instanceof SpaceShipSingleton) {
-            	this.controlGame.decreaseLife(damage);
-			} else {
-				object.decreaseLife(damage);
-           		System.out.println("VITA DEL NEMICO:  " + object.getLife());
-				if (isGameObjectDead(object)) {
-	    			playSoundOf(object);
-	            	this.controlGame.incrScore(object.getScore());
-	    			this.controlGame.getWorld().removeMainObject(object);
-				}
-			}
-    		System.out.println("DURATA INVINCIBILITA " + status.getDuration());
-        	object.setStatus(status);
-		}
-	}
-    
+        System.out.println("SONO INVINCIBILE ?  " + object.isInvincible());
+        if (!object.isInvincible()) {
+            if (object instanceof SpaceShipSingleton) {
+                this.controlGame.decreaseLife(damage);
+            } else {
+                object.decreaseLife(damage);
+                System.out.println("VITA DEL NEMICO:  " + object.getLife());
+                if (isGameObjectDead(object)) {
+                    playSoundOf(object);
+                    this.controlGame.incrScore(object.getScore());
+                    this.controlGame.getWorld().removeMainObject(object);
+                }
+            }
+            System.out.println("DURATA INVINCIBILITA " + status.getDuration());
+            object.setStatus(status);
+        }
+    }
+
 //    public void fireDamageObject(MainGameObject object, final int damage, final Status status) {
 //    	System.out.println("COLPISCO UN : " + object.getClass());
 //    	damageObject(object, damage);
 //    	object.setStatus(status);
 //	}
-    
-    public void playSoundOf(MainGameObject object) {
+
+    public void playSoundOf(final MainGameObject object) {
         if (object instanceof Asteroid) {
             playEffect(SoundPath.ASTEROID_EXPL);
         } else if (object instanceof ChaseEnemy || object instanceof FireEnemy) {
@@ -298,7 +301,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     	this.controlGame.getWorld().getAllEnemies().forEach(enemy -> {
 
     	    //DA CAMBIARE MAIN IN ENEMY IN GET ALL ENEMIES
-            MainGameObject enemy2 = (MainGameObject) enemy;
+            final MainGameObject enemy2 = (MainGameObject) enemy;
             enemy2.setTarget(Optional.of(this.controlGame.getShip().getPosition()));
         });
 
@@ -320,13 +323,11 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     public void notifyEvent(final WorldEvent ev) {
         eventQueue.add(ev);
     }
-    
-    private void playEffect(SoundPath soundPath) {
+
+    private void playEffect(final SoundPath soundPath) {
     	this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CmdAudioType.RESET_TIMING);
         this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CmdAudioType.AUDIO_ON);
-    	
     }
-    
 //    public void notifySoundEvent(final SoundPath ev) {
 //        soundQueue.add(ev);
 //    }
