@@ -16,7 +16,11 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
+<<<<<<< HEAD
 			<name>ch.acanda.eclipse.pmd.builder.PMDBuilder</name>
+=======
+			<name>net.sourceforge.pmd.eclipse.plugin.pmdBuilder</name>
+>>>>>>> mala
 			<arguments>
 			</arguments>
 		</buildCommand>
@@ -24,6 +28,10 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>edu.umd.cs.findbugs.plugin.eclipse.findbugsNature</nature>
+<<<<<<< HEAD
 		<nature>ch.acanda.eclipse.pmd.builder.PMDNature</nature>
+=======
+		<nature>net.sourceforge.pmd.eclipse.plugin.pmdNature</nature>
+>>>>>>> mala
 	</natures>
 </projectDescription>

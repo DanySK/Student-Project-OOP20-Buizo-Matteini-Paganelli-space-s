@@ -7,7 +7,7 @@ import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.view.utilities.DesignGraphics;
 import spaceSurvival.view.sound.FactoryGUISound;
 import spaceSurvival.view.sound.GUISound;
-import spaceSurvival.view.sound.concrete.ConcreteGUISound;
+import spaceSurvival.view.sound.concrete.GUISoundConcrete;
 import spaceSurvival.view.utilities.FactoryGUIs;
 
 import java.awt.*;
@@ -16,7 +16,7 @@ public class GUISoundStandard implements FactoryGUISound {
 
     @Override
     public GUISound create() {
-        ConcreteGUISound soundGUI = new ConcreteGUISound();
+        GUISoundConcrete soundGUI = new GUISoundConcrete();
         soundGUI.setFontGUITitle(DesignGraphics.getFontForTitle(DesignGraphics.SIZE_FONT_H1));
         soundGUI.setFontGUI(DesignGraphics.FONT_MEDIUM_STANDARD);
         soundGUI.setFontSpacingSlider(DesignGraphics.FONT_MICRO_STANDARD);
@@ -28,7 +28,7 @@ public class GUISoundStandard implements FactoryGUISound {
         return soundGUI;
     }
 
-    private void graphics(ConcreteGUISound soundGUI) {
+    private void graphics(GUISoundConcrete soundGUI) {
         soundGUI.setLayout(new BorderLayout());
         FactoryGUIs.setTransparentDesignJButton(soundGUI.getBtnBack());
         soundGUI.add(FactoryGUIs.encapsulatesInPanelFlow(soundGUI.getLbTitle()), BorderLayout.NORTH);

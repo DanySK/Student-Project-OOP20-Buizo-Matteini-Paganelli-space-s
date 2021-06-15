@@ -10,9 +10,7 @@ public class ChasingMovement implements Movement {
 
 	@Override
 	public void move(MovableGameObject object) {
-		
-		
-		if(object instanceof ChaseEnemy) {
+		if (object instanceof ChaseEnemy) {
 			ChaseEnemy chase = (ChaseEnemy) object;
 			P2d target = chase.getTarget();
 
@@ -26,7 +24,6 @@ public class ChasingMovement implements Movement {
 
 			newTransform.translate(chase.getVelocity().getX(), chase.getVelocity().getY());
 			chase.setTransform(newTransform);
-
 		}
 	}
 	

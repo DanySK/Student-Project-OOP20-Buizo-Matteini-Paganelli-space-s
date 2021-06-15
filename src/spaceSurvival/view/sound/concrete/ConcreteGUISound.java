@@ -14,12 +14,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-public class ConcreteGUISound extends AbstractGUI implements GUISound {
+public class GUISoundConcrete extends AbstractGUI implements GUISound {
     private final JLabel lbTitle;
     private final MixerSound mixerSound;
     private final BtnAction btnBack;
 
-    public ConcreteGUISound() {
+    public GUISoundConcrete(){
         super();
         this.lbTitle = new JLabel();
         this.mixerSound = new MixerSound();
