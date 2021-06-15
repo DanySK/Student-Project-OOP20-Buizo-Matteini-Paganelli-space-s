@@ -24,7 +24,7 @@ public class GameObjectUtils {
 
     public static final double SPACESHIP_ACCELERATION = 1.15;
     public static final double SPACESHIP_DECELERATION = 0.8;
-    public static final double SPACESHIP_MAXVEL = 20; 
+    public static final double SPACESHIP_MAXVEL = 50; 
     public static final double SPACESHIP_STARTING_VELOCITY = 0.0; 
     public static final double SPACESHIP_ROTATION = 10;    
     

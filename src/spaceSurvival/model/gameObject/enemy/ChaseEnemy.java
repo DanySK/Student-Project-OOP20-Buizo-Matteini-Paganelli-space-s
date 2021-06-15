@@ -18,7 +18,7 @@ public class ChaseEnemy extends Enemy {
             final PhysicsComponent phys, final V2d velocity, final Movement movement, final int life,
             final int impactDamage, final Optional<Weapon> weapon, final int score,
             final List<String> animation, final P2d target) {
-
+        
         super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, weapon, score, target);
         this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage, this.getTransform()));
         this.setAnimation(animation);
@@ -31,10 +31,8 @@ public class ChaseEnemy extends Enemy {
         this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage, this.getTransform()));
     }
 	
-	@Override
-	public String toString() {
-		return "ChaseEnemy { " + super.toString() + " }";
-	}
-	
-
+    @Override
+    public String toString() {
+        return "ChaseEnemy { " + super.toString() + " }";
+    }
 }
