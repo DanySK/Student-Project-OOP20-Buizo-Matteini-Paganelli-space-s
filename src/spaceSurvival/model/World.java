@@ -1,13 +1,10 @@
 package spaceSurvival.model;
 
-import java.awt.*;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Optional;
-import java.util.Set;
-
+import java.awt.Rectangle;
+import java.util.*;
 
 import spaceSurvival.model.GUI.settings.SkinSpaceShip;
+import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.gameObject.MovableGameObject;
@@ -30,13 +27,11 @@ import spaceSurvival.model.worldEcollisioni.physics.BoundaryCollision;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.CollisionChecker;
-import spaceSurvival.model.common.*;
-import spaceSurvival.utilities.pathImage.Skin.SkinShip;
 
 public class World {
 	
 	private AbstractFactoryGameObject factoryGameObject = new ConcreteFactoryGameObject();
-
+	
 	private final Set<MainGameObject> asteroids = new HashSet<>();
 	private final Set<MainGameObject> chaseEnemies = new HashSet<>();
 	private final Set<MainGameObject> fireEnemies = new HashSet<>();
@@ -55,9 +50,9 @@ public class World {
 	public World(final RectBoundingBox mainBBox) {
 		this.ship = SpaceShipSingleton.getSpaceShip();
 		this.ship.setWeapon(Optional.of(new Weapon(AmmoType.NORMAL, ship)));
-		
-		this.mainBBox = mainBBox;
 
+		this.mainBBox = mainBBox;
+		
 		for (int i = 0; i < 1; i++) {
 			asteroids.add(factoryGameObject.createAsteroid());
 			chaseEnemies.add(factoryGameObject.createChaseEnemy());
@@ -70,7 +65,7 @@ public class World {
 		this.ship = SpaceShipSingleton.getSpaceShip();
 		this.ship.setWeapon(Optional.of(new Weapon(AmmoType.NORMAL, ship)));
 		this.mainBBox = new RectBoundingBox(rectangle);
-
+		
 		for (int i = 0; i < 1; i++) {
 			asteroids.add(factoryGameObject.createAsteroid());
 			chaseEnemies.add(factoryGameObject.createChaseEnemy());
@@ -396,6 +391,8 @@ public class World {
 		}
 		return entities;
 	}
+	
+	
 	public Set<GameObject> getAllEntities() {
 		Set<GameObject> entities = new HashSet<>();
 		entities.add(ship);

@@ -75,7 +75,7 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
 
     @Override
     public void stopPaint() {
-        this.panelGame.stopDrawer();
+        this.panelGame.stopPaint();
     }
 
     @Override
