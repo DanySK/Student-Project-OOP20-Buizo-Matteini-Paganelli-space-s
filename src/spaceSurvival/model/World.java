@@ -111,7 +111,7 @@ public class World {
     public void removeAsteroid(final MainGameObject obj) {
         asteroids.remove(obj);
     }
-    
+
     public void addChaseEnemy() {
         chaseEnemies.add(factoryGameObject.createChaseEnemy());
     }

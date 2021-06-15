@@ -19,7 +19,7 @@ public class BulletPhysicsComponent implements PhysicsComponent {
 		final Bullet bullet = (Bullet) abstractObj;
 		final RectBoundingBox boundingBox = w.getMainBBox();
 		final RectBoundingBox objectBoundingBox = (RectBoundingBox) abstractObj.getBoundingBox();
-		
+
 		final Optional<BoundaryCollision> borderInfo = w.checkCollisionWithBoundaries(bullet.getPosition(), boundingBox);
 
 		if (borderInfo.isPresent()) {
@@ -32,7 +32,7 @@ public class BulletPhysicsComponent implements PhysicsComponent {
 			w.notifyWorldEvent(new HitBulletEvent(bullet, asteroid.get()));
 			System.out.println("Preso al volo un asteroid Fratellì");
 		}
-		
+
 		final Optional<MainGameObject> chaseEnemy = w.checkCollisionWithChaseEnemies(objectBoundingBox);
 		//collisioni con chaseEnemy
 		if (chaseEnemy.isPresent()) {
@@ -40,7 +40,6 @@ public class BulletPhysicsComponent implements PhysicsComponent {
 			System.out.println("Preso al volo un chaseEnemy Fratellì");
 		}
 
-		
 		final Optional<MainGameObject> fireEnemy = w.checkCollisionWithFireEnemies(objectBoundingBox);
 		//collisioni con chaseEnemy
 		if (fireEnemy.isPresent()) {

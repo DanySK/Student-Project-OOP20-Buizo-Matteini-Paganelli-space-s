@@ -108,7 +108,7 @@ public class EngineImage {
             final BufferedImage img = ImageIO.read(ClassLoader.getSystemResource(path));
             dimension.width = (respectTo * scaleOf) / 1000;
             dimension.height = (img.getHeight() * dimension.width) / img.getWidth();
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }

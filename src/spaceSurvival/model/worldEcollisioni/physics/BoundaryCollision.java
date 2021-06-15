@@ -8,16 +8,16 @@ public class BoundaryCollision {
 	private final CollisionEdge edge;
 	private final P2d where;
 	
-	public BoundaryCollision(final CollisionEdge edge, final P2d where){
+	public BoundaryCollision(final CollisionEdge edge, final P2d where) {
 		this.edge = edge; 
 		this.where = where;
 	}
 	
-	public CollisionEdge getEdge(){
+	public CollisionEdge getEdge() {
 		return edge;
 	}
 	
-	public P2d getWhere(){
+	public P2d getWhere() {
 		return where;
 	}
 

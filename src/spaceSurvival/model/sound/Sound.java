@@ -31,39 +31,38 @@ public abstract class Sound {
     public Sound(final SoundPath sound) {
         this.soundPath = sound;
         this.volume = START_VOLUME;
-	    	
+
         AudioInputStream audioInputStream = null;
-	    	
+
         try {
             audioInputStream = AudioSystem.getAudioInputStream(ClassLoader.getSystemResource(sound.getPath()));
             setClip(AudioSystem.getClip());
             getClip().get().open(audioInputStream);
-            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-                e.printStackTrace();
-	}
-
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
     }
-	    
+
     public void setSoundType(final SoundPath sound) {
         this.soundPath = sound;
     }
-	    
+
     public SoundPath getSoundType() {
        return this.soundPath;
     }
-	    
+
     public void setClip(final Clip clip) {
         this.clip = Optional.of(clip);
     }
-	    
+
     public Optional<Clip> getClip() {
         return this.clip;
     }
-	    
+
     public boolean isPlaying() {
         return this.isPlaying;
     }
-	    
+
     public void stopClip() {
         this.clip.get().stop();
         this.isPlaying = false;
@@ -74,16 +73,15 @@ public abstract class Sound {
         playSound(this.volume);
         this.isPlaying = true;
     }
-	    
-    protected abstract void playSound(double volume);
-	   
-	    
-        public void setVol(final double volume) {
-            this.volume = volume;
-            final FloatControl gain = (FloatControl) getClip().get().getControl(FloatControl.Type.MASTER_GAIN);
 
-            final float dB = (float) (Math.log(volume) / Math.log(10) * 20);
-            gain.setValue(dB);
+    protected abstract void playSound(double volume);
+
+    public void setVol(final double volume) {
+        this.volume = volume;
+        final FloatControl gain = (FloatControl) getClip().get().getControl(FloatControl.Type.MASTER_GAIN);
+        final float dB = (float) (Math.log(volume) / Math.log(10) * 20);
+
+        gain.setValue(dB);
         }
 
 }

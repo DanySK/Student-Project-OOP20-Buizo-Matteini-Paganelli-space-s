@@ -2,7 +2,6 @@ package spaceSurvival.model.common;
 
 public class Line {
 
-
     public P2d startPoint, endPoint;
 
     public P2d getStartPoint() {
@@ -20,7 +19,7 @@ public class Line {
     public Line(final P2d startPoint, final P2d endPoint) {
         this.startPoint = startPoint;
         this.endPoint = endPoint;
-        }
+    }
 
 
     public double getLineLength() {

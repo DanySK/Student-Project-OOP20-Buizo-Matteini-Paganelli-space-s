@@ -15,25 +15,23 @@ public class CollisionChecker {
     private static final double TOLLERANCE = 0;
 
     public boolean testRectangleToPoint(final RectBoundingBox rbb, final P2d point) {
-	    
         return false;
     }
 	
 
     public boolean testCircleToSegment(final CircleBoundingBox cbb, final Line line) {
-		
         return false;
     }
 	
 	
     public boolean testRectangleToRectangle(final RectBoundingBox rbb1, final RectBoundingBox rbb2) {
 
-	final Rectangle2D rectangle1 = new Rectangle2D.Double(0,0, rbb1.getWidth(), rbb1.getHeight());
+	final Rectangle2D rectangle1 = new Rectangle2D.Double(0, 0, rbb1.getWidth(), rbb1.getHeight());
  	final AffineTransform rectTransform1 = new AffineTransform();
  	rectTransform1.setTransform(rbb1.getTransform());
 	final Shape rotatedRect1 = rectTransform1.createTransformedShape(rectangle1);
-		
-	final Rectangle2D rectangle2 = new Rectangle2D.Double(0,0, rbb2.getWidth(), rbb2.getHeight());
+
+	final Rectangle2D rectangle2 = new Rectangle2D.Double(0, 0, rbb2.getWidth(), rbb2.getHeight());
  	final AffineTransform rectTransform2 = new AffineTransform();
  	rectTransform2.setTransform(rbb2.getTransform());
 	final Shape rotatedRect2 = rectTransform2.createTransformedShape(rectangle2);
@@ -45,12 +43,12 @@ public class CollisionChecker {
 	
     public boolean testRectangleToCircle(final RectBoundingBox rbb, final CircleBoundingBox cbb) {
 
-        final Rectangle2D rectangle = new Rectangle2D.Double(0,0, rbb.getWidth(), rbb.getHeight());
+        final Rectangle2D rectangle = new Rectangle2D.Double(0, 0, rbb.getWidth(), rbb.getHeight());
         final AffineTransform rectTransform = new AffineTransform();
         rectTransform.setTransform(rbb.getTransform());
         final Shape rotatedRect = rectTransform.createTransformedShape(rectangle);
-		
-        final Ellipse2D ellipse = new Ellipse2D.Double(-cbb.getRadius(),-cbb.getRadius(), (cbb.getRadius() - TOLLERANCE) * SystemVariables.SCALE_X, 
+
+        final Ellipse2D ellipse = new Ellipse2D.Double(-cbb.getRadius(), -cbb.getRadius(), (cbb.getRadius() - TOLLERANCE) * SystemVariables.SCALE_X, 
                 (cbb.getRadius() - TOLLERANCE) * SystemVariables.SCALE_Y);
         final AffineTransform circleTransform = new AffineTransform();
         circleTransform.setTransform(cbb.getTransform());
@@ -71,7 +69,7 @@ public class CollisionChecker {
     public double getRotationAngleInRadiant(final AffineTransform transform) {
         final double m00 = transform.getScaleX();
         final double m01 = transform.getShearX();
-		    
+        
         return Math.round(Math.atan2(-m01, m00));
     }
 	

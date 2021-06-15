@@ -5,4 +5,3 @@ import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 public interface CommandGameObject {
     void execute(SpaceShipSingleton object);
 }
-	

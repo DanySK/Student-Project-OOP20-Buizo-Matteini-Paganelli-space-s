@@ -9,14 +9,10 @@ public class UpCommand implements CommandGameObject {
 
     @Override
     public void execute(final SpaceShipSingleton ship) {
-
-        V2d vel = ship.getVelocity();
-
-        if (vel.getY() > -0.5 && vel.getY() < 0.5) {
-            vel = new V2d(vel.getX(), -1);
+        if (ship.getVelocity().getY() == GameObjectUtils.SPACESHIP_STARTING_VELOCITY) {
+            final V2d vel = new V2d(ship.getVelocity().getX(), 1);
             ship.setVelocity(vel);
         }
         ship.setAcceleration(new V2d(ship.getAcceleration().getX(), GameObjectUtils.SPACESHIP_ACCELERATION));
     }
-
 }

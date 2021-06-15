@@ -10,16 +10,15 @@ import spaceSurvival.model.World;
 
 public class FireEnemyPhysicsComponent implements PhysicsComponent {
 
-	@Override
-	public void update(final int dt, final GameObject abstractObj, final World w) {
-	    final FireEnemy fireEnemy = (FireEnemy) abstractObj;
-
+    @Override
+    public void update(final int dt, final GameObject abstractObj, final World w) {
+        final FireEnemy fireEnemy = (FireEnemy) abstractObj;
         final RectBoundingBox boundingBox = w.getMainBBox();
-	    final Optional<BoundaryCollision> borderInfo = w.checkCollisionWithBoundaries(fireEnemy.getPosition(), boundingBox);
+        final Optional<BoundaryCollision> borderInfo = w.checkCollisionWithBoundaries(fireEnemy.getPosition(), boundingBox);
         if (borderInfo.isPresent()) {
             final BoundaryCollision info = borderInfo.get();
             w.notifyWorldEvent(new HitBorderEvent(info.getWhere(), info.getEdge(), fireEnemy));
         }
-	}
+    }
 
 }

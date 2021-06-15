@@ -14,7 +14,7 @@ public class PickablePhysicsComponent implements PhysicsComponent {
 //			w.notifyWorldEvent(new HitPickableEvent(perk.get()));
 //			System.out.println("Preso il PERK Fratellì");
 //		}
-//		
+//
 	}
 
 }

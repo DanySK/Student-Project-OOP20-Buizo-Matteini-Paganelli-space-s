@@ -30,48 +30,48 @@ import spaceSurvival.view.sound.factoryMethod.GUISoundStandard;
 
 public class StaticFactoryGUI {
 
-    public static GUILoading createLoading(){
-        FactoryGUILoading factoryGUILoading = new GUILoadingStandard();
+    public static GUILoading createLoading() {
+        final FactoryGUILoading factoryGUILoading = new GUILoadingStandard();
         return factoryGUILoading.create();
     }
 
-    public static GUIMenu createMenuGUI(){
-        FactoryGUIMenu menuGUI = new GUIMenuStandard();
+    public static GUIMenu createMenuGUI() {
+        final FactoryGUIMenu menuGUI = new GUIMenuStandard();
         return menuGUI.createGUI();
     }
 
-    public static GUIScoreboard createScoreboardGUI(){
-        FactoryGUIScoreboard scoreboardGUI = new GUIScoreboardStandard();
+    public static GUIScoreboard createScoreboardGUI() {
+        final FactoryGUIScoreboard scoreboardGUI = new GUIScoreboardStandard();
         return scoreboardGUI.createGUI();
     }
 
     public static GUISettings createSettingsGUI() {
-        FactoryGUISettings settingsGUI = new GUISettingsStandard();
+        final FactoryGUISettings settingsGUI = new GUISettingsStandard();
         return settingsGUI.create();
     }
 
-    public static GUIHelp createHelpGUI(){
-        FactoryGUIHelp helpGUI = new GUIHelpStandard();
+    public static GUIHelp createHelpGUI() {
+        final FactoryGUIHelp helpGUI = new GUIHelpStandard();
         return helpGUI.create();
     }
 
-    public static GUISound createSoundGUI(){
-        FactoryGUISound soundGUI = new GUISoundStandard();
+    public static GUISound createSoundGUI() {
+        final FactoryGUISound soundGUI = new GUISoundStandard();
         return soundGUI.create();
     }
 
-    public static GUIGame createGameGUI(){
-        FactoryGUIGame gameGUI = new GUIGameStandard();
+    public static GUIGame createGameGUI() {
+        final FactoryGUIGame gameGUI = new GUIGameStandard();
         return gameGUI.create();
     }
 
-    public static GUIPause createPauseGUI(){
-        FactoryGUIPause pauseGUI = new GUIPauseStandard();
+    public static GUIPause createPauseGUI() {
+        final FactoryGUIPause pauseGUI = new GUIPauseStandard();
         return pauseGUI.create();
     }
 
-    public static GUIDead createDeadGUI(){
-        FactoryGUIDead deadGUI = new GUIDeadStandard();
+    public static GUIDead createDeadGUI() {
+        final FactoryGUIDead deadGUI = new GUIDeadStandard();
         return deadGUI.create();
     }
 

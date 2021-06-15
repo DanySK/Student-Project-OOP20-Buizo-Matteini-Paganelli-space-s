@@ -5,5 +5,5 @@ import spaceSurvival.model.World;
 
 public interface PhysicsComponent {
 
-	void update(int dt, GameObject abstractObj, World w);
+    void update(int dt, GameObject abstractObj, World w);
 }
