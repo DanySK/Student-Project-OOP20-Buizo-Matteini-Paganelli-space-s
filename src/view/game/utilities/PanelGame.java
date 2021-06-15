@@ -4,6 +4,11 @@ import model.World;
 import model.gameObject.GameObject;
 import model.EngineImage;
 import model.Pair;
+import model.gameObject.GameObjectUtils;
+import model.gameObject.MainGameObject;
+import model.gameObject.enemy.Boss;
+import model.gameObject.enemy.ChaseEnemy;
+import model.gameObject.mainGameObject.Asteroid;
 import model.gameObject.mainGameObject.SpaceShipSingleton;
 import model.gameObject.takeableGameObject.TakeableGameObject;
 import model.gameObject.weapon.Bullet;
@@ -15,6 +20,7 @@ import java.awt.geom.AffineTransform;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -69,13 +75,13 @@ public class PanelGame extends JPanel{
         super.paintComponent(g);
         final Graphics2D g2d = (Graphics2D) g;
         
-        this.bullets.entrySet().stream().forEach(bullet -> {
-            g2d.setTransform(bullet.getKey().getTransform());
-            g2d.drawImage(bullet.getValue().getX(), 0, 0, null);
-            g2d.drawImage(bullet.getValue().getY(), 0, 0, null);
+        this.bullets.forEach((key, value) -> {
+            g2d.setTransform(key.getTransform());
+            g2d.drawImage(value.getX(), 0, 0, null);
+            g2d.drawImage(value.getY(), 0, 0, null);
         });
         
-        this.objects.entrySet().stream().forEach(entity -> {
+        this.objects.entrySet().forEach(entity -> {
             if(entity.getKey().getBoundingBox() instanceof CircleBoundingBox) {
                 AffineTransform transform = new AffineTransform();
                 transform.setTransform(entity.getKey().getTransform());                  
@@ -109,7 +115,20 @@ public class PanelGame extends JPanel{
 
     private void drawLife(final Graphics2D g2d, final GameObject gameObject){
         g2d.setColor(Color.GREEN);
-        g2d.fillRect(0, (int) gameObject.getSize().getHeight() + 1, (int)(gameObject.getSize().getWidth() / 2), 10);
+        int life = 0;
+        if(gameObject instanceof ChaseEnemy){
+            life = (int) (((MainGameObject)gameObject).getLife() * gameObject.getWidth() / GameObjectUtils.CHASE_ENEMY_LIFE);
+        }
+        if(gameObject instanceof Asteroid){
+            life = (int) (((MainGameObject)gameObject).getLife() * gameObject.getWidth() / GameObjectUtils.ASTEROID_LIFE);
+        }
+        if(gameObject instanceof Boss){
+            life = (int) (((MainGameObject)gameObject).getLife() * gameObject.getWidth() / GameObjectUtils.BOSS_LIFE);
+        }
+
+
+
+        g2d.fillRect(0, (int) gameObject.getSize().getHeight() + 1, life, 10);
     }
 
     private boolean isEnemy(final GameObject obj) {

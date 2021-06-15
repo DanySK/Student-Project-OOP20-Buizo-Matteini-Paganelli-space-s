@@ -37,7 +37,7 @@ public abstract class GameObject extends Thread{
     public GameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
                       final PhysicsComponent phys) {
         this.engineImage = engineImage;
-	this.engineEffect = new EngineImage(engineImage) {{ setPath(AnimationEffect.NORMAL0); }};
+	this.engineEffect = EngineImage.getTransparentEngineImage(this.engineImage);
 
 	this.body = new Animation(this.engineImage);
 	this.effect = new Animation(this.engineEffect);

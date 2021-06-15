@@ -140,7 +140,7 @@ public class EngineImage {
     }
 
     public static EngineImage getTransparentEngineImage(final EngineImage engineImage){
-        final EngineImage transparent = engineImage;
+        final EngineImage transparent = new EngineImage(engineImage);
         transparent.setPath(AnimationEffect.NORMAL0);
         return transparent;
     }
