@@ -21,7 +21,7 @@ public class Weapon {
 	private AmmoType ammoType;
 	private Magazine magazine;
 	private int munitions;
-	private int multiplierDamage = 1;
+	private int multiplierDamage;
 	
 	private Set<Bullet> shootedBullets;
 	
@@ -29,6 +29,7 @@ public class Weapon {
 		this.ammoType = AmmoType.NORMAL;
 		this.magazine =  Magazine.UNLIMITED;
 		this.munitions = GameObjectUtils.INFINITY;
+		this.multiplierDamage = 1;
 		this.shootedBullets = new HashSet<>();
 	}
 	
@@ -50,15 +51,16 @@ public class Weapon {
 		default:
 			break;
 		}
+		this.multiplierDamage = 1;
+
 		this.shootedBullets = new HashSet<>();		
 	}
 	
-	public void shot() {
+	public void shoot() {
 		EngineImage engineImage = new EngineImage(ScaleOf.BULLET_OBJECT, Screen.WIDTH_FULL_SCREEN, "shutBullet/vertical/ice.png");
 		System.out.println("Sparo");
-		System.out.println("Posizione Navicella : " + owner.getPosition());
+		System.out.println(owner);
 		P2d position = new P2d(0, 0);
-		System.out.println(position);
 		V2d velocity = GameObjectUtils.BULLET_VEL;
 		Bullet bullet = new Bullet(engineImage, position, new RectBoundingBox(), new BulletPhysicsComponent(),
 				velocity, BulletUtils.NORMAL_BULLET_DAMAGE * multiplierDamage, ammoType.getEffect());
@@ -74,7 +76,7 @@ public class Weapon {
 			}
 		}
 		shootedBullets.add(bullet);
-		System.out.println(shootedBullets);
+		System.out.println("bullet sparati: " + shootedBullets.size());
 	}
 	
 	public MainGameObject getOwner() {

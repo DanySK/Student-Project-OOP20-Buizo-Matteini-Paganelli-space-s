@@ -12,7 +12,7 @@ public class SpaceBarCommand implements CommandGameObject{
 	public void execute(MainGameObject object) {
 		System.out.println(object.getWeapon().isPresent());
 		if (object.getWeapon().isPresent()) {
-			object.getWeapon().get().shot();
+			object.getWeapon().get().shoot();
 			object.pushEffect(SoundPath.SHOOT);
 		}	
 	}

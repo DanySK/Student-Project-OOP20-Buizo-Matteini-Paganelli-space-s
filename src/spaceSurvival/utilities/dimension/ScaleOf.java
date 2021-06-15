@@ -4,6 +4,7 @@ import spaceSurvival.utilities.SystemVariables;
 
 public class ScaleOf {
     public static final int GAME_OBJECT = (int)(30 * SystemVariables.SCALE_X);
+    public static final int BOSS = (int)(150 * SystemVariables.SCALE_X);
 
     public static final int BULLET_OBJECT = (int)(3 * SystemVariables.SCALE_X);
 

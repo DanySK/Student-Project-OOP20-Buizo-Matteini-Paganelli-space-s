@@ -2,7 +2,6 @@ package spaceSurvival.view.game.utilities;
 
 import spaceSurvival.model.World;
 import spaceSurvival.model.gameObject.GameObject;
-
 import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.Pair;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
@@ -13,6 +12,7 @@ import spaceSurvival.model.worldEcollisioni.physics.boundingType.CircleBoundingB
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -89,6 +89,7 @@ public class PanelGame extends JPanel{
             
             g2d.drawImage(entity.getValue().getX(), 0, 0, null);
             g2d.drawImage(entity.getValue().getY(), 0, 0, null);
+
 
             if(this.isEnemy(entity.getKey())) {
                 this.drawLifeBar(g2d, entity.getKey());
