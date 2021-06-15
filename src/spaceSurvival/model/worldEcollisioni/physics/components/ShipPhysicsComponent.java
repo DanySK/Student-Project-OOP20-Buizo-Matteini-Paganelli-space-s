@@ -1,7 +1,6 @@
 package spaceSurvival.model.worldEcollisioni.physics.components;
 
 import java.util.Optional;
-
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
@@ -18,7 +17,7 @@ public class ShipPhysicsComponent implements PhysicsComponent {
     private static final int TOLLERANCE = 10;
 
     @Override
-    public void update(int dt, GameObject abstractObj, World w) {
+    public void update(final int dt, final GameObject abstractObj, final World w) {
         //System.out.println("Sono nell'update");
         final SpaceShipSingleton ship = (SpaceShipSingleton) abstractObj;
         
@@ -27,7 +26,7 @@ public class ShipPhysicsComponent implements PhysicsComponent {
         
         final Optional<BoundaryCollision> borderInfo = w.checkCollisionWithBoundaries(ship.getPosition(), boundingBox);
         if (borderInfo.isPresent()) {
-            BoundaryCollision info = borderInfo.get();
+            final BoundaryCollision info = borderInfo.get();
             w.notifyWorldEvent(new HitBorderEvent(info.getWhere(), info.getEdge(), ship));
         }
         

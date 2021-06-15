@@ -3,11 +3,7 @@ package spaceSurvival.view.game.utilities;
 import spaceSurvival.model.World;
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.EngineImage;
-<<<<<<< HEAD
-
-=======
 import spaceSurvival.model.Pair;
->>>>>>> mala
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 import spaceSurvival.model.gameObject.takeableGameObject.TakeableGameObject;
 import spaceSurvival.model.gameObject.weapon.Bullet;
