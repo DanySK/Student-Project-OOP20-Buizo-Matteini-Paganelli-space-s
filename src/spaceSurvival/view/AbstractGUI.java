@@ -4,12 +4,17 @@ import spaceSurvival.model.GUI.Visibility;
 import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.view.utilities.FactoryGUIs;
 import spaceSurvival.view.utilities.JPanelImage;
-
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Rectangle;
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.border.Border;
-import java.awt.*;
 
-public abstract class AbstractGUI extends JFrame{
+
+public abstract class AbstractGUI extends JFrame {
     private final JPanelImage panelBackground;
     private final JPanel panelForeground;
 
@@ -27,7 +32,7 @@ public abstract class AbstractGUI extends JFrame{
     }
 
 
-    public void setMainAction(final ActionGUI actionGUI){
+    public void setMainAction(final ActionGUI actionGUI) {
         this.mainAction = actionGUI;
     }
 
@@ -38,11 +43,11 @@ public abstract class AbstractGUI extends JFrame{
         this.panelForeground.setBounds(screen);
     }
 
-    public void setImageBackground(final String path){
+    public void setImageBackground(final String path) {
         this.panelBackground.setImage(path, super.getSize());
     }
 
-    public void setBorder(final Color color, final int thickness){
+    public void setBorder(final Color color, final int thickness) {
         final Border lobstered = BorderFactory.createLoweredBevelBorder();
         final Border line = BorderFactory.createLineBorder(color, thickness);
 
@@ -50,22 +55,17 @@ public abstract class AbstractGUI extends JFrame{
     }
 
 
-    public void addFrontPanel(final Component component, final String index){
+    public void addFrontPanel(final Component component, final String index) {
         this.panelForeground.add(component, index);
     }
 
-    public void visibleForegroundPanel(final Visibility visible){
+    public void visibleForegroundPanel(final Visibility visible) {
         this.panelForeground.setVisible(visible.isVisible());
 
     }
 
-    public void close(){
+    public void close() {
         System.exit(0);
     }
 
-    //    public void paint(Graphics g){
-//        this.panelBackground.setBounds(super.getBounds());
-//        this.panelForeground.setBounds(super.getBounds());
-//        super.paintComponents(g);
-//    }
 }
