@@ -82,6 +82,6 @@ public abstract class Sound {
         final float dB = (float) (Math.log(volume) / Math.log(10) * 20);
 
         gain.setValue(dB);
-        }
+    }
 
 }

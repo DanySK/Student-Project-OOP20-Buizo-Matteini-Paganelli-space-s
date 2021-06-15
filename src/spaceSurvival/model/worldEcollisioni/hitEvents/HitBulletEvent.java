@@ -9,7 +9,7 @@ public class HitBulletEvent implements WorldEvent {
     private final Bullet bullet;
     private final MainGameObject collidedObject;
 
-    public HitBulletEvent(final Bullet bullet, final MainGameObject collidedObject){
+    public HitBulletEvent(final Bullet bullet, final MainGameObject collidedObject) {
         this.bullet = bullet;
         this.collidedObject = collidedObject;
     }

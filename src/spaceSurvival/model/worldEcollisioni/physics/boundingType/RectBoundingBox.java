@@ -7,7 +7,6 @@ import spaceSurvival.utilities.SystemVariables;
 import spaceSurvival.model.EngineImage;
 
 public class RectBoundingBox implements BoundingBox {
-
     private P2d p0, p1;
     private AffineTransform transform;
     private double width, height;

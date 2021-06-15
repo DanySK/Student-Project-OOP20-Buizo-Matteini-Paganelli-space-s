@@ -7,11 +7,11 @@ public class HitBossEvent implements WorldEvent {
 
     private final MainGameObject boss;
 
-    public HitBossEvent(final MainGameObject obj){
+    public HitBossEvent(final MainGameObject obj) {
         this.boss = obj;
     }
 	
-    public MainGameObject getCollisionObj(){
+    public MainGameObject getCollisionObj() {
         return this.boss;
     }
 }

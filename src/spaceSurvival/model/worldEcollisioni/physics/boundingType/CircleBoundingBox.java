@@ -5,7 +5,6 @@ import spaceSurvival.model.common.V2d;
 import java.awt.geom.AffineTransform;
 
 public class CircleBoundingBox implements BoundingBox {
-
     private final P2d center;
     private final double radius;
     private final AffineTransform transform;

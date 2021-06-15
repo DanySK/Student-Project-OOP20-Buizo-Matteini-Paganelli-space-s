@@ -1,14 +1,13 @@
 package spaceSurvival.view.sound.utilities;
 
 import spaceSurvival.model.GUI.sound.TypeUnitSound;
-
-import javax.swing.*;
 import java.util.Objects;
+import javax.swing.JSlider;
 
 public class SliderType extends JSlider {
     private TypeUnitSound typeSlider;
 
-    public SliderType(){
+    public SliderType() {
         super();
     }
 
@@ -21,10 +20,14 @@ public class SliderType extends JSlider {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        SliderType that = (SliderType) o;
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final SliderType that = (SliderType) o;
         return typeSlider == that.typeSlider;
     }
 
@@ -35,8 +38,8 @@ public class SliderType extends JSlider {
 
     @Override
     public String toString() {
-        return "SliderType{" +
-                "typeSlider=" + typeSlider +
-                '}';
+        return "SliderType{" 
+               + "typeSlider=" + typeSlider 
+               + '}';
     }
 }

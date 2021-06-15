@@ -5,7 +5,7 @@ import spaceSurvival.model.worldEcollisioni.WorldEvent;
 
 public class HitAsteroidEvent implements WorldEvent {
 
-    private MainGameObject asteroid;
+    private final MainGameObject asteroid;
 
     public HitAsteroidEvent(MainGameObject obj){
         this.asteroid = obj;

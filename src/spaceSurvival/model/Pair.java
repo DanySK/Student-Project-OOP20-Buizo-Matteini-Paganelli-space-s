@@ -16,22 +16,23 @@ public class Pair<X, Y> {
     }
 
     public X getX() {
-        return x;
+        return this.x;
     }
 
     public Y getY() {
-        return y;
+        return this.y;
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((x == null) ? 0 : x.hashCode());
-        result = prime * result + ((y == null) ? 0 : y.hashCode());
+        result = prime * result + ((this.x == null) ? 0 : this.x.hashCode());
+        result = prime * result + ((this.y == null) ? 0 : this.y.hashCode());
         return result;
         }
 
+ 
     @SuppressWarnings("rawtypes")
     @Override
     public boolean equals(final Object obj) {
@@ -66,7 +67,5 @@ public class Pair<X, Y> {
     public String toString() {
         return "Pair [x=" + x + ", y=" + y + "]";
     }
-	
-	
 
 }

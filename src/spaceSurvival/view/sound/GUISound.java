@@ -5,7 +5,6 @@ import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.view.GUI;
 import spaceSurvival.view.sound.utilities.ButtonSliderType;
 import spaceSurvival.view.sound.utilities.SliderType;
-
 import java.util.List;
 
 public interface GUISound extends GUI, GraphicsGUISound {

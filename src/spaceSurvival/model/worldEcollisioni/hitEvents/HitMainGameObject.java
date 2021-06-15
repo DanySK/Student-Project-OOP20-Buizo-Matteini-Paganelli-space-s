@@ -4,7 +4,6 @@ import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.worldEcollisioni.WorldEvent;
 
 public class HitMainGameObject implements WorldEvent {
-
     private final MainGameObject object;
     private final MainGameObject collidedObject;
 

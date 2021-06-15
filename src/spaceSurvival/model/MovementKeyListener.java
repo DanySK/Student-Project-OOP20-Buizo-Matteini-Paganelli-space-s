@@ -23,25 +23,20 @@ public class MovementKeyListener implements KeyListener {
 
     @Override
     public void keyPressed(final KeyEvent e) {
-    	final int pressedKeyCode = e.getKeyCode();
-    	if(canHandleKey(pressedKeyCode)) {
-    		final CommandType cmd = translateKeyCode(pressedKeyCode).get();
-    		this.caller.execute(cmd);
-    	} else {
-    		System.out.println("tasto non riconosciuto");
-    	}
+        final int pressedKeyCode = e.getKeyCode();
+        if (canHandleKey(pressedKeyCode)) {
+            final CommandType cmd = translateKeyCode(pressedKeyCode).get();
+            this.caller.execute(cmd);
+        }
     }
 
     @Override
     public void keyReleased(final KeyEvent e) {
-    	System.out.println(e.getKeyCode());
-    	final int pressedKeyCode = e.getKeyCode();
-    	if (canHandleKey(pressedKeyCode)) {
-    		final CommandType cmd = translateKeyCode(pressedKeyCode).get();
-    		this.caller.release(cmd);
-    	} else {
-    		System.out.println("tasto non riconosciuto");
-    	}
+        final int pressedKeyCode = e.getKeyCode();
+        if (canHandleKey(pressedKeyCode)) {
+            final CommandType cmd = translateKeyCode(pressedKeyCode).get();
+            this.caller.release(cmd);
+        }
     }
 
     private boolean canHandleKey(final int currentKeyCode) {
@@ -50,12 +45,9 @@ public class MovementKeyListener implements KeyListener {
 
 
     public Optional<CommandType> translateKeyCode(final Integer keyCode) {
-    	if (canHandleKey(keyCode)) {
-    	    return CommandType.getValue(keyCode);
+        if (canHandleKey(keyCode)) {
+            return CommandType.getValue(keyCode);
+        }
+        return Optional.empty();
     }
-    	    return Optional.empty();
-    }
-	
-
-
 }

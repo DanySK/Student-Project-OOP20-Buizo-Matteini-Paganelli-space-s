@@ -5,6 +5,7 @@ import spaceSurvival.model.worldEcollisioni.WorldEvent;
 
 public class HitFireEnemyEvent implements WorldEvent {
     private final MainGameObject fireEnemy;
+    
     public HitFireEnemyEvent(final MainGameObject obj) {
         this.fireEnemy = obj;
     }

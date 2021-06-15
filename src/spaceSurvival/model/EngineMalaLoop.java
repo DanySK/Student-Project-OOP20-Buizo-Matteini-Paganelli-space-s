@@ -143,11 +143,11 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         
         soundQueue.clear();
     }
-    
+
 
     protected void checkEvents() {
         final World world = this.controlGame.getWorld();
-        
+
         eventQueue.forEach(ev -> {
         	if (ev instanceof HitMainGameObject) {
         		HitMainGameObject asteroidEvent = (HitMainGameObject) ev;
@@ -177,7 +177,6 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         			if (world.getShip().getWeapon().isPresent()) {
             			world.getShip().getWeapon().get().setAmmoType(ammoType);
 					}
-        			
         		} else if (takeableGameObject instanceof Heart) {
         			final HeartType heartType = ((Heart) takeableGameObject).getType();
         			if (heartType == HeartType.HEAL) {

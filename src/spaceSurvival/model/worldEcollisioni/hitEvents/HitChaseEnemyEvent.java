@@ -4,7 +4,6 @@ import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.worldEcollisioni.WorldEvent;
 
 public class HitChaseEnemyEvent implements WorldEvent {
-
     private final MainGameObject chaseEnemy;
 
     public HitChaseEnemyEvent(final MainGameObject obj) {

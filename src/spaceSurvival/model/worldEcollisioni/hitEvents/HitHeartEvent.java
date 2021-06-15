@@ -4,7 +4,6 @@ import spaceSurvival.model.gameObject.takeableGameObject.TakeableGameObject;
 import spaceSurvival.model.worldEcollisioni.WorldEvent;
 
 public class HitHeartEvent implements WorldEvent {
-
     private final TakeableGameObject heart;
 
     public HitHeartEvent(final TakeableGameObject obj) {

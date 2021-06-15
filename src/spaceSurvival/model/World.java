@@ -1,7 +1,11 @@
 package spaceSurvival.model;
 
 import java.awt.Rectangle;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Optional;
+import java.util.Set;
+
 import spaceSurvival.model.GUI.settings.SkinSpaceShip;
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.gameObject.GameObject;
@@ -35,23 +39,18 @@ public class World {
     private final Set<MainGameObject> chaseEnemies = new HashSet<>();
     private final Set<MainGameObject> fireEnemies = new HashSet<>();
     private Optional<MainGameObject> boss = Optional.empty();
-    
     private final Set<TakeableGameObject> ammo = new HashSet<>();
     private final Set<TakeableGameObject> hearts = new HashSet<>();
-
     private SpaceShipSingleton ship;
     private RectBoundingBox mainBBox;
     private WorldEventListener evListener;
-    
     private final CollisionChecker collisionChecker = new CollisionChecker();
-    
 	
     public World(final RectBoundingBox mainBBox) {
         this.ship = SpaceShipSingleton.getSpaceShip();
         this.ship.setWeapon(Optional.of(new Weapon(AmmoType.NORMAL, ship)));
-        
         this.mainBBox = mainBBox;
-		
+
         for (int i = 0; i < 1; i++) {
             asteroids.add(factoryGameObject.createAsteroid());
             chaseEnemies.add(factoryGameObject.createChaseEnemy());
@@ -65,7 +64,7 @@ public class World {
         this.ship = SpaceShipSingleton.getSpaceShip();
         this.ship.setWeapon(Optional.of(new Weapon(AmmoType.NORMAL, ship)));
         this.mainBBox = new RectBoundingBox(rectangle);
-        
+
         for (int i = 0; i < 1; i++) {
             asteroids.add(factoryGameObject.createAsteroid());
             chaseEnemies.add(factoryGameObject.createChaseEnemy());
@@ -153,10 +152,10 @@ public class World {
     }
 	
     public boolean removeBullet(final Bullet bullet) {
-        if(getShipBullets().remove(bullet)) {
+        if (getShipBullets().remove(bullet)) {
             return true;
         }
-        if(getBossBullets().remove(bullet)) {
+        if (getBossBullets().remove(bullet)) {
             return true;
         }
         final boolean found = false;
@@ -171,7 +170,7 @@ public class World {
         return found;
     }
 	
-    public void removeMainObject(MainGameObject object) {
+    public void removeMainObject(final MainGameObject object) {
         if (object instanceof Asteroid) {
             removeAsteroid(object);
         } else if (object instanceof ChaseEnemy) {
@@ -199,20 +198,20 @@ public class World {
     public Optional<BoundaryCollision> checkCollisionWithBoundaries(final P2d pos, final RectBoundingBox box){
         final P2d ul = box.getULCorner();
         final P2d br = box.getBRCorner();
-        
+
         final double xShip = pos.getX();
         final double yShip = pos.getY();
-        
-        if (yShip < ul.y){
+
+        if (yShip < ul.y) {
             return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.TOP, new P2d(xShip, ul.y)));
-        } 
-        else if (yShip + ship.getSize().getHeight() > br.y){
+        }
+        else if (yShip + ship.getSize().getHeight() > br.y) {
             return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.BOTTOM, new P2d(pos.x, br.y)));
-        } 
-        else if (xShip + ship.getSize().getWidth() > br.x){
+        }
+        else if (xShip + ship.getSize().getWidth() > br.x) {
             return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.RIGHT, new P2d(br.x, pos.y)));
-        } 
-        else if (xShip < ul.x){
+        }
+        else if (xShip < ul.x) {
             return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.LEFT, new P2d(ul.x, pos.y)));
         } else {
             return Optional.empty();
@@ -221,7 +220,7 @@ public class World {
 	
     public Optional<MainGameObject> checkCollisionWithAsteroids(final RectBoundingBox rectBoundingBox) {
         for (final MainGameObject obj: asteroids) {
-            if (collisionChecker.testRectangleToCircle(rectBoundingBox, (CircleBoundingBox) obj.getBoundingBox())) {		
+            if (collisionChecker.testRectangleToCircle(rectBoundingBox, (CircleBoundingBox) obj.getBoundingBox())) {
                 return Optional.of(obj);
             }
         }
@@ -230,7 +229,7 @@ public class World {
 	
     public Optional<MainGameObject> checkCollisionWithChaseEnemies(final RectBoundingBox rectBoundingBox) {
         for (final MainGameObject obj: chaseEnemies) {
-            if(collisionChecker.testRectangleToRectangle(rectBoundingBox, (RectBoundingBox) obj.getBoundingBox())) {
+            if (collisionChecker.testRectangleToRectangle(rectBoundingBox, (RectBoundingBox) obj.getBoundingBox())) {
                 return Optional.of(obj);
             }
         }
@@ -239,7 +238,7 @@ public class World {
 	
     public Optional<MainGameObject> checkCollisionWithFireEnemies(final RectBoundingBox rectBoundingBox) {
         for (final MainGameObject obj: fireEnemies) {
-            if(collisionChecker.testRectangleToRectangle(rectBoundingBox, (RectBoundingBox) obj.getBoundingBox())) {
+            if (collisionChecker.testRectangleToRectangle(rectBoundingBox, (RectBoundingBox) obj.getBoundingBox())) {
                 return Optional.of(obj);
             }
         }
@@ -248,7 +247,7 @@ public class World {
 	
     public Optional<MainGameObject> checkCollisionWithBoss(final RectBoundingBox rectBoundingBox) {
         if (boss.isPresent()) {
-            if(collisionChecker.testRectangleToRectangle(rectBoundingBox, (RectBoundingBox) boss.get().getBoundingBox())) {
+            if (collisionChecker.testRectangleToRectangle(rectBoundingBox, (RectBoundingBox) boss.get().getBoundingBox())) {
                 return this.boss;
             }
         }
@@ -257,7 +256,7 @@ public class World {
 
     public Optional<TakeableGameObject> checkCollisionWithAmmo(final RectBoundingBox rectBoundingBox) {
         for (final TakeableGameObject obj: ammo) {
-            if (collisionChecker.testRectangleToCircle(rectBoundingBox, (CircleBoundingBox) obj.getBoundingBox())) {		
+            if (collisionChecker.testRectangleToCircle(rectBoundingBox, (CircleBoundingBox) obj.getBoundingBox())) {
                 return Optional.of(obj);
             }
         }
@@ -266,7 +265,7 @@ public class World {
 	
     public Optional<TakeableGameObject> checkCollisionWithHearts(final RectBoundingBox rectBoundingBox) {
         for (final TakeableGameObject obj: hearts) {
-            if (collisionChecker.testRectangleToCircle(rectBoundingBox, (CircleBoundingBox) obj.getBoundingBox())) {		
+            if (collisionChecker.testRectangleToCircle(rectBoundingBox, (CircleBoundingBox) obj.getBoundingBox())) {
                 return Optional.of(obj);
             }
         }
@@ -404,15 +403,15 @@ public class World {
     }
 
     public long getCountEnemies() {
-        return this.fireEnemies.size() +
-                this.chaseEnemies.size() +
-                (this.boss.isPresent() ? 1 : 0);
+        return this.fireEnemies.size() 
+                + this.chaseEnemies.size() 
+                + (this.boss.isPresent() ? 1 : 0);
     }
 
     public int getLifeShip() {
         return this.ship.getLife();
     }
-    
+
     public int getLifeBoss() {
         return this.boss.map(MainGameObject::getLife).orElse(0);
     }
