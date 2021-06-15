@@ -39,11 +39,11 @@ public class V2d implements java.io.Serializable {
     }
 
     public double getX() {
-		return this.x;
-	}
+        return this.x;
+    }
 
     public double getY() {
-		return this.y;
+        return this.y;
     }
 
     public V2d sum(final V2d v) {
