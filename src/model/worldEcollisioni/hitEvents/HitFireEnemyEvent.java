@@ -4,14 +4,13 @@ import model.gameObject.MainGameObject;
 import model.worldEcollisioni.WorldEvent;
 
 public class HitFireEnemyEvent implements WorldEvent {
-	private MainGameObject fireEnemy;
+    private final MainGameObject fireEnemy;
+    
+    public HitFireEnemyEvent(final MainGameObject obj) {
+        this.fireEnemy = obj;
+    }
 	
-	public HitFireEnemyEvent(MainGameObject obj){
-		this.fireEnemy = obj;
-	}
-	
-	public MainGameObject getCollisionObj(){
-		return this.fireEnemy;
-	}
-	
+    public MainGameObject getCollisionObj(){
+        return this.fireEnemy;
+    }	
 }

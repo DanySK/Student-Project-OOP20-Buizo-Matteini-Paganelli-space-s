@@ -14,10 +14,9 @@ public class LaunchMala {
         final CtrlLoading ctrlLoading = new CtrlLoading(StaticFactoryEngineGUI.createLoading(),
                 StaticFactoryGUI.createLoading());
         ctrlLoading.start();
-        
-        
+
         final EngineMalaLoop engine = new EngineMalaLoop();
-        while(!ctrlLoading.isLoad()){
+        while (!ctrlLoading.isLoad()) {
             try {
                 Thread.sleep(1);
             } catch (InterruptedException e) {
@@ -29,7 +28,7 @@ public class LaunchMala {
         ctrlLoading.turn(Visibility.HIDDEN);
 
 //        engine.start();
-        
+
         SwingUtilities.invokeLater(engine::start);
     }
 }

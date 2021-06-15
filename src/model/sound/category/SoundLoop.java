@@ -5,24 +5,20 @@ import utilities.SoundPath;
 
 import javax.sound.sampled.Clip;
 
-
 public class SoundLoop extends Sound {
 	
-	public SoundLoop() {
-		super();
-	}
+    public SoundLoop() {
+        super();
+    }
 	
-	public SoundLoop(SoundPath st) {
-		super(st);
+    public SoundLoop(final SoundPath st) {
+        super(st);
+    }
 
-	}
-
-	@Override
-	protected void playSound(double volume) {
-		setVol(volume);
-		super.getClip().get().loop(Clip.LOOP_CONTINUOUSLY);
-		super.getClip().get().start();
-	}
-	
-
+    @Override
+    protected void playSound(final double volume) {
+        setVol(volume);
+        super.getClip().get().loop(Clip.LOOP_CONTINUOUSLY);
+        super.getClip().get().start();
+    }
 }

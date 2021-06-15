@@ -1,4 +1,8 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
+formatter_profile=_Java Pianini
+formatter_settings_version=20
+=======
 editor_save_participant_org.eclipse.jdt.ui.postsavelistener.cleanup=false
 formatter_profile=_Java Conventions OOP
 formatter_settings_version=20
@@ -104,3 +108,4 @@ sp_cleanup.use_unboxing=false
 sp_cleanup.use_var=false
 sp_cleanup.useless_continue=false
 sp_cleanup.useless_return=false
+>>>>>>> mala

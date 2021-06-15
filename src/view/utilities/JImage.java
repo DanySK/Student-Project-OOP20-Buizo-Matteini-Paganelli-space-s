@@ -46,6 +46,7 @@ public class JImage extends JComponent{
         return this.imageIcon;
     }
 
+    @Override
     public Dimension getSize(){
         return new Dimension(this.width, this.height);
     }
@@ -55,6 +56,7 @@ public class JImage extends JComponent{
     }
 
 
+    @Override
     public void setSize(final int width, final int height){
         super.setSize(width, height);
         this.lbImage.setSize(width, height);
@@ -64,6 +66,7 @@ public class JImage extends JComponent{
         this.repaint();
     }
 
+    @Override
     public void setSize(final Dimension dimension){
         this.setSize(dimension.width, dimension.height);
     }
@@ -77,6 +80,7 @@ public class JImage extends JComponent{
         this.repaint();
     }
 
+    @Override
     public void setBounds(final Rectangle rectangle){
         super.setBounds(rectangle);
         this.lbImage.setBounds(rectangle);

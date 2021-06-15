@@ -14,7 +14,6 @@ import model.worldEcollisioni.physics.boundingType.BoundingBox;
 import model.worldEcollisioni.physics.components.PhysicsComponent;
 import utilities.SoundPath;
 import model.World;
-import utilities.pathImage.AnimationEffect;
 
 public abstract class GameObject extends Thread{
 
@@ -92,6 +91,7 @@ public abstract class GameObject extends Thread{
 	        } catch (Exception ignored){}
 	    }
     }
+
 	
 	
     public List<SoundPath> getEffectSounds() {

@@ -1,19 +1,14 @@
 package utilities;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public enum SoundType {
- LOOP , EFFECT;
+    LOOP , 
+    EFFECT;
 
-	public List<SoundPath> getSoundPaths() {
-		 
-		ArrayList <SoundPath> list = new ArrayList<>();		 
-		for (SoundPath path : SoundPath.values()){
-			if(path.getType() == this){
-				list.add(path);
-			 }
-		 }
-		 return list ;
-	}
+    public List<SoundPath> getSoundPaths() {
+        return Stream.of(SoundPath.values()).filter(path -> path.getType().equals(this)).collect(Collectors.toList());
+    }
 }

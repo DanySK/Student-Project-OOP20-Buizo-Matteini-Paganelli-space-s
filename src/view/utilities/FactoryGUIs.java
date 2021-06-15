@@ -139,7 +139,7 @@ public class FactoryGUIs {
         final JImage imag = new JImage(pathIcon, engineImage.getSize());
         button.setIcon(imag.getImageIcon());
     }
-    
+
     public static void setIconJButtonFromRate(final JButton button, final EngineImage engineImage) {
     	FactoryGUIs.setIconJButtonFromRate(button, engineImage.getPath(),
                 engineImage.getScaleOf(), engineImage.getRespectTo());
@@ -156,7 +156,7 @@ public class FactoryGUIs {
 
     public static void setDefaultJFrame(final JFrame frame){
         frame.setBounds(Screen.RECTANGLE_FULLSCREEN);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setUndecorated(true);
         frame.setResizable(false);
         frame.setBackground(DesignGraphics.COLOR_OPACITY_BLACK);

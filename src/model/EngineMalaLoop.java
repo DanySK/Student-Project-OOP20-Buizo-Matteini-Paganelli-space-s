@@ -42,10 +42,9 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     private final CtrlGUI controlGUI;
     private final CtrlGame controlGame;
     private final CtrlSound controlSound;
-    
+
     private final List<WorldEvent> eventQueue;
     private final List<SoundPath> soundQueue;
-    
 
     public EngineMalaLoop() {
         this.controlGUI = new CtrlGUI();
@@ -61,29 +60,27 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         this.controlGame.assignMovementListenerInShip();
         this.controlGame.setEventListenerInWorld(this);
         this.controlGame.assignWorld();
-        
         this.controlSound.setSoundLoop(this.controlGUI.getCurrentGUI());
         this.controlSound.setCmdAudioLoop(CmdAudioType.AUDIO_ON);
-        
         this.controlGUI.startGUI();
     }
 
+    @Override
     public void run() {
         long lastTime = System.currentTimeMillis();
         long current = 0L;
         int nbThreadsss =  Thread.getAllStackTraces().keySet().size();
-        
+
         System.out.println("Numero dei thread current init -> " + nbThreadsss);
-    
+
         while (true) {
             if (!this.controlGame.isGameOver()) {
                 current = System.currentTimeMillis();
-                int elapsed = (int)(current - lastTime);
+                final int elapsed = (int) (current - lastTime);
 
-    			//System.out.println("THREAD ATTIVI " + Thread.activeCount());
                 if (this.controlGUI.isInGame()){
                     int nbThreads =  Thread.getAllStackTraces().keySet().size();
-           
+
                     if (!this.controlGUI.isInPause()) {
                         //processInput();
                         renderMovement();
@@ -92,7 +89,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                         lastTime = current;
                         updateGame(elapsed);
                         nbThreads =  Thread.getAllStackTraces().keySet().size();
-                        
+
                         System.out.println("Numero dei thread current -> " + nbThreads);
                     }
                 }
@@ -113,9 +110,9 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
 
         }
     }
-    
+
     protected void waitForNextFrame(final long current) {
-        long dt = System.currentTimeMillis() - current;
+        final long dt = System.currentTimeMillis() - current;
         if (dt < FPS){
             try {
                 Thread.sleep(FPS - dt);
@@ -133,7 +130,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         checkEvents();
         checkSoundEffects();
     }
-    
+
     protected void checkSoundEffects() {
         final SpaceShipSingleton ship = this.controlGame.getShip();
         //soundQueue.add(ship.popEffect()); 
@@ -146,21 +143,21 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         
         soundQueue.clear();
     }
-    
+
 
     protected void checkEvents() {
         final World world = this.controlGame.getWorld();
-        
+
         eventQueue.forEach(ev -> {
         	if (ev instanceof HitMainGameObject) {
         		HitMainGameObject asteroidEvent = (HitMainGameObject) ev;
             	final MainGameObject object = asteroidEvent.getObject();
             	final MainGameObject collidedObject = asteroidEvent.getCollidedObject();
             	this.controlGame.incrScore(Score.ASTEROID);
-            	
+
             	damageObject(object, collidedObject.getImpactDamage(), Status.INVINCIBLE);
                 damageObject(collidedObject, object.getImpactDamage(), Status.INVINCIBLE); 
-            	
+
             	if (object instanceof ChaseEnemy) {
                     world.removeChaseEnemy(object);
                     playEffect(SoundPath.ENEMY_EXPL);
@@ -180,7 +177,6 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         			if (world.getShip().getWeapon().isPresent()) {
             			world.getShip().getWeapon().get().setAmmoType(ammoType);
 					}
-        			
         		} else if (takeableGameObject instanceof Heart) {
         			final HeartType heartType = ((Heart) takeableGameObject).getType();
         			if (heartType == HeartType.HEAL) {
@@ -193,7 +189,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
 			}
             else if (ev instanceof HitBorderEvent) {
                 HitBorderEvent borderEvent = (HitBorderEvent) ev;
-                MovableGameObject object = (MovableGameObject) borderEvent.getCollisionObj();
+                MovableGameObject object = borderEvent.getCollisionObj();
                 CollisionEdge edge = borderEvent.getEdge();
                 
                 // If a bullet reach a border
@@ -326,6 +322,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
 //        view.renderGameOver();
     }
 
+    @Override
     public void notifyEvent(final WorldEvent ev) {
         eventQueue.add(ev);
     }

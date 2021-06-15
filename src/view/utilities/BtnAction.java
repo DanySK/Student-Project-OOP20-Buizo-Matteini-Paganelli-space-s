@@ -1,14 +1,14 @@
 package view.utilities;
 
 import utilities.ActionGUI;
+import javax.swing.JButton;
 
-import javax.swing.*;
 
 public class BtnAction extends JButton {
     private ActionGUI actionCurrent;
     private ActionGUI actionNext;
 
-    public BtnAction(){
+    public BtnAction() {
         super();
     }
 
@@ -32,9 +32,9 @@ public class BtnAction extends JButton {
 
     @Override
     public String toString() {
-        return "BtnAction{" +
-                "actionCurrent=" + actionCurrent +
-                ", actionNext=" + actionNext +
-                '}';
+        return "BtnAction{"
+                + "actionCurrent=" + actionCurrent 
+                + ", actionNext=" + actionNext 
+                + '}';
     }
 }

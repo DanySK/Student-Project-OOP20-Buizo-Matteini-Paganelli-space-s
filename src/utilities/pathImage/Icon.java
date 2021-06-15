@@ -5,8 +5,6 @@ import java.nio.file.Paths;
 public class Icon {
     public static final String MAIN_FOLDER = "icon";
 
-
-
     public static final String START = Paths.get(MAIN_FOLDER, "start.png").toString();
     public static final String SETTINGS = Paths.get(MAIN_FOLDER, "settings.png").toString();
     public static final String SCOREBOARD = Paths.get(MAIN_FOLDER, "scoreboard.png").toString();

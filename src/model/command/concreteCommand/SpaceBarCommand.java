@@ -4,17 +4,14 @@ import model.command.commandInterfaces.CommandGameObject;
 import model.gameObject.MainGameObject;
 import utilities.SoundPath;
 
-public class SpaceBarCommand implements CommandGameObject{
-	
-	public SpaceBarCommand() {}
 
-	@Override
-	public void execute(MainGameObject object) {
-		System.out.println(object.getWeapon().isPresent());
-		if (object.getWeapon().isPresent()) {
-			object.getWeapon().get().shoot();
-			object.pushEffect(SoundPath.SHOOT);
-		}	
-	}
-	
+public class SpaceBarCommand implements CommandGameObject {
+
+    @Override
+    public void execute(final MainGameObject ship) {
+        if (ship.getWeapon().isPresent()) {
+            ship.getWeapon().get().shoot();
+            ship.pushEffect(SoundPath.SHOOT);
+        }	
+    }
 }

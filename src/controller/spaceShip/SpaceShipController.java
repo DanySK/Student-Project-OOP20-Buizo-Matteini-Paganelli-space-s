@@ -6,7 +6,7 @@ import model.gameObject.mainGameObject.SpaceShipSingleton;
 public class SpaceShipController {
 
     private final SpaceShipSingleton spaceShipModel;
-    
+
     public SpaceShipController(final SpaceShipSingleton spaceShipModel) {
         this.spaceShipModel = spaceShipModel;
         this.init();

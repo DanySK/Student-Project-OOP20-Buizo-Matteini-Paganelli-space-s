@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class ListGUI<X> extends ArrayList<X> {
 
-    public ListGUI(){
+    public ListGUI() {
         super();
     }
 
@@ -12,7 +12,7 @@ public class ListGUI<X> extends ArrayList<X> {
         X x = null;
         try {
             x = super.get(super.size() - 1);
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             System.err.println("element is null");
         }
         return x;
@@ -22,7 +22,7 @@ public class ListGUI<X> extends ArrayList<X> {
         X x = null;
         try {
             x = super.get(super.size() - 2);
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             System.err.println("element is null");
         }
         return x;

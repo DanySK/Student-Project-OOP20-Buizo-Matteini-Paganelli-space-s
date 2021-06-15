@@ -8,15 +8,8 @@ import model.gameObject.mainGameObject.SpaceShipSingleton;
 
 public class UpReleaseCommand implements CommandGameObject {
 
-	@Override
-	public void execute(MainGameObject object) {
-		System.out.println("Release Up");
-		
-		if (object instanceof SpaceShipSingleton) {
-			SpaceShipSingleton ship = (SpaceShipSingleton) object;
-			ship.setAcceleration(new V2d(0, GameObjectUtils.SPACESHIP_DECELERATION));	
-
-		}
-
-	}
+    @Override
+    public void execute(final MainGameObject ship) {
+        ((SpaceShipSingleton)ship).setAcceleration(new V2d(0, GameObjectUtils.SPACESHIP_DECELERATION));
+    }
 }

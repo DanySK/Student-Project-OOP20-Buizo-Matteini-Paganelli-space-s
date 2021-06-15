@@ -5,7 +5,6 @@ import utilities.ActionGUI;
 import view.GUI;
 import view.sound.utilities.ButtonSliderType;
 import view.sound.utilities.SliderType;
-
 import java.util.List;
 
 public interface GUISound extends GUI, GraphicsGUISound {

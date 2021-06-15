@@ -12,39 +12,39 @@ import model.GUI.sound.EngineSound;
 
 public class StaticFactoryEngineGUI {
 
-    public static EngineLoading createLoading(){
+    public static EngineLoading createLoading() {
         return new EngineLoading();
     }
 
-    public static EngineGame createEngineGame(){
+    public static EngineGame createEngineGame() {
         return new EngineGame();
     }
 
-    public static EngineMenu createEngineMenu(){
+    public static EngineMenu createEngineMenu() {
         return new EngineMenu();
     }
 
-    public static EngineSettings createEngineSettings(){
+    public static EngineSettings createEngineSettings() {
         return new EngineSettings();
     }
 
-    public static EngineScoreboard createEngineScoreboard(){
+    public static EngineScoreboard createEngineScoreboard() {
         return new EngineScoreboard();
     }
 
-    public static EngineSound createEngineSound(){
+    public static EngineSound createEngineSound() {
         return new EngineSound();
     }
 
-    public static EngineHelp createEngineHelp(){
+    public static EngineHelp createEngineHelp() {
         return new EngineHelp();
     }
 
-    public static EnginePause createEnginePause(){
+    public static EnginePause createEnginePause() {
         return new EnginePause();
     }
 
-    public static EngineDead createEngineDead(){
+    public static EngineDead createEngineDead() {
         return new EngineDead();
     }
 }

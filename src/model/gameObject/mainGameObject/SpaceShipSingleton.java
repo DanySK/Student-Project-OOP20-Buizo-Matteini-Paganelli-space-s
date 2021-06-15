@@ -47,9 +47,8 @@ public class SpaceShipSingleton extends MainGameObject {
                                final int impactDamage, final Optional<Weapon> weapon, final int score) {
 		super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, weapon, score);
     	this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage, this.getTransform()));
-    	this.acceleration = new V2d(1,1);
+    	this.acceleration = new V2d(1, 1);
     }
-    
     /**
      * @return space ship static instance
      */
