@@ -19,7 +19,7 @@ public class ConcreteGUISound extends AbstractGUI implements GUISound {
     private final MixerSound mixerSound;
     private final BtnAction btnBack;
 
-    public ConcreteGUISound(){
+    public ConcreteGUISound() {
         super();
         this.lbTitle = new JLabel();
         this.mixerSound = new MixerSound();
@@ -54,7 +54,7 @@ public class ConcreteGUISound extends AbstractGUI implements GUISound {
     }
 
     @Override
-    public SliderType getSliderTypeofMixer(final TypeUnitSound typeUnitSound){
+    public SliderType getSliderTypeofMixer(final TypeUnitSound typeUnitSound) {
         return this.mixerSound.getSliderType(typeUnitSound);
     }
 
@@ -81,7 +81,7 @@ public class ConcreteGUISound extends AbstractGUI implements GUISound {
 
     @Override
     public void setIconBtnSwitches(final List<String> paths) {
-        this.mixerSound.setIconBtnSwitches(paths, (int)EngineSound.RECTANGLE.getWidth());
+        this.mixerSound.setIconBtnSwitches(paths, (int) EngineSound.RECTANGLE.getWidth());
     }
 
 

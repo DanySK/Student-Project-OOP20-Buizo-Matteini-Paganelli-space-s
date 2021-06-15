@@ -7,8 +7,6 @@ import spaceSurvival.model.GUI.Visibility;
 import spaceSurvival.model.EngineMalaLoop;
 
 import javax.swing.*;
-import java.awt.*;
-import java.lang.reflect.InvocationTargetException;
 
 public class LaunchMala {
 

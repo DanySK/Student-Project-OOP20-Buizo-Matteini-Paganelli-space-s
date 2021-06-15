@@ -3,10 +3,8 @@ package spaceSurvival.model.movement;
 import java.awt.geom.AffineTransform;
 
 import spaceSurvival.model.common.P2d;
-import spaceSurvival.model.common.V2d;
 import spaceSurvival.model.gameObject.MovableGameObject;
 import spaceSurvival.model.gameObject.enemy.ChaseEnemy;
-import spaceSurvival.model.worldEcollisioni.physics.components.CollisionChecker;
 
 public class ChasingMovement implements Movement {
 

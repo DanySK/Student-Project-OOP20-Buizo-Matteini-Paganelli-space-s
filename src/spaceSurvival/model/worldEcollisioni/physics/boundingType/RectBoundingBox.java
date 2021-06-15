@@ -72,10 +72,12 @@ public class RectBoundingBox implements BoundingBox {
 		return this.height;
 	}
 	
-	public AffineTransform getTransform() {
+	@Override
+    public AffineTransform getTransform() {
 		return this.transform;
 	}
-	public void setTransform(final AffineTransform transform) { 
+	@Override
+    public void setTransform(final AffineTransform transform) { 
 		this.transform.setTransform(transform); 
 	
 		AffineTransform trans = new AffineTransform();
@@ -91,7 +93,8 @@ public class RectBoundingBox implements BoundingBox {
 	 * @TODO to be implemented
 	 * Il raggio sarà il lato.
 	 */
-	public boolean isCollidingWith(final P2d p, final double radius){
+	@Override
+    public boolean isCollidingWith(final P2d p, final double radius){
 		
 		if(p.getX() <= this.getULCorner().getX() + this.getWidth() && 
 				p.getY() <= this.getULCorner().getY() + this.getHeight()) {

@@ -3,7 +3,6 @@ package spaceSurvival.model;
 import spaceSurvival.controller.GUI.CtrlGUI;
 import spaceSurvival.controller.GUI.CtrlGame;
 import spaceSurvival.controller.GUI.CtrlSound;
-import spaceSurvival.model.gameObject.Effect;
 import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.gameObject.MovableGameObject;
 import spaceSurvival.model.gameObject.Status;
@@ -22,17 +21,11 @@ import spaceSurvival.model.gameObject.weapon.Bullet;
 import spaceSurvival.model.sound.CmdAudioType;
 import spaceSurvival.model.worldEcollisioni.WorldEvent;
 import spaceSurvival.model.worldEcollisioni.WorldEventListener;
-import spaceSurvival.model.worldEcollisioni.hitEvents.HitAsteroidEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitBorderEvent;
-import spaceSurvival.model.worldEcollisioni.hitEvents.HitBossEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitBulletEvent;
-import spaceSurvival.model.worldEcollisioni.hitEvents.HitChaseEnemyEvent;
-import spaceSurvival.model.worldEcollisioni.hitEvents.HitFireEnemyEvent;
-import spaceSurvival.model.worldEcollisioni.hitEvents.HitHeartEvent;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitMainGameObject;
 import spaceSurvival.model.worldEcollisioni.hitEvents.HitTakeableGameObject;
 import spaceSurvival.model.worldEcollisioni.physics.BoundaryCollision.CollisionEdge;
-import spaceSurvival.model.worldEcollisioni.hitEvents.HitAmmoEvent;
 import spaceSurvival.utilities.Score;
 import spaceSurvival.utilities.SoundPath;
 import spaceSurvival.utilities.SystemVariables;
@@ -76,6 +69,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         this.controlGUI.startGUI();
     }
 
+    @Override
     public void run() {
         long lastTime = System.currentTimeMillis();
         long current = 0L;
@@ -322,7 +316,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                 //world.getShip().setStatus(effect.getStatus());
              else if (ev instanceof HitBorderEvent) {
                 HitBorderEvent borderEvent = (HitBorderEvent) ev;
-                MovableGameObject object = (MovableGameObject) borderEvent.getCollisionObj();
+                MovableGameObject object = borderEvent.getCollisionObj();
                 CollisionEdge edge = borderEvent.getEdge();
                 
              // If a bullet reach a border
@@ -479,6 +473,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
 //        view.renderGameOver();
     }
 
+    @Override
     public void notifyEvent(final WorldEvent ev) {
         eventQueue.add(ev);
     }

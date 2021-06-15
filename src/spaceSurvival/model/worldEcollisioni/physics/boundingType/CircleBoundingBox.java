@@ -1,8 +1,6 @@
 package spaceSurvival.model.worldEcollisioni.physics.boundingType;
 
 import spaceSurvival.model.common.*;
-import spaceSurvival.utilities.SystemVariables;
-
 import java.awt.geom.AffineTransform;
 
 public class CircleBoundingBox implements BoundingBox {
@@ -26,15 +24,18 @@ public class CircleBoundingBox implements BoundingBox {
 		this.transform = transform;
 	}
 
-	public boolean isCollidingWith(final P2d p, final double radius) {
+	@Override
+    public boolean isCollidingWith(final P2d p, final double radius) {
 		return new V2d(p, center).module() <= radius + this.radius;
 	}
 
-	public AffineTransform getTransform() {
+	@Override
+    public AffineTransform getTransform() {
 		return this.transform;
 	}
 	
-	public void setTransform(final AffineTransform transform) {
+	@Override
+    public void setTransform(final AffineTransform transform) {
 		this.transform.setTransform(transform);
 	}
 

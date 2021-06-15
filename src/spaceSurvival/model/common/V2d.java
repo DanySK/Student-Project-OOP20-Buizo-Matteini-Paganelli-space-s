@@ -21,48 +21,49 @@ public class V2d implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public double x,y;
+	public double x, y;
 	
-    public V2d(){
-        this.x=0;
-        this.y=0;
+    public V2d() {
+        this.x = 0;
+        this.y = 0;
     }
-    
-    public V2d(double x,double y){
+
+    public V2d(final double x, final double y){
         this.x=x;
         this.y=y;
     }
 
-    public V2d(P2d to, P2d from){
+    public V2d(final P2d to, final P2d from){
         this.x=to.x-from.x;
         this.y=to.y-from.y;
     }
-    
+
     public double getX() {
 		return this.x;
 	}
-    
+
     public double getY() {
 		return this.y;
-	}
+    }
 
-    public V2d sum(V2d v){
-        return new V2d(x+v.x,y+v.y);
+    public V2d sum(final V2d v){
+        return new V2d(x + v.x, y + v.y);
     }
 
     public double module(){
-        return (double)Math.sqrt(x*x+y*y);
+        return Math.sqrt(x*x+y*y);
     }
 
     public V2d getNormalized(){
-        double module=(double)Math.sqrt(x*x+y*y);
-        return new V2d(x/module,y/module);
+        final double module = Math.sqrt(x*x + y*y);
+        return new V2d(x / module, y / module);
     }
 
     public V2d mul(double fact){
         return new V2d(x*fact,y*fact);
     }
 
+    @Override
     public String toString(){
         return "V2d("+x+", "+y+")";
     }

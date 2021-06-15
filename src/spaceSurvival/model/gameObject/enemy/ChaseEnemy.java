@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import spaceSurvival.model.gameObject.GameObjectUtils;
-import spaceSurvival.model.gameObject.MainGameObject;
 import spaceSurvival.model.movement.Movement;
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.common.V2d;

@@ -31,7 +31,6 @@ import spaceSurvival.model.worldEcollisioni.physics.boundingType.CircleBoundingB
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.CollisionChecker;
 import spaceSurvival.model.common.*;
-import spaceSurvival.utilities.pathImage.Skin.SkinShip;
 
 public class World {
 	

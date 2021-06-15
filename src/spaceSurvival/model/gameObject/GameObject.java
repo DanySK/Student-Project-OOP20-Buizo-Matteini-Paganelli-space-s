@@ -56,7 +56,8 @@ public abstract class GameObject extends Thread{
 		this.animationEffect = animation;
 	}
 
-	public void run(){
+	@Override
+    public void run(){
 		long lastTime = System.currentTimeMillis();
 		int i = 0, j = 0;
         while (true){

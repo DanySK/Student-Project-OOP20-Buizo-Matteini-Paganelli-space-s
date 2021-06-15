@@ -5,7 +5,7 @@ import spaceSurvival.model.sound.Sound;
 public class PlaySoundCommand implements CommandAudio {
 
 	@Override
-	public void execute(Sound sound) {
+	public void execute(final Sound sound) {
 		sound.startClip();
 	}
 }

@@ -1,28 +1,34 @@
 package spaceSurvival.utilities;
 
+import java.util.Optional;
+
 public enum CommandType {
 	
-	KEY_LEFT  			(37),
-	KEY_UP  			(38),
-	KEY_RIGHT  			(39),
-	KEY_DOWN  			(40),
-	KEY_ROTATE_LEFT  	(81),
-	KEY_ROTATE_RIGHT  	(69),
-	KEY_SPACE_BAR		(32);
+        KEY_LEFT                (37),
+	KEY_UP  		(38),
+	KEY_RIGHT  	        (39),
+	KEY_SPACE_BAR		(32),
+        KEY_A                   (65),
+        KEY_W                   (69),
+        KEY_D                   (68);
 
 	private final Integer keyCode;
 
-	CommandType(Integer keyCode) {
+	CommandType(final Integer keyCode) {
 		this.keyCode = keyCode;
 	}
 
-	public static CommandType getValue(Integer value){
-		for(CommandType cmd : CommandType.values()) {
-			if(cmd.keyCode.equals(value)) {
-				return cmd;
+	public static Optional<CommandType> getValue(final Integer value){
+		for(final CommandType cmd : CommandType.values()) {
+			if(cmd.getKeyCode().equals(value)) {
+				return Optional.of(cmd);
 			}
 		}
-		return null;
+		return Optional.empty();
 	}
+
+    public Integer getKeyCode() {
+        return this.keyCode;
+    }
 
 }

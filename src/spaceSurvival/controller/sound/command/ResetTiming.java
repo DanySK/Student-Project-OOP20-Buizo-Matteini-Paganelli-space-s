@@ -5,7 +5,7 @@ import spaceSurvival.model.sound.Sound;
 public class ResetTiming implements CommandAudio {
 
 	@Override
-	public void execute(Sound sound) {
+	public void execute(final Sound sound) {
 		System.out.println("Reset Sound");
 		sound.getClip().get().setMicrosecondPosition(0);
 	}

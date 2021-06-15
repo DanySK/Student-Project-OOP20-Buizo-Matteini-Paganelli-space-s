@@ -7,7 +7,6 @@ import spaceSurvival.controller.utilities.ListGUI;
 import spaceSurvival.factories.StaticFactoryEngineGUI;
 import spaceSurvival.factories.StaticFactoryGUI;
 import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.model.GUI.settings.SkinSpaceShip;
 import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.utilities.StateLevelGUI;
 import spaceSurvival.utilities.pathImage.Background;
@@ -128,13 +127,13 @@ public class CtrlGUI {
             }
 
             @Override
-            public void mouseReleased(MouseEvent e) { }
+            public void mouseReleased(final MouseEvent e) { }
 
             @Override
-            public void mouseEntered(MouseEvent e) { }
+            public void mouseEntered(final MouseEvent e) { }
 
             @Override
-            public void mouseExited(MouseEvent e) { }
+            public void mouseExited(final MouseEvent e) { }
         };
     }
 
@@ -186,7 +185,7 @@ public class CtrlGUI {
 
 
     private BtnAction getBtnGameFromMenu(){
-        for (BtnAction btn : this.ctrlMenu.getGUI().getBtnActionLinks()) {
+        for (final BtnAction btn : this.ctrlMenu.getGUI().getBtnActionLinks()) {
             if(btn.getActionNext() == ActionGUI.ID_GAME){
                 return btn;
             }
@@ -195,7 +194,7 @@ public class CtrlGUI {
     }
 
     private BtnAction getBtnMenuFromDead(){
-        for (BtnAction btn : this.ctrlDead.getGUI().getBtnActionLinks()) {
+        for (final BtnAction btn : this.ctrlDead.getGUI().getBtnActionLinks()) {
             if(btn.getActionNext() == ActionGUI.ID_MENU){
                 return btn;
             }

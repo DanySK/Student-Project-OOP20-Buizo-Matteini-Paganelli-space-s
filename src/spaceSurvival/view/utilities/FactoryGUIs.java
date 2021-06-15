@@ -156,7 +156,7 @@ public class FactoryGUIs {
 
     public static void setDefaultJFrame(final JFrame frame){
         frame.setBounds(Screen.RECTANGLE_FULLSCREEN);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setUndecorated(true);
         frame.setResizable(false);
         frame.setBackground(DesignGraphics.COLOR_OPACITY_BLACK);

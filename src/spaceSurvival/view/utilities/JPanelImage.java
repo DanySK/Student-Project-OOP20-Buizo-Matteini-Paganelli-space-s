@@ -21,6 +21,7 @@ public class JPanelImage extends JPanel {
         super.repaint();
     }
 
+    @Override
     public void setBounds(final Rectangle screen){
         super.setBounds(screen);
         JPanelImage.setSizeFromScreen(this.icon, screen);

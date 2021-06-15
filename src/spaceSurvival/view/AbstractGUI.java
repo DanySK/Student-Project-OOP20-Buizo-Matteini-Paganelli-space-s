@@ -31,6 +31,7 @@ public abstract class AbstractGUI extends JFrame{
         this.mainAction = actionGUI;
     }
 
+    @Override
     public void setBounds(final Rectangle screen){
         super.setBounds(screen);
         this.panelBackground.setBounds(screen);
