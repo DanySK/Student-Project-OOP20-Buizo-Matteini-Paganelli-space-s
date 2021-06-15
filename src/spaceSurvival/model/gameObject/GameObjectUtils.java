@@ -43,7 +43,7 @@ public class GameObjectUtils {
     public static final V2d CHASE_ENEMY_VEL = new V2d(0,-3);
     public static final V2d FIRE_ENEMY_VEL = new V2d();
     public static final V2d BOSS_VEL = new V2d(0, 0);
-    public static final V2d BULLET_VEL = new V2d(0, -60);
+    public static final V2d BULLET_VEL = new V2d(0, -20);
     public static final V2d NO_VEL = new V2d(0, 0);
     
     public static final int SPACESHIP_DAMAGE = 100;
@@ -90,23 +90,23 @@ public class GameObjectUtils {
     	int yAxis = 0;
     	      	
     	switch (Edge.randomAxis()) {
-		case TOP:
-    		xAxis = random.nextInt(Screen.WIDTH_FULL_SCREEN);
-    		yAxis = 0 - (int) objectDim.getHeight();
-		break;
-		case BOTTOM:
-    		xAxis = random.nextInt(Screen.WIDTH_FULL_SCREEN);
-    		yAxis = Screen.WIDTH_FULL_SCREEN;
-		break;
-		case LEFT:
-			xAxis = 0 - (int) objectDim.getWidth();
-    		yAxis = random.nextInt(Screen.HEIGHT_FULL_SCREEN);
-		break;
-		case RIGHT:
-			xAxis = Screen.WIDTH_FULL_SCREEN;
-    		yAxis = random.nextInt(Screen.HEIGHT_FULL_SCREEN);
-		break;
-		}
+    	case TOP:
+    	    xAxis = random.nextInt(Screen.WIDTH_FULL_SCREEN);
+    	    yAxis = 0 - (int) objectDim.getHeight();
+    	    break;
+    	case BOTTOM:
+    	    xAxis = random.nextInt(Screen.WIDTH_FULL_SCREEN);
+    	    yAxis = Screen.WIDTH_FULL_SCREEN;
+    	    break;
+    	case LEFT:
+    	    xAxis = 0 - (int) objectDim.getWidth();
+    	    yAxis = random.nextInt(Screen.HEIGHT_FULL_SCREEN);
+    	    break;
+    	case RIGHT:
+    	    xAxis = Screen.WIDTH_FULL_SCREEN;
+    	    yAxis = random.nextInt(Screen.HEIGHT_FULL_SCREEN);
+    	    break;
+    	}
 
     	return new P2d(xAxis, yAxis);
     }
@@ -118,14 +118,12 @@ public class GameObjectUtils {
     
     public static BoundingBox createRectBoundingBox(final P2d position, final EngineImage engineImage, final AffineTransform transform) {
     	return new RectBoundingBox(new P2d(position.getX() + engineImage.getWidth() / 2, position.getY() + engineImage.getHeight() / 2),
-    			engineImage, transform);
+    	        engineImage, transform);
     }
     
     public static BoundingBox createCircleBoundingBox(final P2d position,
-    		final EngineImage engineImage, final AffineTransform transform) {
+            final EngineImage engineImage, final AffineTransform transform) {
     	return new CircleBoundingBox(position, engineImage.getWidth() / 2, transform);
     }
-    
-
 
 }
