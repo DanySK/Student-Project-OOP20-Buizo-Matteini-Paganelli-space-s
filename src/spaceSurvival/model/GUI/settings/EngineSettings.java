@@ -3,7 +3,6 @@ package spaceSurvival.model.GUI.settings;
 import spaceSurvival.model.GUI.Visibility;
 import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.GUI.EngineGUI;
-import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.utilities.ActionGUI;

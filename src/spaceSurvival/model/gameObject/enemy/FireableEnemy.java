@@ -12,7 +12,7 @@ import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 
 public abstract class FireableEnemy extends Enemy {
 
-    public FireableEnemy(EngineImage engineImage, P2d position, BoundingBox bb, PhysicsComponent phys, V2d velocity,
+    FireableEnemy(EngineImage engineImage, P2d position, BoundingBox bb, PhysicsComponent phys, V2d velocity,
             Movement movement, int life, int impactDamage, Optional<Weapon> weapon, int score, P2d target) {
         super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, weapon, score, target);
     }

@@ -16,21 +16,21 @@ public class EngineImage {
 
     public EngineImage(){ }
 
-    public EngineImage(final String path){
+    public EngineImage(final String path) {
         this.path = path;
         this.setSize(EngineImage.getSizeFromImage(path));
     }
 
-    public EngineImage(final String path, final int width, final int height){
+    public EngineImage(final String path, final int width, final int height) {
         this(path);
         this.setSize(width, height);
     }
 
-    public EngineImage(final String path, final Dimension dimension){
+    public EngineImage(final String path, final Dimension dimension) {
         this(path, dimension.width, dimension.height);
     }
 
-    public EngineImage(final int scaleOf, final int respectTo, final String path){
+    public EngineImage(final int scaleOf, final int respectTo, final String path) {
         this(path);
         this.setScale(scaleOf, respectTo);
     }
@@ -45,21 +45,21 @@ public class EngineImage {
     public int getWidth() {
         return this.width;
     }
-    
+
     public int getHeight() {
-		return this.height;
-	}
+        return this.height;
+    }
 
     public int getScaleOf() {
         return this.scaleOf;
     }
 
 
-    public int getRespectTo(){
+    public int getRespectTo() {
         return this.respectTo;
     }
 
-    public Dimension getSize(){
+    public Dimension getSize() {
         return new Dimension(this.width, this.height);
     }
 
@@ -95,27 +95,27 @@ public class EngineImage {
 
     @Override
     public String toString() {
-        return "EngineImage{" +
-                "path='" + path + '\'' +
-                ", width=" + width + ", height=" + height +
-                ", scaleOf=" + scaleOf + ", respectTo=" + respectTo + '}';
+        return "EngineImage{" 
+                + "path='" + path + '\'' 
+                + ", width=" + width + ", height=" + height 
+                + ", scaleOf=" + scaleOf + ", respectTo=" + respectTo + '}';
     }
 
 
-    public static Dimension getSizeImageFromScale(final String path, final int scaleOf, final int respectTo){
+    public static Dimension getSizeImageFromScale(final String path, final int scaleOf, final int respectTo) {
         final Dimension dimension = new Dimension();
-        try{
+        try {
             final BufferedImage img = ImageIO.read(ClassLoader.getSystemResource(path));
             dimension.width = (respectTo * scaleOf) / 1000;
             dimension.height = (img.getHeight() * dimension.width) / img.getWidth();
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
         return dimension;
     }
 
-    public static Dimension getSizeFromImage(final String path){
+    public static Dimension getSizeFromImage(final String path) {
         final Dimension dimension = new Dimension();
         try {
             final BufferedImage img = ImageIO.read(ClassLoader.getSystemResource(path));
@@ -126,12 +126,12 @@ public class EngineImage {
         return dimension;
     }
 
-    public static Image getImageFromEngine(final EngineImage image){
-        JImage icon = new JImage(image.getPath(), image.getSize());
+    public static Image getImageFromEngine(final EngineImage image) {
+        final JImage icon = new JImage(image.getPath(), image.getSize());
         return icon.getImage();
     }
 
-    public static EngineImage getTransparentEngineImage(final EngineImage engineImage){
+    public static EngineImage getTransparentEngineImage(final EngineImage engineImage) {
         final EngineImage transparent = engineImage;
         transparent.setPath(Background.TRANSPARENT);
         return transparent;

@@ -8,34 +8,24 @@ import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 
 public class ControlledMovement implements Movement {
 
-	@Override
-	public void move(MovableGameObject object) {
-		if (object instanceof SpaceShipSingleton) {
-			SpaceShipSingleton ship = (SpaceShipSingleton) object;
-			
-			V2d vel = ship.getVelocity();
-			//if (ship.getAcceleration() < 1) {
-			V2d newVel = new V2d(vel.getX() * ship.getAcceleration().getX(), vel.getY() * ship.getAcceleration().getY());
-			
-			
-			ship.setVelocity(newVel);
-			
-			//DA CONTROLLARE MAX VEL
-			
-			
-			//}
+    @Override
+    public void move(final MovableGameObject object) {
+        if (object instanceof SpaceShipSingleton) {
+            final SpaceShipSingleton ship = (SpaceShipSingleton) object;
+            final V2d vel = ship.getVelocity();
+            final V2d newVel = new V2d(vel.getX() * ship.getAcceleration().getX(), vel.getY() * ship.getAcceleration().getY());
+            final AffineTransform at = ship.getTransform();
 
+            ship.setVelocity(newVel);
+            at.translate(ship.getVelocity().getX(), ship.getVelocity().getY());
+            ship.setTransform(ship.getTransform());
+        }
 
-			AffineTransform at = ship.getTransform();
-			at.translate(ship.getVelocity().getX(), ship.getVelocity().getY());
-			ship.setTransform(ship.getTransform());
-		}
-
-	}
+    }
 	
-	@Override
-	public String toString() {
-		return "Controlled Movement";
-	}
+    @Override
+    public String toString() {
+        return "Controlled Movement";
+    }
 
 }

@@ -1,16 +1,12 @@
 package spaceSurvival.model.worldEcollisioni.physics.components;
 
-import java.util.Optional;
 import spaceSurvival.model.gameObject.GameObject;
-import spaceSurvival.model.gameObject.takeableGameObject.TakeableGameObject;
 import spaceSurvival.model.World;
-import spaceSurvival.model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
-import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 
 public class PickablePhysicsComponent implements PhysicsComponent {
 	
 	@Override
-	public void update(int dt, GameObject obj, World w) {
+	public void update(final int dt, final GameObject obj, final World w) {
 		//CircleBoundingBox bbox = (CircleBoundingBox) obj.getBoundingBox();
 		//Optional<PickableGameObject> perk = w.checkCollisionWithPickables(obj.getPosition(), bbox);
 		//collisioni con perks
@@ -18,7 +14,7 @@ public class PickablePhysicsComponent implements PhysicsComponent {
 //			w.notifyWorldEvent(new HitPickableEvent(perk.get()));
 //			System.out.println("Preso il PERK Fratellì");
 //		}
-//		
+//
 	}
 
 }

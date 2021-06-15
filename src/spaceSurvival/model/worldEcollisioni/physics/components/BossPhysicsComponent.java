@@ -12,16 +12,16 @@ import spaceSurvival.model.World;
 
 public class BossPhysicsComponent implements PhysicsComponent {
 
-	@Override
-	public void update(int dt, GameObject abstractObj, World w) {
-	    final Boss boss = (Boss) abstractObj;
+    @Override
+    public void update(final int dt, final  GameObject abstractObj, final World w) {
+        final Boss boss = (Boss) abstractObj;
         final RectBoundingBox boundingBox = w.getMainBBox();
-        
+
         final Optional<BoundaryCollision> borderInfo = w.checkCollisionWithBoundaries(boss.getPosition(), boundingBox);
         if (borderInfo.isPresent()) {
-            BoundaryCollision info = borderInfo.get();
+            final BoundaryCollision info = borderInfo.get();
             w.notifyWorldEvent(new HitBorderEvent(info.getWhere(), info.getEdge(), boss));
         }
-	}
+    }
 
 }

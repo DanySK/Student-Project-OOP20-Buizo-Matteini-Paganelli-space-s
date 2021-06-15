@@ -1,7 +1,6 @@
 package spaceSurvival.view.game.concrete;
 
 import spaceSurvival.model.World;
-import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.view.AbstractGUI;
 import spaceSurvival.view.game.GUIGame;
@@ -12,7 +11,6 @@ import spaceSurvival.view.utilities.BtnAction;
 
 import java.awt.*;
 import java.awt.event.KeyListener;
-import java.awt.geom.AffineTransform;
 import java.util.List;
 
 public class GUIGameConcrete extends AbstractGUI implements GUIGame {

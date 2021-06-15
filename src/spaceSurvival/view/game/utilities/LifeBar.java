@@ -3,7 +3,6 @@ package spaceSurvival.view.game.utilities;
 import spaceSurvival.view.game.utilities.logicColor.LogicColor;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class LifeBar extends JProgressBar {
     private final LogicColor logicColor;

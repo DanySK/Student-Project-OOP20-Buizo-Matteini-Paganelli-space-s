@@ -1,5 +1,5 @@
 package spaceSurvival.model.worldEcollisioni;
 
 public interface WorldEventListener {
-	void notifyEvent(WorldEvent ev);
+    void notifyEvent(WorldEvent ev);
 }

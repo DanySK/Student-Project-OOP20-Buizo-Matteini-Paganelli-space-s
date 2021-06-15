@@ -51,6 +51,7 @@ public abstract class GameObject extends Thread{
     }
 
 	
+
     public void setAnimationEffect(final List<String> animation) {
         this.animationEffect = animation;
     }
@@ -85,6 +86,7 @@ public abstract class GameObject extends Thread{
 	    } catch (Exception ignored){}
 	}
     }
+
 	
 	
     public List<SoundPath> getEffectSounds() {

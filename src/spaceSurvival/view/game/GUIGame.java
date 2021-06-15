@@ -1,13 +1,11 @@
 package spaceSurvival.view.game;
 
 import spaceSurvival.model.World;
-import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.utilities.ActionGUI;
 import spaceSurvival.view.GUI;
 import spaceSurvival.view.game.utilities.PanelGame;
 
 import java.awt.event.KeyListener;
-import java.awt.geom.AffineTransform;
 import java.util.List;
 
 public interface GUIGame extends GUI, GraphicsGUIGame {

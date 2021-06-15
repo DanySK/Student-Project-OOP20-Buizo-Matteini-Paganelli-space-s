@@ -1,6 +1,7 @@
 package spaceSurvival.view.sound;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 
 public interface GraphicsGUISound {
 

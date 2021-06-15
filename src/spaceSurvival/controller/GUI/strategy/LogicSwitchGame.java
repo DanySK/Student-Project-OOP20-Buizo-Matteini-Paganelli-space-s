@@ -8,6 +8,7 @@ import spaceSurvival.utilities.ActionGUI;
 import java.util.Map;
 
 public class LogicSwitchGame implements LogicSwitchGUI{
+    @Override
     public void algorithm(final ActionGUI actionCurrent, final ActionGUI actionNext,
                           final ListGUI<ActionGUI> chronology, final Map<ActionGUI, ControllerGUI> manager) {
 

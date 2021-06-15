@@ -1,11 +1,16 @@
 package spaceSurvival.view.sound.utilities;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 import spaceSurvival.model.GUI.sound.TypeUnitSound;
 import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.view.utilities.FactoryGUIs;
 
-import javax.swing.*;
-import java.awt.*;
 
 public class UnitSound extends JPanel {
     private final JLabel lbTitle;
@@ -21,18 +26,18 @@ public class UnitSound extends JPanel {
         this.graphics();
     }
 
-    private void graphics(){
+    private void graphics() {
         FactoryGUIs.setTransparentDesignJButton(this.btnSwitch);
         FactoryGUIs.setDefaultJSlider(this.sliderSound);
         super.add(FactoryGUIs.encapsulatesInPanelFlow(this.lbTitle), BorderLayout.NORTH);
         super.add(FactoryGUIs.createPanelFlowUnionComponents(java.util.List.of(this.btnSwitch, this.sliderSound)), BorderLayout.CENTER);
     }
 
-    public SliderType getSliderSound(){
+    public SliderType getSliderSound() {
         return this.sliderSound;
     }
 
-    public void setForegroundUnit(final Color color){
+    public void setForegroundUnit(final Color color) {
         this.lbTitle.setForeground(color);
         this.sliderSound.setForeground(color);
     }
@@ -45,28 +50,28 @@ public class UnitSound extends JPanel {
         this.sliderSound.setFont(font);
     }
 
-    public void setLbTitle(final String lbTitle){
+    public void setLbTitle(final String lbTitle) {
         this.lbTitle.setText(lbTitle);
     }
 
-    public void setType(final TypeUnitSound typeUnitSound){
+    public void setType(final TypeUnitSound typeUnitSound) {
         this.sliderSound.setType(typeUnitSound);
         this.btnSwitch.setTypeSlider(typeUnitSound);
     }
 
-    public void setValueSliderSound(final int value){
+    public void setValueSliderSound(final int value) {
         this.sliderSound.setValue(value);
     }
 
-    public ButtonSliderType getBtnSwitch(){
+    public ButtonSliderType getBtnSwitch() {
         return this.btnSwitch;
     }
 
-    public void setIconBtnSwitch(final String path, final int widthScreen){
+    public void setIconBtnSwitch(final String path, final int widthScreen) {
         FactoryGUIs.setIconJButtonFromRate(this.btnSwitch, path, ScaleOf.ICON_MEDIUM, widthScreen);
     }
 
-    public TypeUnitSound getType(){
+    public TypeUnitSound getType() {
         return this.sliderSound.getType();
     }
 }

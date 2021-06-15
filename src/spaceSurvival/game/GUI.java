@@ -64,7 +64,8 @@ public class GUI extends JFrame {
 
         	//Integer currentVolume = 50;
         	//Integer step = 0;
-			public void stateChanged(ChangeEvent event) {
+			@Override
+            public void stateChanged(ChangeEvent event) {
 
 				telecomando.changeVolume(jslider.getValue());
 

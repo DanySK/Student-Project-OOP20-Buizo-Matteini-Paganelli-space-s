@@ -6,19 +6,17 @@ import spaceSurvival.utilities.SoundPath;
 
 public class SoundEffect extends Sound {
 	
-	public SoundEffect() {
-		super();
-	}
+    public SoundEffect() {
+        super();
+    }
 
-	public SoundEffect(final SoundPath st) {
-		super(st);
-	}
+    public SoundEffect(final SoundPath st) {
+        super(st);
+    }
 
-	@Override
-	protected void playSound(final double volume) {
-		super.getClip().get().start();
-		setVol(volume);
-	}
-	
-
+    @Override
+    protected void playSound(final double volume) {
+        super.getClip().get().start();
+        setVol(volume);
+    }
 }

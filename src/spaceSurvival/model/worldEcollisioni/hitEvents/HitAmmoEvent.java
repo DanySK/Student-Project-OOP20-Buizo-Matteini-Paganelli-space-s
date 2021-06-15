@@ -5,14 +5,13 @@ import spaceSurvival.model.worldEcollisioni.WorldEvent;
 
 public class HitAmmoEvent implements WorldEvent {
 
-	private TakeableGameObject ammo;
-	
-	public HitAmmoEvent(TakeableGameObject obj) {
-		this.ammo = obj;
-	}
-	
-	public TakeableGameObject getCollisionObj() {
-		return this.ammo;
-	}
-	
+    private final TakeableGameObject ammo;
+
+    public HitAmmoEvent(final TakeableGameObject obj) {
+        this.ammo = obj;
+    }
+
+    public TakeableGameObject getCollisionObj() {
+        return this.ammo;
+    }
 }

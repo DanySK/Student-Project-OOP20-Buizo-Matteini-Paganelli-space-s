@@ -14,46 +14,40 @@ import spaceSurvival.model.gameObject.weapon.Bullet;
 
 public class BulletPhysicsComponent implements PhysicsComponent {
 
-	@Override
-	public void update(int dt, GameObject abstractObj, World w) {
-		Bullet bullet = (Bullet) abstractObj;
-		RectBoundingBox boundingBox = w.getMainBBox();
-		RectBoundingBox objectBoundingBox = (RectBoundingBox) abstractObj.getBoundingBox();
-		
-		Optional<BoundaryCollision> borderInfo = w.checkCollisionWithBoundaries(bullet.getPosition(), boundingBox);
+    @Override
+    public void update(final int dt, final GameObject abstractObj, final World w) {
+        final Bullet bullet = (Bullet) abstractObj;
+        final RectBoundingBox boundingBox = w.getMainBBox();
+        final RectBoundingBox objectBoundingBox = (RectBoundingBox) abstractObj.getBoundingBox();
+        final Optional<BoundaryCollision> borderInfo = w.checkCollisionWithBoundaries(bullet.getPosition(), boundingBox);
 
-		if (borderInfo.isPresent()) {
-			w.notifyWorldEvent(new HitBorderEvent(borderInfo.get().getWhere(), borderInfo.get().getEdge(), bullet));
-		}
+        if (borderInfo.isPresent()) {
+            w.notifyWorldEvent(new HitBorderEvent(borderInfo.get().getWhere(), borderInfo.get().getEdge(), bullet));
+        }
 
-		Optional<MainGameObject> asteroid = w.checkCollisionWithAsteroids(objectBoundingBox);
-		//collisioni con asteroidi
-		if (asteroid.isPresent()) {
-			w.notifyWorldEvent(new HitBulletEvent(bullet, asteroid.get()));
-			System.out.println("Preso al volo un asteroid Fratellì");
-		}
-		
-		Optional<MainGameObject> chaseEnemy = w.checkCollisionWithChaseEnemies(objectBoundingBox);
-		//collisioni con chaseEnemy
-		if (chaseEnemy.isPresent()) {
-			w.notifyWorldEvent(new HitBulletEvent(bullet, chaseEnemy.get()));
-			System.out.println("Preso al volo un chaseEnemy Fratellì");
-		}
+        final Optional<MainGameObject> asteroid = w.checkCollisionWithAsteroids(objectBoundingBox);
+        //collisioni con asteroidi
+        if (asteroid.isPresent()) {
+            w.notifyWorldEvent(new HitBulletEvent(bullet, asteroid.get()));
+        }
+	
+        final Optional<MainGameObject> chaseEnemy = w.checkCollisionWithChaseEnemies(objectBoundingBox);
+        //collisioni con chaseEnemy
+        if (chaseEnemy.isPresent()) {
+            w.notifyWorldEvent(new HitBulletEvent(bullet, chaseEnemy.get()));
+        }
 
-		
-		Optional<MainGameObject> fireEnemy = w.checkCollisionWithFireEnemies(objectBoundingBox);
-		//collisioni con chaseEnemy
-		if (fireEnemy.isPresent()) {
-			w.notifyWorldEvent(new HitBulletEvent(bullet, fireEnemy.get()));
-			System.out.println("Preso al volo un fireEnemy Fratellì");
-		}
+        final Optional<MainGameObject> fireEnemy = w.checkCollisionWithFireEnemies(objectBoundingBox);
+        //collisioni con chaseEnemy
+        if (fireEnemy.isPresent()) {
+            w.notifyWorldEvent(new HitBulletEvent(bullet, fireEnemy.get()));
+        }
 
-		Optional<MainGameObject> boss = w.checkCollisionWithBoss(objectBoundingBox);
-		//collisioni con boss
-		if (boss.isPresent()) {
-			w.notifyWorldEvent(new HitBulletEvent(bullet, boss.get()));
-			//System.out.println("Preso il boss Fratellì");
-		}
-	}
+        final Optional<MainGameObject> boss = w.checkCollisionWithBoss(objectBoundingBox);
+        //collisioni con boss
+        if (boss.isPresent()) {
+            w.notifyWorldEvent(new HitBulletEvent(bullet, boss.get()));
+        }
+    }
 
 }

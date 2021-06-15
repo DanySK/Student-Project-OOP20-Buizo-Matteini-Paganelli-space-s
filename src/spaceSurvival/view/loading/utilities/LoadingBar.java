@@ -9,9 +9,10 @@ import java.awt.*;
 public class LoadingBar extends JProgressBar {
 
     public LoadingBar(){
-        super(JProgressBar.HORIZONTAL, 0, 100);;
+        super(SwingConstants.HORIZONTAL, 0, 100);;
     }
 
+    @Override
     public void paintComponent(final Graphics g){
         super.paintComponent(g);
 

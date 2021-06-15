@@ -82,7 +82,7 @@ public class CtrlSound implements ControllerGUI{
     public void setCmdAudioLoop(final CmdAudioType cmdAudioLoop){
         this.callerAudioLoop.execute(cmdAudioLoop);
     }
-    
+
     public Optional<CallerAudio> getCallerAudioEffectFromSoundPath(final SoundPath soundPath){
         for (CallerAudio callerAudio : this.callerAudioEffect) {
             if (callerAudio.getSound().getSoundType().equals(soundPath)) {
