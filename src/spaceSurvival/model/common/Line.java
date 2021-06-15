@@ -21,7 +21,6 @@ public class Line {
         this.endPoint = endPoint;
     }
 
-
     public double getLineLength() {
         return Math.sqrt(Math.pow(this.startPoint.getX() - this.endPoint.getX(), 2) + Math.pow(this.startPoint.getY() - this.endPoint.getY(), 2));
     }

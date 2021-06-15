@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class ListGUI<X> extends ArrayList<X> {
 
-    public ListGUI(){
+    public ListGUI() {
         super();
     }
 

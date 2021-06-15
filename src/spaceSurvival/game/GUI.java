@@ -20,19 +20,17 @@ public class GUI extends JFrame {
 	private final JSlider jslider;
     private final static int SIZE = 5;
     //private final Logics logic;
-    
-    
+
     //SoundObserver observerEffects = new SoundEffect();
     //SoundObserver observerLoop = new SoundLoop();
-    
+
     private CallerAudio telecomando;
 
-    
-    
+
     public GUI() {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(100*SIZE, 100*SIZE);
-        
+
         JPanel panel = new JPanel(new GridLayout(SIZE, SIZE));
         this.getContentPane().add(BorderLayout.CENTER, panel);
         
