@@ -1,14 +1,17 @@
 package model.command.concreteCommand;
 
 import model.command.commandInterfaces.CommandGameObject;
-import model.gameObject.MainGameObject;
-import utilities.SoundPath;
-
+import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
+import spaceSurvival.utilities.SoundPath;
 
 public class SpaceBarCommand implements CommandGameObject {
 
-    @Override
-    public void execute(final MainGameObject ship) {
+    /** 
+     * Fires the shot from the ship's weapon if it is present.
+     * @param ship the controlled ship 
+     * 
+     */
+    public void execute(final SpaceShipSingleton ship) {
         if (ship.getWeapon().isPresent()) {
             ship.getWeapon().get().shoot();
             ship.pushEffect(SoundPath.SHOOT);

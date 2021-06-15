@@ -1,8 +1,12 @@
 package model.command.commandInterfaces;
 
-import model.gameObject.MainGameObject;
+import model.gameObject.mainGameObject.SpaceShipSingleton;
 
 public interface CommandGameObject {
-    public void execute(MainGameObject object);
+    /** 
+     * Execute the specified command on the ship.
+     * @param ship the controlled ship 
+     * 
+     */
+    void execute(SpaceShipSingleton ship);
 }
-	
