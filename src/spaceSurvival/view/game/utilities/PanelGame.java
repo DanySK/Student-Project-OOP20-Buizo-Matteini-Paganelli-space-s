@@ -12,8 +12,6 @@ import spaceSurvival.model.worldEcollisioni.physics.boundingType.CircleBoundingB
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
-import java.util.*;
-import java.util.List;
 
 public class PanelGame extends JPanel{
 
@@ -62,12 +60,6 @@ public class PanelGame extends JPanel{
 //        g2d.drawImage(EngineImage.getImageFromEngine(this.world.getShip().getEngineImage()), null, null);
 
         this.world.getAllEntities().forEach(entity -> {
-        	
-//        	System.out.println("-------------------------------");
-//        	System.out.println(entity.toString());
-//        	System.out.println(entity.getBoundingBox().toString());
-//        	System.out.println(entity.getTransform());
-        	
         	if(entity.getBoundingBox() instanceof CircleBoundingBox) {
         		AffineTransform transform = new AffineTransform();
         		transform.setTransform(entity.getTransform());     		
@@ -92,26 +84,6 @@ public class PanelGame extends JPanel{
             }
 
         });
-
-//<<<<<<< HEAD
-//        updateBullet();
-//        this.listBullet.forEach(bullet -> {
-//            g2d.setTransform(bullet.getTransform());
-//            g2d.drawImage(this.getImageFromEngine(bullet.getEngineImage()), null, null);
-//        });
-//
-//        this.listBullet.clear();
-//=======
-
-
-//
-//        this.world.getShip().getWeapon().get().getShootedBullets().forEach(bullet -> {
-//            g2d.setTransform(bullet.getTransform());
-//            g2d.drawImage(EngineImage.getImageFromEngine(bullet.getEngineImage()), null, null);
-//        });
-
-
-
 
     }
 

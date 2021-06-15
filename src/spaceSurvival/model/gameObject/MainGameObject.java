@@ -68,7 +68,6 @@ public abstract class MainGameObject extends MovableGameObject {
 	}
 	
 	public void setStatus(final Status status) {
-
 		if (!(this.status == status) || this.status != Status.NORMAL || status == Status.INVINCIBLE) {
 			System.out.println("STATUS   " + status);
 

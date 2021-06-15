@@ -13,6 +13,7 @@ import spaceSurvival.model.gameObject.MovableGameObject;
 import spaceSurvival.model.gameObject.enemy.Boss;
 import spaceSurvival.model.gameObject.enemy.ChaseEnemy;
 import spaceSurvival.model.gameObject.enemy.FireEnemy;
+import spaceSurvival.model.gameObject.enemy.FireableEnemy;
 import spaceSurvival.model.gameObject.factories.AbstractFactoryGameObject;
 import spaceSurvival.model.gameObject.factories.ConcreteFactoryGameObject;
 import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
@@ -389,6 +390,7 @@ public class World {
 		}
 		return entities;
 	}
+	
 	public Set<GameObject> getAllEntities() {
 		Set<GameObject> entities = new HashSet<>();
 		entities.add(ship);
@@ -399,9 +401,7 @@ public class World {
 		}
 		entities.addAll(ammo);
 		entities.addAll(hearts);
-		if (ship.getWeapon().isPresent()) {
-			entities.addAll(ship.getWeapon().get().getShootedBullets());
-		}
+		entities.addAll(getAllBullets());
 		return entities;
 	}
 	
