@@ -7,7 +7,11 @@ import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 
 public class UpReleaseCommand implements CommandGameObject {
 
-    @Override
+    /** 
+     * Decelerate the ship.
+     * @param ship the controlled ship 
+     * 
+     */
     public void execute(final SpaceShipSingleton ship) {
         ship.setAcceleration(new V2d(0, GameObjectUtils.SPACESHIP_DECELERATION));	
     }

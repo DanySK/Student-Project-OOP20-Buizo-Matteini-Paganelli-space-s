@@ -17,16 +17,13 @@ public abstract class Sound {
     private SoundPath soundPath;
     private double volume;
     private Optional<Clip> clip = Optional.empty();
-    private boolean isPlaying = false;
+    private boolean isPlaying;
 
     public Sound() {
         this.soundPath = null;
         this.volume = START_VOLUME;
     }
 
-    public double getVolume() {
-        return volume;
-    }
 
     public Sound(final SoundPath sound) {
         this.soundPath = sound;
@@ -43,45 +40,97 @@ public abstract class Sound {
         }
     }
 
+    /** 
+     * Set the current sound type. 
+     * 
+     * @param sound the soundType rappresenting the sound to be set.
+     */
     public void setSoundType(final SoundPath sound) {
         this.soundPath = sound;
     }
 
+    /** 
+     * Return the sound type composed by the name, the path of the file wav and the specified type like effect or loop.
+     * 
+     * @return the sound type rappresenting the currrent sound.
+     */
     public SoundPath getSoundType() {
        return this.soundPath;
     }
 
+    /** 
+     * Set the clip of the current sound.
+     * 
+     * @param clip that will be set in the sound.
+     */
     public void setClip(final Clip clip) {
         this.clip = Optional.of(clip);
     }
 
+    /** 
+     * Return the clip of the current sound.
+     * 
+     * @return clip of the current sound.
+     */
     public Optional<Clip> getClip() {
         return this.clip;
     }
 
+    /** 
+     * Return if the clip of the current sound is playing.
+     * 
+     * @return true if is playing
+     */
     public boolean isPlaying() {
         return this.isPlaying;
     }
 
+    /** 
+     * Stop the clip of the current sound.
+     * 
+     */
     public void stopClip() {
         this.clip.get().stop();
         this.isPlaying = false;
     }
 
+    /** 
+     * Start the clip of the current sound.
+     * 
+     */
     public void startClip() {
-        System.out.println("VOLUMENE DENTRO nel SOUND" + this.volume);
         playSound(this.volume);
         this.isPlaying = true;
     }
 
+    /** 
+     * Method to be implemented for type loop or effect.
+     * 
+     * @param volume the volume that will be set before starting the sound.
+     */
     protected abstract void playSound(double volume);
 
-    public void setVol(final double volume) {
+    /** 
+     * Set the volume of sound.
+     * 
+     * @param volume the volume that will be set on the sound.
+     */
+    public void setVolume(final double volume) {
         this.volume = volume;
         final FloatControl gain = (FloatControl) getClip().get().getControl(FloatControl.Type.MASTER_GAIN);
         final float dB = (float) (Math.log(volume) / Math.log(10) * 20);
 
         gain.setValue(dB);
     }
+
+    /** 
+     * Get the volume of sound.
+     * 
+     * @return volume the volume that is set on the sound.
+     */
+    public double getVolume() {
+        return this.volume;
+    }
+
 
 }

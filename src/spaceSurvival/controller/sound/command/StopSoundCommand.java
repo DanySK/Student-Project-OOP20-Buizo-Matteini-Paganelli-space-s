@@ -4,7 +4,11 @@ import spaceSurvival.model.sound.Sound;
 
 public class StopSoundCommand implements CommandAudio {
 
-    @Override
+    /** 
+     * Stop the passed sound.
+     * @param sound the sound that will stop.
+     * 
+     */
     public void execute(final Sound sound) {
         sound.stopClip();
     }

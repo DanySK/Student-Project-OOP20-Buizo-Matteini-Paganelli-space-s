@@ -8,7 +8,11 @@ import spaceSurvival.model.common.V2d;
 public class UpCommand implements CommandGameObject {
     private static final double TOLLERANCE = 0.1;
 
-    @Override
+    /** 
+     * Accelerate the ship forward.
+     * @param ship the controlled ship 
+     * 
+     */
     public void execute(final SpaceShipSingleton ship) {
         V2d vel = ship.getVelocity();
         if (vel.getY() > -TOLLERANCE && vel.getY() < TOLLERANCE) {
