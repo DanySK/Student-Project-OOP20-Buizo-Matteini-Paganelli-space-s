@@ -14,6 +14,7 @@ import spaceSurvival.model.gameObject.MovableGameObject;
 import spaceSurvival.model.gameObject.enemy.Boss;
 import spaceSurvival.model.gameObject.enemy.ChaseEnemy;
 import spaceSurvival.model.gameObject.enemy.FireEnemy;
+import spaceSurvival.model.gameObject.enemy.FireableObject;
 import spaceSurvival.model.gameObject.factories.AbstractFactoryGameObject;
 import spaceSurvival.model.gameObject.factories.ConcreteFactoryGameObject;
 import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
@@ -37,8 +38,8 @@ public class World {
 	
     private final Set<MainGameObject> asteroids = new HashSet<>();
     private final Set<MainGameObject> chaseEnemies = new HashSet<>();
-    private final Set<MainGameObject> fireEnemies = new HashSet<>();
-    private Optional<MainGameObject> boss = Optional.empty();
+    private final Set<FireableObject> fireEnemies = new HashSet<>();
+    private Optional<FireableObject> boss;
     private final Set<TakeableGameObject> ammo = new HashSet<>();
     private final Set<TakeableGameObject> hearts = new HashSet<>();
     private SpaceShipSingleton ship;
@@ -48,28 +49,28 @@ public class World {
 	
     public World(final RectBoundingBox mainBBox) {
         this.ship = SpaceShipSingleton.getSpaceShip();
-        this.ship.setWeapon(Optional.of(new Weapon(AmmoType.NORMAL, ship)));
+        this.ship.setWeapon(new Weapon(AmmoType.NORMAL, ship));
         this.mainBBox = mainBBox;
 
         for (int i = 0; i < 1; i++) {
             asteroids.add(factoryGameObject.createAsteroid());
             chaseEnemies.add(factoryGameObject.createChaseEnemy());
             ammo.add(factoryGameObject.createAmmo());
-            hearts.add(factoryGameObject.createHeart());
+            //hearts.add(factoryGameObject.createHeart());
         }
         this.boss = Optional.of(factoryGameObject.createBoss());
     }
 
     public World(final Rectangle rectangle) {
         this.ship = SpaceShipSingleton.getSpaceShip();
-        this.ship.setWeapon(Optional.of(new Weapon(AmmoType.NORMAL, ship)));
+        this.ship.setWeapon(new Weapon(AmmoType.NORMAL, ship));
         this.mainBBox = new RectBoundingBox(rectangle);
 
         for (int i = 0; i < 1; i++) {
             asteroids.add(factoryGameObject.createAsteroid());
             chaseEnemies.add(factoryGameObject.createChaseEnemy());
             ammo.add(factoryGameObject.createAmmo());
-            hearts.add(factoryGameObject.createHeart());
+            //hearts.add(factoryGameObject.createHeart());
         }
         this.boss = Optional.of(factoryGameObject.createBoss());
     }
@@ -159,7 +160,7 @@ public class World {
             return true;
         }
         final boolean found = false;
-        final Iterator<MainGameObject> fireEnemiesIterator = fireEnemies.iterator();
+        final Iterator<FireableObject> fireEnemiesIterator = fireEnemies.iterator();
         while (fireEnemiesIterator.hasNext()) {
             //System.out.println(fireEnemiesIterator);
             getFireEnemyBullets(fireEnemiesIterator.next()).remove(bullet);
@@ -245,7 +246,7 @@ public class World {
         return Optional.empty();
     }
 	
-    public Optional<MainGameObject> checkCollisionWithBoss(final RectBoundingBox rectBoundingBox) {
+    public Optional<FireableObject> checkCollisionWithBoss(final RectBoundingBox rectBoundingBox) {
         if (boss.isPresent()) {
             if (collisionChecker.testRectangleToRectangle(rectBoundingBox, (RectBoundingBox) boss.get().getBoundingBox())) {
                 return this.boss;
@@ -288,11 +289,11 @@ public class World {
         return this.chaseEnemies;
     }
 	
-    public Set<MainGameObject> getFireEnemies() {
+    public Set<FireableObject> getFireEnemies() {
         return this.fireEnemies;
     }
 	
-    public Optional<MainGameObject> getBoss() {
+    public Optional<FireableObject> getBoss() {
         return boss;
     }
 	
@@ -324,22 +325,16 @@ public class World {
     }
 
     public Set<Bullet> getShipBullets() {
-        if (this.ship.getWeapon().isPresent()) {
-            return this.ship.getWeapon().get().getShootedBullets();
-        }
-        return new HashSet<>();
+            return this.ship.getWeapon().getShootedBullets();
     }
 	
-    public Set<Bullet> getFireEnemyBullets(final MainGameObject fireEnemy) {
-        if (fireEnemy.getWeapon().isPresent()) {
-            return fireEnemy.getWeapon().get().getShootedBullets();
-        }
-        return new HashSet<>();
+    public Set<Bullet> getFireEnemyBullets(final FireableObject fireEnemy) {
+        return fireEnemy.getWeapon().getShootedBullets();
     }
 	
     public Set<Bullet> getBossBullets() {
-        if (this.boss.isPresent() && this.boss.get().getWeapon().isPresent()) {
-            return this.boss.get().getWeapon().get().getShootedBullets();
+        if (this.boss.isPresent()) {
+            return this.boss.get().getWeapon().getShootedBullets();
         }
         return new HashSet<>();
     }
@@ -354,7 +349,7 @@ public class World {
         return allBullets;
     }
 	
-    public void setBoss(final Optional<MainGameObject> boss) {
+    public void setBoss(final Optional<FireableObject> boss) {
         this.boss = boss;
     }
 
@@ -376,9 +371,8 @@ public class World {
         if (boss.isPresent()) {
             entities.add(boss.get());
         }
-        if (ship.getWeapon().isPresent()) {
-            entities.addAll(ship.getWeapon().get().getShootedBullets());
-        }
+        entities.addAll(ship.getWeapon().getShootedBullets());
+
         return entities;
     }
 	

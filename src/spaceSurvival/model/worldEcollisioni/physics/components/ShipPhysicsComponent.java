@@ -3,6 +3,7 @@ package spaceSurvival.model.worldEcollisioni.physics.components;
 import java.util.Optional;
 import spaceSurvival.model.gameObject.GameObject;
 import spaceSurvival.model.gameObject.MainGameObject;
+import spaceSurvival.model.gameObject.enemy.FireableObject;
 import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
 import spaceSurvival.model.gameObject.takeableGameObject.TakeableGameObject;
 import spaceSurvival.model.World;
@@ -46,7 +47,7 @@ public class ShipPhysicsComponent implements PhysicsComponent {
             w.notifyWorldEvent(new HitMainGameObject(ship, fireEnemy.get()));
         }
 
-        final Optional<MainGameObject> boss = w.checkCollisionWithBoss(shipBoundingBox);
+        final Optional<FireableObject> boss = w.checkCollisionWithBoss(shipBoundingBox);
         //collisioni con chaseEnemy
         if (boss.isPresent()) {
             w.notifyWorldEvent(new HitMainGameObject(ship, boss.get()));

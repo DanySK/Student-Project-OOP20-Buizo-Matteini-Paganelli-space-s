@@ -69,7 +69,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     public void run() {
         long lastTime = System.currentTimeMillis();
         long current = 0L;
-        int nbThreadsss =  Thread.getAllStackTraces().keySet().size();
+        final int nbThreadsss = Thread.getAllStackTraces().keySet().size();
 
         System.out.println("Numero dei thread current init -> " + nbThreadsss);
 
@@ -79,7 +79,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                 final int elapsed = (int) (current - lastTime);
 
                 if (this.controlGUI.isInGame()){
-                    int nbThreads =  Thread.getAllStackTraces().keySet().size();
+                    int nbThreads = Thread.getAllStackTraces().keySet().size();
 
                     if (!this.controlGUI.isInPause()) {
                         //processInput();
@@ -90,7 +90,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                         updateGame(elapsed);
                         nbThreads =  Thread.getAllStackTraces().keySet().size();
 
-                        System.out.println("Numero dei thread current -> " + nbThreads);
+                        //System.out.println("Numero dei thread current -> " + nbThreads);
                     }
                 }
 
@@ -134,13 +134,12 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     protected void checkSoundEffects() {
         final SpaceShipSingleton ship = this.controlGame.getShip();
         //soundQueue.add(ship.popEffect()); 
-        Optional<SoundPath> effect = ship.popEffect();
-        if(!effect.equals(Optional.empty())) {
-        	soundQueue.add(effect.get());       	
+        final Optional<SoundPath> effect = ship.popEffect();
+        if (!effect.equals(Optional.empty())) {
+            soundQueue.add(effect.get());
         }
 
         soundQueue.forEach(this::playEffect);
-        
         soundQueue.clear();
     }
 
@@ -149,76 +148,70 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         final World world = this.controlGame.getWorld();
 
         eventQueue.forEach(ev -> {
-        	if (ev instanceof HitMainGameObject) {
-        		HitMainGameObject asteroidEvent = (HitMainGameObject) ev;
-            	final MainGameObject object = asteroidEvent.getObject();
-            	final MainGameObject collidedObject = asteroidEvent.getCollidedObject();
-            	this.controlGame.incrScore(Score.ASTEROID);
+            if (ev instanceof HitMainGameObject) {
+                final HitMainGameObject asteroidEvent = (HitMainGameObject) ev;
+                final MainGameObject object = asteroidEvent.getObject();
+                final MainGameObject collidedObject = asteroidEvent.getCollidedObject();
+                this.controlGame.incrScore(Score.ASTEROID);
 
-            	damageObject(object, collidedObject.getImpactDamage(), Status.INVINCIBLE);
+                damageObject(object, collidedObject.getImpactDamage(), Status.INVINCIBLE);
                 damageObject(collidedObject, object.getImpactDamage(), Status.INVINCIBLE); 
 
-            	if (object instanceof ChaseEnemy) {
+                if (object instanceof ChaseEnemy) {
                     world.removeChaseEnemy(object);
                     playEffect(SoundPath.ENEMY_EXPL);
                 }
-            	if (collidedObject instanceof ChaseEnemy) {
+                if (collidedObject instanceof ChaseEnemy) {
                     world.removeChaseEnemy(collidedObject);
                     playEffect(SoundPath.ENEMY_EXPL);
-            	}
-        	} else if (ev instanceof HitTakeableGameObject) {
-        		HitTakeableGameObject takeableEvent = (HitTakeableGameObject) ev;
-        		TakeableGameObject takeableGameObject = takeableEvent.getCollidedObject();
-    			playEffect(SoundPath.PERK);
+                }
+            } else if (ev instanceof HitTakeableGameObject) {
+                final HitTakeableGameObject takeableEvent = (HitTakeableGameObject) ev;
+                final TakeableGameObject takeableGameObject = takeableEvent.getCollidedObject();
+                playEffect(SoundPath.PERK);
 
-        		if (takeableGameObject instanceof Ammo) {
-        			final AmmoType ammoType = ((Ammo) takeableGameObject).getType();
-        			System.out.println("PRENDO MUNIZIONI DI TIPO " + ammoType);
-        			if (world.getShip().getWeapon().isPresent()) {
-            			world.getShip().getWeapon().get().setAmmoType(ammoType);
-					}
-        		} else if (takeableGameObject instanceof Heart) {
-        			final HeartType heartType = ((Heart) takeableGameObject).getType();
-        			if (heartType == HeartType.HEAL) {
-        				this.controlGame.increaseLife(heartType.getAmount());
-        			} else if (heartType == HeartType.LIFE_UP) {
-        				this.controlGame.increaseLives(heartType.getAmount());
-        			}
-        		}
-        		this.controlGame.getWorld().removeTakeableObject(takeableGameObject);
-			}
-            else if (ev instanceof HitBorderEvent) {
-                HitBorderEvent borderEvent = (HitBorderEvent) ev;
-                MovableGameObject object = borderEvent.getCollisionObj();
-                CollisionEdge edge = borderEvent.getEdge();
-                
+                if (takeableGameObject instanceof Ammo) {
+                    final Ammo ammo = (Ammo) takeableGameObject;
+                    world.getShip().take(ammo);
+                } else if (takeableGameObject instanceof Heart) {
+                    final HeartType heartType = ((Heart) takeableGameObject).getType();
+                    if (heartType == HeartType.HEAL) {
+                        this.controlGame.increaseLife(heartType.getAmount());
+                    } else if (heartType == HeartType.LIFE_UP) {
+                        this.controlGame.increaseLives(heartType.getAmount());
+                    }
+                }
+                this.controlGame.getWorld().removeTakeableObject(takeableGameObject);
+            } else if (ev instanceof HitBorderEvent) {
+                final HitBorderEvent borderEvent = (HitBorderEvent) ev;
+                final MovableGameObject object = borderEvent.getCollisionObj();
+                final CollisionEdge edge = borderEvent.getEdge();
+
                 // If a bullet reach a border
                 if (object instanceof Bullet) {
-                	Bullet bullet = (Bullet) borderEvent.getCollisionObj();
-               		System.out.println("Bullet ha toccato il muro, lo rimuovo");
-               		world.removeBullet(bullet);
-				} else {
-	                pacmanEffect(object, edge);
-	                if (object instanceof SpaceShipSingleton) {
-	                	playEffect(SoundPath.WALL_COLLISION);
-					}
-				}
-                
+                    final Bullet bullet = (Bullet) borderEvent.getCollisionObj();
+                    System.out.println("Bullet ha toccato il muro, lo rimuovo");
+                    world.removeBullet(bullet);
+                } else {
+                    pacmanEffect(object, edge);
+                    if (object instanceof SpaceShipSingleton) {
+                        playEffect(SoundPath.WALL_COLLISION);
+                    }
+                }
             } else if (ev instanceof HitBulletEvent) {
-            	HitBulletEvent bulletEvent = (HitBulletEvent) ev;
-            	
-            	Bullet bullet = bulletEvent.getBullet();
-           		System.out.println("Bullet ha preso al volo qualcosa, lo rimuovo");
-           		world.removeBullet(bullet);
-           		MainGameObject object = bulletEvent.getCollidedObject();
-           		System.out.println(object);
-           		damageObject(object, bullet.getDamage(), bullet.getEffect().getStatus());
+                final HitBulletEvent bulletEvent = (HitBulletEvent) ev;
+                final Bullet bullet = bulletEvent.getBullet();
+                System.out.println("Bullet ha preso al volo qualcosa, lo rimuovo");
+                world.removeBullet(bullet);
+                final MainGameObject object = bulletEvent.getCollidedObject();
+                System.out.println(object);
+                damageObject(object, bullet.getDamage(), bullet.getEffect().getStatus());
             }
-        	this.controlGame.updateRoundState();
+            this.controlGame.updateRoundState();
         });
         eventQueue.clear();
     }
-    
+
     public void damageObject(MainGameObject object, final int damage, final Status status) {
     	System.out.println("SONO INVINCIBILE ?  " + object.isInvincible());
     	if (!object.isInvincible()) {
@@ -245,55 +238,56 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
 //	}
     
     public void playSoundOf(MainGameObject object) {
-		if (object instanceof Asteroid) {
-			playEffect(SoundPath.ASTEROID_EXPL);
-		} else if (object instanceof ChaseEnemy || object instanceof FireEnemy) {
-			playEffect(SoundPath.ENEMY_EXPL);
-		} else if (object instanceof Boss) {
-			playEffect(SoundPath.BOSS_EXPL);
-		}
-	}
+        if (object instanceof Asteroid) {
+            playEffect(SoundPath.ASTEROID_EXPL);
+        } else if (object instanceof ChaseEnemy || object instanceof FireEnemy) {
+            playEffect(SoundPath.ENEMY_EXPL);
+        } else if (object instanceof Boss) {
+            playEffect(SoundPath.BOSS_EXPL);
+        }
+    }
 
     private boolean isGameObjectDead(final MainGameObject gameObject) {
     	return gameObject.getLife() <= 0;
     }
-    
-    public void pacmanEffect(MovableGameObject object, CollisionEdge edge) {
-    	AffineTransform newTransform = new AffineTransform();
-		switch (edge) {
-		case TOP: 
-			newTransform = new AffineTransform(object.getTransform().getScaleX(), 
-					object.getTransform().getShearY(), object.getTransform().getShearX(), 
-					object.getTransform().getScaleY(), object.getTransform().getTranslateX(), 
-					Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y - 100);
-			break;
-		case BOTTOM:		
-			newTransform = new AffineTransform(object.getTransform().getScaleX(), 
-					object.getTransform().getShearY(), object.getTransform().getShearX(), 
-					object.getTransform().getScaleY(), object.getTransform().getTranslateX(), 
-					100);
-			break;
-		case LEFT: 			
-			newTransform = new AffineTransform(object.getTransform().getScaleX(), 
-					object.getTransform().getShearY(), object.getTransform().getShearX(), 
-					object.getTransform().getScaleY(), Screen.WIDTH_FULL_SCREEN * SystemVariables.SCALE_X - 100, 
-					object.getTransform().getTranslateY());
-			break;
-		case RIGHT: 
-			newTransform = new AffineTransform(object.getTransform().getScaleX(), 
-					object.getTransform().getShearY(), object.getTransform().getShearX(), 
-					object.getTransform().getScaleY(), 100, 
-					object.getTransform().getTranslateY());
-			break;
-		}
-		object.setTransform(newTransform);
 
-	}
-    
+    public void pacmanEffect(final MovableGameObject object, final CollisionEdge edge) {
+    	AffineTransform newTransform = new AffineTransform();
+    	switch (edge) {
+    	case TOP:
+    	    newTransform = new AffineTransform(object.getTransform().getScaleX(), 
+    	            object.getTransform().getShearY(), object.getTransform().getShearX(), 
+    	            object.getTransform().getScaleY(), object.getTransform().getTranslateX(), 
+    	            Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y - 100);
+    	    break;
+    	case BOTTOM:
+    	    newTransform = new AffineTransform(object.getTransform().getScaleX(), 
+    	            object.getTransform().getShearY(), object.getTransform().getShearX(), 
+    	            object.getTransform().getScaleY(), object.getTransform().getTranslateX(), 
+    	            100);
+    	    break;
+    	case LEFT:
+    	    newTransform = new AffineTransform(object.getTransform().getScaleX(), 
+    	            object.getTransform().getShearY(), object.getTransform().getShearX(), 
+    	            object.getTransform().getScaleY(), Screen.WIDTH_FULL_SCREEN * SystemVariables.SCALE_X - 100, 
+    	            object.getTransform().getTranslateY());
+    	    break;
+    	case RIGHT: 
+    	    newTransform = new AffineTransform(object.getTransform().getScaleX(), 
+    	            object.getTransform().getShearY(), object.getTransform().getShearX(), 
+    	            object.getTransform().getScaleY(), 100, 
+    	            object.getTransform().getTranslateY());
+    	    break;
+    	    default:
+    	        break;
+    	}
+    	object.setTransform(newTransform);
+    }
+
 //    protected void render() {
 //        this.controlGame.repaintWorld();
 //    }
-    
+
     private void renderMovement() {
     	//this.controlGame.moveShip();
 
@@ -304,10 +298,10 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     	this.controlGame.getWorld().getAllEnemies().forEach(enemy -> {
 
     	    //DA CAMBIARE MAIN IN ENEMY IN GET ALL ENEMIES
-            Enemy enemy2 = (Enemy) enemy;
-            enemy2.setTarget(this.controlGame.getShip().getPosition());
+            MainGameObject enemy2 = (MainGameObject) enemy;
+            enemy2.setTarget(Optional.of(this.controlGame.getShip().getPosition()));
         });
-    	
+
 //    	SpaceShipSingleton ship = this.controlGame.getShip();
 //    	if (ship.getWeapon().isPresent()) {
 //        	ship.getWeapon().get().getShootedBullets().forEach(bullet -> {

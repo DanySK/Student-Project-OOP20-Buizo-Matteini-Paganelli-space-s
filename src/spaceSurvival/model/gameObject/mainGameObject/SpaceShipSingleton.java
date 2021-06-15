@@ -25,7 +25,7 @@ import spaceSurvival.utilities.dimension.ScaleOf;
 import spaceSurvival.utilities.dimension.Screen;
 import spaceSurvival.utilities.pathImage.Skin.SkinShip;
 
-public class SpaceShipSingleton extends FireableObject {
+public final class SpaceShipSingleton extends FireableObject {
 
     private V2d acceleration;
 	
@@ -39,9 +39,9 @@ public class SpaceShipSingleton extends FireableObject {
             new ControlledMovement(),
             GameObjectUtils.SPACESHIP_LIFE,
             GameObjectUtils.ASTEROID_DAMAGE,
-            new Weapon(),
             Score.SHIP,
             Optional.empty(),
+            new Weapon(),
             new ControlledShooting()
             );
 
@@ -50,7 +50,7 @@ public class SpaceShipSingleton extends FireableObject {
     */
     private SpaceShipSingleton(final EngineImage engineImage, final P2d position, final BoundingBox bb,
             final PhysicsComponent phys, final V2d velocity, final Movement movement, final int life,
-            final int impactDamage, final Weapon weapon, final int score, final Optional<P2d> target,
+            final int impactDamage, final int score, final Optional<P2d> target, final Weapon weapon,
             final ShootingLogic shootingLogic) {
         super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, score, target, weapon, shootingLogic);
         this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage, this.getTransform()));
@@ -68,17 +68,22 @@ public class SpaceShipSingleton extends FireableObject {
         return this.acceleration;
     }
 
+    /**
+     * Sets a new acceleration to FireableObject.
+     *
+     * @param acceleration the acceleration to set
+     */
     public void setAcceleration(final V2d acceleration) {
         this.acceleration = acceleration;
     }
 
-    public void take(final TakeableGameObject takeableGameObject) {
-        if (takeableGameObject instanceof Ammo) {
-            final Ammo ammo = (Ammo) takeableGameObject;
-            this.getWeapon().setAmmoType(ammo.getType());
-        } else if (takeableGameObject instanceof Heart) {
-            final Heart heart = (Heart) takeableGameObject;
-            // DA FARE
-        }
+    /**
+     * Sets the ammo type taken from ship to its weapon.
+     *
+     * @param ammo the ammo taken from ship 
+     */
+    public void take(final Ammo ammo) {
+        System.out.println("PRENDO MUNIZIONI DI TIPO " + ammo.getType());
+        this.getWeapon().setAmmoType(ammo.getType());
     }
 }

@@ -15,7 +15,7 @@ import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 import spaceSurvival.utilities.SoundPath;
 import spaceSurvival.model.World;
 
-public abstract class GameObject extends Thread{
+public abstract class GameObject extends Thread {
 
     private P2d position;
     private AffineTransform transform;
@@ -24,7 +24,7 @@ public abstract class GameObject extends Thread{
 
     private EngineImage engineImage;
     private EngineImage engineEffect;
-    
+
     private List<String> animation;
     private List<String> animationEffect;
 
@@ -33,30 +33,28 @@ public abstract class GameObject extends Thread{
     public GameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
                       final PhysicsComponent phys) {
         this.engineImage = engineImage;
-	this.engineEffect = new EngineImage(engineImage.getScaleOf(), engineImage.getRespectTo(), engineImage.getPath());
+        this.engineEffect = new EngineImage(engineImage.getScaleOf(), engineImage.getRespectTo(), engineImage.getPath());
 
-	this.boundingBox = bb;
-	this.phys = phys;
-	this.position = position;
-	this.setEffectSounds(new LinkedList<>());
-	this.transform = new AffineTransform();
-	this.animation = new ArrayList<>();
-	this.animationEffect = new ArrayList<>();
-	this.setPosition(position);
-	this.start();
+        this.boundingBox = bb;
+        this.phys = phys;
+        this.position = position;
+        this.setEffectSounds(new LinkedList<>());
+        this.transform = new AffineTransform();
+        this.animation = new ArrayList<>();
+        this.animationEffect = new ArrayList<>();
+        this.setPosition(position);
+        this.start();
     }
 
-    public void setAnimation(final List<String> animation){
+    public void setAnimation(final List<String> animation) {
         this.animation = animation;
     }
-
-	
 
     public void setAnimationEffect(final List<String> animation) {
         this.animationEffect = animation;
     }
 
-    public void run(){
+    public void run() {
 	long lastTime = System.currentTimeMillis();
 	int i = 0, j = 0;
 	while (true) {
@@ -93,11 +91,11 @@ public abstract class GameObject extends Thread{
 	return this.effectSounds;
     }
 
-    public void setEffectSounds(List<SoundPath> effectSounds) {
+    public void setEffectSounds(final List<SoundPath> effectSounds) {
 	this.effectSounds = effectSounds;
     }
 	
-    public void pushEffect(SoundPath soundEffect) {
+    public void pushEffect(final SoundPath soundEffect) {
 	this.effectSounds.add(soundEffect);
     }
 	
@@ -106,11 +104,11 @@ public abstract class GameObject extends Thread{
 //		if(!first.equals(Optional.empty())) {
 //			this.effectSounds.remove(0);
 //		}	
-        if(this.effectSounds.size() != 0){
+        if (this.effectSounds.size() != 0) {
             Optional<SoundPath> first = Optional.of(this.effectSounds.get(0));
             this.effectSounds.remove(0);
             return first;
-           
+
         }
         return Optional.empty();
     }
@@ -120,13 +118,13 @@ public abstract class GameObject extends Thread{
         return transform;
     }
 
-    public void setTransform(AffineTransform transform) {
+    public void setTransform(final AffineTransform transform) {
         this.transform.setTransform(transform);
         //RectBoundingBox rectBB = (RectBoundingBox) this.getBoundingBox();
         //rectBB.setTransform(transform);
         this.position.x = transform.getTranslateX();
         this.position.y = transform.getTranslateY();
-        
+
         this.boundingBox.setTransform(transform);
     }
 	
@@ -143,25 +141,23 @@ public abstract class GameObject extends Thread{
         return new P2d(this.transform.getTranslateX(), this.getTransform().getTranslateY());
     }
 
-    public void setPosition(P2d position) {
+    public void setPosition(final P2d position) {
         AffineTransform newTransform = new AffineTransform();
         newTransform.translate(position.getX(), position.getY());
-        
         this.transform.setTransform(newTransform);
-        
         this.boundingBox.setTransform(newTransform);
     }
-    
+
     public BoundingBox getBoundingBox() {
         return boundingBox;
     }
 
 
-    public void setBoundingBox(BoundingBox boundingBox) {
+    public void setBoundingBox(final BoundingBox boundingBox) {
           this.boundingBox = boundingBox;
     }
 
-    public void setEngineImage(EngineImage engineImage) {
+    public void setEngineImage(final EngineImage engineImage) {
         this.engineImage = engineImage;
     }
 
@@ -170,11 +166,11 @@ public abstract class GameObject extends Thread{
         return phys;
     }
 
-    public void setPhys(PhysicsComponent phys) {
+    public void setPhys(final PhysicsComponent phys) {
         this.phys = phys;
     }
 	
-    public void updatePhysics(int dt, World w){
+    public void updatePhysics(final int dt, final World w) {
         phys.update(dt, this, w);
     }
 	

@@ -27,8 +27,6 @@ public abstract class FireableObject extends MainGameObject {
     }
 
     /**
-     * Return the FireableObject weapon.
-     *
      * @return the FireableObject weapon
      */
     public Weapon getWeapon() {
@@ -45,8 +43,6 @@ public abstract class FireableObject extends MainGameObject {
     }
 
     /**
-     * Return the FireableObject shooting logic.
-     *
      * @return the FireableObject shooting logic
      */
     public ShootingLogic getShootingLogic() {
