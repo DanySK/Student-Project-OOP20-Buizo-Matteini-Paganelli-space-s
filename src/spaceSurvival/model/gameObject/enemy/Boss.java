@@ -6,16 +6,18 @@ import spaceSurvival.model.movement.Movement;
 import spaceSurvival.model.common.P2d;
 import spaceSurvival.model.common.V2d;
 import spaceSurvival.model.gameObject.weapon.Weapon;
+import spaceSurvival.model.gameObject.weapon.shootinglogic.ShootingLogic;
 import spaceSurvival.model.EngineImage;
 import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
 import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 
-public class Boss extends FireableEnemy {
+public class Boss extends FireableObject {
 
     public Boss(final EngineImage engineImage, final P2d position, final BoundingBox bb,
             final PhysicsComponent phys, final V2d velocity, final Movement movement, final int life,
-            final int impactDamage, final Optional<Weapon> weapon, final int score, final P2d target) {
-        super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, weapon, score, target);
+            final int impactDamage, final int score, final Optional<P2d> target, final Weapon weapon,
+            final ShootingLogic shootingLogic) {
+        super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, score, target, weapon, shootingLogic);
         this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage, this.getTransform()));
         new Thread(Boss.this::fire).start();
     }
@@ -28,9 +30,7 @@ public class Boss extends FireableEnemy {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-            if (this.getWeapon().isPresent()) {
-                this.getWeapon().get().shoot();
-            }
+            this.getWeapon().shoot();
         }
     }
 	

@@ -8,9 +8,7 @@ public class SpaceBarCommand implements CommandGameObject {
 
     @Override
     public void execute(final SpaceShipSingleton ship) {
-        if (ship.getWeapon().isPresent()) {
-            ship.getWeapon().get().shoot();
-            ship.pushEffect(SoundPath.SHOOT);
-        }	
+        ship.getWeapon().shoot();
+        ship.pushEffect(SoundPath.SHOOT);
     }
 }

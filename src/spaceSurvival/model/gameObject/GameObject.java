@@ -173,11 +173,6 @@ public abstract class GameObject extends Thread{
     public void setPhys(PhysicsComponent phys) {
         this.phys = phys;
     }
-
-	
-//	public void setScale(int scaleOf, int respectTo) {
-//	this.engineImage.setScaleOfRespect(scaleOf, respectTo);
-//}
 	
     public void updatePhysics(int dt, World w){
         phys.update(dt, this, w);
