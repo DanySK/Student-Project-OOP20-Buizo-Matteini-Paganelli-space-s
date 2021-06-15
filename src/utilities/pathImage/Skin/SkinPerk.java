@@ -9,6 +9,8 @@ public class SkinPerk {
     public static final String ICE = "ice";
     public static final String FIRE = "fire";
     public static final String ELECTRIC = "electric";
+    public static final String LIFE = "life";
+    public static final String HEART = "heart";
 
     public static final String ICE0 = Paths.get(MAIN_FOLDER, ICE, "ice.png").toString();
     public static final String ICE1 = Paths.get(MAIN_FOLDER, ICE, "ice_1.png").toString();
@@ -48,4 +50,31 @@ public class SkinPerk {
 
     public static final List<String> LIST_ELECTRIC = List.of(ELECTRIC0, ELECTRIC1, ELECTRIC2, ELECTRIC3, ELECTRIC4,
             ELECTRIC5, ELECTRIC6, ELECTRIC7, ELECTRIC8);
+
+
+    public static final String LIFE0 = Paths.get(MAIN_FOLDER, LIFE, "life_01.png").toString();
+    public static final String LIFE1 = Paths.get(MAIN_FOLDER, LIFE, "life_02.png").toString();
+    public static final String LIFE2 = Paths.get(MAIN_FOLDER, LIFE, "life_03.png").toString();
+    public static final String LIFE3 = Paths.get(MAIN_FOLDER, LIFE, "life_04.png").toString();
+    public static final String LIFE4 = Paths.get(MAIN_FOLDER, LIFE, "life_05.png").toString();
+    public static final String LIFE5 = Paths.get(MAIN_FOLDER, LIFE, "life_06.png").toString();
+    public static final String LIFE6 = Paths.get(MAIN_FOLDER, LIFE, "life_07.png").toString();
+    public static final String LIFE7 = Paths.get(MAIN_FOLDER, LIFE, "life_08.png").toString();
+    public static final String LIFE8 = Paths.get(MAIN_FOLDER, LIFE, "life_09.png").toString();
+
+    public static final List<String> LIST_LIFE = List.of(LIFE0, LIFE1, LIFE2, LIFE3, LIFE4, LIFE5, LIFE6, LIFE7, LIFE8);
+
+
+    public static final String HEART0 = Paths.get(MAIN_FOLDER, HEART, "heart_01.png").toString();
+    public static final String HEART1 = Paths.get(MAIN_FOLDER, HEART, "heart_02.png").toString();
+    public static final String HEART2 = Paths.get(MAIN_FOLDER, HEART, "heart_03.png").toString();
+    public static final String HEART3 = Paths.get(MAIN_FOLDER, HEART, "heart_04.png").toString();
+    public static final String HEART4 = Paths.get(MAIN_FOLDER, HEART, "heart_05.png").toString();
+    public static final String HEART5 = Paths.get(MAIN_FOLDER, HEART, "heart_06.png").toString();
+    public static final String HEART6 = Paths.get(MAIN_FOLDER, HEART, "heart_07.png").toString();
+    public static final String HEART7 = Paths.get(MAIN_FOLDER, HEART, "heart_08.png").toString();
+    public static final String HEART8 = Paths.get(MAIN_FOLDER, HEART, "heart_09.png").toString();
+
+    public static final List<String> LIST_HEART = List.of(HEART0, HEART1, HEART2, HEART3, HEART4,
+            HEART5, HEART6, HEART7, HEART8);
 }

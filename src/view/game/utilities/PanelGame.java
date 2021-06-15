@@ -13,6 +13,8 @@ import model.gameObject.mainGameObject.SpaceShipSingleton;
 import model.gameObject.takeableGameObject.TakeableGameObject;
 import model.gameObject.weapon.Bullet;
 import model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
+import view.game.utilities.logicColor.LogicColor;
+import view.game.utilities.logicColor.LogicColorShip;
 
 import javax.swing.*;
 import java.awt.*;
@@ -113,15 +115,18 @@ public class PanelGame extends JPanel{
     }
 
     private void drawLife(final Graphics2D g2d, final GameObject gameObject){
-        g2d.setColor(Color.GREEN);
+        final LogicColor logicColor = new LogicColorShip();
         int life = 0;
         if(gameObject instanceof ChaseEnemy){
+            g2d.setColor(logicColor.setColor(GameObjectUtils.CHASE_ENEMY_LIFE, ((MainGameObject)gameObject).getLife()));
             life = (int) (((MainGameObject)gameObject).getLife() * gameObject.getWidth() / GameObjectUtils.CHASE_ENEMY_LIFE);
         }
         if(gameObject instanceof Asteroid){
+            g2d.setColor(logicColor.setColor(GameObjectUtils.ASTEROID_LIFE, ((MainGameObject)gameObject).getLife()));
             life = (int) (((MainGameObject)gameObject).getLife() * gameObject.getWidth() / GameObjectUtils.ASTEROID_LIFE);
         }
         if(gameObject instanceof Boss){
+            g2d.setColor(logicColor.setColor(GameObjectUtils.BOSS_LIFE, ((MainGameObject)gameObject).getLife()));
             life = (int) (((MainGameObject)gameObject).getLife() * gameObject.getWidth() / GameObjectUtils.BOSS_LIFE);
         }
 

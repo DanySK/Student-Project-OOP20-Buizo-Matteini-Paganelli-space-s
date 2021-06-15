@@ -121,9 +121,10 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 	public TakeableGameObject createHeart() {
 		final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinPerk.FIRE0);
 		final P2d position = GameObjectUtils.generateRandomPoint();
+		final HeartType heartType = HeartType.random();
 		
 		return new Heart(engineImage, position, new CircleBoundingBox(), new PickablePhysicsComponent(),
-				List.of(), HeartType.random());
+				heartType.getAnimation(), heartType);
 	}
 
 }

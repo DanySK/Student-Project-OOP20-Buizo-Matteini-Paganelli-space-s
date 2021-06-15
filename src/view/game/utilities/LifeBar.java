@@ -1,5 +1,6 @@
 package view.game.utilities;
 
+import model.gameObject.GameObjectUtils;
 import view.game.utilities.logicColor.LogicColor;
 
 import javax.swing.*;
@@ -15,7 +16,7 @@ public class LifeBar extends JProgressBar {
 
     public void setLife(final int life){
         super.setValue(life);
-        super.setForeground(this.logicColor.setColor(life));
+        super.setForeground(this.logicColor.setColor(GameObjectUtils.SPACESHIP_LIFE, life));
     }
 
     @Override
