@@ -36,7 +36,7 @@ public class Weapon {
 	public Weapon(final AmmoType ammoType, final MainGameObject owner) {
 		this.owner = owner;
 		this.ammoType = ammoType;
-		
+
 		switch (ammoType) {
 		case NORMAL:
 			this.magazine =  Magazine.UNLIMITED;
@@ -53,18 +53,16 @@ public class Weapon {
 		}
 		this.multiplierDamage = 1;
 
-		this.shootedBullets = new HashSet<>();		
+		this.shootedBullets = new HashSet<>();
 	}
 	
 	public void shoot() {
 		EngineImage engineImage = new EngineImage(ScaleOf.BULLET_OBJECT, Screen.WIDTH_FULL_SCREEN, "shutBullet/vertical/ice.png");
-		System.out.println("Sparo");
-		System.out.println(owner);
 		P2d position = new P2d(0, 0);
 		V2d velocity = GameObjectUtils.BULLET_VEL;
 		Bullet bullet = new Bullet(engineImage, position, new RectBoundingBox(), new BulletPhysicsComponent(),
 				velocity, BulletUtils.NORMAL_BULLET_DAMAGE * multiplierDamage, ammoType.getEffect());
-		
+
 		bullet.setTransform(owner.getTransform());
 		bullet.getTransform().translate(owner.getSize().getWidth() / 2 - bullet.getSize().getWidth() / 2,
 				-owner.getSize().getHeight() / 10);
@@ -134,7 +132,5 @@ public class Weapon {
 	public void setShootedBullets(Set<Bullet> shootedBullets) {
 		this.shootedBullets = shootedBullets;
 	}
-
-
 
 }

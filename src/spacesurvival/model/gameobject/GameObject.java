@@ -2,12 +2,10 @@ package spacesurvival.model.gameobject;
 
 import java.awt.Dimension;
 import java.awt.geom.AffineTransform;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.LinkedList;
 import java.util.Optional;
 
-import spacesurvival.model.EngineMalaLoop;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.Animation;
 import spacesurvival.model.EngineImage;
@@ -18,7 +16,6 @@ import spacesurvival.model.collisioni.physics.component.PhysicsComponent;
 
 public abstract class GameObject {
 
-    private P2d position;
     private AffineTransform transform;
     private BoundingBox boundingBox;
     private PhysicsComponent phys;
@@ -29,8 +26,7 @@ public abstract class GameObject {
     private List<SoundPath> effectSounds;
 
     public GameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
-                      final PhysicsComponent phys) {
-	
+            final PhysicsComponent phys) {
         this.body = new Animation(engineImage);
         this.effect = new Animation(EngineImage.getTransparentEngineImage(engineImage));
 
@@ -39,7 +35,7 @@ public abstract class GameObject {
 
         this.boundingBox = bb;
         this.phys = phys;
-        this.position = position;
+        this.setTransform(position);
         this.setEffectSounds(new LinkedList<>());
         this.transform = new AffineTransform();
     }
@@ -81,10 +77,9 @@ public abstract class GameObject {
 //			this.effectSounds.remove(0);
 //		}	
         if (this.effectSounds.size() != 0) {
-            Optional<SoundPath> first = Optional.of(this.effectSounds.get(0));
+            final Optional<SoundPath> first = Optional.of(this.effectSounds.get(0));
             this.effectSounds.remove(0);
             return first;
-
         }
         return Optional.empty();
     }
@@ -94,13 +89,16 @@ public abstract class GameObject {
         return this.transform;
     }
 
+    public final void setTransform(final P2d position) {
+        this.transform = new AffineTransform();
+        this.transform.translate(position.getX(), position.getY());
+        this.boundingBox.setTransform(this.transform);
+    }
+
     public final void setTransform(final AffineTransform transform) {
         this.transform.setTransform(transform);
         //RectBoundingBox rectBB = (RectBoundingBox) this.getBoundingBox();
         //rectBB.setTransform(transform);
-        this.position.x = transform.getTranslateX();
-        this.position.y = transform.getTranslateY();
-
         this.boundingBox.setTransform(transform);
     }
 	
@@ -168,7 +166,7 @@ public abstract class GameObject {
 
     @Override
     public String toString() {
-        return "GameObject [position=" + position + ", transform=" + transform + ", boundingBox=" + boundingBox
+        return "GameObject [transform=" + transform + ", boundingBox=" + boundingBox
                 + ", phys=" + phys + ", body=" + body + ", effect=" + effect + ", effectSounds=" + effectSounds + "]";
     }
 

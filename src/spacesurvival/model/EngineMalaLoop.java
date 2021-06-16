@@ -27,6 +27,7 @@ import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.utilities.Score;
 import spacesurvival.utilities.path.SoundPath;
 import spacesurvival.utilities.SystemVariables;
+import spacesurvival.utilities.ThreadUtils;
 import spacesurvival.utilities.dimension.Screen;
 
 import java.awt.geom.AffineTransform;
@@ -36,7 +37,7 @@ import java.util.Optional;
 
 public class EngineMalaLoop extends Thread implements WorldEventListener {
     /**
-     * Frame per seconds of the game.
+     * Frames per second of the game.
      */
     public static final int FPS = 30;
 
@@ -57,7 +58,6 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
 
     public void initGame() {
         this.controlGUI.assignSoundLoop();
-
         this.controlGame.assignMovementListenerInShip();
         this.controlGame.setEventListenerInWorld(this);
         this.controlGame.assignWorld();
@@ -114,10 +114,8 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
 
     protected void waitForNextFrame(final long current) {
         final long dt = System.currentTimeMillis() - current;
-        if (dt < FPS){
-            try {
-                Thread.sleep(FPS - dt);
-            } catch (Exception ignored){}
+        if (dt < FPS) {
+            ThreadUtils.sleep(FPS - dt);
         }
     }
 
@@ -125,7 +123,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
 //        gameState.getWorld().getShip().updateInput(controller);
     }
 
-    protected void updateGame(final int elapsed) {
+    protected final void updateGame(final int elapsed) {
         this.controlGame.updateHUD();
         this.controlGame.updateStateWorld(elapsed);
         checkEvents();
@@ -221,7 +219,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         eventQueue.clear();
     }
 
-    public void damageObject(MainGameObject object, final int damage, final Status status) {
+    public void damageObject(final MainGameObject object, final int damage, final Status status) {
         System.out.println("SONO INVINCIBILE ?  " + object.isInvincible());
         if (!object.isInvincible()) {
             if (object instanceof SpaceShipSingleton) {
@@ -299,25 +297,15 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     }
 
     private void renderMovement() {
-    	//this.controlGame.moveShip();
-
     	this.controlGame.getWorld().getMovableEntities().forEach(MovableGameObject::move);
-
-    	this.controlGame.getWorld().getAllEnemies().forEach(enemy -> {
-
-    	    //DA CAMBIARE MAIN IN ENEMY IN GET ALL ENEMIES
-            final MainGameObject enemy2 = (MainGameObject) enemy;
-            enemy2.setTarget(Optional.of(this.controlGame.getShip().getPosition()));
-        });
-
-//    	SpaceShipSingleton ship = this.controlGame.getShip();
-//    	if (ship.getWeapon().isPresent()) {
-//        	ship.getWeapon().get().getShootedBullets().forEach(bullet -> {
-//        		bullet.move();
-//        	});
-//		}
     }
 
+    public void assignTargetToEnemies() {
+        this.controlGame.getWorld().getAllEnemies().forEach(enemy -> {
+            enemy.setTarget(Optional.of(this.controlGame.getShip().getPosition()));
+        });
+    }
+    
     protected void renderGameOver() {
         this.controlGUI.endGame();
     	//playEffect(SoundPath.GAME_OVER);

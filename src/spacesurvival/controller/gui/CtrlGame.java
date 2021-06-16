@@ -108,18 +108,17 @@ public class CtrlGame implements ControllerGUI {
 		this.getWorld().addFireEnemy();
 		System.out.println(this.getWorld().getAllEntities());
 	}
-    
-    
-    public void assignWorld(){
+
+    public void assignWorld() {
         this.gui.setWorld(this.engine.getWorld());
     }
 
 
-    public void startTimer(){
+    public void startTimer() {
         this.engine.startTimer();
     }
 
-    public void stopTimer(){
+    public void stopTimer() {
         this.engine.stopTimer();
     }
 
@@ -127,11 +126,11 @@ public class CtrlGame implements ControllerGUI {
 		return this.engine.getWorld();
 	}
 
-    public SpaceShipSingleton getShip(){
+    public SpaceShipSingleton getShip() {
         return this.engine.getShip();
     }
 
-    public void setEventListenerInWorld(final WorldEventListener worldEventListener){
+    public void setEventListenerInWorld(final WorldEventListener worldEventListener) {
         this.engine.setEventListenerInWorld(worldEventListener);
     }
 
