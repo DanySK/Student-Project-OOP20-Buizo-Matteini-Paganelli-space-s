@@ -160,7 +160,7 @@ public class PanelGame extends JPanel{
                 bulletDelet.add(obj.getKey());
             }
         });
-        
+
         bulletDelet.forEach(obj -> {
             if (this.bullets.containsKey(obj)) {
                 this.bullets.remove(obj);
