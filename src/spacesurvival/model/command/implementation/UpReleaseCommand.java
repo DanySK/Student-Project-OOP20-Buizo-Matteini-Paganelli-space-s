@@ -13,6 +13,6 @@ public class UpReleaseCommand implements CommandGameObject {
      * 
      */
     public void execute(final SpaceShipSingleton ship) {
-        ship.setAcceleration(new V2d(0, GameObjectUtils.SPACESHIP_DECELERATION));	
+        ship.setAcceleration(new V2d(0, GameObjectUtils.SPACESHIP_DECELERATION));
     }
 }

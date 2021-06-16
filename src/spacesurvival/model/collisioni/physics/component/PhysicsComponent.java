@@ -1,5 +1,5 @@
 
-package spacesurvival.model.worldEcollisioni.physics.components;
+package spacesurvival.model.collisioni.physics.component;
 
 import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.World;

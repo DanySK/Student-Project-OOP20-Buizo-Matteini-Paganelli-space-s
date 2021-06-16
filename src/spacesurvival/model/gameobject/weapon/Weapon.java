@@ -1,6 +1,5 @@
 package spacesurvival.model.gameobject.weapon;
 
-import spacesurvival.model.worldEcollisioni.physics.components.BulletPhysicsComponent;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;
 import spacesurvival.model.common.P2d;
@@ -13,7 +12,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import spacesurvival.model.EngineImage;
-import spacesurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
+import spacesurvival.model.collisioni.physics.bounding.RectBoundingBox;
+import spacesurvival.model.collisioni.physics.component.BulletPhysicsComponent;
 
 public class Weapon {
 	

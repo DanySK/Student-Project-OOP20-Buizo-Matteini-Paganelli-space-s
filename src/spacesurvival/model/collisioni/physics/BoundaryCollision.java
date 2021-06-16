@@ -1,4 +1,4 @@
-package spacesurvival.model.worldEcollisioni.physics;
+package spacesurvival.model.collisioni.physics;
 
 import spacesurvival.model.common.P2d;
 

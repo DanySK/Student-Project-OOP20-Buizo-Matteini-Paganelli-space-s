@@ -1,4 +1,4 @@
-package spacesurvival.model.worldEcollisioni.physics.boundingType;
+package spacesurvival.model.collisioni.physics.bounding;
 
 import spacesurvival.model.common.P2d;
 

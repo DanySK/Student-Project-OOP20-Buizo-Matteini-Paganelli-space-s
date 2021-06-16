@@ -1,6 +1,7 @@
 package spacesurvival.view.game.utilities;
 
 import spacesurvival.model.World;
+import spacesurvival.model.collisioni.physics.bounding.CircleBoundingBox;
 import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.Pair;
@@ -12,7 +13,6 @@ import spacesurvival.model.gameobject.main.Asteroid;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.model.gameobject.weapon.Bullet;
-import spacesurvival.model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
 import spacesurvival.view.game.utilities.logicColor.LogicColor;
 import spacesurvival.view.game.utilities.logicColor.LogicColorShip;
 
