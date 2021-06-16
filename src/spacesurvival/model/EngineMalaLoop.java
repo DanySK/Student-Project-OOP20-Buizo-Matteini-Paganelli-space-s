@@ -38,7 +38,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     /**
      * Frame per seconds of the game.
      */
-    public static final int FPS = 60;
+    public static final int FPS = 30;
 
     private final CtrlGUI controlGUI;
     private final CtrlGame controlGame;
@@ -85,7 +85,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                     if (!this.controlGUI.isInPause()) {
                         //processInput();
                         renderMovement();
-                        //render();
+                        render();
                         waitForNextFrame(current);
                         lastTime = current;
                         updateGame(elapsed);
@@ -294,9 +294,9 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     	object.setTransform(newTransform);
     }
 
-//    protected void render() {
-//        this.controlGame.repaintWorld();
-//    }
+    protected final void render() {
+        this.controlGame.repaintWorld();
+    }
 
     private void renderMovement() {
     	//this.controlGame.moveShip();

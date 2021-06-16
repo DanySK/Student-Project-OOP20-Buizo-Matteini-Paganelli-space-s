@@ -1,6 +1,5 @@
 package spacesurvival.model;
 
-import spacesurvival.utilities.path.Background;
 import spacesurvival.utilities.path.AnimationEffect;
 import spacesurvival.view.utilities.JImage;
 
@@ -70,6 +69,10 @@ public class EngineImage {
 
     public Dimension getSize() {
         return new Dimension(this.width, this.height);
+    }
+
+    public final Image getImage() {
+        return EngineImage.getImageFromEngine(this);
     }
 
 
