@@ -1,6 +1,6 @@
-package spaceSurvival.model.GUI.pause;
+package spacesurvival.model.GUI.pause;
 
-import spaceSurvival.utilities.ActionGUI;
+import spacesurvival.utilities.ActionGUI;
 
 public enum LinksPause {
     RESUME_BUTTON("Resume", ActionGUI.ID_BACK),

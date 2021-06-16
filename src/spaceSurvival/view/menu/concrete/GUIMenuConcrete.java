@@ -1,10 +1,10 @@
-package spaceSurvival.view.menu.concrete;
+package spacesurvival.view.menu.concrete;
 
-import spaceSurvival.model.GUI.menu.EngineMenu;
-import spaceSurvival.utilities.ActionGUI;
-import spaceSurvival.view.AbstractGUI;
-import spaceSurvival.view.menu.GUIMenu;
-import spaceSurvival.view.utilities.BtnAction;
+import spacesurvival.model.GUI.menu.EngineMenu;
+import spacesurvival.utilities.ActionGUI;
+import spacesurvival.view.AbstractGUI;
+import spacesurvival.view.menu.GUIMenu;
+import spacesurvival.view.utilities.BtnAction;
 
 import javax.swing.*;
 import java.awt.*;

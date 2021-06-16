@@ -1,4 +1,4 @@
-package spaceSurvival.model.GUI;
+package spacesurvival.model.GUI;
 
 public enum Visibility {
     VISIBLE(true),

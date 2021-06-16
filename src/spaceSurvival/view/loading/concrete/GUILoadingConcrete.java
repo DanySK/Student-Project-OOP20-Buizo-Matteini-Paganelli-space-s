@@ -1,9 +1,9 @@
-package spaceSurvival.view.loading.concrete;
+package spacesurvival.view.loading.concrete;
 
-import spaceSurvival.view.AbstractGUI;
-import spaceSurvival.view.loading.GUILoading;
-import spaceSurvival.view.loading.utilities.LoadingBar;
-import spaceSurvival.view.utilities.BtnAction;
+import spacesurvival.view.AbstractGUI;
+import spacesurvival.view.loading.GUILoading;
+import spacesurvival.view.loading.utilities.LoadingBar;
+import spacesurvival.view.utilities.BtnAction;
 
 import javax.swing.*;
 import java.awt.*;

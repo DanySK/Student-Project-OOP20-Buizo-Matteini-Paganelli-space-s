@@ -1,8 +1,8 @@
-package spaceSurvival.view;
+package spacesurvival.view;
 
-import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.utilities.ActionGUI;
-import spaceSurvival.view.utilities.BtnAction;
+import spacesurvival.model.GUI.Visibility;
+import spacesurvival.utilities.ActionGUI;
+import spacesurvival.view.utilities.BtnAction;
 
 import java.awt.*;
 import java.awt.event.MouseListener;

@@ -1,4 +1,4 @@
-package spaceSurvival.view.utilities;
+package spacesurvival.view.utilities;
 
 import java.awt.*;
 import java.net.URL;

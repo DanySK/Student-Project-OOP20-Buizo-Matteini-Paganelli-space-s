@@ -1,9 +1,9 @@
-package spaceSurvival.view;
+package spacesurvival.view;
 
-import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.utilities.ActionGUI;
-import spaceSurvival.view.utilities.FactoryGUIs;
-import spaceSurvival.view.utilities.JPanelImage;
+import spacesurvival.model.GUI.Visibility;
+import spacesurvival.utilities.ActionGUI;
+import spacesurvival.view.utilities.FactoryGUIs;
+import spacesurvival.view.utilities.JPanelImage;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;

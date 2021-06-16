@@ -1,16 +1,16 @@
-package spaceSurvival.controller.GUI;
+package spacesurvival.controller.gui;
 
-import spaceSurvival.controller.GUI.strategy.LogicSwitchGUI;
-import spaceSurvival.controller.GUI.strategy.LogicSwitchGame;
-import spaceSurvival.controller.GUI.strategy.LogicSwitchMenu;
-import spaceSurvival.controller.utilities.ListGUI;
-import spaceSurvival.factories.StaticFactoryEngineGUI;
-import spaceSurvival.factories.StaticFactoryGUI;
-import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.utilities.ActionGUI;
-import spaceSurvival.utilities.StateLevelGUI;
-import spaceSurvival.utilities.pathImage.Background;
-import spaceSurvival.view.utilities.BtnAction;
+import spacesurvival.controller.gui.strategy.LogicSwitchGUI;
+import spacesurvival.controller.gui.strategy.LogicSwitchGame;
+import spacesurvival.controller.gui.strategy.LogicSwitchMenu;
+import spacesurvival.controller.utilities.ListGUI;
+import spacesurvival.factories.StaticFactoryEngineGUI;
+import spacesurvival.factories.StaticFactoryGUI;
+import spacesurvival.model.GUI.Visibility;
+import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.StateLevelGUI;
+import spacesurvival.utilities.pathImage.Background;
+import spacesurvival.view.utilities.BtnAction;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

@@ -1,4 +1,4 @@
-package spaceSurvival.model.worldEcollisioni;
+package spacesurvival.model.worldEcollisioni;
 
 public interface WorldEventListener {
     void notifyEvent(WorldEvent ev);

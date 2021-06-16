@@ -1,15 +1,15 @@
 
-package spaceSurvival.model.gameObject.weapon;
+package spacesurvival.model.gameobject.weapon;
 
-import spaceSurvival.model.common.P2d;
-import spaceSurvival.model.common.V2d;
-import spaceSurvival.model.gameObject.Effect;
-import spaceSurvival.model.gameObject.GameObjectUtils;
-import spaceSurvival.model.gameObject.MovableGameObject;
-import spaceSurvival.model.movement.FixedMovement;
-import spaceSurvival.model.EngineImage;
-import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
-import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
+import spacesurvival.model.common.P2d;
+import spacesurvival.model.common.V2d;
+import spacesurvival.model.gameobject.Effect;
+import spacesurvival.model.gameobject.GameObjectUtils;
+import spacesurvival.model.gameobject.MovableGameObject;
+import spacesurvival.model.movement.FixedMovement;
+import spacesurvival.model.EngineImage;
+import spacesurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
+import spacesurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 
 public class Bullet extends MovableGameObject {
 	private int damage;

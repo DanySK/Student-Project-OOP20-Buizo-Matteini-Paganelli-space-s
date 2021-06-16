@@ -1,4 +1,4 @@
-package spaceSurvival.utilities;
+package spacesurvival.utilities;
 
 public class DesignSound {
     public static final int DEFAULT_MAJOR_TICK_SPACING = 20;

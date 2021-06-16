@@ -1,4 +1,4 @@
-package spaceSurvival.view.sound;
+package spacesurvival.view.sound;
 
 public interface FactoryGUISound {
 

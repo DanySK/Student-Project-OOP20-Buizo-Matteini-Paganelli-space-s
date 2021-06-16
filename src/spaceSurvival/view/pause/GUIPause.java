@@ -1,8 +1,8 @@
-package spaceSurvival.view.pause;
+package spacesurvival.view.pause;
 
-import spaceSurvival.utilities.ActionGUI;
-import spaceSurvival.view.GUI;
-import spaceSurvival.view.utilities.BtnAction;
+import spacesurvival.utilities.ActionGUI;
+import spacesurvival.view.GUI;
+import spacesurvival.view.utilities.BtnAction;
 
 import java.util.List;
 

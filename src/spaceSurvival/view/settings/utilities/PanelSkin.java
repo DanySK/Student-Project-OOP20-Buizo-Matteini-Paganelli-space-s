@@ -1,9 +1,9 @@
-package spaceSurvival.view.settings.utilities;
+package spacesurvival.view.settings.utilities;
 
-import spaceSurvival.model.EngineImage;
-import spaceSurvival.model.GUI.settings.EngineSettings;
-import spaceSurvival.view.utilities.FactoryGUIs;
-import spaceSurvival.view.utilities.JImage;
+import spacesurvival.model.EngineImage;
+import spacesurvival.model.GUI.settings.EngineSettings;
+import spacesurvival.view.utilities.FactoryGUIs;
+import spacesurvival.view.utilities.JImage;
 
 import javax.swing.*;
 import java.awt.*;

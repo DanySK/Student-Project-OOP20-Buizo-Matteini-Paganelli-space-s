@@ -1,11 +1,11 @@
-package spaceSurvival.model.GUI.settings;
+package spacesurvival.model.GUI.settings;
 
-import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.model.EngineImage;
-import spaceSurvival.model.GUI.EngineGUI;
-import spaceSurvival.utilities.dimension.ScaleOf;
-import spaceSurvival.utilities.dimension.Screen;
-import spaceSurvival.utilities.ActionGUI;
+import spacesurvival.model.GUI.Visibility;
+import spacesurvival.model.EngineImage;
+import spacesurvival.model.GUI.EngineGUI;
+import spacesurvival.utilities.dimension.ScaleOf;
+import spacesurvival.utilities.dimension.Screen;
+import spacesurvival.utilities.ActionGUI;
 
 import java.awt.*;
 import java.util.*;

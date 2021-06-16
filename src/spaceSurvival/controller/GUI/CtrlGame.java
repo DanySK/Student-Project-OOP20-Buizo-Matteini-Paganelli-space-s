@@ -1,16 +1,16 @@
-package spaceSurvival.controller.GUI;
+package spacesurvival.controller.gui;
 
-import spaceSurvival.controller.GUI.command.SwitchGUI;
-import spaceSurvival.model.GUI.EngineGUI;
-import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.model.GUI.game.EngineGame;
-import spaceSurvival.model.World;
-import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
-import spaceSurvival.model.MovementKeyListener;
-import spaceSurvival.model.worldEcollisioni.WorldEventListener;
-import spaceSurvival.utilities.ActionGUI;
-import spaceSurvival.view.GUI;
-import spaceSurvival.view.game.GUIGame;
+import spacesurvival.controller.gui.command.SwitchGUI;
+import spacesurvival.model.GUI.EngineGUI;
+import spacesurvival.model.GUI.Visibility;
+import spacesurvival.model.GUI.game.EngineGame;
+import spacesurvival.model.World;
+import spacesurvival.model.gameobject.main.SpaceShipSingleton;
+import spacesurvival.model.MovementKeyListener;
+import spacesurvival.model.worldEcollisioni.WorldEventListener;
+import spacesurvival.utilities.ActionGUI;
+import spacesurvival.view.GUI;
+import spacesurvival.view.game.GUIGame;
 
 import java.awt.event.KeyListener;
 

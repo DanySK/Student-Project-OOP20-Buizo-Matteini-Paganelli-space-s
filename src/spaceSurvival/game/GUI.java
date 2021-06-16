@@ -1,8 +1,8 @@
-package spaceSurvival.game;
-import spaceSurvival.controller.sound.CallerAudio;
-import spaceSurvival.model.sound.CmdAudioType;
-import spaceSurvival.model.sound.category.SoundLoop;
-import spaceSurvival.utilities.SoundPath;
+package spacesurvival.game;
+import spacesurvival.controller.sound.CallerAudio;
+import spacesurvival.model.sound.CmdAudioType;
+import spacesurvival.model.sound.category.SoundLoop;
+import spacesurvival.utilities.SoundPath;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;

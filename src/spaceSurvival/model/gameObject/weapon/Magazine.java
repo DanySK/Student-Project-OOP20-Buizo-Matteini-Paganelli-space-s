@@ -1,4 +1,4 @@
-package spaceSurvival.model.gameObject.weapon;
+package spacesurvival.model.gameobject.weapon;
 
 public enum Magazine {
 	LIMITED,

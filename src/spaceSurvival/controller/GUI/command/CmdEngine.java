@@ -1,6 +1,6 @@
-package spaceSurvival.controller.GUI.command;
+package spacesurvival.controller.gui.command;
 
-import spaceSurvival.model.GUI.EngineGUI;
+import spacesurvival.model.GUI.EngineGUI;
 
 public interface CmdEngine {
     public CmdGUI execute(final EngineGUI engineGUI);

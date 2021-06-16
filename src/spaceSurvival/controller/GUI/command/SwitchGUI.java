@@ -1,8 +1,8 @@
-package spaceSurvival.controller.GUI.command;
+package spacesurvival.controller.gui.command;
 
-import spaceSurvival.model.GUI.EngineGUI;
-import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.view.GUI;
+import spacesurvival.model.GUI.EngineGUI;
+import spacesurvival.model.GUI.Visibility;
+import spacesurvival.view.GUI;
 
 public class SwitchGUI {
     private final CmdEngine onCmdEngine;

@@ -1,29 +1,27 @@
-package spaceSurvival.model.gameObject.mainGameObject;
+package spacesurvival.model.gameobject.main;
 
-import spaceSurvival.model.gameObject.GameObjectUtils;
-import spaceSurvival.model.gameObject.enemy.FireableObject;
-import spaceSurvival.model.gameObject.takeableGameObject.Ammo;
-import spaceSurvival.model.gameObject.takeableGameObject.Heart;
-import spaceSurvival.model.gameObject.takeableGameObject.TakeableGameObject;
-import spaceSurvival.model.movement.ControlledMovement;
-import spaceSurvival.model.movement.Movement;
-import spaceSurvival.model.common.P2d;
-import spaceSurvival.model.common.V2d;
-import spaceSurvival.model.gameObject.weapon.Weapon;
-import spaceSurvival.model.gameObject.weapon.shootinglogic.ControlledShooting;
-import spaceSurvival.model.gameObject.weapon.shootinglogic.ShootingLogic;
+import spacesurvival.model.gameobject.GameObjectUtils;
+import spacesurvival.model.gameobject.enemy.FireableObject;
+import spacesurvival.model.gameobject.takeable.Ammo;
+import spacesurvival.model.movement.ControlledMovement;
+import spacesurvival.model.movement.Movement;
+import spacesurvival.model.common.P2d;
+import spacesurvival.model.common.V2d;
+import spacesurvival.model.gameobject.weapon.Weapon;
+import spacesurvival.model.gameobject.weapon.shootinglogic.ControlledShooting;
+import spacesurvival.model.gameobject.weapon.shootinglogic.ShootingLogic;
 
 import java.util.Optional;
 
-import spaceSurvival.model.EngineImage;
-import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
-import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
-import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
-import spaceSurvival.model.worldEcollisioni.physics.components.ShipPhysicsComponent;
-import spaceSurvival.utilities.Score;
-import spaceSurvival.utilities.dimension.ScaleOf;
-import spaceSurvival.utilities.dimension.Screen;
-import spaceSurvival.utilities.pathImage.Skin.SkinShip;
+import spacesurvival.model.EngineImage;
+import spacesurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
+import spacesurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
+import spacesurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
+import spacesurvival.model.worldEcollisioni.physics.components.ShipPhysicsComponent;
+import spacesurvival.utilities.Score;
+import spacesurvival.utilities.dimension.ScaleOf;
+import spacesurvival.utilities.dimension.Screen;
+import spacesurvival.utilities.pathImage.Skin.SkinShip;
 
 public final class SpaceShipSingleton extends FireableObject {
 

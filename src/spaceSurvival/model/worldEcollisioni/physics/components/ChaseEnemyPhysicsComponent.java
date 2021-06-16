@@ -1,13 +1,13 @@
-package spaceSurvival.model.worldEcollisioni.physics.components;
+package spacesurvival.model.worldEcollisioni.physics.components;
 
-import spaceSurvival.model.gameObject.GameObject;
+import spacesurvival.model.gameobject.GameObject;
 
-import spaceSurvival.model.gameObject.enemy.ChaseEnemy;
+import spacesurvival.model.gameobject.enemy.ChaseEnemy;
 import java.util.Optional;
-import spaceSurvival.model.World;
-import spaceSurvival.model.worldEcollisioni.hitEvents.HitBorderEvent;
-import spaceSurvival.model.worldEcollisioni.physics.BoundaryCollision;
-import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
+import spacesurvival.model.World;
+import spacesurvival.model.worldEcollisioni.hitEvents.HitBorderEvent;
+import spacesurvival.model.worldEcollisioni.physics.BoundaryCollision;
+import spacesurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 
 public class ChaseEnemyPhysicsComponent implements PhysicsComponent {
 

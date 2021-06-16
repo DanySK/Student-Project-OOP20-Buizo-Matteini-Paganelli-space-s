@@ -1,6 +1,6 @@
-package spaceSurvival.model.GUI.menu;
+package spacesurvival.model.GUI.menu;
 
-import spaceSurvival.utilities.ActionGUI;
+import spacesurvival.utilities.ActionGUI;
 
 public enum LinksMenu {
     START_BUTTON("Start", ActionGUI.ID_GAME),

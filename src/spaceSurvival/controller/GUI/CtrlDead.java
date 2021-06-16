@@ -1,12 +1,12 @@
-package spaceSurvival.controller.GUI;
+package spacesurvival.controller.gui;
 
-import spaceSurvival.controller.GUI.command.SwitchGUI;
-import spaceSurvival.model.GUI.EngineGUI;
-import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.model.GUI.dead.EngineDead;
-import spaceSurvival.utilities.ActionGUI;
-import spaceSurvival.view.GUI;
-import spaceSurvival.view.dead.GUIDead;
+import spacesurvival.controller.gui.command.SwitchGUI;
+import spacesurvival.model.GUI.EngineGUI;
+import spacesurvival.model.GUI.Visibility;
+import spacesurvival.model.GUI.dead.EngineDead;
+import spacesurvival.utilities.ActionGUI;
+import spacesurvival.view.GUI;
+import spacesurvival.view.dead.GUIDead;
 
 public class CtrlDead implements ControllerGUI{
     private final EngineDead engine;

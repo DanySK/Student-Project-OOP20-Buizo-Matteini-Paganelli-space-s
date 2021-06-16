@@ -1,13 +1,13 @@
-package spaceSurvival.model.GUI.game;
+package spacesurvival.model.GUI.game;
 
-import spaceSurvival.model.GUI.EngineGUI;
-import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.model.World;
-import spaceSurvival.model.gameObject.GameObject;
-import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
-import spaceSurvival.model.worldEcollisioni.WorldEventListener;
-import spaceSurvival.utilities.ActionGUI;
-import spaceSurvival.utilities.dimension.Screen;
+import spacesurvival.model.GUI.EngineGUI;
+import spacesurvival.model.GUI.Visibility;
+import spacesurvival.model.World;
+import spacesurvival.model.gameobject.GameObject;
+import spacesurvival.model.gameobject.main.SpaceShipSingleton;
+import spacesurvival.model.worldEcollisioni.WorldEventListener;
+import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.dimension.Screen;
 
 import java.awt.*;
 import java.util.List;

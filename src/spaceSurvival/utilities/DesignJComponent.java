@@ -1,4 +1,4 @@
-package spaceSurvival.utilities;
+package spacesurvival.utilities;
 
 public class DesignJComponent {
     public static final String STRING_BACK_BUTTON = "Back";

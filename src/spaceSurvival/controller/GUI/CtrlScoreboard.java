@@ -1,12 +1,12 @@
-package spaceSurvival.controller.GUI;
+package spacesurvival.controller.gui;
 
-import spaceSurvival.controller.GUI.command.SwitchGUI;
-import spaceSurvival.model.GUI.EngineGUI;
-import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.model.GUI.scoreboard.EngineScoreboard;
-import spaceSurvival.utilities.ActionGUI;
-import spaceSurvival.view.GUI;
-import spaceSurvival.view.scoreboard.GUIScoreboard;
+import spacesurvival.controller.gui.command.SwitchGUI;
+import spacesurvival.model.GUI.EngineGUI;
+import spacesurvival.model.GUI.Visibility;
+import spacesurvival.model.GUI.scoreboard.EngineScoreboard;
+import spacesurvival.utilities.ActionGUI;
+import spacesurvival.view.GUI;
+import spacesurvival.view.scoreboard.GUIScoreboard;
 
 public class CtrlScoreboard implements ControllerGUI {
     private final GUIScoreboard gui;

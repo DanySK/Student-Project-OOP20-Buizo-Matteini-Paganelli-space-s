@@ -1,7 +1,7 @@
-package spaceSurvival.controller.GUI.command;
+package spacesurvival.controller.gui.command;
 
-import spaceSurvival.model.GUI.EngineGUI;
-import spaceSurvival.model.GUI.Visibility;
+import spacesurvival.model.GUI.EngineGUI;
+import spacesurvival.model.GUI.Visibility;
 
 public class CmdON implements CmdEngine {
     private EngineGUI engine;

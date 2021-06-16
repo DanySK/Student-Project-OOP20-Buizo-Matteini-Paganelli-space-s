@@ -1,4 +1,4 @@
-package spaceSurvival.view.menu;
+package spacesurvival.view.menu;
 
 import java.awt.*;
 

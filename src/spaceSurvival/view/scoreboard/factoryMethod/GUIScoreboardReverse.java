@@ -1,10 +1,10 @@
-package spaceSurvival.view.scoreboard.factoryMethod;
+package spacesurvival.view.scoreboard.factoryMethod;
 
-import spaceSurvival.view.utilities.DesignGraphics;
-import spaceSurvival.view.scoreboard.FactoryGUIScoreboard;
-import spaceSurvival.view.scoreboard.GUIScoreboard;
-import spaceSurvival.view.scoreboard.concrete.GUIScoreboardConcrete;
-import spaceSurvival.view.utilities.FactoryGUIs;
+import spacesurvival.view.utilities.DesignGraphics;
+import spacesurvival.view.scoreboard.FactoryGUIScoreboard;
+import spacesurvival.view.scoreboard.GUIScoreboard;
+import spacesurvival.view.scoreboard.concrete.GUIScoreboardConcrete;
+import spacesurvival.view.utilities.FactoryGUIs;
 
 import javax.swing.*;
 import java.awt.*;

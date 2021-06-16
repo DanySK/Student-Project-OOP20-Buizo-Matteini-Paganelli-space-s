@@ -1,7 +1,7 @@
-package spaceSurvival.view.dead;
+package spacesurvival.view.dead;
 
-import spaceSurvival.utilities.ActionGUI;
-import spaceSurvival.view.GUI;
+import spacesurvival.utilities.ActionGUI;
+import spacesurvival.view.GUI;
 
 
 import java.util.List;

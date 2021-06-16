@@ -1,4 +1,4 @@
-package spaceSurvival.model.gameObject;
+package spacesurvival.model.gameobject;
 
 import java.awt.Dimension;
 import java.awt.geom.AffineTransform;
@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.LinkedList;
 import java.util.Optional;
 
-import spaceSurvival.model.EngineMalaLoop;
-import spaceSurvival.model.common.P2d;
-import spaceSurvival.model.EngineImage;
-import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
-import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
-import spaceSurvival.utilities.SoundPath;
-import spaceSurvival.model.World;
+import spacesurvival.model.EngineMalaLoop;
+import spacesurvival.model.common.P2d;
+import spacesurvival.model.EngineImage;
+import spacesurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
+import spacesurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
+import spacesurvival.utilities.SoundPath;
+import spacesurvival.model.World;
 
 public abstract class GameObject extends Thread {
 

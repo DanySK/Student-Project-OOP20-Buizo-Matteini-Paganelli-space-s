@@ -7,7 +7,7 @@
  * Use is subject to license terms.
  *
  */
-package spaceSurvival.model.common;
+package spacesurvival.model.common;
 
 /**
  *

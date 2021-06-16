@@ -1,14 +1,14 @@
-package spaceSurvival.controller.GUI;
+package spacesurvival.controller.gui;
 
-import spaceSurvival.controller.GUI.command.SwitchGUI;
-import spaceSurvival.model.GUI.EngineGUI;
-import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.model.GUI.settings.EngineSettings;
-import spaceSurvival.model.GUI.settings.SkinSpaceShip;
-import spaceSurvival.utilities.ActionGUI;
-import spaceSurvival.view.GUI;
-import spaceSurvival.view.settings.GUISettings;
-import spaceSurvival.view.settings.utilities.JRadioDifficult;
+import spacesurvival.controller.gui.command.SwitchGUI;
+import spacesurvival.model.GUI.EngineGUI;
+import spacesurvival.model.GUI.Visibility;
+import spacesurvival.model.GUI.settings.EngineSettings;
+import spacesurvival.model.GUI.settings.SkinSpaceShip;
+import spacesurvival.utilities.ActionGUI;
+import spacesurvival.view.GUI;
+import spacesurvival.view.settings.GUISettings;
+import spacesurvival.view.settings.utilities.JRadioDifficult;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;

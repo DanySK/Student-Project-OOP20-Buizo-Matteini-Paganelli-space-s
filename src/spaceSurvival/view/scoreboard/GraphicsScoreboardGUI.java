@@ -1,4 +1,4 @@
-package spaceSurvival.view.scoreboard;
+package spacesurvival.view.scoreboard;
 
 import java.awt.*;
 

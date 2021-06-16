@@ -1,11 +1,11 @@
-package spaceSurvival.model.gameObject.takeableGameObject;
+package spacesurvival.model.gameobject.takeable;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import spaceSurvival.model.gameObject.GameObjectUtils;
+import spacesurvival.model.gameobject.GameObjectUtils;
 
 
 public enum HeartType {

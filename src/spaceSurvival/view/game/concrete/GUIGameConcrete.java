@@ -1,13 +1,13 @@
-package spaceSurvival.view.game.concrete;
+package spacesurvival.view.game.concrete;
 
-import spaceSurvival.model.World;
-import spaceSurvival.utilities.ActionGUI;
-import spaceSurvival.view.AbstractGUI;
-import spaceSurvival.view.game.GUIGame;
-import spaceSurvival.view.game.utilities.*;
-import spaceSurvival.view.game.utilities.logicColor.LogicColorBoss;
-import spaceSurvival.view.game.utilities.logicColor.LogicColorShip;
-import spaceSurvival.view.utilities.BtnAction;
+import spacesurvival.model.World;
+import spacesurvival.utilities.ActionGUI;
+import spacesurvival.view.AbstractGUI;
+import spacesurvival.view.game.GUIGame;
+import spacesurvival.view.game.utilities.*;
+import spacesurvival.view.game.utilities.logicColor.LogicColorBoss;
+import spacesurvival.view.game.utilities.logicColor.LogicColorShip;
+import spacesurvival.view.utilities.BtnAction;
 
 import java.awt.*;
 import java.awt.event.KeyListener;

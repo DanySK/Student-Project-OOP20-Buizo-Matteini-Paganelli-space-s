@@ -1,6 +1,6 @@
-package spaceSurvival.view.loading;
+package spacesurvival.view.loading;
 
-import spaceSurvival.view.GUI;
+import spacesurvival.view.GUI;
 
 public interface GUILoading extends GUI, GraphicsGUILoading {
 

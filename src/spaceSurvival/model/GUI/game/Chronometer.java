@@ -1,4 +1,4 @@
-package spaceSurvival.model.GUI.game;
+package spacesurvival.model.GUI.game;
 
 public class Chronometer extends Thread{
     private String timer;

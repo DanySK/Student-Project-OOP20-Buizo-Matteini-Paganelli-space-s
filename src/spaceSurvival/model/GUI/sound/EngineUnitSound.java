@@ -1,6 +1,6 @@
-package spaceSurvival.model.GUI.sound;
+package spacesurvival.model.GUI.sound;
 
-import spaceSurvival.utilities.DesignSound;
+import spacesurvival.utilities.DesignSound;
 
 public class EngineUnitSound {
     private int valueBackup;

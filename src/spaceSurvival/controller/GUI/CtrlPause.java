@@ -1,12 +1,12 @@
-package spaceSurvival.controller.GUI;
+package spacesurvival.controller.gui;
 
-import spaceSurvival.controller.GUI.command.SwitchGUI;
-import spaceSurvival.model.GUI.EngineGUI;
-import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.model.GUI.pause.EnginePause;
-import spaceSurvival.utilities.ActionGUI;
-import spaceSurvival.view.GUI;
-import spaceSurvival.view.pause.GUIPause;
+import spacesurvival.controller.gui.command.SwitchGUI;
+import spacesurvival.model.GUI.EngineGUI;
+import spacesurvival.model.GUI.Visibility;
+import spacesurvival.model.GUI.pause.EnginePause;
+import spacesurvival.utilities.ActionGUI;
+import spacesurvival.view.GUI;
+import spacesurvival.view.pause.GUIPause;
 
 public class CtrlPause implements ControllerGUI{
     private final EnginePause engine;

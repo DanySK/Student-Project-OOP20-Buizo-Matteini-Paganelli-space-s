@@ -1,10 +1,10 @@
-package spaceSurvival.model.movement;
+package spacesurvival.model.movement;
 
 import java.awt.geom.AffineTransform;
 
-import spaceSurvival.model.common.V2d;
-import spaceSurvival.model.gameObject.MovableGameObject;
-import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
+import spacesurvival.model.common.V2d;
+import spacesurvival.model.gameobject.MovableGameObject;
+import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 
 public class ControlledMovement implements Movement {
 

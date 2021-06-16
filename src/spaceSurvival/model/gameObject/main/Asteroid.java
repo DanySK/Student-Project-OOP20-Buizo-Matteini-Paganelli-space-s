@@ -1,19 +1,18 @@
-package spaceSurvival.model.gameObject.mainGameObject;
+package spacesurvival.model.gameobject.main;
 
 import java.awt.geom.AffineTransform;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-import spaceSurvival.model.common.P2d;
-import spaceSurvival.model.common.V2d;
-import spaceSurvival.model.gameObject.GameObjectUtils;
-import spaceSurvival.model.gameObject.MainGameObject;
-import spaceSurvival.model.movement.Movement;
-import spaceSurvival.model.gameObject.weapon.Weapon;
-import spaceSurvival.model.EngineImage;
-import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
-import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
+import spacesurvival.model.common.P2d;
+import spacesurvival.model.common.V2d;
+import spacesurvival.model.gameobject.GameObjectUtils;
+import spacesurvival.model.gameobject.MainGameObject;
+import spacesurvival.model.movement.Movement;
+import spacesurvival.model.EngineImage;
+import spacesurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
+import spacesurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 
 public class Asteroid extends MainGameObject {
 	

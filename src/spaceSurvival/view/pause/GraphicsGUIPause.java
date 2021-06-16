@@ -1,4 +1,4 @@
-package spaceSurvival.view.pause;
+package spacesurvival.view.pause;
 
 import java.awt.*;
 

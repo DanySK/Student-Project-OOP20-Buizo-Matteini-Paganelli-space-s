@@ -1,4 +1,4 @@
-package spaceSurvival.view.sound.utilities;
+package spacesurvival.view.sound.utilities;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -7,9 +7,9 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import spaceSurvival.model.GUI.sound.TypeUnitSound;
-import spaceSurvival.utilities.dimension.ScaleOf;
-import spaceSurvival.view.utilities.FactoryGUIs;
+import spacesurvival.model.GUI.sound.TypeUnitSound;
+import spacesurvival.utilities.dimension.ScaleOf;
+import spacesurvival.view.utilities.FactoryGUIs;
 
 
 public class UnitSound extends JPanel {

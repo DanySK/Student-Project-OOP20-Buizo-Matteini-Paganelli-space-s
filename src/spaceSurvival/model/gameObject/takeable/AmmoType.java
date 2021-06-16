@@ -1,11 +1,11 @@
-package spaceSurvival.model.gameObject.takeableGameObject;
+package spacesurvival.model.gameobject.takeable;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import spaceSurvival.model.gameObject.Effect;
+import spacesurvival.model.gameobject.Effect;
 
 public enum AmmoType {
 	NORMAL(Effect.NONE),

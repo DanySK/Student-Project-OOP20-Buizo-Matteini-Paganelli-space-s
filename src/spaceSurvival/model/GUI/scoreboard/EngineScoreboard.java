@@ -1,9 +1,9 @@
-package spaceSurvival.model.GUI.scoreboard;
+package spacesurvival.model.GUI.scoreboard;
 
-import spaceSurvival.model.GUI.EngineGUI;
-import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.utilities.ActionGUI;
-import spaceSurvival.utilities.dimension.Screen;
+import spacesurvival.model.GUI.EngineGUI;
+import spacesurvival.model.GUI.Visibility;
+import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.dimension.Screen;
 
 import java.awt.*;
 import java.util.Arrays;

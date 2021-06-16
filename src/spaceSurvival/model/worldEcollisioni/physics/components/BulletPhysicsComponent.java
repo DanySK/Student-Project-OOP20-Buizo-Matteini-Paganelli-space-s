@@ -1,17 +1,17 @@
-package spaceSurvival.model.worldEcollisioni.physics.components;
+package spacesurvival.model.worldEcollisioni.physics.components;
 
-import spaceSurvival.model.gameObject.GameObject;
-import spaceSurvival.model.gameObject.MainGameObject;
-import spaceSurvival.model.gameObject.enemy.FireableObject;
+import spacesurvival.model.gameobject.GameObject;
+import spacesurvival.model.gameobject.MainGameObject;
+import spacesurvival.model.gameobject.enemy.FireableObject;
 
 import java.util.Optional;
 
-import spaceSurvival.model.World;
-import spaceSurvival.model.worldEcollisioni.hitEvents.HitBorderEvent;
-import spaceSurvival.model.worldEcollisioni.hitEvents.HitBulletEvent;
-import spaceSurvival.model.worldEcollisioni.physics.BoundaryCollision;
-import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
-import spaceSurvival.model.gameObject.weapon.Bullet;
+import spacesurvival.model.World;
+import spacesurvival.model.worldEcollisioni.hitEvents.HitBorderEvent;
+import spacesurvival.model.worldEcollisioni.hitEvents.HitBulletEvent;
+import spacesurvival.model.worldEcollisioni.physics.BoundaryCollision;
+import spacesurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
+import spacesurvival.model.gameobject.weapon.Bullet;
 
 public class BulletPhysicsComponent implements PhysicsComponent {
 

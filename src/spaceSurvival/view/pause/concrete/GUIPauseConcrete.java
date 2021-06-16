@@ -1,10 +1,10 @@
-package spaceSurvival.view.pause.concrete;
+package spacesurvival.view.pause.concrete;
 
-import spaceSurvival.model.GUI.pause.EnginePause;
-import spaceSurvival.utilities.ActionGUI;
-import spaceSurvival.view.AbstractGUI;
-import spaceSurvival.view.pause.GUIPause;
-import spaceSurvival.view.utilities.BtnAction;
+import spacesurvival.model.GUI.pause.EnginePause;
+import spacesurvival.utilities.ActionGUI;
+import spacesurvival.view.AbstractGUI;
+import spacesurvival.view.pause.GUIPause;
+import spacesurvival.view.utilities.BtnAction;
 
 import javax.swing.*;
 import java.awt.*;

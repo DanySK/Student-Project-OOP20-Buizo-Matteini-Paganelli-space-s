@@ -1,17 +1,17 @@
-package spaceSurvival.model.gameObject.enemy;
+package spacesurvival.model.gameobject.enemy;
 
 import java.util.List;
 import java.util.Optional;
 
-import spaceSurvival.model.gameObject.GameObjectUtils;
-import spaceSurvival.model.movement.Movement;
-import spaceSurvival.model.common.P2d;
-import spaceSurvival.model.common.V2d;
-import spaceSurvival.model.gameObject.weapon.Weapon;
-import spaceSurvival.model.gameObject.weapon.shootinglogic.ShootingLogic;
-import spaceSurvival.model.EngineImage;
-import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
-import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
+import spacesurvival.model.gameobject.GameObjectUtils;
+import spacesurvival.model.movement.Movement;
+import spacesurvival.model.common.P2d;
+import spacesurvival.model.common.V2d;
+import spacesurvival.model.gameobject.weapon.Weapon;
+import spacesurvival.model.gameobject.weapon.shootinglogic.ShootingLogic;
+import spacesurvival.model.EngineImage;
+import spacesurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
+import spacesurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 
 public class FireEnemy extends FireableObject {
 

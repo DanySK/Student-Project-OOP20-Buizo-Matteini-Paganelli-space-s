@@ -1,6 +1,6 @@
-package spaceSurvival.view.sound.utilities;
+package spacesurvival.view.sound.utilities;
 
-import spaceSurvival.model.GUI.sound.TypeUnitSound;
+import spacesurvival.model.GUI.sound.TypeUnitSound;
 
 import javax.swing.*;
 import java.util.Objects;

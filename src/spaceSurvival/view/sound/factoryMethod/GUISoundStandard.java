@@ -1,14 +1,14 @@
-package spaceSurvival.view.sound.factoryMethod;
+package spacesurvival.view.sound.factoryMethod;
 
-import spaceSurvival.utilities.dimension.ScaleOf;
-import spaceSurvival.utilities.pathImage.Background;
-import spaceSurvival.utilities.pathImage.Icon;
-import spaceSurvival.utilities.dimension.Screen;
-import spaceSurvival.view.utilities.DesignGraphics;
-import spaceSurvival.view.sound.FactoryGUISound;
-import spaceSurvival.view.sound.GUISound;
-import spaceSurvival.view.sound.concrete.GUISoundConcrete;
-import spaceSurvival.view.utilities.FactoryGUIs;
+import spacesurvival.utilities.dimension.ScaleOf;
+import spacesurvival.utilities.pathImage.Background;
+import spacesurvival.utilities.pathImage.Icon;
+import spacesurvival.utilities.dimension.Screen;
+import spacesurvival.view.utilities.DesignGraphics;
+import spacesurvival.view.sound.FactoryGUISound;
+import spacesurvival.view.sound.GUISound;
+import spacesurvival.view.sound.concrete.GUISoundConcrete;
+import spacesurvival.view.utilities.FactoryGUIs;
 
 import java.awt.*;
 

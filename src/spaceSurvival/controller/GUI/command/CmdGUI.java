@@ -1,6 +1,6 @@
-package spaceSurvival.controller.GUI.command;
+package spacesurvival.controller.gui.command;
 
-import spaceSurvival.view.GUI;
+import spacesurvival.view.GUI;
 
 public interface CmdGUI {
     public void execute(final GUI gui);

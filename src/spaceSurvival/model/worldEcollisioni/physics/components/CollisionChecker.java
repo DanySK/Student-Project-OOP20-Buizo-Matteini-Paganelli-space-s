@@ -1,14 +1,14 @@
-package spaceSurvival.model.worldEcollisioni.physics.components;
+package spacesurvival.model.worldEcollisioni.physics.components;
 
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
-import spaceSurvival.model.common.Line;
-import spaceSurvival.model.common.P2d;
-import spaceSurvival.model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
-import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
-import spaceSurvival.utilities.SystemVariables;
+import spacesurvival.model.common.Line;
+import spacesurvival.model.common.P2d;
+import spacesurvival.model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
+import spacesurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
+import spacesurvival.utilities.SystemVariables;
 
 public class CollisionChecker {
 

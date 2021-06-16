@@ -1,13 +1,13 @@
-package spaceSurvival.view.loading.factoryMethod;
+package spacesurvival.view.loading.factoryMethod;
 
-import spaceSurvival.view.utilities.DesignGraphics;
-import spaceSurvival.utilities.dimension.ScaleOf;
-import spaceSurvival.utilities.dimension.Screen;
-import spaceSurvival.utilities.pathImage.Background;
-import spaceSurvival.view.loading.FactoryGUILoading;
-import spaceSurvival.view.loading.GUILoading;
-import spaceSurvival.view.loading.concrete.GUILoadingConcrete;
-import spaceSurvival.view.utilities.FactoryGUIs;
+import spacesurvival.view.utilities.DesignGraphics;
+import spacesurvival.utilities.dimension.ScaleOf;
+import spacesurvival.utilities.dimension.Screen;
+import spacesurvival.utilities.pathImage.Background;
+import spacesurvival.view.loading.FactoryGUILoading;
+import spacesurvival.view.loading.GUILoading;
+import spacesurvival.view.loading.concrete.GUILoadingConcrete;
+import spacesurvival.view.utilities.FactoryGUIs;
 
 import javax.swing.*;
 import java.awt.*;

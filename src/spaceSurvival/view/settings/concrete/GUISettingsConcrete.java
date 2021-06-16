@@ -1,14 +1,14 @@
-package spaceSurvival.view.settings.concrete;
+package spacesurvival.view.settings.concrete;
 
-import spaceSurvival.model.EngineImage;
-import spaceSurvival.model.GUI.settings.Difficulty;
-import spaceSurvival.utilities.ActionGUI;
-import spaceSurvival.view.AbstractGUI;
-import spaceSurvival.view.settings.GUISettings;
-import spaceSurvival.view.settings.utilities.JRadioDifficult;
-import spaceSurvival.view.settings.utilities.PanelDifficult;
-import spaceSurvival.view.settings.utilities.PanelSkin;
-import spaceSurvival.view.utilities.*;
+import spacesurvival.model.EngineImage;
+import spacesurvival.model.GUI.settings.Difficulty;
+import spacesurvival.utilities.ActionGUI;
+import spacesurvival.view.AbstractGUI;
+import spacesurvival.view.settings.GUISettings;
+import spacesurvival.view.settings.utilities.JRadioDifficult;
+import spacesurvival.view.settings.utilities.PanelDifficult;
+import spacesurvival.view.settings.utilities.PanelSkin;
+import spacesurvival.view.utilities.*;
 
 import javax.swing.*;
 import java.awt.*;

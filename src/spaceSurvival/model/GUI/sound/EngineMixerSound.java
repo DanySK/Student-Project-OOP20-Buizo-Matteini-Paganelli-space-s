@@ -1,4 +1,4 @@
-package spaceSurvival.model.GUI.sound;
+package spacesurvival.model.GUI.sound;
 
 import java.util.HashMap;
 import java.util.List;

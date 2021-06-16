@@ -1,6 +1,6 @@
-package spaceSurvival.model.worldEcollisioni.physics.boundingType;
+package spacesurvival.model.worldEcollisioni.physics.boundingType;
 
-import spaceSurvival.model.common.P2d;
+import spacesurvival.model.common.P2d;
 import java.awt.geom.AffineTransform;
 
 public interface BoundingBox {

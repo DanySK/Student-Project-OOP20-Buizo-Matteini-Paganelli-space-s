@@ -1,10 +1,10 @@
-package spaceSurvival.view.game.utilities;
+package spacesurvival.view.game.utilities;
 
-import spaceSurvival.utilities.dimension.ScaleOf;
-import spaceSurvival.utilities.dimension.Screen;
-import spaceSurvival.utilities.pathImage.Icon;
-import spaceSurvival.view.utilities.BtnAction;
-import spaceSurvival.view.utilities.FactoryGUIs;
+import spacesurvival.utilities.dimension.ScaleOf;
+import spacesurvival.utilities.dimension.Screen;
+import spacesurvival.utilities.pathImage.Icon;
+import spacesurvival.view.utilities.BtnAction;
+import spacesurvival.view.utilities.FactoryGUIs;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

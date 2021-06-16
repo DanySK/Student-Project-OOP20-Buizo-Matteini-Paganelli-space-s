@@ -1,14 +1,14 @@
-package spaceSurvival.model.worldEcollisioni.physics.components;
+package spacesurvival.model.worldEcollisioni.physics.components;
 
-import spaceSurvival.model.gameObject.GameObject;
-import spaceSurvival.model.gameObject.enemy.Boss;
-import spaceSurvival.model.worldEcollisioni.hitEvents.HitBorderEvent;
-import spaceSurvival.model.worldEcollisioni.physics.BoundaryCollision;
-import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
+import spacesurvival.model.gameobject.GameObject;
+import spacesurvival.model.gameobject.enemy.Boss;
+import spacesurvival.model.worldEcollisioni.hitEvents.HitBorderEvent;
+import spacesurvival.model.worldEcollisioni.physics.BoundaryCollision;
+import spacesurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 
 import java.util.Optional;
 
-import spaceSurvival.model.World;
+import spacesurvival.model.World;
 
 public class BossPhysicsComponent implements PhysicsComponent {
 

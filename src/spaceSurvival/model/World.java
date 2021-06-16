@@ -1,4 +1,4 @@
-package spaceSurvival.model;
+package spacesurvival.model;
 
 import java.awt.Rectangle;
 import java.util.HashSet;
@@ -6,31 +6,31 @@ import java.util.Iterator;
 import java.util.Optional;
 import java.util.Set;
 
-import spaceSurvival.model.GUI.settings.SkinSpaceShip;
-import spaceSurvival.model.common.P2d;
-import spaceSurvival.model.gameObject.GameObject;
-import spaceSurvival.model.gameObject.MainGameObject;
-import spaceSurvival.model.gameObject.MovableGameObject;
-import spaceSurvival.model.gameObject.enemy.Boss;
-import spaceSurvival.model.gameObject.enemy.ChaseEnemy;
-import spaceSurvival.model.gameObject.enemy.FireEnemy;
-import spaceSurvival.model.gameObject.enemy.FireableObject;
-import spaceSurvival.model.gameObject.factories.AbstractFactoryGameObject;
-import spaceSurvival.model.gameObject.factories.ConcreteFactoryGameObject;
-import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
-import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
-import spaceSurvival.model.gameObject.takeableGameObject.Ammo;
-import spaceSurvival.model.gameObject.takeableGameObject.AmmoType;
-import spaceSurvival.model.gameObject.takeableGameObject.Heart;
-import spaceSurvival.model.gameObject.takeableGameObject.TakeableGameObject;
-import spaceSurvival.model.gameObject.weapon.Bullet;
-import spaceSurvival.model.gameObject.weapon.Weapon;
-import spaceSurvival.model.worldEcollisioni.WorldEvent;
-import spaceSurvival.model.worldEcollisioni.WorldEventListener;
-import spaceSurvival.model.worldEcollisioni.physics.BoundaryCollision;
-import spaceSurvival.model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
-import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
-import spaceSurvival.model.worldEcollisioni.physics.components.CollisionChecker;
+import spacesurvival.model.GUI.settings.SkinSpaceShip;
+import spacesurvival.model.common.P2d;
+import spacesurvival.model.gameobject.GameObject;
+import spacesurvival.model.gameobject.MainGameObject;
+import spacesurvival.model.gameobject.MovableGameObject;
+import spacesurvival.model.gameobject.enemy.Boss;
+import spacesurvival.model.gameobject.enemy.ChaseEnemy;
+import spacesurvival.model.gameobject.enemy.FireEnemy;
+import spacesurvival.model.gameobject.enemy.FireableObject;
+import spacesurvival.model.gameobject.factories.AbstractFactoryGameObject;
+import spacesurvival.model.gameobject.factories.ConcreteFactoryGameObject;
+import spacesurvival.model.gameobject.main.Asteroid;
+import spacesurvival.model.gameobject.main.SpaceShipSingleton;
+import spacesurvival.model.gameobject.takeable.Ammo;
+import spacesurvival.model.gameobject.takeable.AmmoType;
+import spacesurvival.model.gameobject.takeable.Heart;
+import spacesurvival.model.gameobject.takeable.TakeableGameObject;
+import spacesurvival.model.gameobject.weapon.Bullet;
+import spacesurvival.model.gameobject.weapon.Weapon;
+import spacesurvival.model.worldEcollisioni.WorldEvent;
+import spacesurvival.model.worldEcollisioni.WorldEventListener;
+import spacesurvival.model.worldEcollisioni.physics.BoundaryCollision;
+import spacesurvival.model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
+import spacesurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
+import spacesurvival.model.worldEcollisioni.physics.components.CollisionChecker;
 
 public class World {
 

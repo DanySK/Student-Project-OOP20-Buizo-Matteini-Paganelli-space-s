@@ -1,6 +1,6 @@
-package spaceSurvival.model.GUI;
+package spacesurvival.model.GUI;
 
-import spaceSurvival.utilities.ActionGUI;
+import spacesurvival.utilities.ActionGUI;
 
 import java.awt.*;
 import java.util.List;

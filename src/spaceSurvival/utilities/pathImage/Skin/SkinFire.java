@@ -1,4 +1,4 @@
-package spaceSurvival.utilities.pathImage.Skin;
+package spacesurvival.utilities.pathImage.Skin;
 
 public class SkinFire {
 }

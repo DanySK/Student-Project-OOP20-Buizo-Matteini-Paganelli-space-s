@@ -1,14 +1,14 @@
-package spaceSurvival.factories;
+package spacesurvival.factories;
 
-import spaceSurvival.model.GUI.dead.EngineDead;
-import spaceSurvival.model.GUI.game.EngineGame;
-import spaceSurvival.model.GUI.help.EngineHelp;
-import spaceSurvival.model.GUI.loading.EngineLoading;
-import spaceSurvival.model.GUI.menu.EngineMenu;
-import spaceSurvival.model.GUI.pause.EnginePause;
-import spaceSurvival.model.GUI.scoreboard.EngineScoreboard;
-import spaceSurvival.model.GUI.settings.EngineSettings;
-import spaceSurvival.model.GUI.sound.EngineSound;
+import spacesurvival.model.GUI.dead.EngineDead;
+import spacesurvival.model.GUI.game.EngineGame;
+import spacesurvival.model.GUI.help.EngineHelp;
+import spacesurvival.model.GUI.loading.EngineLoading;
+import spacesurvival.model.GUI.menu.EngineMenu;
+import spacesurvival.model.GUI.pause.EnginePause;
+import spacesurvival.model.GUI.scoreboard.EngineScoreboard;
+import spacesurvival.model.GUI.settings.EngineSettings;
+import spacesurvival.model.GUI.sound.EngineSound;
 
 public class StaticFactoryEngineGUI {
 

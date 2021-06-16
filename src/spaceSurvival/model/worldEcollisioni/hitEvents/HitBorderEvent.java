@@ -1,9 +1,9 @@
-package spaceSurvival.model.worldEcollisioni.hitEvents;
+package spacesurvival.model.worldEcollisioni.hitEvents;
 
-import spaceSurvival.model.common.P2d;
-import spaceSurvival.model.gameObject.MovableGameObject;
-import spaceSurvival.model.worldEcollisioni.WorldEvent;
-import spaceSurvival.model.worldEcollisioni.physics.BoundaryCollision.CollisionEdge;
+import spacesurvival.model.common.P2d;
+import spacesurvival.model.gameobject.MovableGameObject;
+import spacesurvival.model.worldEcollisioni.WorldEvent;
+import spacesurvival.model.worldEcollisioni.physics.BoundaryCollision.CollisionEdge;
 
 public class HitBorderEvent implements WorldEvent {
     private final P2d where;

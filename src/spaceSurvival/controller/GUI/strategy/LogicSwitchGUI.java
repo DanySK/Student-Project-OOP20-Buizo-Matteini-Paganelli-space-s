@@ -1,8 +1,8 @@
-package spaceSurvival.controller.GUI.strategy;
+package spacesurvival.controller.gui.strategy;
 
-import spaceSurvival.controller.GUI.ControllerGUI;
-import spaceSurvival.controller.utilities.ListGUI;
-import spaceSurvival.utilities.ActionGUI;
+import spacesurvival.controller.gui.ControllerGUI;
+import spacesurvival.controller.utilities.ListGUI;
+import spacesurvival.utilities.ActionGUI;
 
 import java.util.Map;
 

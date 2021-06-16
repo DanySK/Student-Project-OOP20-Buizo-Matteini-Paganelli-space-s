@@ -1,4 +1,4 @@
-package spaceSurvival.model.GUI.sound;
+package spacesurvival.model.GUI.sound;
 
 public enum TypeUnitSound {
     SLIDER_BACKGROUND("Main"),

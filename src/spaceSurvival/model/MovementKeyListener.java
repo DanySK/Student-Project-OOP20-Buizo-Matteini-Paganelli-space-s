@@ -1,12 +1,12 @@
-package spaceSurvival.model;
+package spacesurvival.model;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Optional;
 
-import spaceSurvival.controller.CallerCommand;
-import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
-import spaceSurvival.utilities.CommandType;
+import spacesurvival.controller.CallerCommand;
+import spacesurvival.model.gameobject.main.SpaceShipSingleton;
+import spacesurvival.utilities.CommandType;
 
 public class MovementKeyListener implements KeyListener {
 

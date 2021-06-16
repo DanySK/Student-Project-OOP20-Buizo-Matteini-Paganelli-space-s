@@ -1,12 +1,12 @@
-package spaceSurvival.view.dead.factoryMethod;
+package spacesurvival.view.dead.factoryMethod;
 
-import spaceSurvival.utilities.pathImage.Background;
-import spaceSurvival.view.dead.FactoryGUIDead;
-import spaceSurvival.view.dead.GUIDead;
+import spacesurvival.utilities.pathImage.Background;
+import spacesurvival.view.dead.FactoryGUIDead;
+import spacesurvival.view.dead.GUIDead;
 
-import spaceSurvival.view.dead.concrete.GUIDeadConcrete;
-import spaceSurvival.view.utilities.DesignGraphics;
-import spaceSurvival.view.utilities.FactoryGUIs;
+import spacesurvival.view.dead.concrete.GUIDeadConcrete;
+import spacesurvival.view.utilities.DesignGraphics;
+import spacesurvival.view.utilities.FactoryGUIs;
 
 import java.awt.*;
 

@@ -1,12 +1,12 @@
-package spaceSurvival.model.GUI.sound;
+package spacesurvival.model.GUI.sound;
 
-import spaceSurvival.model.GUI.EngineGUI;
-import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.model.EngineImage;
-import spaceSurvival.utilities.DesignSound;
+import spacesurvival.model.GUI.EngineGUI;
+import spacesurvival.model.GUI.Visibility;
+import spacesurvival.model.EngineImage;
+import spacesurvival.utilities.DesignSound;
 
-import spaceSurvival.utilities.dimension.Screen;
-import spaceSurvival.utilities.ActionGUI;
+import spacesurvival.utilities.dimension.Screen;
+import spacesurvival.utilities.ActionGUI;
 
 import java.awt.*;
 import java.util.Arrays;

@@ -1,11 +1,10 @@
-package spaceSurvival.model.movement;
+package spacesurvival.model.movement;
 
 import java.awt.geom.AffineTransform;
 
-import spaceSurvival.model.common.P2d;
-import spaceSurvival.model.gameObject.MainGameObject;
-import spaceSurvival.model.gameObject.MovableGameObject;
-import spaceSurvival.model.gameObject.enemy.Enemy;
+import spacesurvival.model.common.P2d;
+import spacesurvival.model.gameobject.MainGameObject;
+import spacesurvival.model.gameobject.MovableGameObject;
 
 public class DistantMovement implements Movement {
 	

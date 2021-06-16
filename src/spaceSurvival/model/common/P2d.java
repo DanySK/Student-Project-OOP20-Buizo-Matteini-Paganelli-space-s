@@ -1,4 +1,4 @@
-package spaceSurvival.model.common;
+package spacesurvival.model.common;
 
 /**
  * 

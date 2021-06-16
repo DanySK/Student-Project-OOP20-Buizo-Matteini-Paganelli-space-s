@@ -1,6 +1,6 @@
-package spaceSurvival.model.worldEcollisioni.physics;
+package spacesurvival.model.worldEcollisioni.physics;
 
-import spaceSurvival.model.common.P2d;
+import spacesurvival.model.common.P2d;
 
 public class BoundaryCollision {
 

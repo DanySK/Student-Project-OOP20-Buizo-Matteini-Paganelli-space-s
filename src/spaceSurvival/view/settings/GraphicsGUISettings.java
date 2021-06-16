@@ -1,4 +1,4 @@
-package spaceSurvival.view.settings;
+package spacesurvival.view.settings;
 
 import java.awt.*;
 

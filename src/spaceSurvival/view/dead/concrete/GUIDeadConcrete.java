@@ -1,10 +1,10 @@
-package spaceSurvival.view.dead.concrete;
+package spacesurvival.view.dead.concrete;
 
-import spaceSurvival.model.GUI.dead.EngineDead;
-import spaceSurvival.utilities.ActionGUI;
-import spaceSurvival.view.AbstractGUI;
-import spaceSurvival.view.dead.GUIDead;
-import spaceSurvival.view.utilities.BtnAction;
+import spacesurvival.model.GUI.dead.EngineDead;
+import spacesurvival.utilities.ActionGUI;
+import spacesurvival.view.AbstractGUI;
+import spacesurvival.view.dead.GUIDead;
+import spacesurvival.view.utilities.BtnAction;
 
 import javax.swing.*;
 import java.awt.*;

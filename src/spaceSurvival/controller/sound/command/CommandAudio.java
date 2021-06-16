@@ -1,6 +1,6 @@
-package spaceSurvival.controller.sound.command;
+package spacesurvival.controller.sound.command;
 
-import spaceSurvival.model.sound.Sound;
+import spacesurvival.model.sound.Sound;
 
 public interface CommandAudio {
 

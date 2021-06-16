@@ -1,7 +1,7 @@
-package spaceSurvival.model.sound.category;
+package spacesurvival.model.sound.category;
 
-import spaceSurvival.model.sound.Sound;
-import spaceSurvival.utilities.SoundPath;
+import spacesurvival.model.sound.Sound;
+import spacesurvival.utilities.SoundPath;
 import javax.sound.sampled.Clip;
 
 public class SoundLoop extends Sound {

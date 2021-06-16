@@ -1,8 +1,8 @@
-package spaceSurvival.model.gameObject.factories;
+package spacesurvival.model.gameobject.factories;
 
-import spaceSurvival.model.gameObject.MainGameObject;
-import spaceSurvival.model.gameObject.enemy.FireableObject;
-import spaceSurvival.model.gameObject.takeableGameObject.TakeableGameObject;
+import spacesurvival.model.gameobject.MainGameObject;
+import spacesurvival.model.gameobject.enemy.FireableObject;
+import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 
 public abstract class AbstractFactoryGameObject {	
     public abstract MainGameObject createAsteroid();

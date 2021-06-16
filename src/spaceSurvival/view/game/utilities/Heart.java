@@ -1,10 +1,10 @@
-package spaceSurvival.view.game.utilities;
+package spacesurvival.view.game.utilities;
 
-import spaceSurvival.model.EngineImage;
-import spaceSurvival.utilities.dimension.ScaleOf;
-import spaceSurvival.utilities.dimension.Screen;
-import spaceSurvival.utilities.pathImage.Icon;
-import spaceSurvival.view.utilities.JImage;
+import spacesurvival.model.EngineImage;
+import spacesurvival.utilities.dimension.ScaleOf;
+import spacesurvival.utilities.dimension.Screen;
+import spacesurvival.utilities.pathImage.Icon;
+import spacesurvival.view.utilities.JImage;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,6 +1,6 @@
-package spaceSurvival.utilities.dimension;
+package spacesurvival.utilities.dimension;
 
-import spaceSurvival.utilities.SystemVariables;
+import spacesurvival.utilities.SystemVariables;
 
 public class ScaleOf {
     public static final int GAME_OBJECT = (int)(30 * SystemVariables.SCALE_X);

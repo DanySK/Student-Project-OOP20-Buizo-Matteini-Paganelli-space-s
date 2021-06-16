@@ -1,7 +1,7 @@
-package spaceSurvival.model;
+package spacesurvival.model;
 
-import spaceSurvival.utilities.pathImage.Background;
-import spaceSurvival.view.utilities.JImage;
+import spacesurvival.utilities.pathImage.Background;
+import spacesurvival.view.utilities.JImage;
 
 import javax.imageio.ImageIO;
 

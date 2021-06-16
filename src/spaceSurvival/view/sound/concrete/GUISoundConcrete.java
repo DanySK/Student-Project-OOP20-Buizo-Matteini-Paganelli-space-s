@@ -1,14 +1,14 @@
-package spaceSurvival.view.sound.concrete;
+package spacesurvival.view.sound.concrete;
 
-import spaceSurvival.model.GUI.sound.EngineSound;
-import spaceSurvival.model.GUI.sound.TypeUnitSound;
-import spaceSurvival.utilities.ActionGUI;
-import spaceSurvival.view.AbstractGUI;
-import spaceSurvival.view.sound.GUISound;
-import spaceSurvival.view.sound.utilities.ButtonSliderType;
-import spaceSurvival.view.sound.utilities.MixerSound;
-import spaceSurvival.view.utilities.BtnAction;
-import spaceSurvival.view.sound.utilities.SliderType;
+import spacesurvival.model.GUI.sound.EngineSound;
+import spacesurvival.model.GUI.sound.TypeUnitSound;
+import spacesurvival.utilities.ActionGUI;
+import spacesurvival.view.AbstractGUI;
+import spacesurvival.view.sound.GUISound;
+import spacesurvival.view.sound.utilities.ButtonSliderType;
+import spacesurvival.view.sound.utilities.MixerSound;
+import spacesurvival.view.utilities.BtnAction;
+import spacesurvival.view.sound.utilities.SliderType;
 
 import javax.swing.*;
 import java.awt.*;

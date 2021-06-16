@@ -1,10 +1,10 @@
-package spaceSurvival.view.sound;
+package spacesurvival.view.sound;
 
-import spaceSurvival.model.GUI.sound.TypeUnitSound;
-import spaceSurvival.utilities.ActionGUI;
-import spaceSurvival.view.GUI;
-import spaceSurvival.view.sound.utilities.ButtonSliderType;
-import spaceSurvival.view.sound.utilities.SliderType;
+import spacesurvival.model.GUI.sound.TypeUnitSound;
+import spacesurvival.utilities.ActionGUI;
+import spacesurvival.view.GUI;
+import spacesurvival.view.sound.utilities.ButtonSliderType;
+import spacesurvival.view.sound.utilities.SliderType;
 import java.util.List;
 
 public interface GUISound extends GUI, GraphicsGUISound {

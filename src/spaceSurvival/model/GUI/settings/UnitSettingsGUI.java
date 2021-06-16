@@ -1,4 +1,4 @@
-package spaceSurvival.model.GUI.settings;
+package spacesurvival.model.GUI.settings;
 
 public enum UnitSettingsGUI {
     UNIT_SKIN("Skin"),

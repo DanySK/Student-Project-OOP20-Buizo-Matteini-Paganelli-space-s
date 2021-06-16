@@ -1,7 +1,7 @@
-package spaceSurvival.view.scoreboard;
+package spacesurvival.view.scoreboard;
 
-import spaceSurvival.utilities.ActionGUI;
-import spaceSurvival.view.GUI;
+import spacesurvival.utilities.ActionGUI;
+import spacesurvival.view.GUI;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package spaceSurvival.utilities;
+package spacesurvival.utilities;
 
 import java.util.Optional;
 import java.util.stream.Stream;

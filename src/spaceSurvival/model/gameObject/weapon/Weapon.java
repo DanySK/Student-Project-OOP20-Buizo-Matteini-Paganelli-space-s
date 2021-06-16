@@ -1,19 +1,19 @@
-package spaceSurvival.model.gameObject.weapon;
+package spacesurvival.model.gameobject.weapon;
 
-import spaceSurvival.model.worldEcollisioni.physics.components.BulletPhysicsComponent;
-import spaceSurvival.utilities.dimension.ScaleOf;
-import spaceSurvival.utilities.dimension.Screen;
-import spaceSurvival.model.common.P2d;
-import spaceSurvival.model.common.V2d;
-import spaceSurvival.model.gameObject.GameObjectUtils;
-import spaceSurvival.model.gameObject.MainGameObject;
-import spaceSurvival.model.gameObject.takeableGameObject.AmmoType;
+import spacesurvival.model.worldEcollisioni.physics.components.BulletPhysicsComponent;
+import spacesurvival.utilities.dimension.ScaleOf;
+import spacesurvival.utilities.dimension.Screen;
+import spacesurvival.model.common.P2d;
+import spacesurvival.model.common.V2d;
+import spacesurvival.model.gameobject.GameObjectUtils;
+import spacesurvival.model.gameobject.MainGameObject;
+import spacesurvival.model.gameobject.takeable.AmmoType;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import spaceSurvival.model.EngineImage;
-import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
+import spacesurvival.model.EngineImage;
+import spacesurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 
 public class Weapon {
 	

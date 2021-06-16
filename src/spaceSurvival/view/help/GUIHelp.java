@@ -1,8 +1,8 @@
-package spaceSurvival.view.help;
+package spacesurvival.view.help;
 
-import spaceSurvival.model.EngineImage;
-import spaceSurvival.utilities.ActionGUI;
-import spaceSurvival.view.GUI;
+import spacesurvival.model.EngineImage;
+import spacesurvival.utilities.ActionGUI;
+import spacesurvival.view.GUI;
 
 import java.util.List;
 

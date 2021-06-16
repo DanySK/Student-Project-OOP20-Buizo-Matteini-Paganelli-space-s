@@ -1,6 +1,6 @@
-package spaceSurvival.model.movement;
+package spacesurvival.model.movement;
 
-import spaceSurvival.model.gameObject.MovableGameObject;
+import spacesurvival.model.gameobject.MovableGameObject;
 
 public interface Movement {
     void move(MovableGameObject object);

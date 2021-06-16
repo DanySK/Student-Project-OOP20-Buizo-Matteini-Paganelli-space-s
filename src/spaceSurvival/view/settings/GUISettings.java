@@ -1,10 +1,10 @@
-package spaceSurvival.view.settings;
+package spacesurvival.view.settings;
 
-import spaceSurvival.model.EngineImage;
-import spaceSurvival.model.GUI.settings.Difficulty;
-import spaceSurvival.utilities.ActionGUI;
-import spaceSurvival.view.GUI;
-import spaceSurvival.view.settings.utilities.JRadioDifficult;
+import spacesurvival.model.EngineImage;
+import spacesurvival.model.GUI.settings.Difficulty;
+import spacesurvival.utilities.ActionGUI;
+import spacesurvival.view.GUI;
+import spacesurvival.view.settings.utilities.JRadioDifficult;
 
 import javax.swing.*;
 import java.util.List;

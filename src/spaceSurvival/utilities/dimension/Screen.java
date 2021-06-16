@@ -1,7 +1,7 @@
-package spaceSurvival.utilities.dimension;
+package spacesurvival.utilities.dimension;
 
-import spaceSurvival.model.common.P2d;
-import spaceSurvival.utilities.SystemVariables;
+import spacesurvival.model.common.P2d;
+import spacesurvival.utilities.SystemVariables;
 
 import java.awt.*;
 

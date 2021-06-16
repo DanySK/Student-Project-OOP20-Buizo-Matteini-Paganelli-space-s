@@ -1,7 +1,7 @@
-package spaceSurvival.view.utilities;
+package spacesurvival.view.utilities;
 
-import spaceSurvival.utilities.dimension.Screen;
-import spaceSurvival.utilities.pathImage.Background;
+import spacesurvival.utilities.dimension.Screen;
+import spacesurvival.utilities.pathImage.Background;
 
 import javax.swing.*;
 import java.awt.*;

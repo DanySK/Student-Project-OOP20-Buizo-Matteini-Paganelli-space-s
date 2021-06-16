@@ -1,4 +1,4 @@
-package spaceSurvival.model.gameObject;
+package spacesurvival.model.gameobject;
 
 import java.util.Arrays;
 import java.util.Collections;

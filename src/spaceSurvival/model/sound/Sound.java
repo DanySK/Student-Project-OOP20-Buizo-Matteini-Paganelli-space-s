@@ -1,6 +1,6 @@
-package spaceSurvival.model.sound;
+package spacesurvival.model.sound;
 
-import spaceSurvival.utilities.SoundPath;
+import spacesurvival.utilities.SoundPath;
 
 import java.io.IOException;
 import java.util.Optional;

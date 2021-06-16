@@ -1,4 +1,4 @@
-package spaceSurvival.utilities;
+package spacesurvival.utilities;
 
 import java.util.List;
 import java.util.stream.Collectors;

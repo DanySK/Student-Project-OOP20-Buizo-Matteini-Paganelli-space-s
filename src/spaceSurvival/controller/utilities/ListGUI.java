@@ -1,4 +1,4 @@
-package spaceSurvival.controller.utilities;
+package spacesurvival.controller.utilities;
 
 import java.util.ArrayList;
 

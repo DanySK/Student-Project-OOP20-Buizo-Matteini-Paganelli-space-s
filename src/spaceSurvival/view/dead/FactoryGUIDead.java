@@ -1,4 +1,4 @@
-package spaceSurvival.view.dead;
+package spacesurvival.view.dead;
 
 public interface FactoryGUIDead {
 

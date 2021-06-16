@@ -1,4 +1,4 @@
-package spaceSurvival.utilities;
+package spacesurvival.utilities;
 
 import java.awt.*;
 import java.nio.file.FileSystems;

@@ -1,6 +1,6 @@
-package spaceSurvival.model.GUI.dead;
+package spacesurvival.model.GUI.dead;
 
-import spaceSurvival.utilities.ActionGUI;
+import spacesurvival.utilities.ActionGUI;
 
 public enum LinksDead {
     MENU_BTN("Menu", ActionGUI.ID_MENU),

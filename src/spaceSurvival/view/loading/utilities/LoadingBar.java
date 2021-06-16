@@ -1,7 +1,4 @@
-package spaceSurvival.view.loading.utilities;
-
-import spaceSurvival.model.EngineImage;
-import spaceSurvival.utilities.dimension.Screen;
+package spacesurvival.view.loading.utilities;
 
 import javax.swing.*;
 import java.awt.*;

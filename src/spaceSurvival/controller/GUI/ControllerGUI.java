@@ -1,9 +1,9 @@
-package spaceSurvival.controller.GUI;
+package spacesurvival.controller.gui;
 
-import spaceSurvival.model.GUI.EngineGUI;
-import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.utilities.ActionGUI;
-import spaceSurvival.view.GUI;
+import spacesurvival.model.GUI.EngineGUI;
+import spacesurvival.model.GUI.Visibility;
+import spacesurvival.utilities.ActionGUI;
+import spacesurvival.view.GUI;
 
 public interface ControllerGUI {
 

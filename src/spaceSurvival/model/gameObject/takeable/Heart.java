@@ -1,11 +1,11 @@
-package spaceSurvival.model.gameObject.takeableGameObject;
+package spacesurvival.model.gameobject.takeable;
 
 import java.util.List;
 
-import spaceSurvival.model.EngineImage;
-import spaceSurvival.model.common.P2d;
-import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
-import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
+import spacesurvival.model.EngineImage;
+import spacesurvival.model.common.P2d;
+import spacesurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
+import spacesurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 
 public class Heart extends TakeableGameObject {
 

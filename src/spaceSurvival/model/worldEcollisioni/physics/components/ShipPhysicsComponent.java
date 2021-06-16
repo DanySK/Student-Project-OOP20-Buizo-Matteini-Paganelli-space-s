@@ -1,17 +1,17 @@
-package spaceSurvival.model.worldEcollisioni.physics.components;
+package spacesurvival.model.worldEcollisioni.physics.components;
 
 import java.util.Optional;
-import spaceSurvival.model.gameObject.GameObject;
-import spaceSurvival.model.gameObject.MainGameObject;
-import spaceSurvival.model.gameObject.enemy.FireableObject;
-import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
-import spaceSurvival.model.gameObject.takeableGameObject.TakeableGameObject;
-import spaceSurvival.model.World;
-import spaceSurvival.model.worldEcollisioni.hitEvents.HitBorderEvent;
-import spaceSurvival.model.worldEcollisioni.hitEvents.HitMainGameObject;
-import spaceSurvival.model.worldEcollisioni.hitEvents.HitTakeableGameObject;
-import spaceSurvival.model.worldEcollisioni.physics.BoundaryCollision;
-import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
+import spacesurvival.model.gameobject.GameObject;
+import spacesurvival.model.gameobject.MainGameObject;
+import spacesurvival.model.gameobject.enemy.FireableObject;
+import spacesurvival.model.gameobject.main.SpaceShipSingleton;
+import spacesurvival.model.gameobject.takeable.TakeableGameObject;
+import spacesurvival.model.World;
+import spacesurvival.model.worldEcollisioni.hitEvents.HitBorderEvent;
+import spacesurvival.model.worldEcollisioni.hitEvents.HitMainGameObject;
+import spacesurvival.model.worldEcollisioni.hitEvents.HitTakeableGameObject;
+import spacesurvival.model.worldEcollisioni.physics.BoundaryCollision;
+import spacesurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 
 public class ShipPhysicsComponent implements PhysicsComponent {
 

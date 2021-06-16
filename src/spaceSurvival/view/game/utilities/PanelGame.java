@@ -1,13 +1,13 @@
-package spaceSurvival.view.game.utilities;
+package spacesurvival.view.game.utilities;
 
-import spaceSurvival.model.World;
-import spaceSurvival.model.gameObject.GameObject;
-import spaceSurvival.model.EngineImage;
-import spaceSurvival.model.Pair;
-import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
-import spaceSurvival.model.gameObject.takeableGameObject.TakeableGameObject;
-import spaceSurvival.model.gameObject.weapon.Bullet;
-import spaceSurvival.model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
+import spacesurvival.model.World;
+import spacesurvival.model.gameobject.GameObject;
+import spacesurvival.model.EngineImage;
+import spacesurvival.model.Pair;
+import spacesurvival.model.gameobject.main.SpaceShipSingleton;
+import spacesurvival.model.gameobject.takeable.TakeableGameObject;
+import spacesurvival.model.gameobject.weapon.Bullet;
+import spacesurvival.model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
 
 import javax.swing.*;
 import java.awt.*;

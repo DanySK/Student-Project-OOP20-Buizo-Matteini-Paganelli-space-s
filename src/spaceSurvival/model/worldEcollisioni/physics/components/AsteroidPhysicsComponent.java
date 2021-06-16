@@ -1,13 +1,13 @@
-package spaceSurvival.model.worldEcollisioni.physics.components;
+package spacesurvival.model.worldEcollisioni.physics.components;
 
 import java.util.Optional;
 
-import spaceSurvival.model.gameObject.GameObject;
-import spaceSurvival.model.gameObject.mainGameObject.Asteroid;
-import spaceSurvival.model.World;
-import spaceSurvival.model.worldEcollisioni.hitEvents.HitBorderEvent;
-import spaceSurvival.model.worldEcollisioni.physics.BoundaryCollision;
-import spaceSurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
+import spacesurvival.model.gameobject.GameObject;
+import spacesurvival.model.gameobject.main.Asteroid;
+import spacesurvival.model.World;
+import spacesurvival.model.worldEcollisioni.hitEvents.HitBorderEvent;
+import spacesurvival.model.worldEcollisioni.physics.BoundaryCollision;
+import spacesurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
 
 public class AsteroidPhysicsComponent implements PhysicsComponent {
 	

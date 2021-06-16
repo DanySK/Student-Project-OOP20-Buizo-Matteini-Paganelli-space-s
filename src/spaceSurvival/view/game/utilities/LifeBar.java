@@ -1,6 +1,6 @@
-package spaceSurvival.view.game.utilities;
+package spacesurvival.view.game.utilities;
 
-import spaceSurvival.view.game.utilities.logicColor.LogicColor;
+import spacesurvival.view.game.utilities.logicColor.LogicColor;
 
 import javax.swing.*;
 

@@ -1,13 +1,13 @@
-package spaceSurvival.view.pause.factoryMethod;
+package spacesurvival.view.pause.factoryMethod;
 
-import spaceSurvival.model.GUI.pause.EnginePause;
-import spaceSurvival.view.utilities.DesignGraphics;
-import spaceSurvival.utilities.dimension.ScaleOf;
-import spaceSurvival.view.pause.FactoryGUIPause;
-import spaceSurvival.view.pause.GUIPause;
-import spaceSurvival.view.pause.concrete.GUIPauseConcrete;
-import spaceSurvival.view.pause.utilities.IconsButton;
-import spaceSurvival.view.utilities.FactoryGUIs;
+import spacesurvival.model.GUI.pause.EnginePause;
+import spacesurvival.view.utilities.DesignGraphics;
+import spacesurvival.utilities.dimension.ScaleOf;
+import spacesurvival.view.pause.FactoryGUIPause;
+import spacesurvival.view.pause.GUIPause;
+import spacesurvival.view.pause.concrete.GUIPauseConcrete;
+import spacesurvival.view.pause.utilities.IconsButton;
+import spacesurvival.view.utilities.FactoryGUIs;
 
 import java.awt.*;
 

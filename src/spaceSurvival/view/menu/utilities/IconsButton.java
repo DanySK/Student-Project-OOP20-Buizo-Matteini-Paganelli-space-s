@@ -1,6 +1,6 @@
-package spaceSurvival.view.menu.utilities;
+package spacesurvival.view.menu.utilities;
 
-import spaceSurvival.utilities.pathImage.Icon;
+import spacesurvival.utilities.pathImage.Icon;
 
 public enum IconsButton {
     ICON_START(Icon.START),

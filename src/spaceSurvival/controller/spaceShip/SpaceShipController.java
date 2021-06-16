@@ -1,6 +1,6 @@
-package spaceSurvival.controller.spaceShip;
+package spacesurvival.controller.spaceship;
 
-import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
+import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 
 
 public class SpaceShipController {

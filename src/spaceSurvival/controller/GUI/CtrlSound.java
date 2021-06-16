@@ -1,25 +1,25 @@
-package spaceSurvival.controller.GUI;
+package spacesurvival.controller.gui;
 
 import java.util.*;
 import javax.swing.JSlider;
-import spaceSurvival.controller.GUI.command.SwitchGUI;
-import spaceSurvival.controller.sound.CallerAudio;
-import spaceSurvival.model.GUI.EngineGUI;
-import spaceSurvival.model.GUI.Visibility;
-import spaceSurvival.model.GUI.sound.EngineSound;
-import spaceSurvival.model.GUI.sound.StateSlider;
-import spaceSurvival.model.GUI.sound.TypeUnitSound;
-import spaceSurvival.model.sound.CmdAudioType;
-import spaceSurvival.model.sound.category.SoundEffect;
-import spaceSurvival.model.sound.category.SoundLoop;
-import spaceSurvival.utilities.DesignSound;
-import spaceSurvival.utilities.SoundPath;
-import spaceSurvival.utilities.SoundType;
-import spaceSurvival.utilities.ActionGUI;
-import spaceSurvival.view.GUI;
-import spaceSurvival.view.sound.GUISound;
-import spaceSurvival.view.sound.utilities.ButtonSliderType;
-import spaceSurvival.view.utilities.FactoryGUIs;
+import spacesurvival.controller.gui.command.SwitchGUI;
+import spacesurvival.controller.sound.CallerAudio;
+import spacesurvival.model.GUI.EngineGUI;
+import spacesurvival.model.GUI.Visibility;
+import spacesurvival.model.GUI.sound.EngineSound;
+import spacesurvival.model.GUI.sound.StateSlider;
+import spacesurvival.model.GUI.sound.TypeUnitSound;
+import spacesurvival.model.sound.CmdAudioType;
+import spacesurvival.model.sound.category.SoundEffect;
+import spacesurvival.model.sound.category.SoundLoop;
+import spacesurvival.utilities.DesignSound;
+import spacesurvival.utilities.SoundPath;
+import spacesurvival.utilities.SoundType;
+import spacesurvival.utilities.ActionGUI;
+import spacesurvival.view.GUI;
+import spacesurvival.view.sound.GUISound;
+import spacesurvival.view.sound.utilities.ButtonSliderType;
+import spacesurvival.view.utilities.FactoryGUIs;
 
 public class CtrlSound implements ControllerGUI{
     private final GUISound gui;

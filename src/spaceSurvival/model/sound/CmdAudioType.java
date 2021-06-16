@@ -1,4 +1,4 @@
-package spaceSurvival.model.sound;
+package spacesurvival.model.sound;
 
 public enum CmdAudioType {
 	

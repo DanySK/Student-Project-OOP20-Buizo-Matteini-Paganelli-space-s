@@ -1,4 +1,4 @@
-package spaceSurvival.view.loading;
+package spacesurvival.view.loading;
 
 public interface FactoryGUILoading {
 

@@ -1,12 +1,11 @@
-package spaceSurvival.model.gameObject.enemy;
+package spacesurvival.model.gameobject.enemy;
 
-import spaceSurvival.model.EngineImage;
-import spaceSurvival.model.common.P2d;
-import spaceSurvival.model.common.V2d;
-import spaceSurvival.model.gameObject.MainGameObject;
-import spaceSurvival.model.movement.Movement;
-import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
-import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
+import spacesurvival.model.EngineImage;
+import spacesurvival.model.common.P2d;
+import spacesurvival.model.common.V2d;
+import spacesurvival.model.movement.Movement;
+import spacesurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
+import spacesurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 
 public class Enemy {
 

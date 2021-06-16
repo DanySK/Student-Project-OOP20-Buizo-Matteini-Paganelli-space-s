@@ -1,10 +1,10 @@
-package spaceSurvival.model.movement;
+package spacesurvival.model.movement;
 
 import java.awt.geom.AffineTransform;
 
-import spaceSurvival.model.common.P2d;
-import spaceSurvival.model.gameObject.MovableGameObject;
-import spaceSurvival.model.gameObject.enemy.ChaseEnemy;
+import spacesurvival.model.common.P2d;
+import spacesurvival.model.gameobject.MovableGameObject;
+import spacesurvival.model.gameobject.enemy.ChaseEnemy;
 
 public class ChasingMovement implements Movement {
 

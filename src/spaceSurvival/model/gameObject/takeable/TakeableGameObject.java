@@ -1,14 +1,14 @@
-package spaceSurvival.model.gameObject.takeableGameObject;
+package spacesurvival.model.gameobject.takeable;
 
-import spaceSurvival.model.common.P2d;
-import spaceSurvival.model.gameObject.GameObject;
-import spaceSurvival.model.gameObject.GameObjectUtils;
+import spacesurvival.model.common.P2d;
+import spacesurvival.model.gameobject.GameObject;
+import spacesurvival.model.gameobject.GameObjectUtils;
 
 import java.util.List;
 
-import spaceSurvival.model.EngineImage;
-import spaceSurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
-import spaceSurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
+import spacesurvival.model.EngineImage;
+import spacesurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
+import spacesurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 
 public abstract class TakeableGameObject extends GameObject {
 	

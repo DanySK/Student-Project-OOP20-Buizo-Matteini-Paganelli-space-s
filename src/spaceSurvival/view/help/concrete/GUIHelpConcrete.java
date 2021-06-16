@@ -1,12 +1,12 @@
-package spaceSurvival.view.help.concrete;
+package spacesurvival.view.help.concrete;
 
-import spaceSurvival.model.EngineImage;
-import spaceSurvival.model.GUI.help.EngineHelp;
-import spaceSurvival.utilities.ActionGUI;
-import spaceSurvival.view.AbstractGUI;
-import spaceSurvival.view.help.GUIHelp;
-import spaceSurvival.view.help.utilities.UnitHelp;
-import spaceSurvival.view.utilities.BtnAction;
+import spacesurvival.model.EngineImage;
+import spacesurvival.model.GUI.help.EngineHelp;
+import spacesurvival.utilities.ActionGUI;
+import spacesurvival.view.AbstractGUI;
+import spacesurvival.view.help.GUIHelp;
+import spacesurvival.view.help.utilities.UnitHelp;
+import spacesurvival.view.utilities.BtnAction;
 
 import javax.swing.*;
 import java.awt.*;

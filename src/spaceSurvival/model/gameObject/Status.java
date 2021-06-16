@@ -1,6 +1,6 @@
-package spaceSurvival.model.gameObject;
+package spacesurvival.model.gameobject;
 
-import spaceSurvival.utilities.pathImage.AnimationEffect;
+import spacesurvival.utilities.pathImage.AnimationEffect;
 
 import java.util.List;
 

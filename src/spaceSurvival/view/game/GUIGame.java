@@ -1,9 +1,9 @@
-package spaceSurvival.view.game;
+package spacesurvival.view.game;
 
-import spaceSurvival.model.World;
-import spaceSurvival.utilities.ActionGUI;
-import spaceSurvival.view.GUI;
-import spaceSurvival.view.game.utilities.PanelGame;
+import spacesurvival.model.World;
+import spacesurvival.utilities.ActionGUI;
+import spacesurvival.view.GUI;
+import spacesurvival.view.game.utilities.PanelGame;
 
 import java.awt.event.KeyListener;
 import java.util.List;

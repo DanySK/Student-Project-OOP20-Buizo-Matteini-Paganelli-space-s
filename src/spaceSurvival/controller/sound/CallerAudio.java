@@ -1,12 +1,12 @@
-package spaceSurvival.controller.sound;
+package spacesurvival.controller.sound;
 
-import spaceSurvival.controller.sound.command.CommandAudio;
-import spaceSurvival.controller.sound.command.PlaySoundCommand;
-import spaceSurvival.controller.sound.command.ResetTiming;
-import spaceSurvival.controller.sound.command.StopSoundCommand;
-import spaceSurvival.model.sound.CmdAudioType;
-import spaceSurvival.model.sound.Sound;
-import spaceSurvival.utilities.SoundPath;
+import spacesurvival.controller.sound.command.CommandAudio;
+import spacesurvival.controller.sound.command.PlaySoundCommand;
+import spacesurvival.controller.sound.command.ResetTiming;
+import spacesurvival.controller.sound.command.StopSoundCommand;
+import spacesurvival.model.sound.CmdAudioType;
+import spacesurvival.model.sound.Sound;
+import spacesurvival.utilities.SoundPath;
 
 public class CallerAudio {
     private final CommandAudio cmdAudioOn;

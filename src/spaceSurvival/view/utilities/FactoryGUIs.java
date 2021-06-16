@@ -1,8 +1,8 @@
-package spaceSurvival.view.utilities;
+package spacesurvival.view.utilities;
 
-import spaceSurvival.model.EngineImage;
-import spaceSurvival.utilities.DesignSound;
-import spaceSurvival.utilities.dimension.Screen;
+import spacesurvival.model.EngineImage;
+import spacesurvival.utilities.DesignSound;
+import spacesurvival.utilities.dimension.Screen;
 
 import javax.swing.*;
 import java.awt.*;

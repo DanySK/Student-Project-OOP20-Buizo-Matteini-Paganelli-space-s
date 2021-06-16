@@ -1,13 +1,13 @@
-package spaceSurvival.view.menu.factoryMethod;
+package spacesurvival.view.menu.factoryMethod;
 
-import spaceSurvival.model.GUI.game.EngineGame;
-import spaceSurvival.utilities.DesignJComponent;
-import spaceSurvival.view.utilities.DesignGraphics;
-import spaceSurvival.view.menu.FactoryGUIMenu;
-import spaceSurvival.view.menu.GUIMenu;
-import spaceSurvival.view.menu.concrete.GUIMenuConcrete;
-import spaceSurvival.view.menu.utilities.IconsButton;
-import spaceSurvival.view.utilities.FactoryGUIs;
+import spacesurvival.model.GUI.game.EngineGame;
+import spacesurvival.utilities.DesignJComponent;
+import spacesurvival.view.utilities.DesignGraphics;
+import spacesurvival.view.menu.FactoryGUIMenu;
+import spacesurvival.view.menu.GUIMenu;
+import spacesurvival.view.menu.concrete.GUIMenuConcrete;
+import spacesurvival.view.menu.utilities.IconsButton;
+import spacesurvival.view.utilities.FactoryGUIs;
 
 import java.awt.*;
 import java.util.List;

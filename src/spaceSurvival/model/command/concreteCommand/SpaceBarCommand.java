@@ -1,8 +1,8 @@
-package spaceSurvival.model.command.concreteCommand;
+package spacesurvival.model.command.concreteCommand;
 
-import spaceSurvival.model.command.commandInterfaces.CommandGameObject;
-import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
-import spaceSurvival.utilities.SoundPath;
+import spacesurvival.model.command.commandInterfaces.CommandGameObject;
+import spacesurvival.model.gameobject.main.SpaceShipSingleton;
+import spacesurvival.utilities.SoundPath;
 
 public class SpaceBarCommand implements CommandGameObject {
 

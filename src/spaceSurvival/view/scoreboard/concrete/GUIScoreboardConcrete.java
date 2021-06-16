@@ -1,9 +1,9 @@
-package spaceSurvival.view.scoreboard.concrete;
+package spacesurvival.view.scoreboard.concrete;
 
-import spaceSurvival.utilities.ActionGUI;
-import spaceSurvival.view.AbstractGUI;
-import spaceSurvival.view.scoreboard.GUIScoreboard;
-import spaceSurvival.view.utilities.BtnAction;
+import spacesurvival.utilities.ActionGUI;
+import spacesurvival.view.AbstractGUI;
+import spacesurvival.view.scoreboard.GUIScoreboard;
+import spacesurvival.view.utilities.BtnAction;
 
 import javax.swing.*;
 import java.awt.*;

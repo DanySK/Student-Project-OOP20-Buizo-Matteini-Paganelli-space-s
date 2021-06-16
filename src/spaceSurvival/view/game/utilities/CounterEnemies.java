@@ -1,7 +1,7 @@
-package spaceSurvival.view.game.utilities;
+package spacesurvival.view.game.utilities;
 
-import spaceSurvival.view.utilities.DesignGraphics;
-import spaceSurvival.view.utilities.FactoryGUIs;
+import spacesurvival.view.utilities.DesignGraphics;
+import spacesurvival.view.utilities.FactoryGUIs;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,7 +1,7 @@
-package spaceSurvival.model.worldEcollisioni.hitEvents;
+package spacesurvival.model.worldEcollisioni.hitEvents;
 
-import spaceSurvival.model.gameObject.takeableGameObject.TakeableGameObject;
-import spaceSurvival.model.worldEcollisioni.WorldEvent;
+import spacesurvival.model.gameobject.takeable.TakeableGameObject;
+import spacesurvival.model.worldEcollisioni.WorldEvent;
 
 public class HitAmmoEvent implements WorldEvent {
     private final TakeableGameObject ammo;

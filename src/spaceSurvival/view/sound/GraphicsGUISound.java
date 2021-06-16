@@ -1,4 +1,4 @@
-package spaceSurvival.view.sound;
+package spacesurvival.view.sound;
 
 import java.awt.Color;
 import java.awt.Font;

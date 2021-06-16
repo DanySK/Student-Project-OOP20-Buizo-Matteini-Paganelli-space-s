@@ -1,4 +1,4 @@
-package spaceSurvival.model.gameObject.weapon;
+package spacesurvival.model.gameobject.weapon;
 
 public class BulletUtils {
     public static final int NORMAL_BULLET_DAMAGE = 25;

@@ -1,4 +1,4 @@
-package spaceSurvival.view.game.utilities.logicColor;
+package spacesurvival.view.game.utilities.logicColor;
 
 import java.awt.*;
 

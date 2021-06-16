@@ -1,8 +1,8 @@
-package spaceSurvival.view.sound.utilities;
+package spacesurvival.view.sound.utilities;
 
-import spaceSurvival.model.GUI.sound.EngineSound;
-import spaceSurvival.model.GUI.sound.TypeUnitSound;
-import spaceSurvival.view.utilities.FactoryGUIs;
+import spacesurvival.model.GUI.sound.EngineSound;
+import spacesurvival.model.GUI.sound.TypeUnitSound;
+import spacesurvival.view.utilities.FactoryGUIs;
 
 import java.awt.Color;
 import java.awt.Font;

@@ -1,6 +1,6 @@
-package spaceSurvival.model.command.commandInterfaces;
+package spacesurvival.model.command.commandInterfaces;
 
-import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
+import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 
 public interface CommandGameObject {
     void execute(SpaceShipSingleton object);

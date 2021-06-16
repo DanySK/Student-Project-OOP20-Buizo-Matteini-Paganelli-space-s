@@ -1,4 +1,4 @@
-package spaceSurvival.utilities.pathImage;
+package spacesurvival.utilities.pathImage;
 
 import java.nio.file.Paths;
 

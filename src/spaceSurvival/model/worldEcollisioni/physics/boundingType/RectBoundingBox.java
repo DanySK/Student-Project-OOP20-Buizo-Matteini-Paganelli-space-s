@@ -1,10 +1,10 @@
-package spaceSurvival.model.worldEcollisioni.physics.boundingType;
+package spacesurvival.model.worldEcollisioni.physics.boundingType;
 
 import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
-import spaceSurvival.model.common.P2d;
-import spaceSurvival.utilities.SystemVariables;
-import spaceSurvival.model.EngineImage;
+import spacesurvival.model.common.P2d;
+import spacesurvival.utilities.SystemVariables;
+import spacesurvival.model.EngineImage;
 
 public class RectBoundingBox implements BoundingBox {
     private P2d p0, p1;

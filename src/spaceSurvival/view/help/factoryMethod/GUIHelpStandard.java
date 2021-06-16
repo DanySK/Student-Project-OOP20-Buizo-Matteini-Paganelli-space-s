@@ -1,15 +1,15 @@
-package spaceSurvival.view.help.factoryMethod;
+package spacesurvival.view.help.factoryMethod;
 
-import spaceSurvival.model.GUI.help.EngineHelp;
-import spaceSurvival.utilities.dimension.ScaleOf;
-import spaceSurvival.utilities.pathImage.Background;
-import spaceSurvival.utilities.pathImage.Icon;
-import spaceSurvival.utilities.DesignJComponent;
-import spaceSurvival.view.help.concrete.GUIHelpConcrete;
-import spaceSurvival.view.help.FactoryGUIHelp;
-import spaceSurvival.view.help.GUIHelp;
-import spaceSurvival.view.utilities.DesignGraphics;
-import spaceSurvival.view.utilities.FactoryGUIs;
+import spacesurvival.model.GUI.help.EngineHelp;
+import spacesurvival.utilities.dimension.ScaleOf;
+import spacesurvival.utilities.pathImage.Background;
+import spacesurvival.utilities.pathImage.Icon;
+import spacesurvival.utilities.DesignJComponent;
+import spacesurvival.view.help.concrete.GUIHelpConcrete;
+import spacesurvival.view.help.FactoryGUIHelp;
+import spacesurvival.view.help.GUIHelp;
+import spacesurvival.view.utilities.DesignGraphics;
+import spacesurvival.view.utilities.FactoryGUIs;
 
 import java.awt.*;
 
