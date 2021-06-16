@@ -9,8 +9,8 @@ public class RotateLeftCommand implements CommandGameObject {
 
     /** 
      * Rotate left the ship.
-     * @param ship the controlled ship 
      * 
+     * @param ship the controlled ship 
      */
     public void execute(final SpaceShipSingleton ship) {
         final AffineTransform transform = ship.getTransform();
