@@ -17,10 +17,8 @@ public class MovementKeyListener implements KeyListener {
         caller = new CallerCommand(ship);
     }
 
-
     @Override
     public void keyTyped(final KeyEvent e) {
-       // System.out.println("TYPEDDDDDd" + e.getKeyCode() + e.getKeyChar());
     }
 
     @Override
@@ -29,7 +27,6 @@ public class MovementKeyListener implements KeyListener {
         System.out.println(pressedKeyCode);
         if (canHandleKey(pressedKeyCode)) {
             final CommandType cmd = translateKeyCode(pressedKeyCode).get();
-            
             this.caller.execute(cmd);
         }
     }

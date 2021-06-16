@@ -13,7 +13,7 @@ public class GUIScoreboardReverse implements FactoryGUIScoreboard {
 
     @Override
     public GUIScoreboard createGUI() {
-        GUIScoreboardConcrete scoreboardConcrete = new GUIScoreboardConcrete();
+        final GUIScoreboardConcrete scoreboardConcrete = new GUIScoreboardConcrete();
         scoreboardConcrete.setFontLbTitle(DesignGraphics.getFontForTitle(DesignGraphics.SIZE_FONT_H1));
         scoreboardConcrete.getTxtSearchName().setColumns(DesignGraphics.SIZE_COLUMNS_TEXT);
         scoreboardConcrete.setFontGUI(DesignGraphics.FONT_MEDIUM_STANDARD);
@@ -30,7 +30,7 @@ public class GUIScoreboardReverse implements FactoryGUIScoreboard {
                 BorderLayout.NORTH);
         scoreboardConcrete.add(scoreboardConcrete.getBtnBack(), BorderLayout.SOUTH);
 
-        JPanel panelScore = new JPanel(new BorderLayout()) {{ setOpaque(false); }};
+        final JPanel panelScore = new JPanel(new BorderLayout()) {{ setOpaque(false); }};
 
         panelScore.add(FactoryGUIs.createPanelFlowUnionComponents(java.util.List.of(scoreboardConcrete.getTxtSearchName(),
                 scoreboardConcrete.getBtnSearch())), BorderLayout.SOUTH);

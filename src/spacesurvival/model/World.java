@@ -202,14 +202,14 @@ public class World {
         final double yShip = pos.getY();
 
         final double tollerance = 100;
-        if (yShip < ul.y - tollerance) {
-            return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.TOP, new P2d(xShip, ul.y)));
-        } else if (yShip > br.y + tollerance) {
-            return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.BOTTOM, new P2d(pos.x, br.y)));
-        } else if (xShip > br.x + tollerance) {
-            return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.RIGHT, new P2d(br.x, pos.y)));
-        } else if (xShip < ul.x - tollerance) {
-            return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.LEFT, new P2d(ul.x, pos.y)));
+        if (yShip < ul.getY() - tollerance) {
+            return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.TOP, new P2d(xShip, ul.getY())));
+        } else if (yShip > br.getY() + tollerance) {
+            return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.BOTTOM, new P2d(pos.getX(), br.getY())));
+        } else if (xShip > br.getX() + tollerance) {
+            return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.RIGHT, new P2d(br.getX(), pos.getY())));
+        } else if (xShip < ul.getX() - tollerance) {
+            return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.LEFT, new P2d(ul.getX(), pos.getY())));
         } else {
             return Optional.empty();
         }

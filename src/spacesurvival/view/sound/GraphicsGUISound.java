@@ -5,13 +5,13 @@ import java.awt.Font;
 
 public interface GraphicsGUISound {
 
-    public void setForegroundGUI(final Color color);
+    void setForegroundGUI(Color color);
 
-    public void setFontGUITitle(final Font font);
+    void setFontGUITitle(Font font);
 
-    public void setFontGUI(final Font font);
+    void setFontGUI(Font font);
 
-    public void setFontSpacingSlider(final Font font);
+    void setFontSpacingSlider(Font font);
 
-    public void setTitleGUI(final String title);
+    void setTitleGUI(String title);
 }

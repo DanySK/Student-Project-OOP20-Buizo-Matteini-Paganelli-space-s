@@ -15,7 +15,7 @@ import spacesurvival.model.World;
 import spacesurvival.model.collisioni.physics.bounding.BoundingBox;
 import spacesurvival.model.collisioni.physics.component.PhysicsComponent;
 
-public abstract class GameObject extends Thread{
+public abstract class GameObject extends Thread {
 
     private P2d position;
     private AffineTransform transform;
@@ -27,7 +27,7 @@ public abstract class GameObject extends Thread{
 
     private EngineImage engineImage;
     private EngineImage engineEffect;
-    
+
     private List<String> animation;
     private List<String> animationEffect;
 
@@ -129,9 +129,8 @@ public abstract class GameObject extends Thread{
         this.transform.setTransform(transform);
         //RectBoundingBox rectBB = (RectBoundingBox) this.getBoundingBox();
         //rectBB.setTransform(transform);
-        this.position.x = transform.getTranslateX();
-        this.position.y = transform.getTranslateY();
-        
+        this.position.setX(transform.getTranslateX());
+        this.position.setY(transform.getTranslateY());
         this.boundingBox.setTransform(transform);
     }
 	

@@ -9,23 +9,23 @@ import java.util.List;
 
 public interface GUISound extends GUI, GraphicsGUISound {
 
-    public void setNameButtonBack(final String nameBtnBack);
+    void setNameButtonBack(String nameBtnBack);
 
-    public void setTypeUnitSound(final List<TypeUnitSound> listName);
+    void setTypeUnitSound(List<TypeUnitSound> listName);
 
-    public void setTitleUnitSound(final List<String> listTitle);
+    void setTitleUnitSound(List<String> listTitle);
 
-    public List<SliderType> getSlidersSound();
+    List<SliderType> getSlidersSound();
 
-    public SliderType getSliderTypeofMixer(final TypeUnitSound typeUnitSound);
+    SliderType getSliderTypeofMixer(TypeUnitSound typeUnitSound);
 
-    public ButtonSliderType getBtnSwitch(final TypeUnitSound typeUnitSound);
+    ButtonSliderType getBtnSwitch(TypeUnitSound typeUnitSound);
 
-    public void setDefaultValueSlidersSound(final int value);
+    void setDefaultValueSlidersSound(int value);
 
-    public void setBtnBackID(final ActionGUI actionMain, final ActionGUI action);
+    void setBtnBackID(ActionGUI actionMain, ActionGUI action);
 
-    public List<ButtonSliderType> getBtnSwitches();
+    List<ButtonSliderType> getBtnSwitches();
 
-    public void setIconBtnSwitches(final List<String> path);
+    void setIconBtnSwitches(List<String> path);
 }

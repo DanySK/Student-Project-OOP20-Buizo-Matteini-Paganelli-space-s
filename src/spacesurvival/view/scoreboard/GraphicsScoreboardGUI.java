@@ -1,15 +1,16 @@
 package spacesurvival.view.scoreboard;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 
 public interface GraphicsScoreboardGUI {
 
-    public void setTitleGUI(final String title);
+    void setTitleGUI(String title);
 
-    public void setFontGUI(final Font font);
+    void setFontGUI(Font font);
 
-    public void setForegroundGUI(final Color color);
+    void setForegroundGUI(Color color);
 
-    public void setFontLbTitle(final Font font);
+    void setFontLbTitle(Font font);
 
 }

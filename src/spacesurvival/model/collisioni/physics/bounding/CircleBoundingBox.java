@@ -28,8 +28,8 @@ public class CircleBoundingBox implements BoundingBox {
      */
     public CircleBoundingBox(final P2d center, final double radius, final AffineTransform transform) {
         this.center = new P2d(0, 0);
-        this.center.x = center.getX();
-        this.center.y = center.getY();
+        this.center.setX(center.getX());
+        this.center.setY(center.getY());
         this.radius = radius;
         this.transform = transform;
     }

@@ -11,18 +11,17 @@ package spacesurvival.model.common;
 
 /**
  *
- * 2-dimensional vector
+ * 2-dimensional vector.
  * objects are completely state-less
  *
  */
 public class V2d implements java.io.Serializable {
 
     /**
-	 * 
-	 */
-    private static final long serialVersionUID = 1L;
-    public double x, y;
-	
+     * x and y represent the x and y of the vector respectively.
+     */
+    private final double x, y;
+
     public V2d() {
         this.x = 0;
         this.y = 0;
@@ -34,36 +33,70 @@ public class V2d implements java.io.Serializable {
     }
 
     public V2d(final P2d to, final P2d from) {
-        this.x = to.x - from.x;
-        this.y = to.y - from.y;
+        this.x = to.getX() - from.getX();
+        this.y = to.getY() - from.getY();
     }
 
+    /**
+     * Return the x coordinate of the point.
+     * @return the x coordinate of the point
+     */
     public double getX() {
         return this.x;
     }
 
+    /**
+     * Return the y coordinate of the point.
+     * @return the y coordinate of the point
+     */
     public double getY() {
         return this.y;
     }
 
+    /**
+     * Return a new V2d summing the passed V2d.
+     * 
+     * @param v V2d vector to add
+     * @return a new V2d vector which is the sum of the current and the passed
+     */
     public V2d sum(final V2d v) {
         return new V2d(x + v.x, y + v.y);
     }
 
+    /**
+     * Return the module of the vector.
+     * 
+     * @return the module of the vector
+     */
     public double module() {
         return Math.sqrt(x * x + y * y);
     }
 
+    /**
+     * Return the normalized vector of the current V2d.
+     * 
+     * @return the normalized vector
+     */
     public V2d getNormalized() {
         final double module = Math.sqrt(x * x + y * y);
         return new V2d(x / module, y / module);
     }
 
-    public V2d mul(double fact){
+    /**
+     * Return a multiplied vector V2d.
+     * 
+     * @param fact multiplicative factor
+     * @return a new V2d which is the multiplication of the current vector and the passed factor
+     */
+    public V2d mul(final double fact) {
         return new V2d(x * fact, y * fact);
     }
 
-    @Override
+    /**
+     * Return a string describing the vector.
+     * 
+     * @return a string describing the vector
+     */
     public String toString() {
         return "V2d(" + x + ", " + y + ")";
     }
