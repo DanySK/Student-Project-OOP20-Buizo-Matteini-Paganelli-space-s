@@ -204,8 +204,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             } else if (ev instanceof HitBulletEvent) {
                 final HitBulletEvent bulletEvent = (HitBulletEvent) ev;
                 final Bullet bullet = bulletEvent.getBullet(); 
-                
-                System.out.print("STOOOOO RIMUOVENDOOOOOOOOOOO");
+
                 bullet.stopAnimation();
                 System.out.println("Bullet ha preso al volo qualcosa, lo rimuovo");
                 world.removeBullet(bullet);

@@ -22,9 +22,10 @@ import spacesurvival.view.game.utilities.logicColor.LogicColorShip;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -32,6 +33,8 @@ import java.util.Set;
 public class PanelGame extends JPanel{
     private static final long serialVersionUID = -6158413043296871948L;
 
+    private final List<GameObject> gameObject;
+    
     private final Map<GameObject, Pair<Image, Image>> objects;
     private final Map<Bullet, Pair<Image, Image>> bullets;
 
@@ -49,6 +52,9 @@ public class PanelGame extends JPanel{
 
         this.taskObjects = new Thread(PanelGame.this::runUpdateGameObjects);
         this.taskBullet = new Thread(PanelGame.this::runUpdateBullet);
+        
+        this.gameObject = new ArrayList<>();
+        
         this.objects = new HashMap<GameObject, Pair<Image, Image>>();
         this.bullets = new HashMap<Bullet, Pair<Image,Image>>();
         this.isDraw = false;
