@@ -38,7 +38,7 @@ public enum SoundPath {
 		return this.path;
 	}
 	
-	SoundType getType() {
+	public SoundType getType() {
 		return this.type;
 	}
 
