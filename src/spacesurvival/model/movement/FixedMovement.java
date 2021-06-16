@@ -1,7 +1,9 @@
 package spacesurvival.model.movement;
 
-import java.awt.geom.AffineTransform;
 import spacesurvival.model.gameobject.MovableGameObject;
+
+import java.awt.geom.AffineTransform;
+
 
 public class FixedMovement implements Movement {
 

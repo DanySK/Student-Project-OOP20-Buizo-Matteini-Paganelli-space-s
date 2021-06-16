@@ -3,5 +3,12 @@ package spacesurvival.model.command;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 
 public interface CommandGameObject {
-    void execute(SpaceShipSingleton object);
+
+    /** 
+     * Execute the specified command on the ship.
+     * @param ship the controlled ship 
+     * 
+     */
+    void execute(SpaceShipSingleton ship);
 }
+

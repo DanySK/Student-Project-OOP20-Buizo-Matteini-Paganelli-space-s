@@ -1,6 +1,5 @@
 package spacesurvival.model.sound.category;
 
-
 import spacesurvival.model.sound.Sound;
 import spacesurvival.utilities.path.SoundPath;
 

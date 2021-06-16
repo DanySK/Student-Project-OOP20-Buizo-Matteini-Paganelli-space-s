@@ -14,10 +14,10 @@ import spacesurvival.model.gameobject.weapon.shootinglogic.ShootingLogic;
 import java.util.Optional;
 
 import spacesurvival.model.EngineImage;
-import spacesurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
-import spacesurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
-import spacesurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
-import spacesurvival.model.worldEcollisioni.physics.components.ShipPhysicsComponent;
+import spacesurvival.model.collisioni.physics.bounding.BoundingBox;
+import spacesurvival.model.collisioni.physics.bounding.RectBoundingBox;
+import spacesurvival.model.collisioni.physics.component.PhysicsComponent;
+import spacesurvival.model.collisioni.physics.component.ShipPhysicsComponent;
 import spacesurvival.utilities.Score;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;

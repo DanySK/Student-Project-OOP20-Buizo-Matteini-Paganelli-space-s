@@ -12,10 +12,10 @@ import spacesurvival.model.Animation;
 
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.EngineImage;
-import spacesurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
-import spacesurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 import spacesurvival.utilities.path.SoundPath;
 import spacesurvival.model.World;
+import spacesurvival.model.collisioni.physics.bounding.BoundingBox;
+import spacesurvival.model.collisioni.physics.component.PhysicsComponent;
 
 public abstract class GameObject extends Thread {
 

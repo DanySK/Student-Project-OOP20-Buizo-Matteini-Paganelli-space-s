@@ -7,6 +7,10 @@ import java.util.Optional;
 import java.util.Set;
 
 import spacesurvival.model.gui.settings.SkinSpaceShip;
+import spacesurvival.model.collisioni.physics.BoundaryCollision;
+import spacesurvival.model.collisioni.physics.bounding.CircleBoundingBox;
+import spacesurvival.model.collisioni.physics.bounding.RectBoundingBox;
+import spacesurvival.model.collisioni.physics.component.CollisionChecker;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.gameobject.MainGameObject;
@@ -25,12 +29,8 @@ import spacesurvival.model.gameobject.takeable.Heart;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.model.gameobject.weapon.Bullet;
 import spacesurvival.model.gameobject.weapon.Weapon;
-import spacesurvival.model.worldEcollisioni.WorldEvent;
-import spacesurvival.model.worldEcollisioni.WorldEventListener;
-import spacesurvival.model.worldEcollisioni.physics.BoundaryCollision;
-import spacesurvival.model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
-import spacesurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
-import spacesurvival.model.worldEcollisioni.physics.components.CollisionChecker;
+import spacesurvival.model.worldevent.WorldEvent;
+import spacesurvival.model.worldevent.WorldEventListener;
 
 public class World {
     private AbstractFactoryGameObject factoryGameObject = new ConcreteFactoryGameObject();
@@ -202,16 +202,14 @@ public class World {
         final double xShip = pos.getX();
         final double yShip = pos.getY();
 
-        if (yShip < ul.y) {
+        final double tollerance = 100;
+        if (yShip < ul.y - tollerance) {
             return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.TOP, new P2d(xShip, ul.y)));
-        }
-        else if (yShip + ship.getSize().getHeight() > br.y) {
+        } else if (yShip > br.y + tollerance) {
             return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.BOTTOM, new P2d(pos.x, br.y)));
-        }
-        else if (xShip + ship.getSize().getWidth() > br.x) {
+        } else if (xShip > br.x + tollerance) {
             return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.RIGHT, new P2d(br.x, pos.y)));
-        }
-        else if (xShip < ul.x) {
+        } else if (xShip < ul.x - tollerance) {
             return Optional.of(new BoundaryCollision(BoundaryCollision.CollisionEdge.LEFT, new P2d(ul.x, pos.y)));
         } else {
             return Optional.empty();

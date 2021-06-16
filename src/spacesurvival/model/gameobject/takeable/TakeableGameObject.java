@@ -7,8 +7,8 @@ import spacesurvival.model.gameobject.GameObjectUtils;
 import java.util.List;
 
 import spacesurvival.model.EngineImage;
-import spacesurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
-import spacesurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
+import spacesurvival.model.collisioni.physics.bounding.BoundingBox;
+import spacesurvival.model.collisioni.physics.component.PhysicsComponent;
 
 public abstract class TakeableGameObject extends GameObject {
 	

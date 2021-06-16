@@ -9,9 +9,9 @@ import spacesurvival.utilities.dimension.Screen;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
 import spacesurvival.model.EngineImage;
-import spacesurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
-import spacesurvival.model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
-import spacesurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
+import spacesurvival.model.collisioni.physics.bounding.BoundingBox;
+import spacesurvival.model.collisioni.physics.bounding.CircleBoundingBox;
+import spacesurvival.model.collisioni.physics.bounding.RectBoundingBox;
 
 public class GameObjectUtils {
     public static final int INFINITY = 0;

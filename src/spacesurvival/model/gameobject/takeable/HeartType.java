@@ -20,7 +20,7 @@ public enum HeartType {
 	private static final int SIZE = VALUES.size();
 	private static final Random RANDOM = new Random();
 	
-	private HeartType(int amount, final List<String> animation) {
+	private HeartType(final int amount, final List<String> animation) {
 		this.setAmount(amount);
 		this.animation = animation;
 	}
@@ -33,7 +33,7 @@ public enum HeartType {
 		return amount;
 	}
 
-	public void setAmount(int amount) {
+	public void setAmount(final int amount) {
 		this.amount = amount;
 	}
 

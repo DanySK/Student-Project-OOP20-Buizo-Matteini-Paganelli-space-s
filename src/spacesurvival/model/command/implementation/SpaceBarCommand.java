@@ -5,10 +5,14 @@ import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.utilities.path.SoundPath;
 
 public class SpaceBarCommand implements CommandGameObject {
-
-    @Override
+    /** 
+     * Fires the shot from the ship's weapon if it is present.
+     * @param ship the controlled ship
+     * 
+     */
     public void execute(final SpaceShipSingleton ship) {
         ship.getWeapon().shoot();
         ship.pushEffect(SoundPath.SHOOT);
+
     }
 }

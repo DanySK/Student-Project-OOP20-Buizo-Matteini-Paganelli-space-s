@@ -3,6 +3,11 @@ package spacesurvival.model;
 import spacesurvival.controller.gui.CtrlGUI;
 import spacesurvival.controller.gui.CtrlGame;
 import spacesurvival.controller.gui.CtrlSound;
+import spacesurvival.model.collisioni.hitevent.HitBorderEvent;
+import spacesurvival.model.collisioni.hitevent.HitBulletEvent;
+import spacesurvival.model.collisioni.hitevent.HitMainGameObject;
+import spacesurvival.model.collisioni.hitevent.HitTakeableGameObject;
+import spacesurvival.model.collisioni.physics.BoundaryCollision.CollisionEdge;
 import spacesurvival.model.gameobject.MainGameObject;
 import spacesurvival.model.gameobject.MovableGameObject;
 import spacesurvival.model.gameobject.Status;
@@ -12,19 +17,13 @@ import spacesurvival.model.gameobject.enemy.FireEnemy;
 import spacesurvival.model.gameobject.main.Asteroid;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.gameobject.takeable.Ammo;
-import spacesurvival.model.gameobject.takeable.AmmoType;
 import spacesurvival.model.gameobject.takeable.Heart;
 import spacesurvival.model.gameobject.takeable.HeartType;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.model.gameobject.weapon.Bullet;
 import spacesurvival.model.sound.CmdAudioType;
-import spacesurvival.model.worldEcollisioni.WorldEvent;
-import spacesurvival.model.worldEcollisioni.WorldEventListener;
-import spacesurvival.model.worldEcollisioni.hitEvents.HitBorderEvent;
-import spacesurvival.model.worldEcollisioni.hitEvents.HitBulletEvent;
-import spacesurvival.model.worldEcollisioni.hitEvents.HitMainGameObject;
-import spacesurvival.model.worldEcollisioni.hitEvents.HitTakeableGameObject;
-import spacesurvival.model.worldEcollisioni.physics.BoundaryCollision.CollisionEdge;
+import spacesurvival.model.worldevent.WorldEvent;
+import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.utilities.Score;
 import spacesurvival.utilities.path.SoundPath;
 import spacesurvival.utilities.SystemVariables;
@@ -293,9 +292,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     private void renderMovement() {
     	//this.controlGame.moveShip();
 
-    	this.controlGame.getWorld().getMovableEntities().forEach(entity -> {
-    		entity.move();
-    	});
+    	this.controlGame.getWorld().getMovableEntities().forEach(MovableGameObject::move);
 
     	this.controlGame.getWorld().getAllEnemies().forEach(enemy -> {
 

@@ -3,9 +3,9 @@ package spacesurvival.model.gameobject.takeable;
 import java.util.List;
 
 import spacesurvival.model.EngineImage;
+import spacesurvival.model.collisioni.physics.bounding.BoundingBox;
+import spacesurvival.model.collisioni.physics.component.PhysicsComponent;
 import spacesurvival.model.common.P2d;
-import spacesurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
-import spacesurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
 
 public class Heart extends TakeableGameObject {
 

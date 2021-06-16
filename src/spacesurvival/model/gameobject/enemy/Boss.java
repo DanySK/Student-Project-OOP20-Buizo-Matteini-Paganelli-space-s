@@ -9,8 +9,8 @@ import spacesurvival.model.common.V2d;
 import spacesurvival.model.gameobject.weapon.Weapon;
 import spacesurvival.model.gameobject.weapon.shootinglogic.ShootingLogic;
 import spacesurvival.model.EngineImage;
-import spacesurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
-import spacesurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
+import spacesurvival.model.collisioni.physics.bounding.BoundingBox;
+import spacesurvival.model.collisioni.physics.component.PhysicsComponent;
 
 public class Boss extends FireableObject {
 

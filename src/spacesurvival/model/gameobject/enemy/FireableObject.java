@@ -9,8 +9,8 @@ import spacesurvival.model.gameobject.MainGameObject;
 import spacesurvival.model.gameobject.weapon.Weapon;
 import spacesurvival.model.gameobject.weapon.shootinglogic.ShootingLogic;
 import spacesurvival.model.movement.Movement;
-import spacesurvival.model.worldEcollisioni.physics.boundingType.BoundingBox;
-import spacesurvival.model.worldEcollisioni.physics.components.PhysicsComponent;
+import spacesurvival.model.collisioni.physics.bounding.BoundingBox;
+import spacesurvival.model.collisioni.physics.component.PhysicsComponent;
 
 public abstract class FireableObject extends MainGameObject {
 
