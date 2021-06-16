@@ -1,5 +1,4 @@
 package spacesurvival.utilities;
-
 import spacesurvival.utilities.path.SoundPath;
 
 import java.util.List;
