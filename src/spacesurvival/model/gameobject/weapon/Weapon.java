@@ -65,7 +65,7 @@ public class Weapon {
 
 		bullet.setTransform(owner.getTransform());
 		bullet.getTransform().translate(owner.getSize().getWidth() / 2 - bullet.getSize().getWidth() / 2,
-				-owner.getSize().getHeight() / 2);
+				-owner.getSize().getHeight() / 10);
 
 		if (magazine == Magazine.LIMITED) {
 			munitions--;
@@ -75,6 +75,7 @@ public class Weapon {
 		}
 		shootedBullets.add(bullet);
 		System.out.println("bullet sparati: " + shootedBullets.size());
+		
 	}
 	
 	public MainGameObject getOwner() {

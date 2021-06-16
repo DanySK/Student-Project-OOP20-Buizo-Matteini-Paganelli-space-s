@@ -3,12 +3,26 @@ package spacesurvival.view.dead;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.view.GUI;
 
-
+import java.awt.Color;
+import java.awt.Font;
 import java.util.List;
 
-public interface GUIDead extends GUI, GraphicsGUIDead {
+public interface GUIDead extends GUI {
 
-    public void setNameButtons(final List<String> listNames);
+    void setNameButtons(List<String> listNames);
 
-    public void setBtnActions(final ActionGUI mainAction, final List<ActionGUI> actions);
+    void setBtnActions(ActionGUI mainAction, List<ActionGUI> actions);
+
+
+    void setFontTitleGUI(Font font);
+
+    void setTitleGUI(String title);
+
+    void setForegroundTitle(Color color);
+
+    void setFontGUI(Font font);
+
+    void setForegroundGUI(Color color);
+
+    void setBorder(Color color, int thickness);
 }

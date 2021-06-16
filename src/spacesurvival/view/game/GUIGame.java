@@ -5,38 +5,47 @@ import spacesurvival.utilities.ActionGUI;
 import spacesurvival.view.GUI;
 import spacesurvival.view.game.utilities.PanelGame;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.KeyListener;
 import java.util.List;
 
-public interface GUIGame extends GUI, GraphicsGUIGame {
+public interface GUIGame extends GUI {
 
-    public void setTimer(final String timer);
+    void setTimer(String timer);
 
-    public void setIdButtons(final ActionGUI mainAction, final List<ActionGUI> linksID);
+    void setIdButtons(ActionGUI mainAction, List<ActionGUI> linksID);
 
-    public PanelGame getPanelGame();
+    PanelGame getPanelGame();
 
-    public void startPaint();
+    void startPaint();
 
-    public void stopPaint();
+    void stopPaint();
 
-    public void setWorld(final World world);
+    void setWorld(World world);
 
-    public void repaintGameObjects();
+    void repaintGameObjects();
 
-    public void addKeyListenerSpaceShip(final KeyListener keyListener);
+    void addKeyListenerSpaceShip(KeyListener keyListener);
 
-    public void setScore(final long score);
+    void setScore(long score);
 
-    public void setRound(final int round);
+    void setRound(int round);
 
-    public void setNEnemies(final long count);
+    void setNEnemies(long count);
 
-    public void setNHeart(final int nHeart);
+    void setNHeart(int nHeart);
 
-    public void setLifeShip(final int lifeShip);
+    void setLifeShip(int lifeShip);
 
-    public void setLifeBoss(final int lifeShip);
+    void setLifeBoss(int lifeShip);
 
 
+    void setFontGUI(Font font);
+
+    void setFontLifeBars(Font font);
+
+    void setForegroundGUI(Color color);
+
+    void setBackgroundLifeBars(Color color);
 }

@@ -52,7 +52,7 @@ public final class SpaceShipSingleton extends FireableObject {
             final FiringLogic firingLogic) {
         super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, score, target, weapon, firingLogic);
         this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage, this.getTransform()));
-    	this.acceleration = new V2d(1, 1);
+        this.acceleration = new V2d(1, 1);
     }
 
     /**

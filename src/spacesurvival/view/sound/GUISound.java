@@ -5,27 +5,41 @@ import spacesurvival.utilities.ActionGUI;
 import spacesurvival.view.GUI;
 import spacesurvival.view.sound.utilities.ButtonSliderType;
 import spacesurvival.view.sound.utilities.SliderType;
+
+import java.awt.Color;
+import java.awt.Font;
 import java.util.List;
 
-public interface GUISound extends GUI, GraphicsGUISound {
+public interface GUISound extends GUI {
 
-    public void setNameButtonBack(final String nameBtnBack);
+    void setNameButtonBack(String nameBtnBack);
 
-    public void setTypeUnitSound(final List<TypeUnitSound> listName);
+    void setTypeUnitSound(List<TypeUnitSound> listName);
 
-    public void setTitleUnitSound(final List<String> listTitle);
+    void setTitleUnitSound(List<String> listTitle);
 
-    public List<SliderType> getSlidersSound();
+     List<SliderType> getSlidersSound();
 
-    public SliderType getSliderTypeofMixer(final TypeUnitSound typeUnitSound);
+     SliderType getSliderTypeofMixer(TypeUnitSound typeUnitSound);
 
-    public ButtonSliderType getBtnSwitch(final TypeUnitSound typeUnitSound);
+     ButtonSliderType getBtnSwitch(TypeUnitSound typeUnitSound);
 
-    public void setDefaultValueSlidersSound(final int value);
+    void setDefaultValueSlidersSound(int value);
 
-    public void setBtnBackID(final ActionGUI actionMain, final ActionGUI action);
+    void setBtnBackID(ActionGUI actionMain, ActionGUI action);
 
-    public List<ButtonSliderType> getBtnSwitches();
+     List<ButtonSliderType> getBtnSwitches();
 
-    public void setIconBtnSwitches(final List<String> path);
+    void setIconBtnSwitches(List<String> path);
+
+
+    void setForegroundGUI(Color color);
+
+    void setFontGUITitle(Font font);
+
+    void setFontGUI(Font font);
+
+    void setFontSpacingSlider(Font font);
+
+    void setTitleGUI(String title);
 }
