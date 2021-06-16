@@ -12,6 +12,7 @@ public class FireEnemyFiringImpl implements FiringLogic {
         new Thread(() -> {
             while (fireableObject.isAlive()) {
                 ThreadUtils.sleep(GameObjectUtils.FIRE_ENEMY_FIRING_DELAY);
+                System.out.println("NEMICO SPARA");
                 fireableObject.fire();
             }
         }).start();

@@ -85,6 +85,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                     if (!this.controlGUI.isInPause()) {
                         //processInput();
                         renderMovement();
+                        assignTargetToEnemies();
                         //render();
                         waitForNextFrame(current);
                         lastTime = current;
@@ -211,7 +212,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         eventQueue.clear();
     }
 
-    public void damageObject(MainGameObject object, final int damage, final Status status) {
+    public void damageObject(final MainGameObject object, final int damage, final Status status) {
         System.out.println("SONO INVINCIBILE ?  " + object.isInvincible());
         if (!object.isInvincible()) {
             if (object instanceof SpaceShipSingleton) {
@@ -288,25 +289,15 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
 //    }
 
     private void renderMovement() {
-    	//this.controlGame.moveShip();
-
     	this.controlGame.getWorld().getMovableEntities().forEach(MovableGameObject::move);
-
-    	this.controlGame.getWorld().getAllEnemies().forEach(enemy -> {
-
-    	    //DA CAMBIARE MAIN IN ENEMY IN GET ALL ENEMIES
-            final MainGameObject enemy2 = (MainGameObject) enemy;
-            enemy2.setTarget(Optional.of(this.controlGame.getShip().getPosition()));
-        });
-
-//    	SpaceShipSingleton ship = this.controlGame.getShip();
-//    	if (ship.getWeapon().isPresent()) {
-//        	ship.getWeapon().get().getShootedBullets().forEach(bullet -> {
-//        		bullet.move();
-//        	});
-//		}
     }
 
+    public void assignTargetToEnemies() {
+        this.controlGame.getWorld().getAllEnemies().forEach(enemy -> {
+            enemy.setTarget(Optional.of(this.controlGame.getShip().getPosition()));
+        });
+    }
+    
     protected void renderGameOver() {
         this.controlGUI.endGame();
     	//playEffect(SoundPath.GAME_OVER);

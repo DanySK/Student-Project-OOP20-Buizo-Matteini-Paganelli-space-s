@@ -177,46 +177,44 @@ public class PanelGame extends JPanel{
         });
         
     }
-    
-    private void putObjectFromWorld() {
 
-        this.world.get().getAllEntitiesException().forEach(obj -> {
+    private void putObjectFromWorld() {
+        this.world.get().getAllEntitiesExceptionBullets().forEach(obj -> {
             final GameObject entity = obj;
             final Pair<Image, Image> pair = new Pair<>(EngineImage.getImageFromEngine(entity.getEngineImage()), 
                     EngineImage.getImageFromEngine(entity.getEngineEffect()));
-            
-            if(this.objects.containsKey(entity)) {
+
+            if (this.objects.containsKey(entity)) {
                 this.objects.replace(entity, pair);
             } else {
                 this.objects.put(entity, pair);
-            }     
+            }
             this.objects.put(entity, pair);
         });
     }
-    
+
     private void deletGameObject() {
         final Set<GameObject> objDelet = new HashSet<>();
-        
+
         this.objects.entrySet().forEach(obj -> {
-            if(!this.world.get().getAllEntitiesException().contains(obj.getKey())) {
+            if (!this.world.get().getAllEntitiesExceptionBullets().contains(obj.getKey())) {
                 objDelet.add(obj.getKey());
             }
         });
-        
+
         objDelet.forEach(obj -> {
-            if(this.objects.containsKey(obj)) {
+            if (this.objects.containsKey(obj)) {
                 this.objects.remove(obj);
             }
         });
     }
-    
-    
+
     public void runDrawer(){
         long lastTime = System.currentTimeMillis();
-        
+
         while (true){
             long current = System.currentTimeMillis();
-            
+
             if(this.isDraw){ 
                 this.repaint();
             }
@@ -225,23 +223,23 @@ public class PanelGame extends JPanel{
             lastTime = current;
         }
     }
-    
+
     public void runUpdateGameObjects() {
         long lastTime = System.currentTimeMillis();
-        
-        while(true) {
+
+        while (true) {
             long current = System.currentTimeMillis();
-            
-           if(this.isUpdate && this.world.isPresent()) {
+
+           if (this.isUpdate && this.world.isPresent()) {
                this.updateBulletObject();
                this.updateGameObjects();
            }
-            
+
            waitForNextFrame(current);
            lastTime = current;
         }
     }
-    
+
     protected void waitForNextFrame(final long current) {
         long dt = System.currentTimeMillis() - current;
         if (dt < 60){
@@ -251,5 +249,4 @@ public class PanelGame extends JPanel{
         }
     }
 
-   
 }

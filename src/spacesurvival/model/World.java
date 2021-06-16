@@ -54,6 +54,7 @@ public class World {
         for (int i = 0; i < 1; i++) {
             this.addAsteroid();
             this.addChaseEnemy();
+            this.addFireEnemy();
             this.addAmmo();
             //asteroids.add(factoryGameObject.createAsteroid());
             //chaseEnemies.add(factoryGameObject.createChaseEnemy());
@@ -72,6 +73,7 @@ public class World {
         for (int i = 0; i < 1; i++) {
             this.addAsteroid();
             this.addChaseEnemy();
+            this.addFireEnemy();
             this.addAmmo();
         }
         this.addBoss();
@@ -370,7 +372,7 @@ public class World {
         if (boss.isPresent()) {
             entities.add(boss.get());
         }
-        entities.addAll(ship.getWeapon().getShootedBullets());
+        entities.addAll(getAllBullets());
 
         return entities;
     }
@@ -381,13 +383,13 @@ public class World {
         this.boss = Optional.empty();
     }
 
-    public Set<GameObject> getAllEntitiesException() {
+    public Set<GameObject> getAllEntitiesExceptionBullets() {
         final Set<GameObject> entities = new HashSet<>();
         entities.add(ship);
         entities.addAll(asteroids);
         entities.addAll(getAllEnemies());
         if (boss.isPresent()) {
-                entities.add(boss.get());
+            entities.add(boss.get());
         }
         entities.addAll(ammo);
         entities.addAll(hearts);
@@ -402,9 +404,9 @@ public class World {
 		if (boss.isPresent()) {
 			entities.add(boss.get());
 		}
+        entities.addAll(getAllBullets());
 		entities.addAll(ammo);
 		entities.addAll(hearts);
-        entities.addAll(ship.getWeapon().getShootedBullets());
 		return entities;
 	}
 
