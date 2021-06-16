@@ -94,7 +94,7 @@ public class PanelGame extends JPanel{
         this.objects.entrySet().forEach(entity -> {
             if (entity.getKey().getBoundingBox() instanceof CircleBoundingBox) {
                 AffineTransform transform = new AffineTransform();
-               transform.setTransform(entity.getKey().getTransform());
+                transform.setTransform(entity.getKey().getTransform());
                 CircleBoundingBox cbb = (CircleBoundingBox) entity.getKey().getBoundingBox();
                 transform.translate(-cbb.getRadius(), -cbb.getRadius());
                 g2d.setTransform(transform);
@@ -223,8 +223,7 @@ public class PanelGame extends JPanel{
             if (this.isUpdate && this.world.isPresent()) {
                 this.updateBulletObject();
             }
-            ThreadUtils.sleep(10);
-//           waitForNextFrame(current);
+           waitForNextFrame(current);
             lastTime = current;
         }
     }
@@ -237,9 +236,8 @@ public class PanelGame extends JPanel{
             if (this.isUpdate && this.world.isPresent()) {
                this.updateGameObjects();
             }
-            ThreadUtils.sleep(10);
 
-//         waitForNextFrame(current);
+         waitForNextFrame(current);
            lastTime = current;
         }
     }
