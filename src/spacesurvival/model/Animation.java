@@ -68,11 +68,10 @@ public class Animation extends Thread {
         }
     }
 
+    
     @Override
     public String toString() {
         return "Animation [listPath=" + listPath + ", isAnimating=" + isAnimating + ", isPause=" + isPause + ", body="
                 + body + "]";
     }
-    
-    
 }

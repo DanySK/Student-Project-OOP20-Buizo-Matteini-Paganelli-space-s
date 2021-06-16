@@ -188,6 +188,9 @@ public class CtrlGame implements ControllerGUI {
         this.gui.startPaint();
     }
 
+    public void repaintWorld() {
+        this.gui.repaintGameObjects();
+    }
 
     public void stopPaint(){
         this.gui.stopPaint();

@@ -39,7 +39,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     /**
      * Frames per second of the game.
      */
-    public static final int FPS = 60;
+    public static final int FPS = 30;
 
     private final CtrlGUI controlGUI;
     private final CtrlGame controlGame;
@@ -86,13 +86,14 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                         //processInput();
                         renderMovement();
                         assignTargetToEnemies();
-                        //render();
+                        render();
+
                         waitForNextFrame(current);
                         lastTime = current;
                         updateGame(elapsed);
                         nbThreads =  Thread.getAllStackTraces().keySet().size();
 
-                        System.out.println("Numero dei thread current -> " + nbThreads);
+                        //System.out.println("Numero dei thread current -> " + nbThreads);
                     }
                 }
 
@@ -293,9 +294,9 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     	object.setTransform(newTransform);
     }
 
-//    protected void render() {
-//        this.controlGame.repaintWorld();
-//    }
+    protected final void render() {
+        this.controlGame.repaintWorld();
+    }
 
     private void renderMovement() {
     	this.controlGame.getWorld().getMovableEntities().forEach(MovableGameObject::move);

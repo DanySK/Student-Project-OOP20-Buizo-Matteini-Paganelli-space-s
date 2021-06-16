@@ -34,23 +34,21 @@ public class PanelGame extends JPanel{
 
     private final Map<GameObject, Pair<Image, Image>> objects;
     private final Map<Bullet, Pair<Image, Image>> bullets;
-    
+
     private final Thread taskObjects;
     private final Thread taskBullet;
-    private final Thread taskDrawer;
-    
+
     private Optional<World> world;
 
     private boolean isDraw;
     private boolean isUpdate;
 
     public PanelGame() {
-        super(); {{ setOpaque(false); }}
-      
+        super(); 
+        super.setOpaque(false);
+
         this.taskObjects = new Thread(PanelGame.this::runUpdateGameObjects);
         this.taskBullet = new Thread(PanelGame.this::runUpdateBullet);
-        this.taskDrawer = new Thread(PanelGame.this::runDrawer);
-        
         this.objects = new HashMap<GameObject, Pair<Image, Image>>();
         this.bullets = new HashMap<Bullet, Pair<Image,Image>>();
         this.isDraw = false;
@@ -60,7 +58,6 @@ public class PanelGame extends JPanel{
         
         this.taskObjects.start();
         this.taskBullet.start();
-        this.taskDrawer.start();
     }
 
     public void setWorld(final World world) {
@@ -76,22 +73,22 @@ public class PanelGame extends JPanel{
         this.isDraw = false;
         this.isUpdate = false;
     }
-    
+
     @Override
-    public void paintComponent(Graphics g) {
+    public final void paintComponent(final Graphics g) {
         super.paintComponent(g);
         final Graphics2D g2d = (Graphics2D) g;
-        
+
         this.bullets.forEach((key, value) -> {
             g2d.setTransform(key.getTransform());
             g2d.drawImage(value.getX(), 0, 0, null);
             g2d.drawImage(value.getY(), 0, 0, null);
         });
-        
+
         this.objects.entrySet().forEach(entity -> {
-            if(entity.getKey().getBoundingBox() instanceof CircleBoundingBox) {
+            if (entity.getKey().getBoundingBox() instanceof CircleBoundingBox) {
                 AffineTransform transform = new AffineTransform();
-                transform.setTransform(entity.getKey().getTransform());                  
+               transform.setTransform(entity.getKey().getTransform());
                 CircleBoundingBox cbb = (CircleBoundingBox) entity.getKey().getBoundingBox();
                 transform.translate(-cbb.getRadius(), -cbb.getRadius());
                 g2d.setTransform(transform);
@@ -99,7 +96,7 @@ public class PanelGame extends JPanel{
             else {
                 g2d.setTransform(entity.getKey().getTransform());
             }
-            
+
             g2d.drawImage(entity.getValue().getX(), 0, 0, null);
             g2d.drawImage(entity.getValue().getY(), 0, 0, null);
 
@@ -210,20 +207,6 @@ public class PanelGame extends JPanel{
                 this.objects.remove(obj);
             }
         });
-    }
-
-    public final void runDrawer() {
-        long lastTime = System.currentTimeMillis();
-
-        while (true) {
-            long current = System.currentTimeMillis();
-            if (this.isDraw) { 
-                this.repaint();
-            }
-            ThreadUtils.sleep(10);
-//            waitForNextFrame(current);
-            lastTime = current;
-        }
     }
 
     public void runUpdateBullet() {

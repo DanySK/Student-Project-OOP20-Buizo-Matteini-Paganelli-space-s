@@ -11,6 +11,9 @@ public class P2d implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
     public double x, y;
 
+    public P2d() {
+    }
+
     public P2d(final double x, final double y) {
         this.x = x;
         this.y = y;
