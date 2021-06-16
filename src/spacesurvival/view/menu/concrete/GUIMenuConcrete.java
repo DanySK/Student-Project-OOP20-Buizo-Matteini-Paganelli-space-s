@@ -1,6 +1,6 @@
 package spacesurvival.view.menu.concrete;
 
-import spacesurvival.model.GUI.menu.EngineMenu;
+import spacesurvival.model.gui.menu.EngineMenu;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.view.AbstractGUI;
 import spacesurvival.view.menu.GUIMenu;

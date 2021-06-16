@@ -1,6 +1,6 @@
 package spacesurvival.view;
 
-import spacesurvival.model.GUI.Visibility;
+import spacesurvival.model.gui.Visibility;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.view.utilities.BtnAction;
 

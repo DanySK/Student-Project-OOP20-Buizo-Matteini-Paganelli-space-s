@@ -1,7 +1,7 @@
 package spacesurvival.view.help.concrete;
 
 import spacesurvival.model.EngineImage;
-import spacesurvival.model.GUI.help.EngineHelp;
+import spacesurvival.model.gui.help.EngineHelp;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.view.AbstractGUI;
 import spacesurvival.view.help.GUIHelp;

@@ -1,17 +1,17 @@
 package spacesurvival.view.game.utilities;
 
 import spacesurvival.model.World;
-import spacesurvival.model.gameObject.GameObject;
+import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.Pair;
-import spacesurvival.model.gameObject.GameObjectUtils;
-import spacesurvival.model.gameObject.MainGameObject;
-import spacesurvival.model.gameObject.enemy.Boss;
-import spacesurvival.model.gameObject.enemy.ChaseEnemy;
-import spacesurvival.model.gameObject.mainGameObject.Asteroid;
-import spacesurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
-import spacesurvival.model.gameObject.takeableGameObject.TakeableGameObject;
-import spacesurvival.model.gameObject.weapon.Bullet;
+import spacesurvival.model.gameobject.GameObjectUtils;
+import spacesurvival.model.gameobject.MainGameObject;
+import spacesurvival.model.gameobject.enemy.Boss;
+import spacesurvival.model.gameobject.enemy.ChaseEnemy;
+import spacesurvival.model.gameobject.main.Asteroid;
+import spacesurvival.model.gameobject.main.SpaceShipSingleton;
+import spacesurvival.model.gameobject.takeable.TakeableGameObject;
+import spacesurvival.model.gameobject.weapon.Bullet;
 import spacesurvival.model.worldEcollisioni.physics.boundingType.CircleBoundingBox;
 import spacesurvival.view.game.utilities.logicColor.LogicColor;
 import spacesurvival.view.game.utilities.logicColor.LogicColorShip;

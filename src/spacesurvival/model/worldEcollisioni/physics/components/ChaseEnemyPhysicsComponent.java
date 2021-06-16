@@ -1,7 +1,7 @@
 package spacesurvival.model.worldEcollisioni.physics.components;
 
-import spacesurvival.model.gameObject.GameObject;
-import spacesurvival.model.gameObject.enemy.ChaseEnemy;
+import spacesurvival.model.gameobject.GameObject;
+import spacesurvival.model.gameobject.enemy.ChaseEnemy;
 
 import java.util.Optional;
 

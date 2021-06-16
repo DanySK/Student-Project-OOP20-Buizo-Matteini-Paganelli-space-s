@@ -1,6 +1,6 @@
 package spacesurvival.model.worldEcollisioni.hitEvents;
 
-import spacesurvival.model.gameObject.MainGameObject;
+import spacesurvival.model.gameobject.MainGameObject;
 import spacesurvival.model.worldEcollisioni.WorldEvent;
 
 public class HitMainGameObject implements WorldEvent {

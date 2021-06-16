@@ -1,6 +1,6 @@
 package spacesurvival.view.settings.utilities;
 
-import spacesurvival.model.GUI.settings.Difficulty;
+import spacesurvival.model.gui.settings.Difficulty;
 import spacesurvival.view.utilities.FactoryGUIs;
 
 import javax.swing.*;

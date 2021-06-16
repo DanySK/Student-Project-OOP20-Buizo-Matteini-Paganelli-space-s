@@ -1,6 +1,6 @@
 package spacesurvival.view.sound;
 
-import spacesurvival.model.GUI.sound.TypeUnitSound;
+import spacesurvival.model.gui.sound.TypeUnitSound;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.view.GUI;
 import spacesurvival.view.sound.utilities.ButtonSliderType;

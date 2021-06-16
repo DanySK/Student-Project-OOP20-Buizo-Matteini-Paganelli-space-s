@@ -3,8 +3,8 @@ package spacesurvival.view.game.utilities;
 import spacesurvival.model.EngineImage;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;
-import spacesurvival.utilities.pathImage.Icon;
-import spacesurvival.utilities.pathImage.Weapon;
+import spacesurvival.utilities.path.Icon;
+import spacesurvival.utilities.path.Weapon;
 import spacesurvival.view.utilities.JImage;
 
 import javax.swing.*;

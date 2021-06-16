@@ -1,6 +1,6 @@
 package spacesurvival.model.worldEcollisioni.physics.components;
 
-import spacesurvival.model.gameObject.GameObject;
+import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.World;
 
 public class PickablePhysicsComponent implements PhysicsComponent {

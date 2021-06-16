@@ -2,10 +2,10 @@ package spacesurvival.game;
 
 import javax.swing.SwingUtilities;
 
-import spacesurvival.controller.GUI.CtrlLoading;
+import spacesurvival.controller.gui.CtrlLoading;
 import spacesurvival.factories.factories.StaticFactoryEngineGUI;
 import spacesurvival.factories.factories.StaticFactoryGUI;
-import spacesurvival.model.GUI.Visibility;
+import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.EngineMalaLoop;
 
 public class LaunchMala {

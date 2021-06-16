@@ -1,6 +1,6 @@
 package spacesurvival.view.pause.concrete;
 
-import spacesurvival.model.GUI.pause.EnginePause;
+import spacesurvival.model.gui.pause.EnginePause;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.view.AbstractGUI;
 import spacesurvival.view.pause.GUIPause;

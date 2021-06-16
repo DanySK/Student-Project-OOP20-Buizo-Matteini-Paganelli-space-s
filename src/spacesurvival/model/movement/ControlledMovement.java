@@ -3,8 +3,8 @@ package spacesurvival.model.movement;
 import java.awt.geom.AffineTransform;
 
 import spacesurvival.model.common.V2d;
-import spacesurvival.model.gameObject.MovableGameObject;
-import spacesurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
+import spacesurvival.model.gameobject.MovableGameObject;
+import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 
 public class ControlledMovement implements Movement {
 

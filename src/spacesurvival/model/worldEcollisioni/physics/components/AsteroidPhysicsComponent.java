@@ -2,8 +2,8 @@ package spacesurvival.model.worldEcollisioni.physics.components;
 
 import java.util.Optional;
 
-import spacesurvival.model.gameObject.GameObject;
-import spacesurvival.model.gameObject.mainGameObject.Asteroid;
+import spacesurvival.model.gameobject.GameObject;
+import spacesurvival.model.gameobject.main.Asteroid;
 import spacesurvival.model.World;
 import spacesurvival.model.worldEcollisioni.hitEvents.HitBorderEvent;
 import spacesurvival.model.worldEcollisioni.physics.BoundaryCollision;

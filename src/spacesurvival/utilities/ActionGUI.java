@@ -1,6 +1,7 @@
 package spacesurvival.utilities;
 
-import spacesurvival.utilities.pathImage.Background;
+import spacesurvival.utilities.path.Background;
+import spacesurvival.utilities.path.SoundPath;
 
 public enum ActionGUI {
     ID_MENU(0, "Menu", SoundPath.MENU_SOUND, Background.MAIN, StateLevelGUI.FOREGROUND),

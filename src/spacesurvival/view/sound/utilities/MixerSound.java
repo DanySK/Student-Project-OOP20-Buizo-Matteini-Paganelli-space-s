@@ -1,7 +1,7 @@
 package spacesurvival.view.sound.utilities;
 
-import spacesurvival.model.GUI.sound.EngineSound;
-import spacesurvival.model.GUI.sound.TypeUnitSound;
+import spacesurvival.model.gui.sound.EngineSound;
+import spacesurvival.model.gui.sound.TypeUnitSound;
 import spacesurvival.view.utilities.FactoryGUIs;
 
 import java.awt.Color;

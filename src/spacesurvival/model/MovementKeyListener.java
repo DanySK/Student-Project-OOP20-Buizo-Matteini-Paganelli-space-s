@@ -5,7 +5,7 @@ import java.awt.event.KeyListener;
 import java.util.Optional;
 
 import spacesurvival.controller.CallerCommand;
-import spacesurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
+import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.utilities.CommandType;
 
 

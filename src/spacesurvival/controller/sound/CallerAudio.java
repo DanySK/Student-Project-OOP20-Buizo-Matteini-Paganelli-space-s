@@ -6,7 +6,7 @@ import spacesurvival.controller.sound.command.ResetTiming;
 import spacesurvival.controller.sound.command.StopSoundCommand;
 import spacesurvival.model.sound.CmdAudioType;
 import spacesurvival.model.sound.Sound;
-import spacesurvival.utilities.SoundPath;
+import spacesurvival.utilities.path.SoundPath;
 
 public class CallerAudio {
     private final CommandAudio cmdAudioOn;

@@ -2,10 +2,10 @@ package spacesurvival.model.worldEcollisioni.physics.components;
 
 import java.util.Optional;
 
-import spacesurvival.model.gameObject.GameObject;
-import spacesurvival.model.gameObject.MainGameObject;
-import spacesurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
-import spacesurvival.model.gameObject.takeableGameObject.TakeableGameObject;
+import spacesurvival.model.gameobject.GameObject;
+import spacesurvival.model.gameobject.MainGameObject;
+import spacesurvival.model.gameobject.main.SpaceShipSingleton;
+import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.model.World;
 import spacesurvival.model.worldEcollisioni.hitEvents.HitBorderEvent;
 import spacesurvival.model.worldEcollisioni.hitEvents.HitMainGameObject;

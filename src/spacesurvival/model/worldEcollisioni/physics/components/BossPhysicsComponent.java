@@ -1,7 +1,7 @@
 package spacesurvival.model.worldEcollisioni.physics.components;
 
-import spacesurvival.model.gameObject.GameObject;
-import spacesurvival.model.gameObject.enemy.Boss;
+import spacesurvival.model.gameobject.GameObject;
+import spacesurvival.model.gameobject.enemy.Boss;
 import spacesurvival.model.worldEcollisioni.hitEvents.HitBorderEvent;
 import spacesurvival.model.worldEcollisioni.physics.BoundaryCollision;
 import spacesurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;

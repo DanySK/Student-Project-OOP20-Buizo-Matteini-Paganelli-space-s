@@ -1,7 +1,7 @@
 package spacesurvival.model.worldEcollisioni.hitEvents;
 
 import spacesurvival.model.common.P2d;
-import spacesurvival.model.gameObject.MovableGameObject;
+import spacesurvival.model.gameobject.MovableGameObject;
 import spacesurvival.model.worldEcollisioni.WorldEvent;
 import spacesurvival.model.worldEcollisioni.physics.BoundaryCollision.CollisionEdge;
 

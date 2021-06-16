@@ -1,7 +1,7 @@
 package spacesurvival.model.sound.category;
 
 import spacesurvival.model.sound.Sound;
-import spacesurvival.utilities.SoundPath;
+import spacesurvival.utilities.path.SoundPath;
 
 import javax.sound.sampled.Clip;
 

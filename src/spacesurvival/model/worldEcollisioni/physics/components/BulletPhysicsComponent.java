@@ -1,7 +1,7 @@
 package spacesurvival.model.worldEcollisioni.physics.components;
 
-import spacesurvival.model.gameObject.GameObject;
-import spacesurvival.model.gameObject.MainGameObject;
+import spacesurvival.model.gameobject.GameObject;
+import spacesurvival.model.gameobject.MainGameObject;
 
 import java.util.Optional;
 
@@ -10,7 +10,7 @@ import spacesurvival.model.worldEcollisioni.hitEvents.HitBorderEvent;
 import spacesurvival.model.worldEcollisioni.hitEvents.HitBulletEvent;
 import spacesurvival.model.worldEcollisioni.physics.BoundaryCollision;
 import spacesurvival.model.worldEcollisioni.physics.boundingType.RectBoundingBox;
-import spacesurvival.model.gameObject.weapon.Bullet;
+import spacesurvival.model.gameobject.weapon.Bullet;
 
 public class BulletPhysicsComponent implements PhysicsComponent {
 

@@ -1,12 +1,12 @@
 package spacesurvival.controller;
 
-import spacesurvival.model.command.concreteCommand.SpaceBarCommand;
-import spacesurvival.model.command.commandInterfaces.CommandGameObject;
-import spacesurvival.model.command.concreteCommand.RotateLeftCommand;
-import spacesurvival.model.command.concreteCommand.RotateRightCommand;
-import spacesurvival.model.command.concreteCommand.UpCommand;
-import spacesurvival.model.command.concreteCommand.UpReleaseCommand;
-import spacesurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
+import spacesurvival.model.command.implementation.SpaceBarCommand;
+import spacesurvival.model.command.CommandGameObject;
+import spacesurvival.model.command.implementation.RotateLeftCommand;
+import spacesurvival.model.command.implementation.RotateRightCommand;
+import spacesurvival.model.command.implementation.UpCommand;
+import spacesurvival.model.command.implementation.UpReleaseCommand;
+import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.utilities.CommandType;
 
 public class CallerCommand {
