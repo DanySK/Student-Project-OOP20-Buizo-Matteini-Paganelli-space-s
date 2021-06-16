@@ -14,7 +14,7 @@ public class HitBossEvent implements WorldEvent {
     public HitBossEvent(final MainGameObject obj) {
         this.boss = obj;
     }
-	
+
     /**
      * Returns the boss that collided.
      * 

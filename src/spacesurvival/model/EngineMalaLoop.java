@@ -7,7 +7,7 @@ import spacesurvival.model.collisioni.hitevent.HitBorderEvent;
 import spacesurvival.model.collisioni.hitevent.HitBulletEvent;
 import spacesurvival.model.collisioni.hitevent.HitMainGameObject;
 import spacesurvival.model.collisioni.hitevent.HitTakeableGameObject;
-import spacesurvival.model.collisioni.physics.BoundaryCollision.CollisionEdge;
+import spacesurvival.model.gameobject.Edge;
 import spacesurvival.model.gameobject.MainGameObject;
 import spacesurvival.model.gameobject.MovableGameObject;
 import spacesurvival.model.gameobject.Status;
@@ -190,7 +190,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             else if (ev instanceof HitBorderEvent) {
                 HitBorderEvent borderEvent = (HitBorderEvent) ev;
                 MovableGameObject object = borderEvent.getCollisionObj();
-                CollisionEdge edge = borderEvent.getEdge();
+                Edge edge = borderEvent.getEdge();
                 
                 // If a bullet reach a border
                 if (object instanceof Bullet) {
@@ -258,7 +258,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     	return gameObject.getLife() <= 0;
     }
     
-    public void pacmanEffect(MovableGameObject object, CollisionEdge edge) {
+    public void pacmanEffect(MovableGameObject object, Edge edge) {
     	AffineTransform newTransform = new AffineTransform();
 		switch (edge) {
 		case TOP: 

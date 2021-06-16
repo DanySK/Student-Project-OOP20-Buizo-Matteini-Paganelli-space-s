@@ -18,20 +18,39 @@ package spacesurvival.model.common;
 public class V2d implements java.io.Serializable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * x and y represent the x and y of the vector respectively.
      */
     private final double x, y;
 
+    /**
+     * Constructor for a new vector with x and y setted to zero.
+     */
     public V2d() {
         this.x = 0;
         this.y = 0;
     }
 
+    /**
+     * Constructor for a new vector with passed x and passed y.
+     * 
+     * @param x x coordinate of the vector
+     * @param y y coordinate of the vector
+     */
     public V2d(final double x, final double y) {
         this.x = x;
         this.y = y;
     }
 
+    /**
+     * Constructor for a new vector between two points.
+     * 
+     * @param to end point of the vector
+     * @param from start point of the vector
+     */
     public V2d(final P2d to, final P2d from) {
         this.x = to.getX() - from.getX();
         this.y = to.getY() - from.getY();

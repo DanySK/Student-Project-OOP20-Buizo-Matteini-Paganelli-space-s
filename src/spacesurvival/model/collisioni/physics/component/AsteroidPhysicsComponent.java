@@ -11,7 +11,12 @@ import spacesurvival.model.collisioni.physics.bounding.RectBoundingBox;
 
 public class AsteroidPhysicsComponent implements PhysicsComponent {
 	
-    @Override
+    /**
+     * Update the physics of the asteroid.
+     * 
+     * @param abstractObj the asteroid
+     * @param w represent the current world
+     */
     public void update(final GameObject abstractObj, final World w) {
         final Asteroid asteroid = (Asteroid) abstractObj;
         final RectBoundingBox boundingBox = w.getMainBBox();

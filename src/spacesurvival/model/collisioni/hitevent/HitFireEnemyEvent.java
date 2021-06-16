@@ -22,5 +22,5 @@ public class HitFireEnemyEvent implements WorldEvent {
      */
     public MainGameObject getCollisionObj() {
         return this.fireEnemy;
-    }	
+    }
 }

@@ -12,7 +12,12 @@ import spacesurvival.model.collisioni.physics.bounding.RectBoundingBox;
 
 public class BossPhysicsComponent implements PhysicsComponent {
 
-    @Override
+    /**
+     * Update the physics of the boss
+     * 
+     * @param abstractObj the boss
+     * @param w represent the current world
+     */
     public void update(final  GameObject abstractObj, final World w) {
         final Boss boss = (Boss) abstractObj;
         final RectBoundingBox boundingBox = w.getMainBBox();

@@ -9,6 +9,10 @@ package spacesurvival.model.common;
 public class P2d implements java.io.Serializable {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
      * x and y represent the x and y of the vector respectively.
      */
     private double x, y;
@@ -90,7 +94,7 @@ public class P2d implements java.io.Serializable {
      * @return a string describing the vector
      */
     public String toString() {
-    return "Point2D(" + this.x + "," + this.y + ")";
+        return "Point2D(" + this.x + "," + this.y + ")";
     }
 
 }

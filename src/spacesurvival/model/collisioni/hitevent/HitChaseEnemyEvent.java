@@ -14,7 +14,7 @@ public class HitChaseEnemyEvent implements WorldEvent {
     public HitChaseEnemyEvent(final MainGameObject obj) {
         this.chaseEnemy = obj;
     }
-	
+
     /**
      * Returns MainGameObject rapresents the specific chase enemy that collided.
      * 
@@ -22,5 +22,5 @@ public class HitChaseEnemyEvent implements WorldEvent {
      */
     public MainGameObject getCollisionObj() {
         return this.chaseEnemy;
-    }	
+    }
 }

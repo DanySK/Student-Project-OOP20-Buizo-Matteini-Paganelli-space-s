@@ -18,7 +18,7 @@ public class HitBulletEvent implements WorldEvent {
         this.bullet = bullet;
         this.collidedObject = collidedObject;
     }
-	
+
     /**
      * Returns the collided MainGameObject.
      * 
@@ -27,7 +27,7 @@ public class HitBulletEvent implements WorldEvent {
     public MainGameObject getCollidedObject() {
         return this.collidedObject;
     }
-	
+
     /**
      * Returns the Bullet that collided.
      * 

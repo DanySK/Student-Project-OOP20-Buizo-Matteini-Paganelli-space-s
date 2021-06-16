@@ -14,7 +14,7 @@ public class HitHeartEvent implements WorldEvent {
     public HitHeartEvent(final TakeableGameObject obj) {
         this.heart = obj;
     }
-	
+
     /**
      * Returns TakeableGameObject rapresents the specific heart perk that collided.
      * 
@@ -22,5 +22,5 @@ public class HitHeartEvent implements WorldEvent {
      */
     public TakeableGameObject getCollisionObj() {
         return this.heart;
-    }	
+    }
 }

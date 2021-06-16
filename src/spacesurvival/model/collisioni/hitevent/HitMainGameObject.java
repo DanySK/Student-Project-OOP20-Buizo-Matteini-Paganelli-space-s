@@ -17,7 +17,7 @@ public class HitMainGameObject implements WorldEvent {
         this.object = object;
         this.collidedObject = collidedObject;
     }
-	
+
     /**
      * Returns the first collided MainGameObject.
      * 
@@ -26,7 +26,7 @@ public class HitMainGameObject implements WorldEvent {
     public MainGameObject getObject() {
         return this.object;
     }
-	
+
     /**
      * Returns the second collided MainGameObject.
      * 

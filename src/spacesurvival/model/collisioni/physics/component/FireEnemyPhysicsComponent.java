@@ -12,7 +12,12 @@ import spacesurvival.model.collisioni.physics.bounding.RectBoundingBox;
 
 public class FireEnemyPhysicsComponent implements PhysicsComponent {
 
-    @Override
+    /**
+     * Update the physics of the fire enemy.
+     * 
+     * @param abstractObj the fire enemy
+     * @param w represent the current world
+     */
     public void update(final GameObject abstractObj, final World w) {
         final FireEnemy fireEnemy = (FireEnemy) abstractObj;
         final RectBoundingBox boundingBox = w.getMainBBox();
