@@ -23,8 +23,8 @@ public abstract class GameObject {
     private BoundingBox boundingBox;
     private PhysicsComponent phys;
 
-    private Animation body;
-    private Animation effect;
+    private final Animation body;
+    private final Animation effect;
 
     private List<SoundPath> effectSounds;
 
@@ -50,10 +50,8 @@ public abstract class GameObject {
     }
 
     public final void stopAnimation() {
-        
-        System.out.println(this.body.isAnimating() + "dddddd!" + this.body.isAnimating());
         this.body.setAnimating(false);
-        this.effect.setAnimating(false);  
+        this.effect.setAnimating(false);
     }
 
     public final void setAnimation(final List<String> animation) {

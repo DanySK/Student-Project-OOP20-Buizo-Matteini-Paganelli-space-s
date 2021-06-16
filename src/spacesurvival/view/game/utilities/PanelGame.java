@@ -36,6 +36,7 @@ public class PanelGame extends JPanel{
     private final Map<Bullet, Pair<Image, Image>> bullets;
     
     private final Thread taskObjects;
+    private final Thread taskBullet;
     private final Thread taskDrawer;
     
     private Optional<World> world;
@@ -47,6 +48,7 @@ public class PanelGame extends JPanel{
         super(); {{ setOpaque(false); }}
       
         this.taskObjects = new Thread(PanelGame.this::runUpdateGameObjects);
+        this.taskBullet = new Thread(PanelGame.this::runUpdateBullet);
         this.taskDrawer = new Thread(PanelGame.this::runDrawer);
         
         this.objects = new HashMap<GameObject, Pair<Image, Image>>();
@@ -57,6 +59,7 @@ public class PanelGame extends JPanel{
         this.world = Optional.empty();
         
         this.taskObjects.start();
+        this.taskBullet.start();
         this.taskDrawer.start();
     }
 
@@ -198,46 +201,69 @@ public class PanelGame extends JPanel{
         final Set<GameObject> objDelet = new HashSet<>();
         
         this.objects.entrySet().forEach(obj -> {
-            if(!this.world.get().getAllEntitiesException().contains(obj.getKey())) {
+            if (!this.world.get().getAllEntitiesException().contains(obj.getKey())) {
                 objDelet.add(obj.getKey());
             }
         });
         
         objDelet.forEach(obj -> {
-            if(this.objects.containsKey(obj)) {
+            if (this.objects.containsKey(obj)) {
                 this.objects.remove(obj);
             }
         });
     }
     
     
-    public void runDrawer(){
+    public final void runDrawer(){
         long lastTime = System.currentTimeMillis();
         
-        while (true){
+        while (true) {
             long current = System.currentTimeMillis();
-            
-            if(this.isDraw){ 
+            if (this.isDraw) { 
                 this.repaint();
             }
-
-            waitForNextFrame(current);
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+//            waitForNextFrame(current);
             lastTime = current;
         }
     }
-    
-    public void runUpdateGameObjects() {
+
+    public void runUpdateBullet() {
         long lastTime = System.currentTimeMillis();
-        
-        while(true) {
+        while (true) {
+            long current = System.currentTimeMillis();
+            
+           if (this.isUpdate && this.world.isPresent()) {
+               this.updateBulletObject();
+           }
+            
+       
+           try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+           
+//           waitForNextFrame(current);
+           lastTime = current;
+        }
+    }
+    
+    public final void runUpdateGameObjects() {
+        long lastTime = System.currentTimeMillis();
+        while (true) {
             long current = System.currentTimeMillis();
             
            if(this.isUpdate && this.world.isPresent()) {
-               this.updateBulletObject();
                this.updateGameObjects();
            }
-            
-           
+
            try {
             Thread.sleep(10);
         } catch (InterruptedException e) {

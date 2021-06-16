@@ -45,7 +45,6 @@ public class Animation extends Thread {
 
     public final void setAnimating(final boolean isAnimating) {
         this.isAnimating = isAnimating;
-        System.out.print("diiiioooooooo cannnnn -> " + this.isAnimating);
     }
 
     public final void setPause(final boolean isPause) {
