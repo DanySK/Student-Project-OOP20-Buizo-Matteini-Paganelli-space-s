@@ -37,7 +37,6 @@ public abstract class GameObject {
         this.phys = phys;
         this.setTransform(position);
         this.setEffectSounds(new LinkedList<>());
-        this.transform = new AffineTransform();
     }
 
     public final void setPause(final boolean isPause) {
