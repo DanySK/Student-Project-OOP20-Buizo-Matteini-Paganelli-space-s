@@ -2,7 +2,6 @@ package model.command.concreteCommand;
 
 import model.command.commandInterfaces.CommandGameObject;
 import model.gameObject.GameObjectUtils;
-import model.gameObject.MainGameObject;
 import model.gameObject.mainGameObject.SpaceShipSingleton;
 import model.common.V2d;
 
@@ -11,7 +10,7 @@ public class DownCommand implements CommandGameObject{
 	public DownCommand() {}
 
 	@Override
-	public void execute(MainGameObject object) {
+	public void execute(SpaceShipSingleton object) {
 
 		if (object instanceof SpaceShipSingleton) {
 			

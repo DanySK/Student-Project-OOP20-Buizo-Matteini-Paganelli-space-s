@@ -9,7 +9,7 @@ import model.gameObject.mainGameObject.SpaceShipSingleton;
 public class DownReleaseCommand implements CommandGameObject {
 
 	@Override
-	public void execute(MainGameObject object) {
+	public void execute(SpaceShipSingleton object) {
 		System.out.println("Release Down");
 		
 		if (object instanceof SpaceShipSingleton) {

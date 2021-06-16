@@ -15,9 +15,12 @@ public class SoundLoop extends Sound {
         super(st);
     }
 
-    @Override
+    /** 
+     * Start the sound loop at the current volume.
+     * @param volume the volume at which the sound loop will start in the range 0-100.
+     */
     protected void playSound(final double volume) {
-        setVol(volume);
+        setVolume(volume);
         super.getClip().get().loop(Clip.LOOP_CONTINUOUSLY);
         super.getClip().get().start();
     }

@@ -11,7 +11,7 @@ public class RightCommand implements CommandGameObject{
 	public RightCommand() {}
 
 	@Override
-	public void execute(MainGameObject object) {
+	public void execute(SpaceShipSingleton object) {
 		V2d vel = object.getVelocity();
 		
 		if (object instanceof SpaceShipSingleton) {

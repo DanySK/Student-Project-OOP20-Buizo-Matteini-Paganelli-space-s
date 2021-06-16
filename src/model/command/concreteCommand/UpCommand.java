@@ -1,9 +1,9 @@
 package model.command.concreteCommand;
 
 import model.command.commandInterfaces.CommandGameObject;
-import spaceSurvival.model.gameObject.GameObjectUtils;
-import spaceSurvival.model.gameObject.mainGameObject.SpaceShipSingleton;
-import spaceSurvival.model.common.V2d;
+import model.gameObject.GameObjectUtils;
+import model.gameObject.mainGameObject.SpaceShipSingleton;
+import model.common.V2d;
 
 public class UpCommand implements CommandGameObject {
     private static final double TOLLERANCE = 0.1;
