@@ -15,7 +15,7 @@ import spacesurvival.model.gameobject.weapon.Bullet;
 public class BulletPhysicsComponent implements PhysicsComponent {
 
     @Override
-    public void update(final int dt, final GameObject abstractObj, final World w) {
+    public void update(final GameObject abstractObj, final World w) {
         final Bullet bullet = (Bullet) abstractObj;
         final RectBoundingBox boundingBox = w.getMainBBox();
         final RectBoundingBox objectBoundingBox = (RectBoundingBox) abstractObj.getBoundingBox();

@@ -13,7 +13,7 @@ import spacesurvival.model.collisioni.physics.bounding.RectBoundingBox;
 public class BossPhysicsComponent implements PhysicsComponent {
 
     @Override
-    public void update(final int dt, final  GameObject abstractObj, final World w) {
+    public void update(final  GameObject abstractObj, final World w) {
         final Boss boss = (Boss) abstractObj;
         final RectBoundingBox boundingBox = w.getMainBBox();
 

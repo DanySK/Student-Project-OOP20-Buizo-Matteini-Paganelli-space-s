@@ -4,6 +4,7 @@ import spacesurvival.model.common.P2d;
 
 public class BoundaryCollision {
 
+    
     public enum CollisionEdge { TOP, BOTTOM, LEFT, RIGHT }
     private final CollisionEdge edge;
     private final P2d where;
@@ -24,8 +25,8 @@ public class BoundaryCollision {
     @Override
     public String toString() {
         return "BoundaryCollision{" 
-    + "edge=" + edge 
-    + ", where=" + where
-    + '}';
+                + "edge=" + edge 
+                + ", where=" + where
+                + '}';
     }
 }

@@ -11,7 +11,7 @@ import spacesurvival.utilities.CommandType;
 
 public class MovementKeyListener implements KeyListener {
 
-    final private CallerCommand caller;
+    private final CallerCommand caller;
 
     public MovementKeyListener(final SpaceShipSingleton ship) {
         caller = new CallerCommand(ship);
@@ -20,13 +20,16 @@ public class MovementKeyListener implements KeyListener {
 
     @Override
     public void keyTyped(final KeyEvent e) {
+       // System.out.println("TYPEDDDDDd" + e.getKeyCode() + e.getKeyChar());
     }
 
     @Override
     public void keyPressed(final KeyEvent e) {
         final int pressedKeyCode = e.getKeyCode();
+        System.out.println(pressedKeyCode);
         if (canHandleKey(pressedKeyCode)) {
             final CommandType cmd = translateKeyCode(pressedKeyCode).get();
+            
             this.caller.execute(cmd);
         }
     }

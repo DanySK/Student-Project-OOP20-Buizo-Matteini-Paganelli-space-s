@@ -7,10 +7,10 @@ import java.util.Optional;
 import java.util.Set;
 
 import spacesurvival.model.gui.settings.SkinSpaceShip;
+import spacesurvival.model.collisioni.CollisionChecker;
 import spacesurvival.model.collisioni.physics.BoundaryCollision;
 import spacesurvival.model.collisioni.physics.bounding.CircleBoundingBox;
 import spacesurvival.model.collisioni.physics.bounding.RectBoundingBox;
-import spacesurvival.model.collisioni.physics.component.CollisionChecker;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.gameobject.MainGameObject;
@@ -33,7 +33,7 @@ import spacesurvival.model.worldevent.WorldEventListener;
 
 public class World {
     private AbstractFactoryGameObject factoryGameObject = new ConcreteFactoryGameObject();
-	
+
     private final Set<MainGameObject> asteroids = new HashSet<>();
     private final Set<MainGameObject> chaseEnemies = new HashSet<>();
     private final Set<MainGameObject> fireEnemies = new HashSet<>();
@@ -44,7 +44,7 @@ public class World {
     private final RectBoundingBox mainBBox;
     private WorldEventListener evListener;
     private final CollisionChecker collisionChecker = new CollisionChecker();
-	
+
     public World(final RectBoundingBox mainBBox) {
         this.ship = SpaceShipSingleton.getSpaceShip();
         this.ship.setWeapon(Optional.of(new Weapon(AmmoType.NORMAL, ship)));
@@ -76,11 +76,11 @@ public class World {
     public void setEventListener(final WorldEventListener l) {
         evListener = l;
     }
-	
+
     public void setShip(final SpaceShipSingleton ship) {
         this.ship = ship;
     }
-	
+
     public SpaceShipSingleton getShip() {
         return this.ship;
     }
@@ -93,7 +93,7 @@ public class World {
     public void moveShip() {
         this.ship.move();
     }
-	
+
     public AbstractFactoryGameObject getFactoryGameObject() {
         return factoryGameObject;
     }
@@ -191,7 +191,7 @@ public class World {
 	
     public void updateState(final int dt) {
         //ship.updatePhysics(dt, this);
-        this.getAllEntities().forEach(entity -> entity.updatePhysics(dt, this));
+        this.getAllEntities().forEach(entity -> entity.updatePhysics(this));
     }
 
     public Optional<BoundaryCollision> checkCollisionWithBoundaries(final P2d pos, final RectBoundingBox box){

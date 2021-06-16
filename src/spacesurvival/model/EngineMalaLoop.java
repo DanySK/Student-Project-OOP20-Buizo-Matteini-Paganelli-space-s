@@ -327,7 +327,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
         eventQueue.add(ev);
     }
     
-    private void playEffect(SoundPath soundPath) {
+    private void playEffect(final SoundPath soundPath) {
     	this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CmdAudioType.RESET_TIMING);
         this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CmdAudioType.AUDIO_ON);
     	

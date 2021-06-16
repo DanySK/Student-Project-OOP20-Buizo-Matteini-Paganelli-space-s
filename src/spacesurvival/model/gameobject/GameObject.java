@@ -184,8 +184,8 @@ public abstract class GameObject extends Thread{
 //	this.engineImage.setScaleOfRespect(scaleOf, respectTo);
 //}
 	
-    public void updatePhysics(int dt, World w){
-        phys.update(dt, this, w);
+    public void updatePhysics(World w){
+        phys.update(this, w);
     }
 	
     public Dimension getSize() {

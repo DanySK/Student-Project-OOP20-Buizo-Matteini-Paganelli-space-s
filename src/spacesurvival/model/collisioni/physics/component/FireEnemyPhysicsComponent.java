@@ -13,7 +13,7 @@ import spacesurvival.model.collisioni.physics.bounding.RectBoundingBox;
 public class FireEnemyPhysicsComponent implements PhysicsComponent {
 
     @Override
-    public void update(final int dt, final GameObject abstractObj, final World w) {
+    public void update(final GameObject abstractObj, final World w) {
         final FireEnemy fireEnemy = (FireEnemy) abstractObj;
         final RectBoundingBox boundingBox = w.getMainBBox();
         final Optional<BoundaryCollision> borderInfo = w.checkCollisionWithBoundaries(fireEnemy.getPosition(), boundingBox);
