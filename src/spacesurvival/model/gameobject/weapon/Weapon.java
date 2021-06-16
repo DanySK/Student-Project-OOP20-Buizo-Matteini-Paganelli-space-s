@@ -74,9 +74,9 @@ public class Weapon {
 			}
 		}
 		shootedBullets.add(bullet);
-		System.out.println(owner.getPosition());
-		System.out.println(owner.getSize());
-		System.out.println("BULLET SPARATO POSIZIONE "+ bullet.getPosition());
+//		System.out.println(owner.getPosition());
+//		System.out.println(owner.getSize());
+		System.out.println("BULLET SPARATO POSIZIONE " + bullet.getPosition());
 	}
 	
 	public MainGameObject getOwner() {

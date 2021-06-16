@@ -53,9 +53,9 @@ public class PanelGame extends JPanel{
         this.bullets = new HashMap<Bullet, Pair<Image,Image>>();
         this.isDraw = false;
         this.isUpdate = false;
-        
+
         this.world = Optional.empty();
-        
+
         this.taskObjects.start();
         this.taskBullet.start();
     }
@@ -153,23 +153,23 @@ public class PanelGame extends JPanel{
             final Bullet entity = bullet;
             final Pair<Image, Image> pair = new Pair<>(EngineImage.getImageFromEngine(entity.getEngineImage()), 
                     EngineImage.getImageFromEngine(entity.getEngineEffect()));
-            
+
             if (this.bullets.containsKey(entity)) {
                 this.bullets.replace(entity, pair);
             } else {
                 this.bullets.put(entity, pair);
-            }     
+            }
             this.bullets.put(entity, pair);
         });
-        
+
         final Set<Bullet> bulletDelet = new HashSet<>();
-        
+
         this.bullets.entrySet().forEach(obj -> {
             if (!this.world.get().getAllBullets().contains(obj.getKey())) {
                 bulletDelet.add(obj.getKey());
             }
         });
-        
+
         bulletDelet.forEach(obj -> {
             if (this.bullets.containsKey(obj)) {
                 this.bullets.remove(obj);
@@ -217,8 +217,8 @@ public class PanelGame extends JPanel{
             if (this.isUpdate && this.world.isPresent()) {
                 this.updateBulletObject();
             }
-            ThreadUtils.sleep(10);
-//           waitForNextFrame(current);
+            //ThreadUtils.sleep(10);
+            waitForNextFrame(current);
             lastTime = current;
         }
     }
