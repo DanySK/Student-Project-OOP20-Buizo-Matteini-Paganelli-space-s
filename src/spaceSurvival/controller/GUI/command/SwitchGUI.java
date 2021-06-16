@@ -1,7 +1,7 @@
 package spacesurvival.controller.gui.command;
 
-import spacesurvival.model.GUI.EngineGUI;
-import spacesurvival.model.GUI.Visibility;
+import spacesurvival.model.gui.EngineGUI;
+import spacesurvival.model.gui.Visibility;
 import spacesurvival.view.GUI;
 
 public class SwitchGUI {

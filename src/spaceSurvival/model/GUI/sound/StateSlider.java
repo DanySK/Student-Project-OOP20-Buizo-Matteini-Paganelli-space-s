@@ -1,8 +1,8 @@
-package spacesurvival.model.GUI.sound;
+package spacesurvival.model.gui.sound;
 
 import spacesurvival.model.EngineImage;
 import spacesurvival.utilities.dimension.ScaleOf;
-import spacesurvival.utilities.pathImage.Icon;
+import spacesurvival.utilities.path.Icon;
 
 public enum StateSlider {
     ON(true, new EngineImage(ScaleOf.ICON_MEDIUM, EngineSound.RECTANGLE.width, Icon.SOUND_ON)),

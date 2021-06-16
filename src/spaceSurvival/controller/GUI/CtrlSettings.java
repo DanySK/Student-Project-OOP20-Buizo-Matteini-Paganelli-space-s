@@ -1,10 +1,10 @@
 package spacesurvival.controller.gui;
 
 import spacesurvival.controller.gui.command.SwitchGUI;
-import spacesurvival.model.GUI.EngineGUI;
-import spacesurvival.model.GUI.Visibility;
-import spacesurvival.model.GUI.settings.EngineSettings;
-import spacesurvival.model.GUI.settings.SkinSpaceShip;
+import spacesurvival.model.gui.EngineGUI;
+import spacesurvival.model.gui.Visibility;
+import spacesurvival.model.gui.settings.EngineSettings;
+import spacesurvival.model.gui.settings.SkinSpaceShip;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.view.GUI;
 import spacesurvival.view.settings.GUISettings;

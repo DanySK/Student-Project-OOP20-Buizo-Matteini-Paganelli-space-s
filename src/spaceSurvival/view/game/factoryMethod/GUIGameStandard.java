@@ -1,9 +1,9 @@
-package spacesurvival.view.game.factoryMethod;
+package spacesurvival.view.game.factorymethod;
 
-import spacesurvival.model.GUI.Visibility;
+import spacesurvival.model.gui.Visibility;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;
-import spacesurvival.utilities.pathImage.Background;
+import spacesurvival.utilities.path.Background;
 import spacesurvival.view.game.FactoryGUIGame;
 import spacesurvival.view.game.GUIGame;
 import spacesurvival.view.game.concrete.GUIGameConcrete;

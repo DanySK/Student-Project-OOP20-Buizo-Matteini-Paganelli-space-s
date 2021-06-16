@@ -1,7 +1,7 @@
-package spacesurvival.model.GUI.pause;
+package spacesurvival.model.gui.pause;
 
-import spacesurvival.model.GUI.EngineGUI;
-import spacesurvival.model.GUI.Visibility;
+import spacesurvival.model.gui.EngineGUI;
+import spacesurvival.model.gui.Visibility;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.utilities.dimension.Screen;
 

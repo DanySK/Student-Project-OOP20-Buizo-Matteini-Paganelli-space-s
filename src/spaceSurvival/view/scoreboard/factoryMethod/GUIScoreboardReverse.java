@@ -1,4 +1,4 @@
-package spacesurvival.view.scoreboard.factoryMethod;
+package spacesurvival.view.scoreboard.factorymethod;
 
 import spacesurvival.view.utilities.DesignGraphics;
 import spacesurvival.view.scoreboard.FactoryGUIScoreboard;

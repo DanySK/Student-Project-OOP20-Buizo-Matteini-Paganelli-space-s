@@ -2,7 +2,7 @@ package spacesurvival.controller.gui.strategy;
 
 import spacesurvival.controller.gui.ControllerGUI;
 import spacesurvival.controller.utilities.ListGUI;
-import spacesurvival.model.GUI.Visibility;
+import spacesurvival.model.gui.Visibility;
 import spacesurvival.utilities.ActionGUI;
 
 import java.util.Map;

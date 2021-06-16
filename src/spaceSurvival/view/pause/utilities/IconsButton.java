@@ -1,6 +1,6 @@
 package spacesurvival.view.pause.utilities;
 
-import spacesurvival.utilities.pathImage.Icon;
+import spacesurvival.utilities.path.Icon;
 
 public enum IconsButton {
     ICON_RESUME(Icon.RESUME),

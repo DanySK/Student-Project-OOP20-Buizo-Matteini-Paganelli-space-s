@@ -1,7 +1,7 @@
 package spacesurvival.view.settings.concrete;
 
 import spacesurvival.model.EngineImage;
-import spacesurvival.model.GUI.settings.Difficulty;
+import spacesurvival.model.gui.settings.Difficulty;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.view.AbstractGUI;
 import spacesurvival.view.settings.GUISettings;

@@ -1,7 +1,7 @@
 package spacesurvival.view.sound.concrete;
 
-import spacesurvival.model.GUI.sound.EngineSound;
-import spacesurvival.model.GUI.sound.TypeUnitSound;
+import spacesurvival.model.gui.sound.EngineSound;
+import spacesurvival.model.gui.sound.TypeUnitSound;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.view.AbstractGUI;
 import spacesurvival.view.sound.GUISound;

@@ -1,4 +1,4 @@
-package spacesurvival.model.GUI.scoreboard;
+package spacesurvival.model.gui.scoreboard;
 
 public enum NameScoreboardGUI {
     SEARCH_BUTTON("Search"),

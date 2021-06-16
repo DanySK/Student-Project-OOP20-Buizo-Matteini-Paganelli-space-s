@@ -1,8 +1,8 @@
-package spacesurvival.model.GUI.help;
+package spacesurvival.model.gui.help;
 
 import spacesurvival.model.EngineImage;
 import spacesurvival.utilities.dimension.ScaleOf;
-import spacesurvival.utilities.pathImage.Helps;
+import spacesurvival.utilities.path.Helps;
 import spacesurvival.utilities.DesignJComponent;
 
 import java.util.List;

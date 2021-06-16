@@ -1,4 +1,4 @@
-package spacesurvival.model.GUI.settings;
+package spacesurvival.model.gui.settings;
 
 public enum Difficulty {
     //dfficolta ancora da associale alla difficolta reale del gioco

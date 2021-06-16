@@ -1,7 +1,7 @@
-package spacesurvival.model.GUI.game;
+package spacesurvival.model.gui.game;
 
-import spacesurvival.model.GUI.EngineGUI;
-import spacesurvival.model.GUI.Visibility;
+import spacesurvival.model.gui.EngineGUI;
+import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.World;
 import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;

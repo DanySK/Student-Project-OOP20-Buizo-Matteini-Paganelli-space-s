@@ -1,9 +1,9 @@
 package spacesurvival.controller.gui;
 
 import spacesurvival.controller.gui.command.SwitchGUI;
-import spacesurvival.model.GUI.EngineGUI;
-import spacesurvival.model.GUI.Visibility;
-import spacesurvival.model.GUI.help.EngineHelp;
+import spacesurvival.model.gui.EngineGUI;
+import spacesurvival.model.gui.Visibility;
+import spacesurvival.model.gui.help.EngineHelp;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.view.GUI;
 import spacesurvival.view.help.GUIHelp;

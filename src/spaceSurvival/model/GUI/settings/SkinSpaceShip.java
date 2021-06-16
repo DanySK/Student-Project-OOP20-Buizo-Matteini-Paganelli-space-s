@@ -1,6 +1,6 @@
-package spacesurvival.model.GUI.settings;
+package spacesurvival.model.gui.settings;
 
-import spacesurvival.utilities.pathImage.Skin.SkinShip;
+import spacesurvival.utilities.path.Skin.SkinShip;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
-package spacesurvival.model.GUI.help;
+package spacesurvival.model.gui.help;
 
-import spacesurvival.model.GUI.Visibility;
+import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.EngineImage;
-import spacesurvival.model.GUI.EngineGUI;
+import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.utilities.DesignJComponent;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.utilities.dimension.Screen;

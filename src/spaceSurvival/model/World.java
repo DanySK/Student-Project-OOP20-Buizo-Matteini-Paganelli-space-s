@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.Optional;
 import java.util.Set;
 
-import spacesurvival.model.GUI.settings.SkinSpaceShip;
+import spacesurvival.model.gui.settings.SkinSpaceShip;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.gameobject.MainGameObject;

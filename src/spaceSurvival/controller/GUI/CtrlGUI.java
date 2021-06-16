@@ -6,10 +6,10 @@ import spacesurvival.controller.gui.strategy.LogicSwitchMenu;
 import spacesurvival.controller.utilities.ListGUI;
 import spacesurvival.factories.StaticFactoryEngineGUI;
 import spacesurvival.factories.StaticFactoryGUI;
-import spacesurvival.model.GUI.Visibility;
+import spacesurvival.model.gui.Visibility;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.utilities.StateLevelGUI;
-import spacesurvival.utilities.pathImage.Background;
+import spacesurvival.utilities.path.Background;
 import spacesurvival.view.utilities.BtnAction;
 
 import java.awt.event.MouseEvent;

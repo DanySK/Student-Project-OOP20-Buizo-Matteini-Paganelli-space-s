@@ -3,7 +3,7 @@ package spacesurvival.game;
 import spacesurvival.controller.gui.CtrlLoading;
 import spacesurvival.factories.StaticFactoryEngineGUI;
 import spacesurvival.factories.StaticFactoryGUI;
-import spacesurvival.model.GUI.Visibility;
+import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.EngineMalaLoop;
 import javax.swing.*;
 

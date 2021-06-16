@@ -1,4 +1,4 @@
-package spacesurvival.utilities.pathImage.Skin;
+package spacesurvival.utilities.path.Skin;
 
 import java.nio.file.Paths;
 import java.util.List;

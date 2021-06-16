@@ -1,9 +1,9 @@
-package spacesurvival.view.settings.factoryMethod;
+package spacesurvival.view.settings.factorymethod;
 
-import spacesurvival.model.GUI.settings.EngineSettings;
+import spacesurvival.model.gui.settings.EngineSettings;
 import spacesurvival.utilities.dimension.ScaleOf;
-import spacesurvival.utilities.pathImage.Background;
-import spacesurvival.utilities.pathImage.Icon;
+import spacesurvival.utilities.path.Background;
+import spacesurvival.utilities.path.Icon;
 import spacesurvival.utilities.DesignJComponent;
 import spacesurvival.view.utilities.DesignGraphics;
 import spacesurvival.view.settings.FactoryGUISettings;

@@ -1,4 +1,4 @@
-package spacesurvival.model.GUI.settings;
+package spacesurvival.model.gui.settings;
 
 public enum StateDifficult {
     ON(true),

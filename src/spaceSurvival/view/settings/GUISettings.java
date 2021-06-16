@@ -1,7 +1,7 @@
 package spacesurvival.view.settings;
 
 import spacesurvival.model.EngineImage;
-import spacesurvival.model.GUI.settings.Difficulty;
+import spacesurvival.model.gui.settings.Difficulty;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.view.GUI;
 import spacesurvival.view.settings.utilities.JRadioDifficult;

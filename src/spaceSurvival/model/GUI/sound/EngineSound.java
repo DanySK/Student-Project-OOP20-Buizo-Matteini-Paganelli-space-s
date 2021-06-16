@@ -1,7 +1,7 @@
-package spacesurvival.model.GUI.sound;
+package spacesurvival.model.gui.sound;
 
-import spacesurvival.model.GUI.EngineGUI;
-import spacesurvival.model.GUI.Visibility;
+import spacesurvival.model.gui.EngineGUI;
+import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.EngineImage;
 import spacesurvival.utilities.DesignSound;
 

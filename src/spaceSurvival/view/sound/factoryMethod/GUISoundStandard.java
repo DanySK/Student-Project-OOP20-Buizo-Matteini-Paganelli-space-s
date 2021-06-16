@@ -1,8 +1,8 @@
-package spacesurvival.view.sound.factoryMethod;
+package spacesurvival.view.sound.factorymethod;
 
 import spacesurvival.utilities.dimension.ScaleOf;
-import spacesurvival.utilities.pathImage.Background;
-import spacesurvival.utilities.pathImage.Icon;
+import spacesurvival.utilities.path.Background;
+import spacesurvival.utilities.path.Icon;
 import spacesurvival.utilities.dimension.Screen;
 import spacesurvival.view.utilities.DesignGraphics;
 import spacesurvival.view.sound.FactoryGUISound;

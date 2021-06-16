@@ -1,8 +1,8 @@
-package spacesurvival.model.GUI.settings;
+package spacesurvival.model.gui.settings;
 
-import spacesurvival.model.GUI.Visibility;
+import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.EngineImage;
-import spacesurvival.model.GUI.EngineGUI;
+import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;
 import spacesurvival.utilities.ActionGUI;

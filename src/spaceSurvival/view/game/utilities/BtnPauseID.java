@@ -2,7 +2,7 @@ package spacesurvival.view.game.utilities;
 
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;
-import spacesurvival.utilities.pathImage.Icon;
+import spacesurvival.utilities.path.Icon;
 import spacesurvival.view.utilities.BtnAction;
 import spacesurvival.view.utilities.FactoryGUIs;
 

@@ -1,6 +1,6 @@
-package spacesurvival.model.command.concreteCommand;
+package spacesurvival.model.command.implementation;
 
-import spacesurvival.model.command.commandInterfaces.CommandGameObject;
+import spacesurvival.model.command.CommandGameObject;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.utilities.SoundPath;
 

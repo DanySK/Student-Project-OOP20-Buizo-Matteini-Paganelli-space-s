@@ -1,4 +1,4 @@
-package spacesurvival.model.GUI.menu;
+package spacesurvival.model.gui.menu;
 
 import spacesurvival.utilities.ActionGUI;
 

@@ -35,9 +35,9 @@ import spacesurvival.utilities.Score;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;
 
-import spacesurvival.utilities.pathImage.Skin.SkinAsteroid;
-import spacesurvival.utilities.pathImage.Skin.SkinChase;
-import spacesurvival.utilities.pathImage.Skin.SkinPerk;
+import spacesurvival.utilities.path.Skin.SkinAsteroid;
+import spacesurvival.utilities.path.Skin.SkinChase;
+import spacesurvival.utilities.path.Skin.SkinPerk;
 
 public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 	

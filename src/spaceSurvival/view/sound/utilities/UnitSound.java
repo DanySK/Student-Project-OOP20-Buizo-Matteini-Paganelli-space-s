@@ -7,7 +7,7 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import spacesurvival.model.GUI.sound.TypeUnitSound;
+import spacesurvival.model.gui.sound.TypeUnitSound;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.view.utilities.FactoryGUIs;
 

@@ -1,6 +1,6 @@
-package spacesurvival.view.menu.factoryMethod;
+package spacesurvival.view.menu.factorymethod;
 
-import spacesurvival.model.GUI.game.EngineGame;
+import spacesurvival.model.gui.game.EngineGame;
 import spacesurvival.utilities.DesignJComponent;
 import spacesurvival.view.utilities.DesignGraphics;
 import spacesurvival.view.menu.FactoryGUIMenu;

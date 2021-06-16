@@ -1,4 +1,4 @@
-package spacesurvival.model.GUI.game;
+package spacesurvival.model.gui.game;
 
 public class EngineHUD {
     public static final long INIT_SCORE = 0L;

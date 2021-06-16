@@ -1,8 +1,8 @@
-package spacesurvival.model.command.concreteCommand;
+package spacesurvival.model.command.implementation;
 
 import java.awt.geom.AffineTransform;
 
-import spacesurvival.model.command.commandInterfaces.CommandGameObject;
+import spacesurvival.model.command.CommandGameObject;
 import spacesurvival.model.gameobject.GameObjectUtils;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 

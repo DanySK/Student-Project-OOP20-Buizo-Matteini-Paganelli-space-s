@@ -1,9 +1,9 @@
-package spacesurvival.view.loading.factoryMethod;
+package spacesurvival.view.loading.factorymethod;
 
 import spacesurvival.view.utilities.DesignGraphics;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;
-import spacesurvival.utilities.pathImage.Background;
+import spacesurvival.utilities.path.Background;
 import spacesurvival.view.loading.FactoryGUILoading;
 import spacesurvival.view.loading.GUILoading;
 import spacesurvival.view.loading.concrete.GUILoadingConcrete;

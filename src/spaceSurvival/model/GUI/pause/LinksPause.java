@@ -1,4 +1,4 @@
-package spacesurvival.model.GUI.pause;
+package spacesurvival.model.gui.pause;
 
 import spacesurvival.utilities.ActionGUI;
 

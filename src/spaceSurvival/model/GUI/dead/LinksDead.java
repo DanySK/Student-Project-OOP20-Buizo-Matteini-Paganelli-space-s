@@ -1,4 +1,4 @@
-package spacesurvival.model.GUI.dead;
+package spacesurvival.model.gui.dead;
 
 import spacesurvival.utilities.ActionGUI;
 

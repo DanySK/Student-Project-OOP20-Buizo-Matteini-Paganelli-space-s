@@ -1,6 +1,6 @@
 package spacesurvival.view.dead.concrete;
 
-import spacesurvival.model.GUI.dead.EngineDead;
+import spacesurvival.model.gui.dead.EngineDead;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.view.AbstractGUI;
 import spacesurvival.view.dead.GUIDead;

@@ -1,9 +1,9 @@
-package spacesurvival.view.scoreboard.factoryMethod;
+package spacesurvival.view.scoreboard.factorymethod;
 
-import spacesurvival.model.GUI.scoreboard.EngineScoreboard;
+import spacesurvival.model.gui.scoreboard.EngineScoreboard;
 import spacesurvival.utilities.dimension.ScaleOf;
-import spacesurvival.utilities.pathImage.Background;
-import spacesurvival.utilities.pathImage.Icon;
+import spacesurvival.utilities.path.Background;
+import spacesurvival.utilities.path.Icon;
 import spacesurvival.view.utilities.DesignGraphics;
 import spacesurvival.view.scoreboard.FactoryGUIScoreboard;
 import spacesurvival.view.scoreboard.GUIScoreboard;

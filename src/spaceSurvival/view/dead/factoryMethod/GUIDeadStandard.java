@@ -1,6 +1,6 @@
-package spacesurvival.view.dead.factoryMethod;
+package spacesurvival.view.dead.factorymethod;
 
-import spacesurvival.utilities.pathImage.Background;
+import spacesurvival.utilities.path.Background;
 import spacesurvival.view.dead.FactoryGUIDead;
 import spacesurvival.view.dead.GUIDead;
 

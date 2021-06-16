@@ -1,6 +1,6 @@
-package spacesurvival.view.pause.factoryMethod;
+package spacesurvival.view.pause.factorymethod;
 
-import spacesurvival.model.GUI.pause.EnginePause;
+import spacesurvival.model.gui.pause.EnginePause;
 import spacesurvival.view.utilities.DesignGraphics;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.view.pause.FactoryGUIPause;

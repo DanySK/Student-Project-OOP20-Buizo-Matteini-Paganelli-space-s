@@ -1,4 +1,4 @@
-package spacesurvival.model.command.commandInterfaces;
+package spacesurvival.model.command;
 
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 

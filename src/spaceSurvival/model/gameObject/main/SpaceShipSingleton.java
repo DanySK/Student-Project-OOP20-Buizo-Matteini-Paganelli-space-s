@@ -21,7 +21,7 @@ import spacesurvival.model.worldEcollisioni.physics.components.ShipPhysicsCompon
 import spacesurvival.utilities.Score;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;
-import spacesurvival.utilities.pathImage.Skin.SkinShip;
+import spacesurvival.utilities.path.Skin.SkinShip;
 
 public final class SpaceShipSingleton extends FireableObject {
 
