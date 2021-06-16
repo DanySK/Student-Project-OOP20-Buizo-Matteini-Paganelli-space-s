@@ -27,6 +27,7 @@ import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.utilities.Score;
 import spacesurvival.utilities.path.SoundPath;
 import spacesurvival.utilities.SystemVariables;
+import spacesurvival.utilities.ThreadUtils;
 import spacesurvival.utilities.dimension.Screen;
 
 import java.awt.geom.AffineTransform;
@@ -36,7 +37,7 @@ import java.util.Optional;
 
 public class EngineMalaLoop extends Thread implements WorldEventListener {
     /**
-     * Frame per seconds of the game.
+     * Frames per second of the game.
      */
     public static final int FPS = 60;
 
@@ -57,7 +58,6 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
 
     public void initGame() {
         this.controlGUI.assignSoundLoop();
-
         this.controlGame.assignMovementListenerInShip();
         this.controlGame.setEventListenerInWorld(this);
         this.controlGame.assignWorld();
@@ -114,10 +114,8 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
 
     protected void waitForNextFrame(final long current) {
         final long dt = System.currentTimeMillis() - current;
-        if (dt < FPS){
-            try {
-                Thread.sleep(FPS - dt);
-            } catch (Exception ignored){}
+        if (dt < FPS) {
+            ThreadUtils.sleep(FPS - dt);
         }
     }
 

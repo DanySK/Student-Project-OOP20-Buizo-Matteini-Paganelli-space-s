@@ -16,7 +16,7 @@ import spacesurvival.model.collisioni.physics.bounding.RectBoundingBox;
 public class GameObjectUtils {
     public static final int INFINITY = 0;
     public static final int SPECIAL_MUNITIONS_QUANTITY = 25;
-    
+
     public static final int SPACESHIP_LIFE = 100;
     public static final int SPACESHIP_LIVES = 3;
 
@@ -26,8 +26,8 @@ public class GameObjectUtils {
     public static final double SPACESHIP_DECELERATION = 0.8;
     public static final double SPACESHIP_MAXVEL = 50; 
     public static final double SPACESHIP_STARTING_VELOCITY = 0.0; 
-    public static final double SPACESHIP_ROTATION = 10;    
-    
+    public static final double SPACESHIP_ROTATION = 10;
+
     public static final int ASTEROID_LIFE = 60;
     public static final int ASTEROID_LIFE_INCREMENT = 0;
 
@@ -36,8 +36,10 @@ public class GameObjectUtils {
 
     public static final int FIRE_ENEMY_LIFE = 50;
     public static final int FIRE_ENEMY_LIFE_INCREMENT = 5;
+    public static final int FIRE_ENEMY_FIRING_DELAY = 5000;
 
-    public static final int BOSS_LIFE = 300;
+
+    public static final int BOSS_LIFE = 1000;
     public static final int BOSS_LIFE_INCREMENT = 20;
 
     public static final V2d SPACESHIP_VEL = new V2d(0, 0);
@@ -61,6 +63,8 @@ public class GameObjectUtils {
 
     public static final int BOSS_DAMAGE = 60;
     public static final int BOSS_DAMAGE_INCREMENT = 10;
+    public static final int BOSS_FIRING_DELAY = 3000;
+    public static final int BOSS_CHANGING_AMMO_DELAY = 20000;
 
     /*
      * EFFECT / STATUS

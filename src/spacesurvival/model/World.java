@@ -34,7 +34,7 @@ import spacesurvival.model.worldevent.WorldEventListener;
 
 public class World {
     private AbstractFactoryGameObject factoryGameObject = new ConcreteFactoryGameObject();
-	
+
     private final Set<MainGameObject> asteroids = new HashSet<>();
     private final Set<MainGameObject> chaseEnemies = new HashSet<>();
     private final Set<FireableObject> fireEnemies = new HashSet<>();
@@ -45,19 +45,23 @@ public class World {
     private final RectBoundingBox mainBBox;
     private WorldEventListener evListener;
     private final CollisionChecker collisionChecker = new CollisionChecker();
-	
+
     public World(final RectBoundingBox mainBBox) {
         this.ship = SpaceShipSingleton.getSpaceShip();
         this.ship.setWeapon(new Weapon(AmmoType.NORMAL, ship));
         this.mainBBox = mainBBox;
 
         for (int i = 0; i < 1; i++) {
-            asteroids.add(factoryGameObject.createAsteroid());
-            chaseEnemies.add(factoryGameObject.createChaseEnemy());
-            ammo.add(factoryGameObject.createAmmo());
+            this.addAsteroid();
+            this.addChaseEnemy();
+            this.addAmmo();
+            //asteroids.add(factoryGameObject.createAsteroid());
+            //chaseEnemies.add(factoryGameObject.createChaseEnemy());
+            //ammo.add(factoryGameObject.createAmmo());
             //hearts.add(factoryGameObject.createHeart());
         }
-        this.boss = Optional.of(factoryGameObject.createBoss());
+        this.addBoss();
+        //this.boss = Optional.of(factoryGameObject.createBoss());
     }
 
     public World(final Rectangle rectangle) {
@@ -66,12 +70,11 @@ public class World {
         this.mainBBox = new RectBoundingBox(rectangle);
 
         for (int i = 0; i < 1; i++) {
-            asteroids.add(factoryGameObject.createAsteroid());
-            chaseEnemies.add(factoryGameObject.createChaseEnemy());
-            ammo.add(factoryGameObject.createAmmo());
-            //hearts.add(factoryGameObject.createHeart());
+            this.addAsteroid();
+            this.addChaseEnemy();
+            this.addAmmo();
         }
-        this.boss = Optional.of(factoryGameObject.createBoss());
+        this.addBoss();
     }
 
     public void setEventListener(final WorldEventListener l) {
@@ -103,7 +106,7 @@ public class World {
         this.factoryGameObject = factoryGameObject;
     }
 	
-    public void addAsteroid() {
+    public final void addAsteroid() {
         asteroids.add(factoryGameObject.createAsteroid());
     }
 
@@ -111,7 +114,7 @@ public class World {
         asteroids.remove(obj);
     }
 
-    public void addChaseEnemy() {
+    public final void addChaseEnemy() {
         chaseEnemies.add(factoryGameObject.createChaseEnemy());
     }
 	
@@ -119,7 +122,7 @@ public class World {
         chaseEnemies.remove(obj);
     }
 	
-    public void addFireEnemy() {
+    public final void addFireEnemy() {
         fireEnemies.add(factoryGameObject.createFireEnemy());
     }
 	
@@ -127,15 +130,16 @@ public class World {
         fireEnemies.remove(obj);
     }
 	
-    public void addBoss() {
+    public final void addBoss() {
         this.boss = Optional.of(factoryGameObject.createBoss());
+        this.boss.get().startFiring();
     }
 	
     public void removeBoss() {
         this.boss = Optional.empty();
     }
 	
-    public void addAmmo() {
+    public final void addAmmo() {
         ammo.add(factoryGameObject.createAmmo());
     }
 
@@ -143,8 +147,8 @@ public class World {
         ammo.remove(obj);
     }
 	
-    public void addHeart() {
-        hearts.add(factoryGameObject.createAmmo());
+    public final void addHeart() {
+        hearts.add(factoryGameObject.createHeart());
     }
 
     public void removeHeart(final TakeableGameObject obj) {
@@ -195,7 +199,7 @@ public class World {
         this.getAllEntities().forEach(entity -> entity.updatePhysics(dt, this));
     }
 
-    public Optional<BoundaryCollision> checkCollisionWithBoundaries(final P2d pos, final RectBoundingBox box){
+    public Optional<BoundaryCollision> checkCollisionWithBoundaries(final P2d pos, final RectBoundingBox box) {
         final P2d ul = box.getULCorner();
         final P2d br = box.getBRCorner();
 
