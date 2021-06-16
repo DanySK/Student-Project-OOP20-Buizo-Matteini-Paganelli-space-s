@@ -17,6 +17,9 @@ public class P2d implements java.io.Serializable {
      */
     private double x, y;
 
+    public P2d() {
+    }
+
     public P2d(final double x, final double y) {
         this.x = x;
         this.y = y;

@@ -57,15 +57,15 @@ public class Weapon {
 	}
 	
 	public void shoot() {
-		EngineImage engineImage = new EngineImage(ScaleOf.BULLET_OBJECT, Screen.WIDTH_FULL_SCREEN, "shutBullet/vertical/ice.png");
-		P2d position = new P2d(0, 0);
-		V2d velocity = GameObjectUtils.BULLET_VEL;
+		final EngineImage engineImage = new EngineImage(ScaleOf.BULLET_OBJECT, Screen.WIDTH_FULL_SCREEN, "shutBullet/vertical/ice.png");
+		final P2d position = new P2d();
+		final V2d velocity = GameObjectUtils.BULLET_VEL;
 		Bullet bullet = new Bullet(engineImage, position, new RectBoundingBox(), new BulletPhysicsComponent(),
 				velocity, BulletUtils.NORMAL_BULLET_DAMAGE * multiplierDamage, ammoType.getEffect());
 
 		bullet.setTransform(owner.getTransform());
 		bullet.getTransform().translate(owner.getSize().getWidth() / 2 - bullet.getSize().getWidth() / 2,
-				-owner.getSize().getHeight() / 10);
+				-owner.getSize().getHeight() / 2);
 
 		if (magazine == Magazine.LIMITED) {
 			munitions--;
@@ -74,8 +74,9 @@ public class Weapon {
 			}
 		}
 		shootedBullets.add(bullet);
-		System.out.println("bullet sparati: " + shootedBullets.size());
-		
+		System.out.println(owner.getPosition());
+		System.out.println(owner.getSize());
+		System.out.println("BULLET SPARATO POSIZIONE "+ bullet.getPosition());
 	}
 	
 	public MainGameObject getOwner() {
@@ -129,7 +130,7 @@ public class Weapon {
 		return shootedBullets;
 	}
 
-	public void setShootedBullets(Set<Bullet> shootedBullets) {
+	public void setShootedBullets(final Set<Bullet> shootedBullets) {
 		this.shootedBullets = shootedBullets;
 	}
 

@@ -85,13 +85,15 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                     if (!this.controlGUI.isInPause()) {
                         //processInput();
                         renderMovement();
+
                         render();
+
                         waitForNextFrame(current);
                         lastTime = current;
                         updateGame(elapsed);
                         nbThreads =  Thread.getAllStackTraces().keySet().size();
 
-                        System.out.println("Numero dei thread current -> " + nbThreads);
+                        //System.out.println("Numero dei thread current -> " + nbThreads);
                     }
                 }
 
@@ -124,7 +126,6 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     }
 
     protected final void updateGame(final int elapsed) {
-
         this.controlGame.updateHUD();
         this.controlGame.updateStateWorld(elapsed);
         checkEvents();

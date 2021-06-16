@@ -15,6 +15,7 @@ public abstract class TakeableGameObject extends GameObject {
     public TakeableGameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
             final PhysicsComponent phys) {
         super(engineImage, position, bb, phys);
+        System.out.println("Takeable ");
         this.setBoundingBox(GameObjectUtils.createCircleBoundingBox(position, engineImage, this.getTransform()));
     }
 

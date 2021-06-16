@@ -7,6 +7,8 @@ import java.util.LinkedList;
 import java.util.Optional;
 
 import spacesurvival.model.common.P2d;
+import spacesurvival.model.gameobject.takeable.TakeableGameObject;
+import spacesurvival.model.gameobject.weapon.Bullet;
 import spacesurvival.model.Animation;
 import spacesurvival.model.EngineImage;
 import spacesurvival.utilities.path.SoundPath;
@@ -71,10 +73,6 @@ public abstract class GameObject {
     }
 	
     public final Optional<SoundPath> popEffect() {
-//		Optional<SoundPath> first = Optional.of(this.effectSounds.get(0))
-//		if(!first.equals(Optional.empty())) {
-//			this.effectSounds.remove(0);
-//		}	
         if (this.effectSounds.size() != 0) {
             final Optional<SoundPath> first = Optional.of(this.effectSounds.get(0));
             this.effectSounds.remove(0);

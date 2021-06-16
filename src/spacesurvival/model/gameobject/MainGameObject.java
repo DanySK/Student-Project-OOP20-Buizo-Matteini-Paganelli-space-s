@@ -38,6 +38,10 @@ public abstract class MainGameObject extends MovableGameObject {
         return this.life > 0;
     }
 
+    public boolean isDead() {
+        return !isAlive();
+    }
+
     public int getLife() {
         return life;
     }
