@@ -43,41 +43,26 @@ public class PanelGame extends JPanel{
 
     private Optional<World> world;
 
-    private boolean isDraw;
-    private boolean isUpdate;
-
     public PanelGame() {
         super(); 
         super.setOpaque(false);
 
         this.taskObjects = new Thread(PanelGame.this::runUpdateGameObjects);
         this.taskBullet = new Thread(PanelGame.this::runUpdateBullet);
-        
+
         this.gameObject = new ArrayList<>();
-        
-        this.objects = new HashMap<GameObject, Pair<Image, Image>>();
-        this.bullets = new HashMap<Bullet, Pair<Image,Image>>();
-        this.isDraw = false;
-        this.isUpdate = false;
-        
+
+        this.objects = new HashMap<>();
+        this.bullets = new HashMap<>();
+
         this.world = Optional.empty();
-        
+
         this.taskObjects.start();
         this.taskBullet.start();
     }
 
-    public void setWorld(final World world) {
+    public final void setWorld(final World world) {
         this.world = Optional.of(world);
-    }
-
-    public void startPaint() {
-        this.isDraw = true;
-        this.isUpdate = true;
-    }
-
-    public void stopPaint() {
-        this.isDraw = false;
-        this.isUpdate = false;
     }
 
     @Override
@@ -159,17 +144,17 @@ public class PanelGame extends JPanel{
             final Bullet entity = bullet;
             final Pair<Image, Image> pair = new Pair<>(EngineImage.getImageFromEngine(entity.getEngineImage()), 
                     EngineImage.getImageFromEngine(entity.getEngineEffect()));
-            
+
             if (this.bullets.containsKey(entity)) {
                 this.bullets.replace(entity, pair);
             } else {
                 this.bullets.put(entity, pair);
-            }     
+            }
             this.bullets.put(entity, pair);
         });
-        
+
         final Set<Bullet> bulletDelet = new HashSet<>();
-        
+
         this.bullets.entrySet().forEach(obj -> {
             if (!this.world.get().getAllBullets().contains(obj.getKey())) {
                 bulletDelet.add(obj.getKey());
@@ -220,7 +205,7 @@ public class PanelGame extends JPanel{
         while (true) {
             long current = System.currentTimeMillis();
 
-            if (this.isUpdate && this.world.isPresent()) {
+            if (this.world.isPresent()) {
                 this.updateBulletObject();
             }
            waitForNextFrame(current);
@@ -233,7 +218,7 @@ public class PanelGame extends JPanel{
         while (true) {
             long current = System.currentTimeMillis();
 
-            if (this.isUpdate && this.world.isPresent()) {
+            if (this.world.isPresent()) {
                this.updateGameObjects();
             }
 
