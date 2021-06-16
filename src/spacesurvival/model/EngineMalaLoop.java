@@ -91,7 +91,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                         updateGame(elapsed);
                         nbThreads =  Thread.getAllStackTraces().keySet().size();
 
-                        System.out.println("Numero dei thread current -> " + nbThreads);
+                        //System.out.println("Numero dei thread current -> " + nbThreads);
                     }
                 }
 
@@ -124,12 +124,11 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     }
 
     protected final void updateGame(final int elapsed) {
-
-        this.controlGame.updateHUD();
-        this.controlGame.updateStateWorld(elapsed);
         checkEvents();
         checkSoundEffects();
         this.assignTargetToEnemies();
+        this.controlGame.updateStateWorld(elapsed);
+        this.controlGame.updateHUD();
     }
 
     protected void checkSoundEffects() {
