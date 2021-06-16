@@ -237,7 +237,15 @@ public class PanelGame extends JPanel{
                this.updateGameObjects();
            }
             
-           waitForNextFrame(current);
+           
+           try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+           
+//           waitForNextFrame(current);
            lastTime = current;
         }
     }

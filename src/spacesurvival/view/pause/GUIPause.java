@@ -4,14 +4,27 @@ import spacesurvival.utilities.ActionGUI;
 import spacesurvival.view.GUI;
 import spacesurvival.view.utilities.BtnAction;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.util.List;
 
-public interface GUIPause extends GUI, GraphicsGUIPause {
+public interface GUIPause extends GUI {
 
-    public BtnAction getActionBtn(final int ind);
+    BtnAction getActionBtn(int ind);
 
-    public void setNameButtons(final List<String> listNames);
+    void setNameButtons(List<String> listNames);
 
-    public void setActionButtons(final ActionGUI mainAction, final List<ActionGUI> linksID);
+    void setActionButtons(ActionGUI mainAction, List<ActionGUI> linksID);
+
+
+    void setFontGUITitle(Font font);
+
+    void setTitleGUI(String title);
+
+    void setForegroundGUI(Color color);
+
+    void setFontButtons(Font font);
+
+    void setBackgroundButtons(Color color);
 
 }

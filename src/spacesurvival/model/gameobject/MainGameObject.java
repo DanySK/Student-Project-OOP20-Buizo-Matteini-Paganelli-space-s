@@ -29,7 +29,7 @@ public abstract class MainGameObject extends MovableGameObject {
         super(engineImage, position, bb, phys, velocity, movement);
         this.life = life;
         this.impactDamage = impactDamage;
-        this.setStatus(Status.NORMAL);
+        this.status = Status.NORMAL;
         this.score = score;
         this.target = target;
     }
@@ -66,7 +66,7 @@ public abstract class MainGameObject extends MovableGameObject {
     }
 	
     public void setStatus(final Status status) {
-        if (!(this.status == status) || this.status != Status.NORMAL) {
+        if (!this.status.equals(status)) {
             System.out.println("STATUS   " + status);
 
             this.status = status;
@@ -121,8 +121,7 @@ public abstract class MainGameObject extends MovableGameObject {
 
     public void waitStatusDuration(int milliseconds) {
         mySleep(milliseconds);
-        this.status = Status.NORMAL;
-        super.setAnimationEffect(Status.NORMAL.getAnimation());
+        this.setStatus(Status.NORMAL);
     }
 	
     public void onFire() {
@@ -163,7 +162,7 @@ public abstract class MainGameObject extends MovableGameObject {
 
     public void mySleep(int milliseconds) {
         try {
-            sleep(milliseconds);
+            Thread.sleep(milliseconds);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

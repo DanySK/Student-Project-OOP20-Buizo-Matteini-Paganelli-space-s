@@ -13,6 +13,5 @@ public class SpaceBarCommand implements CommandGameObject {
     public void execute(final SpaceShipSingleton ship) {
         ship.getWeapon().shoot();
         ship.pushEffect(SoundPath.SHOOT);
-
     }
 }

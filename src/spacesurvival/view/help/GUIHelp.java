@@ -4,15 +4,26 @@ import spacesurvival.model.EngineImage;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.view.GUI;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.util.List;
 
-public interface GUIHelp extends GUI, GraphicsGUIHelp {
+public interface GUIHelp extends GUI {
 
-    public void setActionBtnBack(final ActionGUI mainAction, final ActionGUI intoID);
+    void setActionBtnBack(ActionGUI mainAction, ActionGUI intoID);
 
-    public void setNameUnit(final List<String> listName);
+    void setNameUnit(List<String> listName);
 
-    public void setBtnNames(final List<String> listName);
+    void setBtnNames(List<String> listName);
 
-    public void addNameAndIconInUnit(final String panelName, final List<EngineImage> pathImg);
+    void addNameAndIconInUnit(String panelName, List<EngineImage> pathImg);
+
+
+    void setTitleGUI(String title);
+
+    void setForegroundGUI(Color color);
+
+    void setFontTitleGUI(Font font);
+
+    void setFontGUI(Font font);
 }
