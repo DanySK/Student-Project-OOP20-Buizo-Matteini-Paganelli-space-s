@@ -11,8 +11,13 @@ import spacesurvival.model.collisioni.physics.bounding.RectBoundingBox;
 
 public class ChaseEnemyPhysicsComponent implements PhysicsComponent {
 
-    @Override
-    public void update(final int dt, final GameObject abstractObj, final World w) {
+    /**
+     * Update the physics of the chase enemy.
+     * 
+     * @param abstractObj the ship
+     * @param w represent the current world
+     */
+    public void update(final GameObject abstractObj, final World w) {
         final ChaseEnemy chaseEnemy = (ChaseEnemy) abstractObj;
         final RectBoundingBox boundingBox = w.getMainBBox();
         final Optional<BoundaryCollision> borderInfo = w.checkCollisionWithBoundaries(chaseEnemy.getPosition(), boundingBox);

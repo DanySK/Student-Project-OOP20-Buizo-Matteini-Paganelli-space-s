@@ -7,7 +7,7 @@ import spacesurvival.model.collisioni.hitevent.HitBorderEvent;
 import spacesurvival.model.collisioni.hitevent.HitBulletEvent;
 import spacesurvival.model.collisioni.hitevent.HitMainGameObject;
 import spacesurvival.model.collisioni.hitevent.HitTakeableGameObject;
-import spacesurvival.model.collisioni.physics.BoundaryCollision.CollisionEdge;
+import spacesurvival.model.gameobject.Edge;
 import spacesurvival.model.gameobject.MainGameObject;
 import spacesurvival.model.gameobject.MovableGameObject;
 import spacesurvival.model.gameobject.Status;
@@ -124,10 +124,12 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     }
 
     protected final void updateGame(final int elapsed) {
+
         this.controlGame.updateHUD();
         this.controlGame.updateStateWorld(elapsed);
         checkEvents();
         checkSoundEffects();
+        this.assignTargetToEnemies();
     }
 
     protected void checkSoundEffects() {
@@ -171,7 +173,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                 final TakeableGameObject takeableGameObject = takeableEvent.getCollidedObject();
                 playEffect(SoundPath.PERK);
                 takeableGameObject.stopAnimation();
-                
+      
                 if (takeableGameObject instanceof Ammo) {
                     final Ammo ammo = (Ammo) takeableGameObject;
                     world.getShip().take(ammo);
@@ -187,7 +189,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             } else if (ev instanceof HitBorderEvent) {
                 final HitBorderEvent borderEvent = (HitBorderEvent) ev;
                 final MovableGameObject object = borderEvent.getCollisionObj();
-                final CollisionEdge edge = borderEvent.getEdge();
+                final Edge edge = borderEvent.getEdge();
 
                 // If a bullet reach a border
                 if (object instanceof Bullet) {
@@ -258,7 +260,8 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     	return gameObject.getLife() <= 0;
     }
 
-    public void pacmanEffect(final MovableGameObject object, final CollisionEdge edge) {
+    
+    public void pacmanEffect(MovableGameObject object, Edge edge) {
     	AffineTransform newTransform = new AffineTransform();
     	switch (edge) {
     	case TOP:
@@ -315,7 +318,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     public void notifyEvent(final WorldEvent ev) {
         eventQueue.add(ev);
     }
-
+    
     private void playEffect(final SoundPath soundPath) {
     	this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CmdAudioType.RESET_TIMING);
         this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CmdAudioType.AUDIO_ON);

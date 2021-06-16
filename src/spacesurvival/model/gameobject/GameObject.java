@@ -14,8 +14,8 @@ import spacesurvival.model.World;
 import spacesurvival.model.collisioni.physics.bounding.BoundingBox;
 import spacesurvival.model.collisioni.physics.component.PhysicsComponent;
 
-public abstract class GameObject {
 
+public abstract class GameObject {
     private AffineTransform transform;
     private BoundingBox boundingBox;
     private PhysicsComponent phys;
@@ -144,8 +144,9 @@ public abstract class GameObject {
         this.phys = phys;
     }
 	
-    public final void updatePhysics(final int dt, final World w) {
-        phys.update(dt, this, w);
+
+    public void updatePhysics(World w){
+        phys.update(this, w);
     }
 	
     public final Dimension getSize() {

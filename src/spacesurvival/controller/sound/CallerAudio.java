@@ -13,16 +13,25 @@ public class CallerAudio {
     private final CommandAudio cmdAudioOff;
     private final CommandAudio cmdResetTiming;
     private Sound sound;
-	
+
+    /** 
+     * Contructor for CallerAudio, inizialize a new CallerAudio without setting a current sound.
+     * 
+     */
     public CallerAudio() {
-	this.cmdAudioOn = new PlaySoundCommand();
-	this.cmdAudioOff = new StopSoundCommand();
-	this.cmdResetTiming = new ResetTiming();
+    this.cmdAudioOn = new PlaySoundCommand();
+    this.cmdAudioOff = new StopSoundCommand();
+    this.cmdResetTiming = new ResetTiming();
     }
 
+    /** 
+     * Contructor for CallerAudio, inizialize a new CallerAudio setting the passed sound.
+     * 
+     * @param sound the sound that will be set on this caller.
+     */
     public CallerAudio(final Sound sound) {
         this();
-	this.sound = sound;
+        this.sound = sound;
     }
 
     /** 
@@ -33,14 +42,14 @@ public class CallerAudio {
     public Sound getSound() {
         return this.sound;
     }
-	
+
     /** 
      * Set sound to the caller.
      * 
      * @param sound the sound that will be set on this caller.
      */
     public void setSound(final Sound sound) {
-    	this.sound = sound;
+        this.sound = sound;
     }
 
     /** 
@@ -49,8 +58,8 @@ public class CallerAudio {
      * @param currentVolume the volume that will be set on the current sound.
      */
     public void changeVolume(final int currentVolume) {
-	final double parsedVolume = currentVolume / 100.0f;
-	this.sound.setVolume(parsedVolume);
+        final double parsedVolume = currentVolume / 100.0f;
+        this.sound.setVolume(parsedVolume);
     }
 
     /** 
@@ -59,10 +68,10 @@ public class CallerAudio {
      * @param sound the path of the sound to be checked.
      * @return true if the current sound is equal to the corrisponding of the path.
      */
-    public boolean isNewSound(final SoundPath sound){
+    public boolean isNewSound(final SoundPath sound) {
         return this.sound.getSoundType() != sound;
     }
-	
+
     /** 
      * Read the passed command and execute the command on the specified concrete command. 
      * 
@@ -81,14 +90,14 @@ public class CallerAudio {
             cmdResetTiming.execute(sound); break;
         }
     }
-	
+
     /** 
      * Returns a string that specifies the possible commands this caller can execute.
      * @return return the string
      */
     public String toString() {
-        return "CallerAudio{" +
-                "CommandAudio= cmdAudioOn, cmdAudioOff, cmdResetTiming, "
+        return "CallerAudio{" 
+                + "CommandAudio= cmdAudioOn, cmdAudioOff, cmdResetTiming, "
                 + "sound=" + this.getSound().toString() + '}';
     }
 }
