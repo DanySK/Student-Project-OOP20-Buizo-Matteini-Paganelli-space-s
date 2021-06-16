@@ -2,6 +2,7 @@ package spacesurvival.model.collisioni.physics.component;
 
 import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.gameobject.MainGameObject;
+import spacesurvival.model.gameobject.enemy.FireableObject;
 
 import java.util.Optional;
 
@@ -48,7 +49,7 @@ public class BulletPhysicsComponent implements PhysicsComponent {
             w.notifyWorldEvent(new HitBulletEvent(bullet, fireEnemy.get()));
         }
 
-        final Optional<MainGameObject> boss = w.checkCollisionWithBoss(objectBoundingBox);
+        final Optional<FireableObject> boss = w.checkCollisionWithBoss(objectBoundingBox);
         //collisioni con boss
         if (boss.isPresent()) {
             w.notifyWorldEvent(new HitBulletEvent(bullet, boss.get()));

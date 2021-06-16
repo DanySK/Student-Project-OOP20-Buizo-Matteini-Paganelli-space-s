@@ -71,6 +71,10 @@ public class EngineImage {
         return new Dimension(this.width, this.height);
     }
 
+    public final Image getImage() {
+        return EngineImage.getImageFromEngine(this);
+    }
+
 
     public void setPath(final String path) {
         this.path = path;

@@ -3,56 +3,75 @@ package spacesurvival.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Animation extends Thread{
-    private final List<String> animation;
-    private boolean isAnimation;
+public class Animation extends Thread {
+
+    private final List<String> listPath;
+    private boolean isAnimating;
+    private boolean isPause;
     private EngineImage body;
 
-    public Animation(final EngineImage body){
-        this.animation = new ArrayList<>();
-        this.isAnimation = false;
+    public Animation(final EngineImage body) {
+        this.listPath = new ArrayList<>();
+        this.isAnimating = true;
+        this.isPause = false;
         this.body = body;
     }
 
-    public EngineImage getBody() {
+    public final EngineImage getBody() {
         return this.body;
     }
 
-    public List<String> getAnimation() {
-        return this.animation;
+    public final List<String> getListPath() {
+        return this.listPath;
     }
 
-    public void setBody(EngineImage body) {
+    public final boolean isAnimating() {
+        return this.isAnimating;
+    }
+
+    public final boolean isPause() {
+        return this.isPause;
+    }
+
+
+    public final void setBody(final EngineImage body) {
         this.body = body;
     }
 
-    public void setAnimation(final List<String> animation){
-        this.animation.clear();
-        this.animation.addAll(animation);
+    public final void setListPath(final List<String> listPath) {
+        this.listPath.clear();
+        this.listPath.addAll(listPath);
     }
 
-    public boolean isAnimation() {
-        return this.isAnimation;
+    public final void setAnimating(final boolean isAnimating) {
+        this.isAnimating = isAnimating;
     }
 
-    public void setAnimation(final boolean animation) {
-        this.isAnimation = animation;
+    public final void setPause(final boolean isPause) {
+        this.isPause = isPause;
     }
 
     @Override
-    public void run() {
+    public final void run() {
         int ind = 0;
-        while (true) {
-            if(this.isAnimation && !this.animation.isEmpty()) {
-                this.body.setPath(this.animation.get(ind));
-                ind = ind + 1 > this.animation.size() ? 0 : ind + 1;
+        while (this.isAnimating) {
+            if (!this.isPause && !this.listPath.isEmpty()) {
+                ind = ind + 1 > this.listPath.size() ? 0 : ind;
+                this.body.setPath(this.listPath.get(ind++));
             }
 
             try {
-                Thread.sleep(10);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    
+    @Override
+    public String toString() {
+        return "Animation [listPath=" + listPath + ", isAnimating=" + isAnimating + ", isPause=" + isPause + ", body="
+                + body + "]";
     }
 }

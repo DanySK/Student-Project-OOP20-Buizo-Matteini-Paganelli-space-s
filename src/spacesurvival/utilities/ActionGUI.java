@@ -3,6 +3,7 @@ package spacesurvival.utilities;
 import spacesurvival.utilities.path.Background;
 import spacesurvival.utilities.path.SoundPath;
 
+
 public enum ActionGUI {
     ID_MENU(0, "Menu", SoundPath.MENU_SOUND, Background.MAIN, StateLevelGUI.FOREGROUND),
     ID_GAME(1, "Game", SoundPath.GAME_SOUND, Background.GAME, StateLevelGUI.FOREGROUND),

@@ -19,6 +19,7 @@ import spacesurvival.model.gameobject.MovableGameObject;
 import spacesurvival.model.gameobject.enemy.Boss;
 import spacesurvival.model.gameobject.enemy.ChaseEnemy;
 import spacesurvival.model.gameobject.enemy.FireEnemy;
+import spacesurvival.model.gameobject.enemy.FireableObject;
 import spacesurvival.model.gameobject.factories.AbstractFactoryGameObject;
 import spacesurvival.model.gameobject.factories.ConcreteFactoryGameObject;
 import spacesurvival.model.gameobject.main.Asteroid;
@@ -37,8 +38,8 @@ public class World {
 
     private final Set<MainGameObject> asteroids = new HashSet<>();
     private final Set<MainGameObject> chaseEnemies = new HashSet<>();
-    private final Set<MainGameObject> fireEnemies = new HashSet<>();
-    private Optional<MainGameObject> boss = Optional.empty();
+    private final Set<FireableObject> fireEnemies = new HashSet<>();
+    private Optional<FireableObject> boss;
     private final Set<TakeableGameObject> ammo = new HashSet<>();
     private final Set<TakeableGameObject> hearts = new HashSet<>();
     private SpaceShipSingleton ship;
@@ -48,30 +49,35 @@ public class World {
 
     public World(final RectBoundingBox mainBBox) {
         this.ship = SpaceShipSingleton.getSpaceShip();
-        this.ship.setWeapon(Optional.of(new Weapon(AmmoType.NORMAL, ship)));
+        this.ship.setWeapon(new Weapon(AmmoType.NORMAL, ship));
         this.mainBBox = mainBBox;
 
         for (int i = 0; i < 1; i++) {
-            asteroids.add(factoryGameObject.createAsteroid());
-            chaseEnemies.add(factoryGameObject.createChaseEnemy());
-            ammo.add(factoryGameObject.createAmmo());
-            hearts.add(factoryGameObject.createHeart());
+            this.addAsteroid();
+            this.addChaseEnemy();
+            this.addFireEnemy();
+            this.addAmmo();
+            //asteroids.add(factoryGameObject.createAsteroid());
+            //chaseEnemies.add(factoryGameObject.createChaseEnemy());
+            //ammo.add(factoryGameObject.createAmmo());
+            //hearts.add(factoryGameObject.createHeart());
         }
-        this.boss = Optional.of(factoryGameObject.createBoss());
+        this.addBoss();
+        //this.boss = Optional.of(factoryGameObject.createBoss());
     }
 
     public World(final Rectangle rectangle) {
         this.ship = SpaceShipSingleton.getSpaceShip();
-        this.ship.setWeapon(Optional.of(new Weapon(AmmoType.NORMAL, ship)));
+        this.ship.setWeapon(new Weapon(AmmoType.NORMAL, ship));
         this.mainBBox = new RectBoundingBox(rectangle);
 
         for (int i = 0; i < 1; i++) {
-            asteroids.add(factoryGameObject.createAsteroid());
-            chaseEnemies.add(factoryGameObject.createChaseEnemy());
-            ammo.add(factoryGameObject.createAmmo());
-            hearts.add(factoryGameObject.createHeart());
+            this.addAsteroid();
+            this.addChaseEnemy();
+            this.addFireEnemy();
+            this.addAmmo();
         }
-        this.boss = Optional.of(factoryGameObject.createBoss());
+        this.addBoss();
     }
 
     public void setEventListener(final WorldEventListener l) {
@@ -103,7 +109,7 @@ public class World {
         this.factoryGameObject = factoryGameObject;
     }
 	
-    public void addAsteroid() {
+    public final void addAsteroid() {
         asteroids.add(factoryGameObject.createAsteroid());
     }
 
@@ -111,7 +117,7 @@ public class World {
         asteroids.remove(obj);
     }
 
-    public void addChaseEnemy() {
+    public final void addChaseEnemy() {
         chaseEnemies.add(factoryGameObject.createChaseEnemy());
     }
 	
@@ -119,7 +125,7 @@ public class World {
         chaseEnemies.remove(obj);
     }
 	
-    public void addFireEnemy() {
+    public final void addFireEnemy() {
         fireEnemies.add(factoryGameObject.createFireEnemy());
     }
 	
@@ -127,15 +133,16 @@ public class World {
         fireEnemies.remove(obj);
     }
 	
-    public void addBoss() {
+    public final void addBoss() {
         this.boss = Optional.of(factoryGameObject.createBoss());
+        this.boss.get().startFiring();
     }
 	
     public void removeBoss() {
         this.boss = Optional.empty();
     }
 	
-    public void addAmmo() {
+    public final void addAmmo() {
         ammo.add(factoryGameObject.createAmmo());
     }
 
@@ -143,8 +150,8 @@ public class World {
         ammo.remove(obj);
     }
 	
-    public void addHeart() {
-        hearts.add(factoryGameObject.createAmmo());
+    public final void addHeart() {
+        hearts.add(factoryGameObject.createHeart());
     }
 
     public void removeHeart(final TakeableGameObject obj) {
@@ -159,7 +166,7 @@ public class World {
             return true;
         }
         final boolean found = false;
-        final Iterator<MainGameObject> fireEnemiesIterator = fireEnemies.iterator();
+        final Iterator<FireableObject> fireEnemiesIterator = fireEnemies.iterator();
         while (fireEnemiesIterator.hasNext()) {
             //System.out.println(fireEnemiesIterator);
             getFireEnemyBullets(fireEnemiesIterator.next()).remove(bullet);
@@ -195,7 +202,7 @@ public class World {
         this.getAllEntities().forEach(entity -> entity.updatePhysics(this));
     }
 
-    public Optional<BoundaryCollision> checkCollisionWithBoundaries(final P2d pos, final RectBoundingBox box){
+    public Optional<BoundaryCollision> checkCollisionWithBoundaries(final P2d pos, final RectBoundingBox box) {
         final P2d ul = box.getULCorner();
         final P2d br = box.getBRCorner();
 
@@ -243,7 +250,7 @@ public class World {
         return Optional.empty();
     }
 	
-    public Optional<MainGameObject> checkCollisionWithBoss(final RectBoundingBox rectBoundingBox) {
+    public Optional<FireableObject> checkCollisionWithBoss(final RectBoundingBox rectBoundingBox) {
         if (boss.isPresent()) {
             if (collisionChecker.testRectangleToRectangle(rectBoundingBox, (RectBoundingBox) boss.get().getBoundingBox())) {
                 return this.boss;
@@ -286,11 +293,11 @@ public class World {
         return this.chaseEnemies;
     }
 	
-    public Set<MainGameObject> getFireEnemies() {
+    public Set<FireableObject> getFireEnemies() {
         return this.fireEnemies;
     }
 	
-    public Optional<MainGameObject> getBoss() {
+    public Optional<FireableObject> getBoss() {
         return boss;
     }
 	
@@ -320,22 +327,16 @@ public class World {
     }
 
     public Set<Bullet> getShipBullets() {
-        if (this.ship.getWeapon().isPresent()) {
-            return this.ship.getWeapon().get().getShootedBullets();
-        }
-        return new HashSet<>();
+            return this.ship.getWeapon().getShootedBullets();
     }
 	
-    public Set<Bullet> getFireEnemyBullets(final MainGameObject fireEnemy) {
-        if (fireEnemy.getWeapon().isPresent()) {
-            return fireEnemy.getWeapon().get().getShootedBullets();
-        }
-        return new HashSet<>();
+    public Set<Bullet> getFireEnemyBullets(final FireableObject fireEnemy) {
+        return fireEnemy.getWeapon().getShootedBullets();
     }
 	
     public Set<Bullet> getBossBullets() {
-        if (this.boss.isPresent() && this.boss.get().getWeapon().isPresent()) {
-            return this.boss.get().getWeapon().get().getShootedBullets();
+        if (this.boss.isPresent()) {
+            return this.boss.get().getWeapon().getShootedBullets();
         }
         return new HashSet<>();
     }
@@ -350,7 +351,7 @@ public class World {
         return allBullets;
     }
 	
-    public void setBoss(final Optional<MainGameObject> boss) {
+    public void setBoss(final Optional<FireableObject> boss) {
         this.boss = boss;
     }
 
@@ -372,9 +373,8 @@ public class World {
         if (boss.isPresent()) {
             entities.add(boss.get());
         }
-        if (ship.getWeapon().isPresent()) {
-            entities.addAll(ship.getWeapon().get().getShootedBullets());
-        }
+        entities.addAll(getAllBullets());
+
         return entities;
     }
 
@@ -384,13 +384,13 @@ public class World {
         this.boss = Optional.empty();
     }
 
-    public Set<GameObject> getAllEntitiesException() {
+    public Set<GameObject> getAllEntitiesExceptionBullets() {
         final Set<GameObject> entities = new HashSet<>();
         entities.add(ship);
         entities.addAll(asteroids);
         entities.addAll(getAllEnemies());
         if (boss.isPresent()) {
-                entities.add(boss.get());
+            entities.add(boss.get());
         }
         entities.addAll(ammo);
         entities.addAll(hearts);
@@ -405,11 +405,9 @@ public class World {
 		if (boss.isPresent()) {
 			entities.add(boss.get());
 		}
+        entities.addAll(getAllBullets());
 		entities.addAll(ammo);
 		entities.addAll(hearts);
-		if (ship.getWeapon().isPresent()) {
-			entities.addAll(ship.getWeapon().get().getShootedBullets());
-		}
 		return entities;
 	}
 

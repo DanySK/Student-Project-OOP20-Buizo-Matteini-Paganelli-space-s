@@ -1,5 +1,11 @@
 package spacesurvival.model.gameobject;
 
+import spacesurvival.model.common.P2d;
+import spacesurvival.model.common.V2d;
+import spacesurvival.model.movement.Movement;
+
+import java.util.Optional;
+
 import java.util.Optional;
 
 import spacesurvival.model.common.P2d;
@@ -14,18 +20,22 @@ public abstract class MainGameObject extends MovableGameObject {
     private int life;
     private int impactDamage;
     private Status status;
-    private Optional<Weapon> weapon;
     private int score;
+    private Optional<P2d> target;
 
     public MainGameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
-                          final PhysicsComponent phys, final V2d velocity, final Movement movement, final int life,
-                          final int impactDamage, final Optional<Weapon> weapon, final int score) {
+            final PhysicsComponent phys, final V2d velocity, final Movement movement, final int life,
+            final int impactDamage, final int score, final Optional<P2d> target) {
         super(engineImage, position, bb, phys, velocity, movement);
         this.life = life;
         this.impactDamage = impactDamage;
-        this.weapon = weapon;
-        this.setStatus(Status.NORMAL);
+        this.status = Status.NORMAL;
         this.score = score;
+        this.target = target;
+    }
+
+    public boolean isAlive() {
+        return this.life > 0;
     }
 
     public int getLife() {
@@ -35,11 +45,11 @@ public abstract class MainGameObject extends MovableGameObject {
     public void setLife(final int life) {
         this.life = life;
     }
-    
+
     public void increaseLife(final int heal) {
         this.life += heal;
     }
-    
+
     public void decreaseLife(final int damage) {
         this.life -= damage;
         System.out.println(this.getPhys());
@@ -54,29 +64,42 @@ public abstract class MainGameObject extends MovableGameObject {
     public void setImpactDamage(final int impactDamage) {
         this.impactDamage = impactDamage;
     }
-	
-    public Optional<Weapon> getWeapon() {
-        return weapon;
-    }
-
-    public void setWeapon(final Optional<Weapon> weapon) {
-        this.weapon = weapon;
-    }
 
     public Status getStatus() {
         return this.status;
     }
 	
     public void setStatus(final Status status) {
-        if (!(this.status == status) || this.status != Status.NORMAL) {
+        if (!this.status.equals(status)) {
             System.out.println("STATUS   " + status);
-            
+
             this.status = status;
             super.setAnimationEffect(status.getAnimation());
             this.onStatus();
         }
     }
-	
+
+    /**
+     * Return the target position of Enemy.
+     *
+     * @return the target position of Enemy
+     */
+    public Optional<P2d> getTarget() {
+        return target;
+    }
+
+    /**
+     * Sets the target position of Enemy.
+     *
+     * @param target the new target position
+     */
+    public void setTarget(final Optional<P2d> target) {
+        this.target = target;
+    }
+
+    /**
+     * @return true if the object is invincible
+     */
     public boolean isInvincible() {
         return this.status == Status.INVINCIBLE;
     }
@@ -102,8 +125,7 @@ public abstract class MainGameObject extends MovableGameObject {
 
     public void waitStatusDuration(int milliseconds) {
         mySleep(milliseconds);
-        this.status = Status.NORMAL;
-        super.setAnimationEffect(Status.NORMAL.getAnimation());
+        this.setStatus(Status.NORMAL);
     }
 	
     public void onFire() {
@@ -144,7 +166,7 @@ public abstract class MainGameObject extends MovableGameObject {
 
     public void mySleep(int milliseconds) {
         try {
-            sleep(milliseconds);
+            Thread.sleep(milliseconds);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -153,7 +175,7 @@ public abstract class MainGameObject extends MovableGameObject {
     @Override
     public String toString() {
         return "MainGameObject [life=" + life + ", impactDamage=" + impactDamage + ", state=" + status 
-                + ", weapon=" + weapon + ", " + super.toString() + "]";
+                + ", " + super.toString() + "]";
     }
 
 }

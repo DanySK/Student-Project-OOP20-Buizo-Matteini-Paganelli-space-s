@@ -1,5 +1,6 @@
 package spacesurvival.view.sound.utilities;
 
+
 import spacesurvival.model.gui.sound.TypeUnitSound;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.view.utilities.FactoryGUIs;
@@ -10,6 +11,11 @@ import java.awt.Font;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import spacesurvival.model.gui.sound.TypeUnitSound;
+import spacesurvival.utilities.dimension.ScaleOf;
+import spacesurvival.view.utilities.FactoryGUIs;
+
 
 public class UnitSound extends JPanel {
     private final JLabel lbTitle;

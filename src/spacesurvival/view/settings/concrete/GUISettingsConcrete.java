@@ -8,13 +8,19 @@ import spacesurvival.view.settings.GUISettings;
 import spacesurvival.view.settings.utilities.JRadioDifficult;
 import spacesurvival.view.settings.utilities.PanelDifficult;
 import spacesurvival.view.settings.utilities.PanelSkin;
-import spacesurvival.view.utilities.*;
+import spacesurvival.view.utilities.BtnAction;
+import spacesurvival.view.utilities.FactoryGUIs;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 import java.util.List;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+
 public class GUISettingsConcrete extends AbstractGUI implements GUISettings {
+    private static final long serialVersionUID = 1L;
+
     private final JLabel lbTitle;
     private final PanelSkin panelSkin;
     private final PanelDifficult panelDifficult;
@@ -29,58 +35,58 @@ public class GUISettingsConcrete extends AbstractGUI implements GUISettings {
     }
 
     @Override
-    public List<BtnAction> getBtnActionLinks() {
+    public final List<BtnAction> getBtnActionLinks() {
         return List.of(this.btnBack);
     }
 
 
     @Override
-    public List<JButton> getBtnUnitSkin() {
+    public final List<JButton> getBtnUnitSkin() {
         return List.of(this.panelSkin.getBtSX(), this.panelSkin.getBtDX());
     }
 
     @Override
-    public List<JRadioDifficult> getRadioBtnUnitDifficult() {
+    public final List<JRadioDifficult> getRadioBtnUnitDifficult() {
         return this.panelDifficult.getDifficult();
     }
 
     @Override
-    public void setUnitNames(final List<String> listName) {
+    public final void setUnitNames(final List<String> listName) {
         int i = 0;
         this.panelSkin.setLbTitle(listName.get(i++));
         this.panelDifficult.setTitle(listName.get(i));
     }
 
     @Override
-    public void setDifficultNames(List<Difficulty> listDifficult) {
+    public final void setDifficultNames(final List<Difficulty> listDifficult) {
         this.panelDifficult.setDifficultNames(listDifficult);
     }
 
     @Override
-    public void setNameBtnBack(final String nameBtnBack) {
+    public final void setNameBtnBack(final String nameBtnBack) {
         this.btnBack.setText(nameBtnBack);
     }
 
     @Override
-    public void setSkinSpaceShip(final EngineImage imageEngine) {
+    public final void setSkinSpaceShip(final EngineImage imageEngine) {
         this.panelSkin.setPnImage(imageEngine.getPath());
         this.panelSkin.setRateImg(imageEngine.getScaleOf(), imageEngine.getRespectTo());
     }
 
     @Override
-    public void setDifficult(final Difficulty difficulty) {
+    public final void setDifficult(final Difficulty difficulty) {
         this.panelDifficult.setDifficult(difficulty);
     }
 
     @Override
-    public void setBtnBackID(final ActionGUI mainAction, final ActionGUI action) {
+    public final void setBtnBackID(final ActionGUI mainAction, final ActionGUI action) {
         this.btnBack.setActionCurrent(mainAction);
         this.btnBack.setActionNext(action);
     }
 
 
     @Override
-    public void setForegroundGUI(Color color) {
+    public final void setForegroundGUI(final Color color) {
         this.lbTitle.setForeground(color);
         this.panelSkin.setAllForeground(color);
         this.panelDifficult.setAllForeground(color);
@@ -88,48 +94,48 @@ public class GUISettingsConcrete extends AbstractGUI implements GUISettings {
     }
 
     @Override
-    public void setFontGUITitle(Font font) {
+    public final void setFontGUITitle(final Font font) {
         this.lbTitle.setFont(font);
     }
 
     @Override
-    public void setFontTitleUnit(Font font) {
+    public final void setFontTitleUnit(final Font font) {
         this.panelSkin.setFontLbTitle(font);
         this.panelDifficult.setFontTitleDifficult(font);
         this.btnBack.setFont(font);
     }
 
     @Override
-    public void setFontUnit(Font font) {
+    public final void setFontUnit(final Font font) {
         this.panelDifficult.setFontGroupRadioButton(font);
         this.panelSkin.setFontButtons(font);
     }
 
     @Override
-    public void setTitleGUI(String title) {
+    public final void setTitleGUI(final String title) {
         this.lbTitle.setText(title);
     }
 
     @Override
-    public void setTransparentComponent() {
+    public final void setTransparentComponent() {
         this.panelSkin.setTransparentButton();
         FactoryGUIs.setTransparentDesignJButton(this.btnBack);
     }
 
 
-    public JLabel getLbTitle(){
+    public final JLabel getLbTitle() {
         return this.lbTitle;
     }
 
-    public JButton getBtnBack(){
+    public final BtnAction getBtnBack() {
         return this.btnBack;
     }
 
-    public PanelSkin getPanelSkin() {
+    public final PanelSkin getPanelSkin() {
         return this.panelSkin;
     }
 
-    public PanelDifficult getPanelDifficult(){
+    public final PanelDifficult getPanelDifficult() {
         return this.panelDifficult;
     }
 

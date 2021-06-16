@@ -23,9 +23,9 @@ public class EngineGame implements EngineGUI {
     private final World world;
     private final EngineHUD hud;
 
-	private Visibility visibility;
+    private Visibility visibility;
 
-    public EngineGame(){
+    public EngineGame() {
         this.id = ActionGUI.ID_GAME;
         this.idPause = ActionGUI.ID_PAUSE;
         this.world = new World(RECTANGLE);
@@ -49,7 +49,7 @@ public class EngineGame implements EngineGUI {
     }
 
     @Override
-    public void setVisibility(Visibility state) {
+    public void setVisibility(final Visibility state) {
         this.visibility = state;
     }
 
@@ -115,7 +115,7 @@ public class EngineGame implements EngineGUI {
     public void decreaseLives() {
         this.hud.decreaseLives();
     }
-    
+
     public void increaseLives(final int amount) {
         this.hud.increaseLives(amount);
     }

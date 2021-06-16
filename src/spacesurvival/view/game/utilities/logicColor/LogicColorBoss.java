@@ -1,6 +1,6 @@
 package spacesurvival.view.game.utilities.logicColor;
 
-import java.awt.*;
+import java.awt.Color;
 
 public class LogicColorBoss implements LogicColor{
     @Override

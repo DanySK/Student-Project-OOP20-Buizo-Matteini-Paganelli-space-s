@@ -26,7 +26,7 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
 
     private final PanelGame panelGame;
 
-    public GUIGameConcrete(){
+    public GUIGameConcrete() {
         super();
         this.lifeBoss = new LifeBar(new LogicColorBoss());
         this.lifeShip = new LifeBar(new LogicColorShip());

@@ -1,7 +1,6 @@
 package spacesurvival.view.sound.utilities;
 
 import spacesurvival.model.gui.sound.TypeUnitSound;
-
 import java.util.Objects;
 import javax.swing.JSlider;
 

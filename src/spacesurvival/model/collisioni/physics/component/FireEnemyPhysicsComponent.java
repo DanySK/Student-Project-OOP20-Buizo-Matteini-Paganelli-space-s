@@ -4,7 +4,6 @@ import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.gameobject.enemy.FireEnemy;
 
 import java.util.Optional;
-
 import spacesurvival.model.World;
 import spacesurvival.model.collisioni.hitevent.HitBorderEvent;
 import spacesurvival.model.collisioni.physics.BoundaryCollision;

@@ -1,11 +1,9 @@
 package spacesurvival.model.collisioni.physics.component;
 
 import spacesurvival.model.gameobject.GameObject;
+
 import spacesurvival.model.gameobject.enemy.ChaseEnemy;
-
 import java.util.Optional;
-
-
 import spacesurvival.model.World;
 import spacesurvival.model.collisioni.hitevent.HitBorderEvent;
 import spacesurvival.model.collisioni.physics.BoundaryCollision;

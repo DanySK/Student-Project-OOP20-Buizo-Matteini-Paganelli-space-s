@@ -5,9 +5,11 @@ import spacesurvival.utilities.ActionGUI;
 import spacesurvival.view.GUI;
 import spacesurvival.view.sound.utilities.ButtonSliderType;
 import spacesurvival.view.sound.utilities.SliderType;
+import java.awt.Color;
+import java.awt.Font;
 import java.util.List;
 
-public interface GUISound extends GUI, GraphicsGUISound {
+public interface GUISound extends GUI {
 
     void setNameButtonBack(String nameBtnBack);
 
@@ -28,4 +30,15 @@ public interface GUISound extends GUI, GraphicsGUISound {
     List<ButtonSliderType> getBtnSwitches();
 
     void setIconBtnSwitches(List<String> path);
+
+    void setForegroundGUI(Color color);
+
+    void setFontGUITitle(Font font);
+
+    void setFontGUI(Font font);
+
+    void setFontSpacingSlider(Font font);
+
+    void setTitleGUI(String title);
+
 }

@@ -2,6 +2,7 @@ package spacesurvival.model.gui.settings;
 
 import spacesurvival.utilities.path.skin.SkinShip;
 
+
 import java.util.List;
 
 public enum SkinSpaceShip {

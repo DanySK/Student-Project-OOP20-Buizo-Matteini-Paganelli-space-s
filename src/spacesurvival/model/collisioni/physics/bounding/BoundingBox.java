@@ -1,6 +1,5 @@
 package spacesurvival.model.collisioni.physics.bounding;
 
-
 import java.awt.geom.AffineTransform;
 
 public interface BoundingBox {

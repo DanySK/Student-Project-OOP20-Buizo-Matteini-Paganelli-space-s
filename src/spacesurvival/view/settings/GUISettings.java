@@ -6,25 +6,41 @@ import spacesurvival.utilities.ActionGUI;
 import spacesurvival.view.GUI;
 import spacesurvival.view.settings.utilities.JRadioDifficult;
 
-import javax.swing.*;
+import java.awt.Color;
+import java.awt.Font;
 import java.util.List;
 
-public interface GUISettings extends GUI, GraphicsGUISettings {
+import javax.swing.JButton;
 
-    public List<JButton> getBtnUnitSkin();
+public interface GUISettings extends GUI {
 
-    public List<JRadioDifficult> getRadioBtnUnitDifficult();
+    List<JButton> getBtnUnitSkin();
+
+    List<JRadioDifficult> getRadioBtnUnitDifficult();
 
 
-    public void setUnitNames(final List<String> listName);
+    void setUnitNames(List<String> listName);
 
-    public void setDifficultNames(final List<Difficulty> listDifficult);
+    void setDifficultNames(List<Difficulty> listDifficult);
 
-    public void setNameBtnBack(final String nameBtnBack);
+    void setNameBtnBack(String nameBtnBack);
 
-    public void setSkinSpaceShip(final EngineImage imageEngine);
+    void setSkinSpaceShip(EngineImage imageEngine);
 
-    public void setDifficult(final Difficulty difficulty);
+    void setDifficult(Difficulty difficulty);
 
-    public void setBtnBackID(final ActionGUI mainAction, final ActionGUI action);
+    void setBtnBackID(ActionGUI mainAction, ActionGUI action);
+
+
+    void setForegroundGUI(Color color);
+
+    void setFontGUITitle(Font font);
+
+    void setFontTitleUnit(Font font);
+
+    void setFontUnit(Font font);
+
+    void setTitleGUI(String title);
+
+    void setTransparentComponent();
 }
