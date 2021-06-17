@@ -1,15 +1,15 @@
 package spacesurvival.model.gameobject.main;
 
 import spacesurvival.model.gameobject.GameObjectUtils;
-import spacesurvival.model.gameobject.enemy.FireableObject;
-import spacesurvival.model.gameobject.takeable.Ammo;
-import spacesurvival.model.movement.ControlledMovement;
-import spacesurvival.model.movement.Movement;
+import spacesurvival.model.gameobject.fireable.FireableObject;
+import spacesurvival.model.gameobject.fireable.shootinglogic.FiringLogic;
+import spacesurvival.model.gameobject.fireable.shootinglogic.implementation.NoFiringImpl;
+import spacesurvival.model.gameobject.fireable.weapon.Weapon;
+import spacesurvival.model.gameobject.movable.movement.Movement;
+import spacesurvival.model.gameobject.movable.movement.implementation.ControlledMovement;
+import spacesurvival.model.gameobject.takeable.ammo.Ammo;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
-import spacesurvival.model.gameobject.weapon.Weapon;
-import spacesurvival.model.gameobject.weapon.shootinglogic.FiringLogic;
-import spacesurvival.model.gameobject.weapon.shootinglogic.implementation.NoFiringImpl;
 
 import java.util.Optional;
 
@@ -21,6 +21,7 @@ import spacesurvival.model.collision.physics.component.ShipPhysicsComponent;
 import spacesurvival.utilities.Score;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;
+import spacesurvival.utilities.gameobject.VelocityUtils;
 import spacesurvival.utilities.path.skin.SkinShip;
 
 public final class SpaceShipSingleton extends FireableObject {
@@ -33,7 +34,7 @@ public final class SpaceShipSingleton extends FireableObject {
             Screen.POINT_CENTER_FULLSCREEN,
             new RectBoundingBox(),
             new ShipPhysicsComponent(),
-            GameObjectUtils.SPACESHIP_VEL,
+            VelocityUtils.SPACESHIP_VEL,
             new ControlledMovement(),
             GameObjectUtils.SPACESHIP_LIFE,
             GameObjectUtils.ASTEROID_DAMAGE,

@@ -1,17 +1,17 @@
 package spacesurvival.model.collision.hitevent;
 
-import spacesurvival.model.gameobject.MainGameObject;
+import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.worldevent.WorldEvent;
 
 public class HitAsteroidEvent implements WorldEvent {
-    private final MainGameObject asteroid;
+    private final MainObject asteroid;
 
     /**
      * Constructor for new HitAsteroidEvent, generated after the collision to notify the world.
      * 
      * @param obj the MainGameObject representing the asteroid.
      */
-    public HitAsteroidEvent(final MainGameObject obj) {
+    public HitAsteroidEvent(final MainObject obj) {
         this.asteroid = obj;
     }
 
@@ -20,7 +20,7 @@ public class HitAsteroidEvent implements WorldEvent {
      * 
      * @return the specified asteroid.
      */
-    public MainGameObject getCollisionObj() {
+    public MainObject getCollisionObj() {
         return this.asteroid;
     }
 }

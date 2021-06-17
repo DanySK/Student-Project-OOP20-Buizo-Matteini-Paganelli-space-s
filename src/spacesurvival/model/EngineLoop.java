@@ -8,19 +8,19 @@ import spacesurvival.model.collision.hitevent.HitBulletEvent;
 import spacesurvival.model.collision.hitevent.HitMainGameObject;
 import spacesurvival.model.collision.hitevent.HitTakeableGameObject;
 import spacesurvival.model.gameobject.Edge;
-import spacesurvival.model.gameobject.MainGameObject;
-import spacesurvival.model.gameobject.MovableGameObject;
 import spacesurvival.model.gameobject.Status;
-import spacesurvival.model.gameobject.enemy.Boss;
-import spacesurvival.model.gameobject.enemy.ChaseEnemy;
-import spacesurvival.model.gameobject.enemy.FireEnemy;
+import spacesurvival.model.gameobject.fireable.Boss;
+import spacesurvival.model.gameobject.fireable.FireEnemy;
+import spacesurvival.model.gameobject.fireable.weapon.Bullet;
 import spacesurvival.model.gameobject.main.Asteroid;
+import spacesurvival.model.gameobject.main.ChaseEnemy;
+import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
-import spacesurvival.model.gameobject.takeable.Ammo;
-import spacesurvival.model.gameobject.takeable.Heart;
-import spacesurvival.model.gameobject.takeable.HeartType;
+import spacesurvival.model.gameobject.movable.MovableObject;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
-import spacesurvival.model.gameobject.weapon.Bullet;
+import spacesurvival.model.gameobject.takeable.ammo.Ammo;
+import spacesurvival.model.gameobject.takeable.heart.Heart;
+import spacesurvival.model.gameobject.takeable.heart.HeartType;
 import spacesurvival.model.sound.CmdAudioType;
 import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.model.worldevent.WorldEventListener;
@@ -149,8 +149,8 @@ public class EngineLoop extends Thread implements WorldEventListener {
         eventQueue.forEach(ev -> {
             if (ev instanceof HitMainGameObject) {
                 final HitMainGameObject asteroidEvent = (HitMainGameObject) ev;
-                final MainGameObject object = asteroidEvent.getObject();
-                final MainGameObject collidedObject = asteroidEvent.getCollidedObject();
+                final MainObject object = asteroidEvent.getObject();
+                final MainObject collidedObject = asteroidEvent.getCollidedObject();
                 this.controlGame.incrScore(Score.ASTEROID);
 
                 damageObject(object, collidedObject.getImpactDamage(), Status.INVINCIBLE);
@@ -186,7 +186,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
                 this.controlGame.getWorld().removeTakeableObject(takeableGameObject);
             } else if (ev instanceof HitBorderEvent) {
                 final HitBorderEvent borderEvent = (HitBorderEvent) ev;
-                final MovableGameObject object = borderEvent.getCollisionObj();
+                final MovableObject object = borderEvent.getCollisionObj();
                 final Edge edge = borderEvent.getEdge();
 
                 // If a bullet reach a border
@@ -204,7 +204,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
             } else if (ev instanceof HitBulletEvent) {
                 final HitBulletEvent bulletEvent = (HitBulletEvent) ev;
                 final Bullet bullet = bulletEvent.getBullet(); 
-                final MainGameObject collidedObject = bulletEvent.getCollidedObject();
+                final MainObject collidedObject = bulletEvent.getCollidedObject();
 
                 if (!bullet.getShooter().equals(collidedObject)) {
                     System.out.println("Bullet ha preso al volo qualcosa, " + collidedObject.getClass() + " lo rimuovo");
@@ -218,7 +218,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
         eventQueue.clear();
     }
 
-    public void damageObject(final MainGameObject object, final int damage, final Status status) {
+    public void damageObject(final MainObject object, final int damage, final Status status) {
         //System.out.println("SONO INVINCIBILE ?  " + object.isInvincible());
         if (!object.isInvincible()) {
             if (object instanceof SpaceShipSingleton) {
@@ -244,7 +244,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
 //    	object.setStatus(status);
 //	}
 
-    public void playSoundOf(final MainGameObject object) {
+    public void playSoundOf(final MainObject object) {
         if (object instanceof Asteroid) {
             playEffect(SoundPath.ASTEROID_EXPL);
         } else if (object instanceof ChaseEnemy || object instanceof FireEnemy) {
@@ -254,12 +254,12 @@ public class EngineLoop extends Thread implements WorldEventListener {
         }
     }
 
-    private boolean isGameObjectDead(final MainGameObject gameObject) {
+    private boolean isGameObjectDead(final MainObject gameObject) {
     	return gameObject.getLife() <= 0;
     }
 
     
-    public void pacmanEffect(MovableGameObject object, Edge edge) {
+    public void pacmanEffect(MovableObject object, Edge edge) {
     	AffineTransform newTransform = new AffineTransform();
     	switch (edge) {
     	case TOP:
@@ -297,7 +297,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
     }
 
     private void renderMovement() {
-    	this.controlGame.getWorld().getMovableEntities().forEach(MovableGameObject::move);
+    	this.controlGame.getWorld().getMovableEntities().forEach(MovableObject::move);
     }
 
     public void assignTargetToEnemies() {

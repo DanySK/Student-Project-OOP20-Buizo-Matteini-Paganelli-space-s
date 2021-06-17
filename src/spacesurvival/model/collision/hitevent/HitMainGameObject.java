@@ -1,11 +1,11 @@
 package spacesurvival.model.collision.hitevent;
 
-import spacesurvival.model.gameobject.MainGameObject;
+import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.worldevent.WorldEvent;
 
 public class HitMainGameObject implements WorldEvent {
-    private final MainGameObject object;
-    private final MainGameObject collidedObject;
+    private final MainObject object;
+    private final MainObject collidedObject;
 
     /**
      * Constructor for new HitMainGameObject, generated after the collision with MainGameObject to notify the world.
@@ -13,7 +13,7 @@ public class HitMainGameObject implements WorldEvent {
      * @param object the MainGameObject representing the first main game object.
      * @param collidedObject the MainGameObject representing the second main game object.
      */
-    public HitMainGameObject(final MainGameObject object, final MainGameObject collidedObject) {
+    public HitMainGameObject(final MainObject object, final MainObject collidedObject) {
         this.object = object;
         this.collidedObject = collidedObject;
     }
@@ -23,7 +23,7 @@ public class HitMainGameObject implements WorldEvent {
      * 
      * @return the specified MainGameObject.
      */
-    public MainGameObject getObject() {
+    public MainObject getObject() {
         return this.object;
     }
 
@@ -32,7 +32,7 @@ public class HitMainGameObject implements WorldEvent {
      * 
      * @return the specified MainGameObject.
      */
-    public MainGameObject getCollidedObject() {
+    public MainObject getCollidedObject() {
         return this.collidedObject;
     }
 }

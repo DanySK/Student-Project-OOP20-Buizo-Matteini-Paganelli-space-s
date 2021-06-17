@@ -1,17 +1,17 @@
 package spacesurvival.model.collision.hitevent;
 
-import spacesurvival.model.gameobject.MainGameObject;
+import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.worldevent.WorldEvent;
 
 public class HitChaseEnemyEvent implements WorldEvent {
-    private final MainGameObject chaseEnemy;
+    private final MainObject chaseEnemy;
 
     /**
      * Constructor for new HitChaseEnemyEvent, generated after the collision to notify the world.
      * 
      * @param obj the MainGameObject representing the chase enemy.
      */
-    public HitChaseEnemyEvent(final MainGameObject obj) {
+    public HitChaseEnemyEvent(final MainObject obj) {
         this.chaseEnemy = obj;
     }
 
@@ -20,7 +20,7 @@ public class HitChaseEnemyEvent implements WorldEvent {
      * 
      * @return the specified chase enemy.
      */
-    public MainGameObject getCollisionObj() {
+    public MainObject getCollisionObj() {
         return this.chaseEnemy;
     }
 }

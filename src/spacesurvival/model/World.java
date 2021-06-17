@@ -14,30 +14,30 @@ import spacesurvival.model.collision.physics.bounding.RectBoundingBox;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.gameobject.Edge;
 import spacesurvival.model.gameobject.GameObject;
-import spacesurvival.model.gameobject.MainGameObject;
-import spacesurvival.model.gameobject.MovableGameObject;
-import spacesurvival.model.gameobject.enemy.Boss;
-import spacesurvival.model.gameobject.enemy.ChaseEnemy;
-import spacesurvival.model.gameobject.enemy.FireEnemy;
-import spacesurvival.model.gameobject.enemy.FireableObject;
 import spacesurvival.model.gameobject.factories.AbstractFactoryGameObject;
 import spacesurvival.model.gameobject.factories.ConcreteFactoryGameObject;
+import spacesurvival.model.gameobject.fireable.Boss;
+import spacesurvival.model.gameobject.fireable.FireEnemy;
+import spacesurvival.model.gameobject.fireable.FireableObject;
+import spacesurvival.model.gameobject.fireable.weapon.Bullet;
+import spacesurvival.model.gameobject.fireable.weapon.Weapon;
 import spacesurvival.model.gameobject.main.Asteroid;
+import spacesurvival.model.gameobject.main.ChaseEnemy;
+import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
-import spacesurvival.model.gameobject.takeable.Ammo;
-import spacesurvival.model.gameobject.takeable.AmmoType;
-import spacesurvival.model.gameobject.takeable.Heart;
+import spacesurvival.model.gameobject.movable.MovableObject;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
-import spacesurvival.model.gameobject.weapon.Bullet;
-import spacesurvival.model.gameobject.weapon.Weapon;
+import spacesurvival.model.gameobject.takeable.ammo.Ammo;
+import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
+import spacesurvival.model.gameobject.takeable.heart.Heart;
 import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.model.worldevent.WorldEventListener;
 
 public class World {
     private AbstractFactoryGameObject factoryGameObject = new ConcreteFactoryGameObject();
 
-    private final Set<MainGameObject> asteroids = new HashSet<>();
-    private final Set<MainGameObject> chaseEnemies = new HashSet<>();
+    private final Set<MainObject> asteroids = new HashSet<>();
+    private final Set<MainObject> chaseEnemies = new HashSet<>();
     private final Set<FireableObject> fireEnemies = new HashSet<>();
     private Optional<FireableObject> boss;
     private final Set<TakeableGameObject> ammo = new HashSet<>();
@@ -113,7 +113,7 @@ public class World {
         asteroids.add(factoryGameObject.createAsteroid());
     }
 
-    public void removeAsteroid(final MainGameObject obj) {
+    public void removeAsteroid(final MainObject obj) {
         asteroids.remove(obj);
     }
 
@@ -121,7 +121,7 @@ public class World {
         chaseEnemies.add(factoryGameObject.createChaseEnemy());
     }
 	
-    public void removeChaseEnemy(final MainGameObject obj) {
+    public void removeChaseEnemy(final MainObject obj) {
         chaseEnemies.remove(obj);
     }
 	
@@ -129,7 +129,7 @@ public class World {
         fireEnemies.add(factoryGameObject.createFireEnemy());
     }
 	
-    public void removeFireEnemy(final MainGameObject obj) {
+    public void removeFireEnemy(final MainObject obj) {
         fireEnemies.remove(obj);
     }
 	
@@ -173,7 +173,7 @@ public class World {
         return found;
     }
 	
-    public void removeMainObject(final MainGameObject object) {
+    public void removeMainObject(final MainObject object) {
         if (object instanceof Asteroid) {
             removeAsteroid(object);
         } else if (object instanceof ChaseEnemy) {
@@ -229,8 +229,8 @@ public class World {
         return Optional.empty();
     }
 
-    public Optional<MainGameObject> checkCollisionWithAsteroids(final RectBoundingBox rectBoundingBox) {
-        for (final MainGameObject obj: asteroids) {
+    public Optional<MainObject> checkCollisionWithAsteroids(final RectBoundingBox rectBoundingBox) {
+        for (final MainObject obj: asteroids) {
             if (collisionChecker.testRectangleToCircle(rectBoundingBox, (CircleBoundingBox) obj.getBoundingBox())) {
                 return Optional.of(obj);
             }
@@ -238,8 +238,8 @@ public class World {
         return Optional.empty();
     }
 	
-    public Optional<MainGameObject> checkCollisionWithChaseEnemies(final RectBoundingBox rectBoundingBox) {
-        for (final MainGameObject obj: chaseEnemies) {
+    public Optional<MainObject> checkCollisionWithChaseEnemies(final RectBoundingBox rectBoundingBox) {
+        for (final MainObject obj: chaseEnemies) {
             if (collisionChecker.testRectangleToRectangle(rectBoundingBox, (RectBoundingBox) obj.getBoundingBox())) {
                 return Optional.of(obj);
             }
@@ -291,11 +291,11 @@ public class World {
         return mainBBox;
     }
 
-    public Set<MainGameObject> getAsteroids() {
+    public Set<MainObject> getAsteroids() {
         return this.asteroids;
     }
 	
-    public Set<MainGameObject> getChaseEnemies() {
+    public Set<MainObject> getChaseEnemies() {
         return this.chaseEnemies;
     }
 	
@@ -315,14 +315,14 @@ public class World {
         return hearts;
     }
 	
-    public Set<MainGameObject> getMainGameObjects() {
-        final Set<MainGameObject> mainGameObjects = new HashSet<>();
-        mainGameObjects.addAll(asteroids);
-        mainGameObjects.addAll(chaseEnemies);
-        mainGameObjects.addAll(fireEnemies);
-        boss.ifPresent(mainGameObjects::add);
-        mainGameObjects.add(ship);
-        return mainGameObjects;
+    public Set<MainObject> getMainGameObjects() {
+        final Set<MainObject> mainObjects = new HashSet<>();
+        mainObjects.addAll(asteroids);
+        mainObjects.addAll(chaseEnemies);
+        mainObjects.addAll(fireEnemies);
+        boss.ifPresent(mainObjects::add);
+        mainObjects.add(ship);
+        return mainObjects;
     }
 	
     public Set<TakeableGameObject> getTakeableGameObjects() {
@@ -361,8 +361,8 @@ public class World {
         this.boss = boss;
     }
 
-    public Set<MainGameObject> getAllEnemies() {
-        final HashSet<MainGameObject> allEnemies = new HashSet<>();
+    public Set<MainObject> getAllEnemies() {
+        final HashSet<MainObject> allEnemies = new HashSet<>();
         allEnemies.addAll(chaseEnemies);
         allEnemies.addAll(fireEnemies);
         if (this.boss.isPresent()) {
@@ -371,8 +371,8 @@ public class World {
         return allEnemies;
     }
 	
-    public Set<MovableGameObject> getMovableEntities() {
-        final Set<MovableGameObject> entities = new HashSet<>();
+    public Set<MovableObject> getMovableEntities() {
+        final Set<MovableObject> entities = new HashSet<>();
         entities.add(ship);
         entities.addAll(asteroids);
         entities.addAll(getAllEnemies());

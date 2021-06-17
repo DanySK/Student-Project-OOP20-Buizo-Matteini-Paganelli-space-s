@@ -1,8 +1,9 @@
 package spacesurvival.model.collision.physics.component;
 
 import spacesurvival.model.gameobject.GameObject;
-import spacesurvival.model.gameobject.MainGameObject;
-import spacesurvival.model.gameobject.enemy.FireableObject;
+import spacesurvival.model.gameobject.fireable.FireableObject;
+import spacesurvival.model.gameobject.fireable.weapon.Bullet;
+import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 
 import java.util.Optional;
@@ -12,7 +13,6 @@ import spacesurvival.model.collision.hitevent.HitBorderEvent;
 import spacesurvival.model.collision.hitevent.HitBulletEvent;
 import spacesurvival.model.collision.physics.BoundaryCollision;
 import spacesurvival.model.collision.physics.bounding.RectBoundingBox;
-import spacesurvival.model.gameobject.weapon.Bullet;
 
 public class BulletPhysicsComponent implements PhysicsComponent {
 
@@ -42,13 +42,13 @@ public class BulletPhysicsComponent implements PhysicsComponent {
             w.notifyWorldEvent(new HitBulletEvent(bullet, ship.get()));
         }
 
-        final Optional<MainGameObject> asteroid = w.checkCollisionWithAsteroids(objectBoundingBox);
+        final Optional<MainObject> asteroid = w.checkCollisionWithAsteroids(objectBoundingBox);
         //collisioni con asteroidi
         if (asteroid.isPresent()) {
             w.notifyWorldEvent(new HitBulletEvent(bullet, asteroid.get()));
         }
 
-        final Optional<MainGameObject> chaseEnemy = w.checkCollisionWithChaseEnemies(objectBoundingBox);
+        final Optional<MainObject> chaseEnemy = w.checkCollisionWithChaseEnemies(objectBoundingBox);
         //collisioni con chaseEnemy
         if (chaseEnemy.isPresent()) {
             w.notifyWorldEvent(new HitBulletEvent(bullet, chaseEnemy.get()));

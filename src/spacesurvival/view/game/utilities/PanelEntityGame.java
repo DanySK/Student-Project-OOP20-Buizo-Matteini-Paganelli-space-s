@@ -6,14 +6,13 @@ import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.Pair;
 
 import spacesurvival.model.gameobject.GameObjectUtils;
-import spacesurvival.model.gameobject.MainGameObject;
-import spacesurvival.model.gameobject.enemy.Boss;
-import spacesurvival.model.gameobject.enemy.ChaseEnemy;
+import spacesurvival.model.gameobject.fireable.Boss;
+import spacesurvival.model.gameobject.fireable.weapon.Bullet;
 import spacesurvival.model.gameobject.main.Asteroid;
-
+import spacesurvival.model.gameobject.main.ChaseEnemy;
+import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
-import spacesurvival.model.gameobject.weapon.Bullet;
 import spacesurvival.utilities.ThreadUtils;
 import spacesurvival.view.game.utilities.logicColor.LogicColor;
 import spacesurvival.view.game.utilities.logicColor.LogicColorShip;
@@ -92,7 +91,7 @@ public class PanelEntityGame extends JPanel{
 
     private void drawLife(final Graphics2D g2d, final GameObject gameObject){
         final LogicColor logicColor = new LogicColorShip();
-        int life = Math.max(((MainGameObject) gameObject).getLife(), 0);
+        int life = Math.max(((MainObject) gameObject).getLife(), 0);
         if(gameObject instanceof ChaseEnemy){
             g2d.setColor(logicColor.setColor(GameObjectUtils.CHASE_ENEMY_LIFE, life));
             life = (int) (life * gameObject.getWidth() / GameObjectUtils.CHASE_ENEMY_LIFE);

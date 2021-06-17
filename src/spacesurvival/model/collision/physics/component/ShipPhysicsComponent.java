@@ -2,9 +2,8 @@ package spacesurvival.model.collision.physics.component;
 
 import java.util.Optional;
 import spacesurvival.model.gameobject.GameObject;
-import spacesurvival.model.gameobject.MainGameObject;
-import spacesurvival.model.gameobject.enemy.FireableObject;
-
+import spacesurvival.model.gameobject.fireable.FireableObject;
+import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.model.World;
@@ -35,12 +34,12 @@ public class ShipPhysicsComponent implements PhysicsComponent {
             w.notifyWorldEvent(new HitBorderEvent(info.getWhere(), info.getEdge(), ship));
         }
 
-        final Optional<MainGameObject> asteroid = w.checkCollisionWithAsteroids(shipBoundingBox);
+        final Optional<MainObject> asteroid = w.checkCollisionWithAsteroids(shipBoundingBox);
         if (asteroid.isPresent()) {
             w.notifyWorldEvent(new HitMainGameObject(ship, asteroid.get()));
         }
 
-        final Optional<MainGameObject> chaseEnemy = w.checkCollisionWithChaseEnemies(shipBoundingBox);
+        final Optional<MainObject> chaseEnemy = w.checkCollisionWithChaseEnemies(shipBoundingBox);
         if (chaseEnemy.isPresent()) {
             w.notifyWorldEvent(new HitMainGameObject(ship, chaseEnemy.get()));
         }

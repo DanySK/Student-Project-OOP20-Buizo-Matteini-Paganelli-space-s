@@ -1,5 +1,6 @@
 package spacesurvival.model.gameobject;
 
+import spacesurvival.utilities.gameobject.BulletUtils;
 import spacesurvival.utilities.path.AnimationEffect;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public enum Status {
 
     Status(final List<String> animation) {
         this.animation = animation;
-        this.duration = GameObjectUtils.INFINITY;
+        this.duration = BulletUtils.INFINITY;
     }
 	
     Status(final List<String> animation, final int duration) {

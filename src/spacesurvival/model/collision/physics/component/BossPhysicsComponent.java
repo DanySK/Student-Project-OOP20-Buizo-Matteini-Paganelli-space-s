@@ -1,7 +1,7 @@
 package spacesurvival.model.collision.physics.component;
 
 import spacesurvival.model.gameobject.GameObject;
-import spacesurvival.model.gameobject.enemy.Boss;
+import spacesurvival.model.gameobject.fireable.Boss;
 
 import java.util.Optional;
 

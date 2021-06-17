@@ -1,7 +1,7 @@
 package spacesurvival.model.collision.physics.component;
 
 import spacesurvival.model.gameobject.GameObject;
-import spacesurvival.model.gameobject.enemy.FireEnemy;
+import spacesurvival.model.gameobject.fireable.FireEnemy;
 
 import java.util.Optional;
 import spacesurvival.model.World;

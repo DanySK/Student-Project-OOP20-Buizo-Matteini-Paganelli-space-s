@@ -1,12 +1,12 @@
 package spacesurvival.model.collision.hitevent;
 
-import spacesurvival.model.gameobject.MainGameObject;
-import spacesurvival.model.gameobject.weapon.Bullet;
+import spacesurvival.model.gameobject.fireable.weapon.Bullet;
+import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.worldevent.WorldEvent;
 
 public class HitBulletEvent implements WorldEvent {
     private final Bullet bullet;
-    private final MainGameObject collidedObject;
+    private final MainObject collidedObject;
 
     /**
      * Constructor for new HitBulletEvent, generated after the collision to notify the world.
@@ -14,7 +14,7 @@ public class HitBulletEvent implements WorldEvent {
      * @param bullet Bullet representing the bullet.
      * @param collidedObject MainGameObject represents the object that collided with the bullet.
      */
-    public HitBulletEvent(final Bullet bullet, final MainGameObject collidedObject) {
+    public HitBulletEvent(final Bullet bullet, final MainObject collidedObject) {
         this.bullet = bullet;
         this.collidedObject = collidedObject;
     }
@@ -24,7 +24,7 @@ public class HitBulletEvent implements WorldEvent {
      * 
      * @return the specified MainGameObject.
      */
-    public MainGameObject getCollidedObject() {
+    public MainObject getCollidedObject() {
         return this.collidedObject;
     }
 
