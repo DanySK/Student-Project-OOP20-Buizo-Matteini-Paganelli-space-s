@@ -311,7 +311,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     
     protected void renderGameOver() {
         this.controlGUI.endGame();
-    	//playEffect(SoundPath.GAME_OVER);
+    	playEffect(SoundPath.GAME_OVER);
 //        view.renderGameOver();
     }
 
@@ -324,8 +324,5 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     	this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CmdAudioType.RESET_TIMING);
         this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CmdAudioType.AUDIO_ON);
     }
-//    public void notifySoundEvent(final SoundPath ev) {
-//        soundQueue.add(ev);
-//    }
 }
 
