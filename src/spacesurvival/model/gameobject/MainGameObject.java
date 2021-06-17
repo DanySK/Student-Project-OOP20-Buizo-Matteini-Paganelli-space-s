@@ -13,8 +13,8 @@ import spacesurvival.model.common.V2d;
 import spacesurvival.model.gameobject.weapon.Weapon;
 import spacesurvival.model.movement.Movement;
 import spacesurvival.model.EngineImage;
-import spacesurvival.model.collisioni.physics.bounding.BoundingBox;
-import spacesurvival.model.collisioni.physics.component.PhysicsComponent;
+import spacesurvival.model.collision.physics.bounding.BoundingBox;
+import spacesurvival.model.collision.physics.component.PhysicsComponent;
 
 public abstract class MainGameObject extends MovableGameObject {
     private int life;

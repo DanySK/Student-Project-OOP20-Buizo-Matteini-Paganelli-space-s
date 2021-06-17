@@ -7,10 +7,10 @@ import java.util.Optional;
 import java.util.Set;
 
 import spacesurvival.model.gui.settings.SkinSpaceShip;
-import spacesurvival.model.collisioni.CollisionChecker;
-import spacesurvival.model.collisioni.physics.BoundaryCollision;
-import spacesurvival.model.collisioni.physics.bounding.CircleBoundingBox;
-import spacesurvival.model.collisioni.physics.bounding.RectBoundingBox;
+import spacesurvival.model.collision.CollisionChecker;
+import spacesurvival.model.collision.physics.BoundaryCollision;
+import spacesurvival.model.collision.physics.bounding.CircleBoundingBox;
+import spacesurvival.model.collision.physics.bounding.RectBoundingBox;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.gameobject.Edge;
 import spacesurvival.model.gameobject.GameObject;

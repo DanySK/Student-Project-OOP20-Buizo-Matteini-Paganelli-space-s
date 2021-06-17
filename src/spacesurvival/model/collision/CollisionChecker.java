@@ -1,11 +1,12 @@
-package spacesurvival.model.collisioni;
+package spacesurvival.model.collision;
 
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
-import spacesurvival.model.collisioni.physics.bounding.CircleBoundingBox;
-import spacesurvival.model.collisioni.physics.bounding.RectBoundingBox;
+
+import spacesurvival.model.collision.physics.bounding.CircleBoundingBox;
+import spacesurvival.model.collision.physics.bounding.RectBoundingBox;
 import spacesurvival.utilities.SystemVariables;
 
 /**
@@ -36,7 +37,7 @@ public class CollisionChecker {
         final Shape rotatedRect2 = rectTransform2.createTransformedShape(rectangle2);
         return rotatedRect1.intersects(rotatedRect2.getBounds2D());
     }
-	
+
     /**
      * Returns true if the rect bounding box collide with the circle bounding box.
      * 
@@ -56,7 +57,7 @@ public class CollisionChecker {
         final AffineTransform circleTransform = new AffineTransform();
         circleTransform.setTransform(cbb.getTransform());
         circleTransform.rotate(this.getRotationAngleInRadiant(cbb.getTransform()));
-        final Shape rotatedEllipse = circleTransform.createTransformedShape(ellipse);	
+        final Shape rotatedEllipse = circleTransform.createTransformedShape(ellipse);
 
         return rotatedEllipse.intersects(rotatedRect.getBounds2D());
     }
@@ -86,8 +87,7 @@ public class CollisionChecker {
 
         return Math.round(Math.atan2(-m01, m00));
     }
-	
- 
+
 //	
 //	public static void main (String[] args) {
 //		CollisionChecker checker = new CollisionChecker();

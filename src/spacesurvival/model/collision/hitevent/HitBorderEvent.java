@@ -1,4 +1,4 @@
-package spacesurvival.model.collisioni.hitevent;
+package spacesurvival.model.collision.hitevent;
 
 
 import spacesurvival.model.common.P2d;

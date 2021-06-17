@@ -7,59 +7,59 @@ public enum SoundPath {
     /**
      * Path relative to the menu sound, loop type.
      */
-    MENU_SOUND(Paths.get("sounds", "menu.wav").toString(), SoundType.LOOP),
+    MENU_SOUND(Paths.get(MainFolder.SOUND, "menu.wav").toString(), SoundType.LOOP),
     /**
      * Path relative to the game sound, loop type.
      */
-    GAME_SOUND(Paths.get("sounds", "game.wav").toString(), SoundType.LOOP),
+    GAME_SOUND(Paths.get(MainFolder.SOUND, "game.wav").toString(), SoundType.LOOP),
     /**
      * Path relative to the shoot sound, effect type.
      */
-    SHOOT(Paths.get("sounds", "shoot.wav").toString(), SoundType.EFFECT),
+    SHOOT(Paths.get(MainFolder.SOUND, "shoot.wav").toString(), SoundType.EFFECT),
     /**
      * Path relative to the enemy shoot sound, effect type.
      */
-    ENEMY_SHOOT(Paths.get("sounds", "enemyShoot.wav").toString(), SoundType.EFFECT),
+    ENEMY_SHOOT(Paths.get(MainFolder.SOUND, "enemyShoot.wav").toString(), SoundType.EFFECT),
     /**
      * Path relative to the life up sound, effect type.
      */
-    LIFE_UP(Paths.get("sounds", "lifeUp.wav").toString(), SoundType.EFFECT),
+    LIFE_UP(Paths.get(MainFolder.SOUND, "lifeUp.wav").toString(), SoundType.EFFECT),
     /**
      * Path relative to the life down sound, effect type.
      */
-    LIFE_DOWN(Paths.get("sounds", "lifeDown.wav").toString(), SoundType.EFFECT),
+    LIFE_DOWN(Paths.get(MainFolder.SOUND, "lifeDown.wav").toString(), SoundType.EFFECT),
     /**
      * Path relative to the perk sound, effect type.
      */
-    PERK(Paths.get("sounds", "perk.wav").toString(), SoundType.EFFECT),
+    PERK(Paths.get(MainFolder.SOUND, "perk.wav").toString(), SoundType.EFFECT),
     /**
      * Path relative to the asteroid explosion sound, effect type.
      */
-    ASTEROID_EXPL(Paths.get("sounds", "asteroidExpl.wav").toString(), SoundType.EFFECT),
+    ASTEROID_EXPL(Paths.get(MainFolder.SOUND, "asteroidExpl.wav").toString(), SoundType.EFFECT),
     /**
      * Path relative to the enemy explosion sound, effect type.
      */
-    ENEMY_EXPL(Paths.get("sounds", "enemyExpl.wav").toString(), SoundType.EFFECT),
+    ENEMY_EXPL(Paths.get(MainFolder.SOUND, "enemyExpl.wav").toString(), SoundType.EFFECT),
     /**
      * Path relative to the ship explosion sound, effect type.
      */
-    SHIP_EXPL(Paths.get("sounds", "shipExpl.wav").toString(), SoundType.EFFECT),
+    SHIP_EXPL(Paths.get(MainFolder.SOUND, "shipExpl.wav").toString(), SoundType.EFFECT),
     /**
      * Path relative to the boss explosion sound, effect type.
      */
-    BOSS_EXPL(Paths.get("sounds", "bossExpl.wav").toString(), SoundType.EFFECT),
+    BOSS_EXPL(Paths.get(MainFolder.SOUND, "bossExpl.wav").toString(), SoundType.EFFECT),
     /**
      * Path relative to the wall collision sound, effect type.
      */
-    WALL_COLLISION(Paths.get("sounds", "wallCollision.wav").toString(), SoundType.EFFECT);
+    WALL_COLLISION(Paths.get(MainFolder.SOUND, "wallCollision.wav").toString(), SoundType.EFFECT),
     /**
      * Path relative to the level up sound, effect type.
      */
-  //  LEVEL_UP     ("sounds/levelUp.wav"),
+    LEVEL_UP(Paths.get(MainFolder.SOUND, "levelUp.wav").toString(), SoundType.EFFECT),
     /**
      * Path relative to the game over sound, effect type.
      */
-  //  GAME_OVER   ("sounds/movement.wav");
+    GAME_OVER(Paths.get(MainFolder.SOUND, "gameOver.wav").toString(), SoundType.EFFECT);
 
 
     private final String path;

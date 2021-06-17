@@ -3,8 +3,8 @@ package spacesurvival.model.gameobject.takeable;
 import java.util.List;
 
 import spacesurvival.model.EngineImage;
-import spacesurvival.model.collisioni.physics.bounding.BoundingBox;
-import spacesurvival.model.collisioni.physics.component.PhysicsComponent;
+import spacesurvival.model.collision.physics.bounding.BoundingBox;
+import spacesurvival.model.collision.physics.component.PhysicsComponent;
 import spacesurvival.model.common.P2d;
 
 public class Ammo extends TakeableGameObject {

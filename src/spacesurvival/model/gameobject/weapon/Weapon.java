@@ -14,8 +14,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import spacesurvival.model.EngineImage;
-import spacesurvival.model.collisioni.physics.bounding.RectBoundingBox;
-import spacesurvival.model.collisioni.physics.component.BulletPhysicsComponent;
+import spacesurvival.model.collision.physics.bounding.RectBoundingBox;
+import spacesurvival.model.collision.physics.component.BulletPhysicsComponent;
 
 public class Weapon {
 

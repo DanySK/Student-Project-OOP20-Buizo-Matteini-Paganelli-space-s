@@ -3,10 +3,10 @@ package spacesurvival.model;
 import spacesurvival.controller.gui.CtrlGUI;
 import spacesurvival.controller.gui.CtrlGame;
 import spacesurvival.controller.gui.CtrlSound;
-import spacesurvival.model.collisioni.hitevent.HitBorderEvent;
-import spacesurvival.model.collisioni.hitevent.HitBulletEvent;
-import spacesurvival.model.collisioni.hitevent.HitMainGameObject;
-import spacesurvival.model.collisioni.hitevent.HitTakeableGameObject;
+import spacesurvival.model.collision.hitevent.HitBorderEvent;
+import spacesurvival.model.collision.hitevent.HitBulletEvent;
+import spacesurvival.model.collision.hitevent.HitMainGameObject;
+import spacesurvival.model.collision.hitevent.HitTakeableGameObject;
 import spacesurvival.model.gameobject.Edge;
 import spacesurvival.model.gameobject.MainGameObject;
 import spacesurvival.model.gameobject.MovableGameObject;
@@ -308,7 +308,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
     
     protected void renderGameOver() {
         this.controlGUI.endGame();
-    	//playEffect(SoundPath.GAME_OVER);
+    	playEffect(SoundPath.GAME_OVER);
 //        view.renderGameOver();
     }
 
@@ -321,8 +321,5 @@ public class EngineLoop extends Thread implements WorldEventListener {
     	this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CmdAudioType.RESET_TIMING);
         this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CmdAudioType.AUDIO_ON);
     }
-//    public void notifySoundEvent(final SoundPath ev) {
-//        soundQueue.add(ev);
-//    }
 }
 

@@ -1,7 +1,7 @@
 package spacesurvival.view.game.utilities;
 
 import spacesurvival.model.World;
-import spacesurvival.model.collisioni.physics.bounding.CircleBoundingBox;
+import spacesurvival.model.collision.physics.bounding.CircleBoundingBox;
 import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.Pair;
 
