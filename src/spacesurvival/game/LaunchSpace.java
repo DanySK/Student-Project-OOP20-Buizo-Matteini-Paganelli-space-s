@@ -4,13 +4,13 @@ package spacesurvival.game;
 import spacesurvival.controller.gui.CtrlLoading;
 import spacesurvival.factories.StaticFactoryGUI;
 import spacesurvival.model.gui.Visibility;
-import spacesurvival.model.EngineMalaLoop;
+import spacesurvival.model.EngineLoop;
 
 import javax.swing.SwingUtilities;
 
 import spacesurvival.factories.StaticFactoryEngineGUI;
 
-public class LaunchMala {
+public class LaunchSpace {
 
     public static void main(final String[] args) {
 
@@ -18,7 +18,7 @@ public class LaunchMala {
                 StaticFactoryGUI.createLoading());
         ctrlLoading.start();
 
-        final EngineMalaLoop engine = new EngineMalaLoop();
+        final EngineLoop engine = new EngineLoop();
         while (!ctrlLoading.isLoad()) {
             try {
                 Thread.sleep(5);

@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class EngineMenu implements EngineGUI {
     public static final Rectangle RECTANGLE = Screen.RECTANGLE_FULLSCREEN;
-    public static final String TITLE = "SPACE SURVMALA";
+    public static final String TITLE = "SPACE SURVIVAL";
     public static final int N_BUTTONS = 6;
 
     private final ActionGUI mainAction;

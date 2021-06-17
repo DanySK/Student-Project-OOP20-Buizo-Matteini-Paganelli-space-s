@@ -35,7 +35,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-public class EngineMalaLoop extends Thread implements WorldEventListener {
+public class EngineLoop extends Thread implements WorldEventListener {
     /**
      * Frames per second of the game.
      */
@@ -48,7 +48,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
     private final List<WorldEvent> eventQueue;
     private final List<SoundPath> soundQueue;
 
-    public EngineMalaLoop() {
+    public EngineLoop() {
         this.controlGUI = new CtrlGUI();
         this.eventQueue = new LinkedList<>();
         this.soundQueue = new LinkedList<>();
