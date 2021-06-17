@@ -3,20 +3,26 @@ package spacesurvival.view.game;
 import spacesurvival.model.World;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.view.GUI;
-import spacesurvival.view.game.utilities.PanelGame;
+import spacesurvival.view.game.utilities.PanelBulletGame;
+import spacesurvival.view.game.utilities.PanelEntityGame;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Rectangle;
 import java.awt.event.KeyListener;
 import java.util.List;
 
 public interface GUIGame extends GUI {
+    
+    void setBoundsGame(Rectangle screen);
 
     void setTimer(String timer);
 
     void setIdButtons(ActionGUI mainAction, List<ActionGUI> linksID);
 
-    PanelGame getPanelGame();
+    PanelEntityGame getPanelEntity();
+
+    PanelBulletGame getPanelBullet();
 
     void setWorld(World world);
 
@@ -35,7 +41,6 @@ public interface GUIGame extends GUI {
     void setLifeShip(int lifeShip);
 
     void setLifeBoss(int lifeShip);
-
 
     void setFontGUI(Font font);
 

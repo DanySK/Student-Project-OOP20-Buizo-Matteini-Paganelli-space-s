@@ -15,6 +15,8 @@ import javax.swing.border.Border;
 
 
 public abstract class AbstractGUI extends JFrame {
+    private static final long serialVersionUID = -4633648377297371296L;
+    
     private final JPanelImage panelBackground;
     private final JPanel panelForeground;
 
@@ -24,7 +26,7 @@ public abstract class AbstractGUI extends JFrame {
         super();
         this.panelBackground = new JPanelImage();
         this.panelForeground = FactoryGUIs.createPanelTransparent(new BorderLayout());
-
+        
         super.setContentPane(this.panelBackground);
         super.setGlassPane(this.panelForeground);
 

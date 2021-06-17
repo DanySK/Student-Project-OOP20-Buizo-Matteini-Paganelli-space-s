@@ -47,16 +47,16 @@ public class CtrlGUI {
         this.ctrlPause = new CtrlPause(StaticFactoryEngineGUI.createEnginePause(), StaticFactoryGUI.createPauseGUI());
         this.ctrlDead = new CtrlDead(StaticFactoryEngineGUI.createEngineDead(), StaticFactoryGUI.createDeadGUI());
 
-        this.managerGui = new HashMap<>(){{
-            put(CtrlGUI.this.ctrlMenu.getMainAction(), CtrlGUI.this.ctrlMenu);
-            put(CtrlGUI.this.ctrlGame.getMainAction(), CtrlGUI.this.ctrlGame);
-            put(CtrlGUI.this.ctrlSettings.getMainAction(), CtrlGUI.this.ctrlSettings);
-            put(CtrlGUI.this.ctrlScoreboard.getMainAction(), CtrlGUI.this.ctrlScoreboard);
-            put(CtrlGUI.this.ctrlSound.getMainAction(), CtrlGUI.this.ctrlSound);
-            put(CtrlGUI.this.ctrlHelp.getMainAction(), CtrlGUI.this.ctrlHelp);
-            put(CtrlGUI.this.ctrlPause.getMainAction(), CtrlGUI.this.ctrlPause);
-            put(CtrlGUI.this.ctrlDead.getMainAction(), CtrlGUI.this.ctrlDead);
-        }};
+        this.managerGui = new HashMap<>();
+        this.managerGui.put(this.ctrlMenu.getMainAction(), this.ctrlMenu);
+        this.managerGui.put(this.ctrlGame.getMainAction(), this.ctrlGame);
+        this.managerGui.put(this.ctrlSettings.getMainAction(), this.ctrlSettings);
+        this.managerGui.put(this.ctrlScoreboard.getMainAction(), this.ctrlScoreboard);
+        this.managerGui.put(this.ctrlSound.getMainAction(), this.ctrlSound);
+        this.managerGui.put(this.ctrlHelp.getMainAction(), this.ctrlHelp);
+        this.managerGui.put(this.ctrlPause.getMainAction(), this.ctrlPause);
+        this.managerGui.put(this.ctrlDead.getMainAction(), this.ctrlDead);
+
 
         this.chronology = new ListGUI<>() {{ add(FIRST_GUI); }};
 

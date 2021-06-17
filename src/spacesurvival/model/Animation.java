@@ -1,11 +1,13 @@
 package spacesurvival.model;
 
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Animation extends Thread {
+import spacesurvival.utilities.ThreadUtils;
 
-    private final List<String> listPath;
+public class Animation extends Thread {
+    private List<String> listPath;
     private boolean isAnimating;
     private boolean isPause;
     private EngineImage body;
@@ -17,58 +19,68 @@ public class Animation extends Thread {
         this.body = body;
     }
 
-    public final EngineImage getBody() {
+    public EngineImage getBody() {
         return this.body;
     }
 
-    public final List<String> getListPath() {
+    public List<String> getListPath() {
         return this.listPath;
     }
 
-    public final boolean isAnimating() {
+    public boolean isAnimating() {
         return this.isAnimating;
     }
 
-    public final boolean isPause() {
+    public boolean isPause() {
         return this.isPause;
     }
 
+    public Image getImage() {
+        return this.body.getImage();
+    }
 
-    public final void setBody(final EngineImage body) {
+
+    public void setBody(final EngineImage body) {
         this.body = body;
     }
 
-    public final void setListPath(final List<String> listPath) {
-        this.listPath.clear();
-        this.listPath.addAll(listPath);
+    public void setListPath(final List<String> listPath) {
+        this.listPath = listPath;
     }
 
-    public final void setAnimating(final boolean isAnimating) {
+    public void setAnimating(final boolean isAnimating) {
         this.isAnimating = isAnimating;
     }
 
-    public final void setPause(final boolean isPause) {
+    public void setPause(final boolean isPause) {
         this.isPause = isPause;
     }
 
     @Override
-    public final void run() {
+    public void run() {
         int ind = 0;
+        long lastTime = System.currentTimeMillis();
+
         while (this.isAnimating) {
+            long current = System.currentTimeMillis();
             if (!this.isPause && !this.listPath.isEmpty()) {
                 ind = ind + 1 > this.listPath.size() ? 0 : ind;
                 this.body.setPath(this.listPath.get(ind++));
             }
 
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            ThreadUtils.sleep(100);
+//            waitForNextFrame(current);
+            lastTime = current;
         }
     }
 
-    
+   public void waitForNextFrame(final long current) {
+        long dt = System.currentTimeMillis() - current;
+        if (dt < 60) {
+            ThreadUtils.sleep(60 - dt);
+        }
+    }
+
     @Override
     public String toString() {
         return "Animation [listPath=" + listPath + ", isAnimating=" + isAnimating + ", isPause=" + isPause + ", body="

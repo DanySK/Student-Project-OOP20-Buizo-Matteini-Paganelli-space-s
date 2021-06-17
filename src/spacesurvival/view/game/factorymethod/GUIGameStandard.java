@@ -74,6 +74,7 @@ public class GUIGameStandard implements FactoryGUIGame {
         concreteGame.visibleForegroundPanel(Visibility.VISIBLE);
 
         concreteGame.setLayout(null);
-        concreteGame.add(concreteGame.getPanelGame());
+        concreteGame.add(concreteGame.getPanelEntity());
+        concreteGame.add(concreteGame.getPanelBullet());
     }
 }
