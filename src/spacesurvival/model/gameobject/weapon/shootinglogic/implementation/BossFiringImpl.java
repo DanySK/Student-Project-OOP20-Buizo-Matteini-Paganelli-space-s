@@ -28,12 +28,12 @@ public class BossFiringImpl implements FiringLogic {
      * @param fireableObject object which which will fire
      */
     public void startChangingAmmo(final FireableObject fireableObject) {
-//        new Thread(() -> {
-//            while (fireableObject.isAlive()) {
-//                ThreadUtils.sleep(GameObjectUtils.BOSS_CHANGING_AMMO_DELAY);
-//                fireableObject.getWeapon().setAmmoType(AmmoType.random());
-//            }
-//        }).start();
+        new Thread(() -> {
+            while (fireableObject.isAlive()) {
+                ThreadUtils.sleep(GameObjectUtils.BOSS_CHANGING_AMMO_DELAY);
+                fireableObject.getWeapon().setAmmoType(AmmoType.random());
+            }
+        }).start();
     }
 
 }

@@ -34,7 +34,7 @@ public class CtrlGame implements ControllerGUI {
     }
 
     @Override
-    public final void assignAction() {
+    public void assignAction() {
         this.gui.setMainAction(this.engine.getMainAction());
         this.gui.setIdButtons(this.engine.getMainAction(), this.engine.getLinks());
     }

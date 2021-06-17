@@ -123,10 +123,10 @@ public class EngineLoop extends Thread implements WorldEventListener {
     }
 
     protected final void updateGame() {
-        this.controlGame.updateStateWorld();
         this.checkEvents();
         this.checkSoundEffects();
-        this.assignTargetToEnemies();        
+        this.controlGame.updateStateWorld();
+        this.assignTargetToEnemies();
         this.controlGame.updateHUD();
     }
 
