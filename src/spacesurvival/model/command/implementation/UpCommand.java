@@ -10,8 +10,8 @@ public class UpCommand implements CommandGameObject {
 
     /** 
      * Accelerate the ship forward.
-     * @param ship the controlled ship 
      * 
+     * @param ship the controlled ship 
      */
     public void execute(final SpaceShipSingleton ship) {
         V2d vel = ship.getVelocity();

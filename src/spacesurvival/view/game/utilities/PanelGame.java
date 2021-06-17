@@ -22,9 +22,10 @@ import spacesurvival.view.game.utilities.logicColor.LogicColorShip;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -32,6 +33,8 @@ import java.util.Set;
 public class PanelGame extends JPanel{
     private static final long serialVersionUID = -6158413043296871948L;
 
+    private final List<GameObject> gameObject;
+    
     private final Map<GameObject, Pair<Image, Image>> objects;
     private final Map<Bullet, Pair<Image, Image>> bullets;
 
@@ -40,19 +43,17 @@ public class PanelGame extends JPanel{
 
     private Optional<World> world;
 
-    private boolean isDraw;
-    private boolean isUpdate;
-
     public PanelGame() {
         super(); 
         super.setOpaque(false);
 
         this.taskObjects = new Thread(PanelGame.this::runUpdateGameObjects);
         this.taskBullet = new Thread(PanelGame.this::runUpdateBullet);
-        this.objects = new HashMap<GameObject, Pair<Image, Image>>();
-        this.bullets = new HashMap<Bullet, Pair<Image,Image>>();
-        this.isDraw = false;
-        this.isUpdate = false;
+
+        this.gameObject = new ArrayList<>();
+
+        this.objects = new HashMap<>();
+        this.bullets = new HashMap<>();
 
         this.world = Optional.empty();
 
@@ -60,18 +61,8 @@ public class PanelGame extends JPanel{
         this.taskBullet.start();
     }
 
-    public void setWorld(final World world) {
+    public final void setWorld(final World world) {
         this.world = Optional.of(world);
-    }
-
-    public void startPaint() {
-        this.isDraw = true;
-        this.isUpdate = true;
-    }
-
-    public void stopPaint() {
-        this.isDraw = false;
-        this.isUpdate = false;
     }
 
     @Override
@@ -88,7 +79,7 @@ public class PanelGame extends JPanel{
         this.objects.entrySet().forEach(entity -> {
             if (entity.getKey().getBoundingBox() instanceof CircleBoundingBox) {
                 AffineTransform transform = new AffineTransform();
-               transform.setTransform(entity.getKey().getTransform());
+                transform.setTransform(entity.getKey().getTransform());
                 CircleBoundingBox cbb = (CircleBoundingBox) entity.getKey().getBoundingBox();
                 transform.translate(-cbb.getRadius(), -cbb.getRadius());
                 g2d.setTransform(transform);
@@ -214,12 +205,11 @@ public class PanelGame extends JPanel{
         while (true) {
             long current = System.currentTimeMillis();
 
-            if (this.isUpdate && this.world.isPresent()) {
+            if (this.world.isPresent()) {
                 this.updateBulletObject();
             }
-            //ThreadUtils.sleep(10);
-            waitForNextFrame(current);
-            lastTime = current;
+           waitForNextFrame(current);
+           lastTime = current;
         }
     }
 
@@ -228,12 +218,11 @@ public class PanelGame extends JPanel{
         while (true) {
             long current = System.currentTimeMillis();
 
-            if (this.isUpdate && this.world.isPresent()) {
+            if (this.world.isPresent()) {
                this.updateGameObjects();
             }
-            ThreadUtils.sleep(10);
 
-//         waitForNextFrame(current);
+         waitForNextFrame(current);
            lastTime = current;
         }
     }

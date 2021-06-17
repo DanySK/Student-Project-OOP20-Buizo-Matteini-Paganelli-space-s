@@ -18,10 +18,6 @@ public interface GUIGame extends GUI {
 
     PanelGame getPanelGame();
 
-    void startPaint();
-
-    void stopPaint();
-
     void setWorld(World world);
 
     void repaintGameObjects();

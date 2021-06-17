@@ -19,7 +19,7 @@ public class GUISoundConcrete extends AbstractGUI implements GUISound {
     private final MixerSound mixerSound;
     private final BtnAction btnBack;
 
-    public GUISoundConcrete(){
+    public GUISoundConcrete() {
         super();
         this.lbTitle = new JLabel();
         this.mixerSound = new MixerSound();

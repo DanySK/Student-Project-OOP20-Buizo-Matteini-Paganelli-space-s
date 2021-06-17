@@ -65,17 +65,6 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
         return this.panelGame;
     }
 
-
-    @Override
-    public void startPaint() {
-        this.panelGame.startPaint();
-    }
-
-    @Override
-    public void stopPaint() {
-        this.panelGame.stopPaint();
-    }
-
     @Override
     public void setWorld(final World world) {
         this.panelGame.setWorld(world);

@@ -7,8 +7,8 @@ import spacesurvival.utilities.path.SoundPath;
 public class SpaceBarCommand implements CommandGameObject {
     /** 
      * Fires the shot from the ship's weapon if it is present.
-     * @param ship the controlled ship
      * 
+     * @param ship the controlled ship
      */
     public void execute(final SpaceShipSingleton ship) {
         ship.getWeapon().shoot();

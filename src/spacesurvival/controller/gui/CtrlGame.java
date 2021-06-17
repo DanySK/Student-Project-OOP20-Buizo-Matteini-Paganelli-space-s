@@ -184,16 +184,8 @@ public class CtrlGame implements ControllerGUI {
         return this.engine.getLives() > 1;
     }
 
-    public void startPaint() {
-        this.gui.startPaint();
-    }
-
     public void repaintWorld() {
         this.gui.repaintGameObjects();
-    }
-
-    public void stopPaint(){
-        this.gui.stopPaint();
     }
 
     public void incrScore(final long score) {

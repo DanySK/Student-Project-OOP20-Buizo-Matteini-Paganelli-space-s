@@ -156,14 +156,12 @@ public class CtrlGUI {
         this.managerGui.get(ActionGUI.ID_DEAD).turn(Visibility.VISIBLE);
 
         this.ctrlGame.stopTimer();
-        this.ctrlGame.stopPaint();
     }
 
     private void startElementWhenInGame() {
         Objects.requireNonNull(this.getBtnGameFromMenu()).addActionListener(l -> {
             this.ctrlGame.getWorld().setSkin(CtrlGUI.this.ctrlSettings.getCurrentSkin());
             this.ctrlGame.startTimer();
-            this.ctrlGame.startPaint();
             this.managerGui.values().forEach(control -> {
                 if(control.getMainAction().getStateLevel().equals(StateLevelGUI.OVERLAY)){
                     control.getGUI().setImageBackground(Background.TRANSPARENT);
