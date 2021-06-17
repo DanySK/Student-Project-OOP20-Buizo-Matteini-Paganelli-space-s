@@ -215,9 +215,8 @@ public class CtrlGame implements ControllerGUI {
         this.engine.incrScore(score);
     }
 
-
-    public final void updateStateWorld(final int elapsed) {
-        this.engine.updateStateWorld(elapsed);
+    public void updateStateWorld() {
+        this.engine.updateStateWorld();
     }
 
     private void addKeyListenerShip(final KeyListener keyListener) {

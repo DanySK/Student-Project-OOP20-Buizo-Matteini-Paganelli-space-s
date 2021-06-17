@@ -159,8 +159,8 @@ public class EngineGame implements EngineGUI {
         this.world.setEventListener(worldEventListener);
     }
 
-    public void updateStateWorld(final int elapsed) {
-        this.world.updateState(elapsed);
+    public void updateStateWorld() {
+        this.world.updateState();
     }
 
     public void moveShip() {

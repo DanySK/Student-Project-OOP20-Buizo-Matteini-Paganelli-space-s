@@ -25,18 +25,16 @@ public class CollisionChecker {
      * @return true if the two RectBoundingboxes collide
      */
     public boolean testRectangleToRectangle(final RectBoundingBox rbb1, final RectBoundingBox rbb2) {
+        final Rectangle2D rectangle1 = new Rectangle2D.Double(0, 0, rbb1.getWidth(), rbb1.getHeight());
+        final AffineTransform rectTransform1 = new AffineTransform();
+        rectTransform1.setTransform(rbb1.getTransform());
+        final Shape rotatedRect1 = rectTransform1.createTransformedShape(rectangle1);
 
-    final Rectangle2D rectangle1 = new Rectangle2D.Double(0, 0, rbb1.getWidth(), rbb1.getHeight());
-    final AffineTransform rectTransform1 = new AffineTransform();
-    rectTransform1.setTransform(rbb1.getTransform());
-    final Shape rotatedRect1 = rectTransform1.createTransformedShape(rectangle1);
-
-    final Rectangle2D rectangle2 = new Rectangle2D.Double(0, 0, rbb2.getWidth(), rbb2.getHeight());
-    final AffineTransform rectTransform2 = new AffineTransform();
-    rectTransform2.setTransform(rbb2.getTransform());
-    final Shape rotatedRect2 = rectTransform2.createTransformedShape(rectangle2);
-
-    return rotatedRect1.intersects(rotatedRect2.getBounds2D());
+        final Rectangle2D rectangle2 = new Rectangle2D.Double(0, 0, rbb2.getWidth(), rbb2.getHeight());
+        final AffineTransform rectTransform2 = new AffineTransform();
+        rectTransform2.setTransform(rbb2.getTransform());
+        final Shape rotatedRect2 = rectTransform2.createTransformedShape(rectangle2);
+        return rotatedRect1.intersects(rotatedRect2.getBounds2D());
     }
 	
     /**

@@ -109,7 +109,7 @@ public class World {
         this.factoryGameObject = factoryGameObject;
     }
 	
-    public final void addAsteroid() {
+    public void addAsteroid() {
         asteroids.add(factoryGameObject.createAsteroid());
     }
 
@@ -117,7 +117,7 @@ public class World {
         asteroids.remove(obj);
     }
 
-    public final void addChaseEnemy() {
+    public void addChaseEnemy() {
         chaseEnemies.add(factoryGameObject.createChaseEnemy());
     }
 	
@@ -125,7 +125,7 @@ public class World {
         chaseEnemies.remove(obj);
     }
 	
-    public final void addFireEnemy() {
+    public void addFireEnemy() {
         fireEnemies.add(factoryGameObject.createFireEnemy());
     }
 	
@@ -133,7 +133,7 @@ public class World {
         fireEnemies.remove(obj);
     }
 	
-    public final void addBoss() {
+    public void addBoss() {
         this.boss = Optional.of(factoryGameObject.createBoss());
         this.boss.get().startFiring();
     }
@@ -141,8 +141,8 @@ public class World {
     public void removeBoss() {
         this.boss = Optional.empty();
     }
-	
-    public final void addAmmo() {
+
+    public void addAmmo() {
         ammo.add(factoryGameObject.createAmmo());
     }
 
@@ -150,7 +150,7 @@ public class World {
         ammo.remove(obj);
     }
 	
-    public final void addHeart() {
+    public void addHeart() {
         hearts.add(factoryGameObject.createHeart());
     }
 
@@ -193,9 +193,10 @@ public class World {
         }
     }
 	
-    public void updateState(final int dt) {
-        //ship.updatePhysics(dt, this);
-        this.getAllEntities().forEach(entity -> entity.updatePhysics(this));
+    public void updateState() {
+        this.getAllEntities().forEach(entity -> {
+            entity.updatePhysics(this);
+        });
     }
 
     public Optional<BoundaryCollision> checkCollisionWithBoundaries(final P2d pos, final RectBoundingBox box) {
@@ -219,6 +220,15 @@ public class World {
         }
     }
 	
+    public Optional<SpaceShipSingleton> checkCollisionWithShip(final RectBoundingBox rectBoundingBox) {
+        if (boss.isPresent()) {
+            if (collisionChecker.testRectangleToRectangle(rectBoundingBox, (RectBoundingBox) ship.getBoundingBox())) {
+                return Optional.of(this.ship);
+            }
+        }
+        return Optional.empty();
+    }
+
     public Optional<MainGameObject> checkCollisionWithAsteroids(final RectBoundingBox rectBoundingBox) {
         for (final MainGameObject obj: asteroids) {
             if (collisionChecker.testRectangleToCircle(rectBoundingBox, (CircleBoundingBox) obj.getBoundingBox())) {
@@ -237,8 +247,8 @@ public class World {
         return Optional.empty();
     }
 	
-    public Optional<MainGameObject> checkCollisionWithFireEnemies(final RectBoundingBox rectBoundingBox) {
-        for (final MainGameObject obj: fireEnemies) {
+    public Optional<FireableObject> checkCollisionWithFireEnemies(final RectBoundingBox rectBoundingBox) {
+        for (final FireableObject obj: fireEnemies) {
             if (collisionChecker.testRectangleToRectangle(rectBoundingBox, (RectBoundingBox) obj.getBoundingBox())) {
                 return Optional.of(obj);
             }

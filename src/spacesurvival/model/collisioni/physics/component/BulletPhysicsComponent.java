@@ -3,6 +3,7 @@ package spacesurvival.model.collisioni.physics.component;
 import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.gameobject.MainGameObject;
 import spacesurvival.model.gameobject.enemy.FireableObject;
+import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 
 import java.util.Optional;
 
@@ -24,11 +25,21 @@ public class BulletPhysicsComponent implements PhysicsComponent {
     public void update(final GameObject abstractObj, final World w) {
         final Bullet bullet = (Bullet) abstractObj;
         final RectBoundingBox boundingBox = w.getMainBBox();
-        final RectBoundingBox objectBoundingBox = (RectBoundingBox) abstractObj.getBoundingBox();
+        final RectBoundingBox objectBoundingBox = (RectBoundingBox) bullet.getBoundingBox();
+        System.out.println("UPDATE");
+        System.out.println(objectBoundingBox);
+        System.out.println(bullet.getPosition());
+
         final Optional<BoundaryCollision> borderInfo = w.checkCollisionWithBoundaries(bullet.getPosition(), boundingBox);
 
         if (borderInfo.isPresent()) {
             w.notifyWorldEvent(new HitBorderEvent(borderInfo.get().getWhere(), borderInfo.get().getEdge(), bullet));
+        }
+
+        final Optional<SpaceShipSingleton> ship = w.checkCollisionWithShip(objectBoundingBox);
+        //collisioni con asteroidi
+        if (ship.isPresent()) {
+            w.notifyWorldEvent(new HitBulletEvent(bullet, ship.get()));
         }
 
         final Optional<MainGameObject> asteroid = w.checkCollisionWithAsteroids(objectBoundingBox);
@@ -43,7 +54,7 @@ public class BulletPhysicsComponent implements PhysicsComponent {
             w.notifyWorldEvent(new HitBulletEvent(bullet, chaseEnemy.get()));
         }
 
-        final Optional<MainGameObject> fireEnemy = w.checkCollisionWithFireEnemies(objectBoundingBox);
+        final Optional<FireableObject> fireEnemy = w.checkCollisionWithFireEnemies(objectBoundingBox);
         //collisioni con chaseEnemy
         if (fireEnemy.isPresent()) {
             w.notifyWorldEvent(new HitBulletEvent(bullet, fireEnemy.get()));
@@ -52,6 +63,9 @@ public class BulletPhysicsComponent implements PhysicsComponent {
         final Optional<FireableObject> boss = w.checkCollisionWithBoss(objectBoundingBox);
         //collisioni con boss
         if (boss.isPresent()) {
+            System.out.println("COLLISIONE BULLET COL BOSSSSS");
+            System.out.println("BOSS  " + boss.get().getPosition());
+            System.out.println("BULLET  " + bullet.getPosition());
             w.notifyWorldEvent(new HitBulletEvent(bullet, boss.get()));
         }
     }

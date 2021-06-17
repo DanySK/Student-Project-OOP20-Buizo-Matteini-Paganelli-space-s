@@ -63,7 +63,7 @@ public class GameObjectUtils {
 
     public static final int BOSS_DAMAGE = 60;
     public static final int BOSS_DAMAGE_INCREMENT = 10;
-    public static final int BOSS_FIRING_DELAY = 3000;
+    public static final int BOSS_FIRING_DELAY = 1500;
     public static final int BOSS_CHANGING_AMMO_DELAY = 20000;
 
     /*
