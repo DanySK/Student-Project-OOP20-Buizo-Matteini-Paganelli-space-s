@@ -94,8 +94,6 @@ public abstract class GameObject {
 
     public final void setTransform(final AffineTransform transform) {
         this.transform.setTransform(transform);
-        //RectBoundingBox rectBB = (RectBoundingBox) this.getBoundingBox();
-        //rectBB.setTransform(transform);
         this.boundingBox.setTransform(transform);
     }
 	

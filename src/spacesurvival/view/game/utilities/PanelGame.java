@@ -208,6 +208,7 @@ public class PanelGame extends JPanel{
             if (this.world.isPresent()) {
                 this.updateBulletObject();
             }
+
            waitForNextFrame(current);
            lastTime = current;
         }

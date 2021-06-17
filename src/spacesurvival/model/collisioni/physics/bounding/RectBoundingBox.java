@@ -16,7 +16,6 @@ public class RectBoundingBox implements BoundingBox {
      * 
      */
     public RectBoundingBox() {
-
         this.p0 = new P2d(0, 0);
         this.p1 = new P2d(0, 0);
         this.transform = new AffineTransform();
@@ -29,7 +28,6 @@ public class RectBoundingBox implements BoundingBox {
      * @param transform an AffineTransform rapresenting the transformation for the RectBoundingBox.
      */
     public RectBoundingBox(final P2d p0, final P2d p1, final AffineTransform transform) {
-
         this();
         this.p0 = p0;
         this.p1 = p1;
@@ -46,7 +44,6 @@ public class RectBoundingBox implements BoundingBox {
      * @param transform an AffineTransform rapresenting the transformation for the RectBoundingBox.
      */
     public RectBoundingBox(final P2d center, final EngineImage engineImage, final AffineTransform transform) {
-
         this.p0 = new P2d(center.getX() - (engineImage.getWidth() / 2), center.getY() - (engineImage.getHeight() / 2));
         this.p1 = new P2d(center.getX() + (engineImage.getWidth() / 2), center.getY() + (engineImage.getHeight() / 2));
         this.width = engineImage.getWidth();
@@ -61,7 +58,6 @@ public class RectBoundingBox implements BoundingBox {
      * @param rectangle a Rectangle to create a box with the same size.
      */
     public RectBoundingBox(final Rectangle rectangle) {
-
         this.p0 = new P2d(rectangle.getX(), rectangle.getY());
         this.p1 = new P2d(rectangle.getWidth() * SystemVariables.SCALE_X, rectangle.getHeight() * SystemVariables.SCALE_Y);
         this.width = rectangle.getWidth();

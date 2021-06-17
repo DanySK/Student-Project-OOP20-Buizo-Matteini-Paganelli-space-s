@@ -88,8 +88,8 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                         render();
                         waitForNextFrame(current);
                         lastTime = current;
-                        updateGame(elapsed);
-                        nbThreads =  Thread.getAllStackTraces().keySet().size();
+                        updateGame();
+                        nbThreads = Thread.getAllStackTraces().keySet().size();
 
                         //System.out.println("Numero dei thread current -> " + nbThreads);
                     }
@@ -123,11 +123,11 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
 //        gameState.getWorld().getShip().updateInput(controller);
     }
 
-    protected final void updateGame(final int elapsed) {
+    protected final void updateGame() {
         checkEvents();
         checkSoundEffects();
         this.assignTargetToEnemies();
-        this.controlGame.updateStateWorld(elapsed);
+        this.controlGame.updateStateWorld();
         this.controlGame.updateHUD();
     }
 
@@ -205,22 +205,22 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
             } else if (ev instanceof HitBulletEvent) {
                 final HitBulletEvent bulletEvent = (HitBulletEvent) ev;
                 final Bullet bullet = bulletEvent.getBullet(); 
+                final MainGameObject collidedObject = bulletEvent.getCollidedObject();
 
-                bullet.stopAnimation();
-                System.out.println("Bullet ha preso al volo qualcosa, lo rimuovo");
-                world.removeBullet(bullet);
-                final MainGameObject object = bulletEvent.getCollidedObject();
-                System.out.println(object);
-                damageObject(object, bullet.getDamage(), bullet.getEffect().getStatus());
-               
+                if (!bullet.getShooter().equals(collidedObject)) {
+                    System.out.println("Bullet ha preso al volo qualcosa, " + collidedObject.getClass() + " lo rimuovo");
+                    bullet.stopAnimation();
+                    world.removeBullet(bullet);
+                    damageObject(collidedObject, bullet.getDamage(), bullet.getEffect().getStatus());
+                }
             }
-            this.controlGame.updateRoundState();   
+            this.controlGame.updateRoundState();
         });
         eventQueue.clear();
     }
 
     public void damageObject(final MainGameObject object, final int damage, final Status status) {
-        System.out.println("SONO INVINCIBILE ?  " + object.isInvincible());
+        //System.out.println("SONO INVINCIBILE ?  " + object.isInvincible());
         if (!object.isInvincible()) {
             if (object instanceof SpaceShipSingleton) {
                 this.controlGame.decreaseLife(damage);
@@ -234,7 +234,7 @@ public class EngineMalaLoop extends Thread implements WorldEventListener {
                     this.controlGame.getWorld().removeMainObject(object);
                 }
             }
-            System.out.println("DURATA INVINCIBILITA " + status.getDuration());
+            //System.out.println("DURATA INVINCIBILITA " + status.getDuration());
             object.setStatus(status);
         }
     }

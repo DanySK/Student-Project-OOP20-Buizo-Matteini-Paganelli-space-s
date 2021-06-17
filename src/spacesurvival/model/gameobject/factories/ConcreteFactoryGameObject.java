@@ -94,7 +94,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 
     @Override
     public FireableObject createBoss() {
-        final EngineImage engineImage = new EngineImage(ScaleOf.BOSS, Screen.WIDTH_FULL_SCREEN, SkinChase.CHASE0);
+        final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinChase.CHASE0);
         final P2d position = GameObjectUtils.generateRandomPoint();
         //final P2d position = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
         final V2d velocity = GameObjectUtils.BOSS_VEL;

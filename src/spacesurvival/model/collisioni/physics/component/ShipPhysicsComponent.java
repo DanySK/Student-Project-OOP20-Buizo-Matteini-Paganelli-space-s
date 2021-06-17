@@ -45,7 +45,7 @@ public class ShipPhysicsComponent implements PhysicsComponent {
             w.notifyWorldEvent(new HitMainGameObject(ship, chaseEnemy.get()));
         }
 
-        final Optional<MainGameObject> fireEnemy = w.checkCollisionWithFireEnemies(shipBoundingBox);
+        final Optional<FireableObject> fireEnemy = w.checkCollisionWithFireEnemies(shipBoundingBox);
         if (fireEnemy.isPresent()) {
             w.notifyWorldEvent(new HitMainGameObject(ship, fireEnemy.get()));
         }
