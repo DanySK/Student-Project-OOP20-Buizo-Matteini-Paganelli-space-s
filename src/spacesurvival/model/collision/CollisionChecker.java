@@ -88,6 +88,15 @@ public class CollisionChecker {
         return Math.round(Math.atan2(-m01, m00));
     }
 
+    /**
+     * Return a string describing the types of collisions that can be checked.
+     * 
+     * @return a string describing the collision
+     */
+    public String toString() {
+        return "Collision checker {Rectangle to Rectangle, Rectangle to Circle}";
+    }
+
 //	
 //	public static void main (String[] args) {
 //		CollisionChecker checker = new CollisionChecker();

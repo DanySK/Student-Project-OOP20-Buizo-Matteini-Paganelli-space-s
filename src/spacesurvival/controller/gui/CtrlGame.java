@@ -102,15 +102,15 @@ public class CtrlGame implements ControllerGUI {
 
     public final void updateRoundState() {
         if (this.engine.getCountEnemies() == 0) {
-            System.out.println("finiti nemici, incremento round");
             this.engine.incrRound();
             this.resetEntities();
             this.engine.getWorld().getBoss().ifPresent(boss -> this.setVisibleLifeBarBoss(true));
         }
     }
-    
+
     public void setVisibleLifeBarBoss(final boolean visible) {
         this.gui.setVisibleLifeBarBoss(visible);
+        
     }
 
     public final void resetEntities() {

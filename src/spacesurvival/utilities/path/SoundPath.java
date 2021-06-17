@@ -85,7 +85,7 @@ public enum SoundPath {
     public String getPath() {
         return this.path;
     }
-	
+
     /**
      * Return the type of the current SoundPath.
      * 

@@ -3,7 +3,6 @@ package spacesurvival.view.sound.utilities;
 import spacesurvival.model.gui.sound.EngineSound;
 import spacesurvival.model.gui.sound.TypeUnitSound;
 import spacesurvival.view.utilities.FactoryGUIs;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -45,7 +44,7 @@ public class MixerSound extends JPanel {
 
     public void setTitleSlider(final List<String> titleSlider) {
         int i = 0;
-        for (UnitSound unit : this.sdlSounds) {
+        for (final UnitSound unit : this.sdlSounds) {
            unit.setLbTitle(titleSlider.get(i++));
         }
     }
@@ -75,7 +74,7 @@ public class MixerSound extends JPanel {
     }
 
     public void setIconBtnSwitches(final List<String> paths, final int widthScreen) {
-        AtomicInteger i = new AtomicInteger();
+        final AtomicInteger i = new AtomicInteger();
         this.sdlSounds.forEach(sound -> sound.setIconBtnSwitch(paths.get(i.getAndIncrement()), widthScreen));
     }
 

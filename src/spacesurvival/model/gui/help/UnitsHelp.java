@@ -8,6 +8,7 @@ import spacesurvival.utilities.DesignJComponent;
 import java.util.List;
 
 public enum UnitsHelp {
+    
     PANEL_MOVE(DesignJComponent.NAME_UNIT_HELP_MOVEMENT, List.of(
             new EngineImage(ScaleOf.ICON_HELP_PLURAL, EngineHelp.RECTANGLE.width, Helps.WASD),
             new EngineImage(ScaleOf.ICON_HELP_PLURAL, EngineHelp.RECTANGLE.width, Helps.ROW))),
@@ -23,7 +24,7 @@ public enum UnitsHelp {
     private final String name;
     private final List<EngineImage> pathFiles;
 
-    private UnitsHelp(final String name, final List<EngineImage> pathFiles){
+    UnitsHelp(final String name, final List<EngineImage> pathFiles){
         this.name = name;
         this.pathFiles = pathFiles;
     }

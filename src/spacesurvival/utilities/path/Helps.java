@@ -2,14 +2,34 @@ package spacesurvival.utilities.path;
 
 import java.nio.file.Paths;
 
-public class Helps {
+public final class Helps {
 
-    public static final String MAIN_FOLDER = "imgHelp";
+    /**
+     * WASD help image.
+     */
+    public static final String WASD = Paths.get(MainFolder.HELP, "wasd.png").toString();
+    /**
+     * Row help image.
+     */
+    public static final String ROW = Paths.get(MainFolder.HELP, "row.png").toString();
+    /**
+     * Spacebar help image.
+     */
+    public static final String SPACEBAR = Paths.get(MainFolder.HELP, "space.png").toString();
+    /**
+     * Key K help image.
+     */
+    public static final String KEY_K = Paths.get(MainFolder.HELP, "key_K.png").toString();
+    /**
+     * Key P help image.
+     */
+    public static final String KEY_P = Paths.get(MainFolder.HELP, "key_P.png").toString();
+    /**
+     * Pause key help image.
+     */
+    public static final String PAUSE_KEY = Paths.get(MainFolder.HELP, "pause.png").toString();
 
-    public static final String WASD = Paths.get(MAIN_FOLDER, "wasd.png").toString();
-    public static final String ROW = Paths.get(MAIN_FOLDER, "row.png").toString();
-    public static final String SPACEBAR = Paths.get(MAIN_FOLDER, "space.png").toString();
-    public static final String KEY_K = Paths.get(MAIN_FOLDER, "key_K.png").toString();
-    public static final String KEY_P = Paths.get(MAIN_FOLDER, "key_P.png").toString();
-    public static final String PAUSE_KEY = Paths.get(MAIN_FOLDER, "pause.png").toString();
+    private Helps() {
+
+    }
 }

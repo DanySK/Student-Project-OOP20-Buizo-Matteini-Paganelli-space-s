@@ -7,6 +7,7 @@ import spacesurvival.model.collision.hitevent.HitBorderEvent;
 import spacesurvival.model.collision.hitevent.HitBulletEvent;
 import spacesurvival.model.collision.hitevent.HitMainGameObject;
 import spacesurvival.model.collision.hitevent.HitTakeableGameObject;
+import spacesurvival.model.common.P2d;
 import spacesurvival.model.gameobject.Edge;
 import spacesurvival.model.gameobject.MainGameObject;
 import spacesurvival.model.gameobject.MovableGameObject;
@@ -25,6 +26,7 @@ import spacesurvival.model.sound.CmdAudioType;
 import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.utilities.Score;
+import spacesurvival.utilities.SoundType;
 import spacesurvival.utilities.path.SoundPath;
 import spacesurvival.utilities.SystemVariables;
 import spacesurvival.utilities.ThreadUtils;
@@ -72,14 +74,13 @@ public class EngineLoop extends Thread implements WorldEventListener {
         long current = 0L;
         final int nbThreadsss = Thread.getAllStackTraces().keySet().size();
 
-        System.out.println("Numero dei thread current init -> " + nbThreadsss);
 
         while (true) {
             if (!this.controlGame.isGameOver()) {
                 current = System.currentTimeMillis();
                 final int elapsed = (int) (current - lastTime);
                 int nbThreads = Thread.getAllStackTraces().keySet().size();
-                
+
                 if (this.controlGUI.isInGame()){
                     if (!this.controlGUI.isInPause()) {
                         //processInput();
@@ -126,7 +127,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
         this.controlGame.updateStateWorld();
         this.checkEvents();
         this.checkSoundEffects();
-        this.assignTargetToEnemies();        
+        this.assignTargetToEnemies();
         this.controlGame.updateHUD();
     }
 
@@ -171,7 +172,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
                 final TakeableGameObject takeableGameObject = takeableEvent.getCollidedObject();
                 playEffect(SoundPath.PERK);
                 takeableGameObject.stopAnimation();
-      
+
                 if (takeableGameObject instanceof Ammo) {
                     final Ammo ammo = (Ammo) takeableGameObject;
                     world.getShip().take(ammo);
@@ -228,7 +229,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
                 System.out.println("VITA DEL NEMICO:  " + object.getLife());
                 if (isGameObjectDead(object)) {
                     object.stopAnimation();
-                    playSoundOf(object);
+                    playExplSoundOf(object);
                     this.controlGame.incrScore(object.getScore());
                     this.controlGame.getWorld().removeMainObject(object);
                 }
@@ -244,7 +245,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
 //    	object.setStatus(status);
 //	}
 
-    public void playSoundOf(final MainGameObject object) {
+    public void playExplSoundOf(final MainGameObject object) {
         if (object instanceof Asteroid) {
             playEffect(SoundPath.ASTEROID_EXPL);
         } else if (object instanceof ChaseEnemy || object instanceof FireEnemy) {
@@ -258,8 +259,8 @@ public class EngineLoop extends Thread implements WorldEventListener {
     	return gameObject.getLife() <= 0;
     }
 
-    
-    public void pacmanEffect(MovableGameObject object, Edge edge) {
+
+    public void pacmanEffect(final MovableGameObject object, final Edge edge) {
     	AffineTransform newTransform = new AffineTransform();
     	switch (edge) {
     	case TOP:
@@ -302,10 +303,16 @@ public class EngineLoop extends Thread implements WorldEventListener {
 
     public void assignTargetToEnemies() {
         this.controlGame.getWorld().getAllEnemies().forEach(enemy -> {
-            enemy.setTarget(Optional.of(this.controlGame.getShip().getPosition()));
+            final AffineTransform trans = new AffineTransform();
+            trans.setTransform(this.controlGame.getShip().getTransform());
+            trans.translate(this.controlGame.getShip().getWidth() / 2, this.controlGame.getShip().getHeight() / 2);
+            final P2d target = new P2d(trans.getTranslateX(), trans.getTranslateY());
+            enemy.setTarget(Optional.of(target));
+
+            //enemy.setTarget(Optional.of(this.controlGame.getShip().getPosition()));
         });
     }
-    
+
     protected void renderGameOver() {
         this.controlGUI.endGame();
     	playEffect(SoundPath.GAME_OVER);
@@ -316,7 +323,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
     public void notifyEvent(final WorldEvent ev) {
         eventQueue.add(ev);
     }
-    
+
     private void playEffect(final SoundPath soundPath) {
     	this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CmdAudioType.RESET_TIMING);
         this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CmdAudioType.AUDIO_ON);

@@ -1,5 +1,7 @@
 package spacesurvival.view.sound.factorymethod;
 
+import java.awt.BorderLayout;
+
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.path.Background;
 import spacesurvival.utilities.path.Icon;
@@ -9,8 +11,6 @@ import spacesurvival.view.sound.FactoryGUISound;
 import spacesurvival.view.sound.GUISound;
 import spacesurvival.view.sound.concrete.GUISoundConcrete;
 import spacesurvival.view.utilities.FactoryGUIs;
-
-import java.awt.*;
 
 public class GUISoundStandard implements FactoryGUISound {
 

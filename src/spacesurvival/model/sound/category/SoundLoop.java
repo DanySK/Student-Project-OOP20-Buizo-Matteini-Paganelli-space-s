@@ -5,14 +5,27 @@ import spacesurvival.utilities.path.SoundPath;
 
 import javax.sound.sampled.Clip;
 
+/**
+ * 
+ * Class for sound loop, each sound will not terminate.
+ *
+ */
 public class SoundLoop extends Sound {
-	
+
+    /**
+     * Create an empty sound loop.
+     */
     public SoundLoop() {
         super();
     }
-	
-    public SoundLoop(final SoundPath st) {
-        super(st);
+
+    /**
+     * Create a sound loop from the passed sound path.
+     * 
+     * @param soundPath
+     */
+    public SoundLoop(final SoundPath soundPath) {
+        super(soundPath);
     }
 
     /** 

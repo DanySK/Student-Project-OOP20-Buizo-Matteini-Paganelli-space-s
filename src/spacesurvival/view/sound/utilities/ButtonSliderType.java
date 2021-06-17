@@ -1,14 +1,14 @@
 package spacesurvival.view.sound.utilities;
 
 import spacesurvival.model.gui.sound.TypeUnitSound;
-
-import javax.swing.*;
 import java.util.Objects;
+
+import javax.swing.JButton;
 
 public class ButtonSliderType extends JButton {
     private TypeUnitSound typeSlider;
 
-    public ButtonSliderType(){
+    public ButtonSliderType() {
         super();
     }
 
@@ -21,10 +21,14 @@ public class ButtonSliderType extends JButton {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ButtonSliderType that = (ButtonSliderType) o;
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final ButtonSliderType that = (ButtonSliderType) o;
         return typeSlider == that.typeSlider;
     }
 
