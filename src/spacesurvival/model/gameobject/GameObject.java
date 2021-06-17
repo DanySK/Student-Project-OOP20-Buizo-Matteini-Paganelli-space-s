@@ -6,8 +6,8 @@ import java.awt.geom.AffineTransform;
 import java.util.List;
 import java.util.LinkedList;
 import java.util.Optional;
-
 import spacesurvival.model.common.P2d;
+import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.model.Animation;
 import spacesurvival.model.EngineImage;
 import spacesurvival.utilities.path.SoundPath;
@@ -172,5 +172,7 @@ public abstract class GameObject {
         return "GameObject [transform=" + transform + ", boundingBox=" + boundingBox
                 + ", phys=" + phys + ", body=" + body + ", effect=" + effect + ", effectSounds=" + effectSounds + "]";
     }
+
+    public abstract void manageEvent(World world, WorldEvent hitBorderEvent);
 
 }

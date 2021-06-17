@@ -2,7 +2,6 @@ package spacesurvival.model.gameobject.weapon.shootinglogic.implementation;
 
 import spacesurvival.model.gameobject.GameObjectUtils;
 import spacesurvival.model.gameobject.enemy.FireableObject;
-import spacesurvival.model.gameobject.takeable.AmmoType;
 import spacesurvival.model.gameobject.weapon.shootinglogic.FiringLogic;
 import spacesurvival.utilities.ThreadUtils;
 
@@ -13,6 +12,7 @@ public class BossFiringImpl implements FiringLogic {
      * 
      * @param fireableObject object which which will fire
      */
+    @Override
     public void startFiring(final FireableObject fireableObject) {
         new Thread(() -> {
             while (fireableObject.isAlive()) {
@@ -27,6 +27,7 @@ public class BossFiringImpl implements FiringLogic {
      * 
      * @param fireableObject object which which will fire
      */
+    @Override
     public void startChangingAmmo(final FireableObject fireableObject) {
 //        new Thread(() -> {
 //            while (fireableObject.isAlive()) {

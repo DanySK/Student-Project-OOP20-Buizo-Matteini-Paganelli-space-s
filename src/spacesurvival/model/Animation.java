@@ -122,6 +122,7 @@ public class Animation extends Thread {
     * 
     * @return a describing string
     */
+    @Override
     public String toString() {
         return "Animation [listPath=" + this.listPath + ", isAnimating=" + this.isAnimating + ", isPause=" + this.isPause + ", body="
                 + this.body + "]";

@@ -1,8 +1,11 @@
 package spacesurvival.model;
 
 import java.awt.Rectangle;
+import java.awt.geom.AffineTransform;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -16,6 +19,7 @@ import spacesurvival.model.gameobject.Edge;
 import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.gameobject.MainGameObject;
 import spacesurvival.model.gameobject.MovableGameObject;
+import spacesurvival.model.gameobject.Status;
 import spacesurvival.model.gameobject.enemy.Boss;
 import spacesurvival.model.gameobject.enemy.ChaseEnemy;
 import spacesurvival.model.gameobject.enemy.FireEnemy;
@@ -32,6 +36,8 @@ import spacesurvival.model.gameobject.weapon.Bullet;
 import spacesurvival.model.gameobject.weapon.Weapon;
 import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.model.worldevent.WorldEventListener;
+import spacesurvival.utilities.SystemVariables;
+import spacesurvival.utilities.dimension.Screen;
 
 public class World {
     private AbstractFactoryGameObject factoryGameObject = new ConcreteFactoryGameObject();
@@ -42,6 +48,7 @@ public class World {
     private Optional<FireableObject> boss;
     private final Set<TakeableGameObject> ammo = new HashSet<>();
     private final Set<TakeableGameObject> hearts = new HashSet<>();
+    private final List<Integer> queueScore = new ArrayList<>();
     private SpaceShipSingleton ship;
     private final RectBoundingBox mainBBox;
     private WorldEventListener evListener;
@@ -281,6 +288,70 @@ public class World {
             }
         }
         return Optional.empty();
+    }
+
+    public void pacmanEffect(final MovableGameObject object, final Edge edge) {
+        AffineTransform newTransform = new AffineTransform();
+        switch (edge) {
+        case TOP:
+            newTransform = new AffineTransform(object.getTransform().getScaleX(), 
+                    object.getTransform().getShearY(), object.getTransform().getShearX(), 
+                    object.getTransform().getScaleY(), object.getTransform().getTranslateX(), 
+                    Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y - 100);
+            break;
+        case BOTTOM:
+            newTransform = new AffineTransform(object.getTransform().getScaleX(), 
+                    object.getTransform().getShearY(), object.getTransform().getShearX(), 
+                    object.getTransform().getScaleY(), object.getTransform().getTranslateX(), 
+                    100);
+            break;
+        case LEFT:
+            newTransform = new AffineTransform(object.getTransform().getScaleX(), 
+                    object.getTransform().getShearY(), object.getTransform().getShearX(), 
+                    object.getTransform().getScaleY(), Screen.WIDTH_FULL_SCREEN * SystemVariables.SCALE_X - 100, 
+                    object.getTransform().getTranslateY());
+            break;
+        case RIGHT: 
+            newTransform = new AffineTransform(object.getTransform().getScaleX(), 
+                    object.getTransform().getShearY(), object.getTransform().getShearX(), 
+                    object.getTransform().getScaleY(), 100, 
+                    object.getTransform().getTranslateY());
+            break;
+            default:
+                break;
+        }
+        object.setTransform(newTransform);
+    }
+
+    
+
+    public List<Integer> getQueueScore() {
+        return this.queueScore;
+    }
+
+    public void damageObject(final MainGameObject object, final int damage, final Status status) {
+        //System.out.println("SONO INVINCIBILE ?  " + object.isInvincible());
+        if (!object.isInvincible()) {
+            if (object instanceof SpaceShipSingleton) {
+                this.getShip().decreaseLife(damage);
+            } else {
+                object.decreaseLife(damage);
+                System.out.println("VITA DEL NEMICO:  " + object.getLife());
+                if (isGameObjectDead(object)) {
+                    object.stopAnimation();
+                    queueScore.add(object.getScore());
+                    //this.controlGame.incrScore(object.getScore());
+                    //push score sulla ship, controllo dal loop che va ad aggiungerli nel controlGame, taaac
+                    this.removeMainObject(object);
+                }
+            }
+            //System.out.println("DURATA INVINCIBILITA " + status.getDuration());
+            object.setStatus(status);
+        }
+    }
+
+    private boolean isGameObjectDead(final MainGameObject gameObject) {
+        return gameObject.getLife() <= 0;
     }
 	
     public void notifyWorldEvent(final WorldEvent ev) {

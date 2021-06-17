@@ -1,6 +1,7 @@
 package spacesurvival.model.collision.hitevent;
 
 
+import spacesurvival.model.World;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.gameobject.Edge;
 import spacesurvival.model.gameobject.MovableGameObject;
@@ -10,6 +11,7 @@ public class HitBorderEvent implements WorldEvent {
     private final P2d where;
     private final Edge edge;
     private final MovableGameObject object;
+    private final EventType type = EventType.BORDER_EVENT;
 
     /**
      * Constructor for new HitBorderEvent, generated after the collision with a border to notify the world.
@@ -49,5 +51,15 @@ public class HitBorderEvent implements WorldEvent {
      */
     public MovableGameObject getCollisionObj() {
         return this.object;
+    }
+
+    @Override
+    public EventType getType() {
+        return this.type;
+    }
+
+    @Override
+    public void manage(final World world) {
+        this.getCollisionObj().manageEvent(world, this);
     }
 }

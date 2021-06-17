@@ -11,6 +11,7 @@ public class PickablePhysicsComponent implements PhysicsComponent {
      * @param obj GameObject representing the PickableGameObject
      * @param w represent the current world
      */
+    @Override
     public void update(final GameObject obj, final World w) {
         //CircleBoundingBox bbox = (CircleBoundingBox) obj.getBoundingBox();
         //Optional<PickableGameObject> perk = w.checkCollisionWithPickables(obj.getPosition(), bbox);

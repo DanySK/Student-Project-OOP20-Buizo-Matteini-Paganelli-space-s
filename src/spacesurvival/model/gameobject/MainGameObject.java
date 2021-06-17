@@ -6,12 +6,6 @@ import spacesurvival.model.movement.Movement;
 
 import java.util.Optional;
 
-import java.util.Optional;
-
-import spacesurvival.model.common.P2d;
-import spacesurvival.model.common.V2d;
-import spacesurvival.model.gameobject.weapon.Weapon;
-import spacesurvival.model.movement.Movement;
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.collision.physics.bounding.BoundingBox;
 import spacesurvival.model.collision.physics.component.PhysicsComponent;

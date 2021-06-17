@@ -7,7 +7,7 @@ public class LogicColorShip implements LogicColor{
     public Color setColor(final int maxLife, final int value) {
         double maxColValue = 255;
 
-        double redValue = (value > ((double) maxLife / 2) ? 1 - 2 * (value - ((double) maxLife / 2)) / (double) maxLife : 1.0) * maxColValue;
+        double redValue = (value > ((double) maxLife / 2) ? 1 - 2 * (value - ((double) maxLife / 2)) / maxLife : 1.0) * maxColValue;
         double greenValue = (value > ((double) maxLife / 2) ? 1.0 : 2 * value / (double) maxLife) * maxColValue;
         double blueValue = 0;
 

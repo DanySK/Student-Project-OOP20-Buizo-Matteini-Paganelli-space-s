@@ -93,6 +93,7 @@ public class CollisionChecker {
      * 
      * @return a string describing the collision
      */
+    @Override
     public String toString() {
         return "Collision checker {Rectangle to Rectangle, Rectangle to Circle}";
     }

@@ -1,19 +1,28 @@
 package spacesurvival.model.gameobject.main;
 
+import spacesurvival.model.gameobject.Edge;
 import spacesurvival.model.gameobject.GameObjectUtils;
+import spacesurvival.model.gameobject.MainGameObject;
+import spacesurvival.model.gameobject.Status;
+import spacesurvival.model.gameobject.enemy.ChaseEnemy;
 import spacesurvival.model.gameobject.enemy.FireableObject;
 import spacesurvival.model.gameobject.takeable.Ammo;
 import spacesurvival.model.movement.ControlledMovement;
 import spacesurvival.model.movement.Movement;
+import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
+import spacesurvival.model.gameobject.weapon.Bullet;
 import spacesurvival.model.gameobject.weapon.Weapon;
 import spacesurvival.model.gameobject.weapon.shootinglogic.FiringLogic;
 import spacesurvival.model.gameobject.weapon.shootinglogic.implementation.NoFiringImpl;
-
 import java.util.Optional;
-
 import spacesurvival.model.EngineImage;
+import spacesurvival.model.World;
+import spacesurvival.model.collision.hitevent.EventType;
+import spacesurvival.model.collision.hitevent.HitBorderEvent;
+import spacesurvival.model.collision.hitevent.HitBulletEvent;
+import spacesurvival.model.collision.hitevent.HitMainGameObject;
 import spacesurvival.model.collision.physics.bounding.BoundingBox;
 import spacesurvival.model.collision.physics.bounding.RectBoundingBox;
 import spacesurvival.model.collision.physics.component.PhysicsComponent;
@@ -21,6 +30,7 @@ import spacesurvival.model.collision.physics.component.ShipPhysicsComponent;
 import spacesurvival.utilities.Score;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;
+import spacesurvival.utilities.path.SoundPath;
 import spacesurvival.utilities.path.skin.SkinShip;
 
 public final class SpaceShipSingleton extends FireableObject {
@@ -88,4 +98,45 @@ public final class SpaceShipSingleton extends FireableObject {
         this.getWeapon().setAmmoType(ammo.getType());
     }
 
+    @Override
+    public void manageEvent(final World world, final WorldEvent ev) {
+        System.out.println("gestisco ship e evento" + EventType.getEventFromHit(ev));
+        final Optional<EventType> evType = EventType.getEventFromHit(ev);
+        if (evType.isPresent()) {
+            switch (EventType.getEventFromHit(ev).get()) {
+            case BORDER_EVENT:
+                final HitBorderEvent hitEvent = (HitBorderEvent) ev;
+                final Edge edge = hitEvent.getEdge();
+                this.pushEffect(SoundPath.WALL_COLLISION);
+                world.pacmanEffect(this, edge);
+                break;
+            case BULLET_EVENT:
+                final HitBulletEvent bulletEvent = (HitBulletEvent) ev;
+                final Bullet bullet = bulletEvent.getBullet();
+                if (!bullet.getShooter().equals(this)) {
+                    bullet.stopAnimation();
+                    world.removeBullet(bullet);
+                    world.damageObject(this, bullet.getDamage(), bullet.getEffect().getStatus());
+                }
+                break;
+            case MAIN_GAME_OBJECT_EVENT:
+                final HitMainGameObject asteroidEvent = (HitMainGameObject) ev;
+                final MainGameObject collidedObject = asteroidEvent.getCollidedObject();
+                //this.controlGame.incrScore(Score.ASTEROID);
+                world.damageObject(this, collidedObject.getImpactDamage(), Status.INVINCIBLE);
+                world.damageObject(collidedObject, this.getImpactDamage(), Status.INVINCIBLE); 
+
+                if (collidedObject instanceof ChaseEnemy) {
+                    collidedObject.stopAnimation();
+                    world.removeChaseEnemy(collidedObject);
+                    collidedObject.pushEffect(SoundPath.ENEMY_EXPL);
+                }
+                break;
+            default:
+                break;
+            }
+        }
+    }
+
 }
+

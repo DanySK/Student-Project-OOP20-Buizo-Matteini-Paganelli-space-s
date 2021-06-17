@@ -12,6 +12,7 @@ public class UpReleaseCommand implements CommandGameObject {
      * 
      * @param ship the controlled ship 
      */
+    @Override
     public void execute(final SpaceShipSingleton ship) {
         ship.setAcceleration(new V2d(0, GameObjectUtils.SPACESHIP_DECELERATION));
     }

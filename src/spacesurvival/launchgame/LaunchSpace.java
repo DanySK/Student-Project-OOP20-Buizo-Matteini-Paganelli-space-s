@@ -6,8 +6,6 @@ import spacesurvival.factories.StaticFactoryGUI;
 import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.EngineLoop;
 
-import javax.swing.SwingUtilities;
-
 import spacesurvival.factories.StaticFactoryEngineGUI;
 
 public class LaunchSpace {

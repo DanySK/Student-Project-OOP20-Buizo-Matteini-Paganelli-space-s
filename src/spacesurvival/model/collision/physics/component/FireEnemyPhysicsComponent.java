@@ -17,6 +17,7 @@ public class FireEnemyPhysicsComponent implements PhysicsComponent {
      * @param abstractObj the fire enemy
      * @param w represent the current world
      */
+    @Override
     public void update(final GameObject abstractObj, final World w) {
         final FireEnemy fireEnemy = (FireEnemy) abstractObj;
         final RectBoundingBox boundingBox = w.getMainBBox();

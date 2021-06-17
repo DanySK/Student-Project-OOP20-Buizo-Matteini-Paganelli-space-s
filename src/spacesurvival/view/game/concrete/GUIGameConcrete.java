@@ -45,6 +45,7 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
         this.counterEnemies = new CounterEnemies();
     }
 
+    @Override
     public final void setBoundsGame(final Rectangle screen) {
         super.setBounds(screen);
         this.entityGame.setBounds(screen);

@@ -23,7 +23,6 @@ import spacesurvival.model.gameobject.weapon.Weapon;
 import spacesurvival.model.gameobject.weapon.shootinglogic.FiringLogic;
 import spacesurvival.model.gameobject.weapon.shootinglogic.implementation.BossFiringImpl;
 import spacesurvival.model.gameobject.weapon.shootinglogic.implementation.FireEnemyFiringImpl;
-import spacesurvival.model.gameobject.weapon.shootinglogic.implementation.NoFiringImpl;
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.collision.physics.bounding.CircleBoundingBox;
 import spacesurvival.model.collision.physics.bounding.RectBoundingBox;

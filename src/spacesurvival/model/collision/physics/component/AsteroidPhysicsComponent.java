@@ -17,6 +17,7 @@ public class AsteroidPhysicsComponent implements PhysicsComponent {
      * @param abstractObj the asteroid
      * @param w represent the current world
      */
+    @Override
     public void update(final GameObject abstractObj, final World w) {
         final Asteroid asteroid = (Asteroid) abstractObj;
         final RectBoundingBox boundingBox = w.getMainBBox();

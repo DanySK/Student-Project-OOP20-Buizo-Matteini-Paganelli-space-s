@@ -10,6 +10,7 @@ public class SpaceBarCommand implements CommandGameObject {
      * 
      * @param ship the controlled ship
      */
+    @Override
     public void execute(final SpaceShipSingleton ship) {
         ship.getWeapon().shoot();
         ship.pushEffect(SoundPath.SHOOT);

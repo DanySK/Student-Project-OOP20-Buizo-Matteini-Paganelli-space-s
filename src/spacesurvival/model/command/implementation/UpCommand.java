@@ -13,6 +13,7 @@ public class UpCommand implements CommandGameObject {
      * 
      * @param ship the controlled ship 
      */
+    @Override
     public void execute(final SpaceShipSingleton ship) {
         V2d vel = ship.getVelocity();
         if (Math.abs(vel.getY()) < TOLLERANCE) {

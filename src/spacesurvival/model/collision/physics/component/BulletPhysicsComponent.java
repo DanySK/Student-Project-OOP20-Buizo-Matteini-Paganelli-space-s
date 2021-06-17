@@ -22,6 +22,7 @@ public class BulletPhysicsComponent implements PhysicsComponent {
      * @param abstractObj the bullet
      * @param w represent the current world
      */
+    @Override
     public void update(final GameObject abstractObj, final World w) {
         final Bullet bullet = (Bullet) abstractObj;
         final RectBoundingBox boundingBox = w.getMainBBox();

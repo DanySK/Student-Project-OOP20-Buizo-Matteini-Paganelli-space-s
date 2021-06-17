@@ -1,10 +1,12 @@
 package spacesurvival.model.collision.hitevent;
 
+import spacesurvival.model.World;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.model.worldevent.WorldEvent;
 
 public class HitHeartEvent implements WorldEvent {
     private final TakeableGameObject heart;
+    private final EventType type = EventType.HEART_EVENT;
 
     /**
      * Constructor for new HitHeartEvent, generated after the collision with the perk to notify the world.
@@ -22,5 +24,15 @@ public class HitHeartEvent implements WorldEvent {
      */
     public TakeableGameObject getCollisionObj() {
         return this.heart;
+    }
+    
+    @Override
+    public EventType getType() {
+        return this.type;
+    }
+    
+    @Override
+    public void manage(World world) {
+        this.getCollisionObj().manageEvent(world, this);
     }
 }

@@ -5,7 +5,6 @@ import spacesurvival.utilities.dimension.Screen;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
 import spacesurvival.model.gameobject.GameObjectUtils;
-import spacesurvival.model.gameobject.MainGameObject;
 import spacesurvival.model.gameobject.enemy.FireableObject;
 import spacesurvival.model.gameobject.takeable.AmmoType;
 

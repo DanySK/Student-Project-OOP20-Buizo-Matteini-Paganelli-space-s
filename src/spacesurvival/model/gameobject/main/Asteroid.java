@@ -7,12 +7,18 @@ import java.util.Random;
 
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
+import spacesurvival.model.gameobject.Edge;
 import spacesurvival.model.gameobject.GameObjectUtils;
 import spacesurvival.model.gameobject.MainGameObject;
 import spacesurvival.model.movement.Movement;
-
-import spacesurvival.model.gameobject.weapon.Weapon;
+import spacesurvival.model.worldevent.WorldEvent;
+import spacesurvival.utilities.path.SoundPath;
+import spacesurvival.model.gameobject.weapon.Bullet;
 import spacesurvival.model.EngineImage;
+import spacesurvival.model.World;
+import spacesurvival.model.collision.hitevent.EventType;
+import spacesurvival.model.collision.hitevent.HitBorderEvent;
+import spacesurvival.model.collision.hitevent.HitBulletEvent;
 import spacesurvival.model.collision.physics.bounding.BoundingBox;
 import spacesurvival.model.collision.physics.component.PhysicsComponent;
 
@@ -42,9 +48,36 @@ public class Asteroid extends MainGameObject {
     private void initializeRotation() {
         final Random random = new Random();
         final int randomAngle = random.nextInt(360);
-        AffineTransform at = getTransform();
+        final AffineTransform at = getTransform();
         at.rotate(Math.toRadians(randomAngle), getSize().getWidth() / 2, getSize().getHeight() / 2);
         setTransform(at);
+    }
+    
+    @Override
+    public void manageEvent(final World world, final WorldEvent ev) {
+        System.out.println("gestisco asteroid e evento" + EventType.getEventFromHit(ev));
+        final Optional<EventType> evType = EventType.getEventFromHit(ev);
+        if (evType.isPresent()) {
+            switch (EventType.getEventFromHit(ev).get()) {
+            case BORDER_EVENT:
+                final HitBorderEvent hitEvent = (HitBorderEvent) ev;
+                final Edge edge = hitEvent.getEdge();
+                this.pushEffect(SoundPath.WALL_COLLISION);
+                world.pacmanEffect(this, edge);
+                break;
+            case BULLET_EVENT:
+                final HitBulletEvent bulletEvent = (HitBulletEvent) ev;
+                final Bullet bullet = bulletEvent.getBullet();
+                //if (!bullet.getShooter().equals(this)) {
+                bullet.stopAnimation();
+                world.removeBullet(bullet);
+                world.damageObject(this, bullet.getDamage(), bullet.getEffect().getStatus());
+               // }
+                break;
+            default:
+                break;
+            }
+        }
     }
 
     @Override

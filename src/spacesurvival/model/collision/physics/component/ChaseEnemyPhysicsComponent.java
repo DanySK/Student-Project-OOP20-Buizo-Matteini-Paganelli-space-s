@@ -17,6 +17,7 @@ public class ChaseEnemyPhysicsComponent implements PhysicsComponent {
      * @param abstractObj the ship
      * @param w represent the current world
      */
+    @Override
     public void update(final GameObject abstractObj, final World w) {
         final ChaseEnemy chaseEnemy = (ChaseEnemy) abstractObj;
         final RectBoundingBox boundingBox = w.getMainBBox();

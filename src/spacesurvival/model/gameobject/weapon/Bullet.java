@@ -5,11 +5,15 @@ import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
 import spacesurvival.model.gameobject.Effect;
 import spacesurvival.model.gameobject.GameObjectUtils;
-import spacesurvival.model.gameobject.MainGameObject;
 import spacesurvival.model.gameobject.MovableGameObject;
 import spacesurvival.model.gameobject.enemy.FireableObject;
 import spacesurvival.model.movement.FixedMovement;
+import spacesurvival.model.worldevent.WorldEvent;
+import java.util.Optional;
+
 import spacesurvival.model.EngineImage;
+import spacesurvival.model.World;
+import spacesurvival.model.collision.hitevent.EventType;
 import spacesurvival.model.collision.physics.bounding.BoundingBox;
 import spacesurvival.model.collision.physics.component.PhysicsComponent;
 
@@ -58,6 +62,23 @@ public class Bullet extends MovableGameObject {
 
     public FireableObject getShooter() {
         return this.originWeapon.getOwner();
+    }
+
+    @Override
+    public void manageEvent(final World world, final WorldEvent ev) {
+        System.out.println("BULLET EVENTO -> " + EventType.getEventFromHit(ev));
+        final Optional<EventType> evType = EventType.getEventFromHit(ev);
+        if (evType.isPresent()) {
+            switch (EventType.getEventFromHit(ev).get()) {
+            case BORDER_EVENT:
+                this.stopAnimation();
+                world.removeBullet(this);
+                break;
+            default:
+                break;
+            }
+        }
+
     }
 	
 }

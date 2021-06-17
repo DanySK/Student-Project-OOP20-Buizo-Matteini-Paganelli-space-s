@@ -161,6 +161,7 @@ public class EngineImage {
      * 
      * @return a describing string
      */
+    @Override
     public String toString() {
         return "EngineImage{" 
                 + "path='" + path + '\'' 

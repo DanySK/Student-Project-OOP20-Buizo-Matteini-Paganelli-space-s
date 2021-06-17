@@ -1,11 +1,15 @@
 package spacesurvival.model.gameobject.takeable;
 
 import java.util.List;
+import java.util.Optional;
 
 import spacesurvival.model.EngineImage;
+import spacesurvival.model.World;
+import spacesurvival.model.collision.hitevent.EventType;
 import spacesurvival.model.collision.physics.bounding.BoundingBox;
 import spacesurvival.model.collision.physics.component.PhysicsComponent;
 import spacesurvival.model.common.P2d;
+import spacesurvival.model.worldevent.WorldEvent;
 
 public class Ammo extends TakeableGameObject {
 
@@ -36,5 +40,24 @@ public class Ammo extends TakeableGameObject {
      */
     public void setType(final AmmoType type) {
         this.type = type;
+    }
+    //HitTakeableGameObject
+
+    @Override
+    public void manageEvent(final World world, final WorldEvent ev) {
+        System.out.println("AMMO EVENTO->" + EventType.getEventFromHit(ev));
+        final Optional<EventType> evType = EventType.getEventFromHit(ev);
+        if (evType.isPresent()) {
+            switch (EventType.getEventFromHit(ev).get()) {
+            case TAKEABLE_OBJECT_EVENT:
+                this.stopAnimation();
+                world.getShip().take(this);
+                break;
+            default:
+                break;
+            }
+            world.removeTakeableObject(this);
+        }
+        
     }
 }

@@ -2,7 +2,6 @@ package spacesurvival.view.utilities;
 
 import spacesurvival.utilities.ActionGUI;
 import javax.swing.JButton;
-import spacesurvival.utilities.ActionGUI;
 
 public class BtnAction extends JButton {
     private ActionGUI actionCurrent;

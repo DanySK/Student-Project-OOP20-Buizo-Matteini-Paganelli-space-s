@@ -23,6 +23,7 @@ public class ShipPhysicsComponent implements PhysicsComponent {
      * @param abstractObj the ship
      * @param w represent the current world
      */
+    @Override
     public void update(final GameObject abstractObj, final World w) {
         final SpaceShipSingleton ship = (SpaceShipSingleton) abstractObj;
 
