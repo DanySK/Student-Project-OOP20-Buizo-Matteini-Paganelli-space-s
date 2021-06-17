@@ -34,25 +34,25 @@ public class DesignGraphics {
     public static Color COLOR_2 = new Color(128, 213, 255);
     public static Color COLOR_3 = new Color(148, 233, 255);
     public static Color COLOR_4 = new Color(58, 241, 255);
-    public static Color COLOR_OPACITY_BLACK = new Color(0,0,0,80);
+    public static Color COLOR_OPACITY_BLACK = new Color(0, 0, 0, 80);
 
     public static Font getFontForTitle(final int size){
-        URL fontUrl = ClassLoader.getSystemResource("font/mainFont.ttf");
+        final URL fontUrl = ClassLoader.getSystemResource("font/mainFont.ttf");
         Font myFont = null;
         try {
             myFont = Font.createFont(Font.TRUETYPE_FONT, fontUrl.openStream());
         } catch (Exception e) {
             System.err.println("Path font no found");
         }
-        myFont = myFont.deriveFont(Font.PLAIN,size);
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        myFont = myFont.deriveFont(Font.PLAIN, size);
+        final GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(myFont);
 
         return myFont;
     }
 
     public static Font getFontForGame(final int size){
-        URL fontUrl = ClassLoader.getSystemResource("font/game.ttf");
+        final URL fontUrl = ClassLoader.getSystemResource("font/game.ttf");
         Font myFont = null;
         try {
             myFont = Font.createFont(Font.TRUETYPE_FONT, fontUrl.openStream());
@@ -61,14 +61,14 @@ public class DesignGraphics {
         }
 
         myFont = myFont.deriveFont(Font.PLAIN,size);
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        final GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(myFont);
 
         return myFont;
     }
 
     public static Font getFontForDead(final int size){
-        URL fontUrl = ClassLoader.getSystemResource("font/CHILLER.TTF");
+        final URL fontUrl = ClassLoader.getSystemResource("font/CHILLER.TTF");
         Font myFont = null;
         try {
             myFont = Font.createFont(Font.TRUETYPE_FONT, fontUrl.openStream());
@@ -76,8 +76,8 @@ public class DesignGraphics {
             System.err.println("Path font no found");
         }
 
-        myFont = myFont.deriveFont(Font.PLAIN,size);
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        myFont = myFont.deriveFont(Font.PLAIN, size);
+        final GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(myFont);
 
         return myFont;

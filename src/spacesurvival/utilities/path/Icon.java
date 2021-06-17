@@ -2,27 +2,73 @@ package spacesurvival.utilities.path;
 
 import java.nio.file.Paths;
 
-public class Icon {
-    public static final String MAIN_FOLDER = "icon";
+public final class Icon {
+    /**
+     * Start icon.
+     */
+    public static final String START = Paths.get(MainFolder.ICON, "start.png").toString();
+    /**
+     * Settings icon.
+     */
+    public static final String SETTINGS = Paths.get(MainFolder.ICON, "settings.png").toString();
+    /**
+     * Scoreboard icon.
+     */
+    public static final String SCOREBOARD = Paths.get(MainFolder.ICON, "scoreboard.png").toString();
+    /**
+     * Sound icon.
+     */
+    public static final String SOUND = Paths.get(MainFolder.ICON, "sound.png").toString();
+    /**
+     * Help icon.
+     */
+    public static final String HELP = Paths.get(MainFolder.ICON, "help.png").toString();
+    /**
+     * Quit icon.
+     */
+    public static final String QUIT = Paths.get(MainFolder.ICON, "quit.png").toString();
+    /**
+     * Resume icon.
+     */
+    public static final String RESUME = Paths.get(MainFolder.ICON, "resume.png").toString();
+    /**
+     * Back icon.
+     */
+    public static final String BACK = Paths.get(MainFolder.ICON, "back.png").toString();
+    /**
+     * Search icon.
+     */
+    public static final String SEARCH = Paths.get(MainFolder.ICON, "search.png").toString();
+    /**
+     * Sound off icon.
+     */
+    public static final String SOUND_OFF = Paths.get(MainFolder.ICON, "volumeOFF.png").toString();
+    /**
+     * Sound on icon.
+     */
+    public static final String SOUND_ON = Paths.get(MainFolder.ICON, "volumeON.png").toString();
+    /**
+     * Heart icon.
+     */
+    public static final String HEART = Paths.get(MainFolder.ICON, "heart3.png").toString();
+    /**
+     * Bullet icon.
+     */
+    public static final String BULLET = Paths.get(MainFolder.ICON, "shutBullet", "bullet1.png").toString();
+    /**
+     * Pause icon.
+     */
+    public static final String PAUSE = Paths.get(MainFolder.ICON, "pause.png").toString();
+    /**
+     * Pause to face icon
+     */
+    public static final String PAUSE_2FACE = Paths.get(MainFolder.ICON, "pause2Face.png").toString();
 
-    public static final String START = Paths.get(MAIN_FOLDER, "start.png").toString();
-    public static final String SETTINGS = Paths.get(MAIN_FOLDER, "settings.png").toString();
-    public static final String SCOREBOARD = Paths.get(MAIN_FOLDER, "scoreboard.png").toString();
-    public static final String SOUND = Paths.get(MAIN_FOLDER, "sound.png").toString();
-    public static final String HELP = Paths.get(MAIN_FOLDER, "help.png").toString();
-    public static final String QUIT = Paths.get(MAIN_FOLDER, "quit.png").toString();
-    public static final String RESUME = Paths.get(MAIN_FOLDER, "resume.png").toString();
+    /**
+     * Empty constructor for icon.
+     */
+    private Icon(){
 
-    public static final String BACK = Paths.get(MAIN_FOLDER, "back.png").toString();
-    public static final String SEARCH = Paths.get(MAIN_FOLDER, "search.png").toString();
-
-    public static final String SOUND_OFF = Paths.get(MAIN_FOLDER, "volumeOFF.png").toString();
-    public static final String SOUND_ON = Paths.get(MAIN_FOLDER, "volumeON.png").toString();
-
-    public static final String HEART = Paths.get(MAIN_FOLDER, "heart3.png").toString();
-    public static final String BULLET = Paths.get(MAIN_FOLDER, "shutBullet", "bullet1.png").toString();
-
-    public static final String PAUSE = Paths.get(MAIN_FOLDER, "pause.png").toString();
-    public static final String PAUSE_2FACE = Paths.get(MAIN_FOLDER, "pause2Face.png").toString();
+    }
 
 }

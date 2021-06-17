@@ -124,6 +124,6 @@ public class RectBoundingBox implements BoundingBox {
      * @return return the string.
      */
     public String toString() {
-        return "RectBoundingBox [p0=" + this.p0 + ", p1=" + this.p1 + "], AffineTransform = " + this.transform.toString();
+        return "RectBoundingBox [point Up Left=" + this.p0 + ", point Bottom Right=" + this.p1 + "], AffineTransform = " + this.transform.toString();
     }
 }

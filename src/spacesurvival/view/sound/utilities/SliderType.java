@@ -11,10 +11,20 @@ public class SliderType extends JSlider {
         super();
     }
 
+    /**
+     * Return the type of the slider.
+     *
+     * @return the type of the slider
+     */
     public TypeUnitSound getType() {
         return this.typeSlider;
     }
 
+    /**
+     * Set the type of the slider.
+     * 
+     * @param typeSlider the slider to be setted
+     */
     public void setType(final TypeUnitSound typeSlider) {
         this.typeSlider = typeSlider;
     }

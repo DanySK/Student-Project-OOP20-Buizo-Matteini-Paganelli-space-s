@@ -3,8 +3,7 @@ package spacesurvival.view;
 import spacesurvival.model.gui.Visibility;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.view.utilities.BtnAction;
-
-import java.awt.*;
+import java.awt.Rectangle;
 import java.awt.event.MouseListener;
 import java.util.List;
 
@@ -14,7 +13,6 @@ public interface GUI {
 
 
     public List<BtnAction> getBtnActionLinks();
-
 
     public void setMainAction(final ActionGUI actionGUI);
 
