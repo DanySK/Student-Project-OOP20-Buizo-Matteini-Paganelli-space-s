@@ -135,20 +135,20 @@ public abstract class MainGameObject extends MovableGameObject {
     public void onFire() {
         while (this.status == Status.ON_FIRE) {
             this.decreaseLife(GameObjectUtils.FIRE_DAMAGE);
-            System.out.println("SONO ANDATO A FUOCO " + GameObjectUtils.FIRE_DAMAGE + " DANNO");
+            //System.out.println("SONO ANDATO A FUOCO " + GameObjectUtils.FIRE_DAMAGE + " DANNO");
             mySleep(GameObjectUtils.FIRE_INTERVAL_DAMAGE);
         }
     }
 	
     public void frozen() {
         final V2d initialVel = this.getVelocity();
-        System.out.println("SALVO VELOCITA INIZIALE " + initialVel);
+        //System.out.println("SALVO VELOCITA INIZIALE " + initialVel);
         this.setVelocity(getVelocity().mul(GameObjectUtils.FROZEN_SLOWDOWN));
         while (this.status == Status.FROZEN) {
             mySleep(20);
         }
         this.setVelocity(initialVel);
-        System.out.println("RISETTO VELOCITA INIZIALE " + this.getVelocity());
+        //System.out.println("RISETTO VELOCITA INIZIALE " + this.getVelocity());
     }
 	
     public void paralized() {

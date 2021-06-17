@@ -6,6 +6,8 @@ import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.gui.game.EngineGame;
 import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.model.World;
+import spacesurvival.model.gameobject.GameObject;
+import spacesurvival.model.gameobject.GameObjectUtils;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.MovementKeyListener;
 import spacesurvival.utilities.ActionGUI;
@@ -32,105 +34,126 @@ public class CtrlGame implements ControllerGUI {
     }
 
     @Override
-    public void assignAction() {
+    public final void assignAction() {
         this.gui.setMainAction(this.engine.getMainAction());
         this.gui.setIdButtons(this.engine.getMainAction(), this.engine.getLinks());
     }
 
     @Override
-    public void assignStrings() {
+    public final void assignStrings() {
         this.updateHUD();
+        this.gui.setMaxLifeBoss(GameObjectUtils.BOSS_LIFE);
+        this.gui.setMaxLifeShip(GameObjectUtils.SPACESHIP_LIFE);
     }
 
     @Override
-    public void assignRectangle() {
-        this.gui.setBounds(this.engine.getRectangle());
+    public final void assignRectangle() {
+        this.gui.setBoundsGame(this.engine.getRectangle());
     }
 
     @Override
-    public ActionGUI getMainAction() {
+    public final ActionGUI getMainAction() {
         return this.engine.getMainAction();
     }
 
     @Override
-    public GUI getGUI() {
+    public final GUI getGUI() {
         return this.gui;
     }
 
     @Override
-    public EngineGUI getEngine() {
+    public final EngineGUI getEngine() {
         return this.engine;
     }
 
     @Override
-    public boolean isVisibility() {
+    public final boolean isVisibility() {
         return this.engine.isVisible();
     }
 
     @Override
-    public void turn(final Visibility visibility) {
+    public final void turn(final Visibility visibility) {
         this.switchGUI.turn(visibility);
     }
 
     @Override
-    public void changeVisibility() {
+    public final void changeVisibility() {
         this.switchGUI.changeVisibility();
     }
 
     @Override
-    public void closeGUI() {
+    public final void closeGUI() {
         this.gui.close();
     }
 
-    public void updateHUD() {
+    public final void updateHUD() {
         this.gui.setTimer(this.engine.getTimer());
         this.gui.setScore(this.engine.getScore());
         this.gui.setRound(this.engine.getRound());
         this.gui.setNEnemies(this.engine.getCountEnemies());
         this.gui.setNHeart(this.engine.getLives());
         this.gui.setLifeShip(this.engine.getLifeShip());
-        this.gui.setLifeBoss(this.engine.getLifeBoss());
+        if (this.getWorld().getBoss().isPresent()) {
+            this.gui.setLifeBoss(this.engine.getLifeBoss());
+        } else {
+            this.setVisibleLifeBarBoss(false);
+        }
+    }
+
+    public final void updateRoundState() {
+        if (this.engine.getCountEnemies() == 0) {
+            System.out.println("finiti nemici, incremento round");
+            this.engine.incrRound();
+            this.resetEntities();
+            this.engine.getWorld().getBoss().ifPresent(boss -> this.setVisibleLifeBarBoss(true));
+        }
     }
     
-    public void updateRoundState() {
-		if (this.engine.getCountEnemies() == 0) {
-			System.out.println("finiti nemici, incremento round");
-			this.engine.incrRound();
-			this.resetEntities();
-		}
-	}
-    
-    public void resetEntities() {
-		this.getWorld().removeAllEnemies();
-		this.getWorld().addAsteroid();
-		this.getWorld().addAsteroid();
-		this.getWorld().addChaseEnemy();
-		this.getWorld().addFireEnemy();
-		System.out.println(this.getWorld().getAllEntities());
+    public void setVisibleLifeBarBoss(final boolean visible) {
+        this.gui.setVisibleLifeBarBoss(visible);
+    }
+
+    public final void resetEntities() {
+        this.getWorld().removeAllEnemies();
+        this.getWorld().addAsteroid();
+        this.getWorld().addAsteroid();
+        this.getWorld().addAsteroid();
+        this.getWorld().addAsteroid();
+        this.getWorld().addAsteroid();
+        this.getWorld().addAsteroid();
+        this.getWorld().addAsteroid();
+        this.getWorld().addAsteroid();
+        this.getWorld().addAsteroid();
+        this.getWorld().addAsteroid();
+        this.getWorld().addChaseEnemy();
+        this.getWorld().addFireEnemy();
+        this.getWorld().addBoss();
+        System.out.println(this.getWorld().getAllEntities());
 	}
 
-    public void assignWorld() {
+    public final void assignWorld() {
         this.gui.setWorld(this.engine.getWorld());
+        this.engine.getWorld().getBoss().ifPresent(boss -> this.setVisibleLifeBarBoss(true));
     }
 
 
-    public void startTimer() {
+    public final void startTimer() {
         this.engine.startTimer();
     }
 
-    public void stopTimer() {
+    public final void stopTimer() {
         this.engine.stopTimer();
     }
 
-    public World getWorld() {
+    public final World getWorld() {
 		return this.engine.getWorld();
 	}
 
-    public SpaceShipSingleton getShip() {
+    public final SpaceShipSingleton getShip() {
         return this.engine.getShip();
     }
 
-    public void setEventListenerInWorld(final WorldEventListener worldEventListener) {
+    public final void setEventListenerInWorld(final WorldEventListener worldEventListener) {
         this.engine.setEventListenerInWorld(worldEventListener);
     }
 
@@ -138,19 +161,19 @@ public class CtrlGame implements ControllerGUI {
         return new MovementKeyListener(this.engine.getShip());
     }
 
-    public void assignMovementListenerInShip(){
+    public final void assignMovementListenerInShip(){
         this.addKeyListenerShip(this.getMovementKeyListener());
     }
 
-    public boolean isGameOver(){
+    public final boolean isGameOver(){
         return this.engine.isGameOver();
     }
 
-    public void restartGame(){
+    public final void restartGame(){
         this.engine.restartGame();
     }
 
-    public void decreaseLife(final int damage) {
+    public final void decreaseLife(final int damage) {
         final int effectDamage = this.damageOverFlow(damage) ? this.engine.getLifeShip() : damage;
 
         if (this.damageOverFlow(damage)) {
@@ -167,12 +190,12 @@ public class CtrlGame implements ControllerGUI {
             this.engine.resetLifeShip();
         }
     }
-    
-    public void increaseLife(final int healAmount) {
+
+    public final void increaseLife(final int healAmount) {
         this.getShip().increaseLife(healAmount);
     }
-    
-    public void increaseLives(final int amount) {
+
+    public final void increaseLives(final int amount) {
         this.engine.increaseLives(amount);
     }
 
@@ -184,25 +207,16 @@ public class CtrlGame implements ControllerGUI {
         return this.engine.getLives() > 1;
     }
 
-    public void startPaint() {
-        this.gui.startPaint();
-    }
-
-    public void repaintWorld() {
+    public final void repaintWorld() {
         this.gui.repaintGameObjects();
     }
 
-    public void stopPaint(){
-        this.gui.stopPaint();
-    }
-
-    public void incrScore(final long score) {
+    public final void incrScore(final long score) {
         this.engine.incrScore(score);
     }
 
-
-    public void updateStateWorld(final int elapsed) {
-        this.engine.updateStateWorld(elapsed);
+    public void updateStateWorld() {
+        this.engine.updateStateWorld();
     }
 
     private void addKeyListenerShip(final KeyListener keyListener) {

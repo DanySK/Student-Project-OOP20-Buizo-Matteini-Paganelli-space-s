@@ -9,11 +9,15 @@ import spacesurvival.view.game.utilities.logicColor.LogicColorBoss;
 import spacesurvival.view.game.utilities.logicColor.LogicColorShip;
 import spacesurvival.view.utilities.BtnAction;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Rectangle;
 import java.awt.event.KeyListener;
 import java.util.List;
 
 public class GUIGameConcrete extends AbstractGUI implements GUIGame {
+    private static final long serialVersionUID = 1588822389694751549L;
+    
     private final Score score;
     private final RoundTimer roundTimer;
     private final BtnPauseID btnPause;
@@ -24,10 +28,13 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
     private final LifeBar lifeBoss;
     private final Bullet bullet;
 
-    private final PanelGame panelGame;
+    private final PanelEntityGame entityGame;
+    private final PanelBulletGame bulletGame;
 
     public GUIGameConcrete() {
         super();
+        this.entityGame = new PanelEntityGame();
+        this.bulletGame = new PanelBulletGame();
         this.lifeBoss = new LifeBar(new LogicColorBoss());
         this.lifeShip = new LifeBar(new LogicColorShip());
         this.score = new Score();
@@ -36,94 +43,98 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
         this.roundTimer = new RoundTimer();
         this.btnPause = new BtnPauseID();
         this.counterEnemies = new CounterEnemies();
-        this.panelGame = new PanelGame();
+    }
 
-        this.panelGame.setBounds(super.getBounds());
+    public final void setBoundsGame(final Rectangle screen) {
+        super.setBounds(screen);
+        this.entityGame.setBounds(screen);
+        this.bulletGame.setBounds(screen);
     }
 
     @Override
-    public List<BtnAction> getBtnActionLinks() {
+    public final List<BtnAction> getBtnActionLinks() {
         return List.of(this.btnPause);
     }
 
 
     @Override
-    public void setTimer(final String timer) {
+    public final void setTimer(final String timer) {
         this.roundTimer.setTimer(timer);
     }
 
     @Override
-    public void setIdButtons(final ActionGUI mainAction, final List<ActionGUI> linksID) {
-        for(int i = 0; i< linksID.size(); i++){
+    public final void setIdButtons(final ActionGUI mainAction, final List<ActionGUI> linksID) {
+        for (final ActionGUI actionGUI : linksID) {
             this.btnPause.setActionCurrent(mainAction);
-            this.btnPause.setActionNext(linksID.get(i));
+            this.btnPause.setActionNext(actionGUI);
         }
     }
 
     @Override
-    public PanelGame getPanelGame() {
-        return this.panelGame;
-    }
-
-
-    @Override
-    public void startPaint() {
-        this.panelGame.startPaint();
+    public final PanelEntityGame getPanelEntity() {
+        return this.entityGame;
     }
 
     @Override
-    public void stopPaint() {
-        this.panelGame.stopPaint();
+    public PanelBulletGame getPanelBullet() {
+        return this.bulletGame;
     }
 
     @Override
-    public void setWorld(final World world) {
-        this.panelGame.setWorld(world);
+    public final void setWorld(final World world) {
+        this.entityGame.setWorld(world);
+        this.bulletGame.setWorld(world);
     }
 
     @Override
-    public void addKeyListenerSpaceShip(KeyListener keyListener) {
+    public final void addKeyListenerSpaceShip(final KeyListener keyListener) {
         this.addKeyListener(keyListener);
     }
 
     @Override
-    public void repaintGameObjects(){
-        this.panelGame.repaint();
+    public final void repaintGameObjects(){
+        this.entityGame.repaint();
+        this.bulletGame.repaint();
+    }
+    
+    @Override
+    public void setVisibleLifeBarBoss(boolean visible) {
+        this.lifeBoss.setVisible(visible); 
     }
 
     @Override
-    public void setScore(final long score) {
+    public final void setScore(final long score) {
         this.score.setScore(score);
     }
 
     @Override
-    public void setRound(final int round) {
+    public final void setRound(final int round) {
         this.roundTimer.setRound(round);
     }
 
     @Override
-    public void setNEnemies(final long count) {
+    public final void setNEnemies(final long count) {
         this.counterEnemies.setCounter(count);
     }
 
     @Override
-    public void setNHeart(final int nHeart) {
+    public final void setNHeart(final int nHeart) {
         this.heartLife.setnHeart(nHeart);
     }
 
     @Override
-    public void setLifeShip(final int lifeShip) {
+    public final void setLifeShip(final int lifeShip) {
         this.lifeShip.setLife(lifeShip);
     }
 
     @Override
-    public void setLifeBoss(int lifeShip) {
+    public final void setLifeBoss(final int lifeShip) {
         this.lifeBoss.setLife(lifeShip);
     }
 
 
     @Override
-    public void setFontGUI(Font font) {
+    public void setFontGUI(final Font font) {
         this.score.setFontAll(font);
         this.roundTimer.setFontAll(font);
         this.counterEnemies.setFontAll(font);
@@ -131,13 +142,13 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
     }
 
     @Override
-    public void setFontLifeBars(Font font) {
+    public void setFontLifeBars(final Font font) {
         this.lifeShip.setFont(font);
         this.lifeBoss.setFont(font);
     }
 
     @Override
-    public void setForegroundGUI(Color color) {
+    public void setForegroundGUI(final Color color) {
         this.score.setForegroundAll(color);
         this.roundTimer.setForegroundAll(color);
         this.counterEnemies.setForegroundAll(color);
@@ -147,7 +158,7 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
     }
 
     @Override
-    public void setBackgroundLifeBars(Color color) {
+    public void setBackgroundLifeBars(final Color color) {
         this.lifeShip.setBackground(color);
         this.lifeBoss.setBackground(color);
     }
@@ -185,5 +196,14 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
         return btnPause;
     }
 
+    @Override
+    public void setMaxLifeShip(final int maxLife) {
+        this.lifeShip.setMaximum(maxLife);
+        
+    }
 
+    @Override
+    public void setMaxLifeBoss(final int maxLife) {
+        this.lifeBoss.setMaximum(maxLife);    
+    }
 }

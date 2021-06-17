@@ -5,7 +5,7 @@ import java.nio.file.Paths;
 public class Background {
     public static final String MAIN_FOLDER = "background";
 
-    public static final String LOADING = Paths.get(MAIN_FOLDER, "loading.jpg").toString();
+    public static final String LOADING = Paths.get(MAIN_FOLDER, "load.jpg").toString();
 
     public static final String MAIN = Paths.get(MAIN_FOLDER, "main.png").toString();
     public static final String EARTH = Paths.get(MAIN_FOLDER, "earth.jpg").toString();

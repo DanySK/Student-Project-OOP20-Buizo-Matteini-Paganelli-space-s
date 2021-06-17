@@ -1,14 +1,13 @@
 package spacesurvival.model.gameobject;
 
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.util.List;
 import java.util.LinkedList;
 import java.util.Optional;
 
 import spacesurvival.model.common.P2d;
-import spacesurvival.model.gameobject.takeable.TakeableGameObject;
-import spacesurvival.model.gameobject.weapon.Bullet;
 import spacesurvival.model.Animation;
 import spacesurvival.model.EngineImage;
 import spacesurvival.utilities.path.SoundPath;
@@ -41,34 +40,42 @@ public abstract class GameObject {
         this.setEffectSounds(new LinkedList<>());
     }
 
-    public final void setPause(final boolean isPause) {
+    public void setPause(final boolean isPause) {
         this.body.setPause(isPause);
         this.effect.setPause(isPause);
     }
 
-    public final void stopAnimation() {
+    public void stopAnimation() {
         this.body.setAnimating(false);
         this.effect.setAnimating(false);
     }
+    
+    public Image getImgBody() {
+        return this.body.getImage();
+    }
+    
+    public Image getImgEffect() {
+        return this.effect.getImage();
+    }
 
-    public final void setAnimation(final List<String> animation) {
+    public void setAnimation(final List<String> animation) {
         this.body.setListPath(animation);
     }
 
-    public final void setAnimationEffect(final List<String> animation) {
+    public void setAnimationEffect(final List<String> animation) {
         this.effect.setListPath(animation);
     }
 
 	
-    public final List<SoundPath> getEffectSounds() {
+    public List<SoundPath> getEffectSounds() {
         return this.effectSounds;
     }
 
-    public final void setEffectSounds(final List<SoundPath> effectSounds) {
+    public void setEffectSounds(final List<SoundPath> effectSounds) {
         this.effectSounds = effectSounds;
     }
 	
-    public final void pushEffect(final SoundPath soundEffect) {
+    public void pushEffect(final SoundPath soundEffect) {
         this.effectSounds.add(soundEffect);
     }
 	
@@ -86,16 +93,14 @@ public abstract class GameObject {
         return this.transform;
     }
 
-    public final void setTransform(final P2d position) {
+    public void setTransform(final P2d position) {
         this.transform = new AffineTransform();
         this.transform.translate(position.getX(), position.getY());
         this.boundingBox.setTransform(this.transform);
     }
 
-    public final void setTransform(final AffineTransform transform) {
+    public void setTransform(final AffineTransform transform) {
         this.transform.setTransform(transform);
-        //RectBoundingBox rectBB = (RectBoundingBox) this.getBoundingBox();
-        //rectBB.setTransform(transform);
         this.boundingBox.setTransform(transform);
     }
 	
@@ -112,7 +117,7 @@ public abstract class GameObject {
         return new P2d(this.transform.getTranslateX(), this.getTransform().getTranslateY());
     }
 
-    public final void setPosition(final P2d position) {
+    public void setPosition(final P2d position) {
         final AffineTransform newTransform = new AffineTransform();
         newTransform.translate(position.getX(), position.getY());
         this.transform.setTransform(newTransform);
@@ -124,11 +129,11 @@ public abstract class GameObject {
     }
 
 
-    public final void setBoundingBox(final BoundingBox boundingBox) {
+    public void setBoundingBox(final BoundingBox boundingBox) {
           this.boundingBox = boundingBox;
     }
 
-    public final void setEngineImage(final EngineImage engineImage) {
+    public void setEngineImage(final EngineImage engineImage) {
         this.body.setBody(engineImage);
     }
 
@@ -137,12 +142,12 @@ public abstract class GameObject {
         return phys;
     }
 
-    public final void setPhys(final PhysicsComponent phys) {
+    public void setPhys(final PhysicsComponent phys) {
         this.phys = phys;
     }
 	
 
-    public void updatePhysics(World w){
+    public void updatePhysics(final World w){
         phys.update(this, w);
     }
 	
