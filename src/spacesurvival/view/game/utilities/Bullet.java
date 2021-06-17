@@ -3,6 +3,7 @@ package spacesurvival.view.game.utilities;
 import spacesurvival.model.EngineImage;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;
+import spacesurvival.utilities.path.BulletHUD;
 import spacesurvival.utilities.path.Icon;
 import spacesurvival.utilities.path.Weapon;
 import spacesurvival.view.utilities.JImage;
@@ -22,8 +23,8 @@ public class Bullet extends JPanel {
         final Dimension dimension = EngineImage.getSizeImageFromScale(
                 Icon.HEART, ScaleOf.ICON_FULL, Screen.WIDTH_FULL_SCREEN);
 
-        this.icon = new JImage("shutBullet/45g/ice.png", dimension);
-        this.weapon.setIcon(new JImage(Weapon.ICE, dimension).getImageIcon());
+        this.icon = new JImage(BulletHUD.NORMAL, dimension);
+        this.weapon.setIcon(new JImage(Weapon.NORMAL, dimension).getImageIcon());
 
         super.add(this.weapon);
         super.add(this.icon);

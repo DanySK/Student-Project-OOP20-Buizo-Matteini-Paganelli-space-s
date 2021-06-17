@@ -18,7 +18,6 @@ import spacesurvival.model.collision.physics.bounding.RectBoundingBox;
 import spacesurvival.model.collision.physics.component.BulletPhysicsComponent;
 
 public class Weapon {
-
     private FireableObject owner;
     private AmmoType ammoType;
     private Magazine magazine;
@@ -59,7 +58,7 @@ public class Weapon {
     }
 
     public void shoot() {
-        final EngineImage engineImage = new EngineImage(ScaleOf.BULLET_OBJECT, Screen.WIDTH_FULL_SCREEN, "shutBullet/vertical/ice.png");
+        final EngineImage engineImage = new EngineImage(ScaleOf.BULLET_OBJECT, Screen.WIDTH_FULL_SCREEN, ammoType.getBulletFire());
         final P2d position = new P2d();
         final V2d velocity = GameObjectUtils.BULLET_VEL;
         final Bullet bullet = new Bullet(engineImage, position, new RectBoundingBox(), new BulletPhysicsComponent(),

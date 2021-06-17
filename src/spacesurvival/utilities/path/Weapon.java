@@ -10,4 +10,8 @@ public class Weapon {
     public static final String ELECTRIC = Paths.get(MAIN_FOLDER, "electric.png").toString();
 
     public static final String ICE = Paths.get(MAIN_FOLDER, "ice.png").toString();
+    
+    public static final String NORMAL = Paths.get(MAIN_FOLDER, "normal.png").toString();
+
+    
 }
