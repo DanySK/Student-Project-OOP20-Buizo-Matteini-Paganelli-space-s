@@ -17,9 +17,20 @@ public class P2d implements java.io.Serializable {
      */
     private double x, y;
 
+    /**
+     * Empty constructor, initialize x and y fields equals to zero.
+     */
     public P2d() {
+        this.x = 0;
+        this.y = 0;
     }
 
+    /**
+     * P2d constructor, initialize x and y fields equals to the passed x and y.
+     *
+     * @param x coordinate that will be setted
+     * @param y coordinate that will be setted
+     */
     public P2d(final double x, final double y) {
         this.x = x;
         this.y = y;
@@ -46,7 +57,7 @@ public class P2d implements java.io.Serializable {
     /**
      * Set the x coordinate of the point.
      * 
-     * @param x coordinate that will be setted.
+     * @param x coordinate that will be sette
      */
     public void setX(final double x) {
         this.x = x;
@@ -55,7 +66,7 @@ public class P2d implements java.io.Serializable {
     /**
      * Set the y coordinate of the point.
      * 
-     * @param y coordinate that will be setted.
+     * @param y coordinate that will be setted
      */
     public void setY(final double y) {
         this.y = y;

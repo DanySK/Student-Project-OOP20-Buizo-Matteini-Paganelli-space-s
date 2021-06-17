@@ -58,6 +58,7 @@ public class V2d implements java.io.Serializable {
 
     /**
      * Return the x coordinate of the point.
+     * 
      * @return the x coordinate of the point
      */
     public double getX() {
@@ -66,6 +67,7 @@ public class V2d implements java.io.Serializable {
 
     /**
      * Return the y coordinate of the point.
+     * 
      * @return the y coordinate of the point
      */
     public double getY() {

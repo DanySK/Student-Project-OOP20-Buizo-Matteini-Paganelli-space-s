@@ -1,4 +1,4 @@
-package spacesurvival.model.collisioni.physics.component;
+package spacesurvival.model.collision.physics.component;
 
 import java.util.Optional;
 import spacesurvival.model.gameobject.GameObject;
@@ -8,11 +8,11 @@ import spacesurvival.model.gameobject.enemy.FireableObject;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.model.World;
-import spacesurvival.model.collisioni.hitevent.HitBorderEvent;
-import spacesurvival.model.collisioni.hitevent.HitMainGameObject;
-import spacesurvival.model.collisioni.hitevent.HitTakeableGameObject;
-import spacesurvival.model.collisioni.physics.BoundaryCollision;
-import spacesurvival.model.collisioni.physics.bounding.RectBoundingBox;
+import spacesurvival.model.collision.hitevent.HitBorderEvent;
+import spacesurvival.model.collision.hitevent.HitMainGameObject;
+import spacesurvival.model.collision.hitevent.HitTakeableGameObject;
+import spacesurvival.model.collision.physics.BoundaryCollision;
+import spacesurvival.model.collision.physics.bounding.RectBoundingBox;
 
 
 public class ShipPhysicsComponent implements PhysicsComponent {

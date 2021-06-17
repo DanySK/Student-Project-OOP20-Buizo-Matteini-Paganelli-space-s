@@ -8,8 +8,8 @@ import spacesurvival.model.gameobject.GameObjectUtils;
 import spacesurvival.model.gameobject.MovableGameObject;
 import spacesurvival.model.movement.FixedMovement;
 import spacesurvival.model.EngineImage;
-import spacesurvival.model.collisioni.physics.bounding.BoundingBox;
-import spacesurvival.model.collisioni.physics.component.PhysicsComponent;
+import spacesurvival.model.collision.physics.bounding.BoundingBox;
+import spacesurvival.model.collision.physics.component.PhysicsComponent;
 
 public class Bullet extends MovableGameObject {
 	private int damage;

@@ -1,4 +1,4 @@
-package spacesurvival.model.collisioni.physics.bounding;
+package spacesurvival.model.collision.physics.bounding;
 
 import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;

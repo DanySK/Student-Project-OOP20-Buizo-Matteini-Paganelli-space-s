@@ -1,4 +1,4 @@
-package spacesurvival.model.collisioni.physics;
+package spacesurvival.model.collision.physics;
 
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.gameobject.Edge;

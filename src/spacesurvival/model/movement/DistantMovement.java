@@ -14,7 +14,6 @@ public class DistantMovement implements Movement {
             final MainGameObject enemy = (MainGameObject) object;
             if (enemy.getTarget().isPresent()) {
                 final P2d target = enemy.getTarget().get();
-
                 final double rightRotation = Math.toDegrees(Math.atan2(enemy.getPosition().getY() - target.getY(), enemy.getPosition().getX() - target.getX()));
                 final double complementary = 180 - (rightRotation * -1);
                 final double newAngle = 90 + complementary;
