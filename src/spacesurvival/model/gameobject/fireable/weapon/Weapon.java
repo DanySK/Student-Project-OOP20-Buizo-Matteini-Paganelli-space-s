@@ -6,7 +6,6 @@ import spacesurvival.utilities.gameobject.BulletUtils;
 import spacesurvival.utilities.gameobject.VelocityUtils;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
-import spacesurvival.model.gameobject.GameObjectUtils;
 import spacesurvival.model.gameobject.fireable.FireableObject;
 import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
 
@@ -63,8 +62,9 @@ public class Weapon {
         final EngineImage engineImage = new EngineImage(ScaleOf.BULLET, Screen.WIDTH_FULL_SCREEN, "shutBullet/vertical/ice.png");
         final P2d position = new P2d();
         final V2d velocity = VelocityUtils.BULLET_VEL;
+        final double acceleration = VelocityUtils.NO_ACCELERATION;
         final Bullet bullet = new Bullet(engineImage, position, new RectBoundingBox(), new BulletPhysicsComponent(),
-                velocity, BulletUtils.NORMAL_BULLET_DAMAGE * multiplierDamage, ammoType.getEffect(), this);
+                velocity, acceleration, BulletUtils.NORMAL_BULLET_DAMAGE * multiplierDamage, ammoType.getEffect(), this);
 
         final AffineTransform newTransform = new AffineTransform();
         newTransform.setTransform(owner.getTransform());
@@ -82,15 +82,9 @@ public class Weapon {
             }
         }
 
-        System.out.println("BULLET SPARATO POSIZIONE");
-        System.out.println(bullet.getBoundingBox());
-        System.out.println(bullet.getPosition());
-
         shootedBullets.add(bullet);
-//		System.out.println(owner.getPosition());
-//		System.out.println(owner.getSize());
-	}
-	
+    }
+
     public FireableObject getOwner() {
         return owner;
     }
@@ -98,7 +92,7 @@ public class Weapon {
     public void setOwner(final FireableObject owner) {
         this.owner = owner;
     }
-	
+
     public AmmoType getAmmoType() {
         return ammoType;
     }
@@ -113,37 +107,37 @@ public class Weapon {
             setMunitions(BulletUtils.SPECIAL_MUNITIONS_QUANTITY);
         }
     }
-	
-	public Magazine getMagazine() {
-	    return magazine;
-	}
 
-	private void setMagazine(final Magazine magazine) {
-	    this.magazine = magazine;
-	}
+    public Magazine getMagazine() {
+        return magazine;
+    }
 
-	public int getMunitions() {
-	    return munitions;
-	}
+    private void setMagazine(final Magazine magazine) {
+        this.magazine = magazine;
+    }
 
-	private void setMunitions(final int munitions) {
-	    this.munitions = munitions;
-	}
+    public int getMunitions() {
+        return munitions;
+    }
 
-	public int getMultiplierDamage() {
-	    return multiplierDamage;
-	}
+    private void setMunitions(final int munitions) {
+        this.munitions = munitions;
+    }
 
-	public void setMultiplierDamage(final int multiplierDamage) {
-	    this.multiplierDamage = multiplierDamage;
-	}
+    public int getMultiplierDamage() {
+        return multiplierDamage;
+    }
 
-	public Set<Bullet> getShootedBullets() {
-	    return shootedBullets;
-	}
+    public void setMultiplierDamage(final int multiplierDamage) {
+        this.multiplierDamage = multiplierDamage;
+    }
 
-	public void setShootedBullets(final Set<Bullet> shootedBullets) {
-	    this.shootedBullets = shootedBullets;
-	}
+    public Set<Bullet> getShootedBullets() {
+        return shootedBullets;
+    }
+
+    public void setShootedBullets(final Set<Bullet> shootedBullets) {
+        this.shootedBullets = shootedBullets;
+    }
 
 }

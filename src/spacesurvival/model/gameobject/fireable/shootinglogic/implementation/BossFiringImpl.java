@@ -1,9 +1,9 @@
 package spacesurvival.model.gameobject.fireable.shootinglogic.implementation;
 
-import spacesurvival.model.gameobject.GameObjectUtils;
 import spacesurvival.model.gameobject.fireable.FireableObject;
 import spacesurvival.model.gameobject.fireable.shootinglogic.FiringLogic;
 import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
+import spacesurvival.utilities.Delay;
 import spacesurvival.utilities.ThreadUtils;
 
 public class BossFiringImpl implements FiringLogic {
@@ -16,7 +16,7 @@ public class BossFiringImpl implements FiringLogic {
     public void startFiring(final FireableObject fireableObject) {
         new Thread(() -> {
             while (fireableObject.isAlive()) {
-                ThreadUtils.sleep(GameObjectUtils.BOSS_FIRING_DELAY);
+                ThreadUtils.sleep(Delay.BOSS_FIRING);
                 fireableObject.fire();
             }
         }).start();
@@ -30,7 +30,7 @@ public class BossFiringImpl implements FiringLogic {
     public void startChangingAmmo(final FireableObject fireableObject) {
         new Thread(() -> {
             while (fireableObject.isAlive()) {
-                ThreadUtils.sleep(GameObjectUtils.BOSS_CHANGING_AMMO_DELAY);
+                ThreadUtils.sleep(Delay.BOSS_CHANGING_AMMO);
                 fireableObject.getWeapon().setAmmoType(AmmoType.random());
             }
         }).start();

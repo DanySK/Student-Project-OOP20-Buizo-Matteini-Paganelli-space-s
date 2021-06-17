@@ -5,7 +5,8 @@ import spacesurvival.model.common.V2d;
 import spacesurvival.model.gameobject.GameObjectUtils;
 import spacesurvival.model.gameobject.Status;
 import spacesurvival.model.gameobject.movable.MovableObject;
-import spacesurvival.model.gameobject.movable.movement.Movement;
+import spacesurvival.model.gameobject.movable.movement.MovementLogic;
+import spacesurvival.utilities.Delay;
 import spacesurvival.utilities.gameobject.VelocityUtils;
 
 import java.util.Optional;
@@ -21,9 +22,9 @@ public abstract class MainObject extends MovableObject {
     private Optional<P2d> target;
 
     public MainObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
-            final PhysicsComponent phys, final V2d velocity, final Movement movement, final int life,
+            final PhysicsComponent phys, final V2d velocity, final double acceleration, final MovementLogic movementLogic, final int life,
             final int impactDamage, final int score, final Optional<P2d> target) {
-        super(engineImage, position, bb, phys, velocity, movement);
+        super(engineImage, position, bb, phys, velocity, acceleration, movementLogic);
         this.life = life;
         this.impactDamage = impactDamage;
         this.status = Status.NORMAL;
@@ -99,9 +100,7 @@ public abstract class MainObject extends MovableObject {
     }
 
     /**
-     * Return the target position of Enemy.
-     *
-     * @return the target position of Enemy
+     * @return true if object is invincible
      */
     public boolean isInvincible() {
         return this.status == Status.INVINCIBLE;
@@ -135,7 +134,7 @@ public abstract class MainObject extends MovableObject {
         while (this.status == Status.ON_FIRE) {
             this.decreaseLife(GameObjectUtils.FIRE_DAMAGE);
             //System.out.println("SONO ANDATO A FUOCO " + GameObjectUtils.FIRE_DAMAGE + " DANNO");
-            mySleep(GameObjectUtils.FIRE_INTERVAL_DAMAGE);
+            mySleep(Delay.FIRE_EFFECT);
         }
     }
 	
@@ -152,7 +151,7 @@ public abstract class MainObject extends MovableObject {
 	
     public void paralized() {
         final V2d initialVel = this.getVelocity();
-        this.setVelocity(VelocityUtils.NO_VEL);
+        this.setVelocity(VelocityUtils.NO_VELOCITY);
         while (this.status == Status.PARALIZED) {
             mySleep(20);
         }

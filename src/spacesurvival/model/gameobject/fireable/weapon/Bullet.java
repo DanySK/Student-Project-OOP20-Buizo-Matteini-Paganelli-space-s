@@ -6,7 +6,6 @@ import spacesurvival.model.common.V2d;
 import spacesurvival.model.gameobject.Effect;
 import spacesurvival.model.gameobject.GameObjectUtils;
 import spacesurvival.model.gameobject.fireable.FireableObject;
-import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.gameobject.movable.MovableObject;
 import spacesurvival.model.gameobject.movable.movement.implementation.FixedMovement;
 import spacesurvival.model.EngineImage;
@@ -18,18 +17,14 @@ public class Bullet extends MovableObject {
     private int damage;
     private Effect effect;
     private Weapon originWeapon;
-    
-    public Bullet() {
-        // TODO Auto-generated constructor stub
-    }
-	
+
     public Bullet(final EngineImage engineImage, final P2d position, final BoundingBox bb, final PhysicsComponent phys,
-            final V2d velocity, final int damage, final Effect effect, final Weapon originWeapon) {
-        super(engineImage, position, bb, phys, velocity, new FixedMovement());
+            final V2d velocity, final double acceleration, final int damage, final Effect effect, final Weapon originWeapon) {
+        super(engineImage, position, bb, phys, velocity, acceleration, new FixedMovement());
         this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage, this.getTransform()));
         this.damage = damage;
-        this.setEffect(effect);
-        this.setOriginWeapon(originWeapon);
+        this.effect = effect;
+        this.originWeapon = originWeapon;
     }
 
     public int getDamage() {
@@ -59,5 +54,5 @@ public class Bullet extends MovableObject {
     public FireableObject getShooter() {
         return this.originWeapon.getOwner();
     }
-	
+
 }

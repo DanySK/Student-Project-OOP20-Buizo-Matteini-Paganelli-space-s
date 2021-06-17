@@ -5,9 +5,9 @@ import java.awt.geom.AffineTransform;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.gameobject.main.ChaseEnemy;
 import spacesurvival.model.gameobject.movable.MovableObject;
-import spacesurvival.model.gameobject.movable.movement.Movement;
+import spacesurvival.model.gameobject.movable.movement.MovementLogic;
 
-public class ChasingMovement implements Movement {
+public class ChasingMovement implements MovementLogic {
 
     @Override
     public void move(final MovableObject object) {

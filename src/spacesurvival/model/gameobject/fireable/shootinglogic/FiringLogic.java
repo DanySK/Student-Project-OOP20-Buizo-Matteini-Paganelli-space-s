@@ -15,7 +15,7 @@ public interface FiringLogic {
     void startFiring(FireableObject fireableObject);
 
     /**
-     * Define the frequency to change automatically ammo type randomly.
+     * Define the frequency to change automatically ammo type randomly while object is alive.
      * 
      * @param fireableObject object which has to change ammo type to its weapon
      */

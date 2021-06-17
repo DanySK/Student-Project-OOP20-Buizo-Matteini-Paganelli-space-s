@@ -18,10 +18,7 @@ public class GameObjectUtils {
     public static final int SPACESHIP_LIFE = 100;
     public static final int SPACESHIP_LIVES = 3;
 
-    public static final double SPACESHIP_ACCELERATION = 1.15;
-    public static final double SPACESHIP_DECELERATION = 0.8;
     public static final double SPACESHIP_MAXVEL = 50; 
-    public static final double SPACESHIP_STARTING_VELOCITY = 0.0;
     public static final double SPACESHIP_ROTATION = 10;
 
     public static final int ASTEROID_LIFE = 60;
@@ -32,7 +29,6 @@ public class GameObjectUtils {
 
     public static final int FIRE_ENEMY_LIFE = 50;
     public static final int FIRE_ENEMY_LIFE_INCREMENT = 5;
-    public static final int FIRE_ENEMY_FIRING_DELAY = 5000;
 
 
     public static final int BOSS_LIFE = 1000;
@@ -51,24 +47,15 @@ public class GameObjectUtils {
 
     public static final int BOSS_DAMAGE = 60;
     public static final int BOSS_DAMAGE_INCREMENT = 10;
-    public static final int BOSS_FIRING_DELAY = 1500;
-    public static final int BOSS_CHANGING_AMMO_DELAY = 20000;
 
     /*
      * EFFECT / STATUS
      * */
-    public static final int INVINCIBLE_DURATION = 3000;
-    public static final int ON_FIRE_DURATION = 5000;
-    public static final int PARALIZED_DURATION = 3000;
-    public static final int FROZEN_DURATION = 5000;
-    public static final int HEALED_DURATION = 1000;
+
     public static final int HEAL_AMOUNT = 30;
     public static final int LIFE_UP_AMOUNT = 1;
 
-    public static final int LIVES_INCREASED_DURATION = 1000;
-
     public static final int FIRE_DAMAGE = 10;
-    public static final int FIRE_INTERVAL_DAMAGE = 1000;
     
     public static final double FROZEN_SLOWDOWN = 0.3;
 

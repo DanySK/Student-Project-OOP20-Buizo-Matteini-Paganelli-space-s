@@ -110,36 +110,50 @@ public class World {
     }
 	
     public void addAsteroid() {
-        asteroids.add(factoryGameObject.createAsteroid());
+        final MainObject asteroid = factoryGameObject.createAsteroid();
+        asteroids.add(asteroid);
+        asteroid.startMoving();
     }
 
-    public void removeAsteroid(final MainObject obj) {
-        asteroids.remove(obj);
+    public void removeAsteroid(final MainObject asteroid) {
+        asteroid.stopMoving();
+        asteroids.remove(asteroid);
     }
 
     public void addChaseEnemy() {
-        chaseEnemies.add(factoryGameObject.createChaseEnemy());
+        final MainObject chaseEnemy = factoryGameObject.createChaseEnemy();
+        chaseEnemies.add(chaseEnemy);
+        chaseEnemy.startMoving();
     }
 	
-    public void removeChaseEnemy(final MainObject obj) {
-        chaseEnemies.remove(obj);
+    public void removeChaseEnemy(final MainObject chaseEnemy) {
+        chaseEnemy.stopMoving();
+        chaseEnemies.remove(chaseEnemy);
     }
 	
     public void addFireEnemy() {
-        fireEnemies.add(factoryGameObject.createFireEnemy());
+        final FireableObject fireEnemy = factoryGameObject.createFireEnemy();
+        fireEnemies.add(fireEnemy);
+        fireEnemy.startMoving();
+        fireEnemy.startFiring();
     }
 	
-    public void removeFireEnemy(final MainObject obj) {
-        fireEnemies.remove(obj);
+    public void removeFireEnemy(final MainObject fireEnemy) {
+        fireEnemy.stopMoving();
+        fireEnemies.remove(fireEnemy);
     }
 	
     public void addBoss() {
         this.boss = Optional.of(factoryGameObject.createBoss());
+        this.boss.get().startMoving();
         this.boss.get().startFiring();
     }
 	
     public void removeBoss() {
-        this.boss = Optional.empty();
+        if (this.boss.isPresent()) {
+            this.boss.get().stopMoving();
+            this.boss = Optional.empty();
+        }
     }
 
     public void addAmmo() {
@@ -159,6 +173,7 @@ public class World {
     }
 	
     public boolean removeBullet(final Bullet bullet) {
+        bullet.stopMoving();
         if (getShipBullets().remove(bullet)) {
             return true;
         }
@@ -357,10 +372,6 @@ public class World {
         return allBullets;
     }
 	
-    public void setBoss(final Optional<FireableObject> boss) {
-        this.boss = boss;
-    }
-
     public Set<MainObject> getAllEnemies() {
         final HashSet<MainObject> allEnemies = new HashSet<>();
         allEnemies.addAll(chaseEnemies);

@@ -10,7 +10,7 @@ import spacesurvival.model.common.V2d;
 import spacesurvival.model.gameobject.fireable.shootinglogic.FiringLogic;
 import spacesurvival.model.gameobject.fireable.weapon.Weapon;
 import spacesurvival.model.gameobject.main.MainObject;
-import spacesurvival.model.gameobject.movable.movement.Movement;
+import spacesurvival.model.gameobject.movable.movement.MovementLogic;
 
 public abstract class FireableObject extends MainObject {
 
@@ -18,10 +18,10 @@ public abstract class FireableObject extends MainObject {
     private FiringLogic firingLogic;
 
     public FireableObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
-            final PhysicsComponent phys, final V2d velocity, final Movement movement, final int life,
-            final int impactDamage, final int score, final Optional<P2d> target, final Weapon weapon,
+            final PhysicsComponent phys, final V2d velocity, final double acceleration, final MovementLogic movementLogic,
+            final int life, final int impactDamage, final int score, final Optional<P2d> target, final Weapon weapon,
             final FiringLogic firingLogic) {
-        super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, score, target);
+        super(engineImage, position, bb, phys, velocity, acceleration, movementLogic, life, impactDamage, score, target);
         this.weapon = weapon;
         this.firingLogic = firingLogic;
     }

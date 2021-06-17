@@ -1,8 +1,8 @@
 package spacesurvival.model.gameobject.fireable.shootinglogic.implementation;
 
-import spacesurvival.model.gameobject.GameObjectUtils;
 import spacesurvival.model.gameobject.fireable.FireableObject;
 import spacesurvival.model.gameobject.fireable.shootinglogic.FiringLogic;
+import spacesurvival.utilities.Delay;
 import spacesurvival.utilities.ThreadUtils;
 
 public class FireEnemyFiringImpl implements FiringLogic {
@@ -11,7 +11,7 @@ public class FireEnemyFiringImpl implements FiringLogic {
     public void startFiring(final FireableObject fireableObject) {
         new Thread(() -> {
             while (fireableObject.isAlive()) {
-                ThreadUtils.sleep(GameObjectUtils.FIRE_ENEMY_FIRING_DELAY);
+                ThreadUtils.sleep(Delay.FIRE_ENEMY_FIRING);
                 System.out.println("NEMICO SPARA");
                 fireableObject.fire();
             }

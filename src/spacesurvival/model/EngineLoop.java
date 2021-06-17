@@ -79,8 +79,8 @@ public class EngineLoop extends Thread implements WorldEventListener {
                 current = System.currentTimeMillis();
                 final int elapsed = (int) (current - lastTime);
                 int nbThreads = Thread.getAllStackTraces().keySet().size();
-                
-                if (this.controlGUI.isInGame()){
+
+                if (this.controlGUI.isInGame()) {
                     if (!this.controlGUI.isInPause()) {
                         //processInput();
                         renderMovement();
@@ -171,7 +171,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
                 final TakeableGameObject takeableGameObject = takeableEvent.getCollidedObject();
                 playEffect(SoundPath.PERK);
                 takeableGameObject.stopAnimation();
-      
+
                 if (takeableGameObject instanceof Ammo) {
                     final Ammo ammo = (Ammo) takeableGameObject;
                     world.getShip().take(ammo);

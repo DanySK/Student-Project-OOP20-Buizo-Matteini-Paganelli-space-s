@@ -5,7 +5,7 @@ import spacesurvival.model.gameobject.fireable.FireableObject;
 import spacesurvival.model.gameobject.fireable.shootinglogic.FiringLogic;
 import spacesurvival.model.gameobject.fireable.shootinglogic.implementation.NoFiringImpl;
 import spacesurvival.model.gameobject.fireable.weapon.Weapon;
-import spacesurvival.model.gameobject.movable.movement.Movement;
+import spacesurvival.model.gameobject.movable.movement.MovementLogic;
 import spacesurvival.model.gameobject.movable.movement.implementation.ControlledMovement;
 import spacesurvival.model.gameobject.takeable.ammo.Ammo;
 import spacesurvival.model.common.P2d;
@@ -35,6 +35,7 @@ public final class SpaceShipSingleton extends FireableObject {
             new RectBoundingBox(),
             new ShipPhysicsComponent(),
             VelocityUtils.SPACESHIP_VEL,
+            VelocityUtils.SPACESHIP_ACCELERATION,
             new ControlledMovement(),
             GameObjectUtils.SPACESHIP_LIFE,
             GameObjectUtils.ASTEROID_DAMAGE,
@@ -48,12 +49,11 @@ public final class SpaceShipSingleton extends FireableObject {
     * Invisible class constructor specifying space ship initial position and image path.
     */
     private SpaceShipSingleton(final EngineImage engineImage, final P2d position, final BoundingBox bb,
-            final PhysicsComponent phys, final V2d velocity, final Movement movement, final int life,
+            final PhysicsComponent phys, final V2d velocity, final double acceleration, final MovementLogic movementLogic, final int life,
             final int impactDamage, final int score, final Optional<P2d> target, final Weapon weapon,
             final FiringLogic firingLogic) {
-        super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, score, target, weapon, firingLogic);
+        super(engineImage, position, bb, phys, velocity, acceleration, movementLogic, life, impactDamage, score, target, weapon, firingLogic);
         this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage, this.getTransform()));
-        this.acceleration = new V2d(1, 1);
     }
 
     /**
@@ -61,22 +61,6 @@ public final class SpaceShipSingleton extends FireableObject {
      */
     public static SpaceShipSingleton getSpaceShip() {
         return spaceShip;
-    }
-
-    /**
-     * @return space ship acceleration
-     */
-    public V2d getAcceleration() {
-        return this.acceleration;
-    }
-
-    /**
-     * Sets a new acceleration to FireableObject.
-     *
-     * @param acceleration the acceleration to set
-     */
-    public void setAcceleration(final V2d acceleration) {
-        this.acceleration = acceleration;
     }
 
     /**
