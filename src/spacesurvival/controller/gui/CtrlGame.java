@@ -6,6 +6,8 @@ import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.gui.game.EngineGame;
 import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.model.World;
+import spacesurvival.model.gameobject.GameObject;
+import spacesurvival.model.gameobject.GameObjectUtils;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.MovementKeyListener;
 import spacesurvival.utilities.ActionGUI;
@@ -40,6 +42,8 @@ public class CtrlGame implements ControllerGUI {
     @Override
     public final void assignStrings() {
         this.updateHUD();
+        this.gui.setMaxLifeBoss(GameObjectUtils.BOSS_LIFE);
+        this.gui.setMaxLifeShip(GameObjectUtils.SPACESHIP_LIFE);
     }
 
     @Override
@@ -89,7 +93,11 @@ public class CtrlGame implements ControllerGUI {
         this.gui.setNEnemies(this.engine.getCountEnemies());
         this.gui.setNHeart(this.engine.getLives());
         this.gui.setLifeShip(this.engine.getLifeShip());
-        this.gui.setLifeBoss(this.engine.getLifeBoss());
+        if (this.getWorld().getBoss().isPresent()) {
+            this.gui.setLifeBoss(this.engine.getLifeBoss());
+        } else {
+            this.setVisibleLifeBarBoss(false);
+        }
     }
 
     public final void updateRoundState() {
@@ -97,7 +105,12 @@ public class CtrlGame implements ControllerGUI {
             System.out.println("finiti nemici, incremento round");
             this.engine.incrRound();
             this.resetEntities();
+            this.engine.getWorld().getBoss().ifPresent(boss -> this.setVisibleLifeBarBoss(true));
         }
+    }
+    
+    public void setVisibleLifeBarBoss(final boolean visible) {
+        this.gui.setVisibleLifeBarBoss(visible);
     }
 
     public final void resetEntities() {
@@ -114,11 +127,13 @@ public class CtrlGame implements ControllerGUI {
         this.getWorld().addAsteroid();
         this.getWorld().addChaseEnemy();
         this.getWorld().addFireEnemy();
+        this.getWorld().addBoss();
         System.out.println(this.getWorld().getAllEntities());
 	}
 
     public final void assignWorld() {
         this.gui.setWorld(this.engine.getWorld());
+        this.engine.getWorld().getBoss().ifPresent(boss -> this.setVisibleLifeBarBoss(true));
     }
 
 

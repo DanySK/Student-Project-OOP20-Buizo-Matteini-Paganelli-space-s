@@ -168,11 +168,7 @@ public class World {
         final boolean found = false;
         final Iterator<FireableObject> fireEnemiesIterator = fireEnemies.iterator();
         while (fireEnemiesIterator.hasNext()) {
-            //System.out.println(fireEnemiesIterator);
             getFireEnemyBullets(fireEnemiesIterator.next()).remove(bullet);
-//	    if (getFireEnemyBullets(fireEnemiesIterator.next()).remove(bullet)) {
-//		found = true;
-//	    }
 	}
         return found;
     }
@@ -423,7 +419,7 @@ public class World {
     }
 
     public int getLifeBoss() {
-        return this.boss.map(MainGameObject::getLife).orElse(0);
+        return this.boss.get().getLife();
     }
 
 }

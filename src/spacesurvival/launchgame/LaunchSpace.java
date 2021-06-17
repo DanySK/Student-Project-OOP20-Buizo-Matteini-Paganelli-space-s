@@ -1,4 +1,4 @@
-package spacesurvival.game;
+package spacesurvival.launchgame;
 
 
 import spacesurvival.controller.gui.CtrlLoading;
@@ -30,9 +30,9 @@ public class LaunchSpace {
         engine.initGame();
         ctrlLoading.turn(Visibility.HIDDEN);
 
-//        engine.start();
+        engine.start();
 
-        SwingUtilities.invokeLater(engine::start);
+//        SwingUtilities.invokeLater(engine::start);
     }
 }
 

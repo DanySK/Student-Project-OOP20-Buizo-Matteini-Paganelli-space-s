@@ -14,6 +14,12 @@ import java.util.List;
 
 public interface GUIGame extends GUI {
     
+    void setMaxLifeShip(final int maxLife);
+    
+    void setMaxLifeBoss(final int maxLife);
+    
+    void setVisibleLifeBarBoss(final boolean visible);
+    
     void setBoundsGame(Rectangle screen);
 
     void setTimer(String timer);

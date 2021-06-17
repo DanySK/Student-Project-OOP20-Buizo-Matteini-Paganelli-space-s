@@ -78,10 +78,9 @@ public class EngineLoop extends Thread implements WorldEventListener {
             if (!this.controlGame.isGameOver()) {
                 current = System.currentTimeMillis();
                 final int elapsed = (int) (current - lastTime);
-
+                int nbThreads = Thread.getAllStackTraces().keySet().size();
+                
                 if (this.controlGUI.isInGame()){
-                    int nbThreads = Thread.getAllStackTraces().keySet().size();
-
                     if (!this.controlGUI.isInPause()) {
                         //processInput();
                         renderMovement();
@@ -91,7 +90,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
                         updateGame(elapsed);
                         nbThreads =  Thread.getAllStackTraces().keySet().size();
 
-                        //System.out.println("Numero dei thread current -> " + nbThreads);
+                        System.out.println("Numero dei thread current -> " + nbThreads);
                     }
                 }
 
@@ -124,10 +123,10 @@ public class EngineLoop extends Thread implements WorldEventListener {
     }
 
     protected final void updateGame(final int elapsed) {
-        checkEvents();
-        checkSoundEffects();
-        this.assignTargetToEnemies();
         this.controlGame.updateStateWorld(elapsed);
+        this.checkEvents();
+        this.checkSoundEffects();
+        this.assignTargetToEnemies();        
         this.controlGame.updateHUD();
     }
 

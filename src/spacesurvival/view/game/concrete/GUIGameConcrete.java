@@ -96,6 +96,11 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
         this.entityGame.repaint();
         this.bulletGame.repaint();
     }
+    
+    @Override
+    public void setVisibleLifeBarBoss(boolean visible) {
+        this.lifeBoss.setVisible(visible); 
+    }
 
     @Override
     public final void setScore(final long score) {
@@ -191,5 +196,14 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
         return btnPause;
     }
 
+    @Override
+    public void setMaxLifeShip(final int maxLife) {
+        this.lifeShip.setMaximum(maxLife);
+        
+    }
 
+    @Override
+    public void setMaxLifeBoss(final int maxLife) {
+        this.lifeBoss.setMaximum(maxLife);    
+    }
 }

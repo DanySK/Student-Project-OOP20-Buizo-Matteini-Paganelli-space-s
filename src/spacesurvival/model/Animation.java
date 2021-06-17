@@ -68,16 +68,15 @@ public class Animation extends Thread {
                 this.body.setPath(this.listPath.get(ind++));
             }
 
-            ThreadUtils.sleep(100);
-//            waitForNextFrame(current);
+            waitForNextFrame(current);
             lastTime = current;
         }
     }
 
    public void waitForNextFrame(final long current) {
         long dt = System.currentTimeMillis() - current;
-        if (dt < 60) {
-            ThreadUtils.sleep(60 - dt);
+        if (dt < EngineLoop.FPS) {
+            ThreadUtils.sleep(EngineLoop.FPS - dt);
         }
     }
 

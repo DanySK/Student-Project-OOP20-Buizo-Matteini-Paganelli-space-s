@@ -32,33 +32,21 @@ import java.util.Set;
 
 public class PanelEntityGame extends JPanel{
     private static final long serialVersionUID = -6158413043296871948L;
-
-    private final List<GameObject> gameObject;
     
     private final Map<GameObject, Pair<Image, Image>> objects;
-    private final Map<Bullet, Pair<Image, Image>> bullets;
-
-    private final Thread taskObjects;
-    private final Thread taskBullet;
-
     private Optional<World> world;
+    
+    private final Thread taskObjects;
 
     public PanelEntityGame() {
         super(); 
         super.setOpaque(false);
 
         this.taskObjects = new Thread(PanelEntityGame.this::runUpdateGameObjects);
-        this.taskBullet = new Thread(PanelEntityGame.this::runUpdateBullet);
-
-        this.gameObject = new ArrayList<>();
-
         this.objects = new HashMap<>();
-        this.bullets = new HashMap<>();
-
         this.world = Optional.empty();
 
         this.taskObjects.start();
-        this.taskBullet.start();
     }
 
     public void setWorld(final World world) {
@@ -69,11 +57,6 @@ public class PanelEntityGame extends JPanel{
     public final void paintComponent(final Graphics g) {
         super.paintComponent(g);
         final Graphics2D g2d = (Graphics2D) g;
-        
-//        this.world.get().getAllBullets().forEach(bullets -> {
-//            g2d.setTransform(bullets.getTransform());
-//            g2d.drawImage(bullets.getImgBody(), 0, 0, null);
-//        });
 
         this.objects.entrySet().forEach(entity -> {
             if (entity.getKey().getBoundingBox() instanceof CircleBoundingBox) {
@@ -138,24 +121,6 @@ public class PanelEntityGame extends JPanel{
 
     }
 
-    private void updateBulletObject() {
-        this.world.get().getAllBullets().forEach(bullet -> {
-            final Pair<Image, Image> pair = new Pair<>(bullet.getImgBody(), bullet.getImgEffect());
-            this.bullets.put(bullet, pair);
-        });
-
-        final Set<Bullet> bulletDelet = new HashSet<>();
-
-        this.bullets.forEach((key, value) -> {
-            if (!this.world.get().getAllBullets().contains(key)) {
-                bulletDelet.add(key);
-            }
-        });
-
-        bulletDelet.forEach(this.bullets::remove);
-
-    }
-
     private void putObjectFromWorld() {
         this.world.get().getAllEntitiesExceptionBullets().forEach(obj -> {
             final Pair<Image, Image> pair = new Pair<>(obj.getImgBody(), obj.getImgEffect());
@@ -173,19 +138,6 @@ public class PanelEntityGame extends JPanel{
         });
 
         objDelet.forEach(this.objects::remove);
-    }
-
-    public void runUpdateBullet() {
-        long lastTime = System.currentTimeMillis();
-        while (true) {
-            long current = System.currentTimeMillis();
-
-            if (this.world.isPresent()) {
-                this.updateBulletObject();
-            }
-           waitForNextFrame(current);
-            lastTime = current;
-        }
     }
 
     public final void runUpdateGameObjects() {
