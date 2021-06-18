@@ -1,5 +1,10 @@
 package spacesurvival.view.game.utilities;
 
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+
+import javax.swing.JPanel;
+
 import spacesurvival.model.EngineImage;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;
@@ -8,14 +13,12 @@ import spacesurvival.utilities.path.Icon;
 import spacesurvival.utilities.path.Weapon;
 import spacesurvival.view.utilities.JImage;
 
-import javax.swing.*;
-import java.awt.*;
 
 public class Bullet extends JPanel {
     private final JImage weapon;
     private final JImage icon;
 
-    public Bullet(){
+    public Bullet() {
         super(new FlowLayout());
         super.setOpaque(false);
 
