@@ -2,9 +2,7 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-
 import java.awt.geom.AffineTransform;
 import org.junit.Test;
 import spacesurvival.model.collision.CollisionChecker;
@@ -16,7 +14,7 @@ import spacesurvival.model.gameobject.GameObjectUtils;
 public class TestCollisionChecker {
 
     /**
-     * Test RectBoundingBox to RectBoundingBox, it has to return true.
+     * Test RectBoundingBox to RectBoundingBox.
      */
     @Test 
     public void testRectToRect1() {
@@ -31,7 +29,7 @@ public class TestCollisionChecker {
     }
 
     /**
-     * Test RectBoundingBox to RectBoundingBox, it has to return false.
+     * Test RectBoundingBox to RectBoundingBox.
      */
     @Test 
     public void testRectToRect2() {
@@ -48,7 +46,7 @@ public class TestCollisionChecker {
     }
 
     /**
-     * Test RectBoundingBox to rotated RectBoundingBox, it has to return true.
+     * Test RectBoundingBox to rotated RectBoundingBox.
      */
     @Test 
     public void testRectToRotatedRect() {
@@ -67,7 +65,7 @@ public class TestCollisionChecker {
     }
 
     /**
-     * Test RectBoundingBox to rotated CircleBoundingBox, it has to return true.
+     * Test RectBoundingBox to rotated CircleBoundingBox,.
      */
     @Test 
     public void testRectToCircle1() {
@@ -83,7 +81,7 @@ public class TestCollisionChecker {
     }
 
     /**
-     * Test RectBoundingBox to rotated CircleBoundingBox, it has to return false.
+     * Test RectBoundingBox to rotated CircleBoundingBox.
      */
     @Test 
     public void testRectToCircle2() {
@@ -102,7 +100,7 @@ public class TestCollisionChecker {
 
 
     /**
-     * Test getRotationAngleInDegrees from an AffineTransform, they have to return equals.
+     * Test getRotationAngleInDegrees from an AffineTransform.
      */
     @Test 
     public void testGetAngleDegreesFromAffineTransform() {
@@ -116,7 +114,7 @@ public class TestCollisionChecker {
     }
 
     /**
-     * Test getRotationAngleInRadiants from an AffineTransform, they have to return equals.
+     * Test getRotationAngleInRadiants from an AffineTransform.
      */
     @Test 
     public void testGetAngleRadiantFromAffineTransform() {

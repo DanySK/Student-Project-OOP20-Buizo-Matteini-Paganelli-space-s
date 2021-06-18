@@ -43,7 +43,7 @@ public class Asteroid extends MainObject {
     }
 
     /**
-     * Initialize a random rotation for the ateroid.
+     * Initialize a random rotation for the asteroid.
      */
     private void initializeRotation() {
         final Random random = new Random();

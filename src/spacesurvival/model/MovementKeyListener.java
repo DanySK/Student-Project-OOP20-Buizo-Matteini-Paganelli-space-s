@@ -67,7 +67,7 @@ public class MovementKeyListener implements KeyListener {
      * @return retur n
      */
     private boolean canHandleKey(final int currentKeyCode) {
-        return CommandType.getValue(currentKeyCode).isPresent(); 
+        return CommandType.getValue(currentKeyCode).isPresent();
     }
 
     /**

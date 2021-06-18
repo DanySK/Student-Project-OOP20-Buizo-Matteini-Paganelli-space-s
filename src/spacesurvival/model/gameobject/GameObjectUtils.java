@@ -95,17 +95,17 @@ public class GameObjectUtils {
     	Random random = new Random();
     	return new P2d(random.nextInt((int) (Screen.WIDTH_FULL_SCREEN * SystemVariables.SCALE_X)),  random.nextInt((int) (Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y)));
     }
-    
+
     public static BoundingBox createRectBoundingBox(final P2d position, final EngineImage engineImage, final AffineTransform transform) {
     	return new RectBoundingBox(new P2d(position.getX() + engineImage.getWidth() / 2, position.getY() + engineImage.getHeight() / 2),
     	        engineImage, transform);
     }
-    
+
     public static BoundingBox createCircleBoundingBox(final P2d position,
             final EngineImage engineImage, final AffineTransform transform) {
     	return new CircleBoundingBox(position, engineImage.getWidth() / 2, transform);
     }
-    
+
     /**
      * Method that return the angle in degrees readed from an AffineTransform.
      * 
