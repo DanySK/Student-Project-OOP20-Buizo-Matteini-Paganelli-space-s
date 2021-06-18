@@ -133,9 +133,15 @@ public class EngineLoop extends Thread implements WorldEventListener {
     }
 
     protected void checkScore() {
-        final List<Integer> scoreUpdation = this.controlGame.getWorld().getQueueScore();
-        scoreUpdation.forEach(this.controlGame::incrScore);
-        scoreUpdation.clear();
+        final List<Integer> scoreUpdate = this.controlGame.getWorld().getQueueScore();
+        scoreUpdate.forEach(this.controlGame::incrScore);
+        scoreUpdate.clear();
+    }
+    
+    protected void checkIncrUp() {
+        final List<Integer> lifeUpdate = this.controlGame.getWorld().getQueueIncreaseLife();
+        lifeUpdate.forEach(this.controlGame::increaseLife);
+        lifeUpdate.clear();
     }
 
 

@@ -43,7 +43,9 @@ public class Heart extends TakeableGameObject {
             switch (EventType.getEventFromHit(ev).get()) {
             case TAKEABLE_OBJECT_EVENT:
                 this.stopAnimation();
-                world.getShip().increaseLife(this.getType().getAmount());
+                //world.getShip().increaseLife(this.getType().getAmount());
+                world.getQueueIncreaseLife().add(this.getType().getAmount());
+                //world.getShip().increaseLife(this.getType().getAmount());
                 break;
             default:
                 break;

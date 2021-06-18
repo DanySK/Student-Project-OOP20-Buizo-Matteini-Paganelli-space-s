@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import spacesurvival.model.gameobject.Edge;
 import spacesurvival.model.gameobject.GameObjectUtils;
+import spacesurvival.model.gameobject.MainGameObject;
+import spacesurvival.model.gameobject.Status;
 import spacesurvival.model.movement.Movement;
 import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.utilities.path.SoundPath;
@@ -19,6 +21,7 @@ import spacesurvival.model.World;
 import spacesurvival.model.collision.hitevent.EventType;
 import spacesurvival.model.collision.hitevent.HitBorderEvent;
 import spacesurvival.model.collision.hitevent.HitBulletEvent;
+import spacesurvival.model.collision.hitevent.HitMainGameObject;
 import spacesurvival.model.collision.physics.bounding.BoundingBox;
 import spacesurvival.model.collision.physics.component.PhysicsComponent;
 
@@ -61,6 +64,16 @@ public class FireEnemy extends FireableObject {
                 world.removeBullet(bullet);
                 world.damageObject(this, bullet.getDamage(), bullet.getEffect().getStatus());
                 }
+                break;
+            case MAIN_GAME_OBJECT_EVENT:
+                final HitMainGameObject mainEvent = (HitMainGameObject) ev;
+                final MainGameObject collidedObj = mainEvent.getCollidedObject();
+                world.damageObject(collidedObj, this.getImpactDamage(), Status.INVINCIBLE);
+                world.damageObject(this, collidedObj.getImpactDamage(), Status.INVINCIBLE);
+                break;
+            case DEAD_EVENT:
+                this.stopAnimation();
+                world.removeFireEnemy(this);
                 break;
             default:
                 break;

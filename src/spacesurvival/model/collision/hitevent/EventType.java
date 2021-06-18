@@ -46,7 +46,11 @@ public enum EventType {
     /**
      * Represent the HitAmmoEvent.
      */
-    TAKEABLE_OBJECT_EVENT;
+    TAKEABLE_OBJECT_EVENT,
+    /**
+     * Represent the Dead Event.
+     */
+    DEAD_EVENT;
 
     EventType type;
 

@@ -19,6 +19,7 @@ import spacesurvival.model.gameobject.weapon.shootinglogic.implementation.NoFiri
 import java.util.Optional;
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.World;
+import spacesurvival.model.collision.hitevent.DeadEvent;
 import spacesurvival.model.collision.hitevent.EventType;
 import spacesurvival.model.collision.hitevent.HitBorderEvent;
 import spacesurvival.model.collision.hitevent.HitBulletEvent;
@@ -110,6 +111,7 @@ public final class SpaceShipSingleton extends FireableObject {
                 this.pushEffect(SoundPath.WALL_COLLISION);
                 world.pacmanEffect(this, edge);
                 break;
+
             case BULLET_EVENT:
                 final HitBulletEvent bulletEvent = (HitBulletEvent) ev;
                 final Bullet bullet = bulletEvent.getBullet();
@@ -119,18 +121,26 @@ public final class SpaceShipSingleton extends FireableObject {
                     world.damageObject(this, bullet.getDamage(), bullet.getEffect().getStatus());
                 }
                 break;
+
             case MAIN_GAME_OBJECT_EVENT:
                 final HitMainGameObject asteroidEvent = (HitMainGameObject) ev;
                 final MainGameObject collidedObject = asteroidEvent.getCollidedObject();
                 //this.controlGame.incrScore(Score.ASTEROID);
                 world.damageObject(this, collidedObject.getImpactDamage(), Status.INVINCIBLE);
-                world.damageObject(collidedObject, this.getImpactDamage(), Status.INVINCIBLE); 
+                world.damageObject(collidedObject, this.getImpactDamage(), Status.INVINCIBLE);
 
                 if (collidedObject instanceof ChaseEnemy) {
                     collidedObject.stopAnimation();
                     world.removeChaseEnemy(collidedObject);
                     collidedObject.pushEffect(SoundPath.ENEMY_EXPL);
                 }
+                break;
+
+            case DEAD_EVENT:
+                this.pushEffect(SoundPath.LIFE_DOWN);
+//                //this.controlGame.incrScore(Score.ASTEROID);
+//                world.damageObject(this, collidedObject.getImpactDamage(), Status.INVINCIBLE);
+//                world.damageObject(collidedObject, this.getImpactDamage(), Status.INVINCIBLE); 
                 break;
             default:
                 break;

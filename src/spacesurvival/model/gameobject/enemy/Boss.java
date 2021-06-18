@@ -6,6 +6,7 @@ import java.util.Optional;
 import spacesurvival.model.gameobject.GameObjectUtils;
 import spacesurvival.model.movement.Movement;
 import spacesurvival.model.worldevent.WorldEvent;
+import spacesurvival.utilities.path.SoundPath;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
 import spacesurvival.model.gameobject.weapon.Bullet;
@@ -53,6 +54,14 @@ public class Boss extends FireableObject {
                     world.removeBullet(bullet);
                     world.damageObject(this, bullet.getDamage(), bullet.getEffect().getStatus());
                 }
+                break;
+            case DEAD_EVENT:
+                this.pushEffect(SoundPath.BOSS_EXPL);
+                this.stopAnimation();
+                world.removeBoss();
+//                //this.controlGame.incrScore(Score.ASTEROID);
+//                world.damageObject(this, collidedObject.getImpactDamage(), Status.INVINCIBLE);
+//                world.damageObject(collidedObject, this.getImpactDamage(), Status.INVINCIBLE); 
                 break;
             default:
                 break;

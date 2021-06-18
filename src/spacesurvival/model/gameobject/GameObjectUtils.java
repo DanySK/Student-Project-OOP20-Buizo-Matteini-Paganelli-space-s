@@ -76,7 +76,7 @@ public class GameObjectUtils {
     public static final int FROZEN_DURATION = 5000;
     public static final int HEALED_DURATION = 1000;
     public static final int HEAL_AMOUNT = 30;
-    public static final int LIFE_UP_AMOUNT = 1;
+    public static final int LIFE_UP_AMOUNT = 100;
 
     public static final int LIVES_INCREASED_DURATION = 1000;
 

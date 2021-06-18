@@ -49,6 +49,7 @@ public class World {
     private final Set<TakeableGameObject> ammo = new HashSet<>();
     private final Set<TakeableGameObject> hearts = new HashSet<>();
     private final List<Integer> queueScore = new ArrayList<>();
+    private final List<Integer> queueIncreaseLife = new ArrayList<>();
     private SpaceShipSingleton ship;
     private final RectBoundingBox mainBBox;
     private WorldEventListener evListener;
@@ -327,6 +328,10 @@ public class World {
 
     public List<Integer> getQueueScore() {
         return this.queueScore;
+    }
+    
+    public List<Integer> getQueueIncreaseLife() {
+        return this.queueIncreaseLife;
     }
 
     public void damageObject(final MainGameObject object, final int damage, final Status status) {

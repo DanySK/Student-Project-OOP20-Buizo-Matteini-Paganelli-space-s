@@ -57,6 +57,18 @@ public class ChaseEnemy extends MainGameObject {
                 world.removeBullet(bullet);
                 world.damageObject(this, bullet.getDamage(), bullet.getEffect().getStatus());
                 break;
+            case MAIN_GAME_OBJECT_EVENT:
+                this.stopAnimation();
+                world.removeChaseEnemy(this);
+                break;
+            case DEAD_EVENT:
+                this.pushEffect(SoundPath.ENEMY_EXPL);
+                this.stopAnimation();
+                world.removeBoss();
+//                //this.controlGame.incrScore(Score.ASTEROID);
+//                world.damageObject(this, collidedObject.getImpactDamage(), Status.INVINCIBLE);
+//                world.damageObject(collidedObject, this.getImpactDamage(), Status.INVINCIBLE); 
+                break;
             default:
                 break;
             }
