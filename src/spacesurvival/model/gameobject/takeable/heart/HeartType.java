@@ -10,6 +10,7 @@ import spacesurvival.utilities.path.skin.SkinPerk;
 
 
 public enum HeartType {
+
 	HEAL(GameObjectUtils.HEAL_AMOUNT, SkinPerk.LIST_LIFE),
 	LIFE_UP(GameObjectUtils.LIFE_UP_AMOUNT, SkinPerk.LIST_HEART);
 	
@@ -20,7 +21,7 @@ public enum HeartType {
 	private static final int SIZE = VALUES.size();
 	private static final Random RANDOM = new Random();
 	
-	private HeartType(final int amount, final List<String> animation) {
+	HeartType(final int amount, final List<String> animation) {
 		this.setAmount(amount);
 		this.animation = animation;
 	}

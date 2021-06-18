@@ -6,7 +6,6 @@ import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.gui.game.EngineGame;
 import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.model.World;
-import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.gameobject.GameObjectUtils;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.MovementKeyListener;
@@ -110,7 +109,6 @@ public class CtrlGame implements ControllerGUI {
 
     public void setVisibleLifeBarBoss(final boolean visible) {
         this.gui.setVisibleLifeBarBoss(visible);
-        
     }
 
     public final void resetEntities() {
@@ -128,8 +126,8 @@ public class CtrlGame implements ControllerGUI {
         this.getWorld().addChaseEnemy();
         this.getWorld().addFireEnemy();
         this.getWorld().addBoss();
-        System.out.println(this.getWorld().getAllEntities());
-	}
+        System.out.println(this.getWorld().getAllObjects());
+    }
 
     public final void assignWorld() {
         this.gui.setWorld(this.engine.getWorld());
@@ -146,8 +144,8 @@ public class CtrlGame implements ControllerGUI {
     }
 
     public final World getWorld() {
-		return this.engine.getWorld();
-	}
+        return this.engine.getWorld();
+    }
 
     public final SpaceShipSingleton getShip() {
         return this.engine.getShip();
@@ -157,19 +155,19 @@ public class CtrlGame implements ControllerGUI {
         this.engine.setEventListenerInWorld(worldEventListener);
     }
 
-    private MovementKeyListener getMovementKeyListener(){
+    private MovementKeyListener getMovementKeyListener() {
         return new MovementKeyListener(this.engine.getShip());
     }
 
-    public final void assignMovementListenerInShip(){
+    public final void assignMovementListenerInShip() {
         this.addKeyListenerShip(this.getMovementKeyListener());
     }
 
-    public final boolean isGameOver(){
+    public final boolean isGameOver() {
         return this.engine.isGameOver();
     }
 
-    public final void restartGame(){
+    public final void restartGame() {
         this.engine.restartGame();
     }
 

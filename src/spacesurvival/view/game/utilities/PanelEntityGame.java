@@ -121,7 +121,7 @@ public class PanelEntityGame extends JPanel{
     }
 
     private void putObjectFromWorld() {
-        this.world.get().getAllEntitiesExceptionBullets().forEach(obj -> {
+        this.world.get().getAllObjectsExceptBullets().forEach(obj -> {
             final Pair<Image, Image> pair = new Pair<>(obj.getImgBody(), obj.getImgEffect());
             this.objects.put(obj, pair);
         });
@@ -131,7 +131,7 @@ public class PanelEntityGame extends JPanel{
         final Set<GameObject> objDelet = new HashSet<>();
 
         this.objects.forEach((key, value) -> {
-            if (!this.world.get().getAllEntitiesExceptionBullets().contains(key)) {
+            if (!this.world.get().getAllObjectsExceptBullets().contains(key)) {
                 objDelet.add(key);
             }
         });

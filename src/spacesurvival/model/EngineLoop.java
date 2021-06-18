@@ -26,7 +26,6 @@ import spacesurvival.model.sound.CmdAudioType;
 import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.utilities.Score;
-import spacesurvival.utilities.SoundType;
 import spacesurvival.utilities.path.SoundPath;
 import spacesurvival.utilities.SystemVariables;
 import spacesurvival.utilities.ThreadUtils;
@@ -127,8 +126,21 @@ public class EngineLoop extends Thread implements WorldEventListener {
         this.controlGame.updateStateWorld();
         this.checkEvents();
         this.checkSoundEffects();
+        this.checkGameObjectsDead();
         this.assignTargetToEnemies();
         this.controlGame.updateHUD();
+    }
+
+    private void checkGameObjectsDead() {
+        final World world = this.controlGame.getWorld();
+        world.getMainObjects().forEach(mainObject -> {
+            if (mainObject.isDead()) {
+                mainObject.stopAnimation();
+                playExplSoundOf(mainObject);
+                this.controlGame.incrScore(mainObject.getScore());
+                world.removeMainObject(mainObject);
+            }
+        });
     }
 
     protected void checkSoundEffects() {
@@ -227,23 +239,11 @@ public class EngineLoop extends Thread implements WorldEventListener {
             } else {
                 object.decreaseLife(damage);
                 System.out.println("VITA DEL NEMICO:  " + object.getLife());
-                if (isGameObjectDead(object)) {
-                    object.stopAnimation();
-                    playExplSoundOf(object);
-                    this.controlGame.incrScore(object.getScore());
-                    this.controlGame.getWorld().removeMainObject(object);
-                }
             }
-            //System.out.println("DURATA INVINCIBILITA " + status.getDuration());
             object.setStatus(status);
         }
     }
 
-//    public void fireDamageObject(MainGameObject object, final int damage, final Status status) {
-//    	System.out.println("COLPISCO UN : " + object.getClass());
-//    	damageObject(object, damage);
-//    	object.setStatus(status);
-//	}
     public void playExplSoundOf(final MainObject object) {
         if (object instanceof Asteroid) {
             playEffect(SoundPath.ASTEROID_EXPL);
@@ -254,41 +254,37 @@ public class EngineLoop extends Thread implements WorldEventListener {
         }
     }
 
-    private boolean isGameObjectDead(final MainObject gameObject) {
-    	return gameObject.getLife() <= 0;
-    }
-
     public void pacmanEffect(final MovableObject object, final Edge edge) {
-    	AffineTransform newTransform = new AffineTransform();
-    	switch (edge) {
-    	case TOP:
-    	    newTransform = new AffineTransform(object.getTransform().getScaleX(), 
-    	            object.getTransform().getShearY(), object.getTransform().getShearX(), 
-    	            object.getTransform().getScaleY(), object.getTransform().getTranslateX(), 
-    	            Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y - 100);
-    	    break;
-    	case BOTTOM:
-    	    newTransform = new AffineTransform(object.getTransform().getScaleX(), 
-    	            object.getTransform().getShearY(), object.getTransform().getShearX(), 
-    	            object.getTransform().getScaleY(), object.getTransform().getTranslateX(), 
-    	            100);
-    	    break;
-    	case LEFT:
-    	    newTransform = new AffineTransform(object.getTransform().getScaleX(), 
-    	            object.getTransform().getShearY(), object.getTransform().getShearX(), 
-    	            object.getTransform().getScaleY(), Screen.WIDTH_FULL_SCREEN * SystemVariables.SCALE_X - 100, 
-    	            object.getTransform().getTranslateY());
-    	    break;
-    	case RIGHT: 
-    	    newTransform = new AffineTransform(object.getTransform().getScaleX(), 
-    	            object.getTransform().getShearY(), object.getTransform().getShearX(), 
-    	            object.getTransform().getScaleY(), 100, 
-    	            object.getTransform().getTranslateY());
-    	    break;
-    	    default:
-    	        break;
-    	}
-    	object.setTransform(newTransform);
+        AffineTransform newTransform = new AffineTransform();
+        switch (edge) {
+        case TOP:
+            newTransform = new AffineTransform(object.getTransform().getScaleX(), 
+                    object.getTransform().getShearY(), object.getTransform().getShearX(), 
+                    object.getTransform().getScaleY(), object.getTransform().getTranslateX(), 
+                    Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y - 100);
+            break;
+        case BOTTOM:
+            newTransform = new AffineTransform(object.getTransform().getScaleX(), 
+                    object.getTransform().getShearY(), object.getTransform().getShearX(), 
+                    object.getTransform().getScaleY(), object.getTransform().getTranslateX(), 
+                    100);
+            break;
+        case LEFT:
+            newTransform = new AffineTransform(object.getTransform().getScaleX(), 
+                    object.getTransform().getShearY(), object.getTransform().getShearX(), 
+                    object.getTransform().getScaleY(), Screen.WIDTH_FULL_SCREEN * SystemVariables.SCALE_X - 100, 
+                    object.getTransform().getTranslateY());
+            break;
+        case RIGHT: 
+            newTransform = new AffineTransform(object.getTransform().getScaleX(), 
+                    object.getTransform().getShearY(), object.getTransform().getShearX(), 
+                    object.getTransform().getScaleY(), 100, 
+                    object.getTransform().getTranslateY());
+            break;
+        default:
+            break;
+        }
+        object.setTransform(newTransform);
     }
 
     protected final void render() {
@@ -296,7 +292,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
     }
 
     private void renderMovement() {
-    	this.controlGame.getWorld().getMovableEntities().forEach(MovableObject::move);
+        this.controlGame.getWorld().getMovableObjects().forEach(MovableObject::move);
     }
 
     public void assignTargetToEnemies() {
@@ -313,7 +309,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
 
     protected void renderGameOver() {
         this.controlGUI.endGame();
-    	playEffect(SoundPath.GAME_OVER);
+        playEffect(SoundPath.GAME_OVER);
 //        view.renderGameOver();
     }
 
@@ -323,8 +319,9 @@ public class EngineLoop extends Thread implements WorldEventListener {
     }
 
     private void playEffect(final SoundPath soundPath) {
-    	this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CmdAudioType.RESET_TIMING);
+        this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CmdAudioType.RESET_TIMING);
         this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CmdAudioType.AUDIO_ON);
     }
+
 }
 

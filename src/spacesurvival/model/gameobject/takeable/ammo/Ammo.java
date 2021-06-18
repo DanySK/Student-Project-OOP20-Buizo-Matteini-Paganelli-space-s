@@ -1,7 +1,5 @@
 package spacesurvival.model.gameobject.takeable.ammo;
 
-import java.util.List;
-
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.collision.physics.bounding.BoundingBox;
 import spacesurvival.model.collision.physics.component.PhysicsComponent;
@@ -13,14 +11,8 @@ public class Ammo extends TakeableGameObject {
     private AmmoType type;
 
     public Ammo(final EngineImage engineImage, final P2d position, final BoundingBox bb,
-            final PhysicsComponent phys, final AmmoType type, final List<String> animation) {
-        super(engineImage, position, bb, phys, animation);
-        this.type = type;
-    }
-
-    public Ammo(final EngineImage engineImage, final P2d position, final BoundingBox bb,
             final PhysicsComponent phys, final AmmoType type) {
-        super(engineImage, position, bb, phys);
+        super(engineImage, position, bb, phys, type.getAnimation());
         this.type = type;
     }
 

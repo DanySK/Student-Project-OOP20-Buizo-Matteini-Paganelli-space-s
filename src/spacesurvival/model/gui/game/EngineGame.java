@@ -148,7 +148,7 @@ public class EngineGame implements EngineGUI {
     }
 
     public Set<GameObject> getAllEntities() {
-        return this.world.getAllEntities();
+        return this.world.getAllObjects();
     }
 
     public SpaceShipSingleton getShip() {

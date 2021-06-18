@@ -27,7 +27,7 @@ public class ChasingMovement implements MovementLogic {
             }
         }
     }
-	
+
     @Override
     public String toString() {
         return "Chasing Movement";
