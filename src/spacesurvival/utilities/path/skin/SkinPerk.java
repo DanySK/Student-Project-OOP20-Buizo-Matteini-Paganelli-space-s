@@ -3,7 +3,7 @@ package spacesurvival.utilities.path.skin;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class SkinPerk {
+public final class SkinPerk {
     public static final String MAIN_FOLDER = "perk";
 
     public static final String ICE = "ice";
