@@ -1,10 +1,19 @@
 package spacesurvival.view.game.concrete;
 
 import spacesurvival.model.World;
+import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.view.AbstractGUI;
 import spacesurvival.view.game.GUIGame;
-import spacesurvival.view.game.utilities.*;
+import spacesurvival.view.game.utilities.BtnPauseID;
+import spacesurvival.view.game.utilities.Bullet;
+import spacesurvival.view.game.utilities.CounterEnemies;
+import spacesurvival.view.game.utilities.Heart;
+import spacesurvival.view.game.utilities.LifeBar;
+import spacesurvival.view.game.utilities.PanelBulletGame;
+import spacesurvival.view.game.utilities.PanelEntityGame;
+import spacesurvival.view.game.utilities.RoundTimer;
+import spacesurvival.view.game.utilities.Score;
 import spacesurvival.view.game.utilities.logicColor.LogicColorBoss;
 import spacesurvival.view.game.utilities.logicColor.LogicColorShip;
 import spacesurvival.view.utilities.BtnAction;
@@ -17,7 +26,7 @@ import java.util.List;
 
 public class GUIGameConcrete extends AbstractGUI implements GUIGame {
     private static final long serialVersionUID = 1588822389694751549L;
-    
+
     private final Score score;
     private final RoundTimer roundTimer;
     private final BtnPauseID btnPause;
@@ -93,13 +102,13 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
     }
 
     @Override
-    public final void repaintGameObjects(){
+    public final void repaintGameObjects() {
         this.entityGame.repaint();
         this.bulletGame.repaint();
     }
-    
+
     @Override
-    public void setVisibleLifeBarBoss(boolean visible) {
+    public void setVisibleLifeBarBoss(final boolean visible) {
         this.lifeBoss.setVisible(visible); 
     }
 
@@ -169,7 +178,7 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
         return this.lifeBoss;
     }
 
-    public LifeBar getLifeShip(){
+    public LifeBar getLifeShip() {
         return this.lifeShip;
     }
 
@@ -200,12 +209,11 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
     @Override
     public void setMaxLifeShip(final int maxLife) {
         this.lifeShip.setMaximum(maxLife);
-        
     }
 
     @Override
     public void setMaxLifeBoss(final int maxLife) {
-        this.lifeBoss.setMaximum(maxLife);    
+        this.lifeBoss.setMaximum(maxLife);
     }
 
     @Override

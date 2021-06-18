@@ -61,6 +61,7 @@ public class HitBorderEvent implements WorldEvent {
 
     @Override
     public void manage(final World world) {
+        System.out.println("HIT BULLET EVENT MANAGE");
         this.getCollisionObj().collided(world, this);
     }
 }

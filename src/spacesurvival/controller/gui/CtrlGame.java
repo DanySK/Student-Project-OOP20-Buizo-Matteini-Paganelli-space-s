@@ -91,7 +91,6 @@ public class CtrlGame implements ControllerGUI {
         this.gui.setRound(this.engine.getRound());
         this.gui.setNEnemies(this.engine.getCountEnemies());
         this.gui.setNHeart(this.engine.getLives());
-        System.out.println("HUD " + this.engine.getLifeShip());
         this.gui.setLifeShip(this.engine.getLifeShip());
         if (this.getWorld().getBoss().isPresent()) {
             this.gui.setLifeBoss(this.engine.getLifeBoss());
