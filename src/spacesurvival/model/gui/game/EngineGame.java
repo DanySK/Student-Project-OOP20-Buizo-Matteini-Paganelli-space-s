@@ -63,6 +63,7 @@ public class EngineGame implements EngineGUI {
     public List<ActionGUI> getLinks() {
         return List.of(this.idPause);
     }
+    
 
 
     public String getTimer() {

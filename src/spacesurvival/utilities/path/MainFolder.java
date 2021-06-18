@@ -1,9 +1,8 @@
 package spacesurvival.utilities.path;
 
 final class MainFolder {
-
     /** 
-     * Path to suond folder.
+     * Path to sound folder.
      */
     public static final String SOUND =  "sounds";
     /** 

@@ -4,12 +4,29 @@ import java.nio.file.Path;
 
 public class BulletHUD {
     
-    public static final String MAIN_FOLDER = "shutBullet";
-    
+    /** 
+     * Path to type folder.
+     */
     public static final String TYPE_HUD = "oblique";
     
-    public static final String FIRE = Path.of(MAIN_FOLDER, TYPE_HUD, "fire.png").toString();
-    public static final String ICE = Path.of(MAIN_FOLDER, TYPE_HUD, "ice.png").toString();
-    public static final String ELECTRIC = Path.of(MAIN_FOLDER, TYPE_HUD, "electric.png").toString();
-    public static final String NORMAL = Path.of(MAIN_FOLDER, TYPE_HUD, "normal.png").toString();
+    /** 
+     * Path of icon fire bullet in HUD.
+     */
+    public static final String FIRE = Path.of(MainFolder.BULLET, TYPE_HUD, "fire.png").toString();
+    
+    /** 
+     * Path of icon ice bullet in HUD.
+     */
+    public static final String ICE = Path.of(MainFolder.BULLET, TYPE_HUD, "ice.png").toString();
+    
+    /** 
+     * Path of icon electric bullet in HUD.
+     */
+    public static final String ELECTRIC = Path.of(MainFolder.BULLET, TYPE_HUD, "electric.png").toString();
+    
+    /** 
+     * Path of icon normal bullet in HUD.
+     */
+    public static final String NORMAL = Path.of(MainFolder.BULLET, TYPE_HUD, "normal.png").toString();
+    
 }

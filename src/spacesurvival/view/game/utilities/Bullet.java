@@ -15,6 +15,7 @@ import spacesurvival.view.utilities.JImage;
 
 
 public class Bullet extends JPanel {
+    private static final long serialVersionUID = 8962529427424782971L;
     private final JImage weapon;
     private final JImage icon;
 
