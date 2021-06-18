@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import spacesurvival.model.EngineImage;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;
-import spacesurvival.utilities.path.BulletHUD;
+import spacesurvival.utilities.path.bullet.BulletHUD;
 import spacesurvival.utilities.path.Icon;
 import spacesurvival.utilities.path.Weapon;
 import spacesurvival.view.utilities.JImage;

@@ -20,7 +20,7 @@ public final class MainFolder {
     /** 
      * Path to game objects folder.
      */
-    public static final String GAMEOBJECT =  "gameObjects";
+    public static final String GAME_OBJECT =  "gameObjects";
     /** 
      * Path to icon folder.
      */
@@ -28,7 +28,7 @@ public final class MainFolder {
     /** 
      * Path to help images folder.
      */
-    public static final String HELP =  "imgHelp";
+    public static final String HELP = "help";
     /** 
      * Path to perk folder.
      */
@@ -36,11 +36,11 @@ public final class MainFolder {
     /** 
      * Path to bullet shooted images folder.
      */
-    public static final String BULLET =  "shutBullet";
+    public static final String BULLET = "bullet";
     /** 
      * Path to suond folder.
      */
-    public static final String BULLET_TYPE =  "typeBullet";
+    public static final String WEAPON = "weapon";
 
     /** 
      * Empty constructor.

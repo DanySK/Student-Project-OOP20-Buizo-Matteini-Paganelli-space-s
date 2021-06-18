@@ -2,7 +2,7 @@ package spacesurvival.model.gameobject;
 
 import spacesurvival.utilities.gameobject.BulletUtils;
 import spacesurvival.utilities.gameobject.DurationUtils;
-import spacesurvival.utilities.path.AnimationEffect;
+import spacesurvival.utilities.path.animation.AnimationEffect;
 
 import java.util.List;
 

@@ -6,37 +6,37 @@ import java.util.List;
 import java.util.Random;
 
 import spacesurvival.model.gameobject.Effect;
-import spacesurvival.utilities.path.BulletFire;
-import spacesurvival.utilities.path.BulletHUD;
+import spacesurvival.utilities.path.bullet.BulletFire;
+import spacesurvival.utilities.path.bullet.BulletHUD;
 import spacesurvival.utilities.path.Weapon;
-import spacesurvival.utilities.path.skin.SkinPerk;
+import spacesurvival.utilities.path.animation.AnimationPerk;
 
 public enum AmmoType {
 
     NORMAL(Effect.NONE, List.of(), Weapon.NORMAL, BulletHUD.NORMAL, BulletFire.NORMAL, ""),
-    FIRE(Effect.FIRE, SkinPerk.LIST_FIRE, Weapon.FIRE, BulletHUD.FIRE, BulletFire.FIRE, SkinPerk.FIRE0),
-    ELECTRIC(Effect.ELECTRIC, SkinPerk.LIST_ELECTRIC, Weapon.ELECTRIC, BulletHUD.ELECTRIC, BulletFire.ELECTRIC, SkinPerk.ELECTRIC0),
-    ICE(Effect.ICE, SkinPerk.LIST_ICE, Weapon.ICE, BulletHUD.ICE, BulletFire.ICE, SkinPerk.ICE0);
+    FIRE(Effect.FIRE, AnimationPerk.LIST_FIRE, Weapon.FIRE, BulletHUD.FIRE, BulletFire.FIRE, AnimationPerk.FIRE0),
+    ELECTRIC(Effect.ELECTRIC, AnimationPerk.LIST_ELECTRIC, Weapon.ELECTRIC, BulletHUD.ELECTRIC, BulletFire.ELECTRIC, AnimationPerk.ELECTRIC0),
+    ICE(Effect.ICE, AnimationPerk.LIST_ICE, Weapon.ICE, BulletHUD.ICE, BulletFire.ICE, AnimationPerk.ICE0);
 
     private final Effect effect;
     private List<String> animation;
     private final String weapon;
     private final String bulletHud;
     private final String bulletFire;
-    private final String initBullet;
+    private final String bulletInit;
 
     private static final List<AmmoType> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
     private static final int SIZE = VALUES.size();
     private static final Random RANDOM = new Random();
 
     AmmoType(final Effect effect, final List<String> animation, final String weapon, final String bulletHUD,
-            final String bulletFire, final String initBullet) {
+            final String bulletFire, final String bulletInit) {
         this.effect = effect;
         this.animation = animation;
         this.weapon = weapon;
         this.bulletHud = bulletHUD;
         this.bulletFire = bulletFire;
-        this.initBullet = initBullet;
+        this.bulletInit = bulletInit;
     }
 
     public String getWeapon() {
