@@ -4,19 +4,16 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.util.List;
-import java.util.LinkedList;
-import java.util.Optional;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.model.Animation;
 import spacesurvival.model.EngineImage;
-import spacesurvival.utilities.path.SoundPath;
 import spacesurvival.model.World;
 import spacesurvival.model.collision.physics.bounding.BoundingBox;
 import spacesurvival.model.collision.physics.component.PhysicsComponent;
 
 
-public abstract class GameObject {
+public abstract class GameObject implements Collideable {
     private AffineTransform transform;
     private BoundingBox boundingBox;
     private PhysicsComponent phys;
@@ -24,7 +21,7 @@ public abstract class GameObject {
     private final Animation body;
     private final Animation effect;
 
-    private List<SoundPath> effectSounds;
+//    private List<SoundPath> effectSounds;
 
     public GameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
             final PhysicsComponent phys) {
@@ -37,7 +34,7 @@ public abstract class GameObject {
         this.boundingBox = bb;
         this.phys = phys;
         this.setTransform(position);
-        this.setEffectSounds(new LinkedList<>());
+//        this.setEffectSounds(new LinkedList<>());
     }
 
     public void setPause(final boolean isPause) {
@@ -49,11 +46,11 @@ public abstract class GameObject {
         this.body.setAnimating(false);
         this.effect.setAnimating(false);
     }
-    
+
     public Image getImgBody() {
         return this.body.getImage();
     }
-    
+
     public Image getImgEffect() {
         return this.effect.getImage();
     }
@@ -66,28 +63,26 @@ public abstract class GameObject {
         this.effect.setListPath(animation);
     }
 
-	
-    public List<SoundPath> getEffectSounds() {
-        return this.effectSounds;
-    }
+//    public List<SoundPath> getEffectSounds() {
+//        return this.effectSounds;
+//    }
+//
+//    public void setEffectSounds(final List<SoundPath> effectSounds) {
+//        this.effectSounds = effectSounds;
+//    }
 
-    public void setEffectSounds(final List<SoundPath> effectSounds) {
-        this.effectSounds = effectSounds;
-    }
-	
-    public void pushEffect(final SoundPath soundEffect) {
-        this.effectSounds.add(soundEffect);
-    }
-	
-    public final Optional<SoundPath> popEffect() {
-        if (this.effectSounds.size() != 0) {
-            final Optional<SoundPath> first = Optional.of(this.effectSounds.get(0));
-            this.effectSounds.remove(0);
-            return first;
-        }
-        return Optional.empty();
-    }
-	
+//    public void pushEffect(final SoundPath soundEffect) {
+//        this.effectSounds.add(soundEffect);
+//    }
+//
+//    public final Optional<SoundPath> popEffect() {
+//        if (!this.effectSounds.isEmpty()) {
+//            final Optional<SoundPath> first = Optional.of(this.effectSounds.get(0));
+//            this.effectSounds.remove(0);
+//            return first;
+//        }
+//        return Optional.empty();
+//    }
 
     public final AffineTransform getTransform() {
         return this.transform;
@@ -103,8 +98,7 @@ public abstract class GameObject {
         this.transform.setTransform(transform);
         this.boundingBox.setTransform(transform);
     }
-	
-	
+
     public final EngineImage getEngineImage() {
         return this.body.getBody();
     }
@@ -128,7 +122,6 @@ public abstract class GameObject {
         return boundingBox;
     }
 
-
     public void setBoundingBox(final BoundingBox boundingBox) {
           this.boundingBox = boundingBox;
     }
@@ -137,7 +130,6 @@ public abstract class GameObject {
         this.body.setBody(engineImage);
     }
 
-
     public final PhysicsComponent getPhys() {
         return phys;
     }
@@ -145,20 +137,19 @@ public abstract class GameObject {
     public void setPhys(final PhysicsComponent phys) {
         this.phys = phys;
     }
-	
 
-    public void updatePhysics(final World w){
+    public void updatePhysic(final World w) {
         phys.update(this, w);
     }
-	
+
     public final Dimension getSize() {
         return this.body.getBody().getSize();
     }
-	
+
     public final double getWidth() {
         return this.getEngineImage().getSize().getWidth();
     }
-	
+
     public final double getHeight() {
         return this.getEngineImage().getSize().getHeight();
     }
@@ -168,11 +159,12 @@ public abstract class GameObject {
     }
 
     @Override
+    public abstract void collided(World world, WorldEvent worldEvent);
+
+    @Override
     public String toString() {
         return "GameObject [transform=" + transform + ", boundingBox=" + boundingBox
-                + ", phys=" + phys + ", body=" + body + ", effect=" + effect + ", effectSounds=" + effectSounds + "]";
+                + ", phys=" + phys + ", body=" + body + ", effect=" + effect + "]";
     }
-
-    public abstract void manageEvent(World world, WorldEvent hitBorderEvent);
 
 }

@@ -1,7 +1,7 @@
 package spacesurvival.model.worldevent;
 
 import spacesurvival.model.World;
-import spacesurvival.model.collision.hitevent.EventType;
+import spacesurvival.model.collision.event.EventType;
 
 /**
  * 

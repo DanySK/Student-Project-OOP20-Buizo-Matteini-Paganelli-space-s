@@ -3,19 +3,11 @@ package spacesurvival.model;
 import spacesurvival.controller.gui.CtrlGUI;
 import spacesurvival.controller.gui.CtrlGame;
 import spacesurvival.controller.gui.CtrlSound;
-import spacesurvival.model.collision.hitevent.HitBorderEvent;
-import spacesurvival.model.collision.hitevent.HitBulletEvent;
-import spacesurvival.model.collision.hitevent.HitMainGameObject;
-import spacesurvival.model.collision.hitevent.HitTakeableGameObject;
+import spacesurvival.model.collision.event.DeadEvent;
 import spacesurvival.model.common.P2d;
-import spacesurvival.model.gameobject.GameObject;
-import spacesurvival.model.gameobject.MainGameObject;
-import spacesurvival.model.gameobject.MovableGameObject;
-import spacesurvival.model.gameobject.enemy.Boss;
-import spacesurvival.model.gameobject.enemy.ChaseEnemy;
-import spacesurvival.model.gameobject.enemy.FireEnemy;
-import spacesurvival.model.gameobject.main.Asteroid;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
+import spacesurvival.model.gameobject.movable.MovableObject;
+import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
 import spacesurvival.model.sound.CmdAudioType;
 import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.model.worldevent.WorldEventListener;
@@ -37,12 +29,10 @@ public class EngineLoop extends Thread implements WorldEventListener {
     private final CtrlSound controlSound;
 
     private final List<WorldEvent> eventQueue;
-    private final List<SoundPath> soundQueue;
 
     public EngineLoop() {
         this.controlGUI = new CtrlGUI();
         this.eventQueue = new LinkedList<>();
-        this.soundQueue = new LinkedList<>();
         this.controlGame = this.controlGUI.getCtrlGame();
         this.controlSound = this.controlGUI.getCtrlSound();
     }
@@ -55,6 +45,14 @@ public class EngineLoop extends Thread implements WorldEventListener {
         this.controlSound.setSoundLoop(this.controlGUI.getCurrentGUI());
         this.controlSound.setCmdAudioLoop(CmdAudioType.AUDIO_ON);
         this.controlGUI.startGUI();
+    }
+
+    public World getWorld() {
+        return this.controlGame.getWorld();
+    }
+
+    public SpaceShipSingleton getShip() {
+        return this.controlGame.getWorld().getShip();
     }
 
     @Override
@@ -70,7 +68,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
                 final int elapsed = (int) (current - lastTime);
                 int nbThreads = Thread.getAllStackTraces().keySet().size();
 
-                if (this.controlGUI.isInGame()){
+                if (this.controlGUI.isInGame()) {
                     if (!this.controlGUI.isInPause()) {
                         //processInput();
                         renderMovement();
@@ -80,7 +78,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
                         updateGame();
                         nbThreads = Thread.getAllStackTraces().keySet().size();
 
-                        System.out.println("Numero dei thread current -> " + nbThreads);
+                        //System.out.println("Numero dei thread current -> " + nbThreads);
                     }
                 }
 
@@ -116,146 +114,70 @@ public class EngineLoop extends Thread implements WorldEventListener {
         this.controlGame.updateStateWorld();
         this.checkEvents();
         this.checkSoundEffects();
+        this.checkGameObjectsDead();
         this.assignTargetToEnemies();
         this.checkScore();
+        this.checkLife();
         this.controlGame.updateHUD();
     }
 
-    protected void checkSoundEffects() {
-        final SpaceShipSingleton ship = this.controlGame.getShip();
-        final Optional<SoundPath> effect = ship.popEffect();
-        if (!effect.equals(Optional.empty())) {
-            soundQueue.add(effect.get());
-        }
+    private void checkGameObjectsDead() {
+        final World world = this.getWorld();
+        world.getMainObjects().forEach(mainObject -> {
+            if (mainObject.isDead()) {
+                eventQueue.add(new DeadEvent(mainObject));
+                this.controlGame.incrScore(mainObject.getScore());
+            }
+        });
+    }
 
-        soundQueue.forEach(this::playEffect);
-        soundQueue.clear();
+    protected void checkSoundEffects() {
+        getWorld().getSoundQueue().addAll(getShip().getSoundQueue());
+        getWorld().getSoundQueue().forEach(this::playEffect);
+        getWorld().getSoundQueue().clear();
+        getShip().getSoundQueue().clear();
     }
 
     protected void checkScore() {
-        final List<Integer> scoreUpdate = this.controlGame.getWorld().getQueueScore();
+        final List<Integer> scoreUpdate = getWorld().getQueueScore();
         scoreUpdate.forEach(this.controlGame::incrScore);
         scoreUpdate.clear();
     }
-    
-    protected void checkIncrUp() {
-        final List<Integer> lifeUpdate = this.controlGame.getWorld().getQueueIncreaseLife();
-        lifeUpdate.forEach(this.controlGame::increaseLife);
-        lifeUpdate.clear();
+
+    protected void checkLife() {
+        final List<Integer> listIncreaseLife = getWorld().getQueueIncreaseLife();
+        final List<Integer> listDecreaseLife = getWorld().getQueueDecreaseLife();
+
+        listIncreaseLife.forEach(this.controlGame::increaseLife);
+        listDecreaseLife.forEach(this.controlGame::decreaseLife);
+
+        listIncreaseLife.clear();
+        listDecreaseLife.clear();
     }
 
 
     protected void checkEvents() {
-        final World world = this.controlGame.getWorld();
-
+        final World world = getWorld();
         eventQueue.forEach(ev -> {
-            //distinctEvent(world, ev);
             ev.manage(world);
-
-            if (ev instanceof HitMainGameObject) {
-                final HitMainGameObject asteroidEvent = (HitMainGameObject) ev;
-                final MainGameObject object = asteroidEvent.getObject();
-                final MainGameObject collidedObject = asteroidEvent.getCollidedObject();
-                //this.controlGame.incrScore(Score.ASTEROID);
-
-  //damageObject(object, collidedObject.getImpactDamage(), Status.INVINCIBLE);
-  //damageObject(collidedObject, object.getImpactDamage(), Status.INVINCIBLE); 
-
-                if (object instanceof ChaseEnemy) {
-                    object.stopAnimation();
-                    world.removeChaseEnemy(object);
-                    playEffect(SoundPath.ENEMY_EXPL);
-                }
-                if (collidedObject instanceof ChaseEnemy) {
-                    collidedObject.stopAnimation();
-                    world.removeChaseEnemy(collidedObject);
-                    playEffect(SoundPath.ENEMY_EXPL);
-                }
-            } else if (ev instanceof HitTakeableGameObject) {
-//                final HitTakeableGameObject takeableEvent = (HitTakeableGameObject) ev;
-//                final TakeableGameObject takeableGameObject = takeableEvent.getCollidedObject();
-//                //playEffect(SoundPath.PERK);
-//                takeableGameObject.stopAnimation();
-//
-//                if (takeableGameObject instanceof Ammo) {
-//                    final Ammo ammo = (Ammo) takeableGameObject;
-//                    world.getShip().take(ammo);
-//                } else if (takeableGameObject instanceof Heart) {
-//                    final HeartType heartType = ((Heart) takeableGameObject).getType();
-//                    if (heartType == HeartType.HEAL) {
-//                        this.controlGame.increaseLife(heartType.getAmount());
-//                    } else if (heartType == HeartType.LIFE_UP) {
-//                        this.controlGame.increaseLives(heartType.getAmount());
-//                    }
-//                }
-//                this.controlGame.getWorld().removeTakeableObject(takeableGameObject);
-            } else if (ev instanceof HitBorderEvent) {
-//                final HitBorderEvent borderEvent = (HitBorderEvent) ev;
-//                final MovableGameObject object = borderEvent.getCollisionObj();
-//                final Edge edge = borderEvent.getEdge();
-//
-//                // If a bullet reach a border
-//                if (object instanceof Bullet) {
-//                    final Bullet bullet = (Bullet) borderEvent.getCollisionObj();
-//                    bullet.stopAnimation();
-//                    System.out.println("Bullet ha toccato il muro, lo rimuovo");
-//                    world.removeBullet(bullet);
-//                } else {
-//                    //pacmanEffect(object, edge);
-//                    if (object instanceof SpaceShipSingleton) {
-//                        playEffect(SoundPath.WALL_COLLISION);
-//                    }
-//                }
-            } else if (ev instanceof HitBulletEvent) {
-
-//                final HitBulletEvent bulletEvent = (HitBulletEvent) ev;
-//                final Bullet bullet = bulletEvent.getBullet(); 
-//                final MainGameObject collidedObject = bulletEvent.getCollidedObject();
-//
-//                if (!bullet.getShooter().equals(collidedObject)) {
-//                    System.out.println("Bullet ha preso al volo qualcosa, " + collidedObject.getClass() + " lo rimuovo");
-//                    bullet.stopAnimation();
-//                    world.removeBullet(bullet);
-//                    damageObject(collidedObject, bullet.getDamage(), bullet.getEffect().getStatus());
-//                }
-
-            }
             this.controlGame.updateRoundState();
         });
         eventQueue.clear();
     }
-
-
-//	}
-
-    public void playExplSoundOf(final MainGameObject object) {
-        if (object instanceof Asteroid) {
-            //playEffect(SoundPath.ASTEROID_EXPL);
-        } else if (object instanceof ChaseEnemy || object instanceof FireEnemy) {
-            //playEffect(SoundPath.ENEMY_EXPL);
-        } else if (object instanceof Boss) {
-            //playEffect(SoundPath.BOSS_EXPL);
-        }
-    }
-
-
-
-
-
 
     protected final void render() {
         this.controlGame.repaintWorld();
     }
 
     private void renderMovement() {
-    	this.controlGame.getWorld().getMovableEntities().forEach(MovableGameObject::move);
+        getWorld().getMovableObjects().forEach(MovableObject::move);
     }
 
     public void assignTargetToEnemies() {
-        this.controlGame.getWorld().getAllEnemies().forEach(enemy -> {
+        getWorld().getAllEnemies().forEach(enemy -> {
             final AffineTransform trans = new AffineTransform();
-            trans.setTransform(this.controlGame.getShip().getTransform());
-            trans.translate(this.controlGame.getShip().getWidth() / 2, this.controlGame.getShip().getHeight() / 2);
+            trans.setTransform(getShip().getTransform());
+            trans.translate(getShip().getWidth() / 2, getShip().getHeight() / 2);
             final P2d target = new P2d(trans.getTranslateX(), trans.getTranslateY());
             enemy.setTarget(Optional.of(target));
 
@@ -265,8 +187,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
 
     protected void renderGameOver() {
         this.controlGUI.endGame();
-    	playEffect(SoundPath.GAME_OVER);
-//        view.renderGameOver();
+        playEffect(SoundPath.GAME_OVER);
     }
 
     @Override
@@ -275,55 +196,9 @@ public class EngineLoop extends Thread implements WorldEventListener {
     }
 
     private void playEffect(final SoundPath soundPath) {
-    	this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CmdAudioType.RESET_TIMING);
+        this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CmdAudioType.RESET_TIMING);
         this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CmdAudioType.AUDIO_ON);
     }
-    
-    private GameObject distinctGameObject(GameObject obj) {
-        
-        return null;
-    }
-    
-    private void distinctEvent(final World world, final WorldEvent ev) {
-//        switch () {
-//        case HitBorderEvent:
-//            cmdUp.execute(ship);
-//            break;
-//        default:
-//            break;
-//        }
-        ev.manage(world);
-    }
-    
-//    interface I {
-//        void do();
-//      }
-//
-//      class A implements I { void do() { doA() } ... }
-//      class B implements I { void do() { doB() } ... }
-//      class C implements I { void do() { doC() } ... }
-    
-    
-    
-//    private void manageHitBorderEvent(HitBorderEvent ev) {
-//        final HitBorderEvent borderEvent = (HitBorderEvent) ev;
-//        final MovableGameObject object = borderEvent.getCollisionObj();
-//        final Edge edge = borderEvent.getEdge();
-//
-//        // If a bullet reach a border
-//        if (object instanceof Bullet) {
-//            final Bullet bullet = (Bullet) borderEvent.getCollisionObj();
-//            bullet.stopAnimation();
-//            System.out.println("Bullet ha toccato il muro, lo rimuovo");
-//            this.controlGame.getWorld().removeBullet(bullet);
-//        } else {
-//            //pacmanEffect(object, edge);
-//            if (object instanceof SpaceShipSingleton) {
-//                playEffect(SoundPath.WALL_COLLISION);
-//            }
-//        }
-//
-//    }
 
 }
 

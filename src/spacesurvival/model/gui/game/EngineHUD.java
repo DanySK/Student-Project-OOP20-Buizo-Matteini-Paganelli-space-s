@@ -35,7 +35,7 @@ public class EngineHUD {
         this.round = round;
     }
 
-    public void incrRound(){
+    public void incrRound() {
         this.round += DECR_VALUE;
     }
 
@@ -50,14 +50,14 @@ public class EngineHUD {
     public void increaseLives(final int amount){
         this.lives += amount;
     }
-    
-    public void decreaseLives(){
+
+    public void decreaseLives() {
         this.lives -= DECR_VALUE;
     }
 
-    public boolean isGameOver(){
-        return this.lives == DEAD;
-    }
+//    public boolean isGameOver(){
+//        return this.lives == DEAD;
+//    }
 
     public String getTimer(){
         return this.chronometer.getTimer();
