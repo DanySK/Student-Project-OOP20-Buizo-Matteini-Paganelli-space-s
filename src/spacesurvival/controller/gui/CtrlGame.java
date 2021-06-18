@@ -6,11 +6,12 @@ import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.gui.game.EngineGame;
 import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.model.World;
-import spacesurvival.model.gameobject.GameObjectUtils;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
 import spacesurvival.model.MovementKeyListener;
 import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.RoundUtils;
+import spacesurvival.utilities.gameobject.LifeUtils;
 import spacesurvival.view.GUI;
 import spacesurvival.view.game.GUIGame;
 import java.awt.event.KeyListener;
@@ -41,8 +42,8 @@ public class CtrlGame implements ControllerGUI {
     @Override
     public final void assignStrings() {
         this.updateHUD();
-        this.gui.setMaxLifeBoss(GameObjectUtils.BOSS_LIFE);
-        this.gui.setMaxLifeShip(GameObjectUtils.SPACESHIP_LIFE);
+        this.gui.setMaxLifeBoss(LifeUtils.BOSS_LIFE);
+        this.gui.setMaxLifeShip(LifeUtils.SPACESHIP_LIFE);
     }
 
     @Override
@@ -106,7 +107,7 @@ public class CtrlGame implements ControllerGUI {
     public void updateRoundState() {
         if (this.engine.getCountEnemies() == 0) {
             this.engine.incrRound();
-            this.resetEntities();
+            this.createNewEntities();
             this.engine.getWorld().getBoss().ifPresent(boss -> this.setVisibleLifeBarBoss(true));
         }
     }
@@ -115,15 +116,37 @@ public class CtrlGame implements ControllerGUI {
         this.gui.setVisibleLifeBarBoss(visible);
     }
 
-    public final void resetEntities() {
-        //this.getWorld().removeAllEnemies();
-        this.getWorld().addAsteroid();
-        this.getWorld().addAsteroid();
-        this.getWorld().addAsteroid();
-        this.getWorld().addChaseEnemy();
-        this.getWorld().addFireEnemy();
-        this.getWorld().addBoss();
-        System.out.println(this.getWorld().getAllObjects());
+    public final void createNewEntities() {
+        int asteroidsNumber = this.engine.getRound() * RoundUtils.ASTEROID_INCREMENT_PER_ROUND;
+        if (asteroidsNumber > RoundUtils.MAX_ASTEROID_PER_ROUND) {
+            asteroidsNumber = RoundUtils.MAX_ASTEROID_PER_ROUND;
+        }
+        for (int i = 0; i < asteroidsNumber; i++) {
+            this.getWorld().addAsteroid();
+        }
+
+        int chaseEnemiesNumber = this.engine.getRound() * RoundUtils.CHASE_ENEMY_INCREMENT_PER_ROUND;
+        if (chaseEnemiesNumber > RoundUtils.MAX_CHASE_ENEMY_PER_ROUND) {
+            chaseEnemiesNumber = RoundUtils.MAX_CHASE_ENEMY_PER_ROUND;
+        }
+        for (int i = 0; i < chaseEnemiesNumber; i++) {
+            this.getWorld().addChaseEnemy();
+        }
+
+        if (this.engine.getRound() > RoundUtils.FIRE_ENEMY_MINIMUM_ROUND) {
+            int fireEnemiesNumber = this.engine.getRound() * RoundUtils.FIRE_ENEMY_INCREMENT_PER_ROUND
+                    - RoundUtils.FIRE_ENEMY_MINIMUM_ROUND;
+            if (fireEnemiesNumber > RoundUtils.MAX_FIRE_ENEMY_PER_ROUND) {
+                fireEnemiesNumber = RoundUtils.MAX_FIRE_ENEMY_PER_ROUND;
+            }
+            for (int i = 0; i < fireEnemiesNumber; i++) {
+                this.getWorld().addFireEnemy();
+            }
+        }
+
+        if (this.engine.getRound() % RoundUtils.ROUND_PER_BOSS == 0) {
+            this.getWorld().addBoss();
+        }
     }
 
     public final void assignWorld() {
@@ -191,10 +214,10 @@ public class CtrlGame implements ControllerGUI {
 
     public final void increaseLife(final int healAmount) {
         final int totalLife = this.getShip().getLife() + healAmount;
-        int newLife = totalLife % GameObjectUtils.SPACESHIP_LIFE;
-        int newLives = totalLife / GameObjectUtils.SPACESHIP_LIFE;
+        int newLife = totalLife % LifeUtils.SPACESHIP_LIFE;
+        int newLives = totalLife / LifeUtils.SPACESHIP_LIFE;
         if (newLife == 0) {
-            newLife = GameObjectUtils.SPACESHIP_LIFE;
+            newLife = LifeUtils.SPACESHIP_LIFE;
             newLives--;
         }
         this.getShip().setLife(newLife);

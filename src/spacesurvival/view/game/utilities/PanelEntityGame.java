@@ -4,8 +4,6 @@ import spacesurvival.model.World;
 import spacesurvival.model.collision.physics.bounding.CircleBoundingBox;
 import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.Pair;
-
-import spacesurvival.model.gameobject.GameObjectUtils;
 import spacesurvival.model.gameobject.fireable.Boss;
 import spacesurvival.model.gameobject.fireable.weapon.Bullet;
 import spacesurvival.model.gameobject.main.Asteroid;
@@ -14,12 +12,14 @@ import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.utilities.ThreadUtils;
+import spacesurvival.utilities.gameobject.LifeUtils;
 import spacesurvival.view.game.utilities.logicColor.LogicColor;
 import spacesurvival.view.game.utilities.logicColor.LogicColorShip;
 
-import javax.swing.*;
-
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -27,12 +27,15 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-public class PanelEntityGame extends JPanel{
+import javax.swing.JPanel;
+
+public class PanelEntityGame extends JPanel {
+
     private static final long serialVersionUID = -6158413043296871948L;
-    
+
     private final Map<GameObject, Pair<Image, Image>> objects;
     private Optional<World> world;
-    
+
     private final Thread taskObjects;
 
     public PanelEntityGame() {
@@ -57,9 +60,9 @@ public class PanelEntityGame extends JPanel{
 
         this.objects.entrySet().forEach(entity -> {
             if (entity.getKey().getBoundingBox() instanceof CircleBoundingBox) {
-                AffineTransform transform = new AffineTransform();
+                final AffineTransform transform = new AffineTransform();
                 transform.setTransform(entity.getKey().getTransform());
-                CircleBoundingBox cbb = (CircleBoundingBox) entity.getKey().getBoundingBox();
+                final CircleBoundingBox cbb = (CircleBoundingBox) entity.getKey().getBoundingBox();
                 transform.translate(-cbb.getRadius(), -cbb.getRadius());
                 g2d.setTransform(transform);
             }
@@ -74,37 +77,34 @@ public class PanelEntityGame extends JPanel{
             if (this.isEnemy(entity.getKey())) {
                 this.drawLifeBar(g2d, entity.getKey());
             }
-        });     
+        });
     }
-    
-    private void drawLifeBar(final Graphics2D g2d, final GameObject gameObject){
+
+    private void drawLifeBar(final Graphics2D g2d, final GameObject gameObject) {
         this.drawBar(g2d, gameObject);
         this.drawLife(g2d, gameObject);
     }
-    
-    private void drawBar(final Graphics2D g2d, final GameObject gameObject){
+
+    private void drawBar(final Graphics2D g2d, final GameObject gameObject) {
         g2d.setColor(Color.WHITE);
         g2d.drawRect(0, (int) gameObject.getSize().getHeight(), (int) gameObject.getSize().getWidth(), 11);
     }
 
-    private void drawLife(final Graphics2D g2d, final GameObject gameObject){
+    private void drawLife(final Graphics2D g2d, final GameObject gameObject) {
         final LogicColor logicColor = new LogicColorShip();
         int life = Math.max(((MainObject) gameObject).getLife(), 0);
-        if(gameObject instanceof ChaseEnemy){
-            g2d.setColor(logicColor.setColor(GameObjectUtils.CHASE_ENEMY_LIFE, life));
-            life = (int) (life * gameObject.getWidth() / GameObjectUtils.CHASE_ENEMY_LIFE);
+        if (gameObject instanceof ChaseEnemy) {
+            g2d.setColor(logicColor.setColor(LifeUtils.CHASE_ENEMY_LIFE, life));
+            life = (int) (life * gameObject.getWidth() / LifeUtils.CHASE_ENEMY_LIFE);
         }
-        if(gameObject instanceof Asteroid){
-            g2d.setColor(logicColor.setColor(GameObjectUtils.ASTEROID_LIFE, life));
-            life = (int) (life * gameObject.getWidth() / GameObjectUtils.ASTEROID_LIFE);
+        if (gameObject instanceof Asteroid) {
+            g2d.setColor(logicColor.setColor(LifeUtils.ASTEROID_LIFE, life));
+            life = (int) (life * gameObject.getWidth() / LifeUtils.ASTEROID_LIFE);
         }
-        if(gameObject instanceof Boss){
-            g2d.setColor(logicColor.setColor(GameObjectUtils.BOSS_LIFE, life));
-            life = (int) (life * gameObject.getWidth() / GameObjectUtils.BOSS_LIFE);
+        if (gameObject instanceof Boss) {
+            g2d.setColor(logicColor.setColor(LifeUtils.BOSS_LIFE, life));
+            life = (int) (life * gameObject.getWidth() / LifeUtils.BOSS_LIFE);
         }
-
-
-
         g2d.fillRect(0, (int) gameObject.getSize().getHeight() + 1, life, 10);
     }
 
@@ -140,7 +140,7 @@ public class PanelEntityGame extends JPanel{
     public final void runUpdateGameObjects() {
         long lastTime = System.currentTimeMillis();
         while (true) {
-            long current = System.currentTimeMillis();
+            final long current = System.currentTimeMillis();
 
             if (this.world.isPresent()) {
                this.updateGameObjects();

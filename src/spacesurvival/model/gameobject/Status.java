@@ -7,12 +7,33 @@ import spacesurvival.utilities.path.AnimationEffect;
 import java.util.List;
 
 public enum Status {
+    /**
+     * The main status of an object.
+     */
     NORMAL(AnimationEffect.LIST_NORMAL),
+    /**
+     * Make an object immune to damages.
+     */
     INVINCIBLE(AnimationEffect.LIST_INVINCIBLE, DurationUtils.INVINCIBLE),
+    /**
+     * Applies a fire damage for a certain time.
+     */
     ON_FIRE(AnimationEffect.LIST_BURN, DurationUtils.ON_FIRE),
+    /**
+     * Slow down the object affected.
+     */
     FROZEN(AnimationEffect.LIST_ICE, DurationUtils.FROZEN),
-    PARALIZED(List.of(), DurationUtils.PARALIZED),
+    /**
+     * Stop moving the object affected.
+     */
+    PARALYZED(List.of(), DurationUtils.PARALYZED),
+    /**
+     * Heals the object of a certain quantity.
+     */
     HEALED(AnimationEffect.LIST_LIFE_UP),
+    /**
+     * Increase lives of the object.
+     */
     LIVES_INCREASED(List.of());
 
     private final List<String> animation;

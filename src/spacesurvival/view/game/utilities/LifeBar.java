@@ -2,7 +2,7 @@ package spacesurvival.view.game.utilities;
 
 import javax.swing.JProgressBar;
 
-import spacesurvival.model.gameobject.GameObjectUtils;
+import spacesurvival.utilities.gameobject.LifeUtils;
 import spacesurvival.view.game.utilities.logicColor.LogicColor;
 
 public class LifeBar extends JProgressBar {
@@ -18,7 +18,7 @@ public class LifeBar extends JProgressBar {
 
     public void setLife(final int life) {
         super.setValue(life);
-        super.setForeground(this.logicColor.setColor(GameObjectUtils.SPACESHIP_LIFE, life));
+        super.setForeground(this.logicColor.setColor(LifeUtils.SPACESHIP_LIFE, life));
     }
 
 

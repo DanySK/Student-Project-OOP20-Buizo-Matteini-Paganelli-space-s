@@ -27,7 +27,6 @@ public class BulletPhysic implements PhysicsComponent {
         final Bullet bullet = (Bullet) abstractObj;
         final RectBoundingBox boundingBox = w.getMainBBox();
         final RectBoundingBox bulletBoundingBox = (RectBoundingBox) bullet.getBoundingBox();
-        System.out.println("PHYSIC BULLET");
 
         final Optional<BoundaryCollision> borderInfo = w.checkCollisionWithBoundaries(bullet.getPosition(), boundingBox);
         if (borderInfo.isPresent()) {

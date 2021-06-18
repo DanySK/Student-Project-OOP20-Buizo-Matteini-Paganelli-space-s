@@ -9,7 +9,7 @@ public enum Effect {
     NONE(Status.NORMAL),
     FIRE(Status.ON_FIRE),
     ICE(Status.FROZEN),
-    ELECTRIC(Status.PARALIZED);
+    ELECTRIC(Status.PARALYZED);
 //	FIRE_AMMO(Status.ON_FIRE),
 //	ICE_AMMO(Status.FROZEN),
 //	ELECTRIC_AMMO(Status.PARALIZED),

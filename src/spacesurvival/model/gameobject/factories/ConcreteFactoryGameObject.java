@@ -35,6 +35,8 @@ import spacesurvival.model.common.V2d;
 import spacesurvival.utilities.Score;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;
+import spacesurvival.utilities.gameobject.DamageUtils;
+import spacesurvival.utilities.gameobject.LifeUtils;
 import spacesurvival.utilities.gameobject.VelocityUtils;
 import spacesurvival.utilities.path.skin.SkinAsteroid;
 import spacesurvival.utilities.path.skin.SkinChase;
@@ -51,8 +53,8 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
         final P2d position = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
         final V2d velocity = VelocityUtils.ASTEROID_VEL;
         final MovementLogic movementLogic = new FixedMovement();
-        final int life = GameObjectUtils.ASTEROID_LIFE;
-        final int impactDamage = GameObjectUtils.ASTEROID_DAMAGE;
+        final int life = LifeUtils.ASTEROID_LIFE;
+        final int impactDamage = DamageUtils.ASTEROID_DAMAGE;
 
         return new Asteroid(engineImage, position, new CircleBoundingBox(), new AsteroidPhysic(), velocity,
                 acceleration,  movementLogic, life, impactDamage, Score.ASTEROID, Optional.empty(), SkinAsteroid.LIST_ASTEROID);
@@ -65,8 +67,8 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
         //final P2d position = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
         final V2d velocity = VelocityUtils.CHASE_ENEMY_VEL;
         final MovementLogic movementLogic = new ChasingMovement();
-        final int life = GameObjectUtils.CHASE_ENEMY_LIFE;
-        final int impactDamage = GameObjectUtils.CHASE_ENEMY_DAMAGE;
+        final int life = LifeUtils.CHASE_ENEMY_LIFE;
+        final int impactDamage = DamageUtils.CHASE_ENEMY_DAMAGE;
 
         return new ChaseEnemy(engineImage, position, new RectBoundingBox(), new ChaseEnemyPhysic(), velocity,
                 acceleration, movementLogic, life, impactDamage, Score.CHASE_ENEMY, Optional.empty(), SkinChase.LIST_POOH);
@@ -79,8 +81,8 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
         //final P2d position = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
         final V2d velocity = VelocityUtils.FIRE_ENEMY_VEL;
         final MovementLogic movementLogic = new RandomMovement();
-        final int life = GameObjectUtils.FIRE_ENEMY_LIFE;
-        final int impactDamage = GameObjectUtils.FIRE_ENEMY_DAMAGE;
+        final int life = LifeUtils.FIRE_ENEMY_LIFE;
+        final int impactDamage = DamageUtils.FIRE_ENEMY_DAMAGE;
         final Weapon weapon = new Weapon();
         final FiringLogic firingLogic = new FireEnemyFiringImpl();
 
@@ -97,8 +99,8 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
         //final P2d position = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
         final V2d velocity = VelocityUtils.BOSS_VEL;
         final MovementLogic movementLogic = new RandomMovement();
-        final int life = GameObjectUtils.BOSS_LIFE;
-        final int impactDamage = GameObjectUtils.BOSS_DAMAGE;
+        final int life = LifeUtils.BOSS_LIFE;
+        final int impactDamage = DamageUtils.BOSS_DAMAGE;
         final Weapon weapon = new Weapon();
         final FiringLogic firingLogic = new BossFiringImpl();
 
@@ -110,9 +112,9 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 
     @Override
     public TakeableGameObject createAmmo() {
+        final AmmoType ammoType = AmmoType.ICE; // AmmoType.random();
         final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinPerk.FIRE0);
         final P2d position = GameObjectUtils.generateRandomPoint();
-        final AmmoType ammoType = AmmoType.FIRE;// AmmoType.random();
 
         return new Ammo(engineImage, position, new CircleBoundingBox(), new PickablePhysic(),
                 ammoType);
@@ -120,9 +122,9 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 
     @Override
     public TakeableGameObject createHeart() {
+        final HeartType heartType = HeartType.random();
         final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinPerk.FIRE0);
         final P2d position = GameObjectUtils.generateRandomPoint();
-        final HeartType heartType = HeartType.random();
 
         return new Heart(engineImage, position, new CircleBoundingBox(), new PickablePhysic(),
                 heartType);

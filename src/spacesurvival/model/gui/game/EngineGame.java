@@ -9,6 +9,7 @@ import spacesurvival.model.gameobject.GameObjectUtils;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.utilities.dimension.Screen;
+import spacesurvival.utilities.gameobject.LifeUtils;
 
 import java.awt.Rectangle;
 import java.util.List;
@@ -130,7 +131,7 @@ public class EngineGame implements EngineGUI {
     }
 
     public void resetLifeShip() {
-        this.world.getShip().setLife(GameObjectUtils.SPACESHIP_LIFE);
+        this.world.getShip().setLife(LifeUtils.SPACESHIP_LIFE);
     }
 
     public boolean isGameOver() {
@@ -147,7 +148,7 @@ public class EngineGame implements EngineGUI {
         this.hud.resetTimer();
     }
 
-    public Set<GameObject> getAllEntities() {
+    public Set<GameObject> getAllObjects() {
         return this.world.getAllObjects();
     }
 
@@ -161,10 +162,6 @@ public class EngineGame implements EngineGUI {
 
     public void updateStateWorld() {
         this.world.updateState();
-    }
-
-    public void moveShip() {
-        this.world.moveShip();
     }
 
 }
