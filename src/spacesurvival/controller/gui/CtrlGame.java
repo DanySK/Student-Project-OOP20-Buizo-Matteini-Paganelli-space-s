@@ -1,6 +1,8 @@
 package spacesurvival.controller.gui;
 
 import spacesurvival.controller.gui.command.SwitchGUI;
+import spacesurvival.model.gameobject.takeable.Ammo;
+import spacesurvival.model.gameobject.takeable.AmmoType;
 import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.gui.game.EngineGame;
@@ -100,7 +102,11 @@ public class CtrlGame implements ControllerGUI {
         }
     }
 
-    public final void updateRoundState() {
+    public void updateBulletHUD(final AmmoType ammoType){
+        this.gui.setBulletHUD(ammoType);
+    }
+
+    public void updateRoundState() {
         if (this.engine.getCountEnemies() == 0) {
             System.out.println("finiti nemici, incremento round");
             this.engine.incrRound();

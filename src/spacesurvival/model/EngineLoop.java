@@ -175,6 +175,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
                 if (takeableGameObject instanceof Ammo) {
                     final Ammo ammo = (Ammo) takeableGameObject;
                     world.getShip().take(ammo);
+                    this.controlGame.updateBulletHUD(ammo.getType());
                 } else if (takeableGameObject instanceof Heart) {
                     final HeartType heartType = ((Heart) takeableGameObject).getType();
                     if (heartType == HeartType.HEAL) {

@@ -1,6 +1,7 @@
 package spacesurvival.view.game.concrete;
 
 import spacesurvival.model.World;
+import spacesurvival.model.gameobject.takeable.AmmoType;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.view.AbstractGUI;
 import spacesurvival.view.game.GUIGame;
@@ -205,5 +206,11 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
     @Override
     public void setMaxLifeBoss(final int maxLife) {
         this.lifeBoss.setMaximum(maxLife);    
+    }
+
+    @Override
+    public void setBulletHUD(final AmmoType ammoType) {
+        this.bullet.setWeapon(ammoType.getWeapon());
+        this.bullet.setBullet(ammoType.getBulletHud());
     }
 }
