@@ -11,7 +11,7 @@ import spacesurvival.utilities.gameobject.VelocityUtils;
 import java.util.Optional;
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.collision.bounding.BoundingBox;
-import spacesurvival.model.collision.eventgenerator.PhysicsComponent;
+import spacesurvival.model.collision.eventgenerator.EventComponent;
 
 public abstract class MainObject extends MovableObject {
     private int life;
@@ -21,7 +21,7 @@ public abstract class MainObject extends MovableObject {
     private Optional<P2d> target;
 
     public MainObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
-            final PhysicsComponent phys, final V2d velocity, final double acceleration, final MovementLogic movementLogic, final int life,
+            final EventComponent phys, final V2d velocity, final double acceleration, final MovementLogic movementLogic, final int life,
             final int impactDamage, final int score, final Optional<P2d> target) {
         super(engineImage, position, bb, phys, velocity, acceleration, movementLogic);
         this.life = life;

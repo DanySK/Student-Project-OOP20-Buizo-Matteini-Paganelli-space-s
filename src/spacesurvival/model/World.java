@@ -201,7 +201,7 @@ public class World {
 
     public void updateState() {
         this.getAllObjects().forEach(entity -> {
-            entity.updatePhysic(this);
+            entity.updateEvents(this);
         });
     }
 

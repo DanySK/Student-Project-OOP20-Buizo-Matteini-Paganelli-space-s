@@ -9,7 +9,7 @@ import spacesurvival.model.collision.bounding.BoundaryCollision;
 import spacesurvival.model.collision.bounding.RectBoundingBox;
 import spacesurvival.model.collision.event.hit.HitBorderEvent;
 
-public class FireEnemyComponent implements PhysicsComponent {
+public class FireEnemyComponent implements EventComponent {
 
     /**
      * Update the physics of the fire enemy.

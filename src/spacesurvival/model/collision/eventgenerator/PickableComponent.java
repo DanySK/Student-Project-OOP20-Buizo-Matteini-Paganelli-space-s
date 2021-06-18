@@ -3,7 +3,7 @@ package spacesurvival.model.collision.eventgenerator;
 import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.World;
 
-public class PickableComponent implements PhysicsComponent {
+public class PickableComponent implements EventComponent {
 
     /**
      * Update the physic of pickable object.

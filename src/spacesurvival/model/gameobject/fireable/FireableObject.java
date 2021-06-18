@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.collision.bounding.BoundingBox;
-import spacesurvival.model.collision.eventgenerator.PhysicsComponent;
+import spacesurvival.model.collision.eventgenerator.EventComponent;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
 import spacesurvival.model.gameobject.fireable.shootinglogic.FiringLogic;
@@ -18,7 +18,7 @@ public abstract class FireableObject extends MainObject {
     private FiringLogic firingLogic;
 
     public FireableObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
-            final PhysicsComponent phys, final V2d velocity, final double acceleration, final MovementLogic movementLogic,
+            final EventComponent phys, final V2d velocity, final double acceleration, final MovementLogic movementLogic,
             final int life, final int impactDamage, final int score, final Optional<P2d> target, final Weapon weapon,
             final FiringLogic firingLogic) {
         super(engineImage, position, bb, phys, velocity, acceleration, movementLogic, life, impactDamage, score, target);

@@ -14,7 +14,7 @@ import spacesurvival.model.collision.bounding.RectBoundingBox;
 import spacesurvival.model.collision.event.hit.HitBorderEvent;
 import spacesurvival.model.collision.event.hit.HitBulletEvent;
 
-public class BulletComponent implements PhysicsComponent {
+public class BulletComponent implements EventComponent {
 
     /**
      * Update the physics of the bullet.

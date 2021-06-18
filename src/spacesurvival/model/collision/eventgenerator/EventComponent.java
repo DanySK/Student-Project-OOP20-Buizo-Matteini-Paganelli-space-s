@@ -3,10 +3,10 @@ package spacesurvival.model.collision.eventgenerator;
 import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.World;
 
-public interface PhysicsComponent {
+public interface EventComponent {
 
     /**
-     * Update the physics of the object passed.
+     * Update the events of the object passed.
      * 
      * @param abstractObj object to which the physics will be updated
      * @param w represent the current world

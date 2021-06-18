@@ -10,13 +10,13 @@ import spacesurvival.model.Animation;
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.World;
 import spacesurvival.model.collision.bounding.BoundingBox;
-import spacesurvival.model.collision.eventgenerator.PhysicsComponent;
+import spacesurvival.model.collision.eventgenerator.EventComponent;
 
 
 public abstract class GameObject implements Collideable {
     private AffineTransform transform;
     private BoundingBox boundingBox;
-    private PhysicsComponent phys;
+    private EventComponent evComponent;
 
     private final Animation body;
     private final Animation effect;
@@ -24,7 +24,7 @@ public abstract class GameObject implements Collideable {
 //    private List<SoundPath> effectSounds;
 
     public GameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
-            final PhysicsComponent phys) {
+            final EventComponent eventComponent) {
         this.body = new Animation(engineImage);
         this.effect = new Animation(EngineImage.getTransparentEngineImage(engineImage));
 
@@ -32,7 +32,7 @@ public abstract class GameObject implements Collideable {
         initializeThread();
 
         this.boundingBox = bb;
-        this.phys = phys;
+        this.evComponent = eventComponent;
         this.setTransform(position);
 //        this.setEffectSounds(new LinkedList<>());
     }
@@ -135,16 +135,16 @@ public abstract class GameObject implements Collideable {
         this.body.setBody(engineImage);
     }
 
-    public final PhysicsComponent getPhys() {
-        return phys;
+    public final EventComponent getPhys() {
+        return evComponent;
     }
 
-    public void setPhys(final PhysicsComponent phys) {
-        this.phys = phys;
+    public void setPhys(final EventComponent phys) {
+        this.evComponent = phys;
     }
 
-    public void updatePhysic(final World w) {
-        phys.update(this, w);
+    public void updateEvents(final World w) {
+        evComponent.update(this, w);
     }
 
     public final Dimension getSize() {
@@ -169,7 +169,7 @@ public abstract class GameObject implements Collideable {
     @Override
     public String toString() {
         return "GameObject [transform=" + transform + ", boundingBox=" + boundingBox
-                + ", phys=" + phys + ", body=" + body + ", effect=" + effect + "]";
+                + ", phys=" + evComponent + ", body=" + body + ", effect=" + effect + "]";
     }
 
 }

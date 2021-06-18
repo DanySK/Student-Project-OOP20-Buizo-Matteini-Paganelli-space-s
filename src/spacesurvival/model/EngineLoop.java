@@ -105,10 +105,6 @@ public class EngineLoop extends Thread implements WorldEventListener {
         }
     }
 
-    protected void processInput() {
-//        gameState.getWorld().getShip().updateInput(controller);
-    }
-
     protected final void updateGame() {
         this.controlGame.updateStateWorld();
         this.checkEvents();

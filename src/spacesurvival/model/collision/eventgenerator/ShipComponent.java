@@ -14,7 +14,7 @@ import spacesurvival.model.collision.event.hit.HitMainGameObject;
 import spacesurvival.model.collision.event.hit.HitTakeableGameObject;
 
 
-public class ShipComponent implements PhysicsComponent {
+public class ShipComponent implements EventComponent {
 
     /**
      * Update the physics of the ship, check also the collision between ship and other game object.

@@ -6,7 +6,7 @@ import spacesurvival.model.EngineImage;
 import spacesurvival.model.World;
 import spacesurvival.model.collision.bounding.BoundingBox;
 import spacesurvival.model.collision.event.EventType;
-import spacesurvival.model.collision.eventgenerator.PhysicsComponent;
+import spacesurvival.model.collision.eventgenerator.EventComponent;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.model.worldevent.WorldEvent;
@@ -17,7 +17,7 @@ public class Heart extends TakeableGameObject {
     private HeartType type;
 
     public Heart(final EngineImage engineImage, final P2d position, final BoundingBox bb,
-            final PhysicsComponent phys, final HeartType type) {
+            final EventComponent phys, final HeartType type) {
         super(engineImage, position, bb, phys, type.getAnimation());
         this.type = type;
     }

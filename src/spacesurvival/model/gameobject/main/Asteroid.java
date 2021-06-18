@@ -20,12 +20,12 @@ import spacesurvival.model.collision.bounding.CircleBoundingBox;
 import spacesurvival.model.collision.event.EventType;
 import spacesurvival.model.collision.event.hit.HitBorderEvent;
 import spacesurvival.model.collision.event.hit.HitMainGameObject;
-import spacesurvival.model.collision.eventgenerator.PhysicsComponent;
+import spacesurvival.model.collision.eventgenerator.EventComponent;
 
 public class Asteroid extends MainObject {
 
     public Asteroid(final EngineImage engineImage, final P2d position, final BoundingBox bb,
-            final PhysicsComponent phys, final V2d velocity, final double acceleration, final MovementLogic movementLogic,
+            final EventComponent phys, final V2d velocity, final double acceleration, final MovementLogic movementLogic,
             final int life, final int impactDamage, final int score, final Optional<P2d> target) {
         super(engineImage, position, bb, phys, velocity, acceleration, movementLogic, life, impactDamage, score, target);
         this.setBoundingBox(CircleBoundingBox.createCircleBoundingBox(position, engineImage, this.getTransform()));
@@ -33,7 +33,7 @@ public class Asteroid extends MainObject {
     }
 
     public Asteroid(final EngineImage engineImage, final P2d position, final BoundingBox bb,
-            final PhysicsComponent phys, final V2d velocity, final double acceleration, final MovementLogic movementLogic,
+            final EventComponent phys, final V2d velocity, final double acceleration, final MovementLogic movementLogic,
             final int life, final int impactDamage, final int score, final Optional<P2d> target, final List<String> animation) {
         super(engineImage, position, bb, phys, velocity, acceleration, movementLogic, life, impactDamage, score, target);
         this.setBoundingBox(CircleBoundingBox.createCircleBoundingBox(position, engineImage, this.getTransform()));

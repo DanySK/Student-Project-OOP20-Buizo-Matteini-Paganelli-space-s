@@ -17,7 +17,7 @@ import spacesurvival.model.collision.bounding.BoundingBox;
 import spacesurvival.model.collision.bounding.RectBoundingBox;
 import spacesurvival.model.collision.event.EventType;
 import spacesurvival.model.collision.event.hit.HitBulletEvent;
-import spacesurvival.model.collision.eventgenerator.PhysicsComponent;
+import spacesurvival.model.collision.eventgenerator.EventComponent;
 
 public class Bullet extends MovableObject {
 
@@ -25,7 +25,7 @@ public class Bullet extends MovableObject {
     private Effect effect;
     private Weapon originWeapon;
 
-    public Bullet(final EngineImage engineImage, final P2d position, final BoundingBox bb, final PhysicsComponent phys,
+    public Bullet(final EngineImage engineImage, final P2d position, final BoundingBox bb, final EventComponent phys,
             final V2d velocity, final double acceleration, final int damage, final Effect effect, final Weapon originWeapon) {
         super(engineImage, position, bb, phys, velocity, acceleration, new FixedMovement());
         this.setBoundingBox(RectBoundingBox.createRectBoundingBox(position, engineImage, this.getTransform()));
