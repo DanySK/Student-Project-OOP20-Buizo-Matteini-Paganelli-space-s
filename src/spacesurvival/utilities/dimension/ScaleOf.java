@@ -17,7 +17,7 @@ public final class ScaleOf {
     /**
      * Scale of boss.
      */
-    public static final int BOSS = (int) (150 * SystemVariables.SCALE_X);
+    public static final int BOSS = (int) (50 * SystemVariables.SCALE_X);
 
     /**
      * Scale of the bullet object.

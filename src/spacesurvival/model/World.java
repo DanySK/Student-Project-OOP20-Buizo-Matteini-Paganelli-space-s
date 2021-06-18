@@ -1,8 +1,12 @@
 package spacesurvival.model;
 
 import java.awt.Rectangle;
+import java.awt.geom.AffineTransform;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -14,24 +18,22 @@ import spacesurvival.model.collision.physics.bounding.RectBoundingBox;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.gameobject.Edge;
 import spacesurvival.model.gameobject.GameObject;
+import spacesurvival.model.gameobject.Status;
 import spacesurvival.model.gameobject.factories.AbstractFactoryGameObject;
 import spacesurvival.model.gameobject.factories.ConcreteFactoryGameObject;
-import spacesurvival.model.gameobject.fireable.Boss;
-import spacesurvival.model.gameobject.fireable.FireEnemy;
 import spacesurvival.model.gameobject.fireable.FireableObject;
 import spacesurvival.model.gameobject.fireable.weapon.Bullet;
 import spacesurvival.model.gameobject.fireable.weapon.Weapon;
-import spacesurvival.model.gameobject.main.Asteroid;
-import spacesurvival.model.gameobject.main.ChaseEnemy;
 import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.gameobject.movable.MovableObject;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
-import spacesurvival.model.gameobject.takeable.ammo.Ammo;
 import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
-import spacesurvival.model.gameobject.takeable.heart.Heart;
 import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.model.worldevent.WorldEventListener;
+import spacesurvival.utilities.SystemVariables;
+import spacesurvival.utilities.dimension.Screen;
+import spacesurvival.utilities.path.SoundPath;
 
 public class World {
     private AbstractFactoryGameObject factoryGameObject = new ConcreteFactoryGameObject();
@@ -42,6 +44,12 @@ public class World {
     private Optional<FireableObject> boss;
     private final Set<TakeableGameObject> ammo = new HashSet<>();
     private final Set<TakeableGameObject> hearts = new HashSet<>();
+
+    private final List<Integer> queueScore = new ArrayList<>();
+    private final List<Integer> queueIncreaseLife = new ArrayList<>();
+    private final List<Integer> queueDecreaseLife = new ArrayList<>();
+    private final List<SoundPath> soundQueue = new LinkedList<>();
+
     private SpaceShipSingleton ship;
     private final RectBoundingBox mainBBox;
     private WorldEventListener evListener;
@@ -117,6 +125,7 @@ public class World {
 
     public void removeAsteroid(final MainObject asteroid) {
         asteroid.stopMoving();
+        asteroid.stopAnimation();
         asteroids.remove(asteroid);
     }
 
@@ -128,6 +137,7 @@ public class World {
 
     public void removeChaseEnemy(final MainObject chaseEnemy) {
         chaseEnemy.stopMoving();
+        chaseEnemy.stopAnimation();
         chaseEnemies.remove(chaseEnemy);
     }
 
@@ -140,6 +150,7 @@ public class World {
 
     public void removeFireEnemy(final MainObject fireEnemy) {
         fireEnemy.stopMoving();
+        fireEnemy.stopAnimation();
         fireEnemies.remove(fireEnemy);
     }
 
@@ -151,6 +162,7 @@ public class World {
 
     public void removeBoss() {
         if (this.boss.isPresent()) {
+            this.boss.get().stopAnimation();
             this.boss.get().stopMoving();
             this.boss = Optional.empty();
         }
@@ -160,20 +172,23 @@ public class World {
         ammo.add(factoryGameObject.createAmmo());
     }
 
-    public void removeAmmo(final TakeableGameObject obj) {
-        ammo.remove(obj);
+    public void removeAmmo(final TakeableGameObject ammoObj) {
+        ammoObj.stopAnimation();
+        ammo.remove(ammoObj);
     }
 
     public void addHeart() {
         hearts.add(factoryGameObject.createHeart());
     }
 
-    public void removeHeart(final TakeableGameObject obj) {
-        hearts.remove(obj);
+    public void removeHeart(final TakeableGameObject heart) {
+        heart.stopAnimation();
+        hearts.remove(heart);
     }
 
     public boolean removeBullet(final Bullet bullet) {
         bullet.stopMoving();
+        bullet.stopAnimation();
         if (getShipBullets().remove(bullet)) {
             return true;
         }
@@ -188,27 +203,11 @@ public class World {
         return found;
     }
 
-    public void removeMainObject(final MainObject object) {
-        if (object instanceof Asteroid) {
-            removeAsteroid(object);
-        } else if (object instanceof ChaseEnemy) {
-            removeChaseEnemy(object);
-        } else if (object instanceof FireEnemy) {
-            removeFireEnemy(object);
-        } else if (object instanceof Boss) {
-            removeBoss();
-        }
-    }
-
-    public void removeTakeableObject(final TakeableGameObject object) {
-        if (object instanceof Ammo) {
-            removeAmmo(object);
-        } else if (object instanceof Heart) {
-            removeHeart(object);
-        }
-    }
-
     public void removeAllEnemies() {
+        getAllEnemies().forEach(enemy -> {
+            enemy.stopAnimation();
+            enemy.stopMoving();
+        });
         this.chaseEnemies.clear();
         this.fireEnemies.clear();
         this.boss = Optional.empty();
@@ -216,7 +215,7 @@ public class World {
 
     public void updateState() {
         this.getAllObjects().forEach(entity -> {
-            entity.updatePhysics(this);
+            entity.updatePhysic(this);
         });
     }
 
@@ -243,6 +242,13 @@ public class World {
 
     public Optional<SpaceShipSingleton> checkCollisionWithShip(final RectBoundingBox rectBoundingBox) {
         if (collisionChecker.testRectangleToRectangle(rectBoundingBox, (RectBoundingBox) ship.getBoundingBox())) {
+            return Optional.of(this.ship);
+        }
+        return Optional.empty();
+    }
+
+    public Optional<SpaceShipSingleton> checkCollisionWithShip(final CircleBoundingBox circleBoundingBox) {
+        if (collisionChecker.testRectangleToCircle((RectBoundingBox) ship.getBoundingBox(), circleBoundingBox)) {
             return Optional.of(this.ship);
         }
         return Optional.empty();
@@ -301,6 +307,61 @@ public class World {
             }
         }
         return Optional.empty();
+    }
+
+
+    public void pacmanEffect(final MovableObject object, final Edge edge) {
+        AffineTransform newTransform = new AffineTransform();
+        switch (edge) {
+        case TOP:
+            newTransform = new AffineTransform(object.getTransform().getScaleX(), 
+                    object.getTransform().getShearY(), object.getTransform().getShearX(), 
+                    object.getTransform().getScaleY(), object.getTransform().getTranslateX(), 
+                    Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y - 100);
+            break;
+        case BOTTOM:
+            newTransform = new AffineTransform(object.getTransform().getScaleX(), 
+                    object.getTransform().getShearY(), object.getTransform().getShearX(), 
+                    object.getTransform().getScaleY(), object.getTransform().getTranslateX(), 
+                    100);
+            break;
+        case LEFT:
+            newTransform = new AffineTransform(object.getTransform().getScaleX(), 
+                    object.getTransform().getShearY(), object.getTransform().getShearX(), 
+                    object.getTransform().getScaleY(), Screen.WIDTH_FULL_SCREEN * SystemVariables.SCALE_X - 100, 
+                    object.getTransform().getTranslateY());
+            break;
+        case RIGHT: 
+            newTransform = new AffineTransform(object.getTransform().getScaleX(), 
+                    object.getTransform().getShearY(), object.getTransform().getShearX(), 
+                    object.getTransform().getScaleY(), 100, 
+                    object.getTransform().getTranslateY());
+            break;
+            default:
+                break;
+        }
+        object.setTransform(newTransform);
+    }
+
+    public List<Integer> getQueueScore() {
+        return this.queueScore;
+    }
+
+    public List<Integer> getQueueIncreaseLife() {
+        return this.queueIncreaseLife;
+    }
+
+    public List<Integer> getQueueDecreaseLife() {
+        return this.queueDecreaseLife;
+    }
+
+    public void damageObject(final MainObject object, final int damage, final Status status) {
+        //System.out.println("SONO INVINCIBILE ?  " + object.isInvincible());
+        if (!object.isInvincible()) {
+            object.decreaseLife(damage);
+            System.out.println("VITA DI " + object + " :  " + object.getLife());
+            object.setStatus(status);
+        }
     }
 
     public void notifyWorldEvent(final WorldEvent ev) {
@@ -439,6 +500,10 @@ public class World {
 
     public int getLifeBoss() {
         return this.boss.get().getLife();
+    }
+
+    public List<SoundPath> getSoundQueue() {
+        return this.soundQueue;
     }
 
 }

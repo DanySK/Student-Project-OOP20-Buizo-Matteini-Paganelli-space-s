@@ -5,12 +5,12 @@ import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.model.World;
 import spacesurvival.model.gameobject.GameObject;
-import spacesurvival.model.gameobject.fireable.Boss;
+import spacesurvival.model.gameobject.GameObjectUtils;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.utilities.dimension.Screen;
 
-import java.awt.*;
+import java.awt.Rectangle;
 import java.util.List;
 import java.util.Set;
 
@@ -73,7 +73,7 @@ public class EngineGame implements EngineGUI {
         this.hud.startTimer();
     }
 
-    public void stopTimer(){
+    public void stopTimer() {
         this.hud.stopTimer();
     }
 
@@ -121,27 +121,27 @@ public class EngineGame implements EngineGUI {
         this.hud.increaseLives(amount);
     }
 
-    public boolean hasLostLife() {
-        return this.world.getLifeShip() == 0;
-    }
+//    public boolean hasLostLife() {
+//        return this.getLives() == 0;
+//    }
 
     public void setLifeShip(final int life) {
         this.world.getShip().setLife(life);
     }
 
     public void resetLifeShip() {
-        this.world.getShip().increaseLife(100);
+        this.world.getShip().setLife(GameObjectUtils.SPACESHIP_LIFE);
     }
 
     public boolean isGameOver() {
-        return this.hud.isGameOver() && this.hasLostLife();
+        return this.getLives() <= 0 && this.getLifeShip() <= 0;
     }
 
     public World getWorld() {
         return this.world;
     }
 
-    public void restartGame(){
+    public void restartGame() {
         this.resetLifeShip();
         this.hud.resetLives();
         this.hud.resetTimer();

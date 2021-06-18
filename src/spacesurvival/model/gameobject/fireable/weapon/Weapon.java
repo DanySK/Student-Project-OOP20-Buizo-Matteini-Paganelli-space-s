@@ -15,7 +15,7 @@ import java.util.Set;
 
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.collision.physics.bounding.RectBoundingBox;
-import spacesurvival.model.collision.physics.component.BulletPhysicsComponent;
+import spacesurvival.model.collision.physics.component.BulletPhysic;
 
 public class Weapon {
 
@@ -63,7 +63,7 @@ public class Weapon {
         final P2d position = new P2d();
         final V2d velocity = VelocityUtils.BULLET_VEL;
         final double acceleration = VelocityUtils.NO_ACCELERATION;
-        final Bullet bullet = new Bullet(engineImage, position, new RectBoundingBox(), new BulletPhysicsComponent(),
+        final Bullet bullet = new Bullet(engineImage, position, new RectBoundingBox(), new BulletPhysic(),
                 velocity, acceleration, BulletUtils.NORMAL_BULLET_DAMAGE * multiplierDamage, ammoType.getEffect(), this);
 
         final AffineTransform newTransform = new AffineTransform();

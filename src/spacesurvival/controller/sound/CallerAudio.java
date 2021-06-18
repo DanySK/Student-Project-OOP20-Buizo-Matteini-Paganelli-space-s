@@ -95,6 +95,7 @@ public class CallerAudio {
      * Returns a string that specifies the possible commands this caller can execute.
      * @return return the string
      */
+    @Override
     public String toString() {
         return "CallerAudio{" 
                 + "CommandAudio= cmdAudioOn, cmdAudioOff, cmdResetTiming, "

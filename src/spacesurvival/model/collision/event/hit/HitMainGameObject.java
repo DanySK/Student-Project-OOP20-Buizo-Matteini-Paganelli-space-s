@@ -1,11 +1,14 @@
-package spacesurvival.model.collision.hitevent;
+package spacesurvival.model.collision.event.hit;
 
+import spacesurvival.model.World;
+import spacesurvival.model.collision.event.EventType;
 import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.worldevent.WorldEvent;
 
 public class HitMainGameObject implements WorldEvent {
     private final MainObject object;
     private final MainObject collidedObject;
+    private final EventType type = EventType.MAIN_GAME_OBJECT_EVENT;
 
     /**
      * Constructor for new HitMainGameObject, generated after the collision with MainGameObject to notify the world.
@@ -35,4 +38,16 @@ public class HitMainGameObject implements WorldEvent {
     public MainObject getCollidedObject() {
         return this.collidedObject;
     }
+
+    @Override
+    public EventType getType() {
+        return this.type;
+    }
+
+    @Override
+    public void manage(final World world) {
+        this.getObject().collided(world, this);
+        this.getCollidedObject().collided(world, this);
+    }
+
 }

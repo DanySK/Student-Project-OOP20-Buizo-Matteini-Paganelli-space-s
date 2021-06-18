@@ -6,11 +6,11 @@ import spacesurvival.model.gameobject.fireable.Boss;
 import java.util.Optional;
 
 import spacesurvival.model.World;
-import spacesurvival.model.collision.hitevent.HitBorderEvent;
+import spacesurvival.model.collision.event.hit.HitBorderEvent;
 import spacesurvival.model.collision.physics.BoundaryCollision;
 import spacesurvival.model.collision.physics.bounding.RectBoundingBox;
 
-public class BossPhysicsComponent implements PhysicsComponent {
+public class BossPhysic implements PhysicsComponent {
 
     /**
      * Update the physics of the boss.
@@ -18,6 +18,7 @@ public class BossPhysicsComponent implements PhysicsComponent {
      * @param abstractObj the boss
      * @param w represent the current world
      */
+    @Override
     public void update(final  GameObject abstractObj, final World w) {
         final Boss boss = (Boss) abstractObj;
         final RectBoundingBox boundingBox = w.getMainBBox();

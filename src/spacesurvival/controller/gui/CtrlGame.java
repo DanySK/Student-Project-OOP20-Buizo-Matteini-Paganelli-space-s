@@ -12,7 +12,6 @@ import spacesurvival.model.MovementKeyListener;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.view.GUI;
 import spacesurvival.view.game.GUIGame;
-
 import java.awt.event.KeyListener;
 
 public class CtrlGame implements ControllerGUI {
@@ -21,7 +20,7 @@ public class CtrlGame implements ControllerGUI {
 
     private final SwitchGUI switchGUI;
 
-    public CtrlGame(final EngineGame engine, final GUIGame gui){
+    public CtrlGame(final EngineGame engine, final GUIGame gui) {
         this.engine = engine;
         this.gui = gui;
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
@@ -91,6 +90,7 @@ public class CtrlGame implements ControllerGUI {
         this.gui.setRound(this.engine.getRound());
         this.gui.setNEnemies(this.engine.getCountEnemies());
         this.gui.setNHeart(this.engine.getLives());
+        System.out.println("HUD " + this.engine.getLifeShip());
         this.gui.setLifeShip(this.engine.getLifeShip());
         if (this.getWorld().getBoss().isPresent()) {
             this.gui.setLifeBoss(this.engine.getLifeBoss());
@@ -112,14 +112,7 @@ public class CtrlGame implements ControllerGUI {
     }
 
     public final void resetEntities() {
-        this.getWorld().removeAllEnemies();
-        this.getWorld().addAsteroid();
-        this.getWorld().addAsteroid();
-        this.getWorld().addAsteroid();
-        this.getWorld().addAsteroid();
-        this.getWorld().addAsteroid();
-        this.getWorld().addAsteroid();
-        this.getWorld().addAsteroid();
+        //this.getWorld().removeAllEnemies();
         this.getWorld().addAsteroid();
         this.getWorld().addAsteroid();
         this.getWorld().addAsteroid();
@@ -172,25 +165,36 @@ public class CtrlGame implements ControllerGUI {
     }
 
     public final void decreaseLife(final int damage) {
-        final int effectDamage = this.damageOverFlow(damage) ? this.engine.getLifeShip() : damage;
-
-        if (this.damageOverFlow(damage)) {
-            if (this.hasLivesShip()) {
-                this.engine.resetLifeShip();
-            }
-            this.engine.decreaseLives();
-        }
-
-        this.engine.decreaseLifeShip(effectDamage);
-
-        if (this.hasLivesShip() && this.engine.getLifeShip() == 0) {
-            this.engine.decreaseLives();
+        //final int effectDamage = this.damageOverFlow(damage) ? this.engine.getLifeShip() : damage;
+        //30 VITA  e  40 DANNO
+        System.out.println("VITA " + getShip().getLife());
+        System.out.println("DANNO " + damage);
+        if (this.damageOverFlow(damage) && this.hasLivesShip()) {
+            System.out.println("RESETTO E DECREMENTO");
             this.engine.resetLifeShip();
+            this.engine.decreaseLives();
+            System.out.println("VITA RESETTATA" + getShip().getLife());
+            System.out.println("VITE RIMASTE" + this.engine.getLives());
+
+        } else {
+            this.engine.decreaseLifeShip(damage);
+//            if (this.hasLivesShip() && this.engine.getLifeShip() == 0) {
+//                this.engine.resetLifeShip();
+//                this.engine.decreaseLives();
+//            }
         }
     }
 
     public final void increaseLife(final int healAmount) {
-        this.getShip().increaseLife(healAmount);
+        final int totalLife = this.getShip().getLife() + healAmount;
+        int newLife = totalLife % GameObjectUtils.SPACESHIP_LIFE;
+        int newLives = (int) (totalLife / GameObjectUtils.SPACESHIP_LIFE);
+        if (newLife == 0) {
+            newLife = GameObjectUtils.SPACESHIP_LIFE;
+            newLives--;
+        }
+        this.getShip().setLife(newLife);
+        increaseLives(newLives);
     }
 
     public final void increaseLives(final int amount) {
@@ -198,11 +202,11 @@ public class CtrlGame implements ControllerGUI {
     }
 
     private boolean damageOverFlow(final int damage) {
-        return this.engine.getLifeShip() - damage < 0;
+        return this.engine.getLifeShip() - damage <= 0;
     }
 
     private boolean hasLivesShip() {
-        return this.engine.getLives() > 1;
+        return this.engine.getLives() > 0;
     }
 
     public final void repaintWorld() {

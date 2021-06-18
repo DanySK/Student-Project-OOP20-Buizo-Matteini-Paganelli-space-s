@@ -6,13 +6,14 @@ import spacesurvival.utilities.gameobject.VelocityUtils;
 import spacesurvival.model.common.V2d;
 
 public class UpCommand implements CommandGameObject {
-    private static final double TOLLERANCE = 0.2;
+    private static final double TOLLERANCE = 1;
 
     /** 
      * Accelerate the ship forward.
      * 
      * @param ship the controlled ship 
      */
+    @Override
     public void execute(final SpaceShipSingleton ship) {
         V2d vel = ship.getVelocity();
         if (Math.abs(vel.getY()) < TOLLERANCE) {

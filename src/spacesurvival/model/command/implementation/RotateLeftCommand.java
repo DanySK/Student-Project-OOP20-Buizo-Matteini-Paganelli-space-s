@@ -12,6 +12,7 @@ public class RotateLeftCommand implements CommandGameObject {
      * 
      * @param ship the controlled ship 
      */
+    @Override
     public void execute(final SpaceShipSingleton ship) {
         final AffineTransform transform = ship.getTransform();
         transform.rotate(Math.toRadians(-GameObjectUtils.SPACESHIP_ROTATION), ship.getSize().getWidth() / 2, ship.getSize().getHeight() / 2);

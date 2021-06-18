@@ -53,7 +53,7 @@ public class GameObjectUtils {
      * */
 
     public static final int HEAL_AMOUNT = 30;
-    public static final int LIFE_UP_AMOUNT = 1;
+    public static final int LIFE_UP_AMOUNT = 100;
 
     public static final int FIRE_DAMAGE = 10;
     

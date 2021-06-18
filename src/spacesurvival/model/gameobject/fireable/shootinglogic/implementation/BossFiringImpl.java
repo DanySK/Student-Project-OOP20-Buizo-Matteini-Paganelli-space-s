@@ -13,6 +13,7 @@ public class BossFiringImpl implements FiringLogic {
      * 
      * @param fireableObject object which which will fire
      */
+    @Override
     public void startFiring(final FireableObject fireableObject) {
         new Thread(() -> {
             while (fireableObject.isAlive()) {
@@ -27,6 +28,7 @@ public class BossFiringImpl implements FiringLogic {
      * 
      * @param fireableObject object which which will fire
      */
+    @Override
     public void startChangingAmmo(final FireableObject fireableObject) {
         new Thread(() -> {
             while (fireableObject.isAlive()) {

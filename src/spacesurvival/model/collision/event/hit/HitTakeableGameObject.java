@@ -1,10 +1,13 @@
-package spacesurvival.model.collision.hitevent;
+package spacesurvival.model.collision.event.hit;
 
+import spacesurvival.model.World;
+import spacesurvival.model.collision.event.EventType;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.model.worldevent.WorldEvent;
 
 public class HitTakeableGameObject implements WorldEvent {
     private final TakeableGameObject collidedObject;
+    private final EventType type = EventType.TAKEABLE_OBJECT_EVENT;
 
     /**
      * Constructor for new HitTakeableGameObject, generated after the collision with TakeableGameObject to notify the world.
@@ -22,5 +25,15 @@ public class HitTakeableGameObject implements WorldEvent {
      */
     public TakeableGameObject getCollidedObject() {
         return this.collidedObject;
+    }
+
+    @Override
+    public EventType getType() {
+        return this.type;
+    }
+
+    @Override
+    public void manage(final World world) {
+        this.getCollidedObject().collided(world, this);
     }
 }

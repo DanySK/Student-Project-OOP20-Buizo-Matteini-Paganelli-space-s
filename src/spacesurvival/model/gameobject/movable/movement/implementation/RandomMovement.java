@@ -46,7 +46,6 @@ public class RandomMovement implements MovementLogic {
         final double directionX = ThreadLocalRandom.current().nextInt(-1, 1);
         final double directionY = ThreadLocalRandom.current().nextInt(-1, 1);
         final V2d newVelocity = new V2d(directionX, directionY);
-        System.out.println("CAMBIO VELOCITA" + newVelocity);
         movableObject.setVelocity(newVelocity);
     }
 

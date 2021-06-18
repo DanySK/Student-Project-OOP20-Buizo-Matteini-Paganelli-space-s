@@ -4,6 +4,9 @@ import spacesurvival.model.gameobject.fireable.FireableObject;
 import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 
+/**
+ * Contract for the factory which will create all objects for the game
+ */
 public abstract class AbstractFactoryGameObject {
 
     public abstract MainObject createAsteroid();

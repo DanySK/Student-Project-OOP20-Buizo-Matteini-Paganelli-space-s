@@ -7,14 +7,14 @@ import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.model.World;
-import spacesurvival.model.collision.hitevent.HitBorderEvent;
-import spacesurvival.model.collision.hitevent.HitMainGameObject;
-import spacesurvival.model.collision.hitevent.HitTakeableGameObject;
+import spacesurvival.model.collision.event.hit.HitBorderEvent;
+import spacesurvival.model.collision.event.hit.HitMainGameObject;
+import spacesurvival.model.collision.event.hit.HitTakeableGameObject;
 import spacesurvival.model.collision.physics.BoundaryCollision;
 import spacesurvival.model.collision.physics.bounding.RectBoundingBox;
 
 
-public class ShipPhysicsComponent implements PhysicsComponent {
+public class ShipPhysic implements PhysicsComponent {
 
     /**
      * Update the physics of the ship, check also the collision between ship and other game object.
@@ -22,6 +22,7 @@ public class ShipPhysicsComponent implements PhysicsComponent {
      * @param abstractObj the ship
      * @param w represent the current world
      */
+    @Override
     public void update(final GameObject abstractObj, final World w) {
         final SpaceShipSingleton ship = (SpaceShipSingleton) abstractObj;
 

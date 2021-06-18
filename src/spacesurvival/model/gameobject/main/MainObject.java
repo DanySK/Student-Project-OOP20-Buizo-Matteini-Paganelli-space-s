@@ -8,7 +8,6 @@ import spacesurvival.model.gameobject.movable.MovableObject;
 import spacesurvival.model.gameobject.movable.movement.MovementLogic;
 import spacesurvival.utilities.Delay;
 import spacesurvival.utilities.gameobject.VelocityUtils;
-
 import java.util.Optional;
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.collision.physics.bounding.BoundingBox;
@@ -54,11 +53,26 @@ public abstract class MainObject extends MovableObject {
 
     public void decreaseLife(final int damage) {
         this.life -= damage;
-        System.out.println(this.getPhys());
+        //System.out.println(this.getPhys());
         System.out.println("Ahia danno ricevuto: " + damage);
         System.out.println("Vita rimasta: " + this.life);
     }
-	
+
+//    if (this.damageOverFlow(damage) && this.hasLivesShip()) {
+//        System.out.println("RESETTO E DECREMENTO");
+//        this.engine.resetLifeShip();
+//        this.engine.decreaseLives();
+//        System.out.println("VITA RESETTATA" + getShip().getLife());
+//        System.out.println("VITE RIMASTE" + this.engine.getLives());
+//
+//    } else {
+//        this.engine.decreaseLifeShip(damage);
+////        if (this.hasLivesShip() && this.engine.getLifeShip() == 0) {
+////            this.engine.resetLifeShip();
+////            this.engine.decreaseLives();
+////        }
+//    }
+
     public int getImpactDamage() {
         return impactDamage;
     }
@@ -70,7 +84,7 @@ public abstract class MainObject extends MovableObject {
     public Status getStatus() {
         return this.status;
     }
-	
+
     public void setStatus(final Status status) {
         if (!this.status.equals(status)) {
             System.out.println("STATUS   " + status);
@@ -105,7 +119,7 @@ public abstract class MainObject extends MovableObject {
     public boolean isInvincible() {
         return this.status == Status.INVINCIBLE;
     }
-	
+
     public void onStatus() {
         switch (this.status) {
         case INVINCIBLE:
@@ -129,7 +143,7 @@ public abstract class MainObject extends MovableObject {
         mySleep(milliseconds);
         this.setStatus(Status.NORMAL);
     }
-	
+
     public void onFire() {
         while (this.status == Status.ON_FIRE) {
             this.decreaseLife(GameObjectUtils.FIRE_DAMAGE);
@@ -137,7 +151,7 @@ public abstract class MainObject extends MovableObject {
             mySleep(Delay.FIRE_EFFECT);
         }
     }
-	
+
     public void frozen() {
         final V2d initialVel = this.getVelocity();
         //System.out.println("SALVO VELOCITA INIZIALE " + initialVel);
@@ -148,7 +162,7 @@ public abstract class MainObject extends MovableObject {
         this.setVelocity(initialVel);
         //System.out.println("RISETTO VELOCITA INIZIALE " + this.getVelocity());
     }
-	
+
     public void paralized() {
         final V2d initialVel = this.getVelocity();
         this.setVelocity(VelocityUtils.NO_VELOCITY);
@@ -173,7 +187,7 @@ public abstract class MainObject extends MovableObject {
             e.printStackTrace();
         }
     }
-	
+
     @Override
     public String toString() {
         return "MainGameObject [life=" + life + ", impactDamage=" + impactDamage + ", state=" + status 

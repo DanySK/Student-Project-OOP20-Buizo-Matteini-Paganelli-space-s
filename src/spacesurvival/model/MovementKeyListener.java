@@ -27,6 +27,7 @@ public class MovementKeyListener implements KeyListener {
      * 
      * @param e KeyEvent the event of the pressed key
      */
+    @Override
     public void keyTyped(final KeyEvent e) {
     }
 
@@ -35,6 +36,7 @@ public class MovementKeyListener implements KeyListener {
      * 
      * @param e KeyEvent the event of the pressed key
      */
+    @Override
     public void keyPressed(final KeyEvent e) {
         final int pressedKeyCode = e.getKeyCode();
         System.out.println(pressedKeyCode);
@@ -49,6 +51,7 @@ public class MovementKeyListener implements KeyListener {
      * 
      * @param e KeyEvent the event of the released key
      */
+    @Override
     public void keyReleased(final KeyEvent e) {
         final int pressedKeyCode = e.getKeyCode();
         if (canHandleKey(pressedKeyCode)) {
