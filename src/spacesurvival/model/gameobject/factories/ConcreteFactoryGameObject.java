@@ -112,7 +112,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
     public TakeableGameObject createAmmo() {
         final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinPerk.FIRE0);
         final P2d position = GameObjectUtils.generateRandomPoint();
-        final AmmoType ammoType = AmmoType.FIRE;// AmmoType.random();
+        final AmmoType ammoType = AmmoType.ELECTRIC;// AmmoType.random();
 
         return new Ammo(engineImage, position, new CircleBoundingBox(), new PickablePhysic(),
                 ammoType);

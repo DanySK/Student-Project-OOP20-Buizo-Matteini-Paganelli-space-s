@@ -11,9 +11,9 @@ public enum Status {
     INVINCIBLE(AnimationEffect.LIST_INVINCIBLE, DurationUtils.INVINCIBLE),
     ON_FIRE(AnimationEffect.LIST_BURN, DurationUtils.ON_FIRE),
     FROZEN(AnimationEffect.LIST_ICE, DurationUtils.FROZEN),
-    PARALIZED(List.of(), DurationUtils.PARALIZED),
+    PARALIZED(AnimationEffect.LIST_ELECTRIC, DurationUtils.PARALIZED),
     HEALED(AnimationEffect.LIST_LIFE_UP),
-    LIVES_INCREASED(List.of());
+    LIVES_INCREASED(AnimationEffect.LIST_HEALED);
 
     private final List<String> animation;
     private final int duration;

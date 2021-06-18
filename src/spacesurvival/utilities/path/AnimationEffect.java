@@ -147,52 +147,108 @@ public final class AnimationEffect {
     /** 
      * 1° frame path burn effect.
      */
-    public static final String BURN0 = Paths.get(MainFolder.EFFECT, BURN, "burn_01.png").toString();
+    public static final String BURN0 = Paths.get(MainFolder.EFFECT, BURN, "burn_1.png").toString();
     
     /** 
      * 2° frame path burn effect.
      */
-    public static final String BURN1 = Paths.get(MainFolder.EFFECT, BURN, "burn_02.png").toString();
+    public static final String BURN1 = Paths.get(MainFolder.EFFECT, BURN, "burn_2.png").toString();
     
     /** 
      * 3° frame path burn effect.
      */
-    public static final String BURN2 = Paths.get(MainFolder.EFFECT, BURN, "burn_03.png").toString();
+    public static final String BURN2 = Paths.get(MainFolder.EFFECT, BURN, "burn_3.png").toString();
     
     /** 
      * 4° frame path burn effect.
      */
-    public static final String BURN3 = Paths.get(MainFolder.EFFECT, BURN, "burn_04.png").toString();
+    public static final String BURN3 = Paths.get(MainFolder.EFFECT, BURN, "burn_4.png").toString();
     
     /** 
      * 5° frame path burn effect.
      */
-    public static final String BURN4 = Paths.get(MainFolder.EFFECT, BURN, "burn_05.png").toString();
+    public static final String BURN4 = Paths.get(MainFolder.EFFECT, BURN, "burn_5.png").toString();
     
     /** 
      * 6° frame path burn effect.
      */
-    public static final String BURN5 = Paths.get(MainFolder.EFFECT, BURN, "burn_06.png").toString();
+    public static final String BURN5 = Paths.get(MainFolder.EFFECT, BURN, "burn_6.png").toString();
     
     /** 
      * 7° frame path burn effect.
      */
-    public static final String BURN6 = Paths.get(MainFolder.EFFECT, BURN, "burn_07.png").toString();
+    public static final String BURN6 = Paths.get(MainFolder.EFFECT, BURN, "burn_7.png").toString();
     
     /** 
      * 8° frame path burn effect.
      */
-    public static final String BURN7 = Paths.get(MainFolder.EFFECT, BURN, "burn_08.png").toString();
+    public static final String BURN7 = Paths.get(MainFolder.EFFECT, BURN, "burn_8.png").toString();
     
     /** 
      * 9° frame path burn effect.
      */
-    public static final String BURN8 = Paths.get(MainFolder.EFFECT, BURN, "burn_09.png").toString();
+    public static final String BURN8 = Paths.get(MainFolder.EFFECT, BURN, "burn_9.png").toString();
     
+    /** 
+     * 10° frame path burn effect.
+     */
+    public static final String BURN9 = Paths.get(MainFolder.EFFECT, BURN, "burn_10.png").toString();
+    
+    /** 
+     * 11° frame path burn effect.
+     */
+    public static final String BURN10 = Paths.get(MainFolder.EFFECT, BURN, "burn_11.png").toString();
+    
+    /** 
+     * 12° frame path burn effect.
+     */
+    public static final String BURN11 = Paths.get(MainFolder.EFFECT, BURN, "burn_12.png").toString();
+    
+    /** 
+     * 13° frame path burn effect.
+     */
+    public static final String BURN12 = Paths.get(MainFolder.EFFECT, BURN, "burn_13.png").toString();
+    
+    /** 
+     * 14° frame path burn effect.
+     */
+    public static final String BURN13 = Paths.get(MainFolder.EFFECT, BURN, "burn_14.png").toString();
+    
+    /** 
+     * 15° frame path burn effect.
+     */
+    public static final String BURN14 = Paths.get(MainFolder.EFFECT, BURN, "burn_15.png").toString();
+    
+    /** 
+     * 16° frame path burn effect.
+     */
+    public static final String BURN15 = Paths.get(MainFolder.EFFECT, BURN, "burn_16.png").toString();
+    
+    /** 
+     * 17° frame path burn effect.
+     */
+    public static final String BURN16 = Paths.get(MainFolder.EFFECT, BURN, "burn_17.png").toString();
+    
+    /** 
+     * 18° frame path burn effect.
+     */
+    public static final String BURN17 = Paths.get(MainFolder.EFFECT, BURN, "burn_18.png").toString();
+    
+    /** 
+     * 19° frame path burn effect.
+     */
+    public static final String BURN18 = Paths.get(MainFolder.EFFECT, BURN, "burn_19.png").toString();
+    
+    /** 
+     * 20° frame path burn effect.
+     */
+    public static final String BURN19 = Paths.get(MainFolder.EFFECT, BURN, "burn_20.png").toString();
+
     /** 
      * Sequence frame for burn effect.
      */
-    public static final List<String> LIST_BURN = List.of(BURN0, BURN1, BURN2, BURN3, BURN4, BURN5, BURN6, BURN7, BURN8);
+    public static final List<String> LIST_BURN = List.of(BURN0, BURN1, BURN2, BURN3, BURN4, BURN5, BURN6, BURN7, BURN8,
+            BURN9, BURN10, BURN11, BURN12, BURN13, BURN14, BURN15, BURN16, BURN17, BURN18,BURN19);
 
     
     /** 
