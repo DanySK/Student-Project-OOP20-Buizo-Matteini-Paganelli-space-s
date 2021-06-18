@@ -11,8 +11,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class EnginePause implements EngineGUI{
+    /**
+     * Dimension of the pause GUI.
+     */
     public static final Rectangle RECTANGLE = Screen.RECTANGLE_MINI;
+    /**
+     * Dimension of the pause GUI.
+     */
     public static final String TITLE = "PAUSE";
+    /**
+     * Dimension of the pause GUI.
+     */
     public static final int N_BUTTONS = 4;
 
     private final ActionGUI mainAction;
@@ -42,7 +51,7 @@ public class EnginePause implements EngineGUI{
     }
 
     @Override
-    public void setVisibility(Visibility state) {
+    public void setVisibility(final Visibility state) {
         this.visibility = state;
     }
 

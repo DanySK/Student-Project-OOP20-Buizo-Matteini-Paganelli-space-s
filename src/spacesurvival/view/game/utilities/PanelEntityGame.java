@@ -6,14 +6,13 @@ import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.Pair;
 
 import spacesurvival.model.gameobject.GameObjectUtils;
-import spacesurvival.model.gameobject.MainGameObject;
-import spacesurvival.model.gameobject.enemy.Boss;
-import spacesurvival.model.gameobject.enemy.ChaseEnemy;
+import spacesurvival.model.gameobject.fireable.Boss;
+import spacesurvival.model.gameobject.fireable.weapon.Bullet;
 import spacesurvival.model.gameobject.main.Asteroid;
-
+import spacesurvival.model.gameobject.main.ChaseEnemy;
+import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
-import spacesurvival.model.gameobject.weapon.Bullet;
 import spacesurvival.utilities.ThreadUtils;
 import spacesurvival.view.game.utilities.logicColor.LogicColor;
 import spacesurvival.view.game.utilities.logicColor.LogicColorShip;
@@ -22,10 +21,8 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -92,7 +89,7 @@ public class PanelEntityGame extends JPanel{
 
     private void drawLife(final Graphics2D g2d, final GameObject gameObject){
         final LogicColor logicColor = new LogicColorShip();
-        int life = Math.max(((MainGameObject) gameObject).getLife(), 0);
+        int life = Math.max(((MainObject) gameObject).getLife(), 0);
         if(gameObject instanceof ChaseEnemy){
             g2d.setColor(logicColor.setColor(GameObjectUtils.CHASE_ENEMY_LIFE, life));
             life = (int) (life * gameObject.getWidth() / GameObjectUtils.CHASE_ENEMY_LIFE);
@@ -122,7 +119,7 @@ public class PanelEntityGame extends JPanel{
     }
 
     private void putObjectFromWorld() {
-        this.world.get().getAllEntitiesExceptionBullets().forEach(obj -> {
+        this.world.get().getAllObjectsExceptBullets().forEach(obj -> {
             final Pair<Image, Image> pair = new Pair<>(obj.getImgBody(), obj.getImgEffect());
             this.objects.put(obj, pair);
         });
@@ -132,7 +129,7 @@ public class PanelEntityGame extends JPanel{
         final Set<GameObject> objDelet = new HashSet<>();
 
         this.objects.forEach((key, value) -> {
-            if (!this.world.get().getAllEntitiesExceptionBullets().contains(key)) {
+            if (!this.world.get().getAllObjectsExceptBullets().contains(key)) {
                 objDelet.add(key);
             }
         });
@@ -155,7 +152,7 @@ public class PanelEntityGame extends JPanel{
     }
 
     protected final void waitForNextFrame(final long current) {
-        long dt = System.currentTimeMillis() - current;
+        final long dt = System.currentTimeMillis() - current;
         if (dt < 60) {
             ThreadUtils.sleep(60 - dt);
         }

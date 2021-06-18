@@ -4,7 +4,7 @@ package spacesurvival.model;
  */
 
 public class Pair<X, Y> {
-	
+
     private final X x;
     private final Y y;
 
@@ -31,8 +31,6 @@ public class Pair<X, Y> {
         return result;
         }
 
- 
-    @SuppressWarnings("rawtypes")
     @Override
     public boolean equals(final Object obj) {
         if (this == obj) {

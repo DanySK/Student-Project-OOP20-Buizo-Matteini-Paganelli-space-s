@@ -10,9 +10,11 @@ import spacesurvival.view.sound.utilities.MixerSound;
 import spacesurvival.view.utilities.BtnAction;
 import spacesurvival.view.sound.utilities.SliderType;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 import java.util.List;
+
+import javax.swing.JLabel;
 
 public class GUISoundConcrete extends AbstractGUI implements GUISound {
     private final JLabel lbTitle;

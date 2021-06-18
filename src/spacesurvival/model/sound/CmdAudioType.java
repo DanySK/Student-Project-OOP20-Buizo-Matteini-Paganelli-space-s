@@ -1,5 +1,10 @@
 package spacesurvival.model.sound;
 
+/**
+ * 
+ * Enum for creating 
+ *
+ */
 public enum CmdAudioType {
     /** 
      * Type of command to pass to the CallerAudio to start sound.

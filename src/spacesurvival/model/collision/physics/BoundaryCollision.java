@@ -42,6 +42,7 @@ public class BoundaryCollision {
      * 
      * @return a string describing the collision
      */
+    @Override
     public String toString() {
         return "BoundaryCollision{" 
                 + "edge=" + edge 

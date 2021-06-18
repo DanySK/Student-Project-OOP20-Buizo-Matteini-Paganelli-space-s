@@ -4,11 +4,13 @@ import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.utilities.dimension.Screen;
-
-import java.awt.*;
+import java.awt.Rectangle;
 import java.util.List;
 
 public class EngineLoading implements EngineGUI {
+    /**
+     * Rectangle representing the full screen.
+     */
     public static final Rectangle RECTANGLE = Screen.RECTANGLE_FULLSCREEN;
     private final ActionGUI id;
 
@@ -17,7 +19,7 @@ public class EngineLoading implements EngineGUI {
 
     private Visibility visibility;
 
-    public EngineLoading(){
+    public EngineLoading() {
         this.id = ActionGUI.ID_LOADING;
         this.loading = 0;
         this.load = false;
@@ -40,7 +42,7 @@ public class EngineLoading implements EngineGUI {
     }
 
     @Override
-    public void setVisibility(Visibility state) {
+    public void setVisibility(final Visibility state) {
         this.visibility = state;
     }
 
@@ -54,19 +56,35 @@ public class EngineLoading implements EngineGUI {
         return List.of();
     }
 
-    public void incrLoading(){
+    /**
+     * Increment the loading bar.
+     */
+    public void incrLoading() {
         this.loading++;
     }
 
-    public int getLoading(){
+    /**
+     * Get the loading progress.
+     * 
+     * @return an int representing the loading progress
+     */
+    public int getLoading() {
         return this.loading;
     }
 
-    public void load(){
+    /**
+     * Set the load true.
+     */
+    public void load() {
         this.load = true;
     }
 
-    public boolean isLoad(){
+    /**
+     * Return the loading state.
+     * 
+     * @return true if is loaded
+     */
+    public boolean isLoad() {
         return this.load;
     }
 }

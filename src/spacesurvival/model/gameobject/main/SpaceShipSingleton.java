@@ -1,39 +1,50 @@
 package spacesurvival.model.gameobject.main;
 
+import spacesurvival.model.gameobject.Edge;
 import spacesurvival.model.gameobject.GameObjectUtils;
-import spacesurvival.model.gameobject.enemy.FireableObject;
-import spacesurvival.model.gameobject.takeable.Ammo;
-import spacesurvival.model.movement.ControlledMovement;
-import spacesurvival.model.movement.Movement;
+import spacesurvival.model.gameobject.Status;
+import spacesurvival.model.gameobject.fireable.FireableObject;
+import spacesurvival.model.gameobject.fireable.shootinglogic.FiringLogic;
+import spacesurvival.model.gameobject.fireable.shootinglogic.implementation.NoFiringImpl;
+import spacesurvival.model.gameobject.fireable.weapon.Weapon;
+import spacesurvival.model.gameobject.movable.movement.MovementLogic;
+import spacesurvival.model.gameobject.movable.movement.implementation.ControlledMovement;
+import spacesurvival.model.gameobject.takeable.ammo.Ammo;
+import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
-import spacesurvival.model.gameobject.weapon.Weapon;
-import spacesurvival.model.gameobject.weapon.shootinglogic.FiringLogic;
-import spacesurvival.model.gameobject.weapon.shootinglogic.implementation.NoFiringImpl;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
-
 import spacesurvival.model.EngineImage;
+import spacesurvival.model.World;
+import spacesurvival.model.collision.event.EventType;
+import spacesurvival.model.collision.event.hit.HitBorderEvent;
+import spacesurvival.model.collision.event.hit.HitMainGameObject;
 import spacesurvival.model.collision.physics.bounding.BoundingBox;
 import spacesurvival.model.collision.physics.bounding.RectBoundingBox;
 import spacesurvival.model.collision.physics.component.PhysicsComponent;
-import spacesurvival.model.collision.physics.component.ShipPhysicsComponent;
+import spacesurvival.model.collision.physics.component.ShipPhysic;
 import spacesurvival.utilities.Score;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;
+import spacesurvival.utilities.gameobject.VelocityUtils;
+import spacesurvival.utilities.path.SoundPath;
 import spacesurvival.utilities.path.skin.SkinShip;
 
 public final class SpaceShipSingleton extends FireableObject {
 
-    private V2d acceleration;
+    private List<SoundPath> soundQueue = new LinkedList<>();
 
     // Eager and unique instance of this class for Threadsafing
     private static SpaceShipSingleton spaceShip = new SpaceShipSingleton(
             new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinShip.NORMAL0),
             Screen.POINT_CENTER_FULLSCREEN,
             new RectBoundingBox(),
-            new ShipPhysicsComponent(),
-            GameObjectUtils.SPACESHIP_VEL,
+            new ShipPhysic(),
+            VelocityUtils.SPACESHIP_VEL,
+            VelocityUtils.SPACESHIP_ACCELERATION,
             new ControlledMovement(),
             GameObjectUtils.SPACESHIP_LIFE,
             GameObjectUtils.ASTEROID_DAMAGE,
@@ -47,12 +58,11 @@ public final class SpaceShipSingleton extends FireableObject {
     * Invisible class constructor specifying space ship initial position and image path.
     */
     private SpaceShipSingleton(final EngineImage engineImage, final P2d position, final BoundingBox bb,
-            final PhysicsComponent phys, final V2d velocity, final Movement movement, final int life,
+            final PhysicsComponent phys, final V2d velocity, final double acceleration, final MovementLogic movementLogic, final int life,
             final int impactDamage, final int score, final Optional<P2d> target, final Weapon weapon,
             final FiringLogic firingLogic) {
-        super(engineImage, position, bb, phys, velocity, movement, life, impactDamage, score, target, weapon, firingLogic);
+        super(engineImage, position, bb, phys, velocity, acceleration, movementLogic, life, impactDamage, score, target, weapon, firingLogic);
         this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage, this.getTransform()));
-        this.acceleration = new V2d(1, 1);
     }
 
     /**
@@ -60,22 +70,6 @@ public final class SpaceShipSingleton extends FireableObject {
      */
     public static SpaceShipSingleton getSpaceShip() {
         return spaceShip;
-    }
-
-    /**
-     * @return space ship acceleration
-     */
-    public V2d getAcceleration() {
-        return this.acceleration;
-    }
-
-    /**
-     * Sets a new acceleration to FireableObject.
-     *
-     * @param acceleration the acceleration to set
-     */
-    public void setAcceleration(final V2d acceleration) {
-        this.acceleration = acceleration;
     }
 
     /**
@@ -88,4 +82,46 @@ public final class SpaceShipSingleton extends FireableObject {
         this.getWeapon().setAmmoType(ammo.getType());
     }
 
+    @Override
+    public void collided(final World world, final WorldEvent ev) {
+        final Optional<EventType> evType = EventType.getEventFromHit(ev);
+        if (evType.isPresent()) {
+            switch (EventType.getEventFromHit(ev).get()) {
+            case BORDER_EVENT:
+                final HitBorderEvent hitBorderEvent = (HitBorderEvent) ev;
+                final Edge edge = hitBorderEvent.getEdge();
+                world.getSoundQueue().add(SoundPath.WALL_COLLISION);
+                world.pacmanEffect(this, edge);
+                break;
+            case MAIN_GAME_OBJECT_EVENT:
+                final HitMainGameObject asteroidEvent = (HitMainGameObject) ev;
+                final MainObject collidedObject = asteroidEvent.getCollidedObject();
+                //this.controlGame.incrScore(Score.ASTEROID);
+                if (!this.isInvincible()) {
+                    world.getQueueDecreaseLife().add(collidedObject.getImpactDamage());
+                    this.setStatus(Status.INVINCIBLE);
+                }
+                //world.damageObject(collidedObject, getImpactDamage(), getStatus());
+                break;
+            case DEAD_EVENT:
+                world.getSoundQueue().add(SoundPath.LIFE_DOWN);
+//                //this.controlGame.incrScore(Score.ASTEROID);
+//                world.damageObject(this, collidedObject.getImpactDamage(), Status.INVINCIBLE);
+//                world.damageObject(collidedObject, this.getImpactDamage(), Status.INVINCIBLE); 
+                break;
+            default:
+                break;
+            }
+        }
+    }
+
+    public List<SoundPath> getSoundQueue() {
+        return soundQueue;
+    }
+
+    public void setSoundQueue(final List<SoundPath> soundQueue) {
+        this.soundQueue = soundQueue;
+    }
+
 }
+

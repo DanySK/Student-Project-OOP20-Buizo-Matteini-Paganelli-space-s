@@ -1,7 +1,6 @@
 package spacesurvival.model.sound;
 
 import spacesurvival.utilities.path.SoundPath;
-
 import java.io.IOException;
 import java.util.Optional;
 import javax.sound.sampled.AudioInputStream;
@@ -11,26 +10,38 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-	
 public abstract class Sound {
     private static final double START_VOLUME = 0.50;
     private SoundPath soundPath;
     private double volume;
     private Optional<Clip> clip = Optional.empty();
     private boolean isPlaying;
+    private AudioInputStream audioInputStream;
 
     public Sound() {
         this.soundPath = null;
         this.volume = START_VOLUME;
     }
 
-
+    /**
+     * Create a sound.
+     * 
+     * @param sound
+     */
     public Sound(final SoundPath sound) {
         this.soundPath = sound;
         this.volume = START_VOLUME;
+        initializeSound(sound);
+    }
 
-        AudioInputStream audioInputStream = null;
+    /**
+     * Initialize the sound from the passed sound path.
+     * 
+     * @param sound the sound path
+     */
+    private void initializeSound(final SoundPath sound) {
 
+        audioInputStream = null;
         try {
             audioInputStream = AudioSystem.getAudioInputStream(ClassLoader.getSystemResource(sound.getPath()));
             setClip(AudioSystem.getClip());
@@ -63,7 +74,7 @@ public abstract class Sound {
      * 
      * @param clip that will be set in the sound.
      */
-    public void setClip(final Clip clip) {
+    private void setClip(final Clip clip) {
         this.clip = Optional.of(clip);
     }
 
@@ -91,6 +102,12 @@ public abstract class Sound {
      */
     public void stopClip() {
         this.clip.get().stop();
+        try {
+            audioInputStream.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         this.isPlaying = false;
     }
 

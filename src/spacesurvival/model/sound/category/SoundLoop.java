@@ -5,20 +5,34 @@ import spacesurvival.utilities.path.SoundPath;
 
 import javax.sound.sampled.Clip;
 
+/**
+ * 
+ * Class for sound loop, each sound will not terminate.
+ *
+ */
 public class SoundLoop extends Sound {
-	
+
+    /**
+     * Create an empty sound loop.
+     */
     public SoundLoop() {
         super();
     }
-	
-    public SoundLoop(final SoundPath st) {
-        super(st);
+
+    /**
+     * Create a sound loop from the passed sound path.
+     * 
+     * @param soundPath
+     */
+    public SoundLoop(final SoundPath soundPath) {
+        super(soundPath);
     }
 
     /** 
      * Start the sound loop at the current volume.
      * @param volume the volume at which the sound loop will start in the range 0-100.
      */
+    @Override
     protected void playSound(final double volume) {
         setVolume(volume);
         super.getClip().get().loop(Clip.LOOP_CONTINUOUSLY);

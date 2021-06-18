@@ -13,9 +13,20 @@ import java.util.Arrays;
 import java.util.List;
 
 public class EngineSound implements EngineGUI {
+
+    /**
+     * Dimension of the rectangle for the gui.
+     */
     public static final Rectangle RECTANGLE = Screen.RECTANGLE_MEDIUM;
+
+    /**
+     * Title of the gui.
+     */
     public static final String TITLE = "SOUND";
 
+    /**
+     * Number of unit of sound of the gui.
+     */
     public static int N_UNIT_SOUND = 2;
 
     private final ActionGUI id;
@@ -25,7 +36,7 @@ public class EngineSound implements EngineGUI {
 
     private Visibility visibility;
 
-    public EngineSound(){
+    public EngineSound() {
         this.id = ActionGUI.ID_SOUND;
         this.idBack = ActionGUI.ID_BACK;
         this.mixerSound = new EngineMixerSound(Arrays.asList(TypeUnitSound.values()));
@@ -63,12 +74,21 @@ public class EngineSound implements EngineGUI {
         return List.of(this.idBack);
     }
 
-
+    /**
+     * Return the title of the gui.
+     * 
+     * @return the title
+     */
     public String getTitle() {
         return TITLE;
     }
 
-    public ActionGUI getBackLink(){
+    /**
+     * Return the back link of this gui.
+     * 
+     * @return an ActionGUI to go back from this gui
+     */
+    public ActionGUI getBackLink() {
         return this.idBack;
     }
 
@@ -76,11 +96,11 @@ public class EngineSound implements EngineGUI {
         return this.idBack.getIdName();
     }
 
-    public List<String> getListNameSlider(){
+    public List<String> getListNameSlider() {
         return this.mixerSound.getNameUnitsSound();
     }
 
-    public List<TypeUnitSound> getListTypeUnitSound(){
+    public List<TypeUnitSound> getListTypeUnitSound() {
         return this.mixerSound.getListTypeUnitsSound();
     }
 
@@ -88,39 +108,39 @@ public class EngineSound implements EngineGUI {
         return DesignSound.DEFAULT_VALUE_SOUND;
     }
 
-    public int getValueUnitSound(final TypeUnitSound typeUnitSound){
+    public int getValueUnitSound(final TypeUnitSound typeUnitSound) {
         return this.mixerSound.getValueSound(typeUnitSound);
     }
 
-    public void setValueUnitSound(final TypeUnitSound typeUnitSound, final int value){
+    public void setValueUnitSound(final TypeUnitSound typeUnitSound, final int value) {
         this.mixerSound.setValueSound(typeUnitSound, value);
     }
 
-    public StateSlider getStateUnitSound(final TypeUnitSound typeUnitSound){
+    public StateSlider getStateUnitSound(final TypeUnitSound typeUnitSound) {
         return this.mixerSound.getStateSound(typeUnitSound);
     }
 
-    public void setStateUnitSound(final TypeUnitSound typeUnitSound, final StateSlider stateUnitSound){
+    public void setStateUnitSound(final TypeUnitSound typeUnitSound, final StateSlider stateUnitSound) {
         this.mixerSound.setStateSound(typeUnitSound, stateUnitSound);
     }
 
-    public boolean isActiveUnitSound(final TypeUnitSound typeUnitSound){
+    public boolean isActiveUnitSound(final TypeUnitSound typeUnitSound) {
         return this.mixerSound.isActiveSound(typeUnitSound);
     }
 
-    public EngineImage getEngineImageUnitSound(final TypeUnitSound typeUnitSound){
+    public EngineImage getEngineImageUnitSound(final TypeUnitSound typeUnitSound) {
         return this.mixerSound.getStateSound(typeUnitSound).getEngineImage();
     }
 
-    public void changeStateUnitSound(final TypeUnitSound typeUnitSound){
+    public void changeStateUnitSound(final TypeUnitSound typeUnitSound) {
         this.mixerSound.changeStateSound(typeUnitSound);
     }
 
-    public String getPathIconUnitSound(final TypeUnitSound typeUnitSound){
+    public String getPathIconUnitSound(final TypeUnitSound typeUnitSound) {
         return this.mixerSound.getPathIconState(typeUnitSound);
     }
 
-    public List<String> getIconStateSounds(){
+    public List<String> getIconStateSounds() {
         return this.mixerSound.getPathsIconState();
     }
 }

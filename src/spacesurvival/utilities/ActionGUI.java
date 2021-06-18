@@ -31,11 +31,11 @@ public enum ActionGUI {
         this.background = background;
     }
 
-    public int getIdInt(){
+    public int getIdInt() {
         return this.id;
     }
 
-    public String getIdName(){
+    public String getIdName() {
         return this.name;
     }
 
@@ -53,9 +53,10 @@ public enum ActionGUI {
 
     @Override
     public String toString() {
-        return "IdGUI{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return "IdGUI{"
+                + "id=" 
+                + id 
+                + ", name='" + name + '\'' 
+                + '}';
     }
 }

@@ -1,7 +1,7 @@
 package spacesurvival.view.game;
 
 import spacesurvival.model.World;
-import spacesurvival.model.gameobject.takeable.AmmoType;
+import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.view.GUI;
 import spacesurvival.view.game.utilities.PanelBulletGame;
@@ -14,15 +14,15 @@ import java.awt.event.KeyListener;
 import java.util.List;
 
 public interface GUIGame extends GUI {
-    
+
     void setMaxLifeShip(int maxLife);
-    
+
     void setMaxLifeBoss(int maxLife);
 
     void setBulletHUD(AmmoType ammoType);
-    
-    void setVisibleLifeBarBoss(final boolean visible);
-    
+
+    void setVisibleLifeBarBoss(boolean visible);
+
     void setBoundsGame(Rectangle screen);
 
     void setTimer(String timer);

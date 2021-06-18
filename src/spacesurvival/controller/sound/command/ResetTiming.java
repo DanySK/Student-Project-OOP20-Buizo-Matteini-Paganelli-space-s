@@ -9,6 +9,7 @@ public class ResetTiming implements CommandAudio {
      * @param sound the sound on which the timing will be reset.
      * 
      */
+    @Override
     public void execute(final Sound sound) {
         sound.getClip().get().setMicrosecondPosition(0);
     }

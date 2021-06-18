@@ -38,6 +38,7 @@ public class CircleBoundingBox implements BoundingBox {
      * Return the transform of the CircleBoundingBox.
      * @return the transform of the box.
      */
+    @Override
     public AffineTransform getTransform() {
         return this.transform;
     }
@@ -46,6 +47,7 @@ public class CircleBoundingBox implements BoundingBox {
      * Set the transformation to the CircleBoundingBox.
      * @param transform the transformation to be set in the circle bound.
      */
+    @Override
     public void setTransform(final AffineTransform transform) {
         this.transform.setTransform(transform);
     }
@@ -70,6 +72,7 @@ public class CircleBoundingBox implements BoundingBox {
      * Return a string rapresenting the CircleBoudingBox.
      * @return return the string.
      */
+    @Override
     public String toString() {
         return "CircleBoundingBox [radius=" + this.radius + ", center=" + this.center.toString() + ", transform=" + this.transform.toString() + "]";
     }

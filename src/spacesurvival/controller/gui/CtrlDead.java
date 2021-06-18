@@ -14,7 +14,7 @@ public class CtrlDead implements ControllerGUI{
 
     private final SwitchGUI switchGUI;
 
-    public CtrlDead(final EngineDead engine, final GUIDead gui){
+    public CtrlDead(final EngineDead engine, final GUIDead gui) {
         this.engine = engine;
         this.gui = gui;
 
