@@ -1,16 +1,16 @@
 package spacesurvival.model.gui.settings;
 
-import spacesurvival.utilities.path.skin.SkinShip;
+import spacesurvival.utilities.path.animation.AnimationShip;
 
 
 import java.util.List;
 
 public enum SkinSpaceShip {
-    SPECIAL(SkinShip.SPECIAL0, SkinShip.LIST_SHIP1),
-    STANDARD(SkinShip.STANDARD0, SkinShip.LIST_SHIP2),
-    DELUXE(SkinShip.DELUXE0, SkinShip.LIST_SHIP1),
-    NORMAL(SkinShip.NORMAL0, SkinShip.LIST_SHIP1),
-    ATOMIC(SkinShip.ATOMIC0, SkinShip.LIST_SHIP1);
+    SPECIAL(AnimationShip.SPECIAL0, AnimationShip.LIST_SHIP1),
+    STANDARD(AnimationShip.STANDARD0, AnimationShip.LIST_SHIP2),
+    DELUXE(AnimationShip.DELUXE0, AnimationShip.LIST_SHIP1),
+    NORMAL(AnimationShip.NORMAL0, AnimationShip.LIST_SHIP1),
+    ATOMIC(AnimationShip.ATOMIC0, AnimationShip.LIST_SHIP1);
 
     private final String skin;
 

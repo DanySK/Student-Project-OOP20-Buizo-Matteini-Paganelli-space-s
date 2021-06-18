@@ -2,7 +2,7 @@ package spacesurvival.model.gameobject;
 
 import spacesurvival.utilities.gameobject.BulletUtils;
 import spacesurvival.utilities.gameobject.DurationUtils;
-import spacesurvival.utilities.path.AnimationEffect;
+import spacesurvival.utilities.path.animation.AnimationEffect;
 
 import java.util.List;
 
@@ -26,15 +26,15 @@ public enum Status {
     /**
      * Stop moving the object affected.
      */
-    PARALYZED(List.of(), DurationUtils.PARALYZED),
+    PARALYZED(AnimationEffect.LIST_ELECTRIC, DurationUtils.PARALYZED),
     /**
      * Heals the object of a certain quantity.
      */
-    HEALED(AnimationEffect.LIST_LIFE_UP),
+    HEALED(AnimationEffect.LIST_LIFE_UP, DurationUtils.HEALED),
     /**
      * Increase lives of the object.
      */
-    LIVES_INCREASED(List.of());
+    LIVES_INCREASED(AnimationEffect.LIST_HEALED, DurationUtils.LIVES_INCREASED);
 
     private final List<String> animation;
     private final int duration;

@@ -7,7 +7,7 @@ public final class VelocityUtils {
     /**
      * Space ship rotation velocity.
      */
-    public static final double SPACESHIP_ROTATION = 10;
+    public static final double SPACESHIP_ROTATION = 15;
 
     /**
      * Space ship acceleration.

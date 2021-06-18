@@ -9,7 +9,6 @@ public class StopSoundCommand implements CommandAudio {
      * @param sound the sound that will stop.
      * 
      */
-    @Override
     public void execute(final Sound sound) {
         sound.stopClip();
     }

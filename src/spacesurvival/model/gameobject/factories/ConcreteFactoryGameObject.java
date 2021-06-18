@@ -38,9 +38,10 @@ import spacesurvival.utilities.dimension.Screen;
 import spacesurvival.utilities.gameobject.DamageUtils;
 import spacesurvival.utilities.gameobject.LifeUtils;
 import spacesurvival.utilities.gameobject.VelocityUtils;
-import spacesurvival.utilities.path.skin.SkinAsteroid;
-import spacesurvival.utilities.path.skin.SkinChase;
-import spacesurvival.utilities.path.skin.SkinPerk;
+import spacesurvival.utilities.path.animation.AnimationAsteroid;
+import spacesurvival.utilities.path.animation.AnimationBoss;
+import spacesurvival.utilities.path.animation.AnimationChase;
+import spacesurvival.utilities.path.animation.AnimationPerk;
 
 public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 
@@ -48,7 +49,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 
     @Override
     public MainObject createAsteroid() {
-        final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinAsteroid.ASTEROID1);
+        final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, AnimationAsteroid.ASTEROID1);
         //final P2d position = GameObjectUtils.generateRandomPoint();
         final P2d position = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
         final V2d velocity = VelocityUtils.ASTEROID_VEL;
@@ -57,12 +58,12 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
         final int impactDamage = DamageUtils.ASTEROID_DAMAGE;
 
         return new Asteroid(engineImage, position, new CircleBoundingBox(), new AsteroidPhysic(), velocity,
-                acceleration,  movementLogic, life, impactDamage, Score.ASTEROID, Optional.empty(), SkinAsteroid.LIST_ASTEROID);
+                acceleration,  movementLogic, life, impactDamage, Score.ASTEROID, Optional.empty(), AnimationAsteroid.LIST_ASTEROID);
     }
 
     @Override
     public MainObject createChaseEnemy() {
-        final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinChase.POOH0);
+        final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, AnimationChase.POOH0);
         final P2d position = GameObjectUtils.generateRandomPoint();
         //final P2d position = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
         final V2d velocity = VelocityUtils.CHASE_ENEMY_VEL;
@@ -71,12 +72,12 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
         final int impactDamage = DamageUtils.CHASE_ENEMY_DAMAGE;
 
         return new ChaseEnemy(engineImage, position, new RectBoundingBox(), new ChaseEnemyPhysic(), velocity,
-                acceleration, movementLogic, life, impactDamage, Score.CHASE_ENEMY, Optional.empty(), SkinChase.LIST_POOH);
+                acceleration, movementLogic, life, impactDamage, Score.CHASE_ENEMY, Optional.empty(), AnimationChase.LIST_POOH);
     }
 
     @Override
     public FireableObject createFireEnemy() {
-        final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinChase.CHASE0);
+        final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, AnimationChase.CHASE0);
         final P2d position = GameObjectUtils.generateRandomPoint();
         //final P2d position = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
         final V2d velocity = VelocityUtils.FIRE_ENEMY_VEL;
@@ -94,7 +95,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 
     @Override
     public FireableObject createBoss() {
-        final EngineImage engineImage = new EngineImage(ScaleOf.BOSS, Screen.WIDTH_FULL_SCREEN, SkinChase.CHASE0);
+        final EngineImage engineImage = new EngineImage(ScaleOf.BOSS, Screen.WIDTH_FULL_SCREEN, AnimationBoss.BOSS0);
         final P2d position = GameObjectUtils.generateRandomPoint();
         //final P2d position = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
         final V2d velocity = VelocityUtils.BOSS_VEL;
@@ -112,8 +113,8 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 
     @Override
     public TakeableGameObject createAmmo() {
-        final AmmoType ammoType = AmmoType.ICE; // AmmoType.random();
-        final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinPerk.FIRE0);
+        final AmmoType ammoType = AmmoType.random();
+        final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, AnimationPerk.FIRE0);
         final P2d position = GameObjectUtils.generateRandomPoint();
 
         return new Ammo(engineImage, position, new CircleBoundingBox(), new PickablePhysic(),
@@ -123,7 +124,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
     @Override
     public TakeableGameObject createHeart() {
         final HeartType heartType = HeartType.random();
-        final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinPerk.FIRE0);
+        final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, AnimationPerk.FIRE0);
         final P2d position = GameObjectUtils.generateRandomPoint();
 
         return new Heart(engineImage, position, new CircleBoundingBox(), new PickablePhysic(),

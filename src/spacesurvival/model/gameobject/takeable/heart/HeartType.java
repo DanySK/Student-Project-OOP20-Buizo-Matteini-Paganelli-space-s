@@ -5,15 +5,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import spacesurvival.model.gameobject.GameObjectUtils;
 import spacesurvival.utilities.gameobject.StatusUtils;
-import spacesurvival.utilities.path.skin.SkinPerk;
-
+import spacesurvival.utilities.path.animation.AnimationPerk;
 
 public enum HeartType {
 
-	HEAL(StatusUtils.HEAL_AMOUNT, SkinPerk.LIST_LIFE),
-	LIFE_UP(StatusUtils.LIFE_UP_AMOUNT_HEAL, SkinPerk.LIST_HEART);
+	HEAL(StatusUtils.HEAL_AMOUNT, AnimationPerk.LIST_LIFE),
+	LIFE_UP(StatusUtils.LIFE_UP_AMOUNT_HEAL, AnimationPerk.LIST_HEART);
 	
 	private int amount;
 	private List<String> animation;

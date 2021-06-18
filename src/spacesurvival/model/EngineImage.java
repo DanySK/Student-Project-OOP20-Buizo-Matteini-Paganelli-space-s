@@ -1,6 +1,6 @@
 package spacesurvival.model;
 
-import spacesurvival.utilities.path.AnimationEffect;
+import spacesurvival.utilities.path.animation.AnimationEffect;
 import spacesurvival.view.utilities.JImage;
 
 import javax.imageio.ImageIO;

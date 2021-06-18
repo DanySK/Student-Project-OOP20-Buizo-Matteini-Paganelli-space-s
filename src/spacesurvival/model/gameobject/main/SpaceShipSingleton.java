@@ -33,7 +33,7 @@ import spacesurvival.utilities.gameobject.DamageUtils;
 import spacesurvival.utilities.gameobject.LifeUtils;
 import spacesurvival.utilities.gameobject.VelocityUtils;
 import spacesurvival.utilities.path.SoundPath;
-import spacesurvival.utilities.path.skin.SkinShip;
+import spacesurvival.utilities.path.animation.AnimationShip;
 
 public final class SpaceShipSingleton extends FireableObject {
 
@@ -41,7 +41,7 @@ public final class SpaceShipSingleton extends FireableObject {
 
     // Eager and unique instance of this class for Threadsafing
     private static SpaceShipSingleton spaceShip = new SpaceShipSingleton(
-            new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, SkinShip.NORMAL0),
+            new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, AnimationShip.NORMAL0),
             Screen.POINT_CENTER_FULLSCREEN,
             new RectBoundingBox(),
             new ShipPhysic(),
