@@ -3,14 +3,29 @@ package spacesurvival.utilities.path;
 import java.nio.file.Path;
 
 public class BulletFire {
-    
-    public static final String MAIN_FOLDER = "shutBullet";
-    
+    /** 
+     * Path of hud bullet.
+     */
     public static final String TYPE_HUD = "vertical";
     
-    public static final String FIRE = Path.of(MAIN_FOLDER, TYPE_HUD, "fire.png").toString();
-    public static final String ICE = Path.of(MAIN_FOLDER, TYPE_HUD, "ice.png").toString();
-    public static final String ELECTRIC = Path.of(MAIN_FOLDER, TYPE_HUD, "electric.png").toString();
-    public static final String NORMAL = Path.of(MAIN_FOLDER, TYPE_HUD, "normal.png").toString();
+    /** 
+     * Path of fire hud bullet.
+     */
+    public static final String FIRE = Path.of(MainFolder.BULLET, TYPE_HUD, "fire.png").toString();
+    
+    /** 
+     * Path of ice hud bullet.
+     */
+    public static final String ICE = Path.of(MainFolder.BULLET, TYPE_HUD, "ice.png").toString();
+    
+    /** 
+     * Path of electric hud bullet.
+     */
+    public static final String ELECTRIC = Path.of(MainFolder.BULLET, TYPE_HUD, "electric.png").toString();
+    
+    /** 
+     * Path of fire normal bullet.
+     */
+    public static final String NORMAL = Path.of(MainFolder.BULLET, TYPE_HUD, "normal.png").toString();
 
 }

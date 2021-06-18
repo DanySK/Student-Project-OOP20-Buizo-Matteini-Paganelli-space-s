@@ -1,6 +1,6 @@
 package spacesurvival.utilities.path;
 
-final class MainFolder {
+public final class MainFolder {
     /** 
      * Path to sound folder.
      */
