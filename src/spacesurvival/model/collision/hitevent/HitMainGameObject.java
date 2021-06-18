@@ -12,8 +12,8 @@ public class HitMainGameObject implements WorldEvent {
     /**
      * Constructor for new HitMainGameObject, generated after the collision with MainGameObject to notify the world.
      * 
-     * @param object the MainGameObject representing the first main game object.
-     * @param collidedObject the MainGameObject representing the second main game object.
+     * @param object the MainGameObject representing the first main game object
+     * @param collidedObject the MainGameObject representing the second main game object
      */
     public HitMainGameObject(final MainGameObject object, final MainGameObject collidedObject) {
         this.object = object;
@@ -23,7 +23,7 @@ public class HitMainGameObject implements WorldEvent {
     /**
      * Returns the first collided MainGameObject.
      * 
-     * @return the specified MainGameObject.
+     * @return the specified MainGameObject
      */
     public MainGameObject getObject() {
         return this.object;
@@ -32,18 +32,26 @@ public class HitMainGameObject implements WorldEvent {
     /**
      * Returns the second collided MainGameObject.
      * 
-     * @return the specified MainGameObject.
+     * @return the specified MainGameObject
      */
     public MainGameObject getCollidedObject() {
         return this.collidedObject;
     }
 
-    @Override
+    /**
+     * Returns a main game object event type.
+     * 
+     * @return an EventType for the specified event
+     */
     public EventType getType() {
         return this.type;
     }
 
-    @Override
+    /**
+     * Manage the main game object event.
+     * 
+     * @param world the current world
+     */
     public void manage(final World world) {
         this.getCollidedObject().manageEvent(world, this);
     }

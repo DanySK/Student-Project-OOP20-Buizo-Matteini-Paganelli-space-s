@@ -38,12 +38,22 @@ public class HitBulletEvent implements WorldEvent {
     public Bullet getBullet() {
         return this.bullet;
     }
-    
+
+    /**
+     * Returns a bullet event type.
+     * 
+     * @return an EventType for the specified event
+     */
     @Override
     public EventType getType() {
         return this.type;
     }
-    
+
+    /**
+     * Manage the bulled game object event.
+     * 
+     *@param world the current world
+     */
     @Override
     public void manage(final World world) {
         this.getCollidedObject().manageEvent(world, this);

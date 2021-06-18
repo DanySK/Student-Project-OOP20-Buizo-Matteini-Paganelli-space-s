@@ -5,7 +5,13 @@ import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.path.Icon;
 
 public enum StateSlider {
+    /**
+     * The State On of the slider composed by the icon dimesion, a rectangle and the sound on icon
+     */
     ON(true, new EngineImage(ScaleOf.ICON_MEDIUM, EngineSound.RECTANGLE.width, Icon.SOUND_ON)),
+    /**
+     * The State Off of the slider composed by the icon dimesion, a rectangle and the sound off icon
+     */
     OFF(false, new EngineImage(ScaleOf.ICON_MEDIUM,  EngineSound.RECTANGLE.width, Icon.SOUND_OFF));
 
     private final boolean state;
@@ -20,14 +26,15 @@ public enum StateSlider {
         return this.state;
     }
 
-    public EngineImage getEngineImage(){
+    public EngineImage getEngineImage() {
         return this.engineImage;
     }
 
     @Override
     public String toString() {
-        return "StateSlider{" +
-                "state=" + state +
-                ", engineImage=" + engineImage + '}';
+        return "StateSlider{" 
+                + "state=" 
+                + state 
+                + ", engineImage=" + engineImage + '}';
     }
 }

@@ -153,24 +153,24 @@ public class EngineLoop extends Thread implements WorldEventListener {
             ev.manage(world);
 
             if (ev instanceof HitMainGameObject) {
-//                final HitMainGameObject asteroidEvent = (HitMainGameObject) ev;
-//                final MainGameObject object = asteroidEvent.getObject();
-//                final MainGameObject collidedObject = asteroidEvent.getCollidedObject();
-//                this.controlGame.incrScore(Score.ASTEROID);
-//
-//  damageObject(object, collidedObject.getImpactDamage(), Status.INVINCIBLE);
-//  damageObject(collidedObject, object.getImpactDamage(), Status.INVINCIBLE); 
-//
-//                if (object instanceof ChaseEnemy) {
-//                    object.stopAnimation();
-//                    world.removeChaseEnemy(object);
-//                    playEffect(SoundPath.ENEMY_EXPL);
-//                }
-//                if (collidedObject instanceof ChaseEnemy) {
-//                    collidedObject.stopAnimation();
-//                    world.removeChaseEnemy(collidedObject);
-//                    playEffect(SoundPath.ENEMY_EXPL);
-//                }
+                final HitMainGameObject asteroidEvent = (HitMainGameObject) ev;
+                final MainGameObject object = asteroidEvent.getObject();
+                final MainGameObject collidedObject = asteroidEvent.getCollidedObject();
+                //this.controlGame.incrScore(Score.ASTEROID);
+
+  //damageObject(object, collidedObject.getImpactDamage(), Status.INVINCIBLE);
+  //damageObject(collidedObject, object.getImpactDamage(), Status.INVINCIBLE); 
+
+                if (object instanceof ChaseEnemy) {
+                    object.stopAnimation();
+                    world.removeChaseEnemy(object);
+                    playEffect(SoundPath.ENEMY_EXPL);
+                }
+                if (collidedObject instanceof ChaseEnemy) {
+                    collidedObject.stopAnimation();
+                    world.removeChaseEnemy(collidedObject);
+                    playEffect(SoundPath.ENEMY_EXPL);
+                }
             } else if (ev instanceof HitTakeableGameObject) {
 //                final HitTakeableGameObject takeableEvent = (HitTakeableGameObject) ev;
 //                final TakeableGameObject takeableGameObject = takeableEvent.getCollidedObject();

@@ -6,6 +6,9 @@ import spacesurvival.model.gui.Visibility;
 public class CmdOFF implements CmdEngine {
     private EngineGUI engine;
 
+    /**
+     * Empty constructor for CmdOFF.
+     */
     public CmdOFF(){ }
 
     @Override

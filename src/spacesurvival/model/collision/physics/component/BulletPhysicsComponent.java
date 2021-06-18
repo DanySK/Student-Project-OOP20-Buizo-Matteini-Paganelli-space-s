@@ -32,7 +32,6 @@ public class BulletPhysicsComponent implements PhysicsComponent {
         System.out.println(bullet.getPosition());
 
         final Optional<BoundaryCollision> borderInfo = w.checkCollisionWithBoundaries(bullet.getPosition(), boundingBox);
-
         if (borderInfo.isPresent()) {
             w.notifyWorldEvent(new HitBorderEvent(borderInfo.get().getWhere(), borderInfo.get().getEdge(), bullet));
         }

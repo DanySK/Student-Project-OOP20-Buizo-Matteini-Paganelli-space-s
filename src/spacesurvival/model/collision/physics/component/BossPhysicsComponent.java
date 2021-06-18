@@ -19,7 +19,7 @@ public class BossPhysicsComponent implements PhysicsComponent {
      * @param w represent the current world
      */
     @Override
-    public void update(final  GameObject abstractObj, final World w) {
+    public void update(final GameObject abstractObj, final World w) {
         final Boss boss = (Boss) abstractObj;
         final RectBoundingBox boundingBox = w.getMainBBox();
 

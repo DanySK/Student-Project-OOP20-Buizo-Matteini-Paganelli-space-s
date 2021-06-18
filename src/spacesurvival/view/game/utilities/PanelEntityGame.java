@@ -153,7 +153,7 @@ public class PanelEntityGame extends JPanel{
     }
 
     protected final void waitForNextFrame(final long current) {
-        long dt = System.currentTimeMillis() - current;
+        final long dt = System.currentTimeMillis() - current;
         if (dt < 60) {
             ThreadUtils.sleep(60 - dt);
         }

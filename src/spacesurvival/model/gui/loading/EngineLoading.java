@@ -4,8 +4,7 @@ import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.utilities.dimension.Screen;
-
-import java.awt.*;
+import java.awt.Rectangle;
 import java.util.List;
 
 public class EngineLoading implements EngineGUI {
@@ -57,18 +56,34 @@ public class EngineLoading implements EngineGUI {
         return List.of();
     }
 
+    /**
+     * Increment the loading bar.
+     */
     public void incrLoading() {
         this.loading++;
     }
 
+    /**
+     * Get the loading progress.
+     * 
+     * @return an int representing the loading progress
+     */
     public int getLoading() {
         return this.loading;
     }
 
+    /**
+     * Set the load true.
+     */
     public void load() {
         this.load = true;
     }
 
+    /**
+     * Return the loading state.
+     * 
+     * @return true if is loaded
+     */
     public boolean isLoad() {
         return this.load;
     }

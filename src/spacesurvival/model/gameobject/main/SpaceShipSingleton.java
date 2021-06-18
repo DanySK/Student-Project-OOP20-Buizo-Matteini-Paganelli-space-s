@@ -19,7 +19,6 @@ import spacesurvival.model.gameobject.weapon.shootinglogic.implementation.NoFiri
 import java.util.Optional;
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.World;
-import spacesurvival.model.collision.hitevent.DeadEvent;
 import spacesurvival.model.collision.hitevent.EventType;
 import spacesurvival.model.collision.hitevent.HitBorderEvent;
 import spacesurvival.model.collision.hitevent.HitBulletEvent;
@@ -135,7 +134,6 @@ public final class SpaceShipSingleton extends FireableObject {
                     collidedObject.pushEffect(SoundPath.ENEMY_EXPL);
                 }
                 break;
-
             case DEAD_EVENT:
                 this.pushEffect(SoundPath.LIFE_DOWN);
 //                //this.controlGame.incrScore(Score.ASTEROID);

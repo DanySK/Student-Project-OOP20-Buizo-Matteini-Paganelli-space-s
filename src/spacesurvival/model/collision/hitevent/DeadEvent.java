@@ -2,7 +2,6 @@ package spacesurvival.model.collision.hitevent;
 
 import spacesurvival.model.World;
 import spacesurvival.model.gameobject.GameObject;
-import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.model.worldevent.WorldEvent;
 
 public class DeadEvent implements WorldEvent {
@@ -10,28 +9,38 @@ public class DeadEvent implements WorldEvent {
     private final EventType type = EventType.DEAD_EVENT;
 
     /**
-     * Constructor for new DeadEvent, generated after the collision to notify the world.
+     * Constructor for new DeadEvent, generated after the collision to notify the dead of an object to the world.
      * 
-     * @param obj the GameObjectDead representing the object.
+     * @param obj the game object representing the dead object
      */
     public DeadEvent(final GameObject obj) {
         this.obj = obj;
     }
 
     /**
-     * Returns the specific ammo that collided.
+     * Returns the specific dead object.
      * 
-     * @return the specified ammo.
+     * @return the specified dead object
      */
     public GameObject getDeadObj() {
         return this.obj;
     }
 
+    /**
+     * Returns a dead event type.
+     * 
+     * @return an EventType for the specified event
+     */
     @Override
     public EventType getType() {
         return this.type;
     }
 
+    /**
+     * Manage the specific behaviour for this type of event.
+     * 
+     * @param world the current world
+     */
     @Override
     public void manage(final World world) {
         this.getDeadObj().manageEvent(world, this);

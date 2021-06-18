@@ -193,7 +193,7 @@ public class CtrlGame implements ControllerGUI {
     public final void increaseLife(final int healAmount) {
         final int totalLife = this.getShip().getLife() + healAmount;
         int newLife = totalLife % GameObjectUtils.SPACESHIP_LIFE;
-        int newLives = (int) (totalLife / GameObjectUtils.SPACESHIP_LIFE);
+        int newLives = totalLife / GameObjectUtils.SPACESHIP_LIFE;
         if (newLife == 0) {
             newLife = GameObjectUtils.SPACESHIP_LIFE;
             newLives--;

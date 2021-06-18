@@ -6,11 +6,11 @@ public enum TypeUnitSound {
 
     private final String name;
 
-    private TypeUnitSound(final String name){
+    private TypeUnitSound(final String name) {
         this.name = name;
     }
 
-    public String getNameUnitSound(){
+    public String getNameUnitSound() {
         return this.name;
     }
 }

@@ -97,21 +97,4 @@ public class CollisionChecker {
     public String toString() {
         return "Collision checker {Rectangle to Rectangle, Rectangle to Circle}";
     }
-
-//	
-//	public static void main (String[] args) {
-//		CollisionChecker checker = new CollisionChecker();
-//		AffineTransform a = new AffineTransform();
-//		//a.rotate(Math.toRadians(30));
-//		System.out.println(checker.getRotationAngleInDegrees(a));
-//		System.out.println(checker.getRotationAngleInRadiant(a));
-
-//		RectBoundingBox rbox = new RectBoundingBox(new P2d(0,0), new P2d(10,10), a);
-//		rbox.getTransform().rotate(Math.toDegrees(0), rbox.getWidth(), rbox.getHeight());
-//		System.out.println(rbox.getTransform());
-//		P2d point = new P2d(5,5);
-
-//		System.out.println(checker.testRectangleToPoint(rbox, point));
-//	}
-
 }

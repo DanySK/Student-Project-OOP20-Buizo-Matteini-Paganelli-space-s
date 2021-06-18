@@ -1,23 +1,51 @@
 package spacesurvival.model.gui;
 
 import spacesurvival.utilities.ActionGUI;
-
-import java.awt.*;
+import java.awt.Rectangle;
 import java.util.List;
 
 public interface EngineGUI {
 
-    public ActionGUI getMainAction();
+    /**
+     * Return the main action for this gui.
+     * 
+     * @return the main action of type ActionGUI
+     */
+    ActionGUI getMainAction();
 
-    public Rectangle getRectangle();
+    /**
+     * Return the rectangle represent the gui.
+     * 
+     * @return a Rectangle
+     */
+    Rectangle getRectangle();
 
-    public Visibility getVisibility();
+    /**
+     * Return the state of the visibility of the gui.
+     * 
+     * @return a Visibility enum
+     */
+    Visibility getVisibility();
 
-    public List<ActionGUI> getLinks();
+    /**
+     * Return a list of possible links of the gui.
+     * 
+     * @return a list of ActionGUI
+     */
+    List<ActionGUI> getLinks();
 
+    /**
+     * Set the visibility of the gui.
+     * 
+     * @param state the state to set
+     */
+    void setVisibility(Visibility state);
 
-    public void setVisibility(final Visibility state);
-
-    public boolean isVisible();
+    /**
+     * Return a boolean representing the visibility of the gui.
+     * 
+     * @return true is the gui is visible
+     */
+    boolean isVisible();
 
 }

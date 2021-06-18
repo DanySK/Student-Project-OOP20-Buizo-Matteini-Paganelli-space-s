@@ -96,11 +96,11 @@ public class CtrlSound implements ControllerGUI{
         return this.engine.getValueUnitSound(TypeUnitSound.SLIDER_BACKGROUND);
     }
 
-    public boolean isActiveLoopUnitSound(){
+    public boolean isActiveLoopUnitSound() {
         return this.engine.isActiveUnitSound(TypeUnitSound.SLIDER_BACKGROUND);
     }
 
-    public void linksCallerAudio(){
+    public void linksCallerAudio() {
         Arrays.stream(TypeUnitSound.values()).forEach(type -> {
             this.setChangeListenerSliderFromType(type);
             this.setActionListenerChangeSwitchSoundFromType(type);
