@@ -7,6 +7,7 @@ import java.awt.geom.Rectangle2D;
 
 import spacesurvival.model.collision.physics.bounding.CircleBoundingBox;
 import spacesurvival.model.collision.physics.bounding.RectBoundingBox;
+import spacesurvival.model.gameobject.GameObjectUtils;
 import spacesurvival.utilities.SystemVariables;
 
 /**
@@ -56,37 +57,12 @@ public class CollisionChecker {
                 (cbb.getRadius() - TOLLERANCE) * SystemVariables.SCALE_Y);
         final AffineTransform circleTransform = new AffineTransform();
         circleTransform.setTransform(cbb.getTransform());
-        circleTransform.rotate(this.getRotationAngleInRadiant(cbb.getTransform()));
+        circleTransform.rotate(GameObjectUtils.getRotationAngleInRadiant(cbb.getTransform()));
         final Shape rotatedEllipse = circleTransform.createTransformedShape(ellipse);
 
         return rotatedEllipse.intersects(rotatedRect.getBounds2D());
     }
 
-    /**
-     * Method that return the angle in degrees readed from an AffineTransform.
-     * 
-     * @param transform AffineTransform from which to read the angle
-     * @return the angle in degrees
-     */
-    public double getRotationAngleInDegrees(final AffineTransform transform) {
-        final double m00 = transform.getScaleX();
-        final double m01 = transform.getShearX();
-
-        return Math.round(Math.toDegrees(Math.atan2(-m01, m00)));
-    }
-
-    /**
-     * Method that return the angle in radiants readed from an AffineTransform.
-     * 
-     * @param transform AffineTransform from which to read the angle
-     * @return the angle in radiants
-     */
-    public double getRotationAngleInRadiant(final AffineTransform transform) {
-        final double m00 = transform.getScaleX();
-        final double m01 = transform.getShearX();
-
-        return Math.round(Math.atan2(-m01, m00));
-    }
 
     /**
      * Return a string describing the types of collisions that can be checked.

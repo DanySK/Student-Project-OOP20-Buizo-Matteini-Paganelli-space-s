@@ -28,13 +28,18 @@ public abstract class GameObject implements Collideable {
         this.body = new Animation(engineImage);
         this.effect = new Animation(EngineImage.getTransparentEngineImage(engineImage));
 
-        this.body.start();
-        this.effect.start();
+
+        initializeThread();
 
         this.boundingBox = bb;
         this.phys = phys;
         this.setTransform(position);
 //        this.setEffectSounds(new LinkedList<>());
+    }
+
+    private void initializeThread() {
+        this.body.start();
+        this.effect.start();
     }
 
     public void setPause(final boolean isPause) {
