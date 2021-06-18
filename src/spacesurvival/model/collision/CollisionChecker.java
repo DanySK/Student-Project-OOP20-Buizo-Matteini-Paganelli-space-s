@@ -4,11 +4,10 @@ import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
-
-import spacesurvival.model.collision.physics.bounding.CircleBoundingBox;
-import spacesurvival.model.collision.physics.bounding.RectBoundingBox;
-import spacesurvival.model.gameobject.GameObjectUtils;
+import spacesurvival.model.collision.bounding.CircleBoundingBox;
+import spacesurvival.model.collision.bounding.RectBoundingBox;
 import spacesurvival.utilities.SystemVariables;
+import spacesurvival.utilities.dimension.AffineUtils;
 
 /**
  * CollisionChecker class created to check for collisions between transformed 
@@ -57,7 +56,7 @@ public class CollisionChecker {
                 (cbb.getRadius() - TOLLERANCE) * SystemVariables.SCALE_Y);
         final AffineTransform circleTransform = new AffineTransform();
         circleTransform.setTransform(cbb.getTransform());
-        circleTransform.rotate(GameObjectUtils.getRotationAngleInRadiant(cbb.getTransform()));
+        circleTransform.rotate(AffineUtils.getRotationAngleInRadiant(cbb.getTransform()));
         final Shape rotatedEllipse = circleTransform.createTransformedShape(ellipse);
 
         return rotatedEllipse.intersects(rotatedRect.getBounds2D());

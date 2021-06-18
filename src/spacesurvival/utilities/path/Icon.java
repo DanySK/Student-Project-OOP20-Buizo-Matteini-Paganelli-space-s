@@ -52,10 +52,6 @@ public final class Icon {
      */
     public static final String HEART = Paths.get(MainFolder.ICON, "heart3.png").toString();
     /**
-     * Bullet icon.
-     */
-    public static final String BULLET = Paths.get(MainFolder.ICON, "shutBullet", "bullet1.png").toString();
-    /**
      * Pause icon.
      */
     public static final String PAUSE = Paths.get(MainFolder.ICON, "pause.png").toString();

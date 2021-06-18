@@ -1,6 +1,7 @@
 package spacesurvival.utilities;
 
-public class Score {
+public final class Score {
+
     /**
      * Score assigned to user when ship destroyed.
      */
@@ -22,7 +23,7 @@ public class Score {
      */
     public static final int BOSS = 50;
 
-    /**
-     * Empty constructor for score.
-     */
+    private Score() {
+    }
+
 }

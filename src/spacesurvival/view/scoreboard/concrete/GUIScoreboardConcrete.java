@@ -10,6 +10,8 @@ import java.awt.*;
 
 
 public class GUIScoreboardConcrete extends AbstractGUI implements GUIScoreboard {
+    private static final long serialVersionUID = -108440081332913533L;
+    
     private final JLabel lbTitle;
     private final JTextField txtSearchName;
     private final JButton btnSearch;
@@ -34,7 +36,7 @@ public class GUIScoreboardConcrete extends AbstractGUI implements GUIScoreboard 
 
 
     @Override
-    public void setNameButtons(java.util.List<String> listName) {
+    public void setNameButtons(final java.util.List<String> listName) {
         for(int i = 0; i < listName.size(); i++){
             this.getButton().get(i).setText(listName.get(i));
         }

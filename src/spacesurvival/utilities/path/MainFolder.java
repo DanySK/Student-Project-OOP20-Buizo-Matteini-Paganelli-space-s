@@ -1,9 +1,8 @@
 package spacesurvival.utilities.path;
 
-final class MainFolder {
-
+public final class MainFolder {
     /** 
-     * Path to suond folder.
+     * Path to sound folder.
      */
     public static final String SOUND =  "sounds";
     /** 
@@ -21,7 +20,7 @@ final class MainFolder {
     /** 
      * Path to game objects folder.
      */
-    public static final String GAMEOBJECT =  "gameObjects";
+    public static final String GAME_OBJECT =  "gameObjects";
     /** 
      * Path to icon folder.
      */
@@ -29,7 +28,7 @@ final class MainFolder {
     /** 
      * Path to help images folder.
      */
-    public static final String HELP =  "imgHelp";
+    public static final String HELP = "help";
     /** 
      * Path to perk folder.
      */
@@ -37,11 +36,11 @@ final class MainFolder {
     /** 
      * Path to bullet shooted images folder.
      */
-    public static final String BULLET =  "shutBullet";
+    public static final String BULLET = "bullet";
     /** 
      * Path to suond folder.
      */
-    public static final String BULLET_TYPE =  "typeBullet";
+    public static final String WEAPON = "weapon";
 
     /** 
      * Empty constructor.

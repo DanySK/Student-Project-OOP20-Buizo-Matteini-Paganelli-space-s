@@ -6,10 +6,10 @@ import static org.junit.Assert.assertTrue;
 import java.awt.geom.AffineTransform;
 import org.junit.Test;
 import spacesurvival.model.collision.CollisionChecker;
-import spacesurvival.model.collision.physics.bounding.CircleBoundingBox;
-import spacesurvival.model.collision.physics.bounding.RectBoundingBox;
+import spacesurvival.model.collision.bounding.CircleBoundingBox;
+import spacesurvival.model.collision.bounding.RectBoundingBox;
 import spacesurvival.model.common.P2d;
-import spacesurvival.model.gameobject.GameObjectUtils;
+import spacesurvival.utilities.dimension.AffineUtils;
 
 public class TestCollisionChecker {
 
@@ -108,7 +108,7 @@ public class TestCollisionChecker {
         final AffineTransform cbbTransform = new AffineTransform();
         cbbTransform.rotate(Math.toRadians(45));
 
-        final Double degrees = GameObjectUtils.getRotationAngleInDegrees(cbbTransform);
+        final Double degrees = AffineUtils.getRotationAngleInDegrees(cbbTransform);
 
         assertEquals(Double.valueOf(45.0), degrees);
     }
@@ -122,7 +122,7 @@ public class TestCollisionChecker {
         final AffineTransform cbbTransform = new AffineTransform();
         cbbTransform.rotate(Math.toRadians(5));
 
-        final Double radiants = GameObjectUtils.getRotationAngleInDegrees(cbbTransform);
+        final Double radiants = AffineUtils.getRotationAngleInDegrees(cbbTransform);
 
         assertEquals(Double.valueOf(5.0), radiants);
     }

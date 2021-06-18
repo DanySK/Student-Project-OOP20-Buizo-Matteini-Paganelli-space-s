@@ -12,6 +12,7 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 public class JImage extends JComponent {
+    private static final long serialVersionUID = -2971663994387728066L;
     private int width, height;
     private String path = "";
 
@@ -19,9 +20,8 @@ public class JImage extends JComponent {
     private JLabel lbImage;
 
     public JImage(){
-        super(); {{ 
-            setLayout(new BorderLayout());
-        }}
+        super();
+        super.setLayout(new BorderLayout());
         this.imageIcon = new ImageIcon();
         this.lbImage = new JLabel(this.imageIcon);
         super.add(this.lbImage, BorderLayout.CENTER);

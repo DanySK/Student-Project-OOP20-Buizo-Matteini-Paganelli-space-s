@@ -6,8 +6,8 @@ import spacesurvival.model.common.V2d;
 import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.gameobject.movable.movement.MovementLogic;
 import spacesurvival.model.EngineImage;
-import spacesurvival.model.collision.physics.bounding.BoundingBox;
-import spacesurvival.model.collision.physics.component.PhysicsComponent;
+import spacesurvival.model.collision.bounding.BoundingBox;
+import spacesurvival.model.collision.eventgenerator.PhysicsComponent;
 
 
 public abstract class MovableObject extends GameObject {

@@ -4,9 +4,9 @@ import java.util.Optional;
 
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.World;
+import spacesurvival.model.collision.bounding.BoundingBox;
 import spacesurvival.model.collision.event.EventType;
-import spacesurvival.model.collision.physics.bounding.BoundingBox;
-import spacesurvival.model.collision.physics.component.PhysicsComponent;
+import spacesurvival.model.collision.eventgenerator.PhysicsComponent;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.model.worldevent.WorldEvent;

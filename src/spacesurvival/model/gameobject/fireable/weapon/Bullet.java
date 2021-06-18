@@ -4,7 +4,6 @@ package spacesurvival.model.gameobject.fireable.weapon;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
 import spacesurvival.model.gameobject.Effect;
-import spacesurvival.model.gameobject.GameObjectUtils;
 import spacesurvival.model.gameobject.fireable.FireableObject;
 import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
@@ -14,10 +13,11 @@ import spacesurvival.model.worldevent.WorldEvent;
 import java.util.Optional;
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.World;
+import spacesurvival.model.collision.bounding.BoundingBox;
+import spacesurvival.model.collision.bounding.RectBoundingBox;
 import spacesurvival.model.collision.event.EventType;
 import spacesurvival.model.collision.event.hit.HitBulletEvent;
-import spacesurvival.model.collision.physics.bounding.BoundingBox;
-import spacesurvival.model.collision.physics.component.PhysicsComponent;
+import spacesurvival.model.collision.eventgenerator.PhysicsComponent;
 
 public class Bullet extends MovableObject {
 
@@ -28,7 +28,7 @@ public class Bullet extends MovableObject {
     public Bullet(final EngineImage engineImage, final P2d position, final BoundingBox bb, final PhysicsComponent phys,
             final V2d velocity, final double acceleration, final int damage, final Effect effect, final Weapon originWeapon) {
         super(engineImage, position, bb, phys, velocity, acceleration, new FixedMovement());
-        this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage, this.getTransform()));
+        this.setBoundingBox(RectBoundingBox.createRectBoundingBox(position, engineImage, this.getTransform()));
         this.damage = damage;
         this.effect = effect;
         this.originWeapon = originWeapon;

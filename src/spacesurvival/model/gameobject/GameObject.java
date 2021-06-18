@@ -9,8 +9,8 @@ import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.model.Animation;
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.World;
-import spacesurvival.model.collision.physics.bounding.BoundingBox;
-import spacesurvival.model.collision.physics.component.PhysicsComponent;
+import spacesurvival.model.collision.bounding.BoundingBox;
+import spacesurvival.model.collision.eventgenerator.PhysicsComponent;
 
 
 public abstract class GameObject implements Collideable {

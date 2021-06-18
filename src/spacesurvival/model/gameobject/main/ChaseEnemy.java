@@ -12,10 +12,11 @@ import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.World;
+import spacesurvival.model.collision.bounding.BoundingBox;
+import spacesurvival.model.collision.bounding.RectBoundingBox;
 import spacesurvival.model.collision.event.EventType;
 import spacesurvival.model.collision.event.hit.HitBorderEvent;
-import spacesurvival.model.collision.physics.bounding.BoundingBox;
-import spacesurvival.model.collision.physics.component.PhysicsComponent;
+import spacesurvival.model.collision.eventgenerator.PhysicsComponent;
 
 public class ChaseEnemy extends MainObject {
 
@@ -24,7 +25,7 @@ public class ChaseEnemy extends MainObject {
             final int life, final int impactDamage, final int score, final Optional<P2d> target, final List<String> animation) {
         super(engineImage, position, bb, phys, velocity, acceleration, movementLogic, life, impactDamage, score, target);
 
-        this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage, this.getTransform()));
+        this.setBoundingBox(RectBoundingBox.createRectBoundingBox(position, engineImage, this.getTransform()));
         this.setAnimation(animation);
     }
 
@@ -32,7 +33,7 @@ public class ChaseEnemy extends MainObject {
             final PhysicsComponent phys, final V2d velocity, final double acceleration, final MovementLogic movementLogic,
             final int life, final int impactDamage, final int score, final Optional<P2d> target) {
         super(engineImage, position, bb, phys, velocity, acceleration, movementLogic, life, impactDamage, score, target);
-        this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage, this.getTransform()));
+        this.setBoundingBox(RectBoundingBox.createRectBoundingBox(position, engineImage, this.getTransform()));
     }
 
     @Override
