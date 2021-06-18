@@ -53,25 +53,7 @@ public abstract class MainObject extends MovableObject {
 
     public void decreaseLife(final int damage) {
         this.life -= damage;
-        //System.out.println(this.getPhys());
-        System.out.println("Ahia danno ricevuto: " + damage);
-        System.out.println("Vita rimasta: " + this.life);
     }
-
-//    if (this.damageOverFlow(damage) && this.hasLivesShip()) {
-//        System.out.println("RESETTO E DECREMENTO");
-//        this.engine.resetLifeShip();
-//        this.engine.decreaseLives();
-//        System.out.println("VITA RESETTATA" + getShip().getLife());
-//        System.out.println("VITE RIMASTE" + this.engine.getLives());
-//
-//    } else {
-//        this.engine.decreaseLifeShip(damage);
-////        if (this.hasLivesShip() && this.engine.getLifeShip() == 0) {
-////            this.engine.resetLifeShip();
-////            this.engine.decreaseLives();
-////        }
-//    }
 
     public int getImpactDamage() {
         return impactDamage;

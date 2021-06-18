@@ -7,7 +7,6 @@ import java.util.Random;
 import spacesurvival.utilities.SystemVariables;
 import spacesurvival.utilities.dimension.Screen;
 import spacesurvival.model.common.P2d;
-import spacesurvival.model.common.V2d;
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.collision.physics.bounding.BoundingBox;
 import spacesurvival.model.collision.physics.bounding.CircleBoundingBox;

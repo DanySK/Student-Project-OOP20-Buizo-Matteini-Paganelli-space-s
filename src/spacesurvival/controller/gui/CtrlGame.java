@@ -8,6 +8,7 @@ import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.model.World;
 import spacesurvival.model.gameobject.GameObjectUtils;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
+import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
 import spacesurvival.model.MovementKeyListener;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.view.GUI;
@@ -32,7 +33,7 @@ public class CtrlGame implements ControllerGUI {
     }
 
     @Override
-    public final void assignAction() {
+    public void assignAction() {
         this.gui.setMainAction(this.engine.getMainAction());
         this.gui.setIdButtons(this.engine.getMainAction(), this.engine.getLinks());
     }
@@ -99,7 +100,11 @@ public class CtrlGame implements ControllerGUI {
         }
     }
 
-    public final void updateRoundState() {
+    public void updateBulletHUD(final AmmoType ammoType) {
+        this.gui.setBulletHUD(ammoType);
+    }
+
+    public void updateRoundState() {
         if (this.engine.getCountEnemies() == 0) {
             this.engine.incrRound();
             this.resetEntities();
@@ -188,7 +193,7 @@ public class CtrlGame implements ControllerGUI {
     public final void increaseLife(final int healAmount) {
         final int totalLife = this.getShip().getLife() + healAmount;
         int newLife = totalLife % GameObjectUtils.SPACESHIP_LIFE;
-        int newLives = (int) (totalLife / GameObjectUtils.SPACESHIP_LIFE);
+        int newLives = totalLife / GameObjectUtils.SPACESHIP_LIFE;
         if (newLife == 0) {
             newLife = GameObjectUtils.SPACESHIP_LIFE;
             newLives--;

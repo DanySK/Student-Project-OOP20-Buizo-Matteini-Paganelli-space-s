@@ -32,6 +32,7 @@ public class RandomMovement implements MovementLogic {
         }
     }
 
+    @Override
     public void startMoving(final MovableObject movableObject) {
         movableObject.setMoving(true);
         new Thread(() -> {

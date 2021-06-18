@@ -7,6 +7,7 @@ import spacesurvival.model.collision.event.DeadEvent;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.gameobject.movable.MovableObject;
+import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
 import spacesurvival.model.sound.CmdAudioType;
 import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.model.worldevent.WorldEventListener;
@@ -41,6 +42,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
         this.controlGame.assignMovementListenerInShip();
         this.controlGame.setEventListenerInWorld(this);
         this.controlGame.assignWorld();
+        this.controlGame.updateBulletHUD(AmmoType.FIRE);
         this.controlSound.setSoundLoop(this.controlGUI.getCurrentGUI());
         this.controlSound.setCmdAudioLoop(CmdAudioType.AUDIO_ON);
         this.controlGUI.startGUI();
@@ -110,7 +112,6 @@ public class EngineLoop extends Thread implements WorldEventListener {
     }
 
     protected final void updateGame() {
-        this.controlGame.updateStateWorld();
         this.checkEvents();
         this.checkSoundEffects();
         this.checkGameObjectsDead();

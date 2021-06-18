@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import spacesurvival.model.gameobject.Edge;
 import spacesurvival.model.gameobject.GameObjectUtils;
-import spacesurvival.model.gameobject.fireable.weapon.Bullet;
 import spacesurvival.model.gameobject.movable.movement.MovementLogic;
 import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.utilities.path.SoundPath;
@@ -15,7 +14,6 @@ import spacesurvival.model.EngineImage;
 import spacesurvival.model.World;
 import spacesurvival.model.collision.event.EventType;
 import spacesurvival.model.collision.event.hit.HitBorderEvent;
-import spacesurvival.model.collision.event.hit.HitBulletEvent;
 import spacesurvival.model.collision.physics.bounding.BoundingBox;
 import spacesurvival.model.collision.physics.component.PhysicsComponent;
 

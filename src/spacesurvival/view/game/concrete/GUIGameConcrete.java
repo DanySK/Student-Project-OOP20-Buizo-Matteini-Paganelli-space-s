@@ -207,4 +207,10 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
     public void setMaxLifeBoss(final int maxLife) {
         this.lifeBoss.setMaximum(maxLife);    
     }
+
+    @Override
+    public void setBulletHUD(final AmmoType ammoType) {
+        this.bullet.setWeapon(ammoType.getWeapon());
+        this.bullet.setBullet(ammoType.getBulletHud());
+    }
 }

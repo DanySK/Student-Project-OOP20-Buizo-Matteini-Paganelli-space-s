@@ -4,13 +4,10 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.util.List;
-import java.util.LinkedList;
-import java.util.Optional;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.model.Animation;
 import spacesurvival.model.EngineImage;
-import spacesurvival.utilities.path.SoundPath;
 import spacesurvival.model.World;
 import spacesurvival.model.collision.physics.bounding.BoundingBox;
 import spacesurvival.model.collision.physics.component.PhysicsComponent;
@@ -161,6 +158,7 @@ public abstract class GameObject implements Collideable {
         return this.body.getListPath();
     }
 
+    @Override
     public abstract void collided(World world, WorldEvent worldEvent);
 
     @Override

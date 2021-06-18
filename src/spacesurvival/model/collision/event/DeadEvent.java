@@ -2,7 +2,6 @@ package spacesurvival.model.collision.event;
 
 import spacesurvival.model.World;
 import spacesurvival.model.gameobject.GameObject;
-import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.model.worldevent.WorldEvent;
 
 public class DeadEvent implements WorldEvent {

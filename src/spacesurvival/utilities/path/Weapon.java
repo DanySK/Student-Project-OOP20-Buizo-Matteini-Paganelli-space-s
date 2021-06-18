@@ -19,7 +19,13 @@ public final class Weapon {
      */
     public static final String ICE = Paths.get(MainFolder.BULLET_TYPE, "ice.png").toString();
 
+    /**
+     * Path of normal weapon.
+     */
+    public static final String NORMAL = Paths.get(MainFolder.BULLET_TYPE, "normal.png").toString();
+
     private Weapon() {
 
     }
+
 }
