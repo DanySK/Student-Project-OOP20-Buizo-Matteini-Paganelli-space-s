@@ -3,7 +3,6 @@ package spacesurvival.model.gameobject.main;
 import java.awt.geom.AffineTransform;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
@@ -11,6 +10,7 @@ import spacesurvival.model.gameobject.Edge;
 import spacesurvival.model.gameobject.movable.movement.MovementLogic;
 import spacesurvival.model.gameobject.Status;
 import spacesurvival.model.worldevent.WorldEvent;
+import spacesurvival.utilities.RandomUtils;
 import spacesurvival.utilities.path.SoundPath;
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.World;
@@ -36,7 +36,7 @@ public class Asteroid extends MainObject {
             final int life, final int impactDamage, final int score, final Optional<P2d> target, final List<String> animation) {
         super(engineImage, position, bb, phys, velocity, acceleration, movementLogic, life, impactDamage, score, target);
         this.setBoundingBox(CircleBoundingBox.createCircleBoundingBox(position, engineImage, this.getTransform()));
-        this.setAnimation(animation);
+        this.setMainAnimation(animation);
         initializeRotation();
     }
 
@@ -44,14 +44,15 @@ public class Asteroid extends MainObject {
      * Initialize a random rotation for the asteroid.
      */
     private void initializeRotation() {
-        final Random random = new Random();
-        final int randomAngle = random.nextInt(360);
+        final int randomAngle = RandomUtils.RANDOM.nextInt(360);
         final AffineTransform at = getTransform();
         at.rotate(Math.toRadians(randomAngle), getSize().getWidth() / 2, getSize().getHeight() / 2);
         setTransform(at);
     }
 
-    @Override
+    /**
+     * @inheritDoc
+     */
     public void collided(final World world, final WorldEvent event) {
         final Optional<EventType> evType = EventType.getEventFromHit(event);
         if (evType.isPresent()) {

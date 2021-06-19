@@ -24,7 +24,7 @@ public abstract class TakeableGameObject extends GameObject {
             final EventComponent phys, final List<String> animation) {
         super(engineImage, position, bb, phys);
         this.setBoundingBox(CircleBoundingBox.createCircleBoundingBox(position, engineImage, this.getTransform()));
-        super.setAnimation(animation);
+        super.setMainAnimation(animation);
     }
 
 }

@@ -15,7 +15,7 @@ public interface MovementLogic {
     void move(MovableObject movableObject);
 
     /**
-     * Starts the game object move if move method called by the main game loop.
+     * Starts the game object move.
      * It can be implemented to make possible change directions or other automatic stuffs.
      * 
      * @param movableObject object which has to initiate moving
