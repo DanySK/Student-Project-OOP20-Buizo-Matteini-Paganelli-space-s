@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.Set;
 
 import spacesurvival.model.gui.settings.SkinSpaceShip;
@@ -31,7 +32,9 @@ import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
 import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.model.worldevent.WorldEventListener;
+import spacesurvival.utilities.Delay;
 import spacesurvival.utilities.SystemVariables;
+import spacesurvival.utilities.ThreadUtils;
 import spacesurvival.utilities.dimension.Screen;
 import spacesurvival.utilities.path.SoundPath;
 
@@ -76,9 +79,19 @@ public class World {
     public final void createInitialEntities() {
         this.addAsteroid();
         this.addChaseEnemy();
-        this.addFireEnemy();
-        this.addHeart();
-        this.addAmmo();
+        new Thread(() -> {
+            while (ship.isAlive()) {
+                final Random random = new Random();
+                if (random.nextBoolean()) {
+                    this.addHeart();
+                } else {
+                    this.addAmmo();
+                }
+                ThreadUtils.sleep(Delay.SPAWN_PERK);
+            }
+        }).start();
+        //this.addHeart();
+        //this.addAmmo();
     }
 
     public void setEventListener(final WorldEventListener listener) {
@@ -346,10 +359,14 @@ public class World {
 
     public void damageObject(final MainObject object, final int damage, final Status status) {
         if (!object.isInvincible()) {
-            object.decreaseLife(damage);
             System.out.println(object.getClass() + " HA RICEVUTO  " + damage + " DANNI");
+            if (object.getLife() - damage <= 0) {
+                object.setLife(0);
+            } else {
+                object.decreaseLife(damage);
+                object.setStatus(status);
+            }
             System.out.println("VITA RIMASTA " + object.getLife());
-            object.setStatus(status);
         }
     }
 

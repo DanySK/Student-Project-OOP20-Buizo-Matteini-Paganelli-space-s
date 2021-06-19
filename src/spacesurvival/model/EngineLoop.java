@@ -77,7 +77,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
                         updateGame();
                         nbThreads = Thread.getAllStackTraces().keySet().size();
 
-                        System.out.println("Numero dei thread current -> " + nbThreads);
+                        //System.out.println("Numero dei thread current -> " + nbThreads);
                     }
                 }
 

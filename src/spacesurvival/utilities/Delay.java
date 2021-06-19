@@ -1,5 +1,8 @@
 package spacesurvival.utilities;
 
+/**
+ *  General delay times in milliseconds.
+ */
 public final class Delay {
 
     /**
@@ -26,6 +29,12 @@ public final class Delay {
      * The time for the fire effect.
      */
     public static final int FIRE_EFFECT = 1000;
+
+
+    /**
+     * The time for perk spawning.
+     */
+    public static final int SPAWN_PERK = 30_000;
 
     /**
      * The time for waiting.
