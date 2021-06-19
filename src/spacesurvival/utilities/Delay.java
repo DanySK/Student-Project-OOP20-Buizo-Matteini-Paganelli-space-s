@@ -14,7 +14,9 @@ public final class Delay {
 
     public static final int FIRE_EFFECT = 1000;
     
-    public static final int WAIT_IN_WHILE = 1000;
+    public static final int WAIT_IN_WHILE = 20;
+
+    public static final int SPAWN_PERK = 30000;
 
 
 }

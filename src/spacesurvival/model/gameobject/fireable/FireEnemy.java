@@ -44,7 +44,6 @@ public class FireEnemy extends FireableObject {
 
     @Override
     public void collided(final World world, final WorldEvent ev) {
-        System.out.println("gestisco fire enemy e evento" + EventType.getEventFromHit(ev));
         final Optional<EventType> evType = EventType.getEventFromHit(ev);
         if (evType.isPresent()) {
             switch (EventType.getEventFromHit(ev).get()) {
@@ -55,7 +54,7 @@ public class FireEnemy extends FireableObject {
                 break;
             case MAIN_GAME_OBJECT_EVENT:
                 final HitMainGameObject mainEvent = (HitMainGameObject) ev;
-                final MainObject collidedObj = mainEvent.getCollidedObject();
+                final MainObject collidedObj = mainEvent.getObject();
                 world.damageObject(this, collidedObj.getImpactDamage(), Status.INVINCIBLE);
                 break;
             case DEAD_EVENT:

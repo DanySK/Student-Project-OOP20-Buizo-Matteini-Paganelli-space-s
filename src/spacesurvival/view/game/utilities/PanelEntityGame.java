@@ -82,12 +82,12 @@ public class PanelEntityGame extends JPanel {
         new CallerLife((MainObject) gameObject, new LogicColorShip(), g2d).drawLife();
     }
 
-    private boolean isTarghetLife(final GameObject obj) {
+    private boolean isTargetLife(final GameObject obj) {
         return !(obj instanceof SpaceShipSingleton || obj instanceof TakeableGameObject || obj instanceof Boss);
     }
     
     private void assignLifeBar(final GameObject gameObject, final Graphics2D g2d) {
-        if (this.isTarghetLife(gameObject)) {
+        if (this.isTargetLife(gameObject)) {
             this.drawLifeBar(g2d, gameObject);
         }
     }
