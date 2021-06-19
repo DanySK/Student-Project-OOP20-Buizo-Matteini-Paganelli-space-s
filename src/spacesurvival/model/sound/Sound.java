@@ -18,6 +18,7 @@ public abstract class Sound {
     private double volume;
     private boolean isPlaying;
 
+
     public Sound() {
         this.soundPath = null;
         this.volume = SoundUtils.STARTING_VOLUME;
@@ -52,15 +53,6 @@ public abstract class Sound {
     }
 
     /** 
-     * Set the current sound type. 
-     * 
-     * @param sound the soundType rappresenting the sound to be set.
-     */
-    public void setSoundType(final SoundPath sound) {
-        this.soundPath = sound;
-    }
-
-    /** 
      * Return the sound type composed by the name, the path of the file wav and the specified type like effect or loop.
      * 
      * @return the sound type rappresenting the currrent sound.
@@ -70,12 +62,12 @@ public abstract class Sound {
     }
 
     /** 
-     * Set the clip of the current sound.
+     * Set the current sound type. 
      * 
-     * @param clip that will be set in the sound.
+     * @param sound the soundType rappresenting the sound to be set.
      */
-    private void setClip(final Clip clip) {
-        this.clip = Optional.of(clip);
+    public void setSoundType(final SoundPath sound) {
+        this.soundPath = sound;
     }
 
     /** 
@@ -88,44 +80,22 @@ public abstract class Sound {
     }
 
     /** 
-     * Return if the clip of the current sound is playing.
+     * Set the clip of the current sound.
      * 
-     * @return true if is playing
+     * @param clip that will be set in the sound.
      */
-    public boolean isPlaying() {
-        return this.isPlaying;
+    private void setClip(final Clip clip) {
+        this.clip = Optional.of(clip);
     }
 
     /** 
-     * Stop the clip of the current sound.
+     * Get the volume of sound.
      * 
+     * @return volume the volume that is set on the sound.
      */
-    public void stopClip() {
-        this.clip.get().stop();
-        try {
-            audioInputStream.close();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        this.isPlaying = false;
+    public double getVolume() {
+        return this.volume;
     }
-
-    /** 
-     * Start the clip of the current sound.
-     * 
-     */
-    public void startClip() {
-        playSound(this.volume);
-        this.isPlaying = true;
-    }
-
-    /** 
-     * Method to be implemented for type loop or effect.
-     * 
-     * @param volume the volume that will be set before starting the sound.
-     */
-    protected abstract void playSound(double volume);
 
     /** 
      * Set the volume of sound.
@@ -141,13 +111,44 @@ public abstract class Sound {
     }
 
     /** 
-     * Get the volume of sound.
+     * Start the clip of the current sound.
      * 
-     * @return volume the volume that is set on the sound.
      */
-    public double getVolume() {
-        return this.volume;
+    public void startClip() {
+        playSound(this.volume);
+        this.isPlaying = true;
     }
+
+    /** 
+     * Stop the clip of the current sound.
+     * 
+     */
+    public void stopClip() {
+        this.clip.get().stop();
+        try {
+            audioInputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.isPlaying = false;
+    }
+
+    /** 
+     * Return if the clip of the current sound is playing.
+     * 
+     * @return true if is playing
+     */
+    public boolean isPlaying() {
+        return this.isPlaying;
+    }
+
+
+    /** 
+     * Method to be implemented for type loop or effect.
+     * 
+     * @param volume the volume that will be set before starting the sound.
+     */
+    protected abstract void playSound(double volume);
 
 
 }
