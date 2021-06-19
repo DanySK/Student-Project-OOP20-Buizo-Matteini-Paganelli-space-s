@@ -2,7 +2,6 @@ package spacesurvival.view.game.utilities.commandlife;
 
 import java.awt.Graphics2D;
 
-import spacesurvival.model.gameobject.GameObjectUtils;
 import spacesurvival.model.gameobject.fireable.Boss;
 import spacesurvival.model.gameobject.fireable.FireEnemy;
 import spacesurvival.model.gameobject.main.Asteroid;

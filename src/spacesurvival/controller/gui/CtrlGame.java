@@ -6,14 +6,18 @@ import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.gui.game.EngineGame;
 import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.model.World;
+import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
 import spacesurvival.model.MovementKeyListener;
+import spacesurvival.model.Pair;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.utilities.RoundUtils;
 import spacesurvival.utilities.gameobject.LifeUtils;
 import spacesurvival.view.GUI;
 import spacesurvival.view.game.GUIGame;
+
+import java.awt.Image;
 import java.awt.event.KeyListener;
 
 public class CtrlGame implements ControllerGUI {
@@ -85,7 +89,7 @@ public class CtrlGame implements ControllerGUI {
     public final void closeGUI() {
         this.gui.close();
     }
-
+    
     public final void updateHUD() {
         this.gui.setTimer(this.engine.getTimer());
         this.gui.setScore(this.engine.getScore());
