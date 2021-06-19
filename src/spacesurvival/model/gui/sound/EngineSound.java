@@ -27,7 +27,7 @@ public class EngineSound implements EngineGUI {
     /**
      * Number of unit of sound of the gui.
      */
-    public static int N_UNIT_SOUND = 2;
+    public static final int N_UNIT_SOUND = 2;
 
     private final ActionGUI id;
     private final ActionGUI idBack;

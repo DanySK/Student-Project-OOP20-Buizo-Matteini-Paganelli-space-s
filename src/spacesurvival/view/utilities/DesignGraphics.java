@@ -9,14 +9,14 @@ public class DesignGraphics {
     public static String ENEMIES_STRING = "Enemies";
     public static String INIT_TIMER_STRING = "00:00:00";
 
-    public static int SIZE_FONT_END = 200;
-    public static int SIZE_FONT_H0 = 100;
-    public static int SIZE_FONT_H1 = 60;
-    public static int SIZE_FONT_H2 = 35;
-    public static int SIZE_FONT_H3 = 30;
-    public static int SIZE_FONT_H4 = 25;
-    public static int SIZE_FONT_H5 = 20;
-    public static int SIZE_FONT_H6 = 15;
+    public static final int SIZE_FONT_END = 200;
+    public static final int SIZE_FONT_H0 = 100;
+    public static final int SIZE_FONT_H1 = 60;
+    public static final int SIZE_FONT_H2 = 35;
+    public static final int SIZE_FONT_H3 = 30;
+    public static final int SIZE_FONT_H4 = 25;
+    public static final int SIZE_FONT_H5 = 20;
+    public static final int SIZE_FONT_H6 = 15;
 
     public static final int SIZE_IMAGE_MEDIUM = 70;
     public static final int SIZE_IMAGE_SMALL = 50;
