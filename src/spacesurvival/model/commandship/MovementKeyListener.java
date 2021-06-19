@@ -1,16 +1,16 @@
-package spacesurvival.model.command;
+package spacesurvival.model.commandship;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Optional;
-import spacesurvival.controller.CallerCommand;
+import spacesurvival.controller.CallerCommandShip;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
-import spacesurvival.utilities.CommandType;
+import spacesurvival.utilities.CommandKey;
 
 
 public class MovementKeyListener implements KeyListener {
 
-    private final CallerCommand caller;
+    private final CallerCommandShip caller;
 
     /** 
      * Initialize the caller command.
@@ -18,7 +18,7 @@ public class MovementKeyListener implements KeyListener {
      * @param ship SpaceShipSingleton the unique controlled ship
      */
     public MovementKeyListener(final SpaceShipSingleton ship) {
-        caller = new CallerCommand(ship);
+        caller = new CallerCommandShip(ship);
     }
 
     /** 
@@ -40,7 +40,7 @@ public class MovementKeyListener implements KeyListener {
         final int pressedKeyCode = e.getKeyCode();
         System.out.println(pressedKeyCode);
         if (canHandleKey(pressedKeyCode)) {
-            final CommandType cmd = translateKeyCode(pressedKeyCode).get();
+            final CommandKey cmd = translateKeyCode(pressedKeyCode).get();
             this.caller.execute(cmd);
         }
     }
@@ -54,7 +54,7 @@ public class MovementKeyListener implements KeyListener {
     public void keyReleased(final KeyEvent e) {
         final int pressedKeyCode = e.getKeyCode();
         if (canHandleKey(pressedKeyCode)) {
-            final CommandType cmd = translateKeyCode(pressedKeyCode).get();
+            final CommandKey cmd = translateKeyCode(pressedKeyCode).get();
             this.caller.release(cmd);
         }
     }
@@ -66,7 +66,7 @@ public class MovementKeyListener implements KeyListener {
      * @return retur n
      */
     private boolean canHandleKey(final int currentKeyCode) {
-        return CommandType.getValue(currentKeyCode).isPresent();
+        return CommandKey.getValue(currentKeyCode).isPresent();
     }
 
     /**
@@ -75,9 +75,9 @@ public class MovementKeyListener implements KeyListener {
      * @param keyCode the code to be traduced
      * @return the respective command type is present or an empty optional
      */
-    public Optional<CommandType> translateKeyCode(final int keyCode) {
+    public Optional<CommandKey> translateKeyCode(final int keyCode) {
         if (canHandleKey(keyCode)) {
-            return CommandType.getValue(keyCode);
+            return CommandKey.getValue(keyCode);
         }
         return Optional.empty();
     }

@@ -1,21 +1,22 @@
-package spacesurvival.model.command.implementation;
+package spacesurvival.model.commandship.command.implementation;
 
 import java.awt.geom.AffineTransform;
-import spacesurvival.model.command.CommandGameObject;
+
+import spacesurvival.model.commandship.command.CommandShip;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.utilities.gameobject.VelocityUtils;
 
-public class RotateLeftCommand implements CommandGameObject {
+public class RotateRight implements CommandShip {
 
     /** 
-     * Rotate left the ship.
+     * Rotate right the ship.
      * 
      * @param ship the controlled ship 
      */
     @Override
     public void execute(final SpaceShipSingleton ship) {
         final AffineTransform transform = ship.getTransform();
-        transform.rotate(Math.toRadians(-VelocityUtils.SPACESHIP_ROTATION), ship.getSize().getWidth() / 2, ship.getSize().getHeight() / 2);
+        transform.rotate(Math.toRadians(VelocityUtils.SPACESHIP_ROTATION), ship.getSize().getWidth() / 2, ship.getSize().getHeight() / 2);
         ship.setTransform(transform);
     }
 }

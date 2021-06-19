@@ -1,11 +1,11 @@
-package spacesurvival.model.sound;
+package spacesurvival.utilities;
 
 /**
  * 
  * Enum for multiple commands audio.
  *
  */
-public enum CmdAudioType {
+public enum CommandAudioType {
     /** 
      * Type of command to pass to the CallerAudio to start sound.
      */
@@ -21,7 +21,7 @@ public enum CmdAudioType {
 
     private final String string;
 
-    CmdAudioType(final String string) {
+    CommandAudioType(final String string) {
         this.string = string;
     }
 

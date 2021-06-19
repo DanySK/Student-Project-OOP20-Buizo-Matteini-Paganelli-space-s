@@ -3,23 +3,23 @@ package test;
 import static org.junit.Assert.assertEquals;
 import java.util.Optional;
 import org.junit.Test;
-import spacesurvival.utilities.CommandType;
+import spacesurvival.utilities.CommandKey;
 
 public class TestTranslationKeyCode {
 
     @Test
     public void testTranslationNotExist() {
 
-        final Optional<CommandType> expectedValue = Optional.empty();
-        final Optional<CommandType> currentValue = CommandType.getValue(1);
+        final Optional<CommandKey> expectedValue = Optional.empty();
+        final Optional<CommandKey> currentValue = CommandKey.getValue(1);
         assertEquals(expectedValue, currentValue);
     }
 
     @Test
     public void testTranslationExist() {
 
-        final Optional<CommandType> expectedValue = Optional.of(CommandType.KEY_A);
-        final Optional<CommandType> currentValue = CommandType.getValue(CommandType.KEY_A.getKeyCode());
+        final Optional<CommandKey> expectedValue = Optional.of(CommandKey.KEY_A);
+        final Optional<CommandKey> currentValue = CommandKey.getValue(CommandKey.KEY_A.getKeyCode());
         assertEquals(expectedValue.get(), currentValue.get());
     }
 

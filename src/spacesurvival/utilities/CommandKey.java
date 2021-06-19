@@ -7,7 +7,7 @@ import java.util.stream.Stream;
  * Class for the command type, all available keys and their key codes.
  *
  */
-public enum CommandType {
+public enum CommandKey {
     /**
      * Type of command to pass to the CallerCommand to rotate the spaceship left.
      */
@@ -45,7 +45,7 @@ public enum CommandType {
     /**
      * Constructor for create enum associating a key code.
      */
-    CommandType(final Integer keyCode) {
+    CommandKey(final Integer keyCode) {
         this.keyCode = keyCode;
     }
 
@@ -55,8 +55,8 @@ public enum CommandType {
      * @param value int rapresenting the code of the key
      * @return the specific CommanType or an empty optional 
      */
-    public static Optional<CommandType> getValue(final Integer value) {
-        return Stream.of(CommandType.values()).filter(cmd -> cmd.getKeyCode().equals(value)).findFirst();
+    public static Optional<CommandKey> getValue(final Integer value) {
+        return Stream.of(CommandKey.values()).filter(cmd -> cmd.getKeyCode().equals(value)).findFirst();
     }
 
     /**

@@ -1,4 +1,4 @@
-package spacesurvival.controller.sound.command;
+package spacesurvival.model.sound.command;
 
 import spacesurvival.model.sound.Sound;
 

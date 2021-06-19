@@ -1,8 +1,8 @@
-package spacesurvival.model.command;
+package spacesurvival.model.commandship.command;
 
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 
-public interface CommandGameObject {
+public interface CommandShip {
 
     /** 
      * Execute the specified command on the ship.

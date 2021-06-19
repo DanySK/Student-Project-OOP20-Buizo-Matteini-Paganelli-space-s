@@ -30,7 +30,6 @@ public class SoundEffect extends Sound {
      * Start the sound effect at the current volume.
      * @param volume the volume at which the sound effect will start in the range 0-100.
      */
-    @Override
     protected void playSound(final double volume) {
         super.getClip().get().start();
         setVolume(volume);

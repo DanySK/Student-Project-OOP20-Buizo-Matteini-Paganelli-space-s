@@ -1,10 +1,10 @@
-package spacesurvival.model.command.implementation;
+package spacesurvival.model.commandship.command.implementation;
 
-import spacesurvival.model.command.CommandGameObject;
+import spacesurvival.model.commandship.command.CommandShip;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.utilities.gameobject.VelocityUtils;
 
-public class UpReleaseCommand implements CommandGameObject {
+public class UpRelease implements CommandShip {
 
     /** 
      * Decelerate the ship.

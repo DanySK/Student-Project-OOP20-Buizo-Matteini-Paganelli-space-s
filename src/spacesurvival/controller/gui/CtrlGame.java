@@ -6,7 +6,7 @@ import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.gui.game.EngineGame;
 import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.model.World;
-import spacesurvival.model.command.MovementKeyListener;
+import spacesurvival.model.commandship.MovementKeyListener;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
 import spacesurvival.utilities.ActionGUI;

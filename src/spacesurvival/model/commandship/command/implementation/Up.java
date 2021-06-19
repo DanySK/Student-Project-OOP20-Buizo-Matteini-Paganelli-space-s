@@ -1,11 +1,11 @@
-package spacesurvival.model.command.implementation;
+package spacesurvival.model.commandship.command.implementation;
 
-import spacesurvival.model.command.CommandGameObject;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.utilities.gameobject.VelocityUtils;
+import spacesurvival.model.commandship.command.CommandShip;
 import spacesurvival.model.common.V2d;
 
-public class UpCommand implements CommandGameObject {
+public class Up implements CommandShip {
 
     /** 
      * Accelerate the ship forward.

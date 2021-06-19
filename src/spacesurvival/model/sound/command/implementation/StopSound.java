@@ -1,8 +1,9 @@
-package spacesurvival.controller.sound.command;
+package spacesurvival.model.sound.command.implementation;
 
 import spacesurvival.model.sound.Sound;
+import spacesurvival.model.sound.command.CommandAudio;
 
-public class StopSoundCommand implements CommandAudio {
+public class StopSound implements CommandAudio {
 
     /** 
      * Stop the passed sound.

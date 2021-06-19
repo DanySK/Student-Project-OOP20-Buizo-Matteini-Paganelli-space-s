@@ -1,20 +1,20 @@
 package spacesurvival.controller;
 
-import spacesurvival.model.command.implementation.FireCommand;
-import spacesurvival.model.command.CommandGameObject;
-import spacesurvival.model.command.implementation.RotateLeftCommand;
-import spacesurvival.model.command.implementation.RotateRightCommand;
-import spacesurvival.model.command.implementation.UpCommand;
-import spacesurvival.model.command.implementation.UpReleaseCommand;
+import spacesurvival.model.commandship.command.CommandShip;
+import spacesurvival.model.commandship.command.implementation.Fire;
+import spacesurvival.model.commandship.command.implementation.RotateLeft;
+import spacesurvival.model.commandship.command.implementation.RotateRight;
+import spacesurvival.model.commandship.command.implementation.Up;
+import spacesurvival.model.commandship.command.implementation.UpRelease;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
-import spacesurvival.utilities.CommandType;
+import spacesurvival.utilities.CommandKey;
 
-public class CallerCommand {
-    private final CommandGameObject cmdUp;
-    private final CommandGameObject cmdReleaseUp;
-    private final CommandGameObject cmdRotateLeft;
-    private final CommandGameObject cmdRotateRight;
-    private final CommandGameObject cmdShot;
+public class CallerCommandShip {
+    private final CommandShip cmdUp;
+    private final CommandShip cmdReleaseUp;
+    private final CommandShip cmdRotateLeft;
+    private final CommandShip cmdRotateRight;
+    private final CommandShip cmdShot;
 
     private final SpaceShipSingleton ship;
 
@@ -24,12 +24,12 @@ public class CallerCommand {
      * 
      * @param ship ship on which to execute the commands.
      */
-    public CallerCommand(final SpaceShipSingleton ship) {
-        this.cmdUp = new UpCommand();
-        this.cmdReleaseUp = new UpReleaseCommand();
-        this.cmdRotateLeft = new RotateLeftCommand();
-        this.cmdRotateRight = new RotateRightCommand();
-        this.cmdShot = new FireCommand();
+    public CallerCommandShip(final SpaceShipSingleton ship) {
+        this.cmdUp = new Up();
+        this.cmdReleaseUp = new UpRelease();
+        this.cmdRotateLeft = new RotateLeft();
+        this.cmdRotateRight = new RotateRight();
+        this.cmdShot = new Fire();
         this.ship = ship;
     }
 
@@ -38,7 +38,7 @@ public class CallerCommand {
      * 
      * @param cmd the command to execute
      */
-    public void execute(final CommandType cmd) {
+    public void execute(final CommandKey cmd) {
         switch (cmd) {
         case KEY_UP:
             cmdUp.execute(ship);
@@ -71,7 +71,7 @@ public class CallerCommand {
      * 
      * @param cmd the command to execute
      */
-    public void release(final CommandType cmd) {
+    public void release(final CommandKey cmd) {
         switch (cmd) {
         case KEY_UP:
             cmdReleaseUp.execute(ship);

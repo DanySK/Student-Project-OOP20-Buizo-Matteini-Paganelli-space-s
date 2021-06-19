@@ -1,6 +1,7 @@
-package spacesurvival.controller.sound.command;
+package spacesurvival.model.sound.command.implementation;
 
 import spacesurvival.model.sound.Sound;
+import spacesurvival.model.sound.command.CommandAudio;
 
 public class ResetTiming implements CommandAudio {
 

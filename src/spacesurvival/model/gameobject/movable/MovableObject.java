@@ -2,7 +2,7 @@ package spacesurvival.model.gameobject.movable;
 
 import java.util.Optional;
 
-import spacesurvival.controller.CallerCommand;
+import spacesurvival.controller.CallerCommandShip;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
 import spacesurvival.model.gameobject.GameObject;
@@ -18,7 +18,7 @@ public abstract class MovableObject extends GameObject {
     private double acceleration;
     private Optional<P2d> target;
     private MovementLogic movementLogic;
-    private CallerCommand caller;
+    private CallerCommandShip caller;
     private boolean isMoving;
 
     public MovableObject() {
@@ -107,11 +107,11 @@ public abstract class MovableObject extends GameObject {
         this.target = target;
     }
 
-    public CallerCommand getCaller() {
+    public CallerCommandShip getCaller() {
         return caller;
     }
 
-    public void setCaller(final CallerCommand caller) {
+    public void setCaller(final CallerCommandShip caller) {
         this.caller = caller;
     }
 
