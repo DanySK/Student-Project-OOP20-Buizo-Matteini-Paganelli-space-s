@@ -36,11 +36,6 @@ public final class SystemVariables {
      */
     public static final String PATH_SEPARATOR = FileSystems.getDefault().getSeparator();
 
-    /**
-     * Detect the operative system.
-     */
-    private static String OS = System.getProperty("os.name").toLowerCase();
-
     private SystemVariables() {
 
     }

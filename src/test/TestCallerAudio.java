@@ -42,8 +42,9 @@ public class TestCallerAudio {
     @Test
     public void testChangeVolume() {
 
+        final int testingVolume = 50;
         final CallerAudio caller = new CallerAudio(new SoundLoop(SoundPath.GAME_SOUND));
-        caller.changeVolume(50);
+        caller.changeVolume(testingVolume);
 
         Double currentVolume = caller.getSound().getVolume();
         assertEquals(Double.valueOf(0.5), currentVolume);
