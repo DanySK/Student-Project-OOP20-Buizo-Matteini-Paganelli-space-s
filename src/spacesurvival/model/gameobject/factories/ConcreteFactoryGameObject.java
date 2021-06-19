@@ -23,13 +23,13 @@ import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
 import spacesurvival.model.gameobject.takeable.heart.Heart;
 import spacesurvival.model.gameobject.takeable.heart.HeartType;
 import spacesurvival.model.EngineImage;
-import spacesurvival.model.collision.physics.bounding.CircleBoundingBox;
-import spacesurvival.model.collision.physics.bounding.RectBoundingBox;
-import spacesurvival.model.collision.physics.component.AsteroidPhysic;
-import spacesurvival.model.collision.physics.component.BossPhysic;
-import spacesurvival.model.collision.physics.component.ChaseEnemyPhysic;
-import spacesurvival.model.collision.physics.component.FireEnemyPhysic;
-import spacesurvival.model.collision.physics.component.PickablePhysic;
+import spacesurvival.model.collision.bounding.CircleBoundingBox;
+import spacesurvival.model.collision.bounding.RectBoundingBox;
+import spacesurvival.model.collision.eventgenerator.AsteroidComponent;
+import spacesurvival.model.collision.eventgenerator.BossComponent;
+import spacesurvival.model.collision.eventgenerator.ChaseEnemyComponent;
+import spacesurvival.model.collision.eventgenerator.FireEnemyComponent;
+import spacesurvival.model.collision.eventgenerator.PickableComponent;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
 import spacesurvival.utilities.Score;
@@ -57,7 +57,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
         final int life = LifeUtils.ASTEROID_LIFE;
         final int impactDamage = DamageUtils.ASTEROID_DAMAGE;
 
-        return new Asteroid(engineImage, position, new CircleBoundingBox(), new AsteroidPhysic(), velocity,
+        return new Asteroid(engineImage, position, new CircleBoundingBox(), new AsteroidComponent(), velocity,
                 acceleration,  movementLogic, life, impactDamage, Score.ASTEROID, Optional.empty(), AnimationAsteroid.LIST_ASTEROID);
     }
 
@@ -71,7 +71,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
         final int life = LifeUtils.CHASE_ENEMY_LIFE;
         final int impactDamage = DamageUtils.CHASE_ENEMY_DAMAGE;
 
-        return new ChaseEnemy(engineImage, position, new RectBoundingBox(), new ChaseEnemyPhysic(), velocity,
+        return new ChaseEnemy(engineImage, position, new RectBoundingBox(), new ChaseEnemyComponent(), velocity,
                 acceleration, movementLogic, life, impactDamage, Score.CHASE_ENEMY, Optional.empty(), AnimationChase.LIST_POOH);
     }
 
@@ -87,7 +87,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
         final Weapon weapon = new Weapon();
         final FiringLogic firingLogic = new FireEnemyFiringImpl();
 
-        final FireEnemy fireEnemy = new FireEnemy(engineImage, position, new RectBoundingBox(), new FireEnemyPhysic(), velocity,
+        final FireEnemy fireEnemy = new FireEnemy(engineImage, position, new RectBoundingBox(), new FireEnemyComponent(), velocity,
                 acceleration, movementLogic, life, impactDamage, Score.FIRE_ENEMY, Optional.empty(), weapon, firingLogic);
         fireEnemy.setWeapon(new Weapon(AmmoType.NORMAL, fireEnemy));
         return fireEnemy;
@@ -105,7 +105,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
         final Weapon weapon = new Weapon();
         final FiringLogic firingLogic = new BossFiringImpl();
 
-        final Boss boss = new Boss(engineImage, position, new RectBoundingBox(), new BossPhysic(), velocity,
+        final Boss boss = new Boss(engineImage, position, new RectBoundingBox(), new BossComponent(), velocity,
                 acceleration, movementLogic, life, impactDamage, Score.BOSS, Optional.empty(), weapon, firingLogic);
         boss.setWeapon(new Weapon(AmmoType.NORMAL, boss));
         return boss;
@@ -117,7 +117,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
         final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, AnimationPerk.FIRE0);
         final P2d position = GameObjectUtils.generateRandomPoint();
 
-        return new Ammo(engineImage, position, new CircleBoundingBox(), new PickablePhysic(),
+        return new Ammo(engineImage, position, new CircleBoundingBox(), new PickableComponent(),
                 ammoType);
     }
 
@@ -127,7 +127,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
         final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, AnimationPerk.FIRE0);
         final P2d position = GameObjectUtils.generateRandomPoint();
 
-        return new Heart(engineImage, position, new CircleBoundingBox(), new PickablePhysic(),
+        return new Heart(engineImage, position, new CircleBoundingBox(), new PickableComponent(),
                 heartType);
     }
 

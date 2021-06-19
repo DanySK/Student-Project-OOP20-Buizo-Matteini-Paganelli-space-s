@@ -1,6 +1,6 @@
 package spacesurvival.controller;
 
-import spacesurvival.model.command.implementation.SpaceBarCommand;
+import spacesurvival.model.command.implementation.FireCommand;
 import spacesurvival.model.command.CommandGameObject;
 import spacesurvival.model.command.implementation.RotateLeftCommand;
 import spacesurvival.model.command.implementation.RotateRightCommand;
@@ -29,7 +29,7 @@ public class CallerCommand {
         this.cmdReleaseUp = new UpReleaseCommand();
         this.cmdRotateLeft = new RotateLeftCommand();
         this.cmdRotateRight = new RotateRightCommand();
-        this.cmdShot = new SpaceBarCommand();
+        this.cmdShot = new FireCommand();
         this.ship = ship;
     }
 

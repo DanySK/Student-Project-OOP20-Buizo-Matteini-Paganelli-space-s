@@ -56,14 +56,14 @@ public final class Icon {
      */
     public static final String PAUSE = Paths.get(MainFolder.ICON, "pause.png").toString();
     /**
-     * Pause to face icon
+     * Overlay mouse icon.
      */
     public static final String PAUSE_2FACE = Paths.get(MainFolder.ICON, "pause2Face.png").toString();
 
     /**
      * Empty constructor for icon.
      */
-    private Icon(){
+    private Icon() {
 
     }
 

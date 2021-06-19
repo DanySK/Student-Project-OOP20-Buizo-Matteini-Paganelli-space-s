@@ -1,15 +1,15 @@
 package spacesurvival.view.game.utilities;
 
 import spacesurvival.model.World;
-import spacesurvival.model.collision.physics.bounding.CircleBoundingBox;
+import spacesurvival.model.collision.bounding.CircleBoundingBox;
 import spacesurvival.model.gameobject.GameObject;
+import spacesurvival.model.EngineLoop;
+import spacesurvival.model.Pair;
 import spacesurvival.model.gameobject.fireable.Boss;
 import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.utilities.ThreadUtils;
-import spacesurvival.model.EngineLoop;
-import spacesurvival.model.Pair;
 import spacesurvival.view.game.utilities.commandlife.CallerLife;
 import spacesurvival.view.game.utilities.logicColor.LogicColorShip;
 
@@ -57,12 +57,11 @@ public class PanelEntityGame extends JPanel {
         super.paintComponent(g);
         final Graphics2D g2d = (Graphics2D) g;
 
+
         this.gameObjects.entrySet().forEach(entity -> {
             g2d.setTransform(getCorrectAffineTransformFromBoundingBox(entity.getKey())); 
-
             g2d.drawImage(entity.getValue().getX(), 0, 0, null);
             g2d.drawImage(entity.getValue().getY(), 0, 0, null);
-
             this.assignLifeBar(entity.getKey(), g2d);
         });     
     }
@@ -81,12 +80,12 @@ public class PanelEntityGame extends JPanel {
         new CallerLife((MainObject) gameObject, new LogicColorShip(), g2d).drawLife();
     }
 
-    private boolean isTarghetLife(final GameObject obj) {
+    private boolean isTargetLife(final GameObject obj) {
         return !(obj instanceof SpaceShipSingleton || obj instanceof TakeableGameObject || obj instanceof Boss);
     }
     
     private void assignLifeBar(final GameObject gameObject, final Graphics2D g2d) {
-        if (this.isTarghetLife(gameObject)) {
+        if (this.isTargetLife(gameObject)) {
             this.drawLifeBar(g2d, gameObject);
         }
     }

@@ -5,19 +5,19 @@ import spacesurvival.utilities.ActionGUI;
 import spacesurvival.view.AbstractGUI;
 import spacesurvival.view.dead.GUIDead;
 import spacesurvival.view.utilities.BtnAction;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import javax.swing.JLabel;
 
 public class GUIDeadConcrete extends AbstractGUI implements GUIDead {
 
-    private JLabel lbTitleDead;
-    private List<BtnAction> links;
+    final private JLabel lbTitleDead;
+    final private List<BtnAction> links;
 
-    public GUIDeadConcrete(){
+    public GUIDeadConcrete() {
         super();
         this.lbTitleDead = new JLabel();
         this.links = Stream.generate(BtnAction::new)
@@ -32,14 +32,14 @@ public class GUIDeadConcrete extends AbstractGUI implements GUIDead {
 
     @Override
     public void setNameButtons(final List<String> listNames) {
-        for(int i = 0; i < listNames.size(); i++){
+        for (int i = 0; i < listNames.size(); i++) {
             this.links.get(i).setText(listNames.get(i));
         }
     }
 
     @Override
     public void setBtnActions(final ActionGUI mainAction, final List<ActionGUI> actions) {
-        for(int i = 0; i < actions.size(); i++){
+        for (int i = 0; i < actions.size(); i++) {
             this.links.get(i).setActionCurrent(mainAction);
             this.links.get(i).setActionNext(actions.get(i));
         }

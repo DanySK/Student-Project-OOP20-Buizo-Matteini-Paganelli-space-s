@@ -6,11 +6,12 @@ import spacesurvival.utilities.ActionGUI;
 
 import java.util.Map;
 
+
 public interface LogicSwitchGUI {
-    public void algorithm(final ActionGUI actionCurrent, final ActionGUI ActionNext,
+    public void algorithm(final ActionGUI actionCurrent, final ActionGUI actionNext,
                           final ListGUI<ActionGUI> listActionGUI, final Map<ActionGUI, ControllerGUI> control);
 
     public default void quit() {
-        System.exit(0);
+        System.exit(1);
     }
 }

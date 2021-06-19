@@ -22,6 +22,6 @@ public final class DesignSound {
     public static final int DEFAULT_VALUE_SOUND = 50;
 
     private DesignSound() {
-      
+
     }
 }

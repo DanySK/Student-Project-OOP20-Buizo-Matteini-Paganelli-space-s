@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import spacesurvival.model.collision.bounding.BoundaryCollision;
+import spacesurvival.model.collision.bounding.CircleBoundingBox;
+import spacesurvival.model.collision.bounding.RectBoundingBox;
 import spacesurvival.model.gui.settings.SkinSpaceShip;
 import spacesurvival.model.collision.CollisionChecker;
-import spacesurvival.model.collision.physics.BoundaryCollision;
-import spacesurvival.model.collision.physics.bounding.CircleBoundingBox;
-import spacesurvival.model.collision.physics.bounding.RectBoundingBox;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.gameobject.Edge;
 import spacesurvival.model.gameobject.GameObject;
@@ -31,7 +31,10 @@ import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
 import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.model.worldevent.WorldEventListener;
+import spacesurvival.utilities.Delay;
+import spacesurvival.utilities.RandomUtils;
 import spacesurvival.utilities.SystemVariables;
+import spacesurvival.utilities.ThreadUtils;
 import spacesurvival.utilities.dimension.Screen;
 import spacesurvival.utilities.path.SoundPath;
 
@@ -57,6 +60,7 @@ public class World {
 
     public World(final RectBoundingBox mainBBox) {
         this.ship = SpaceShipSingleton.getSpaceShip();
+        this.ship.startMoving();
         this.ship.setWeapon(new Weapon(AmmoType.NORMAL, ship));
         this.mainBBox = mainBBox;
 
@@ -65,6 +69,7 @@ public class World {
 
     public World(final Rectangle rectangle) {
         this.ship = SpaceShipSingleton.getSpaceShip();
+        this.ship.startMoving();
         this.ship.setWeapon(new Weapon(AmmoType.NORMAL, ship));
         this.mainBBox = new RectBoundingBox(rectangle);
 
@@ -74,7 +79,18 @@ public class World {
     public final void createInitialEntities() {
         this.addAsteroid();
         this.addChaseEnemy();
-        this.addHeart();
+        new Thread(() -> {
+            while (ship.isAlive()) {
+                if (RandomUtils.RANDOM.nextBoolean()) {
+                    this.addHeart();
+                } else {
+                    this.addAmmo();
+                }
+                ThreadUtils.sleep(Delay.SPAWN_PERK);
+            }
+        }).start();
+        //this.addHeart();
+        this.addAmmo();
         this.addAmmo();
     }
 
@@ -92,7 +108,7 @@ public class World {
 
     public void setSkin(final SkinSpaceShip skin) {
         this.ship.getEngineImage().setPath(skin.getSkin());
-        this.ship.setAnimation(skin.getAnimation());
+        this.ship.setMainAnimation(skin.getAnimation());
     }
 
     public AbstractFactoryGameObject getFactoryGameObject() {
@@ -201,7 +217,7 @@ public class World {
 
     public void updateState() {
         this.getAllObjects().forEach(entity -> {
-            entity.updatePhysic(this);
+            entity.updateEvents(this);
         });
     }
 
@@ -343,10 +359,14 @@ public class World {
 
     public void damageObject(final MainObject object, final int damage, final Status status) {
         if (!object.isInvincible()) {
-            object.decreaseLife(damage);
             System.out.println(object.getClass() + " HA RICEVUTO  " + damage + " DANNI");
+            if (object.getLife() - damage <= 0) {
+                object.setLife(0);
+            } else {
+                object.decreaseLife(damage);
+                object.setStatus(status);
+            }
             System.out.println("VITA RIMASTA " + object.getLife());
-            object.setStatus(status);
         }
     }
 

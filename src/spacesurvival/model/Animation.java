@@ -21,7 +21,7 @@ public class Animation extends Thread {
     public EngineImage getBody() {
         return this.body;
     }
-
+    
     public void setBody(final EngineImage body) {
         this.body = body;
     }

@@ -6,11 +6,8 @@ import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.gui.game.EngineGame;
 import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.model.World;
-import spacesurvival.model.gameobject.GameObject;
+import spacesurvival.model.command.MovementKeyListener;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
-import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
-import spacesurvival.model.MovementKeyListener;
-import spacesurvival.model.Pair;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.utilities.RoundUtils;
 import spacesurvival.utilities.gameobject.LifeUtils;
@@ -97,15 +94,12 @@ public class CtrlGame implements ControllerGUI {
         this.gui.setNEnemies(this.engine.getCountEnemies());
         this.gui.setNHeart(this.engine.getLives());
         this.gui.setLifeShip(this.engine.getLifeShip());
+        //this.gui.setBulletHUD(this.engine.getShip().getWeapon().getAmmoType());
         if (this.getWorld().getBoss().isPresent()) {
             this.gui.setLifeBoss(this.engine.getLifeBoss());
         } else {
             this.setVisibleLifeBarBoss(false);
         }
-    }
-
-    public void updateBulletHUD(final AmmoType ammoType) {
-        this.gui.setBulletHUD(ammoType);
     }
 
     public void updateRoundState() {

@@ -3,7 +3,6 @@ package spacesurvival.model.gameobject.movable.movement.implementation;
 import java.awt.geom.AffineTransform;
 
 import spacesurvival.model.common.V2d;
-import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.gameobject.movable.MovableObject;
 import spacesurvival.model.gameobject.movable.movement.MovementLogic;
 import spacesurvival.utilities.gameobject.VelocityUtils;
@@ -12,17 +11,15 @@ public class ControlledMovement implements MovementLogic {
 
     @Override
     public void move(final MovableObject object) {
-        if (object instanceof SpaceShipSingleton) {
-            final SpaceShipSingleton ship = (SpaceShipSingleton) object;
-            final V2d vel = ship.getVelocity();
-            //final V2d newVel = new V2d(vel.getX() * ship.getAcceleration().getX(), vel.getY() * ship.getAcceleration().getY());
-            final V2d newVel = vel.mul(ship.getAcceleration());
-            final AffineTransform at = ship.getTransform();
+        if (object.isMoving()) {
+            final V2d vel = object.getVelocity();
+            final V2d newVel = vel.mul(object.getAcceleration());
+            final AffineTransform at = object.getTransform();
             if (Math.abs(newVel.getY()) < VelocityUtils.SPACESHIP_MAX_VELOCITY) {
-                ship.setVelocity(newVel);
+                object.setVelocity(newVel);
             }
-            at.translate(ship.getVelocity().getX(), ship.getVelocity().getY());
-            ship.setTransform(ship.getTransform());
+            at.translate(object.getVelocity().getX(), object.getVelocity().getY());
+            object.setTransform(object.getTransform());
         }
     }
 

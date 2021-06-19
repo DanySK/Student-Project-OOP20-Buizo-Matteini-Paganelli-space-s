@@ -5,7 +5,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
-import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.gameobject.movable.MovableObject;
 import spacesurvival.model.gameobject.movable.movement.MovementLogic;
 import spacesurvival.utilities.Delay;
@@ -13,26 +12,30 @@ import spacesurvival.utilities.ThreadUtils;
 
 public class RandomMovement implements MovementLogic {
 
-    @Override
+    /**
+     * @inheritDoc
+     */
     public void move(final MovableObject movableObject) {
-        if (movableObject.isMoving() && movableObject instanceof MainObject) {
-            final MainObject enemy = (MainObject) movableObject;
-            if (enemy.getTarget().isPresent()) {
-                final P2d target = enemy.getTarget().get();
-                final double rightRotation = Math.toDegrees(Math.atan2(enemy.getPosition().getY() - target.getY(), enemy.getPosition().getX() - target.getX()));
-                final double complementary = 180 - (rightRotation * -1);
-                final double newAngle = 90 + complementary;
-                final AffineTransform newTransform = new AffineTransform();
+        if (movableObject.isMoving() && movableObject.getTarget().isPresent()) {
+            final P2d target = movableObject.getTarget().get();
+            final double rightRotation = Math.toDegrees(Math.atan2(movableObject.getPosition().getY() - target.getY(),
+                    movableObject.getPosition().getX() - target.getX()));
+            final double complementary = 180 - (rightRotation * -1);
+            final double newAngle = 90 + complementary;
+            final AffineTransform newTransform = new AffineTransform();
 
-                newTransform.translate(enemy.getTransform().getTranslateX(), enemy.getTransform().getTranslateY());
-                newTransform.rotate(Math.toRadians(newAngle), 0, 0);
-                newTransform.translate(enemy.getVelocity().getX(), enemy.getVelocity().getY());
-                enemy.setTransform(newTransform);
-            }
+            newTransform.translate(movableObject.getTransform().getTranslateX(), movableObject.getTransform().getTranslateY());
+            newTransform.rotate(Math.toRadians(newAngle), 0, 0);
+            newTransform.translate(movableObject.getVelocity().getX(), movableObject.getVelocity().getY());
+            movableObject.setTransform(newTransform);
         }
     }
 
-    @Override
+    /**
+     * Start the object move in random directions every time interval.
+     * 
+     * @param movableObject object to move
+     */
     public void startMoving(final MovableObject movableObject) {
         movableObject.setMoving(true);
         new Thread(() -> {
@@ -43,6 +46,11 @@ public class RandomMovement implements MovementLogic {
         }).start();
     }
 
+    /**
+     * Set a new random direction to the object velocity.
+     * 
+     * @param movableObject object to change direction
+     */
     public void changeDirectionRandomly(final MovableObject movableObject) {
         final double directionX = ThreadLocalRandom.current().nextInt(-1, 1);
         final double directionY = ThreadLocalRandom.current().nextInt(-1, 1);

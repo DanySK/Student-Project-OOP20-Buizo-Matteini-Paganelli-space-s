@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class EngineScoreboard implements EngineGUI {
     public static final Rectangle RECTANGLE = Screen.RECTANGLE_MEDIUM;
-    public static String TITLE = "SCOREBOARD";
+    public static final String TITLE = "SCOREBOARD";
 
     private final ActionGUI id;
     private final ActionGUI linkBack;

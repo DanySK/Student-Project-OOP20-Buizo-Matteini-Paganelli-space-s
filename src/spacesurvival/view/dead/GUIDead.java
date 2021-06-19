@@ -2,7 +2,6 @@ package spacesurvival.view.dead;
 
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.view.GUI;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.util.List;

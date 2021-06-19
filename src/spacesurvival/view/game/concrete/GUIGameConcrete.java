@@ -219,8 +219,8 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
 
     @Override
     public void setBulletHUD(final AmmoType ammoType) {
-        this.bullet.setWeapon(ammoType.getWeapon());
-        this.bullet.setBullet(ammoType.getBulletHud());
+        this.bullet.setAmmoTypeImage(ammoType.getImagePath());
+        this.bullet.setBulletImage(ammoType.getBulletHud());
     }
 
 }

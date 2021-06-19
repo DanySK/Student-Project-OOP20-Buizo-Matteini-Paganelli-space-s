@@ -3,6 +3,10 @@ package spacesurvival.utilities;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+/**
+ * Class for the command type, all available keys and their key codes.
+ *
+ */
 public enum CommandType {
     /**
      * Type of command to pass to the CallerCommand to rotate the spaceship left.
@@ -47,6 +51,7 @@ public enum CommandType {
 
     /**
      * Return an optional of CommandType from the passed value if present.
+     * 
      * @param value int rapresenting the code of the key
      * @return the specific CommanType or an empty optional 
      */
@@ -55,7 +60,8 @@ public enum CommandType {
     }
 
     /**
-     * Return the key code .
+     * Return the key code.
+     * 
      * @return the specific key code
      */
     public Integer getKeyCode() {

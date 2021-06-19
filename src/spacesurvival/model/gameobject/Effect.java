@@ -3,25 +3,32 @@ package spacesurvival.model.gameobject;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
+
+import spacesurvival.utilities.RandomUtils;
 
 public enum Effect {
+    /**
+     * Effect that causes normal status.
+     */
     NONE(Status.NORMAL),
+    /**
+     * Effect that causes fire status.
+     */
     FIRE(Status.ON_FIRE),
+    /**
+     * Effect that causes frozen status.
+     */
     ICE(Status.FROZEN),
+    /**
+     * Effect that causes paralyzed status.
+     */
     ELECTRIC(Status.PARALYZED);
-//	FIRE_AMMO(Status.ON_FIRE),
-//	ICE_AMMO(Status.FROZEN),
-//	ELECTRIC_AMMO(Status.PARALIZED),
-//	HEAL(Status.HEALED),
-//	LIFE_UP(Status.LIVES_INCREASED);
 
     private Status status;
-	
+
     private static final List<Effect> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
     private static final int SIZE = VALUES.size();
-    private static final Random RANDOM = new Random();
-	
+
     Effect(final Status status) {
         this.status = status;
     }
@@ -30,7 +37,7 @@ public enum Effect {
      * @return a random effect
      */
     public static Effect random()  {
-        return VALUES.get(RANDOM.nextInt(SIZE));
+        return VALUES.get(RandomUtils.RANDOM.nextInt(SIZE));
     }
 
     /**

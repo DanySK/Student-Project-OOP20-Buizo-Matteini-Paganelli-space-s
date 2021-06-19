@@ -74,7 +74,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
                         waitForNextFrame(current);
                         lastTime = current;
                         updateGame();
-                        System.out.println("Numero dei thread current -> " + Thread.getAllStackTraces().keySet().size());
+                        //System.out.println("Numero dei thread current -> " + Thread.getAllStackTraces().keySet().size());
                     }
                 }
 
@@ -100,10 +100,6 @@ public class EngineLoop extends Thread implements WorldEventListener {
         if (dt < FPS) {
             ThreadUtils.sleep(FPS - dt);
         }
-    }
-
-    protected void processInput() {
-//        gameState.getWorld().getShip().updateInput(controller);
     }
 
     protected final void updateGame() {

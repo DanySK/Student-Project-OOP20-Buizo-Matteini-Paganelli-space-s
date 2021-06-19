@@ -3,9 +3,9 @@ package spacesurvival.model.gameobject.takeable.ammo;
 import java.util.Optional;
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.World;
+import spacesurvival.model.collision.bounding.BoundingBox;
 import spacesurvival.model.collision.event.EventType;
-import spacesurvival.model.collision.physics.bounding.BoundingBox;
-import spacesurvival.model.collision.physics.component.PhysicsComponent;
+import spacesurvival.model.collision.eventgenerator.EventComponent;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.model.worldevent.WorldEvent;
@@ -16,7 +16,7 @@ public class Ammo extends TakeableGameObject {
     private AmmoType type;
 
     public Ammo(final EngineImage engineImage, final P2d position, final BoundingBox bb,
-            final PhysicsComponent phys, final AmmoType type) {
+            final EventComponent phys, final AmmoType type) {
         super(engineImage, position, bb, phys, type.getAnimation());
         this.type = type;
     }

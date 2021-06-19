@@ -19,13 +19,13 @@ import java.util.List;
 import java.util.Optional;
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.World;
+import spacesurvival.model.collision.bounding.BoundingBox;
+import spacesurvival.model.collision.bounding.RectBoundingBox;
 import spacesurvival.model.collision.event.EventType;
 import spacesurvival.model.collision.event.hit.HitBorderEvent;
 import spacesurvival.model.collision.event.hit.HitMainGameObject;
-import spacesurvival.model.collision.physics.bounding.BoundingBox;
-import spacesurvival.model.collision.physics.bounding.RectBoundingBox;
-import spacesurvival.model.collision.physics.component.PhysicsComponent;
-import spacesurvival.model.collision.physics.component.ShipPhysic;
+import spacesurvival.model.collision.eventgenerator.EventComponent;
+import spacesurvival.model.collision.eventgenerator.ShipComponent;
 import spacesurvival.utilities.Score;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;
@@ -44,7 +44,7 @@ public final class SpaceShipSingleton extends FireableObject {
             new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, AnimationShip.NORMAL0),
             Screen.POINT_CENTER_FULLSCREEN,
             new RectBoundingBox(),
-            new ShipPhysic(),
+            new ShipComponent(),
             VelocityUtils.SPACESHIP_VEL,
             VelocityUtils.SPACESHIP_ACCELERATION,
             new ControlledMovement(),
@@ -60,11 +60,11 @@ public final class SpaceShipSingleton extends FireableObject {
     * Invisible class constructor specifying space ship initial position and image path.
     */
     private SpaceShipSingleton(final EngineImage engineImage, final P2d position, final BoundingBox bb,
-            final PhysicsComponent phys, final V2d velocity, final double acceleration, final MovementLogic movementLogic, final int life,
+            final EventComponent phys, final V2d velocity, final double acceleration, final MovementLogic movementLogic, final int life,
             final int impactDamage, final int score, final Optional<P2d> target, final Weapon weapon,
             final FiringLogic firingLogic) {
         super(engineImage, position, bb, phys, velocity, acceleration, movementLogic, life, impactDamage, score, target, weapon, firingLogic);
-        this.setBoundingBox(GameObjectUtils.createRectBoundingBox(position, engineImage, this.getTransform()));
+        this.setBoundingBox(RectBoundingBox.createRectBoundingBox(position, engineImage, this.getTransform()));
     }
 
     /**

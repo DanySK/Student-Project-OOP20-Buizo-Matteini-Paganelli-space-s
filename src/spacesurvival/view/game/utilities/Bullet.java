@@ -16,8 +16,8 @@ import spacesurvival.view.utilities.JImage;
 
 public class Bullet extends JPanel {
     private static final long serialVersionUID = 8962529427424782971L;
-    private final JImage weapon;
-    private final JImage icon;
+    private final JImage ammoTypeImage;
+    private final JImage bulletImage;
 
     public Bullet() {
         super(new FlowLayout());
@@ -26,18 +26,18 @@ public class Bullet extends JPanel {
         final Dimension dimension = EngineImage.getSizeImageFromScale(
                 Icon.HEART, ScaleOf.ICON_FULL, Screen.WIDTH_FULL_SCREEN);
 
-        this.weapon = new JImage(Weapon.NORMAL, dimension);
-        this.icon = new JImage(BulletHUD.NORMAL, dimension);
+        this.ammoTypeImage = new JImage(Weapon.NORMAL, dimension);
+        this.bulletImage = new JImage(BulletHUD.NORMAL, dimension);
 
-        super.add(this.weapon);
-        super.add(this.icon);
+        super.add(this.ammoTypeImage);
+        super.add(this.bulletImage);
     }
 
-    public void setWeapon(final String weapon) {
-        this.weapon.setImage(weapon);
+    public void setAmmoTypeImage(final String ammoTypeImagePath) {
+        this.ammoTypeImage.setImage(ammoTypeImagePath);
     }
 
-    public void setBullet(final String bullet) {
-        this.icon.setImage(bullet);
+    public void setBulletImage(final String bulletImagePath) {
+        this.bulletImage.setImage(bulletImagePath);
     }
 }

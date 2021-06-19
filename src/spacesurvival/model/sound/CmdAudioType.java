@@ -2,7 +2,7 @@ package spacesurvival.model.sound;
 
 /**
  * 
- * Enum for creating 
+ * Enum for multiple commands audio.
  *
  */
 public enum CmdAudioType {

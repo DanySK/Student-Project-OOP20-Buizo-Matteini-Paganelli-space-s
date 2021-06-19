@@ -1,10 +1,14 @@
 package spacesurvival.view.game.utilities;
 
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 import spacesurvival.view.utilities.DesignGraphics;
 import spacesurvival.view.utilities.FactoryGUIs;
-
-import javax.swing.*;
-import java.awt.*;
 
 public class Score extends JPanel {
     private final JLabel stringScore;
@@ -20,20 +24,20 @@ public class Score extends JPanel {
                 this.stringScore, this.score), FactoryGUIs.MAX_INSET));
     }
 
-    public void setScore(final long score){
+    public void setScore(final long score) {
         this.score.setText(Long.toString(score));
     }
 
-    public void setScore(final String score){
+    public void setScore(final String score) {
         this.score.setText(score);
     }
 
-    public void setFontAll(final Font font){
+    public void setFontAll(final Font font) {
         this.stringScore.setFont(font);
         this.score.setFont(font);
     }
 
-    public void setForegroundAll(final Color color){
+    public void setForegroundAll(final Color color) {
         this.stringScore.setForeground(color);
         this.score.setForeground(color);
     }
