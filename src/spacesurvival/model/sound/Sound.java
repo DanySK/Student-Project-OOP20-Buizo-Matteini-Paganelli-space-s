@@ -1,5 +1,6 @@
 package spacesurvival.model.sound;
 
+import spacesurvival.utilities.SoundUtils;
 import spacesurvival.utilities.path.SoundPath;
 import java.io.IOException;
 import java.util.Optional;
@@ -11,16 +12,15 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public abstract class Sound {
-    private static final double START_VOLUME = 0.50;
+    private AudioInputStream audioInputStream;
+    private Optional<Clip> clip = Optional.empty();
     private SoundPath soundPath;
     private double volume;
-    private Optional<Clip> clip = Optional.empty();
     private boolean isPlaying;
-    private AudioInputStream audioInputStream;
 
     public Sound() {
         this.soundPath = null;
-        this.volume = START_VOLUME;
+        this.volume = SoundUtils.STARTING_VOLUME;
     }
 
     /**
@@ -30,7 +30,7 @@ public abstract class Sound {
      */
     public Sound(final SoundPath sound) {
         this.soundPath = sound;
-        this.volume = START_VOLUME;
+        this.volume = SoundUtils.STARTING_VOLUME;
         initializeSound(sound);
     }
 
@@ -135,7 +135,7 @@ public abstract class Sound {
     public void setVolume(final double volume) {
         this.volume = volume;
         final FloatControl gain = (FloatControl) getClip().get().getControl(FloatControl.Type.MASTER_GAIN);
-        final float dB = (float) (Math.log(volume) / Math.log(10) * 20);
+        final float dB = (float) (Math.log(volume) / Math.log(10));
 
         gain.setValue(dB);
     }

@@ -30,6 +30,11 @@ public final class VelocityUtils {
     public static final int SPACESHIP_STARTING_VEL = 5;
 
     /**
+     * Space ship starting velocity.
+     */
+    public static final int SPACESHIP_TOLLERANCE_RESTART = 1;
+
+    /**
      * Max velocity which space ship can reach.
      */
     public static final int SPACESHIP_MAX_VELOCITY = 20;

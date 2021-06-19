@@ -3,7 +3,6 @@ package spacesurvival.model.command;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Optional;
-
 import spacesurvival.controller.CallerCommand;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.utilities.CommandType;
@@ -16,7 +15,7 @@ public class MovementKeyListener implements KeyListener {
     /** 
      * Initialize the caller command.
      * 
-     * @param ship SpaceShipSingleton the unique controlled ship 
+     * @param ship SpaceShipSingleton the unique controlled ship
      */
     public MovementKeyListener(final SpaceShipSingleton ship) {
         caller = new CallerCommand(ship);
@@ -76,7 +75,7 @@ public class MovementKeyListener implements KeyListener {
      * @param keyCode the code to be traduced
      * @return the respective command type is present or an empty optional
      */
-    public Optional<CommandType> translateKeyCode(final Integer keyCode) {
+    public Optional<CommandType> translateKeyCode(final int keyCode) {
         if (canHandleKey(keyCode)) {
             return CommandType.getValue(keyCode);
         }

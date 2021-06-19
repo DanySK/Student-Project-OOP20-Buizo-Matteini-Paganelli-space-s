@@ -4,11 +4,7 @@ import java.util.ArrayList;
 
 public class ListGUI<X> extends ArrayList<X> {
 
-    public ListGUI() {
-        super();
-    }
-
-    public X lastElementOfList(){
+    public X lastElementOfList() {
         X x = null;
         try {
             x = super.get(super.size() - 1);
@@ -18,7 +14,7 @@ public class ListGUI<X> extends ArrayList<X> {
         return x;
     }
 
-    public X penultimateElementOfList(){
+    public X penultimateElementOfList() {
         X x = null;
         try {
             x = super.get(super.size() - 2);
