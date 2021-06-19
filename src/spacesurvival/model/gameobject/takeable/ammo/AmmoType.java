@@ -47,10 +47,6 @@ public enum AmmoType {
         return animation;
     }
 
-    public void setAnimation(final List<String> animation) {
-        this.animation = animation;
-    }
-
     public String getBulletHud() {
         return this.bulletHud;
     }

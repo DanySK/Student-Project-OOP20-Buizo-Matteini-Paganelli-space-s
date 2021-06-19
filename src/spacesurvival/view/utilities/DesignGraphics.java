@@ -41,12 +41,12 @@ public class DesignGraphics {
         Font myFont = null;
         try {
             myFont = Font.createFont(Font.TRUETYPE_FONT, fontUrl.openStream());
+            myFont = myFont.deriveFont(Font.PLAIN, size);
+            final GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(myFont);
         } catch (Exception e) {
             System.err.println("Path font no found");
         }
-        myFont = myFont.deriveFont(Font.PLAIN, size);
-        final GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        ge.registerFont(myFont);
 
         return myFont;
     }
@@ -56,13 +56,12 @@ public class DesignGraphics {
         Font myFont = null;
         try {
             myFont = Font.createFont(Font.TRUETYPE_FONT, fontUrl.openStream());
+            myFont = myFont.deriveFont(Font.PLAIN,size);
+            final GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(myFont);
         } catch (Exception e) {
             System.err.println("Path font no found");
         }
-
-        myFont = myFont.deriveFont(Font.PLAIN,size);
-        final GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        ge.registerFont(myFont);
 
         return myFont;
     }
@@ -72,14 +71,12 @@ public class DesignGraphics {
         Font myFont = null;
         try {
             myFont = Font.createFont(Font.TRUETYPE_FONT, fontUrl.openStream());
+            myFont = myFont.deriveFont(Font.PLAIN, size);
+            final GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(myFont);
         } catch (Exception e) {
             System.err.println("Path font no found");
         }
-
-        myFont = myFont.deriveFont(Font.PLAIN, size);
-        final GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        ge.registerFont(myFont);
-
         return myFont;
     }
 
