@@ -1,4 +1,4 @@
-package spacesurvival.model;
+package spacesurvival.model.command;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

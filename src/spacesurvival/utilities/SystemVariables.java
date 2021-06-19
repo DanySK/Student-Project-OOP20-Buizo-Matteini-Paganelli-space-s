@@ -6,12 +6,12 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
 import java.nio.file.FileSystems;
 
-public class SystemVariables {
+public final class SystemVariables {
     /**
      * Detect the default screen device.
      */
     public static final GraphicsDevice GRAPHICS_DEVICE =  GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-    
+
     /**
      * Detect the size of the screen in pixel.
      */
@@ -41,4 +41,7 @@ public class SystemVariables {
      */
     private static String OS = System.getProperty("os.name").toLowerCase();
 
+    private SystemVariables() {
+
+    }
 }

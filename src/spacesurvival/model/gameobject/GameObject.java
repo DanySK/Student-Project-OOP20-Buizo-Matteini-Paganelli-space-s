@@ -9,6 +9,7 @@ import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.model.Animation;
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.World;
+import spacesurvival.model.collision.Collideable;
 import spacesurvival.model.collision.bounding.BoundingBox;
 import spacesurvival.model.collision.eventgenerator.EventComponent;
 

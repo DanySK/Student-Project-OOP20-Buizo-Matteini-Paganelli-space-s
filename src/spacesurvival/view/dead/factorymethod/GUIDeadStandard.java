@@ -1,14 +1,14 @@
 package spacesurvival.view.dead.factorymethod;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import spacesurvival.utilities.path.Background;
 import spacesurvival.view.dead.FactoryGUIDead;
 import spacesurvival.view.dead.GUIDead;
-
 import spacesurvival.view.dead.concrete.GUIDeadConcrete;
 import spacesurvival.view.utilities.DesignGraphics;
 import spacesurvival.view.utilities.FactoryGUIs;
 
-import java.awt.*;
 
 public class GUIDeadStandard implements FactoryGUIDead {
     @Override
@@ -26,7 +26,7 @@ public class GUIDeadStandard implements FactoryGUIDead {
         return concrete;
     }
 
-    private void createGraphics(final GUIDeadConcrete concrete){
+    private void createGraphics(final GUIDeadConcrete concrete) {
         concrete.setLayout(new BorderLayout());
 
         concrete.getBtnActionLinks().forEach(FactoryGUIs::setTransparentDesignJButton);
@@ -34,9 +34,7 @@ public class GUIDeadStandard implements FactoryGUIDead {
         concrete.add(FactoryGUIs.encapsulatesInPanelFlow(concrete.getLbTitleDead()), BorderLayout.CENTER);
 
         concrete.add(FactoryGUIs.createPanelGridBagUnionComponentsHorizontal(concrete.getBtnActionLinks(),
-                        FactoryGUIs.INSET_H1),
+                FactoryGUIs.INSET_H1),
                 BorderLayout.SOUTH);
-
-
     }
 }

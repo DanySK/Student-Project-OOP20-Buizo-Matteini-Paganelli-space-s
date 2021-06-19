@@ -6,12 +6,11 @@ public enum NameScoreboardGUI {
 
     private final String name;
 
-    private NameScoreboardGUI(final String name) {
+    NameScoreboardGUI(final String name) {
         this.name = name;
     }
 
-    public String getName(){
+    public String getName() {
         return this.name;
     }
-
 }

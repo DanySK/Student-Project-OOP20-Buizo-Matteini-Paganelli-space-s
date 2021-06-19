@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Enum rapresenting the type of sounds.
+ *
+ */
 public enum SoundType {
     /**
      * Type of sound loop, when the clip is finished it restarts. 

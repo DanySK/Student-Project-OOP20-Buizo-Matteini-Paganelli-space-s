@@ -2,9 +2,6 @@ package spacesurvival.utilities;
 
 public final class Delay {
 
-    private Delay() {
-    }
-
     public static final long CHANGING_DIRECTION = 5000;
 
     public static final int FIRE_ENEMY_FIRING = 5000;
@@ -16,5 +13,6 @@ public final class Delay {
     
     public static final int WAIT_IN_WHILE = 1000;
 
-
+    private Delay() {
+    }
 }

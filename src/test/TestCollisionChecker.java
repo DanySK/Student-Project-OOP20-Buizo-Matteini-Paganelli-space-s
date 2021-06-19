@@ -65,7 +65,7 @@ public class TestCollisionChecker {
     }
 
     /**
-     * Test RectBoundingBox to rotated CircleBoundingBox,.
+     * Test RectBoundingBox to rotated CircleBoundingBox.
      */
     @Test 
     public void testRectToCircle1() {
