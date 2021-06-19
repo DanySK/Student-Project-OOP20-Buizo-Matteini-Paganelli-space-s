@@ -1,6 +1,7 @@
 package spacesurvival.utilities;
 
-public class Score {
+public final class Score {
+
     /**
      * Score assigned to user when ship destroyed.
      */

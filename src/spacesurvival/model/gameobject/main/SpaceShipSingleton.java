@@ -29,6 +29,8 @@ import spacesurvival.model.collision.physics.component.ShipPhysic;
 import spacesurvival.utilities.Score;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;
+import spacesurvival.utilities.gameobject.DamageUtils;
+import spacesurvival.utilities.gameobject.LifeUtils;
 import spacesurvival.utilities.gameobject.VelocityUtils;
 import spacesurvival.utilities.path.SoundPath;
 import spacesurvival.utilities.path.animation.AnimationShip;
@@ -46,8 +48,8 @@ public final class SpaceShipSingleton extends FireableObject {
             VelocityUtils.SPACESHIP_VEL,
             VelocityUtils.SPACESHIP_ACCELERATION,
             new ControlledMovement(),
-            GameObjectUtils.SPACESHIP_LIFE,
-            GameObjectUtils.ASTEROID_DAMAGE,
+            LifeUtils.SPACESHIP_LIFE,
+            DamageUtils.SPACESHIP_DAMAGE,
             Score.SHIP,
             Optional.empty(),
             new Weapon(),
@@ -96,18 +98,13 @@ public final class SpaceShipSingleton extends FireableObject {
             case MAIN_GAME_OBJECT_EVENT:
                 final HitMainGameObject asteroidEvent = (HitMainGameObject) ev;
                 final MainObject collidedObject = asteroidEvent.getCollidedObject();
-                //this.controlGame.incrScore(Score.ASTEROID);
                 if (!this.isInvincible()) {
                     world.getQueueDecreaseLife().add(collidedObject.getImpactDamage());
                     this.setStatus(Status.INVINCIBLE);
                 }
-                //world.damageObject(collidedObject, getImpactDamage(), getStatus());
                 break;
             case DEAD_EVENT:
                 world.getSoundQueue().add(SoundPath.LIFE_DOWN);
-//                //this.controlGame.incrScore(Score.ASTEROID);
-//                world.damageObject(this, collidedObject.getImpactDamage(), Status.INVINCIBLE);
-//                world.damageObject(collidedObject, this.getImpactDamage(), Status.INVINCIBLE); 
                 break;
             default:
                 break;

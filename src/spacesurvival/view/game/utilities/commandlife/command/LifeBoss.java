@@ -1,8 +1,8 @@
 package spacesurvival.view.game.utilities.commandlife.command;
 
 import spacesurvival.model.gameobject.GameObject;
-import spacesurvival.model.gameobject.GameObjectUtils;
 import spacesurvival.model.gameobject.main.MainObject;
+import spacesurvival.utilities.gameobject.LifeUtils;
 import spacesurvival.view.game.utilities.commandlife.CommandLife;
 
 public class LifeBoss implements CommandLife {
@@ -12,7 +12,7 @@ public class LifeBoss implements CommandLife {
         final int life = ((MainObject) gameObject).getLife();
         final int width = (int)gameObject.getWidth();
         
-        return (int) ((life * width) / GameObjectUtils.BOSS_LIFE);
+        return (int) ((life * width) / LifeUtils.BOSS_LIFE);
     }
 
 }

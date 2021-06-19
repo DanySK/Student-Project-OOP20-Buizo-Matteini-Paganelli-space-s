@@ -13,5 +13,8 @@ public final class Delay {
     public static final int BOSS_CHANGING_AMMO = 20000;
 
     public static final int FIRE_EFFECT = 1000;
+    
+    public static final int WAIT_IN_WHILE = 1000;
+
 
 }

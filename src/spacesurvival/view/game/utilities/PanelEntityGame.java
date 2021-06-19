@@ -3,20 +3,20 @@ package spacesurvival.view.game.utilities;
 import spacesurvival.model.World;
 import spacesurvival.model.collision.physics.bounding.CircleBoundingBox;
 import spacesurvival.model.gameobject.GameObject;
-import spacesurvival.model.EngineLoop;
-import spacesurvival.model.Pair;
-
 import spacesurvival.model.gameobject.fireable.Boss;
 import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.utilities.ThreadUtils;
+import spacesurvival.model.EngineLoop;
+import spacesurvival.model.Pair;
 import spacesurvival.view.game.utilities.commandlife.CallerLife;
 import spacesurvival.view.game.utilities.logicColor.LogicColorShip;
 
-import javax.swing.*;
-
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -24,17 +24,20 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-public class PanelEntityGame extends JPanel{
+import javax.swing.JPanel;
+
+public class PanelEntityGame extends JPanel {
+
     private static final long serialVersionUID = -6158413043296871948L;
-    
+
     public static final int ANCHOR_X_LIFE_BAR = 0;
     public static final int HEIGHT_LIFE_BAR = 6;
     public static final int HEIGHT_LIFE = 5;
     public static final int DIFFERENCE_HEIGHT_LIFE_BAR = Math.abs(HEIGHT_LIFE_BAR - HEIGHT_LIFE);
-    
+
     private final Map<GameObject, Pair<Image, Image>> objects;
     private Optional<World> world;
-    
+
     private final Thread taskObjects;
 
     public PanelEntityGame() {
@@ -66,13 +69,13 @@ public class PanelEntityGame extends JPanel{
             this.assignLifeBar(entity.getKey(), g2d);
         });     
     }
-    
-    private void drawLifeBar(final Graphics2D g2d, final GameObject gameObject){
+
+    private void drawLifeBar(final Graphics2D g2d, final GameObject gameObject) {
         this.drawBar(g2d, gameObject);
         this.drawLife(g2d, gameObject);
     }
-    
-    private void drawBar(final Graphics2D g2d, final GameObject gameObject){
+
+    private void drawBar(final Graphics2D g2d, final GameObject gameObject) {
         g2d.setColor(Color.WHITE);
         g2d.drawRect(ANCHOR_X_LIFE_BAR, (int) gameObject.getSize().getHeight(), (int) gameObject.getSize().getWidth(), HEIGHT_LIFE_BAR);
     }
@@ -132,7 +135,7 @@ public class PanelEntityGame extends JPanel{
     public final void runUpdateGameObjects() {
         long lastTime = System.currentTimeMillis();
         while (true) {
-            long current = System.currentTimeMillis();
+            final long current = System.currentTimeMillis();
 
             if (this.world.isPresent()) {
                this.updateGameObjects();

@@ -41,7 +41,7 @@ public class World {
     private final Set<MainObject> asteroids = new HashSet<>();
     private final Set<MainObject> chaseEnemies = new HashSet<>();
     private final Set<FireableObject> fireEnemies = new HashSet<>();
-    private Optional<FireableObject> boss;
+    private Optional<FireableObject> boss = Optional.empty();
     private final Set<TakeableGameObject> ammo = new HashSet<>();
     private final Set<TakeableGameObject> hearts = new HashSet<>();
 
@@ -60,18 +60,7 @@ public class World {
         this.ship.setWeapon(new Weapon(AmmoType.NORMAL, ship));
         this.mainBBox = mainBBox;
 
-        for (int i = 0; i < 1; i++) {
-            this.addAsteroid();
-            this.addChaseEnemy();
-            this.addFireEnemy();
-            this.addAmmo();
-            //asteroids.add(factoryGameObject.createAsteroid());
-            //chaseEnemies.add(factoryGameObject.createChaseEnemy());
-            //ammo.add(factoryGameObject.createAmmo());
-            //hearts.add(factoryGameObject.createHeart());
-        }
-        this.addBoss();
-        //this.boss = Optional.of(factoryGameObject.createBoss());
+        createInitialEntities();
     }
 
     public World(final Rectangle rectangle) {
@@ -79,17 +68,18 @@ public class World {
         this.ship.setWeapon(new Weapon(AmmoType.NORMAL, ship));
         this.mainBBox = new RectBoundingBox(rectangle);
 
-        for (int i = 0; i < 1; i++) {
-            this.addAsteroid();
-            this.addChaseEnemy();
-            this.addFireEnemy();
-            this.addAmmo();
-        }
-        this.addBoss();
+        createInitialEntities();
     }
 
-    public void setEventListener(final WorldEventListener l) {
-        evListener = l;
+    public final void createInitialEntities() {
+        this.addAsteroid();
+        this.addChaseEnemy();
+        this.addHeart();
+        this.addAmmo();
+    }
+
+    public void setEventListener(final WorldEventListener listener) {
+        evListener = listener;
     }
 
     public void setShip(final SpaceShipSingleton ship) {
@@ -105,10 +95,6 @@ public class World {
         this.ship.setAnimation(skin.getAnimation());
     }
 
-    public void moveShip() {
-        this.ship.move();
-    }
-
     public AbstractFactoryGameObject getFactoryGameObject() {
         return factoryGameObject;
     }
@@ -117,7 +103,7 @@ public class World {
         this.factoryGameObject = factoryGameObject;
     }
 
-    public void addAsteroid() {
+    public final void addAsteroid() {
         final MainObject asteroid = factoryGameObject.createAsteroid();
         asteroids.add(asteroid);
         asteroid.startMoving();
@@ -129,38 +115,38 @@ public class World {
         asteroids.remove(asteroid);
     }
 
-    public void addChaseEnemy() {
+    public final void addChaseEnemy() {
         final MainObject chaseEnemy = factoryGameObject.createChaseEnemy();
         chaseEnemies.add(chaseEnemy);
         chaseEnemy.startMoving();
     }
 
-    public void removeChaseEnemy(final MainObject chaseEnemy) {
+    public final void removeChaseEnemy(final MainObject chaseEnemy) {
         chaseEnemy.stopMoving();
         chaseEnemy.stopAnimation();
         chaseEnemies.remove(chaseEnemy);
     }
 
-    public void addFireEnemy() {
+    public final void addFireEnemy() {
         final FireableObject fireEnemy = factoryGameObject.createFireEnemy();
         fireEnemies.add(fireEnemy);
         fireEnemy.startMoving();
         fireEnemy.startFiring();
     }
 
-    public void removeFireEnemy(final MainObject fireEnemy) {
+    public final void removeFireEnemy(final MainObject fireEnemy) {
         fireEnemy.stopMoving();
         fireEnemy.stopAnimation();
         fireEnemies.remove(fireEnemy);
     }
 
-    public void addBoss() {
+    public final void addBoss() {
         this.boss = Optional.of(factoryGameObject.createBoss());
         this.boss.get().startMoving();
         this.boss.get().startFiring();
     }
 
-    public void removeBoss() {
+    public final void removeBoss() {
         if (this.boss.isPresent()) {
             this.boss.get().stopAnimation();
             this.boss.get().stopMoving();
@@ -168,25 +154,25 @@ public class World {
         }
     }
 
-    public void addAmmo() {
+    public final void addAmmo() {
         ammo.add(factoryGameObject.createAmmo());
     }
 
-    public void removeAmmo(final TakeableGameObject ammoObj) {
+    public final void removeAmmo(final TakeableGameObject ammoObj) {
         ammoObj.stopAnimation();
         ammo.remove(ammoObj);
     }
 
-    public void addHeart() {
+    public final void addHeart() {
         hearts.add(factoryGameObject.createHeart());
     }
 
-    public void removeHeart(final TakeableGameObject heart) {
+    public final void removeHeart(final TakeableGameObject heart) {
         heart.stopAnimation();
         hearts.remove(heart);
     }
 
-    public boolean removeBullet(final Bullet bullet) {
+    public final boolean removeBullet(final Bullet bullet) {
         bullet.stopMoving();
         bullet.stopAnimation();
         if (getShipBullets().remove(bullet)) {
@@ -203,15 +189,15 @@ public class World {
         return found;
     }
 
-    public void removeAllEnemies() {
-        getAllEnemies().forEach(enemy -> {
-            enemy.stopAnimation();
-            enemy.stopMoving();
-        });
-        this.chaseEnemies.clear();
-        this.fireEnemies.clear();
-        this.boss = Optional.empty();
-    }
+//    public void removeAllEnemies() {
+//        getAllEnemies().forEach(enemy -> {
+//            enemy.stopAnimation();
+//            enemy.stopMoving();
+//        });
+//        this.chaseEnemies.clear();
+//        this.fireEnemies.clear();
+//        this.boss = Optional.empty();
+//    }
 
     public void updateState() {
         this.getAllObjects().forEach(entity -> {
@@ -356,10 +342,10 @@ public class World {
     }
 
     public void damageObject(final MainObject object, final int damage, final Status status) {
-        //System.out.println("SONO INVINCIBILE ?  " + object.isInvincible());
         if (!object.isInvincible()) {
             object.decreaseLife(damage);
-            System.out.println("VITA DI " + object + " :  " + object.getLife());
+            System.out.println(object.getClass() + " HA RICEVUTO  " + damage + " DANNI");
+            System.out.println("VITA RIMASTA " + object.getLife());
             object.setStatus(status);
         }
     }

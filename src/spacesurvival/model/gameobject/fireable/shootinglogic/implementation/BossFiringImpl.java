@@ -1,5 +1,6 @@
 package spacesurvival.model.gameobject.fireable.shootinglogic.implementation;
 
+import spacesurvival.model.gameobject.Status;
 import spacesurvival.model.gameobject.fireable.FireableObject;
 import spacesurvival.model.gameobject.fireable.shootinglogic.FiringLogic;
 import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
@@ -18,7 +19,9 @@ public class BossFiringImpl implements FiringLogic {
         new Thread(() -> {
             while (fireableObject.isAlive()) {
                 ThreadUtils.sleep(Delay.BOSS_FIRING);
-                fireableObject.fire();
+                if (fireableObject.getStatus() != Status.PARALYZED) {
+                    fireableObject.fire();
+                }
             }
         }).start();
     }

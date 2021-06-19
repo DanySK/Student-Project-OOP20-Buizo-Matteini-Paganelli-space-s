@@ -2,11 +2,11 @@ package spacesurvival.model.gameobject.main;
 
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
-import spacesurvival.model.gameobject.GameObjectUtils;
 import spacesurvival.model.gameobject.Status;
 import spacesurvival.model.gameobject.movable.MovableObject;
 import spacesurvival.model.gameobject.movable.movement.MovementLogic;
 import spacesurvival.utilities.Delay;
+import spacesurvival.utilities.gameobject.StatusUtils;
 import spacesurvival.utilities.gameobject.VelocityUtils;
 import java.util.Optional;
 import spacesurvival.model.EngineImage;
@@ -112,7 +112,7 @@ public abstract class MainObject extends MovableObject {
         case FROZEN:
             new Thread(MainObject.this::frozen).start();
             break;
-        case PARALIZED:
+        case PARALYZED:
             new Thread(MainObject.this::paralized).start();
             break;
         default:
@@ -128,7 +128,7 @@ public abstract class MainObject extends MovableObject {
 
     public void onFire() {
         while (this.status == Status.ON_FIRE) {
-            this.decreaseLife(GameObjectUtils.FIRE_DAMAGE);
+            this.decreaseLife(StatusUtils.FIRE_DAMAGE);
             //System.out.println("SONO ANDATO A FUOCO " + GameObjectUtils.FIRE_DAMAGE + " DANNO");
             mySleep(Delay.FIRE_EFFECT);
         }
@@ -136,22 +136,30 @@ public abstract class MainObject extends MovableObject {
 
     public void frozen() {
         final V2d initialVel = this.getVelocity();
-        //System.out.println("SALVO VELOCITA INIZIALE " + initialVel);
-        this.setVelocity(getVelocity().mul(GameObjectUtils.FROZEN_SLOWDOWN));
+        final double initialAcc = this.getAcceleration();
+
+        this.setVelocity(getVelocity().mul(StatusUtils.FROZEN_SLOWDOWN));
+        this.setAcceleration(getAcceleration() * StatusUtils.FROZEN_SLOWDOWN);
+
         while (this.status == Status.FROZEN) {
-            mySleep(20);
+            mySleep(Delay.WAIT_IN_WHILE);
         }
         this.setVelocity(initialVel);
-        //System.out.println("RISETTO VELOCITA INIZIALE " + this.getVelocity());
+        this.setAcceleration(initialAcc);
     }
 
     public void paralized() {
         final V2d initialVel = this.getVelocity();
+        final double initialAcc = this.getAcceleration();
+
         this.setVelocity(VelocityUtils.NO_VELOCITY);
-        while (this.status == Status.PARALIZED) {
-            mySleep(20);
+        this.setAcceleration(VelocityUtils.NO_ACCELERATION);
+
+        while (this.status == Status.PARALYZED) {
+            mySleep(Delay.WAIT_IN_WHILE);
         }
         this.setVelocity(initialVel);
+        this.setAcceleration(initialAcc);
     }
 
     public int getScore() {

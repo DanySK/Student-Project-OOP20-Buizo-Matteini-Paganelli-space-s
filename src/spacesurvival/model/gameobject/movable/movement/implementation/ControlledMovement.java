@@ -3,10 +3,10 @@ package spacesurvival.model.gameobject.movable.movement.implementation;
 import java.awt.geom.AffineTransform;
 
 import spacesurvival.model.common.V2d;
-import spacesurvival.model.gameobject.GameObjectUtils;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.gameobject.movable.MovableObject;
 import spacesurvival.model.gameobject.movable.movement.MovementLogic;
+import spacesurvival.utilities.gameobject.VelocityUtils;
 
 public class ControlledMovement implements MovementLogic {
 
@@ -18,7 +18,7 @@ public class ControlledMovement implements MovementLogic {
             //final V2d newVel = new V2d(vel.getX() * ship.getAcceleration().getX(), vel.getY() * ship.getAcceleration().getY());
             final V2d newVel = vel.mul(ship.getAcceleration());
             final AffineTransform at = ship.getTransform();
-            if (Math.abs(newVel.getY()) < GameObjectUtils.SPACESHIP_MAXVEL) {
+            if (Math.abs(newVel.getY()) < VelocityUtils.SPACESHIP_MAX_VELOCITY) {
                 ship.setVelocity(newVel);
             }
             at.translate(ship.getVelocity().getX(), ship.getVelocity().getY());
