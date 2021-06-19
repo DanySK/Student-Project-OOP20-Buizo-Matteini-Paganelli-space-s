@@ -11,6 +11,7 @@ import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
 
 import java.awt.geom.AffineTransform;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import spacesurvival.model.EngineImage;
@@ -36,9 +37,9 @@ public class Weapon {
 
     public Weapon(final AmmoType ammoType, final FireableObject owner) {
         this.owner = owner;
-        this.ammoType = ammoType;
-
-        switch (ammoType) {
+        //this.ammoType = ammoType;
+        this.ammoType = AmmoType.ELECTRIC;
+        switch (this.ammoType) {
         case NORMAL:
             this.magazine =  Magazine.UNLIMITED;
             this.munitions = BulletUtils.INFINITY;
@@ -63,7 +64,8 @@ public class Weapon {
         final V2d velocity = VelocityUtils.BULLET_VEL;
         final double acceleration = VelocityUtils.NO_ACCELERATION;
         final Bullet bullet = new Bullet(engineImage, position, new RectBoundingBox(), new BulletPhysic(),
-                velocity, acceleration, BulletUtils.NORMAL_BULLET_DAMAGE * multiplierDamage, ammoType.getEffect(), this);
+                velocity, acceleration, Optional.empty(), BulletUtils.NORMAL_BULLET_DAMAGE * multiplierDamage,
+                ammoType.getEffect(), this);
 
         final AffineTransform newTransform = new AffineTransform();
         newTransform.setTransform(owner.getTransform());
@@ -82,6 +84,7 @@ public class Weapon {
         }
 
         shootedBullets.add(bullet);
+        bullet.startMoving();
     }
 
     public FireableObject getOwner() {
