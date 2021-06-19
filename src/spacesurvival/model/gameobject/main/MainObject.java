@@ -109,7 +109,6 @@ public abstract class MainObject extends MovableObject {
     public void onFire() {
         while (this.status == Status.ON_FIRE) {
             this.decreaseLife(StatusUtils.FIRE_DAMAGE);
-            //System.out.println("SONO ANDATO A FUOCO " + GameObjectUtils.FIRE_DAMAGE + " DANNO");
             mySleep(Delay.FIRE_EFFECT);
         }
     }
@@ -117,10 +116,10 @@ public abstract class MainObject extends MovableObject {
     public void frozen() {
         final V2d initialVel = this.getVelocity();
         final double initialAcc = this.getAcceleration();
+        this.setVelocity(getVelocity().mul(StatusUtils.FROZEN_SLOWDOWN));
+        this.setAcceleration(getAcceleration() * StatusUtils.FROZEN_SLOWDOWN);
 
         while (this.status == Status.FROZEN) {
-            this.setVelocity(getVelocity().mul(StatusUtils.FROZEN_SLOWDOWN));
-            this.setAcceleration(getAcceleration() * StatusUtils.FROZEN_SLOWDOWN);
             mySleep(Delay.WAIT_IN_WHILE);
         }
         this.setVelocity(initialVel);

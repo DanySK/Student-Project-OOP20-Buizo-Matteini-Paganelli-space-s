@@ -79,7 +79,6 @@ public class World {
     public final void createInitialEntities() {
         this.addAsteroid();
         this.addChaseEnemy();
-        this.addFireEnemy();
         new Thread(() -> {
             while (ship.isAlive()) {
                 final Random random = new Random();

@@ -37,8 +37,8 @@ public class Weapon {
 
     public Weapon(final AmmoType ammoType, final FireableObject owner) {
         this.owner = owner;
-        //this.ammoType = ammoType;
-        this.ammoType = AmmoType.ICE;
+        this.ammoType = ammoType;
+
         switch (this.ammoType) {
         case NORMAL:
             this.magazine =  Magazine.UNLIMITED;
