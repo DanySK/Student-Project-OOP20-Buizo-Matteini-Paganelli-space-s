@@ -3,16 +3,35 @@ package spacesurvival.model.gameobject;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
+
+import spacesurvival.utilities.RandomUtils;
 
 public enum Edge {
-	LEFT, TOP, RIGHT, BOTTOM;
-	
-	private static final List<Edge> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
-	private static final int SIZE = VALUES.size();
-	private static final Random RANDOM = new Random();
+    /**
+     * Left edge of game screen.
+     */
+    LEFT,
+    /**
+     * Top edge of game screen.
+     */
+    TOP,
+    /**
+     * Right edge of game screen.
+     */
+    RIGHT,
+    /**
+     * Bottom edge of game screen.
+     */
+    BOTTOM;
 
-	public static Edge randomAxis()  {
-		return VALUES.get(RANDOM.nextInt(SIZE));
-	}
+    private static final List<Edge> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
+    private static final int SIZE = VALUES.size();
+
+    /**
+     * @return a random edge
+     */
+    public static Edge random()  {
+        return VALUES.get(RandomUtils.RANDOM.nextInt(SIZE));
+    }
+
 }

@@ -7,7 +7,6 @@ import spacesurvival.model.gameobject.movable.MovableObject;
 import spacesurvival.model.gameobject.movable.movement.MovementLogic;
 import spacesurvival.utilities.Delay;
 import spacesurvival.utilities.gameobject.StatusUtils;
-import spacesurvival.utilities.gameobject.VelocityUtils;
 import java.util.Optional;
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.collision.bounding.BoundingBox;
@@ -70,7 +69,7 @@ public abstract class MainObject extends MovableObject {
             System.out.println("STATUS   " + status);
 
             this.status = status;
-            super.setAnimationEffect(status.getAnimation());
+            super.setEffectAnimation(status.getAnimation());
             this.onStatus();
         }
     }
@@ -127,7 +126,7 @@ public abstract class MainObject extends MovableObject {
     }
 
     public void paralized() {
-        this.stopMoving();        
+        this.stopMoving();
         while (this.status == Status.PARALYZED) {
             mySleep(Delay.WAIT_IN_WHILE);
         }

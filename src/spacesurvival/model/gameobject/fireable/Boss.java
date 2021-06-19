@@ -31,7 +31,7 @@ public class Boss extends FireableObject {
         super(engineImage, position, bb, phys, velocity, acceleration, movementLogic, life, impactDamage, score,
                 target, weapon, firingLogic);
         this.setBoundingBox(RectBoundingBox.createRectBoundingBox(position, engineImage, this.getTransform()));
-        this.setAnimation(animation);
+        this.setMainAnimation(animation);
     }
 
     public Boss(final EngineImage engineImage, final P2d position, final BoundingBox bb,

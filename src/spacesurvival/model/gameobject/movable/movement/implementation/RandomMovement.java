@@ -12,7 +12,9 @@ import spacesurvival.utilities.ThreadUtils;
 
 public class RandomMovement implements MovementLogic {
 
-    @Override
+    /**
+     * @inheritDoc
+     */
     public void move(final MovableObject movableObject) {
         if (movableObject.isMoving() && movableObject.getTarget().isPresent()) {
             final P2d target = movableObject.getTarget().get();
@@ -29,7 +31,11 @@ public class RandomMovement implements MovementLogic {
         }
     }
 
-    @Override
+    /**
+     * Start the object move in random directions every time interval.
+     * 
+     * @param movableObject object to move
+     */
     public void startMoving(final MovableObject movableObject) {
         movableObject.setMoving(true);
         new Thread(() -> {
@@ -40,6 +46,11 @@ public class RandomMovement implements MovementLogic {
         }).start();
     }
 
+    /**
+     * Set a new random direction to the object velocity.
+     * 
+     * @param movableObject object to change direction
+     */
     public void changeDirectionRandomly(final MovableObject movableObject) {
         final double directionX = ThreadLocalRandom.current().nextInt(-1, 1);
         final double directionY = ThreadLocalRandom.current().nextInt(-1, 1);

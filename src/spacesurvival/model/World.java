@@ -8,7 +8,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 import java.util.Set;
 
 import spacesurvival.model.gui.settings.SkinSpaceShip;
@@ -33,6 +32,7 @@ import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
 import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.utilities.Delay;
+import spacesurvival.utilities.RandomUtils;
 import spacesurvival.utilities.SystemVariables;
 import spacesurvival.utilities.ThreadUtils;
 import spacesurvival.utilities.dimension.Screen;
@@ -81,8 +81,7 @@ public class World {
         this.addChaseEnemy();
         new Thread(() -> {
             while (ship.isAlive()) {
-                final Random random = new Random();
-                if (random.nextBoolean()) {
+                if (RandomUtils.RANDOM.nextBoolean()) {
                     this.addHeart();
                 } else {
                     this.addAmmo();
@@ -91,7 +90,8 @@ public class World {
             }
         }).start();
         //this.addHeart();
-        //this.addAmmo();
+        this.addAmmo();
+        this.addAmmo();
     }
 
     public void setEventListener(final WorldEventListener listener) {
@@ -108,7 +108,7 @@ public class World {
 
     public void setSkin(final SkinSpaceShip skin) {
         this.ship.getEngineImage().setPath(skin.getSkin());
-        this.ship.setAnimation(skin.getAnimation());
+        this.ship.setMainAnimation(skin.getAnimation());
     }
 
     public AbstractFactoryGameObject getFactoryGameObject() {

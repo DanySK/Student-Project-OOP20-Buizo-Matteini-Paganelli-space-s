@@ -4,10 +4,14 @@ import spacesurvival.model.World;
 import spacesurvival.model.worldevent.WorldEvent;
 
 /**
- * Interface to apply of the object that can collide and manage the WorldEvent.
- *
+ * Implementing this interface allows the object to handle a collision with another object.
  */
 public interface Collideable {
-
+    /**
+     * This method the collision based on the world event.
+     * 
+     * @param world the world instance of the game
+     * @param worldEvent the event that launched this method
+     */
     void collided(World world, WorldEvent worldEvent);
 }

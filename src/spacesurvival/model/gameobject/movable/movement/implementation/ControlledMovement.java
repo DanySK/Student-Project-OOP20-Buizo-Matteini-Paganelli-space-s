@@ -19,7 +19,7 @@ public class ControlledMovement implements MovementLogic {
                 object.setVelocity(newVel);
             }
             at.translate(object.getVelocity().getX(), object.getVelocity().getY());
-            object.setTransform(object.getTransform());   
+            object.setTransform(object.getTransform());
         }
     }
 

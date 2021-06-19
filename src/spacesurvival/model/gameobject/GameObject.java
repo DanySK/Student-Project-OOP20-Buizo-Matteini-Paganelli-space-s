@@ -5,7 +5,6 @@ import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.util.List;
 import spacesurvival.model.common.P2d;
-import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.model.Animation;
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.World;
@@ -13,164 +12,200 @@ import spacesurvival.model.collision.Collideable;
 import spacesurvival.model.collision.bounding.BoundingBox;
 import spacesurvival.model.collision.eventgenerator.EventComponent;
 
-
+/**
+ * A game object with essential functionalities.
+ */
 public abstract class GameObject implements Collideable {
     private AffineTransform transform;
     private BoundingBox boundingBox;
-    private EventComponent evComponent;
-
-    private final Animation body;
-    private final Animation effect;
-
-//    private List<SoundPath> effectSounds;
+    private EventComponent eventComponent;
+    private final Animation mainAnimation;
+    private final Animation effectAnimation;
 
     public GameObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
             final EventComponent eventComponent) {
-        this.body = new Animation(engineImage);
-        this.effect = new Animation(EngineImage.getTransparentEngineImage(engineImage));
-
-
-        initializeThread();
-
+        this.mainAnimation = new Animation(engineImage);
+        this.effectAnimation = new Animation(EngineImage.getTransparentEngineImage(engineImage));
         this.boundingBox = bb;
-        this.evComponent = eventComponent;
-        this.setTransform(position);
-//        this.setEffectSounds(new LinkedList<>());
+        this.eventComponent = eventComponent;
+        this.transform = new AffineTransform();
+        this.transform.translate(position.getX(), position.getY());
+        this.boundingBox.setTransform(this.transform);
+        this.initializeAnimationsThread();
+    }
+    
+    private void initializeAnimationsThread() {
+        this.mainAnimation.start();
+        this.effectAnimation.start();
     }
 
-    private void initializeThread() {
-        this.body.start();
-        this.effect.start();
+    /**
+     * Pause or resume all animations of the object.
+     * @param isPause true will stop them, false will resume them
+     */
+    public void setPauseAnimation(final boolean isPause) {
+        this.mainAnimation.setPause(isPause);
+        this.effectAnimation.setPause(isPause);
     }
 
-    public void setPause(final boolean isPause) {
-        this.body.setPause(isPause);
-        this.effect.setPause(isPause);
-    }
-
+    /**
+     * Stop all animations of the object and relative threads.
+     */
     public void stopAnimation() {
-        this.body.setAnimating(false);
-        this.effect.setAnimating(false);
+        this.mainAnimation.setAnimating(false);
+        this.effectAnimation.setAnimating(false);
     }
 
     public Image getImgBody() {
-        return this.body.getImage();
+        return this.mainAnimation.getImage();
     }
 
     public Image getImgEffect() {
-        return this.effect.getImage();
+        return this.effectAnimation.getImage();
     }
 
-    public void setAnimation(final List<String> animation) {
-        this.body.setListPath(animation);
-    }
-
-    public void setAnimationEffect(final List<String> animation) {
-        this.effect.setListPath(animation);
-    }
-
-//    public List<SoundPath> getEffectSounds() {
-//        return this.effectSounds;
-//    }
-//
-//    public void setEffectSounds(final List<SoundPath> effectSounds) {
-//        this.effectSounds = effectSounds;
-//    }
-
-//    public void pushEffect(final SoundPath soundEffect) {
-//        this.effectSounds.add(soundEffect);
-//    }
-//
-//    public final Optional<SoundPath> popEffect() {
-//        if (!this.effectSounds.isEmpty()) {
-//            final Optional<SoundPath> first = Optional.of(this.effectSounds.get(0));
-//            this.effectSounds.remove(0);
-//            return first;
-//        }
-//        return Optional.empty();
-//    }
-
-    public final AffineTransform getTransform() {
+    /**
+     * @return the object AffineTransform
+     */
+    public AffineTransform getTransform() {
         return this.transform;
     }
 
-    public void setTransform(final P2d position) {
+    /**
+     * Place the object in the given position, set AffineTransform and BoundingBox
+     * referring to the position. This method doesn't maintain the current rotation of the object.
+     * 
+     * @param position the position where to place the object
+     */
+    public void setTransformFromPosition(final P2d position) {
         this.transform = new AffineTransform();
         this.transform.translate(position.getX(), position.getY());
         this.boundingBox.setTransform(this.transform);
     }
 
+    /**
+     * Set a new AffineTransform and a new BoundingBox.
+     * 
+     * @param transform the new transform to set
+     */
     public void setTransform(final AffineTransform transform) {
         this.transform.setTransform(transform);
         this.boundingBox.setTransform(transform);
     }
 
-    public final EngineImage getEngineImage() {
-        return this.body.getBody();
+    /**
+     * @return the object engine image
+     */
+    public EngineImage getEngineImage() {
+        return this.mainAnimation.getBody();
     }
 
-    public final EngineImage getEngineEffect() {
-        return this.effect.getBody();
+    /**
+     * @return the object engine image
+     */
+    public EngineImage getEngineEffect() {
+        return this.effectAnimation.getBody();
     }
 
-    public final P2d getPosition() {
+    /**
+     * @return the current object position.
+     */
+    public P2d getPosition() {
         return new P2d(this.transform.getTranslateX(), this.getTransform().getTranslateY());
     }
 
-    public void setPosition(final P2d position) {
-        final AffineTransform newTransform = new AffineTransform();
-        newTransform.translate(position.getX(), position.getY());
-        this.transform.setTransform(newTransform);
-        this.boundingBox.setTransform(newTransform);
-    }
-
-    public final BoundingBox getBoundingBox() {
+    /**
+     * @return the current object bounding box.
+     */
+    public BoundingBox getBoundingBox() {
         return boundingBox;
     }
 
+    /**
+     * Set a new bounding box to the object.
+     * 
+     * @param boundingBox the bounding box to set
+     */
     public void setBoundingBox(final BoundingBox boundingBox) {
           this.boundingBox = boundingBox;
     }
 
+    
     public void setEngineImage(final EngineImage engineImage) {
-        this.body.setBody(engineImage);
+        this.mainAnimation.setBody(engineImage);
     }
 
-    public final EventComponent getPhys() {
-        return evComponent;
+    /**
+     * @return the object event component.
+     */
+    public EventComponent getEventComponent() {
+        return eventComponent;
     }
 
-    public void setPhys(final EventComponent phys) {
-        this.evComponent = phys;
+    /**
+     * Set a new event component to the object.
+     * 
+     * @param eventComponent the new event component to set
+     */
+    public void setEventComponent(final EventComponent eventComponent) {
+        this.eventComponent = eventComponent;
     }
 
     public void updateEvents(final World w) {
-        evComponent.update(this, w);
+        eventComponent.update(this, w);
     }
 
-    public final Dimension getSize() {
-        return this.body.getBody().getSize();
+    /**
+     * @return the object size
+     */
+    public Dimension getSize() {
+        return this.mainAnimation.getBody().getSize();
     }
 
-    public final double getWidth() {
+    /**
+     * @return the object width
+     */
+    public double getWidth() {
         return this.getEngineImage().getSize().getWidth();
     }
 
-    public final double getHeight() {
+    /**
+     * @return the object height
+     */
+    public double getHeight() {
         return this.getEngineImage().getSize().getHeight();
     }
 
-    public final List<String> getAnimation() {
-        return this.body.getListPath();
+    /**
+     * @return the list of path images for the main animation
+     */
+    public List<String> getAnimation() {
+        return this.mainAnimation.getListPath();
     }
 
-    @Override
-    public abstract void collided(World world, WorldEvent worldEvent);
+    /**
+     * Set the main animation of the object.
+     * 
+     * @param animation the new animation
+     */
+    public void setMainAnimation(final List<String> animation) {
+        this.mainAnimation.setListPath(animation);
+    }
+
+    /**
+     * Set the effect animation of the object.
+     * 
+     * @param animation the new animation
+     */
+    public void setEffectAnimation(final List<String> animation) {
+        this.effectAnimation.setListPath(animation);
+    }
+
 
     @Override
     public String toString() {
         return "GameObject [transform=" + transform + ", boundingBox=" + boundingBox
-                + ", phys=" + evComponent + ", body=" + body + ", effect=" + effect + "]";
+                + ", phys=" + eventComponent + ", main=" + mainAnimation + ", effect=" + effectAnimation + "]";
     }
 
 }
