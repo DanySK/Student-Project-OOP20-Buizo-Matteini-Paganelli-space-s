@@ -25,9 +25,10 @@ public class Bullet extends MovableObject {
     private Effect effect;
     private Weapon originWeapon;
 
-    public Bullet(final EngineImage engineImage, final P2d position, final BoundingBox bb, final EventComponent phys,
-            final V2d velocity, final double acceleration, final int damage, final Effect effect, final Weapon originWeapon) {
-        super(engineImage, position, bb, phys, velocity, acceleration, new FixedMovement());
+    public Bullet(final EngineImage engineImage, final P2d position, final BoundingBox bb, final EventComponent eventComponent,
+            final V2d velocity, final double acceleration, final Optional<P2d> target, final int damage,
+            final Effect effect, final Weapon originWeapon) {
+        super(engineImage, position, bb, eventComponent, velocity, acceleration, new FixedMovement(), target);
         this.setBoundingBox(RectBoundingBox.createRectBoundingBox(position, engineImage, this.getTransform()));
         this.damage = damage;
         this.effect = effect;
@@ -76,6 +77,7 @@ public class Bullet extends MovableObject {
                 if (!this.getShooter().equals(collidedObject)) {
                     if (collidedObject instanceof SpaceShipSingleton && !collidedObject.isInvincible()) {
                         world.getQueueDecreaseLife().add(collidedObject.getImpactDamage());
+                        collidedObject.setStatus(this.getEffect().getStatus());
                     } else {
                         world.damageObject(collidedObject, this.getDamage(), this.getEffect().getStatus());
                     }

@@ -57,6 +57,7 @@ public class World {
 
     public World(final RectBoundingBox mainBBox) {
         this.ship = SpaceShipSingleton.getSpaceShip();
+        this.ship.startMoving();
         this.ship.setWeapon(new Weapon(AmmoType.NORMAL, ship));
         this.mainBBox = mainBBox;
 
@@ -65,6 +66,7 @@ public class World {
 
     public World(final Rectangle rectangle) {
         this.ship = SpaceShipSingleton.getSpaceShip();
+        this.ship.startMoving();
         this.ship.setWeapon(new Weapon(AmmoType.NORMAL, ship));
         this.mainBBox = new RectBoundingBox(rectangle);
 
@@ -74,6 +76,7 @@ public class World {
     public final void createInitialEntities() {
         this.addAsteroid();
         this.addChaseEnemy();
+        this.addFireEnemy();
         this.addHeart();
         this.addAmmo();
     }

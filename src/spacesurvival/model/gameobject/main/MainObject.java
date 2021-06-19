@@ -18,17 +18,15 @@ public abstract class MainObject extends MovableObject {
     private int impactDamage;
     private Status status;
     private int score;
-    private Optional<P2d> target;
 
     public MainObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
             final EventComponent phys, final V2d velocity, final double acceleration, final MovementLogic movementLogic, final int life,
             final int impactDamage, final int score, final Optional<P2d> target) {
-        super(engineImage, position, bb, phys, velocity, acceleration, movementLogic);
+        super(engineImage, position, bb, phys, velocity, acceleration, movementLogic, target);
         this.life = life;
         this.impactDamage = impactDamage;
         this.status = Status.NORMAL;
         this.score = score;
-        this.target = target;
     }
 
     public boolean isAlive() {
@@ -78,24 +76,6 @@ public abstract class MainObject extends MovableObject {
     }
 
     /**
-     * Return the target position of Enemy.
-     *
-     * @return the target position of Enemy
-     */
-    public Optional<P2d> getTarget() {
-        return target;
-    }
-
-    /**
-     * Sets the target position of Enemy.
-     *
-     * @param target the new target position
-     */
-    public void setTarget(final Optional<P2d> target) {
-        this.target = target;
-    }
-
-    /**
      * @return true if object is invincible
      */
     public boolean isInvincible() {
@@ -138,10 +118,9 @@ public abstract class MainObject extends MovableObject {
         final V2d initialVel = this.getVelocity();
         final double initialAcc = this.getAcceleration();
 
-        this.setVelocity(getVelocity().mul(StatusUtils.FROZEN_SLOWDOWN));
-        this.setAcceleration(getAcceleration() * StatusUtils.FROZEN_SLOWDOWN);
-
         while (this.status == Status.FROZEN) {
+            this.setVelocity(getVelocity().mul(StatusUtils.FROZEN_SLOWDOWN));
+            this.setAcceleration(getAcceleration() * StatusUtils.FROZEN_SLOWDOWN);
             mySleep(Delay.WAIT_IN_WHILE);
         }
         this.setVelocity(initialVel);
@@ -149,17 +128,11 @@ public abstract class MainObject extends MovableObject {
     }
 
     public void paralized() {
-        final V2d initialVel = this.getVelocity();
-        final double initialAcc = this.getAcceleration();
-
-        this.setVelocity(VelocityUtils.NO_VELOCITY);
-        this.setAcceleration(VelocityUtils.NO_ACCELERATION);
-
+        this.stopMoving();        
         while (this.status == Status.PARALYZED) {
             mySleep(Delay.WAIT_IN_WHILE);
         }
-        this.setVelocity(initialVel);
-        this.setAcceleration(initialAcc);
+        this.startMoving();
     }
 
     public int getScore() {

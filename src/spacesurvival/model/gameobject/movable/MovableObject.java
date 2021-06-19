@@ -1,5 +1,7 @@
 package spacesurvival.model.gameobject.movable;
 
+import java.util.Optional;
+
 import spacesurvival.controller.CallerCommand;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
@@ -14,6 +16,7 @@ public abstract class MovableObject extends GameObject {
 
     private V2d velocity;
     private double acceleration;
+    private Optional<P2d> target;
     private MovementLogic movementLogic;
     private CallerCommand caller;
     private boolean isMoving;
@@ -25,10 +28,12 @@ public abstract class MovableObject extends GameObject {
     }
 
     public MovableObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
-            final EventComponent phys, final V2d velocity, final double acceleration, final MovementLogic movementLogic) {
-        super(engineImage, position, bb, phys);
+            final EventComponent eventComponent, final V2d velocity, final double acceleration, final MovementLogic movementLogic,
+            final Optional<P2d> target) {
+        super(engineImage, position, bb, eventComponent);
         this.velocity = velocity;
         this.acceleration = acceleration;
+        this.target = target;
         this.movementLogic = movementLogic;
     }
 
@@ -82,6 +87,24 @@ public abstract class MovableObject extends GameObject {
 
     public void setMoving(final boolean isMoving) {
         this.isMoving = isMoving;
+    }
+
+    /**
+     * Return the target position of Enemy.
+     *
+     * @return the target position of Enemy
+     */
+    public Optional<P2d> getTarget() {
+        return target;
+    }
+
+    /**
+     * Sets the target position of Enemy.
+     *
+     * @param target the new target position
+     */
+    public void setTarget(final Optional<P2d> target) {
+        this.target = target;
     }
 
     public CallerCommand getCaller() {

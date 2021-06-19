@@ -5,7 +5,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
-import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.gameobject.movable.MovableObject;
 import spacesurvival.model.gameobject.movable.movement.MovementLogic;
 import spacesurvival.utilities.Delay;
@@ -15,20 +14,18 @@ public class RandomMovement implements MovementLogic {
 
     @Override
     public void move(final MovableObject movableObject) {
-        if (movableObject.isMoving() && movableObject instanceof MainObject) {
-            final MainObject enemy = (MainObject) movableObject;
-            if (enemy.getTarget().isPresent()) {
-                final P2d target = enemy.getTarget().get();
-                final double rightRotation = Math.toDegrees(Math.atan2(enemy.getPosition().getY() - target.getY(), enemy.getPosition().getX() - target.getX()));
-                final double complementary = 180 - (rightRotation * -1);
-                final double newAngle = 90 + complementary;
-                final AffineTransform newTransform = new AffineTransform();
+        if (movableObject.isMoving() && movableObject.getTarget().isPresent()) {
+            final P2d target = movableObject.getTarget().get();
+            final double rightRotation = Math.toDegrees(Math.atan2(movableObject.getPosition().getY() - target.getY(),
+                    movableObject.getPosition().getX() - target.getX()));
+            final double complementary = 180 - (rightRotation * -1);
+            final double newAngle = 90 + complementary;
+            final AffineTransform newTransform = new AffineTransform();
 
-                newTransform.translate(enemy.getTransform().getTranslateX(), enemy.getTransform().getTranslateY());
-                newTransform.rotate(Math.toRadians(newAngle), 0, 0);
-                newTransform.translate(enemy.getVelocity().getX(), enemy.getVelocity().getY());
-                enemy.setTransform(newTransform);
-            }
+            newTransform.translate(movableObject.getTransform().getTranslateX(), movableObject.getTransform().getTranslateY());
+            newTransform.rotate(Math.toRadians(newAngle), 0, 0);
+            newTransform.translate(movableObject.getVelocity().getX(), movableObject.getVelocity().getY());
+            movableObject.setTransform(newTransform);
         }
     }
 
