@@ -1,5 +1,8 @@
 package spacesurvival.utilities;
 
+/**
+ * Utility class for object's scores.
+ */
 public final class Score {
 
     /**
@@ -23,6 +26,9 @@ public final class Score {
      */
     public static final int BOSS = 50;
 
+    /**
+     * Empty private constructor for this utility class.
+     */
     private Score() {
     }
 
