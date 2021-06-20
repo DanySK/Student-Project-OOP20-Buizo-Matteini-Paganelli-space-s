@@ -22,5 +22,4 @@ public interface WorldEvent {
      * @param world
      */
     void manage(World world);
-
 }

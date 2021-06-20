@@ -10,6 +10,6 @@ public class CmdON implements CmdEngine {
     public CmdGUI execute(final EngineGUI engine) {
         this.engine = engine;
         this.engine.setVisibility(Visibility.VISIBLE);
-        return gui -> gui.setVisible(CmdON.this.engine.getVisibility().isVisible());
+        return gui -> gui.setVisible(this.engine.getVisibility().isVisible());
     }
 }

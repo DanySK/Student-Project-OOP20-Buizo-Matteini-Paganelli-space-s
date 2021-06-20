@@ -3,6 +3,7 @@ package spacesurvival.launchgame;
 import spacesurvival.controller.gui.CtrlLoading;
 import spacesurvival.factories.StaticFactoryGUI;
 import spacesurvival.model.gui.Visibility;
+import spacesurvival.utilities.Delay;
 import spacesurvival.utilities.ThreadUtils;
 import spacesurvival.model.EngineLoop;
 import spacesurvival.factories.StaticFactoryEngineGUI;
@@ -20,7 +21,7 @@ public final class LaunchSpace {
 
         final EngineLoop engineLoop = new EngineLoop();
         while (!ctrlLoading.isLoad()) {
-            ThreadUtils.sleep(5);
+            ThreadUtils.sleep(Delay.LOADING_UPDATE);
         }
 
         engineLoop.initGame();

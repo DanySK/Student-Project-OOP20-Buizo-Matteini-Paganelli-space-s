@@ -85,7 +85,7 @@ public class CtrlGame implements ControllerGUI {
     public final void closeGUI() {
         this.gui.close();
     }
-    
+
     public final void updateHUD() {
         this.gui.setTimer(this.engine.getTimer());
         this.gui.setScore(this.engine.getScore());

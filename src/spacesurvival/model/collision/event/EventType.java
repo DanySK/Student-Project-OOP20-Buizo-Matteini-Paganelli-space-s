@@ -2,7 +2,6 @@ package spacesurvival.model.collision.event;
 
 import java.util.Optional;
 import java.util.stream.Stream;
-
 import spacesurvival.model.worldevent.WorldEvent;
 
 public enum EventType {

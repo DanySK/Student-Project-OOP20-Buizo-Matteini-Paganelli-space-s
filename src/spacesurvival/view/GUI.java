@@ -9,23 +9,20 @@ import java.util.List;
 
 public interface GUI {
 
-    public void addMouseListener(final MouseListener mouseListener);
+    void addMouseListener(MouseListener mouseListener);
 
+    List<BtnAction> getBtnActionLinks();
 
-    public List<BtnAction> getBtnActionLinks();
+    void setMainAction(ActionGUI actionGUI);
 
-    public void setMainAction(final ActionGUI actionGUI);
+    void setBounds(Rectangle rectangle);
 
-    public void setBounds(final Rectangle rectangle);
+    void setVisible(boolean visible);
 
-    public void setVisible(final boolean visible);
+    void setImageBackground(String path);
 
-    public void setImageBackground(final String path);
+    void visibleForegroundPanel(Visibility visible);
 
-
-    public void visibleForegroundPanel(final Visibility visible);
-
-
-    public void close();
+    void close();
 
 }

@@ -7,25 +7,25 @@ import spacesurvival.view.GUI;
 
 public interface ControllerGUI {
 
-    public void assignAction();
+    void assignAction();
 
-    public void assignStrings();
+    void assignStrings();
 
-    public void assignRectangle();
-
-
-    public ActionGUI getMainAction();
-
-    public GUI getGUI();
-
-    public EngineGUI getEngine();
+    void assignRectangle();
 
 
-    public boolean isVisibility();
+    ActionGUI getMainAction();
 
-    public void turn(final Visibility visibility);
+    GUI getGUI();
 
-    public void changeVisibility();
+    EngineGUI getEngine();
 
-    public void closeGUI();
+
+    boolean isVisibility();
+
+    void turn(Visibility visibility);
+
+    void changeVisibility();
+
+    void closeGUI();
 }

@@ -30,11 +30,11 @@ public class DesignGraphics {
 
     public static final int SIZE_COLUMNS_TEXT = 10;
 
-    public static Color COLOR_1 = new Color(90, 165, 232);
-    public static Color COLOR_2 = new Color(128, 213, 255);
-    public static Color COLOR_3 = new Color(148, 233, 255);
-    public static Color COLOR_4 = new Color(58, 241, 255);
-    public static Color COLOR_OPACITY_BLACK = new Color(0, 0, 0, 80);
+    public static final Color COLOR_1 = new Color(90, 165, 232);
+    public static final Color COLOR_2 = new Color(128, 213, 255);
+    public static final Color COLOR_3 = new Color(148, 233, 255);
+    public static final Color COLOR_4 = new Color(58, 241, 255);
+    public static final Color COLOR_OPACITY_BLACK = new Color(0, 0, 0, 80);
 
     public static Font getFontForTitle(final int size){
         final URL fontUrl = ClassLoader.getSystemResource("font/mainFont.ttf");
