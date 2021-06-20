@@ -41,6 +41,11 @@ public final class Delay {
      */
     public static final int WAIT_IN_WHILE = 20;
 
+    /**
+     * The time to update loading progress bar. 
+     */
+    public static final long LOADING_UPDATE = 5;
+
     private Delay() {
     }
 }

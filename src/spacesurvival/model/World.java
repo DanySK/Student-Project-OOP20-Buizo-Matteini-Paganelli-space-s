@@ -35,6 +35,7 @@ import spacesurvival.utilities.Delay;
 import spacesurvival.utilities.RandomUtils;
 import spacesurvival.utilities.SystemVariables;
 import spacesurvival.utilities.ThreadUtils;
+import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;
 import spacesurvival.utilities.path.SoundPath;
 
@@ -306,7 +307,7 @@ public class World {
         final double xShip = pos.getX();
         final double yShip = pos.getY();
 
-        final double tollerance = 100;
+        final double tollerance = ScaleOf.GAME_OBJECT;
         if (yShip < ul.getY() - tollerance) {
             return Optional.of(new BoundaryCollision(Edge.TOP, new P2d(xShip, ul.getY())));
         } else if (yShip > br.getY() + tollerance) {

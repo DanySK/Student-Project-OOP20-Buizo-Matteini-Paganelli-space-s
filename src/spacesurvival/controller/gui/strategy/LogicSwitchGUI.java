@@ -8,10 +8,10 @@ import java.util.Map;
 
 
 public interface LogicSwitchGUI {
-    public void algorithm(final ActionGUI actionCurrent, final ActionGUI actionNext,
-                          final ListGUI<ActionGUI> listActionGUI, final Map<ActionGUI, ControllerGUI> control);
+    void algorithm(ActionGUI actionCurrent, ActionGUI actionNext,
+                          ListGUI<ActionGUI> listActionGUI, Map<ActionGUI, ControllerGUI> control);
 
-    public default void quit() {
-        System.exit(1);
+    default void quit() {
+        System.exit(0);
     }
 }

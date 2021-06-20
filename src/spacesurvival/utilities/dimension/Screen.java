@@ -18,6 +18,7 @@ public class Screen {
     public static final Point POINT_ZERO = new Point(0, 0);
 
     public static final Dimension FULLSCREEN = SystemVariables.SCREEN;
+
     public static final int WIDTH_FULLSCREEN = (int) (FULLSCREEN.getWidth());
     public static final int HEIGHT_FULLSCREEN = (int) (FULLSCREEN.getHeight());
     public static final double CENTER_X_FULLSCREEN = ((WIDTH_FULLSCREEN * SystemVariables.SCALE_X) / FIND_CENTER_X);
@@ -31,6 +32,7 @@ public class Screen {
     public static final int HEIGHT_BIG = (int) (HEIGHT_FULLSCREEN * PROPORTION_BIG);
     public static final int CENTER_X_BIG = (int) (POINT_CENTER_FULLSCREEN.getX() - ((WIDTH_BIG * SystemVariables.SCALE_X) / FIND_CENTER_X));
     public static final int CENTER_Y_BIG = (int) (POINT_CENTER_FULLSCREEN.getY() - ((HEIGHT_BIG * SystemVariables.SCALE_Y) / FIND_CENTER_Y));
+
     public static final Dimension DIMENSION_BIG = new Dimension(WIDTH_BIG, HEIGHT_BIG);
     public static final P2d POINT_CENTER_BIG = new P2d(CENTER_X_BIG, CENTER_Y_BIG);
     public static final Point JAVA_POINT_CENTER_BIG = new Point((int)POINT_CENTER_BIG.getX(), (int)POINT_CENTER_BIG.getY());

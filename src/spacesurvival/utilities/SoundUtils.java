@@ -28,6 +28,10 @@ public final class SoundUtils {
     public static final int SOUND_ZERO = 0;
 
 
+    /**
+     * Multiplication factor for converting the amplitude of the decibels to the actual volume.
+     */
+    public static final double AMPLITUDE_MULTIPLICATOR_FACTOR = 20;
 
     private SoundUtils() {
 

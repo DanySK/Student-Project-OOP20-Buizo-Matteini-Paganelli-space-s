@@ -44,7 +44,7 @@ public class HitBulletEvent implements WorldEvent {
     /**
      * Returns a bullet event type.
      * 
-     * @return an EventType for the specified event
+     * @return an EventType for this event
      */
     @Override
     public EventType getType() {

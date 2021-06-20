@@ -162,7 +162,7 @@ public class CtrlSound implements ControllerGUI{
     public void changeNewLoopSound(final ActionGUI actionGUI){
         this.callerAudioLoop.execute(CommandAudioType.AUDIO_OFF);
         this.callerAudioLoop.setSound(new SoundLoop(actionGUI.getSound()));
-        this.callerAudioLoop.changeVolume(this.isActiveLoopUnitSound() ? this.getLoopVolume() : SoundUtils.SOUND_ZERO);
+        this.callerAudioLoop.changeVolume(this.isActiveLoopUnitSound() ? this  .getLoopVolume() : SoundUtils.SOUND_ZERO);
 
         this.callerAudioLoop.execute(CommandAudioType.AUDIO_ON);
     }

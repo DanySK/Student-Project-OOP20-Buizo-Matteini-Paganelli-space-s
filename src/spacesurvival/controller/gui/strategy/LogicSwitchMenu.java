@@ -7,7 +7,7 @@ import spacesurvival.utilities.ActionGUI;
 
 import java.util.Map;
 
-public class LogicSwitchMenu implements LogicSwitchGUI{
+public class LogicSwitchMenu implements LogicSwitchGUI {
 
     @Override
     public void algorithm(final ActionGUI actionCurrent, final ActionGUI actionNext,

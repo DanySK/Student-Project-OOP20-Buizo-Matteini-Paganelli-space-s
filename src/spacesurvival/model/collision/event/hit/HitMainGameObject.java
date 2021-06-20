@@ -42,7 +42,7 @@ public class HitMainGameObject implements WorldEvent {
     /**
      * Returns a main game object event type.
      * 
-     * @return an EventType for the specified event
+     * @return an EventType for this event
      */
     public EventType getType() {
         return this.type;
