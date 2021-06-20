@@ -30,7 +30,7 @@ public class HitTakeableGameObject implements WorldEvent {
     /**
      * Returns a takeable game object event type.
      * 
-     * @return an EventType for the specified event
+     * @return an EventType for this event
      */
     @Override
     public EventType getType() {

@@ -30,10 +30,20 @@ public enum EventType {
 
     private EventType type;
 
+    /**
+     * Return the current EventType.
+     * @return the current EventType
+     */
     public EventType getType() {
         return this.type;
     }
 
+    /**
+     * Return the corresponding EventType for thw EorldEvent passed.
+     * 
+     * @param event the event to check
+     * @return an optional of EventType if the passed WorldEvent exists or an empty optional
+     */
     public static Optional<EventType> getEventFromHit(final WorldEvent event) {
         return Stream.of(EventType.values()).filter(ev -> ev.equals(event.getType())).findFirst();
     }

@@ -17,9 +17,9 @@ public class HitBorderEvent implements WorldEvent {
     /**
      * Constructor for new HitBorderEvent, generated after the collision with a border to notify the world.
      * 
-     * @param where represents the point where the collision occurred.
-     * @param edge represents on which edge the collision occurred.
-     * @param object represents the object that collided.
+     * @param where represents the point where the collision occurred
+     * @param edge represents on which edge the collision occurred
+     * @param object represents the object that collided
      */
     public HitBorderEvent(final P2d where, final Edge edge, final MovableObject object) {
         this.where = where;
@@ -30,7 +30,7 @@ public class HitBorderEvent implements WorldEvent {
     /**
      * Returns the specific point where the collision occurred.
      * 
-     * @return the specified point where the collision occurred.
+     * @return the specified point where the collision occurred
      */
     public P2d getWhere() {
         return this.where;
@@ -39,7 +39,7 @@ public class HitBorderEvent implements WorldEvent {
     /**
      * Returns the specific edge where the collision occurred.
      * 
-     * @return the specified edge.
+     * @return the specified edge
      */
     public Edge getEdge() {
         return this.edge;
@@ -48,17 +48,25 @@ public class HitBorderEvent implements WorldEvent {
     /**
      * Returns the specific MovableGameObject that collided.
      * 
-     * @return the specified MovableGameObject.
+     * @return the specified MovableGameObject
      */
     public MovableObject getCollisionObj() {
         return this.object;
     }
 
+    /**
+     * Returns a border event type.
+     * 
+     * @return an EventType for this event
+     */
     @Override
     public EventType getType() {
         return this.type;
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public void manage(final World world) {
         this.getCollisionObj().collided(world, this);

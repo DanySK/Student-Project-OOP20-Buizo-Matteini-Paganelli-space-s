@@ -10,8 +10,17 @@ import spacesurvival.model.collision.event.EventType;
  */
 public interface WorldEvent {
 
-    void manage(World world);
-
+    /**
+     * Return the current event type.
+     * 
+     * @return an EventType for this event
+     */
     EventType getType();
+
+    /**
+     * Manage the event's consequences.
+     * @param world
+     */
+    void manage(World world);
 
 }

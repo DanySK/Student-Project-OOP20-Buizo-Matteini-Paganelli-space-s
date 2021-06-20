@@ -1,6 +1,6 @@
 package spacesurvival.model.gui.sound;
 
-import spacesurvival.utilities.DesignSound;
+import spacesurvival.utilities.UtilitySound;
 
 public class EngineUnitSound {
     private int valueBackup;
@@ -8,7 +8,7 @@ public class EngineUnitSound {
     private StateSlider stateSlider;
 
     public EngineUnitSound() {
-        this.valueSound = DesignSound.DEFAULT_VALUE_SOUND;
+        this.valueSound = UtilitySound.DEFAULT_VALUE_SOUND;
         this.stateSlider = StateSlider.ON;
     }
 
@@ -18,7 +18,7 @@ public class EngineUnitSound {
 
     public void setValueSound(final int valueSound) {
         this.valueSound = valueSound;
-        this.valueBackup = valueSound != DesignSound.SOUND_ZERO ? this.valueSound : this.valueBackup;
+        this.valueBackup = valueSound != UtilitySound.SOUND_ZERO ? this.valueSound : this.valueBackup;
     }
 
     public StateSlider getStateSlider() {

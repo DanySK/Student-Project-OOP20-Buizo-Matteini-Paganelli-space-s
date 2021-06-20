@@ -1,6 +1,6 @@
 package spacesurvival.utilities;
 
-public final class DesignSound {
+public final class UtilitySound {
     /**
      * Major spacing between the sound slider.
      */
@@ -21,7 +21,7 @@ public final class DesignSound {
      */
     public static final int DEFAULT_VALUE_SOUND = 50;
 
-    private DesignSound() {
+    private UtilitySound() {
 
     }
 }

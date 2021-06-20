@@ -1,7 +1,7 @@
 package spacesurvival.view.utilities;
 
 import spacesurvival.model.EngineImage;
-import spacesurvival.utilities.DesignSound;
+import spacesurvival.utilities.UtilitySound;
 import spacesurvival.utilities.dimension.Screen;
 
 import java.awt.BorderLayout;
@@ -162,8 +162,8 @@ public class FactoryGUIs {
 
     public static void setDefaultJSlider(final JSlider slider) {
         slider.setOpaque(false);
-        slider.setMajorTickSpacing(DesignSound.DEFAULT_MAJOR_TICK_SPACING);
-        slider.setMinorTickSpacing(DesignSound.DEFAULT_MINOR_TICK_SPACING);
+        slider.setMajorTickSpacing(UtilitySound.DEFAULT_MAJOR_TICK_SPACING);
+        slider.setMinorTickSpacing(UtilitySound.DEFAULT_MINOR_TICK_SPACING);
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
     }
