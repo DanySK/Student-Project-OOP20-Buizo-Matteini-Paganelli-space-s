@@ -5,27 +5,33 @@ import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.gui.game.EngineGame;
 import spacesurvival.model.worldevent.WorldEventListener;
+import spacesurvival.model.Pair;
 import spacesurvival.model.World;
 import spacesurvival.model.commandship.MovementKeyListener;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.CommandKey;
+import spacesurvival.utilities.CommandType;
 import spacesurvival.utilities.RoundUtils;
 import spacesurvival.utilities.gameobject.LifeUtils;
 import spacesurvival.view.GUI;
 import spacesurvival.view.game.GUIGame;
 
 import java.awt.event.KeyListener;
+import java.util.LinkedList;
+import java.util.List;
 
 public class CtrlGame implements ControllerGUI {
     private final EngineGame engine;
     private final GUIGame gui;
-
     private final SwitchGUI switchGUI;
+    private final MovementKeyListener keyListener;
 
     public CtrlGame(final EngineGame engine, final GUIGame gui) {
         this.engine = engine;
         this.gui = gui;
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
+        this.keyListener = new MovementKeyListener();
 
         this.assignAction();
         this.assignStrings();
@@ -173,7 +179,20 @@ public class CtrlGame implements ControllerGUI {
     }
 
     private MovementKeyListener getMovementKeyListener() {
-        return new MovementKeyListener(this.engine.getShip());
+        return this.keyListener;
+    }
+
+    /**
+     * Return the command list of the ship composed by the input key code and the command type.
+     * 
+     * @return the command list of the ship
+     */
+    public List<Pair<CommandKey, CommandType>> getSpaceShipCommandList() {
+        return this.keyListener.getSpaceShipCommandList();
+    }
+
+    public void clearSpaceShipCommandList() {
+        this.keyListener.clearSpaceShipCommandList();
     }
 
     public final void assignMovementListenerInShip() {

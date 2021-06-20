@@ -2,23 +2,36 @@ package spacesurvival.model.commandship;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
-import spacesurvival.controller.CallerCommandShip;
-import spacesurvival.model.gameobject.main.SpaceShipSingleton;
+import spacesurvival.model.Pair;
 import spacesurvival.utilities.CommandKey;
+import spacesurvival.utilities.CommandType;
 
 
 public class MovementKeyListener implements KeyListener {
 
-    private final CallerCommandShip caller;
-
+    private final List<Pair<CommandKey, CommandType>> commandList;
     /** 
      * Initialize the caller command.
      * 
-     * @param ship SpaceShipSingleton the unique controlled ship
      */
-    public MovementKeyListener(final SpaceShipSingleton ship) {
-        caller = new CallerCommandShip(ship);
+    public MovementKeyListener() {
+        this.commandList = new LinkedList<>();
+    }
+
+    /**
+     * Return the command list of the ship composed by the input key code and the command type.
+     * 
+     * @return the command list of the ship
+     */
+    public List<Pair<CommandKey, CommandType>> getSpaceShipCommandList() {
+        return this.commandList;
+    }
+
+    public void clearSpaceShipCommandList() {
+        this.commandList.clear();
     }
 
     /** 
@@ -38,10 +51,9 @@ public class MovementKeyListener implements KeyListener {
     @Override
     public void keyPressed(final KeyEvent e) {
         final int pressedKeyCode = e.getKeyCode();
-        System.out.println(pressedKeyCode);
         if (canHandleKey(pressedKeyCode)) {
             final CommandKey cmd = translateKeyCode(pressedKeyCode).get();
-            this.caller.execute(cmd);
+            this.commandList.add(new Pair<CommandKey, CommandType>(cmd, CommandType.PRESSED));
         }
     }
 
@@ -55,7 +67,7 @@ public class MovementKeyListener implements KeyListener {
         final int pressedKeyCode = e.getKeyCode();
         if (canHandleKey(pressedKeyCode)) {
             final CommandKey cmd = translateKeyCode(pressedKeyCode).get();
-            this.caller.release(cmd);
+            this.commandList.add(new Pair<CommandKey, CommandType>(cmd, CommandType.RELEASED));
         }
     }
 

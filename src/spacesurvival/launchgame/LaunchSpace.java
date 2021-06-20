@@ -11,6 +11,7 @@ import spacesurvival.factories.StaticFactoryEngineGUI;
 public final class LaunchSpace {
 
     private LaunchSpace() {
+        
     }
 
     public static void main(final String[] args) {

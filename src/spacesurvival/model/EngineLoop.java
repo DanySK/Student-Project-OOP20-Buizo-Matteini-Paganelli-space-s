@@ -1,5 +1,6 @@
 package spacesurvival.model;
 
+import spacesurvival.controller.CallerCommandShip;
 import spacesurvival.controller.gui.CtrlGUI;
 import spacesurvival.controller.gui.CtrlGame;
 import spacesurvival.controller.gui.CtrlSound;
@@ -11,6 +12,8 @@ import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.utilities.path.SoundPath;
 import spacesurvival.utilities.CommandAudioType;
+import spacesurvival.utilities.CommandKey;
+import spacesurvival.utilities.CommandType;
 import spacesurvival.utilities.ThreadUtils;
 import java.awt.geom.AffineTransform;
 import java.util.LinkedList;
@@ -26,6 +29,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
     private final CtrlGUI controlGUI;
     private final CtrlGame controlGame;
     private final CtrlSound controlSound;
+    private final CallerCommandShip callerCommandShip;
 
     private final List<WorldEvent> eventQueue;
 
@@ -34,6 +38,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
         this.eventQueue = new LinkedList<>();
         this.controlGame = this.controlGUI.getCtrlGame();
         this.controlSound = this.controlGUI.getCtrlSound();
+        this.callerCommandShip = new CallerCommandShip(getShip());
     }
 
     public void initGame() {
@@ -104,6 +109,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
 
     protected final void updateGame() {
         this.controlGame.updateStateWorld();
+        this.checkInput();
         this.checkEvents();
         this.checkSoundEffects();
         this.checkGameObjectsDead();
@@ -111,6 +117,22 @@ public class EngineLoop extends Thread implements WorldEventListener {
         this.checkScore();
         this.checkLife();
         this.controlGame.updateHUD();
+    }
+
+    /**
+     * Process user input.
+     */
+    private void checkInput() {
+        final List<Pair<CommandKey, CommandType>> inputUpdate = this.controlGame.getSpaceShipCommandList();
+        this.controlGame.getSpaceShipCommandList().forEach(cmd -> {
+            if (cmd.getY().equals(CommandType.PRESSED)) {
+                this.callerCommandShip.execute(cmd.getX());
+            } else {
+                this.callerCommandShip.release(cmd.getX());
+            }
+        });
+        inputUpdate.clear();
+        this.controlGame.clearSpaceShipCommandList();
     }
 
     private void checkGameObjectsDead() {

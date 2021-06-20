@@ -133,7 +133,7 @@ public abstract class GameObject implements Collideable {
           this.boundingBox = boundingBox;
     }
 
-    
+
     public void setEngineImage(final EngineImage engineImage) {
         this.mainAnimation.setBody(engineImage);
     }
