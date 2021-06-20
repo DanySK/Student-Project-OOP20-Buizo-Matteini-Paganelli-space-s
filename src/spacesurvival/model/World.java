@@ -397,7 +397,7 @@ public class World {
             newTransform = new AffineTransform(object.getTransform().getScaleX(), 
                     object.getTransform().getShearY(), object.getTransform().getShearX(), 
                     object.getTransform().getScaleY(), object.getTransform().getTranslateX(), 
-                    Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y - 100);
+                    Screen.HEIGHT_FULLSCREEN * SystemVariables.SCALE_Y - 100);
             break;
         case BOTTOM:
             newTransform = new AffineTransform(object.getTransform().getScaleX(), 
@@ -408,7 +408,7 @@ public class World {
         case LEFT:
             newTransform = new AffineTransform(object.getTransform().getScaleX(), 
                     object.getTransform().getShearY(), object.getTransform().getShearX(), 
-                    object.getTransform().getScaleY(), Screen.WIDTH_FULL_SCREEN * SystemVariables.SCALE_X - 100, 
+                    object.getTransform().getScaleY(), Screen.WIDTH_FULLSCREEN * SystemVariables.SCALE_X - 100,
                     object.getTransform().getTranslateY());
             break;
         case RIGHT: 

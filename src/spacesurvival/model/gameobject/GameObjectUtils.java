@@ -21,20 +21,20 @@ public final class GameObjectUtils {
 
         switch (Edge.random()) {
         case TOP:
-            xAxis = RandomUtils.RANDOM.nextInt(Screen.WIDTH_FULL_SCREEN);
+            xAxis = RandomUtils.RANDOM.nextInt(Screen.WIDTH_FULLSCREEN);
             yAxis = 0 - (int) objectDim.getHeight();
             break;
         case BOTTOM:
-            xAxis = RandomUtils.RANDOM.nextInt(Screen.WIDTH_FULL_SCREEN);
-            yAxis = Screen.WIDTH_FULL_SCREEN;
+            xAxis = RandomUtils.RANDOM.nextInt(Screen.WIDTH_FULLSCREEN);
+            yAxis = Screen.WIDTH_FULLSCREEN;
             break;
         case LEFT:
             xAxis = 0 - (int) objectDim.getWidth();
-            yAxis = RandomUtils.RANDOM.nextInt(Screen.HEIGHT_FULL_SCREEN);
+            yAxis = RandomUtils.RANDOM.nextInt(Screen.HEIGHT_FULLSCREEN);
             break;
         case RIGHT:
-            xAxis = Screen.WIDTH_FULL_SCREEN;
-            yAxis = RandomUtils.RANDOM.nextInt(Screen.HEIGHT_FULL_SCREEN);
+            xAxis = Screen.WIDTH_FULLSCREEN;
+            yAxis = RandomUtils.RANDOM.nextInt(Screen.HEIGHT_FULLSCREEN);
             break;
         default:
             break;
@@ -47,8 +47,8 @@ public final class GameObjectUtils {
      * @return a random point inside the game screen
      */
     public static P2d generateRandomPoint() {
-        return new P2d(RandomUtils.RANDOM.nextInt((int) (Screen.WIDTH_FULL_SCREEN * SystemVariables.SCALE_X)),
-                RandomUtils.RANDOM.nextInt((int) (Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y)));
+        return new P2d(RandomUtils.RANDOM.nextInt((int) (Screen.WIDTH_FULLSCREEN * SystemVariables.SCALE_X)),
+                RandomUtils.RANDOM.nextInt((int) (Screen.HEIGHT_FULLSCREEN * SystemVariables.SCALE_Y)));
     }
 
     private GameObjectUtils() {

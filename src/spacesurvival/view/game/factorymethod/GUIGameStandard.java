@@ -40,12 +40,12 @@ public class GUIGameStandard implements FactoryGUIGame {
                         FactoryGUIs.MEDIUM_INSET)));
 
         concreteGame.getLifeBoss().setPreferredSize(new Dimension(
-                Screen.scaleRespectTo(ScaleOf.WIDTH_LIFEBAR_BOSS, Screen.WIDTH_FULL_SCREEN),
-                Screen.scaleRespectTo(ScaleOf.HEIGHT_LIFEBAR_BOSS, Screen.HEIGHT_FULL_SCREEN)));
+                Screen.scaleRespectTo(ScaleOf.WIDTH_LIFEBAR_BOSS, Screen.WIDTH_FULLSCREEN),
+                Screen.scaleRespectTo(ScaleOf.HEIGHT_LIFEBAR_BOSS, Screen.HEIGHT_FULLSCREEN)));
 
         concreteGame.getLifeShip().setPreferredSize(new Dimension(
-                Screen.scaleRespectTo(ScaleOf.WIDTH_LIFEBAR_SHIP, Screen.WIDTH_FULL_SCREEN),
-                Screen.scaleRespectTo(ScaleOf.HEIGHT_LIFEBAR_SHIP, Screen.HEIGHT_FULL_SCREEN)));
+                Screen.scaleRespectTo(ScaleOf.WIDTH_LIFEBAR_SHIP, Screen.WIDTH_FULLSCREEN),
+                Screen.scaleRespectTo(ScaleOf.HEIGHT_LIFEBAR_SHIP, Screen.HEIGHT_FULLSCREEN)));
 
 //        concreteGame.getLifeBoss().setForeground(Color.RED);
         concreteGame.getLifeBoss().setVisible(false);

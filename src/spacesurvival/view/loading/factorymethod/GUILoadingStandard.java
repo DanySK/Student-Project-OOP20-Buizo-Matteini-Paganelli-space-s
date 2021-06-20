@@ -47,7 +47,7 @@ public class GUILoadingStandard implements FactoryGUILoading {
         concrete.getProgressBar().setForeground(DesignGraphics.COLOR_4);
 
         concrete.getProgressBar().setPreferredSize(new Dimension(
-                Screen.scaleRespectTo(ScaleOf.WIDTH_BAR_LOADING, Screen.WIDTH_FULL_SCREEN),
-                Screen.scaleRespectTo(ScaleOf.HEIGHT_BAR_LOADING, Screen.HEIGHT_FULL_SCREEN)));
+                Screen.scaleRespectTo(ScaleOf.WIDTH_BAR_LOADING, Screen.WIDTH_FULLSCREEN),
+                Screen.scaleRespectTo(ScaleOf.HEIGHT_BAR_LOADING, Screen.HEIGHT_FULLSCREEN)));
     }
 }
