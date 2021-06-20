@@ -84,12 +84,12 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
         final MovementLogic movementLogic = new RandomMovement();
         final int life = LifeUtils.FIRE_ENEMY_LIFE;
         final int impactDamage = DamageUtils.FIRE_ENEMY_DAMAGE;
-        final Weapon weapon = new Weapon();
+        final Weapon weapon = new Weapon(Optional.empty());
         final FiringLogic firingLogic = new FireEnemyFiringImpl();
 
         final FireEnemy fireEnemy = new FireEnemy(engineImage, position, new RectBoundingBox(), new FireEnemyComponent(), velocity,
                 acceleration, movementLogic, life, impactDamage, Score.FIRE_ENEMY, Optional.empty(), weapon, firingLogic);
-        fireEnemy.setWeapon(new Weapon(AmmoType.NORMAL, fireEnemy));
+        fireEnemy.setWeapon(new Weapon(AmmoType.NORMAL, Optional.of(fireEnemy)));
         return fireEnemy;
     }
 
@@ -102,12 +102,12 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
         final MovementLogic movementLogic = new RandomMovement();
         final int life = LifeUtils.BOSS_LIFE;
         final int impactDamage = DamageUtils.BOSS_DAMAGE;
-        final Weapon weapon = new Weapon();
+        final Weapon weapon = new Weapon(Optional.empty());
         final FiringLogic firingLogic = new BossFiringImpl();
 
         final Boss boss = new Boss(engineImage, position, new RectBoundingBox(), new BossComponent(), velocity,
                 acceleration, movementLogic, life, impactDamage, Score.BOSS, Optional.empty(), weapon, firingLogic);
-        boss.setWeapon(new Weapon(AmmoType.NORMAL, boss));
+        boss.setWeapon(new Weapon(AmmoType.NORMAL, Optional.of(boss)));
         return boss;
     }
 

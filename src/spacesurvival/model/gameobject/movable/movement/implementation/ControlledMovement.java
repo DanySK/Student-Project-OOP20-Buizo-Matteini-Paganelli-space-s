@@ -9,6 +9,9 @@ import spacesurvival.utilities.gameobject.VelocityUtils;
 
 public class ControlledMovement implements MovementLogic {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void move(final MovableObject object) {
         if (object.isMoving()) {
@@ -25,7 +28,7 @@ public class ControlledMovement implements MovementLogic {
 
     @Override
     public String toString() {
-        return "Controlled Movement";
+        return "ControlledMovement";
     }
 
 }

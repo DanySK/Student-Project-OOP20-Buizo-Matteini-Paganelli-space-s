@@ -135,7 +135,7 @@ public abstract class MovableObject extends GameObject {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String toString() {

@@ -10,7 +10,7 @@ public interface MovementLogic {
     /**
      * Move the object in the next point based on its velocity and direction.
      * 
-     * @param movableObject
+     * @param movableObject object to move
      */
     void move(MovableObject movableObject);
 

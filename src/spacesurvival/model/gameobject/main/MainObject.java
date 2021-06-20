@@ -210,7 +210,7 @@ public abstract class MainObject extends MovableObject {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String toString() {
