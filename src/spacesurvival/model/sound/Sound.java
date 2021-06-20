@@ -105,7 +105,7 @@ public abstract class Sound {
     public void setVolume(final double volume) {
         this.volume = volume;
         final FloatControl gain = (FloatControl) getClip().get().getControl(FloatControl.Type.MASTER_GAIN);
-        final float dB = (float) (Math.log(volume) / Math.log(10));
+        final float dB = (float) (Math.log(volume) / Math.log(10) * SoundUtils.AMPLITUDE_MULTIPLICATOR_FACTOR);
 
         gain.setValue(dB);
     }
