@@ -8,6 +8,9 @@ import spacesurvival.model.gameobject.movable.movement.MovementLogic;
 
 public class ChasingMovement implements MovementLogic {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void move(final MovableObject object) {
         if (object.isMoving() && object.getTarget().isPresent()) {
@@ -26,7 +29,7 @@ public class ChasingMovement implements MovementLogic {
 
     @Override
     public String toString() {
-        return "Chasing Movement";
+        return "ChasingMovement";
     }
 
 }

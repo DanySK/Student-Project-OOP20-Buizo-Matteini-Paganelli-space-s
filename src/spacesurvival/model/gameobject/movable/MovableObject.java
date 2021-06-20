@@ -2,7 +2,6 @@ package spacesurvival.model.gameobject.movable;
 
 import java.util.Optional;
 
-import spacesurvival.controller.CallerCommand;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
 import spacesurvival.model.gameobject.GameObject;
@@ -11,21 +10,16 @@ import spacesurvival.model.EngineImage;
 import spacesurvival.model.collision.bounding.BoundingBox;
 import spacesurvival.model.collision.eventgenerator.EventComponent;
 
-
+/**
+ * An object which can move, extends a basic game object and implements a logic for movement and an optional target.
+ */
 public abstract class MovableObject extends GameObject {
 
     private V2d velocity;
     private double acceleration;
     private Optional<P2d> target;
     private MovementLogic movementLogic;
-    private CallerCommand caller;
     private boolean isMoving;
-
-    public MovableObject() {
-        super(new EngineImage(), new P2d(), null, null);
-        this.velocity = new V2d();
-        this.movementLogic = null;
-    }
 
     public MovableObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
             final EventComponent eventComponent, final V2d velocity, final double acceleration, final MovementLogic movementLogic,
@@ -37,14 +31,25 @@ public abstract class MovableObject extends GameObject {
         this.movementLogic = movementLogic;
     }
 
+    /**
+     * Move the object in the next position based on velocity.
+     */
     public void move() {
         this.movementLogic.move(this);
     }
 
+    /**
+     * @return the current vector 2d velocity.
+     */
     public V2d getVelocity() {
         return velocity;
     }
 
+    /**
+     * Sets a new velocity to the object.
+     * 
+     * @param velocity the velocity to set
+     */
     public void setVelocity(final V2d velocity) {
         this.velocity = velocity;
     }
@@ -65,26 +70,48 @@ public abstract class MovableObject extends GameObject {
         this.acceleration = acceleration;
     }
 
+    /**
+     * @return the object movement logic interface.
+     */
     public MovementLogic getMovement() {
         return movementLogic;
     }
 
+    /**
+     * Sets a new movement logic for the object.
+     * 
+     * @param movementLogic the new movement logic to set
+     */
     public void setMovement(final MovementLogic movementLogic) {
         this.movementLogic = movementLogic;
     }
 
+    /**
+     * Start the object moving, depends on the movement logic implemented.
+     */
     public void startMoving() {
         this.movementLogic.startMoving(this);
     }
 
+    /**
+     * Stop the object moving, depends on the movement logic implemented.
+     */
     public void stopMoving() {
         this.movementLogic.stopMoving(this);
     }
 
+    /**
+     * @return true if the object is moving.
+     */
     public boolean isMoving() {
         return isMoving;
     }
 
+    /**
+     * Start or stop the object move, depends on the movement logic implemented.
+     * 
+     * @param isMoving true if want to start, false otherwise
+     */
     public void setMoving(final boolean isMoving) {
         this.isMoving = isMoving;
     }
@@ -107,18 +134,13 @@ public abstract class MovableObject extends GameObject {
         this.target = target;
     }
 
-    public CallerCommand getCaller() {
-        return caller;
-    }
-
-    public void setCaller(final CallerCommand caller) {
-        this.caller = caller;
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
-        return "MovableGameObject [velocity=" + velocity + ", movement=" + movementLogic + ", "
-                + "transform=" + super.getTransform() + ", " + super.toString() +  "]";
+        return "MovableObject [velocity=" + velocity + ", acceleration=" + acceleration + ", target=" + target
+                + ", movementLogic=" + movementLogic + ", isMoving=" + isMoving + super.toString() + "]";
     }
 
 }

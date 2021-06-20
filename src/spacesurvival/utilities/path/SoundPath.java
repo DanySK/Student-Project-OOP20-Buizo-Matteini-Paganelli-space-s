@@ -7,11 +7,11 @@ public enum SoundPath {
     /**
      * Path relative to the menu sound, loop type.
      */
-    MENU_SOUND(Paths.get(MainFolder.SOUND, "menu.wav").toString(), SoundType.LOOP),
+    MENU(Paths.get(MainFolder.SOUND, "menu.wav").toString(), SoundType.LOOP),
     /**
      * Path relative to the game sound, loop type.
      */
-    GAME_SOUND(Paths.get(MainFolder.SOUND, "game.wav").toString(), SoundType.LOOP),
+    GAME(Paths.get(MainFolder.SOUND, "game.wav").toString(), SoundType.LOOP),
     /**
      * Path relative to the shoot sound, effect type.
      */

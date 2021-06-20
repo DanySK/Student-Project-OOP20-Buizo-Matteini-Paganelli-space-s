@@ -7,12 +7,16 @@ import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
 import spacesurvival.utilities.Delay;
 import spacesurvival.utilities.ThreadUtils;
 
+/**
+ * Implement firing logic for boss.
+ * The boss can shoot and randomly change the ammo type of its weapon.
+ */
 public class BossFiringImpl implements FiringLogic {
 
     /**
      * Start the boss firing every 3 seconds.
      * 
-     * @param fireableObject object which which will fire
+     * @param fireableObject boss which has to shoot with its weapon
      */
     @Override
     public void startFiring(final FireableObject fireableObject) {

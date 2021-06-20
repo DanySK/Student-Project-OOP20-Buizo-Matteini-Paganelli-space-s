@@ -51,7 +51,7 @@ public class Asteroid extends MainObject {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public void collided(final World world, final WorldEvent event) {
         final Optional<EventType> evType = EventType.getEventFromHit(event);

@@ -13,7 +13,7 @@ import spacesurvival.model.collision.bounding.BoundingBox;
 import spacesurvival.model.collision.eventgenerator.EventComponent;
 
 /**
- * A game object with essential functionalities.
+ * A game object with essential functionalities, including collisions, position and animations.
  */
 public abstract class GameObject implements Collideable {
     private AffineTransform transform;
@@ -31,10 +31,13 @@ public abstract class GameObject implements Collideable {
         this.transform = new AffineTransform();
         this.transform.translate(position.getX(), position.getY());
         this.boundingBox.setTransform(this.transform);
-        this.initializeAnimationsThread();
+        this.startThreadsAnimations();
     }
-    
-    private void initializeAnimationsThread() {
+
+    /**
+     * Start the threads for animations.
+     */
+    private void startThreadsAnimations() {
         this.mainAnimation.start();
         this.effectAnimation.start();
     }
@@ -72,7 +75,7 @@ public abstract class GameObject implements Collideable {
     }
 
     /**
-     * Place the object in the given position, set AffineTransform and BoundingBox
+     * Place the object in the given position, sets AffineTransform and BoundingBox
      * referring to the position. This method doesn't maintain the current rotation of the object.
      * 
      * @param position the position where to place the object
@@ -84,7 +87,7 @@ public abstract class GameObject implements Collideable {
     }
 
     /**
-     * Set a new AffineTransform and a new BoundingBox.
+     * Sets a new AffineTransform and a new BoundingBox.
      * 
      * @param transform the new transform to set
      */
@@ -122,7 +125,7 @@ public abstract class GameObject implements Collideable {
     }
 
     /**
-     * Set a new bounding box to the object.
+     * Sets a new bounding box to the object.
      * 
      * @param boundingBox the bounding box to set
      */
@@ -143,7 +146,7 @@ public abstract class GameObject implements Collideable {
     }
 
     /**
-     * Set a new event component to the object.
+     * Sets a new event component to the object.
      * 
      * @param eventComponent the new event component to set
      */
@@ -184,7 +187,7 @@ public abstract class GameObject implements Collideable {
     }
 
     /**
-     * Set the main animation of the object.
+     * Sets the main animation of the object.
      * 
      * @param animation the new animation
      */
@@ -193,7 +196,7 @@ public abstract class GameObject implements Collideable {
     }
 
     /**
-     * Set the effect animation of the object.
+     * Sets the effect animation of the object.
      * 
      * @param animation the new animation
      */
@@ -201,11 +204,13 @@ public abstract class GameObject implements Collideable {
         this.effectAnimation.setListPath(animation);
     }
 
-
+    /**
+     * Return a description of game object.
+     */
     @Override
     public String toString() {
-        return "GameObject [transform=" + transform + ", boundingBox=" + boundingBox
-                + ", phys=" + eventComponent + ", main=" + mainAnimation + ", effect=" + effectAnimation + "]";
+        return "GameObject [transform=" + transform + ", boundingBox=" + boundingBox + ", eventComponent="
+                + eventComponent + ", mainAnimation=" + mainAnimation + ", effectAnimation=" + effectAnimation + "]";
     }
 
 }

@@ -6,12 +6,16 @@ import spacesurvival.model.gameobject.Status;
 import spacesurvival.model.gameobject.movable.MovableObject;
 import spacesurvival.model.gameobject.movable.movement.MovementLogic;
 import spacesurvival.utilities.Delay;
+import spacesurvival.utilities.ThreadUtils;
 import spacesurvival.utilities.gameobject.StatusUtils;
 import java.util.Optional;
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.collision.bounding.BoundingBox;
 import spacesurvival.model.collision.eventgenerator.EventComponent;
 
+/**
+ * A game object with main functionalities, including life, impact damege and status.
+ */
 public abstract class MainObject extends MovableObject {
     private int life;
     private int impactDamage;
@@ -28,46 +32,85 @@ public abstract class MainObject extends MovableObject {
         this.score = score;
     }
 
-    public boolean isAlive() {
-        return this.life > 0;
-    }
-
-    public boolean isDead() {
-        return !isAlive();
-    }
-
+    /**
+     * @return the current object life.
+     */
     public int getLife() {
         return life;
     }
 
+    /**
+     * Sets a new life to game object.
+     * 
+     * @param life the quantity life to set
+     */
     public void setLife(final int life) {
         this.life = life;
     }
 
+    /**
+     * @return true if object life is higher than zero, false otherwise.
+     */
+    public boolean isAlive() {
+        return this.life > 0;
+    }
+
+    /**
+     * @return true if object life is lower than zero, false otherwise.
+     */
+    public boolean isDead() {
+        return this.life <= 0;
+    }
+
+    /**
+     * Increase object life by a quantity.
+     * 
+     * @param heal quantity of healing
+     */
     public void increaseLife(final int heal) {
         this.life += heal;
     }
 
+    /**
+     * Decrease object life by a quantity.
+     * 
+     * @param damage quantity of damage
+     */
     public void decreaseLife(final int damage) {
         this.life -= damage;
     }
 
+    /**
+     * @return the object impact damage
+     */
     public int getImpactDamage() {
         return impactDamage;
     }
 
+    /**
+     * Sets a new impact damage to the object.
+     * 
+     * @param impactDamage the impact damage to set
+     */
     public void setImpactDamage(final int impactDamage) {
         this.impactDamage = impactDamage;
     }
 
+    /**
+     * @return the current object status.
+     */
     public Status getStatus() {
         return this.status;
     }
 
+    /**
+     * Sets a new status to the object and start to handle it.
+     * 
+     * @param status the status to set
+     */
     public void setStatus(final Status status) {
         if (!this.status.equals(status)) {
             System.out.println("STATUS   " + status);
-
             this.status = status;
             super.setEffectAnimation(status.getAnimation());
             this.onStatus();
@@ -81,6 +124,9 @@ public abstract class MainObject extends MovableObject {
         return this.status == Status.INVINCIBLE;
     }
 
+    /**
+     * Starts a thread to apply the status effect, wait for its duration and then restore status to normal.
+     */
     public void onStatus() {
         switch (this.status) {
         case INVINCIBLE:
@@ -100,18 +146,29 @@ public abstract class MainObject extends MovableObject {
         new Thread(() -> waitStatusDuration(status.getDuration())).start();
     }
 
+    /**
+     * Wait for the effect duration and then set the object status to normal.
+     * 
+     * @param milliseconds time to wait
+     */
     public void waitStatusDuration(final int milliseconds) {
-        mySleep(milliseconds);
+        ThreadUtils.sleep(milliseconds);
         this.setStatus(Status.NORMAL);
     }
 
+    /**
+     * Handle the effect caused by fire status.
+     */
     public void onFire() {
         while (this.status == Status.ON_FIRE) {
             this.decreaseLife(StatusUtils.FIRE_DAMAGE);
-            mySleep(Delay.FIRE_EFFECT);
+            ThreadUtils.sleep(Delay.FIRE_EFFECT);
         }
     }
 
+    /**
+     * Handle the effect caused by frozen status.
+     */
     public void frozen() {
         final V2d initialVel = this.getVelocity();
         final double initialAcc = this.getAcceleration();
@@ -119,40 +176,46 @@ public abstract class MainObject extends MovableObject {
         this.setAcceleration(getAcceleration() * StatusUtils.FROZEN_SLOWDOWN);
 
         while (this.status == Status.FROZEN) {
-            mySleep(Delay.WAIT_IN_WHILE);
+            ThreadUtils.sleep(Delay.WAIT_IN_WHILE);
         }
         this.setVelocity(initialVel);
         this.setAcceleration(initialAcc);
     }
 
+    /**
+     * Handle the effect caused by paralyzed status.
+     */
     public void paralized() {
         this.stopMoving();
         while (this.status == Status.PARALYZED) {
-            mySleep(Delay.WAIT_IN_WHILE);
+            ThreadUtils.sleep(Delay.WAIT_IN_WHILE);
         }
         this.startMoving();
     }
 
+    /**
+     * @return the score given when the object is destroyed.
+     */
     public int getScore() {
         return score;
     }
 
+    /**
+     * Sets the score given when the object is destroyed.
+     * 
+     * @param score the score to set
+     */
     public void setScore(final int score) {
         this.score = score;
     }
 
-    public void mySleep(final int milliseconds) {
-        try {
-            Thread.sleep(milliseconds);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
-        return "MainGameObject [life=" + life + ", impactDamage=" + impactDamage + ", state=" + status 
-                + ", " + super.toString() + "]";
+        return "MainObject [life=" + life + ", impactDamage=" + impactDamage + ", status=" + status + ", score=" + score
+                + super.toString() + "]";
     }
 
 }

@@ -56,14 +56,12 @@ public class PanelEntityGame extends JPanel {
     public final void paintComponent(final Graphics g) {
         super.paintComponent(g);
         final Graphics2D g2d = (Graphics2D) g;
-
-
         this.gameObjects.entrySet().forEach(entity -> {
             g2d.setTransform(getCorrectAffineTransformFromBoundingBox(entity.getKey())); 
             g2d.drawImage(entity.getValue().getX(), 0, 0, null);
             g2d.drawImage(entity.getValue().getY(), 0, 0, null);
             this.assignLifeBar(entity.getKey(), g2d);
-        });     
+        });
     }
 
     private void drawLifeBar(final Graphics2D g2d, final GameObject gameObject) {

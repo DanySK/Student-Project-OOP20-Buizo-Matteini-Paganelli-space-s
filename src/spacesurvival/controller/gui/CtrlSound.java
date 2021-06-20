@@ -9,13 +9,13 @@ import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.gui.sound.EngineSound;
 import spacesurvival.model.gui.sound.StateSlider;
 import spacesurvival.model.gui.sound.TypeUnitSound;
-import spacesurvival.model.sound.CmdAudioType;
 import spacesurvival.model.sound.category.SoundEffect;
 import spacesurvival.model.sound.category.SoundLoop;
 import spacesurvival.utilities.DesignSound;
 import spacesurvival.utilities.path.SoundPath;
 import spacesurvival.utilities.SoundType;
 import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.CommandAudioType;
 import spacesurvival.view.GUI;
 import spacesurvival.view.sound.GUISound;
 import spacesurvival.view.sound.utilities.ButtonSliderType;
@@ -79,7 +79,7 @@ public class CtrlSound implements ControllerGUI{
         this.callerAudioLoop.setSound(new SoundLoop(actionGUI.getSound()));
     }
 
-    public void setCmdAudioLoop(final CmdAudioType cmdAudioLoop){
+    public void setCmdAudioLoop(final CommandAudioType cmdAudioLoop){
         this.callerAudioLoop.execute(cmdAudioLoop);
     }
 
@@ -160,11 +160,11 @@ public class CtrlSound implements ControllerGUI{
     }
 
     public void changeNewLoopSound(final ActionGUI actionGUI){
-        this.callerAudioLoop.execute(CmdAudioType.AUDIO_OFF);
+        this.callerAudioLoop.execute(CommandAudioType.AUDIO_OFF);
         this.callerAudioLoop.setSound(new SoundLoop(actionGUI.getSound()));
         this.callerAudioLoop.changeVolume(this.isActiveLoopUnitSound() ? this.getLoopVolume() : DesignSound.SOUND_ZERO);
 
-        this.callerAudioLoop.execute(CmdAudioType.AUDIO_ON);
+        this.callerAudioLoop.execute(CommandAudioType.AUDIO_ON);
     }
 
 

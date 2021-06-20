@@ -7,10 +7,10 @@ import spacesurvival.model.collision.event.DeadEvent;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.gameobject.movable.MovableObject;
-import spacesurvival.model.sound.CmdAudioType;
 import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.utilities.path.SoundPath;
+import spacesurvival.utilities.CommandAudioType;
 import spacesurvival.utilities.ThreadUtils;
 import java.awt.geom.AffineTransform;
 import java.util.LinkedList;
@@ -42,7 +42,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
         this.controlGame.setEventListenerInWorld(this);
         this.controlGame.assignWorld();
         this.controlSound.setSoundLoop(this.controlGUI.getCurrentGUI());
-        this.controlSound.setCmdAudioLoop(CmdAudioType.AUDIO_ON);
+        this.controlSound.setCmdAudioLoop(CommandAudioType.AUDIO_ON);
         this.controlGUI.startGUI();
     }
 
@@ -74,7 +74,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
                         waitForNextFrame(current);
                         lastTime = current;
                         updateGame();
-                        //System.out.println("Numero dei thread current -> " + Thread.getAllStackTraces().keySet().size());
+                        System.out.println("Numero dei thread current -> " + Thread.getAllStackTraces().keySet().size());
                     }
                 }
 
@@ -188,8 +188,8 @@ public class EngineLoop extends Thread implements WorldEventListener {
     }
 
     private void playEffect(final SoundPath soundPath) {
-        this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CmdAudioType.RESET_TIMING);
-        this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CmdAudioType.AUDIO_ON);
+        this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CommandAudioType.RESET_TIMING);
+        this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CommandAudioType.AUDIO_ON);
     }
 
 }

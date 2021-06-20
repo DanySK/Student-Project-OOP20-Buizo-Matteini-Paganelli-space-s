@@ -6,8 +6,6 @@ import spacesurvival.model.gui.Visibility;
 public class CmdON implements CmdEngine {
     private EngineGUI engine;
 
-    public CmdON(){ }
-
     @Override
     public CmdGUI execute(final EngineGUI engine) {
         this.engine = engine;

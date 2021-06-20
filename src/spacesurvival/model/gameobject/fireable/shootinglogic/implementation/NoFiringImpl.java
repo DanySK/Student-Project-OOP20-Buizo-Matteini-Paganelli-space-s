@@ -3,16 +3,23 @@ package spacesurvival.model.gameobject.fireable.shootinglogic.implementation;
 import spacesurvival.model.gameobject.fireable.FireableObject;
 import spacesurvival.model.gameobject.fireable.shootinglogic.FiringLogic;
 
+/**
+ * It doesn't implement any firing logic.
+ */
 public class NoFiringImpl implements FiringLogic {
 
+    /**
+     * Doesn't do anything.
+     */
     @Override
     public void startFiring(final FireableObject fireableObject) {
-        // TODO Auto-generated method stub
     }
 
+    /**
+     * Doesn't do anything.
+     */
     @Override
     public void startChangingAmmo(final FireableObject fireableObject) {
-        // TODO Auto-generated method stub
     }
 
 

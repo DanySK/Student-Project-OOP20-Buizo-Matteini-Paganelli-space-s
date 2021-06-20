@@ -58,25 +58,36 @@ public class World {
     private WorldEventListener evListener;
     private final CollisionChecker collisionChecker = new CollisionChecker();
 
+    /**
+     * Create a World given a RectBoundingBox.
+     * @param mainBBox the bounding box on which to base the world limits
+     */
     public World(final RectBoundingBox mainBBox) {
         this.ship = SpaceShipSingleton.getSpaceShip();
         this.ship.startMoving();
-        this.ship.setWeapon(new Weapon(AmmoType.NORMAL, ship));
+        this.ship.setWeapon(new Weapon(AmmoType.NORMAL, Optional.of(ship)));
         this.mainBBox = mainBBox;
 
-        createInitialEntities();
+        createStartingObjects();
     }
 
+    /**
+     * Create a World given a Rectangle.
+     * @param rectangle the rectangle on which to base the world limits
+     */
     public World(final Rectangle rectangle) {
         this.ship = SpaceShipSingleton.getSpaceShip();
         this.ship.startMoving();
-        this.ship.setWeapon(new Weapon(AmmoType.NORMAL, ship));
+        this.ship.setWeapon(new Weapon(AmmoType.NORMAL, Optional.of(ship)));
         this.mainBBox = new RectBoundingBox(rectangle);
 
-        createInitialEntities();
+        createStartingObjects();
     }
 
-    public final void createInitialEntities() {
+    /**
+     * Create the starting objects for the first round.
+     */
+    public final void createStartingObjects() {
         this.addAsteroid();
         this.addChaseEnemy();
         new Thread(() -> {
@@ -102,47 +113,82 @@ public class World {
         this.ship = ship;
     }
 
+    /**
+     * @return the static instance of the ship
+     */
     public SpaceShipSingleton getShip() {
         return this.ship;
     }
 
+    /**
+     * Sets a new skin to the ship.
+     * 
+     * @param skin the skin to set
+     */
     public void setSkin(final SkinSpaceShip skin) {
         this.ship.getEngineImage().setPath(skin.getSkin());
         this.ship.setMainAnimation(skin.getAnimation());
     }
 
+    /**
+     * @return the factory of game objects
+     */
     public AbstractFactoryGameObject getFactoryGameObject() {
         return factoryGameObject;
     }
 
+    /**
+     * Sets a new game object factory.
+     * 
+     * @param factoryGameObject the new factory to set
+     */
     public void setFactoryGameObject(final AbstractFactoryGameObject factoryGameObject) {
         this.factoryGameObject = factoryGameObject;
     }
 
+    /**
+     * Add an asteroid to the world.
+     */
     public final void addAsteroid() {
         final MainObject asteroid = factoryGameObject.createAsteroid();
         asteroids.add(asteroid);
         asteroid.startMoving();
     }
 
+    /**
+     * Remove an asteroid from the world.
+     * 
+     * @param asteroid the asteroid to remove
+     */
     public void removeAsteroid(final MainObject asteroid) {
         asteroid.stopMoving();
         asteroid.stopAnimation();
         asteroids.remove(asteroid);
     }
 
+    /**
+     * Add a chase enemy to the world.
+     */
     public final void addChaseEnemy() {
         final MainObject chaseEnemy = factoryGameObject.createChaseEnemy();
         chaseEnemies.add(chaseEnemy);
         chaseEnemy.startMoving();
     }
 
+    /**
+     * Remove an chase enemy from the world.
+     * 
+     * @param chaseEnemy the chase enemy to remove
+     */
     public final void removeChaseEnemy(final MainObject chaseEnemy) {
         chaseEnemy.stopMoving();
         chaseEnemy.stopAnimation();
         chaseEnemies.remove(chaseEnemy);
     }
 
+    /**
+     * Add a fire enemy to the world.
+     */
     public final void addFireEnemy() {
         final FireableObject fireEnemy = factoryGameObject.createFireEnemy();
         fireEnemies.add(fireEnemy);
@@ -150,18 +196,29 @@ public class World {
         fireEnemy.startFiring();
     }
 
+    /**
+     * Remove an fire enemy from the world.
+     * 
+     * @param fireEnemy the fire enemy to remove
+     */
     public final void removeFireEnemy(final MainObject fireEnemy) {
         fireEnemy.stopMoving();
         fireEnemy.stopAnimation();
         fireEnemies.remove(fireEnemy);
     }
 
+    /**
+     * Add the boss to the world.
+     */
     public final void addBoss() {
         this.boss = Optional.of(factoryGameObject.createBoss());
         this.boss.get().startMoving();
         this.boss.get().startFiring();
     }
 
+    /**
+     * Remove the boss from the world.
+     */
     public final void removeBoss() {
         if (this.boss.isPresent()) {
             this.boss.get().stopAnimation();
@@ -170,24 +227,46 @@ public class World {
         }
     }
 
+    /**
+     * Add an ammo to the world.
+     */
     public final void addAmmo() {
         ammo.add(factoryGameObject.createAmmo());
     }
 
+    /**
+     * Remove an ammo from the world.
+     * 
+     * @param ammoObj the ammo to remove
+     */
     public final void removeAmmo(final TakeableGameObject ammoObj) {
         ammoObj.stopAnimation();
         ammo.remove(ammoObj);
     }
 
+    /**
+     * Add a heart to the world.
+     */
     public final void addHeart() {
         hearts.add(factoryGameObject.createHeart());
     }
 
+    /**
+     * Remove an heart from the world.
+     * 
+     * @param heart the heart to remove
+     */
     public final void removeHeart(final TakeableGameObject heart) {
         heart.stopAnimation();
         hearts.remove(heart);
     }
 
+    /**
+     * Remove a bullet from the world.
+     * 
+     * @param bullet the bullet to remove
+     * @return true if the bullet has removed
+     */
     public final boolean removeBullet(final Bullet bullet) {
         bullet.stopMoving();
         bullet.stopAnimation();
@@ -205,22 +284,21 @@ public class World {
         return found;
     }
 
-//    public void removeAllEnemies() {
-//        getAllEnemies().forEach(enemy -> {
-//            enemy.stopAnimation();
-//            enemy.stopMoving();
-//        });
-//        this.chaseEnemies.clear();
-//        this.fireEnemies.clear();
-//        this.boss = Optional.empty();
-//    }
-
+    /**
+     * Cycle all objects and update events for each.
+     */
     public void updateState() {
         this.getAllObjects().forEach(entity -> {
             entity.updateEvents(this);
         });
     }
 
+    /**
+     * Check if an object has collided with a border.
+     * @param pos 
+     * @param box 
+     * @return Optional<BoundaryCollision> which contain all info of collision
+     */
     public Optional<BoundaryCollision> checkCollisionWithBoundaries(final P2d pos, final RectBoundingBox box) {
         final P2d ul = box.getULCorner();
         final P2d br = box.getBRCorner();
@@ -357,6 +435,13 @@ public class World {
         return this.queueDecreaseLife;
     }
 
+    /**
+     * Damages an object and applies it a status.
+     * 
+     * @param object the object to damage
+     * @param damage the quantity of damage to inflict
+     * @param status the status to apply to the object
+     */
     public void damageObject(final MainObject object, final int damage, final Status status) {
         if (!object.isInvincible()) {
             System.out.println(object.getClass() + " HA RICEVUTO  " + damage + " DANNI");
@@ -374,34 +459,58 @@ public class World {
         evListener.notifyEvent(ev);
     }
 
+    /**
+     * @return the world main bounding box
+     */
     public RectBoundingBox getMainBBox() {
         return mainBBox;
     }
 
+    /**
+     * @return all asteroids in the world
+     */
     public Set<MainObject> getAsteroids() {
         return this.asteroids;
     }
 
+    /**
+     * @return all chase enemies in the world
+     */
     public Set<MainObject> getChaseEnemies() {
         return this.chaseEnemies;
     }
 
+    /**
+     * @return all fire enemies in the world
+     */
     public Set<FireableObject> getFireEnemies() {
         return this.fireEnemies;
     }
 
+    /**
+     * @return the optional of boss
+     */
     public Optional<FireableObject> getBoss() {
         return boss;
     }
 
+    /**
+     * @return all ammo in the world
+     */
     public Set<TakeableGameObject> getAmmo() {
         return ammo;
     }
 
+    /**
+     * @return all hearts in the world
+     */
     public Set<TakeableGameObject> getHearts() {
         return hearts;
     }
 
+    /**
+     * @return all main objects in the world
+     */
     public Set<MainObject> getMainObjects() {
         final Set<MainObject> mainObjects = new HashSet<>();
         mainObjects.addAll(asteroids);
@@ -412,6 +521,9 @@ public class World {
         return mainObjects;
     }
 
+    /**
+     * @return all takeable objects in the world
+     */
     public Set<TakeableGameObject> getTakeableObjects() {
         final Set<TakeableGameObject> takeableGameObjects = new HashSet<>();
         takeableGameObjects.addAll(ammo);
@@ -419,14 +531,25 @@ public class World {
         return takeableGameObjects;
     }
 
+    /**
+     * @return all bullets fired from the ship
+     */
     public Set<Bullet> getShipBullets() {
             return this.ship.getWeapon().getShootedBullets();
     }
 
+    /**
+     * @return all bullets fired from a fire enemies
+     * 
+     * @param fireEnemy the fire enemy from which to return the fired bullets
+     */
     public Set<Bullet> getFireEnemyBullets(final FireableObject fireEnemy) {
         return fireEnemy.getWeapon().getShootedBullets();
     }
 
+    /**
+     * @return all bullets fired from the boss
+     */
     public Set<Bullet> getBossBullets() {
         if (this.boss.isPresent()) {
             return this.boss.get().getWeapon().getShootedBullets();
@@ -434,6 +557,9 @@ public class World {
         return new HashSet<>();
     }
 
+    /**
+     * @return all bullets fired from all objects in the world
+     */
     public Set<Bullet> getAllBullets() {
         final HashSet<Bullet> allBullets = new HashSet<>();
         allBullets.addAll(getShipBullets());
@@ -444,6 +570,9 @@ public class World {
         return allBullets;
     }
 
+    /**
+     * @return all enemies in the world
+     */
     public Set<MainObject> getAllEnemies() {
         final HashSet<MainObject> allEnemies = new HashSet<>();
         allEnemies.addAll(chaseEnemies);
@@ -454,6 +583,9 @@ public class World {
         return allEnemies;
     }
 
+    /**
+     * @return all MoveableObjects in the world
+     */
     public Set<MovableObject> getMovableObjects() {
         final Set<MovableObject> entities = new HashSet<>();
         entities.add(ship);
@@ -467,6 +599,9 @@ public class World {
         return entities;
     }
 
+    /**
+     * @return all objects in the world except bullets
+     */
     public Set<GameObject> getAllObjectsExceptBullets() {
         final Set<GameObject> entities = new HashSet<>();
         entities.add(ship);
@@ -480,6 +615,9 @@ public class World {
         return entities;
     }
 
+    /**
+     * @return all objects in the world
+     */
     public Set<GameObject> getAllObjects() {
         final Set<GameObject> entities = new HashSet<>();
         entities.add(ship);
@@ -494,16 +632,25 @@ public class World {
         return entities;
     }
 
+    /**
+     * @return the number of enemies in the world
+     */
     public long getCountEnemies() {
         return this.fireEnemies.size() 
                 + this.chaseEnemies.size() 
                 + (this.boss.isPresent() ? 1 : 0);
     }
 
+    /**
+     * @return the quantity of life ship
+     */
     public int getLifeShip() {
         return this.ship.getLife();
     }
 
+    /**
+     * @return the quantity of life boss
+     */
     public int getLifeBoss() {
         return this.boss.get().getLife();
     }

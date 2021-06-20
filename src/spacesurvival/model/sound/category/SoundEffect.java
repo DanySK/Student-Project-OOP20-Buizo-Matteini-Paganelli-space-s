@@ -20,7 +20,7 @@ public class SoundEffect extends Sound {
     /**
      * Create a sound effect from the passed sound path.
      * 
-     * @param soundPath
+     * @param soundPath the path of the sound
      */
     public SoundEffect(final SoundPath soundPath) {
         super(soundPath);
@@ -30,7 +30,6 @@ public class SoundEffect extends Sound {
      * Start the sound effect at the current volume.
      * @param volume the volume at which the sound effect will start in the range 0-100.
      */
-    @Override
     protected void playSound(final double volume) {
         super.getClip().get().start();
         setVolume(volume);

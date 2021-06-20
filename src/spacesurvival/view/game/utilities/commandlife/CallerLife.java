@@ -42,25 +42,22 @@ public class CallerLife {
             this.g2d.setColor(this.logicColor.setColor(LifeUtils.CHASE_ENEMY_LIFE, this.gameObject.getLife()));
             g2d.fillRect(PanelEntityGame.ANCHOR_X_LIFE_BAR, (int) gameObject.getSize().getHeight() + PanelEntityGame.DIFFERENCE_HEIGHT_LIFE_BAR,
                     this.commandChase.execute(gameObject), PanelEntityGame.HEIGHT_LIFE);
-            
+
         } else if (this.gameObject instanceof Asteroid) {
             System.out.println(this.gameObject.getLife());
             this.g2d.setColor(this.logicColor.setColor(LifeUtils.ASTEROID_LIFE, this.gameObject.getLife()));
             g2d.fillRect(PanelEntityGame.ANCHOR_X_LIFE_BAR, (int) gameObject.getSize().getHeight() + PanelEntityGame.DIFFERENCE_HEIGHT_LIFE_BAR,
                     this.commandAsteroid.execute(gameObject), PanelEntityGame.HEIGHT_LIFE);
-            
+
         } else if (this.gameObject instanceof Boss) {
-            
             this.g2d.setColor(this.logicColor.setColor(LifeUtils.BOSS_LIFE, this.gameObject.getLife()));
             g2d.fillRect(PanelEntityGame.ANCHOR_X_LIFE_BAR, (int) gameObject.getSize().getHeight() + PanelEntityGame.DIFFERENCE_HEIGHT_LIFE_BAR,
                     this.commandBoss.execute(gameObject), PanelEntityGame.HEIGHT_LIFE);
-            
+
         } else if (this.gameObject instanceof FireEnemy) {
             this.g2d.setColor(this.logicColor.setColor(LifeUtils.FIRE_ENEMY_LIFE, this.gameObject.getLife()));
             g2d.fillRect(PanelEntityGame.ANCHOR_X_LIFE_BAR, (int) gameObject.getSize().getHeight() + PanelEntityGame.DIFFERENCE_HEIGHT_LIFE_BAR,
                     this.commandFire.execute(gameObject), PanelEntityGame.HEIGHT_LIFE);
         }
-        
     }
-    
 }

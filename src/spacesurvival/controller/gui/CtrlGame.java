@@ -6,7 +6,7 @@ import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.gui.game.EngineGame;
 import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.model.World;
-import spacesurvival.model.command.MovementKeyListener;
+import spacesurvival.model.commandship.MovementKeyListener;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.utilities.RoundUtils;
@@ -14,7 +14,6 @@ import spacesurvival.utilities.gameobject.LifeUtils;
 import spacesurvival.view.GUI;
 import spacesurvival.view.game.GUIGame;
 
-import java.awt.Image;
 import java.awt.event.KeyListener;
 
 public class CtrlGame implements ControllerGUI {

@@ -12,6 +12,9 @@ import spacesurvival.model.gameobject.fireable.weapon.Weapon;
 import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.gameobject.movable.movement.MovementLogic;
 
+/**
+ * A main object which can fire with a weapon, having a firing logic.
+ */
 public abstract class FireableObject extends MainObject {
 
     private Weapon weapon;
@@ -27,7 +30,39 @@ public abstract class FireableObject extends MainObject {
     }
 
     /**
-     * Start firing with the own weapon and logics.
+     * @return the object weapon
+     */
+    public Weapon getWeapon() {
+        return weapon;
+    }
+
+    /**
+    * Sets a new weapon to object.
+    *
+    * @param weapon the new weapon to set
+    */
+    public void setWeapon(final Weapon weapon) {
+        this.weapon = weapon;
+    }
+
+    /**
+     * @return the object firing logic
+     */
+    public FiringLogic getShootingLogic() {
+        return firingLogic;
+    }
+
+    /**
+     * Sets a new shooting logic to object.
+     *
+     * @param firingLogic the new firing logic to set
+     */
+    public void setShootingLogic(final FiringLogic firingLogic) {
+        this.firingLogic = firingLogic;
+    }
+
+    /**
+     * Start firing with the own weapon and depending by the firing logic.
      */
     public void startFiring() {
         firingLogic.startFiring(this);
@@ -42,34 +77,11 @@ public abstract class FireableObject extends MainObject {
     }
 
     /**
-     * @return the FireableObject weapon
+     * {@inheritDoc}
      */
-    public Weapon getWeapon() {
-        return weapon;
+    @Override
+    public String toString() {
+        return "FireableObject [weapon=" + weapon + ", firingLogic=" + firingLogic + super.toString() + "]";
     }
 
-    /**
-    * Sets a new weapon to FireableObject.
-    *
-    * @param weapon the new weapon to set
-    */
-    public void setWeapon(final Weapon weapon) {
-        this.weapon = weapon;
-    }
-
-    /**
-     * @return the FireableObject shooting logic
-     */
-    public FiringLogic getShootingLogic() {
-        return firingLogic;
-    }
-
-    /**
-     * Sets a new shooting logic to FireableObject.
-     *
-     * @param firingLogic the new shootingLogic to set
-     */
-    public void setShootingLogic(final FiringLogic firingLogic) {
-        this.firingLogic = firingLogic;
-    }
 }
