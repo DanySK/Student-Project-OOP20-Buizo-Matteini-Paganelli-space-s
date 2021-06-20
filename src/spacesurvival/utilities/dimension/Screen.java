@@ -59,8 +59,4 @@ public class Screen {
     public static int scaleRespectTo(final int scaleOf, final int respectTo){
         return scaleOf * respectTo / 1000;
     }
-
-    public static void main(String[] args) {
-        System.out.println(SystemVariables.SCALE_X + ">_>_>_>" + SystemVariables.SCALE_Y);
-    }
 }

@@ -3,8 +3,7 @@ package spacesurvival.model.gui.sound;
 import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.EngineImage;
-import spacesurvival.utilities.DesignSound;
-
+import spacesurvival.utilities.SoundUtils;
 import spacesurvival.utilities.dimension.Screen;
 import spacesurvival.utilities.ActionGUI;
 
@@ -105,7 +104,7 @@ public class EngineSound implements EngineGUI {
     }
 
     public int getDefaultValueSound(){
-        return DesignSound.DEFAULT_VALUE_SOUND;
+        return SoundUtils.DEFAULT_VALUE_SOUND;
     }
 
     public int getValueUnitSound(final TypeUnitSound typeUnitSound) {
