@@ -1,6 +1,7 @@
 package spacesurvival.view.game.concrete;
 
 import spacesurvival.model.World;
+import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.view.AbstractGUI;
@@ -37,13 +38,13 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
     private final LifeBar lifeBoss;
     private final Bullet bullet;
 
-    private final PanelEntityGame entityGame;
-    private final PanelBulletGame bulletGame;
+    private final PanelEntityGame entityPanel;
+    private final PanelBulletGame bulletPanel;
 
     public GUIGameConcrete() {
         super();
-        this.entityGame = new PanelEntityGame();
-        this.bulletGame = new PanelBulletGame();
+        this.entityPanel = new PanelEntityGame();
+        this.bulletPanel = new PanelBulletGame();
         this.lifeBoss = new LifeBar(new LogicColorBoss());
         this.lifeShip = new LifeBar(new LogicColorShip());
         this.score = new Score();
@@ -57,8 +58,8 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
     @Override
     public final void setBoundsGame(final Rectangle screen) {
         super.setBounds(screen);
-        this.entityGame.setBounds(screen);
-        this.bulletGame.setBounds(screen);
+        this.entityPanel.setBounds(screen);
+        this.bulletPanel.setBounds(screen);
     }
 
     @Override
@@ -82,18 +83,18 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
 
     @Override
     public final PanelEntityGame getPanelEntity() {
-        return this.entityGame;
+        return this.entityPanel;
     }
 
     @Override
     public PanelBulletGame getPanelBullet() {
-        return this.bulletGame;
+        return this.bulletPanel;
     }
 
     @Override
     public final void setWorld(final World world) {
-        this.entityGame.setWorld(world);
-        this.bulletGame.setWorld(world);
+        this.entityPanel.setWorld(world);
+        this.bulletPanel.setWorld(world);
     }
 
     @Override
@@ -103,8 +104,8 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
 
     @Override
     public final void repaintGameObjects() {
-        this.entityGame.repaint();
-        this.bulletGame.repaint();
+        this.entityPanel.repaint();
+        this.bulletPanel.repaint();
     }
 
     @Override
@@ -221,4 +222,5 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
         this.bullet.setAmmoTypeImage(ammoType.getImagePath());
         this.bullet.setBulletImage(ammoType.getBulletHud());
     }
+
 }

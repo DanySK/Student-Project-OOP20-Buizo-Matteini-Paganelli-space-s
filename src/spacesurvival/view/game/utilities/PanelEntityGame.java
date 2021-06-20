@@ -3,13 +3,13 @@ package spacesurvival.view.game.utilities;
 import spacesurvival.model.World;
 import spacesurvival.model.collision.bounding.CircleBoundingBox;
 import spacesurvival.model.gameobject.GameObject;
-import spacesurvival.model.EngineLoop;
-import spacesurvival.model.Pair;
 import spacesurvival.model.gameobject.fireable.Boss;
 import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.utilities.ThreadUtils;
+import spacesurvival.model.EngineLoop;
+import spacesurvival.model.Pair;
 import spacesurvival.view.game.utilities.commandlife.CallerLife;
 import spacesurvival.view.game.utilities.logicColor.LogicColorShip;
 
@@ -34,21 +34,18 @@ public class PanelEntityGame extends JPanel {
     public static final int HEIGHT_LIFE_BAR = 6;
     public static final int HEIGHT_LIFE = 5;
     public static final int DIFFERENCE_HEIGHT_LIFE_BAR = Math.abs(HEIGHT_LIFE_BAR - HEIGHT_LIFE);
-    
-    private final Map<GameObject, Pair<Image, Image>> objects;
-    private Optional<World> world;
 
-    private final Thread taskObjects;
+    private final Map<GameObject, Pair<Image, Image>> gameObjects;
+    private Optional<World> world;
 
     public PanelEntityGame() {
         super(); 
         super.setOpaque(false);
-
-        this.taskObjects = new Thread(PanelEntityGame.this::runUpdateGameObjects);
-        this.objects = new HashMap<>();
+        
+        this.gameObjects = new HashMap<>();
         this.world = Optional.empty();
-
-        this.taskObjects.start();
+        
+        new Thread(PanelEntityGame.this::runUpdateGameObjects).start();
     }
 
     public void setWorld(final World world) {
@@ -59,13 +56,13 @@ public class PanelEntityGame extends JPanel {
     public final void paintComponent(final Graphics g) {
         super.paintComponent(g);
         final Graphics2D g2d = (Graphics2D) g;
-
-        this.objects.entrySet().forEach(entity -> {
+        this.gameObjects.entrySet().forEach(entity -> {
             g2d.setTransform(getCorrectAffineTransformFromBoundingBox(entity.getKey())); 
+
             g2d.drawImage(entity.getValue().getX(), 0, 0, null);
             g2d.drawImage(entity.getValue().getY(), 0, 0, null);
             this.assignLifeBar(entity.getKey(), g2d);
-        });     
+        });
     }
 
     private void drawLifeBar(final Graphics2D g2d, final GameObject gameObject) {
@@ -94,9 +91,9 @@ public class PanelEntityGame extends JPanel {
     
     private AffineTransform getCorrectAffineTransformFromBoundingBox(final GameObject gameObject) {
         if (gameObject.getBoundingBox() instanceof CircleBoundingBox) {
+            final CircleBoundingBox cbb = (CircleBoundingBox)gameObject.getBoundingBox();
             final AffineTransform transform = new AffineTransform();
             transform.setTransform(gameObject.getTransform());
-            final CircleBoundingBox cbb = (CircleBoundingBox)gameObject.getBoundingBox();
             transform.translate(-cbb.getRadius(), -cbb.getRadius());
             return transform;
         }
@@ -114,20 +111,20 @@ public class PanelEntityGame extends JPanel {
     private void putObjectFromWorld() {
         this.world.get().getAllObjectsExceptBullets().forEach(obj -> {
             final Pair<Image, Image> pair = new Pair<>(obj.getImgBody(), obj.getImgEffect());
-            this.objects.put(obj, pair);
+            this.gameObjects.put(obj, pair);
         });
     }
 
     private void deletGameObject() {
         final Set<GameObject> objDelet = new HashSet<>();
 
-        this.objects.forEach((key, value) -> {
+        this.gameObjects.forEach((key, value) -> {
             if (!this.world.get().getAllObjectsExceptBullets().contains(key)) {
                 objDelet.add(key);
             }
         });
 
-        objDelet.forEach(this.objects::remove);
+        objDelet.forEach(this.gameObjects::remove);
     }
 
     public final void runUpdateGameObjects() {
@@ -139,8 +136,8 @@ public class PanelEntityGame extends JPanel {
                this.updateGameObjects();
             }
 
-         waitForNextFrame(current);
-           lastTime = current;
+            waitForNextFrame(current);
+            lastTime = current;
         }
     }
 

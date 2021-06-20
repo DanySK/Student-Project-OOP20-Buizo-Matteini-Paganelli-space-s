@@ -13,6 +13,7 @@ import spacesurvival.utilities.RoundUtils;
 import spacesurvival.utilities.gameobject.LifeUtils;
 import spacesurvival.view.GUI;
 import spacesurvival.view.game.GUIGame;
+
 import java.awt.event.KeyListener;
 
 public class CtrlGame implements ControllerGUI {
@@ -84,7 +85,7 @@ public class CtrlGame implements ControllerGUI {
     public final void closeGUI() {
         this.gui.close();
     }
-
+    
     public final void updateHUD() {
         this.gui.setTimer(this.engine.getTimer());
         this.gui.setScore(this.engine.getScore());
