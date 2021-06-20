@@ -7,6 +7,9 @@ import java.awt.geom.AffineTransform;
 
 public class FixedMovement implements MovementLogic {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void move(final MovableObject object) {
         if (object.isMoving()) {
@@ -18,7 +21,7 @@ public class FixedMovement implements MovementLogic {
 
     @Override
     public final String toString() {
-        return "Fixed Movement";
+        return "FixedMovement";
     }
 
 }

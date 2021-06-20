@@ -60,7 +60,7 @@ public class Bullet extends MovableObject {
     }
 
     public FireableObject getShooter() {
-        return this.originWeapon.getOwner();
+        return this.originWeapon.getOwner().get();
     }
 
     @Override

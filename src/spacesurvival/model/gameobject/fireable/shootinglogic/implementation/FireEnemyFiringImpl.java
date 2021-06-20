@@ -6,8 +6,17 @@ import spacesurvival.model.gameobject.fireable.shootinglogic.FiringLogic;
 import spacesurvival.utilities.Delay;
 import spacesurvival.utilities.ThreadUtils;
 
+/**
+ * Implement firing logic for fire enemies.
+ * The object can shoot but cannot change ammo.
+ */
 public class FireEnemyFiringImpl implements FiringLogic {
 
+    /**
+     * Start the fire enemy firing every 5 seconds.
+     * 
+     * @param fireableObject fire enemy which has to shoot with its weapon
+     */
     @Override
     public void startFiring(final FireableObject fireableObject) {
         new Thread(() -> {
@@ -20,6 +29,9 @@ public class FireEnemyFiringImpl implements FiringLogic {
         }).start();
     }
 
+    /**
+     * Doesn't do anything.
+     */
     @Override
     public void startChangingAmmo(final FireableObject fireableObject) {
     }

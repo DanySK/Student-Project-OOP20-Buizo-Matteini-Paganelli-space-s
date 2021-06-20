@@ -22,7 +22,7 @@ public class SoundLoop extends Sound {
     /**
      * Create a sound loop from the passed sound path.
      * 
-     * @param soundPath
+     * @param soundPath the sound path
      */
     public SoundLoop(final SoundPath soundPath) {
         super(soundPath);

@@ -77,7 +77,7 @@ public abstract class FireableObject extends MainObject {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String toString() {

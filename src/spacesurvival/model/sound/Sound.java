@@ -27,7 +27,7 @@ public abstract class Sound {
     /**
      * Create a sound.
      * 
-     * @param sound
+     * @param sound the sound path
      */
     public Sound(final SoundPath sound) {
         this.soundPath = sound;

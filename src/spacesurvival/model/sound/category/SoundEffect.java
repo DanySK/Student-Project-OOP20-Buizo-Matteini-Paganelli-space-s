@@ -20,7 +20,7 @@ public class SoundEffect extends Sound {
     /**
      * Create a sound effect from the passed sound path.
      * 
-     * @param soundPath
+     * @param soundPath the path of the sound
      */
     public SoundEffect(final SoundPath soundPath) {
         super(soundPath);
