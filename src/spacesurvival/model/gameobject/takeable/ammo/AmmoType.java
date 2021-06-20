@@ -1,7 +1,5 @@
 package spacesurvival.model.gameobject.takeable.ammo;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import spacesurvival.model.gameobject.Effect;
@@ -30,13 +28,13 @@ public enum AmmoType {
     ICE(Effect.ICE, AnimationPerk.LIST_ICE, Weapon.ICE, BulletHUD.ICE, BulletFire.ICE, AnimationPerk.ICE0);
 
     private final Effect effect;
-    private List<String> animation;
+    private final List<String> animation;
     private final String imagePath;
     private final String bulletHud;
     private final String bulletFire;
     private final String bulletInit;
 
-    private static final List<AmmoType> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
+    private static final List<AmmoType> VALUES = List.of(values());
     private static final int SIZE = VALUES.size();
 
     AmmoType(final Effect effect, final List<String> animation, final String imagePath, final String bulletHUD,
