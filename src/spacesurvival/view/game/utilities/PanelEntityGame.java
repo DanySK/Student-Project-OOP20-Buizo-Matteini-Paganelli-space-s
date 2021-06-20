@@ -3,13 +3,13 @@ package spacesurvival.view.game.utilities;
 import spacesurvival.model.World;
 import spacesurvival.model.collision.bounding.CircleBoundingBox;
 import spacesurvival.model.gameobject.GameObject;
+import spacesurvival.model.EngineLoop;
+import spacesurvival.model.Pair;
 import spacesurvival.model.gameobject.fireable.Boss;
 import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.utilities.ThreadUtils;
-import spacesurvival.model.EngineLoop;
-import spacesurvival.model.Pair;
 import spacesurvival.view.game.utilities.commandlife.CallerLife;
 import spacesurvival.view.game.utilities.logicColor.LogicColorShip;
 
@@ -58,7 +58,6 @@ public class PanelEntityGame extends JPanel {
         final Graphics2D g2d = (Graphics2D) g;
         this.gameObjects.entrySet().forEach(entity -> {
             g2d.setTransform(getCorrectAffineTransformFromBoundingBox(entity.getKey())); 
-
             g2d.drawImage(entity.getValue().getX(), 0, 0, null);
             g2d.drawImage(entity.getValue().getY(), 0, 0, null);
             this.assignLifeBar(entity.getKey(), g2d);

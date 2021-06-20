@@ -17,7 +17,7 @@ public class Heart extends JPanel {
         super(new FlowLayout());
         super.setOpaque(false);
         final Dimension dimension = EngineImage.getSizeImageFromScale(
-                Icon.HEART, ScaleOf.ICON_FULL, Screen.WIDTH_FULL_SCREEN);
+                Icon.HEART, ScaleOf.ICON_FULL, Screen.WIDTH_FULLSCREEN);
 
         this.iconHeart = new JImage(Icon.HEART, dimension);
         this.nHeart = new JLabel("x3");

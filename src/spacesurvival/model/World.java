@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import spacesurvival.model.gui.settings.SkinSpaceShip;
-import spacesurvival.model.collision.CollisionChecker;
 import spacesurvival.model.collision.bounding.BoundaryCollision;
 import spacesurvival.model.collision.bounding.CircleBoundingBox;
 import spacesurvival.model.collision.bounding.RectBoundingBox;
+import spacesurvival.model.gui.settings.SkinSpaceShip;
+import spacesurvival.model.collision.CollisionChecker;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.gameobject.Edge;
 import spacesurvival.model.gameobject.GameObject;
@@ -35,6 +35,7 @@ import spacesurvival.utilities.Delay;
 import spacesurvival.utilities.RandomUtils;
 import spacesurvival.utilities.SystemVariables;
 import spacesurvival.utilities.ThreadUtils;
+import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;
 import spacesurvival.utilities.path.SoundPath;
 
@@ -306,7 +307,7 @@ public class World {
         final double xShip = pos.getX();
         final double yShip = pos.getY();
 
-        final double tollerance = 100;
+        final double tollerance = ScaleOf.GAME_OBJECT;
         if (yShip < ul.getY() - tollerance) {
             return Optional.of(new BoundaryCollision(Edge.TOP, new P2d(xShip, ul.getY())));
         } else if (yShip > br.getY() + tollerance) {
@@ -397,7 +398,7 @@ public class World {
             newTransform = new AffineTransform(object.getTransform().getScaleX(), 
                     object.getTransform().getShearY(), object.getTransform().getShearX(), 
                     object.getTransform().getScaleY(), object.getTransform().getTranslateX(), 
-                    Screen.HEIGHT_FULL_SCREEN * SystemVariables.SCALE_Y - 100);
+                    Screen.HEIGHT_FULLSCREEN * SystemVariables.SCALE_Y - 100);
             break;
         case BOTTOM:
             newTransform = new AffineTransform(object.getTransform().getScaleX(), 
@@ -408,7 +409,7 @@ public class World {
         case LEFT:
             newTransform = new AffineTransform(object.getTransform().getScaleX(), 
                     object.getTransform().getShearY(), object.getTransform().getShearX(), 
-                    object.getTransform().getScaleY(), Screen.WIDTH_FULL_SCREEN * SystemVariables.SCALE_X - 100, 
+                    object.getTransform().getScaleY(), Screen.WIDTH_FULLSCREEN * SystemVariables.SCALE_X - 100,
                     object.getTransform().getTranslateY());
             break;
         case RIGHT: 

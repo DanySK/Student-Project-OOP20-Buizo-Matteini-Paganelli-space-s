@@ -19,7 +19,7 @@ public class BtnPauseID extends BtnAction implements MouseListener{
         this.pathIconExit = Icon.PAUSE;
         this.pathIconEnter = Icon.PAUSE_2FACE;
 
-        FactoryGUIs.setIconJButtonFromRate(this, this.pathIconExit, ScaleOf.ICON_FULL, Screen.WIDTH_FULL_SCREEN);
+        FactoryGUIs.setIconJButtonFromRate(this, this.pathIconExit, ScaleOf.ICON_FULL, Screen.WIDTH_FULLSCREEN);
         this.addMouseListener(this);
     }
 

@@ -24,7 +24,7 @@ public class Bullet extends JPanel {
         super.setOpaque(false);
 
         final Dimension dimension = EngineImage.getSizeImageFromScale(
-                Icon.HEART, ScaleOf.ICON_FULL, Screen.WIDTH_FULL_SCREEN);
+                Icon.HEART, ScaleOf.ICON_FULL, Screen.WIDTH_FULLSCREEN);
 
         this.ammoTypeImage = new JImage(Weapon.NORMAL, dimension);
         this.bulletImage = new JImage(BulletHUD.NORMAL, dimension);

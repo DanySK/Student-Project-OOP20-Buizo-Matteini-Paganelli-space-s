@@ -75,7 +75,7 @@ public class Weapon {
      */
     public void shoot() {
         if (owner.isPresent()) {
-            final EngineImage engineImage = new EngineImage(ScaleOf.BULLET, Screen.WIDTH_FULL_SCREEN, ammoType.getBulletFire());
+            final EngineImage engineImage = new EngineImage(ScaleOf.BULLET, Screen.WIDTH_FULLSCREEN, ammoType.getBulletFire());
             final P2d position = new P2d();
             final V2d velocity = VelocityUtils.BULLET_VEL;
             final double acceleration = VelocityUtils.NO_ACCELERATION;

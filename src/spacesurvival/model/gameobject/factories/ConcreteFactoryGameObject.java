@@ -49,7 +49,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 
     @Override
     public MainObject createAsteroid() {
-        final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, AnimationAsteroid.ASTEROID1);
+        final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULLSCREEN, AnimationAsteroid.ASTEROID1);
         //final P2d position = GameObjectUtils.generateRandomPoint();
         final P2d position = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
         final V2d velocity = VelocityUtils.ASTEROID_VEL;
@@ -63,7 +63,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 
     @Override
     public MainObject createChaseEnemy() {
-        final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, AnimationChase.POOH0);
+        final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULLSCREEN, AnimationChase.POOH0);
         final P2d position = GameObjectUtils.generateRandomPoint();
         //final P2d position = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
         final V2d velocity = VelocityUtils.CHASE_ENEMY_VEL;
@@ -77,7 +77,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 
     @Override
     public FireableObject createFireEnemy() {
-        final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, AnimationChase.CHASE0);
+        final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULLSCREEN, AnimationChase.CHASE0);
         final P2d position = GameObjectUtils.generateRandomPoint();
         //final P2d position = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
         final V2d velocity = VelocityUtils.FIRE_ENEMY_VEL;
@@ -95,7 +95,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
 
     @Override
     public FireableObject createBoss() {
-        final EngineImage engineImage = new EngineImage(ScaleOf.BOSS, Screen.WIDTH_FULL_SCREEN, AnimationBoss.BOSS0);
+        final EngineImage engineImage = new EngineImage(ScaleOf.BOSS, Screen.WIDTH_FULLSCREEN, AnimationBoss.BOSS0);
         final P2d position = GameObjectUtils.generateRandomPoint();
         //final P2d position = GameObjectUtils.generateSpawnPoint(engineImage.getSize());
         final V2d velocity = VelocityUtils.BOSS_VEL;
@@ -114,7 +114,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
     @Override
     public TakeableGameObject createAmmo() {
         final AmmoType ammoType = AmmoType.random();
-        final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, AnimationPerk.FIRE0);
+        final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULLSCREEN, AnimationPerk.FIRE0);
         final P2d position = GameObjectUtils.generateRandomPoint();
 
         return new Ammo(engineImage, position, new CircleBoundingBox(), new PickableComponent(),
@@ -124,7 +124,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
     @Override
     public TakeableGameObject createHeart() {
         final HeartType heartType = HeartType.random();
-        final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULL_SCREEN, AnimationPerk.FIRE0);
+        final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULLSCREEN, AnimationPerk.FIRE0);
         final P2d position = GameObjectUtils.generateRandomPoint();
 
         return new Heart(engineImage, position, new CircleBoundingBox(), new PickableComponent(),
