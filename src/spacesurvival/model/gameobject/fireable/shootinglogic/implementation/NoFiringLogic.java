@@ -6,7 +6,7 @@ import spacesurvival.model.gameobject.fireable.shootinglogic.FiringLogic;
 /**
  * It doesn't implement any firing logic.
  */
-public class NoFiringImpl implements FiringLogic {
+public class NoFiringLogic implements FiringLogic {
 
     /**
      * Doesn't do anything.

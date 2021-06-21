@@ -2,7 +2,7 @@ package spacesurvival.model.gameobject.takeable.ammo;
 
 import java.util.List;
 
-import spacesurvival.model.gameobject.Effect;
+import spacesurvival.model.gameobject.fireable.weapon.Effect;
 import spacesurvival.utilities.RandomUtils;
 import spacesurvival.utilities.path.animation.AnimationPerk;
 

@@ -1,8 +1,8 @@
 package spacesurvival.model.gameobject.fireable.shootinglogic.implementation;
 
-import spacesurvival.model.gameobject.Status;
 import spacesurvival.model.gameobject.fireable.FireableObject;
 import spacesurvival.model.gameobject.fireable.shootinglogic.FiringLogic;
+import spacesurvival.model.gameobject.main.Status;
 import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
 import spacesurvival.utilities.Delay;
 import spacesurvival.utilities.ThreadUtils;
@@ -11,7 +11,7 @@ import spacesurvival.utilities.ThreadUtils;
  * Implement firing logic for boss.
  * The boss can shoot and randomly change the ammo type of its weapon.
  */
-public class BossFiringImpl implements FiringLogic {
+public class BossFiringLogic implements FiringLogic {
 
     /**
      * Start the boss firing every 3 seconds.

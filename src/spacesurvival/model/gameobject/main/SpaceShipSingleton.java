@@ -1,10 +1,9 @@
 package spacesurvival.model.gameobject.main;
 
 import spacesurvival.model.gameobject.Edge;
-import spacesurvival.model.gameobject.Status;
 import spacesurvival.model.gameobject.fireable.FireableObject;
 import spacesurvival.model.gameobject.fireable.shootinglogic.FiringLogic;
-import spacesurvival.model.gameobject.fireable.shootinglogic.implementation.NoFiringImpl;
+import spacesurvival.model.gameobject.fireable.shootinglogic.implementation.NoFiringLogic;
 import spacesurvival.model.gameobject.fireable.weapon.Weapon;
 import spacesurvival.model.gameobject.movable.movement.MovementLogic;
 import spacesurvival.model.gameobject.movable.movement.implementation.ControlledMovement;
@@ -55,7 +54,7 @@ public final class SpaceShipSingleton extends FireableObject {
             Score.SHIP,
             Optional.empty(),
             new Weapon(Optional.empty()),
-            new NoFiringImpl()
+            new NoFiringLogic()
             );
 
     /** 
