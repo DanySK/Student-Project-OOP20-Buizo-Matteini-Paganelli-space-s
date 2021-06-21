@@ -1,35 +1,34 @@
 package spacesurvival.model.gui.menu;
 
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 
 public enum LinksMenu {
-    START_BUTTON("Start", ActionGUI.ID_GAME),
-    SETTINGS_BUTTON("Settings", ActionGUI.ID_SETTING),
-    SCOREBOARD_BUTTON("Scoreboard", ActionGUI.ID_SCOREBOARD),
-    SOUND_BUTTON("Sound", ActionGUI.ID_SOUND),
-    HELP_BUTTON("Help", ActionGUI.ID_HELP),
-    QUIT_BUTTON("Quit", ActionGUI.ID_QUIT);
+    START_BUTTON("Start", LinkActionGUI.ID_GAME),
+    SETTINGS_BUTTON("Settings", LinkActionGUI.ID_SETTING),
+    SOUND_BUTTON("Sound", LinkActionGUI.ID_SOUND),
+    HELP_BUTTON("Help", LinkActionGUI.ID_HELP),
+    QUIT_BUTTON("Quit", LinkActionGUI.ID_QUIT);
 
     private final String name;
-    private final ActionGUI actionGUI;
+    private final LinkActionGUI linkActionGUI;
 
-    private LinksMenu(final String name, final ActionGUI actionGUI){
+    private LinksMenu(final String name, final LinkActionGUI linkActionGUI){
         this.name = name;
-        this.actionGUI = actionGUI;
+        this.linkActionGUI = linkActionGUI;
     }
 
     public String getName(){
         return this.name;
     }
 
-    public ActionGUI getAction() {
-        return this.actionGUI;
+    public LinkActionGUI getAction() {
+        return this.linkActionGUI;
     }
 
     @Override
     public String toString() {
         return "LinksMenu{" +
                 "name='" + name + '\'' +
-                ", actionGUI=" + actionGUI + '}';
+                ", actionGUI=" + linkActionGUI + '}';
     }
 }

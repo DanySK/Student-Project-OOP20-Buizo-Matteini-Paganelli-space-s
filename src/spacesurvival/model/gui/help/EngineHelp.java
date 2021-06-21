@@ -4,7 +4,7 @@ import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.utilities.DesignJComponent;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.utilities.dimension.Screen;
 
 import java.awt.*;
@@ -17,8 +17,8 @@ public class EngineHelp implements EngineGUI {
     public static final int N_UNIT = 3;
     public static final String TITLE = "HELP";
 
-    private final ActionGUI mainAction;
-    private final ActionGUI actionBack;
+    private final LinkActionGUI mainAction;
+    private final LinkActionGUI actionBack;
 
     private final List<UnitsHelp> listNameUnits;
     private final List<String> listName;
@@ -26,15 +26,15 @@ public class EngineHelp implements EngineGUI {
     private Visibility visibility;
 
     public EngineHelp(){
-        this.mainAction = ActionGUI.ID_HELP;
-        this.actionBack = ActionGUI.ID_BACK;
+        this.mainAction = LinkActionGUI.ID_HELP;
+        this.actionBack = LinkActionGUI.ID_BACK;
         this.listName = List.of(DesignJComponent.STRING_BACK_BUTTON);
         this.listNameUnits = Arrays.asList(UnitsHelp.values());
         this.visibility = Visibility.HIDDEN;
     }
 
     @Override
-    public ActionGUI getMainAction() {
+    public LinkActionGUI getMainAction() {
         return this.mainAction;
     }
 
@@ -49,7 +49,7 @@ public class EngineHelp implements EngineGUI {
     }
 
     @Override
-    public List<ActionGUI> getLinks() {
+    public List<LinkActionGUI> getLinks() {
         return List.of(this.actionBack);
     }
 
@@ -68,7 +68,7 @@ public class EngineHelp implements EngineGUI {
         return TITLE;
     }
 
-    public ActionGUI getBackLink(){
+    public LinkActionGUI getBackLink(){
         return this.actionBack;
     }
 

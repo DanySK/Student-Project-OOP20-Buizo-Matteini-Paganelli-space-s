@@ -4,7 +4,7 @@ import spacesurvival.controller.gui.command.SwitchGUI;
 import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.gui.loading.EngineLoading;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.GUI;
 import spacesurvival.view.loading.GUILoading;
 
@@ -56,7 +56,7 @@ public class CtrlLoading extends Thread implements ControllerGUI{
     }
 
     @Override
-    public ActionGUI getMainAction(){
+    public LinkActionGUI getMainAction(){
         return this.engine.getMainAction();
     }
 

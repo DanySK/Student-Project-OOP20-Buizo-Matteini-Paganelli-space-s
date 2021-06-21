@@ -9,7 +9,7 @@ import spacesurvival.model.Pair;
 import spacesurvival.model.World;
 import spacesurvival.model.commandship.MovementKeyListener;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.utilities.CommandKey;
 import spacesurvival.utilities.CommandType;
 import spacesurvival.utilities.RoundUtils;
@@ -56,7 +56,7 @@ public class CtrlGame implements ControllerGUI {
     }
 
     @Override
-    public final ActionGUI getMainAction() {
+    public final LinkActionGUI getMainAction() {
         return this.engine.getMainAction();
     }
 
@@ -141,7 +141,7 @@ public class CtrlGame implements ControllerGUI {
         if (this.engine.getCountEnemies() == 0) {
             this.engine.incrRound();
             this.createNewEntities();
-            this.gui.setVisibleLifeBarBoss(this.engine.getWorld().getBoss().isPresent() ? true : false);
+            this.gui.setVisibleLifeBarBoss(this.engine.getWorld().getBoss().isPresent());
             this.updateRound();
         }
     }

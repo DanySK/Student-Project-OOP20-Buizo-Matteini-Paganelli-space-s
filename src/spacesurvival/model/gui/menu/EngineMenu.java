@@ -2,7 +2,7 @@ package spacesurvival.model.gui.menu;
 
 import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.utilities.dimension.Screen;
 import java.awt.Rectangle;
 import java.util.Arrays;
@@ -21,21 +21,24 @@ public class EngineMenu implements EngineGUI {
     /**
      * Number of buttons of the menu GUI.
      */
-    public static final int N_BUTTONS = 6;
+    public static final int N_BUTTONS = LinksMenu.values().length;
 
-    private final ActionGUI mainAction;
+    /**
+     *  
+     */
+    private final LinkActionGUI mainAction;
     private final List<LinksMenu> linkButtons;
 
     private Visibility visibility;
 
     public EngineMenu() {
-        this.mainAction = ActionGUI.ID_MENU;
+        this.mainAction = LinkActionGUI.ID_MENU;
         this.linkButtons = Arrays.asList(LinksMenu.values());
         this.visibility = Visibility.HIDDEN;
     }
 
     @Override
-    public ActionGUI getMainAction() {
+    public LinkActionGUI getMainAction() {
         return this.mainAction;
     }
 
@@ -50,7 +53,7 @@ public class EngineMenu implements EngineGUI {
     }
 
     @Override
-    public List<ActionGUI> getLinks() {
+    public List<LinkActionGUI> getLinks() {
         return this.linkButtons.stream()
                 .map(LinksMenu::getAction)
                 .collect(Collectors.toList());

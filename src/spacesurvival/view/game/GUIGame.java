@@ -2,7 +2,7 @@ package spacesurvival.view.game;
 
 import spacesurvival.model.World;
 import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.GUI;
 import spacesurvival.view.game.utilities.PanelBulletGame;
 import spacesurvival.view.game.utilities.PanelEntityGame;
@@ -27,7 +27,7 @@ public interface GUIGame extends GUI {
 
     void setTimer(String timer);
 
-    void setIdButtons(ActionGUI mainAction, List<ActionGUI> linksID);
+    void setIdButtons(LinkActionGUI mainAction, List<LinkActionGUI> linksID);
 
     PanelEntityGame getPanelEntity();
 

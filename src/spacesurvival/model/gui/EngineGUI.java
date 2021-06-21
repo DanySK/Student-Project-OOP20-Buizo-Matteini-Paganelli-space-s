@@ -1,6 +1,7 @@
 package spacesurvival.model.gui;
 
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
+
 import java.awt.Rectangle;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public interface EngineGUI {
      * 
      * @return the main action of type ActionGUI
      */
-    ActionGUI getMainAction();
+    LinkActionGUI getMainAction();
 
     /**
      * Return the rectangle represent the gui.
@@ -32,7 +33,7 @@ public interface EngineGUI {
      * 
      * @return a list of ActionGUI
      */
-    List<ActionGUI> getLinks();
+    List<LinkActionGUI> getLinks();
 
     /**
      * Set the visibility of the gui.

@@ -2,7 +2,7 @@ package spacesurvival.model.gui.loading;
 
 import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.utilities.dimension.Screen;
 import java.awt.Rectangle;
 import java.util.List;
@@ -12,7 +12,7 @@ public class EngineLoading implements EngineGUI {
      * Rectangle representing the full screen.
      */
     public static final Rectangle RECTANGLE = Screen.RECTANGLE_FULLSCREEN;
-    private final ActionGUI id;
+    private final LinkActionGUI id;
 
     private int loading;
     private boolean load;
@@ -20,14 +20,14 @@ public class EngineLoading implements EngineGUI {
     private Visibility visibility;
 
     public EngineLoading() {
-        this.id = ActionGUI.ID_LOADING;
+        this.id = LinkActionGUI.ID_LOADING;
         this.loading = 0;
         this.load = false;
         this.visibility = Visibility.HIDDEN;
     }
 
     @Override
-    public ActionGUI getMainAction() {
+    public LinkActionGUI getMainAction() {
         return this.id;
     }
 
@@ -52,7 +52,7 @@ public class EngineLoading implements EngineGUI {
     }
 
     @Override
-    public List<ActionGUI> getLinks() {
+    public List<LinkActionGUI> getLinks() {
         return List.of();
     }
 

@@ -2,7 +2,7 @@ package spacesurvival.view.help.concrete;
 
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.gui.help.EngineHelp;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.AbstractGUI;
 import spacesurvival.view.help.GUIHelp;
 import spacesurvival.view.help.utilities.UnitHelp;
@@ -35,7 +35,7 @@ public class GUIHelpConcrete extends AbstractGUI implements GUIHelp {
 
 
     @Override
-    public void setActionBtnBack(final ActionGUI mainAction, final ActionGUI intoID) {
+    public void setActionBtnBack(final LinkActionGUI mainAction, final LinkActionGUI intoID) {
         this.btnBack.setActionCurrent(mainAction);
         this.btnBack.setActionNext(intoID);
     }

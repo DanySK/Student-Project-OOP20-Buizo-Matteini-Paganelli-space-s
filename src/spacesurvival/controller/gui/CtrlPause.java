@@ -4,7 +4,7 @@ import spacesurvival.controller.gui.command.SwitchGUI;
 import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.gui.pause.EnginePause;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.GUI;
 import spacesurvival.view.pause.GUIPause;
 
@@ -45,7 +45,7 @@ public class CtrlPause implements ControllerGUI{
     }
 
     @Override
-    public ActionGUI getMainAction() {
+    public LinkActionGUI getMainAction() {
         return this.engine.getMainAction();
     }
 

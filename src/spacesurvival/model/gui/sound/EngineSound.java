@@ -5,7 +5,7 @@ import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.EngineImage;
 import spacesurvival.utilities.SoundUtils;
 import spacesurvival.utilities.dimension.Screen;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 
 import java.awt.*;
 import java.util.Arrays;
@@ -28,23 +28,23 @@ public class EngineSound implements EngineGUI {
      */
     public static final int N_UNIT_SOUND = 2;
 
-    private final ActionGUI id;
-    private final ActionGUI idBack;
+    private final LinkActionGUI id;
+    private final LinkActionGUI idBack;
 
     private final EngineMixerSound mixerSound;
 
     private Visibility visibility;
 
     public EngineSound() {
-        this.id = ActionGUI.ID_SOUND;
-        this.idBack = ActionGUI.ID_BACK;
+        this.id = LinkActionGUI.ID_SOUND;
+        this.idBack = LinkActionGUI.ID_BACK;
         this.mixerSound = new EngineMixerSound(Arrays.asList(TypeUnitSound.values()));
 
         this.visibility = Visibility.HIDDEN;
     }
 
     @Override
-    public ActionGUI getMainAction() {
+    public LinkActionGUI getMainAction() {
         return id;
     }
 
@@ -69,7 +69,7 @@ public class EngineSound implements EngineGUI {
     }
 
     @Override
-    public List<ActionGUI> getLinks() {
+    public List<LinkActionGUI> getLinks() {
         return List.of(this.idBack);
     }
 
@@ -87,7 +87,7 @@ public class EngineSound implements EngineGUI {
      * 
      * @return an ActionGUI to go back from this gui
      */
-    public ActionGUI getBackLink() {
+    public LinkActionGUI getBackLink() {
         return this.idBack;
     }
 

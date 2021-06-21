@@ -2,7 +2,7 @@ package spacesurvival.model.gui.dead;
 
 import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.utilities.dimension.Screen;
 
 import java.awt.*;
@@ -15,20 +15,20 @@ public class EngineDead implements EngineGUI {
     public static final String TITLE = "GAME OVER";
     public static final int N_BUTTONS = 2;
 
-    private final ActionGUI mainAction;
+    private final LinkActionGUI mainAction;
     private final List<LinksDead> linkButtons;
 
     private Visibility visibility;
 
     public EngineDead(){
-        this.mainAction = ActionGUI.ID_DEAD;
+        this.mainAction = LinkActionGUI.ID_DEAD;
 
         this.linkButtons = Arrays.asList(LinksDead.values());
         this.visibility = Visibility.HIDDEN;
     }
 
     @Override
-    public ActionGUI getMainAction() {
+    public LinkActionGUI getMainAction() {
         return this.mainAction;
     }
 
@@ -43,7 +43,7 @@ public class EngineDead implements EngineGUI {
     }
 
     @Override
-    public List<ActionGUI> getLinks() {
+    public List<LinkActionGUI> getLinks() {
         return this.linkButtons.stream().map(LinksDead::getAction).collect(Collectors.toList());
     }
 

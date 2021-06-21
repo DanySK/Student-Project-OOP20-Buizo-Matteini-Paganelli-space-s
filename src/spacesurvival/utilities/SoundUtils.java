@@ -27,6 +27,10 @@ public final class SoundUtils {
      */
     public static final int SOUND_ZERO = 0;
 
+    /**
+     *  Max Sound
+     */
+    public static final float MAX_SOUND = 100.0f;
 
     /**
      * Multiplication factor for converting the amplitude of the decibels to the actual volume.

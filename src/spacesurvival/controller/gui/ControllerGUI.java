@@ -2,7 +2,7 @@ package spacesurvival.controller.gui;
 
 import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.GUI;
 
 public interface ControllerGUI {
@@ -14,7 +14,7 @@ public interface ControllerGUI {
     void assignRectangle();
 
 
-    ActionGUI getMainAction();
+    LinkActionGUI getMainAction();
 
     GUI getGUI();
 

@@ -1,31 +1,32 @@
 package spacesurvival.view.utilities;
 
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
+
 import javax.swing.JButton;
 
 public class BtnAction extends JButton {
-    private ActionGUI actionCurrent;
-    private ActionGUI actionNext;
+    private LinkActionGUI actionCurrent;
+    private LinkActionGUI actionNext;
 
     public BtnAction() {
         super();
     }
 
-    public ActionGUI getActionCurrent() {
+    public LinkActionGUI getActionCurrent() {
         return this.actionCurrent;
     }
 
-    public ActionGUI getActionNext() {
+    public LinkActionGUI getActionNext() {
         return this.actionNext;
     }
 
 
-    public void setActionCurrent(final ActionGUI currentGUIID) {
+    public void setActionCurrent(final LinkActionGUI currentGUIID) {
         this.actionCurrent = currentGUIID;
     }
 
-    public void setActionNext(final ActionGUI actionGUINext) {
-        this.actionNext = actionGUINext;
+    public void setActionNext(final LinkActionGUI linkActionGUINext) {
+        this.actionNext = linkActionGUINext;
     }
 
 
