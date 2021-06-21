@@ -3,7 +3,7 @@ package spacesurvival.utilities.dimension;
 import java.awt.geom.AffineTransform;
 
 /**
- * Class for the utils methods for the AffineTransform.
+ * Utility class for the AffineTransform.
  */
 public final class AffineUtils {
 
@@ -21,10 +21,10 @@ public final class AffineUtils {
     }
 
     /**
-     * Method that return the angle in radiants readed from an AffineTransform.
+     * Method that return the angle in radians read from an AffineTransform.
      * 
      * @param transform AffineTransform from which to read the angle
-     * @return the angle in radiants
+     * @return the angle in radians
      */
     public static double getRotationAngleInRadiant(final AffineTransform transform) {
         final double m00 = transform.getScaleX();
@@ -34,6 +34,5 @@ public final class AffineUtils {
     }
 
     private AffineUtils() {
-
     }
 }

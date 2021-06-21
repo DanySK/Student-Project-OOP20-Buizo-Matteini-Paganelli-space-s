@@ -21,6 +21,9 @@ import spacesurvival.model.collision.event.hit.HitBorderEvent;
 import spacesurvival.model.collision.event.hit.HitMainGameObject;
 import spacesurvival.model.collision.eventgenerator.EventComponent;
 
+/**
+ * An enemy able to fire.
+ */
 public class FireEnemy extends FireableObject {
 
     public FireEnemy(final EngineImage engineImage, final P2d position, final BoundingBox bb,
@@ -42,6 +45,9 @@ public class FireEnemy extends FireableObject {
         this.setBoundingBox(RectBoundingBox.createRectBoundingBox(position, engineImage, this.getTransform()));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void collided(final World world, final WorldEvent ev) {
         final Optional<EventType> evType = EventType.getEventFromHit(ev);

@@ -19,11 +19,14 @@ import spacesurvival.model.collision.event.EventType;
 import spacesurvival.model.collision.event.hit.HitBulletEvent;
 import spacesurvival.model.collision.eventgenerator.EventComponent;
 
+/**
+ * A bullet fired from a weapon, it has a fixed velocity and direction.
+ */
 public class Bullet extends MovableObject {
 
     private int damage;
     private Effect effect;
-    private Weapon originWeapon;
+    private final Weapon originWeapon;
 
     public Bullet(final EngineImage engineImage, final P2d position, final BoundingBox bb, final EventComponent eventComponent,
             final V2d velocity, final double acceleration, final Optional<P2d> target, final int damage,
@@ -36,34 +39,55 @@ public class Bullet extends MovableObject {
         this.stopAnimation();
     }
 
+    /**
+     * @return the bullet damage
+     */
     public int getDamage() {
         return damage;
     }
 
+    /**
+     * Sets a new damage to the bullet.
+     * 
+     * @param damage the damage to set
+     */
     public void setDamage(final int damage) {
         this.damage = damage;
     }
 
+    /**
+     * @return the effect which applies the bullet to a collided object
+     */
     public Effect getEffect() {
         return effect;
     }
 
+    /**
+     * Sets a new effect to the bullet.
+     * 
+     * @param effect the effect to set
+     */
     public void setEffect(final Effect effect) {
         this.effect = effect;
     }
 
+    /**
+     * @return the weapon from which the bullet was fired
+     */
     public Weapon getOriginWeapon() {
         return originWeapon;
     }
 
-    public void setOriginWeapon(final Weapon originWeapon) {
-        this.originWeapon = originWeapon;
-    }
-
+    /**
+     * @return the FireableObject which has fired the bullet
+     */
     public FireableObject getShooter() {
         return this.originWeapon.getOwner().get();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void collided(final World world, final WorldEvent ev) {
         final Optional<EventType> evType = EventType.getEventFromHit(ev);

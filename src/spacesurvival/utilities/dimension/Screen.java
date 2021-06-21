@@ -7,7 +7,7 @@ import java.awt.Point;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 
-public class Screen {
+public final class Screen {
     private static final float PROPORTION_BIG = 0.9F;
     private static final float PROPORTION_MEDIUM = 0.6F;
     private static final float PROPORTION_MINI = 0.4F;
@@ -60,5 +60,8 @@ public class Screen {
 
     public static int scaleRespectTo(final int scaleOf, final int respectTo){
         return scaleOf * respectTo / 1000;
+    }
+
+    private Screen() {
     }
 }

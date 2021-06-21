@@ -62,7 +62,6 @@ public class EngineGame implements EngineGUI {
     public List<ActionGUI> getLinks() {
         return List.of(this.idPause);
     }
-    
 
     public void setPauseAnimationAllObject(final boolean isPause) {
         this.world.setPauseAnimationAllObject(isPause);
