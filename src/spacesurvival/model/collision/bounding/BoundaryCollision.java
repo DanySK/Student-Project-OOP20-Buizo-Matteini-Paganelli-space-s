@@ -6,11 +6,11 @@ import spacesurvival.model.gameobject.Edge;
 public class BoundaryCollision {
 
     /**
-     * Edge created for check in what edge the collision occured.
+     * Edge created for check in what edge the collision occurred.
      */
     private final Edge edge;
     /**
-     * P2d where created for check where the collision occured.
+     * P2d where created for check where the collision occurred.
      */
     private final P2d where;
 
@@ -20,18 +20,18 @@ public class BoundaryCollision {
     }
 
     /**
-     * Edge created for check in what edge the collision occured.
+     * Edge created for check in what edge the collision occurred.
      * 
-     * @return the edge where the collision occured
+     * @return the edge where the collision occurred
      */
     public Edge getEdge() {
         return this.edge;
     }
 
     /**
-     * P2d represents where the collision occured.
+     * P2d represents where the collision occurred.
      * 
-     * @return the point where the collision occured
+     * @return the point where the collision occurred
      */
     public P2d getWhere() {
         return this.where;

@@ -2,12 +2,14 @@ package spacesurvival.model.collision.eventgenerator;
 
 import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.gameobject.main.ChaseEnemy;
+import spacesurvival.model.gameobject.main.MainObject;
 
 import java.util.Optional;
 import spacesurvival.model.World;
 import spacesurvival.model.collision.bounding.BoundaryCollision;
 import spacesurvival.model.collision.bounding.RectBoundingBox;
 import spacesurvival.model.collision.event.hit.HitBorderEvent;
+import spacesurvival.model.collision.event.hit.HitMainGameObject;
 
 public class ChaseEnemyComponent implements EventComponent {
 
@@ -27,6 +29,12 @@ public class ChaseEnemyComponent implements EventComponent {
             final BoundaryCollision info = borderInfo.get();
             w.notifyWorldEvent(new HitBorderEvent(info.getWhere(), info.getEdge(), chaseEnemy));
         }
+
+        final Optional<MainObject> asteroid = w.checkCollisionWithAsteroids((RectBoundingBox) chaseEnemy.getBoundingBox());
+        if (asteroid.isPresent()) {
+            w.notifyWorldEvent(new HitMainGameObject(chaseEnemy, asteroid.get()));
+        }
+
     }
 
 }

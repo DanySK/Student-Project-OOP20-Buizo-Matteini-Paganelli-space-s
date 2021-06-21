@@ -21,6 +21,9 @@ import spacesurvival.model.collision.event.hit.HitBorderEvent;
 import spacesurvival.model.collision.event.hit.HitMainGameObject;
 import spacesurvival.model.collision.eventgenerator.EventComponent;
 
+/**
+ * A neutral object with a fixed direction and velocity, which can hurt with space ship and enemies.
+ */
 public class Asteroid extends MainObject {
 
     public Asteroid(final EngineImage engineImage, final P2d position, final BoundingBox bb,
@@ -53,6 +56,7 @@ public class Asteroid extends MainObject {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void collided(final World world, final WorldEvent event) {
         final Optional<EventType> evType = EventType.getEventFromHit(event);
         if (evType.isPresent()) {
@@ -77,9 +81,12 @@ public class Asteroid extends MainObject {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
-        return "Asteroid { " + super.toString() + " }";
+        return "Asteroid [ " + super.toString() + "]";
     }
 
 }
