@@ -6,6 +6,7 @@ import spacesurvival.model.sound.command.implementation.PlaySound;
 import spacesurvival.model.sound.command.implementation.ResetTiming;
 import spacesurvival.model.sound.command.implementation.StopSound;
 import spacesurvival.utilities.CommandAudioType;
+import spacesurvival.utilities.SoundUtils;
 import spacesurvival.utilities.path.SoundPath;
 
 /**
@@ -19,7 +20,7 @@ public class CallerAudio {
     private Sound sound;
 
     /** 
-     * Contructor for CallerAudio, inizialize a new CallerAudio setting the passed sound.
+     * Constructor for CallerAudio, initialize a new CallerAudio setting the passed sound.
      * 
      * @param sound the sound that will be set on this caller.
      */
@@ -54,7 +55,7 @@ public class CallerAudio {
      * @param currentVolume the volume that will be set on the current sound.
      */
     public void changeVolume(final double currentVolume) {
-        final double parsedVolume = currentVolume / 100.0f;
+        final double parsedVolume = currentVolume / SoundUtils.MAX_SOUND;
         this.sound.setVolume(parsedVolume);
     }
 

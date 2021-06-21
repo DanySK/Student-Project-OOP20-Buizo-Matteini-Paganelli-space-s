@@ -4,10 +4,10 @@ import spacesurvival.controller.gui.strategy.LogicSwitchGUI;
 import spacesurvival.controller.gui.strategy.LogicSwitchGame;
 import spacesurvival.controller.gui.strategy.LogicSwitchMenu;
 import spacesurvival.controller.utilities.ListGUI;
-import spacesurvival.factories.StaticFactoryEngineGUI;
-import spacesurvival.factories.StaticFactoryGUI;
+import spacesurvival.model.gui.StaticFactoryEngineGUI;
+import spacesurvival.view.StaticFactoryGUI;
 import spacesurvival.model.gui.Visibility;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.utilities.StateLevelGUI;
 import spacesurvival.utilities.path.Background;
 import spacesurvival.view.utilities.BtnAction;
@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class CtrlGUI {
-    public static final ActionGUI FIRST_GUI = ActionGUI.ID_MENU;
+    public static final LinkActionGUI FIRST_GUI = LinkActionGUI.ID_MENU;
 
     private final CtrlMenu ctrlMenu;
     private final CtrlGame ctrlGame;
@@ -30,9 +30,9 @@ public class CtrlGUI {
     private final CtrlPause ctrlPause;
     private final CtrlDead ctrlDead;
 
-    private final Map<ActionGUI, ControllerGUI> managerGui;
+    private final Map<LinkActionGUI, ControllerGUI> managerGui;
 
-    private final ListGUI<ActionGUI> chronology;
+    private final ListGUI<LinkActionGUI> chronology;
 
     private final LogicSwitchGUI logicSwitchMenu;
     private final LogicSwitchGUI logicSwitchGame;
@@ -58,7 +58,8 @@ public class CtrlGUI {
         this.managerGui.put(this.ctrlDead.getMainAction(), this.ctrlDead);
 
 
-        this.chronology = new ListGUI<>() {{ add(FIRST_GUI); }};
+        this.chronology = new ListGUI<>();
+        this.chronology.add(FIRST_GUI);
 
         this.logicSwitchMenu = new LogicSwitchMenu();
         this.logicSwitchGame = new LogicSwitchGame();
@@ -70,15 +71,15 @@ public class CtrlGUI {
     }
 
     public boolean isInGameOver(){
-        return this.chronology.contains(ActionGUI.ID_DEAD);
+        return this.chronology.contains(LinkActionGUI.ID_DEAD);
     }
 
     public boolean isInGame(){
-        return this.chronology.contains(ActionGUI.ID_GAME);
+        return this.chronology.contains(LinkActionGUI.ID_GAME);
     }
 
     public boolean isInPause(){
-        return this.chronology.contains(ActionGUI.ID_PAUSE);
+        return this.chronology.contains(LinkActionGUI.ID_PAUSE);
     }
 
     public void startGUI(){
@@ -89,12 +90,18 @@ public class CtrlGUI {
         this.managerGui.values().forEach(managerGui -> managerGui.getGUI().getBtnActionLinks().forEach(btn ->
                 btn.addActionListener(e -> {
                     System.out.println("Premuto in: " + btn.getActionCurrent() + " Vado in: " + btn.getActionNext());
+                    
                     if (this.isInPause()){
                         this.logicSwitchGame.algorithm(btn.getActionCurrent(), btn.getActionNext(),
-                        this.chronology, this.managerGui);
-                    }else {
+                                this.chronology, this.managerGui);
+                       this.ctrlGame.setPauseAnimationAllObject(true);
+                    } else {
                         this.logicSwitchMenu.algorithm(btn.getActionCurrent(), btn.getActionNext(),
-                        this.chronology, this.managerGui);
+                                this.chronology, this.managerGui);
+                    }
+                    
+                    if (this.isInGame()) {
+                        this.ctrlGame.setPauseAnimationAllObject(false);
                     }
 
                     System.out.println("list premuto dal bottone" + this.chronology);
@@ -106,13 +113,13 @@ public class CtrlGUI {
                 managerGui.getGUI().addMouseListener(this.getMouseListener(managerGui.getMainAction())));
     }
 
-    private MouseListener getMouseListener(final ActionGUI id){
+    private MouseListener getMouseListener(final LinkActionGUI id){
         return new MouseListener() {
             @Override
-            public void mouseClicked(MouseEvent e) { }
+            public void mouseClicked(final MouseEvent e) { }
 
             @Override
-            public void mousePressed(MouseEvent e) {
+            public void mousePressed(final MouseEvent e) {
                 if(id.getStateLevel().equals(StateLevelGUI.FOREGROUND) &&
                         CtrlGUI.this.chronology.lastElementOfList().getStateLevel().equals(StateLevelGUI.OVERLAY)){
 
@@ -137,7 +144,7 @@ public class CtrlGUI {
         };
     }
 
-    public ActionGUI getCurrentGUI(){
+    public LinkActionGUI getCurrentGUI(){
         return this.chronology.lastElementOfList();
     }
 
@@ -152,8 +159,8 @@ public class CtrlGUI {
     public void endGame(){
         this.managerGui.get(this.chronology.lastElementOfList()).turn(Visibility.HIDDEN);
         this.chronology.remove(this.chronology.lastElementOfList());
-        this.chronology.add(ActionGUI.ID_DEAD);
-        this.managerGui.get(ActionGUI.ID_DEAD).turn(Visibility.VISIBLE);
+        this.chronology.add(LinkActionGUI.ID_DEAD);
+        this.managerGui.get(LinkActionGUI.ID_DEAD).turn(Visibility.VISIBLE);
 
         this.ctrlGame.stopTimer();
     }
@@ -185,7 +192,7 @@ public class CtrlGUI {
 
     private BtnAction getBtnGameFromMenu(){
         for (final BtnAction btn : this.ctrlMenu.getGUI().getBtnActionLinks()) {
-            if(btn.getActionNext() == ActionGUI.ID_GAME){
+            if(btn.getActionNext() == LinkActionGUI.ID_GAME){
                 return btn;
             }
         }
@@ -194,7 +201,7 @@ public class CtrlGUI {
 
     private BtnAction getBtnMenuFromDead(){
         for (final BtnAction btn : this.ctrlDead.getGUI().getBtnActionLinks()) {
-            if(btn.getActionNext() == ActionGUI.ID_MENU){
+            if(btn.getActionNext() == LinkActionGUI.ID_MENU){
                 return btn;
             }
         }
@@ -205,10 +212,10 @@ public class CtrlGUI {
         this.managerGui.values().forEach(ctrl -> ctrl.getGUI().getBtnActionLinks().forEach(
                 btn -> btn.addActionListener(l -> {
 
-                    if(btn.getActionCurrent() == ActionGUI.ID_PAUSE && btn.getActionNext() == ActionGUI.ID_BACK) {
-                        CtrlGUI.this.ctrlSound.checkChangeSoundLoop(ActionGUI.ID_GAME);
+                    if(btn.getActionCurrent() == LinkActionGUI.ID_PAUSE && btn.getActionNext() == LinkActionGUI.ID_BACK) {
+                        this.ctrlSound.checkChangeSoundLoop(LinkActionGUI.ID_GAME);
                     } else {
-                        CtrlGUI.this.ctrlSound.checkChangeSoundLoop(btn.getActionNext());
+                        this.ctrlSound.checkChangeSoundLoop(btn.getActionNext());
                     }
                 })
         ));

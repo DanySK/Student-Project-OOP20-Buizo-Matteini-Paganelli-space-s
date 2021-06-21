@@ -1,26 +1,26 @@
 package spacesurvival.model.gui.pause;
 
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 
 public enum LinksPause {
-    RESUME_BUTTON("Resume", ActionGUI.ID_BACK),
-    SOUND_BUTTON("Sound", ActionGUI.ID_SOUND),
-    HELP_BUTTON("Help", ActionGUI.ID_HELP),
-    QUIT_BUTTON("Quit", ActionGUI.ID_QUIT);
+    RESUME_BUTTON("Resume", LinkActionGUI.ID_BACK),
+    SOUND_BUTTON("Sound", LinkActionGUI.ID_SOUND),
+    HELP_BUTTON("Help", LinkActionGUI.ID_HELP),
+    QUIT_BUTTON("Quit", LinkActionGUI.ID_QUIT);
 
     private final String name;
-    private final ActionGUI actionGUI;
+    private final LinkActionGUI linkActionGUI;
 
-    private LinksPause(final String name, final ActionGUI actionGUI){
+    private LinksPause(final String name, final LinkActionGUI linkActionGUI){
         this.name = name;
-        this.actionGUI = actionGUI;
+        this.linkActionGUI = linkActionGUI;
     }
 
     public String getName(){
         return this.name;
     }
 
-    public ActionGUI getIdGUI(){
-        return this.actionGUI;
+    public LinkActionGUI getIdGUI(){
+        return this.linkActionGUI;
     }
 }

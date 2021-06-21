@@ -2,7 +2,7 @@ package spacesurvival.model.gui.pause;
 
 import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.utilities.dimension.Screen;
 
 import java.awt.*;
@@ -24,19 +24,19 @@ public class EnginePause implements EngineGUI{
      */
     public static final int N_BUTTONS = 4;
 
-    private final ActionGUI mainAction;
+    private final LinkActionGUI mainAction;
     private final List<LinksPause>  linkButtons;
 
     private Visibility visibility;
 
     public EnginePause(){
-        this.mainAction = ActionGUI.ID_PAUSE;
+        this.mainAction = LinkActionGUI.ID_PAUSE;
         this.linkButtons = Arrays.asList(LinksPause.values());
         this.visibility = Visibility.HIDDEN;
     }
 
     @Override
-    public ActionGUI getMainAction() {
+    public LinkActionGUI getMainAction() {
         return this.mainAction;
     }
 
@@ -61,7 +61,7 @@ public class EnginePause implements EngineGUI{
     }
 
     @Override
-    public List<ActionGUI> getLinks() {
+    public List<LinkActionGUI> getLinks() {
         return this.linkButtons.stream().map(LinksPause::getIdGUI).collect(Collectors.toList());
     }
 

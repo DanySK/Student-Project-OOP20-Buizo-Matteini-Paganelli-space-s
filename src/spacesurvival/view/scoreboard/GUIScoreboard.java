@@ -1,6 +1,6 @@
 package spacesurvival.view.scoreboard;
 
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.GUI;
 
 import java.awt.Color;
@@ -11,7 +11,7 @@ public interface GUIScoreboard extends GUI {
 
     void setNameButtons(List<String> listName);
 
-    void setBtnBackID(ActionGUI mainAction, ActionGUI action);
+    void setBtnBackID(LinkActionGUI mainAction, LinkActionGUI action);
 
 
     void setTitleGUI(String title);

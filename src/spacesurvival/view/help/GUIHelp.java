@@ -1,7 +1,7 @@
 package spacesurvival.view.help;
 
 import spacesurvival.model.EngineImage;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.GUI;
 
 import java.awt.Color;
@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface GUIHelp extends GUI {
 
-    void setActionBtnBack(ActionGUI mainAction, ActionGUI intoID);
+    void setActionBtnBack(LinkActionGUI mainAction, LinkActionGUI intoID);
 
     void setNameUnit(List<String> listName);
 

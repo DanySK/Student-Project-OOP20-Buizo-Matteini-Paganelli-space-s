@@ -4,7 +4,7 @@ import spacesurvival.utilities.path.Background;
 import spacesurvival.utilities.path.SoundPath;
 
 
-public enum ActionGUI {
+public enum LinkActionGUI {
     ID_MENU(0, "Menu", SoundPath.MENU, Background.MAIN, StateLevelGUI.FOREGROUND),
     ID_GAME(1, "Game", SoundPath.GAME, Background.GAME, StateLevelGUI.FOREGROUND),
     ID_SETTING(2, "Settings", SoundPath.MENU, Background.MAIN, StateLevelGUI.OVERLAY),
@@ -23,7 +23,7 @@ public enum ActionGUI {
     private final String background;
     private final StateLevelGUI level;
 
-    ActionGUI(final int id, final String name, final SoundPath sound, final String background, final StateLevelGUI level){
+    LinkActionGUI(final int id, final String name, final SoundPath sound, final String background, final StateLevelGUI level){
         this.id = id;
         this.name = name;
         this.sound = sound;

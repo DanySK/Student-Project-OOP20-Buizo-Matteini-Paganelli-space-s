@@ -1,7 +1,7 @@
 package spacesurvival.view.dead.concrete;
 
 import spacesurvival.model.gui.dead.EngineDead;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.AbstractGUI;
 import spacesurvival.view.dead.GUIDead;
 import spacesurvival.view.utilities.BtnAction;
@@ -38,7 +38,7 @@ public class GUIDeadConcrete extends AbstractGUI implements GUIDead {
     }
 
     @Override
-    public void setBtnActions(final ActionGUI mainAction, final List<ActionGUI> actions) {
+    public void setBtnActions(final LinkActionGUI mainAction, final List<LinkActionGUI> actions) {
         for (int i = 0; i < actions.size(); i++) {
             this.links.get(i).setActionCurrent(mainAction);
             this.links.get(i).setActionNext(actions.get(i));

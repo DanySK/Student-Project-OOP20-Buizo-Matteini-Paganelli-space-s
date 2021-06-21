@@ -6,7 +6,7 @@ import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.model.World;
 import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.utilities.dimension.Screen;
 import spacesurvival.utilities.gameobject.LifeUtils;
 
@@ -16,10 +16,9 @@ import java.util.Set;
 
 public class EngineGame implements EngineGUI {
     public static final Rectangle RECTANGLE = Screen.RECTANGLE_FULLSCREEN;
-    public static final int N_BUTTONS = 6;
 
-    private final ActionGUI id;
-    private final ActionGUI idPause;
+    private final LinkActionGUI id;
+    private final LinkActionGUI idPause;
 
     private final World world;
     private final EngineHUD hud;
@@ -27,15 +26,15 @@ public class EngineGame implements EngineGUI {
     private Visibility visibility;
 
     public EngineGame() {
-        this.id = ActionGUI.ID_GAME;
-        this.idPause = ActionGUI.ID_PAUSE;
+        this.id = LinkActionGUI.ID_GAME;
+        this.idPause = LinkActionGUI.ID_PAUSE;
         this.world = new World(RECTANGLE);
         this.hud = new EngineHUD();
         this.visibility = Visibility.HIDDEN;
     }
 
     @Override
-    public ActionGUI getMainAction() {
+    public LinkActionGUI getMainAction() {
         return this.id;
     }
 
@@ -60,8 +59,12 @@ public class EngineGame implements EngineGUI {
     }
 
     @Override
-    public List<ActionGUI> getLinks() {
+    public List<LinkActionGUI> getLinks() {
         return List.of(this.idPause);
+    }
+
+    public void setPauseAnimationAllObject(final boolean isPause) {
+        this.world.setPauseAnimationAllObject(isPause);
     }
 
     public String getTimer() {

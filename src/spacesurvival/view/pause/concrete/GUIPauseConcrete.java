@@ -1,7 +1,7 @@
 package spacesurvival.view.pause.concrete;
 
 import spacesurvival.model.gui.pause.EnginePause;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.AbstractGUI;
 import spacesurvival.view.pause.GUIPause;
 import spacesurvival.view.utilities.BtnAction;
@@ -42,7 +42,7 @@ public class GUIPauseConcrete extends AbstractGUI implements GUIPause {
     }
 
     @Override
-    public void setActionButtons(final ActionGUI mainAction, final List<ActionGUI> linksID) {
+    public void setActionButtons(final LinkActionGUI mainAction, final List<LinkActionGUI> linksID) {
         for(int i = 0; i < linksID.size(); i++){
             this.links.get(i).setActionCurrent(mainAction);
             this.links.get(i).setActionNext(linksID.get(i));

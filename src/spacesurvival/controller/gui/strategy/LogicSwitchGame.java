@@ -3,18 +3,18 @@ package spacesurvival.controller.gui.strategy;
 import spacesurvival.controller.gui.ControllerGUI;
 import spacesurvival.controller.utilities.ListGUI;
 import spacesurvival.model.gui.Visibility;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 
 import java.util.Map;
 
 public class LogicSwitchGame implements LogicSwitchGUI {
     @Override
-    public void algorithm(final ActionGUI actionCurrent, final ActionGUI actionNext,
-                          final ListGUI<ActionGUI> chronology, final Map<ActionGUI, ControllerGUI> manager) {
+    public void algorithm(final LinkActionGUI actionCurrent, final LinkActionGUI actionNext,
+                          final ListGUI<LinkActionGUI> chronology, final Map<LinkActionGUI, ControllerGUI> manager) {
 
         switch (actionNext) {
             case ID_PAUSE:
-                if (chronology.lastElementOfList() != ActionGUI.ID_PAUSE) {
+                if (chronology.lastElementOfList() != LinkActionGUI.ID_PAUSE) {
                     chronology.add(actionNext);
                 } else {
                     chronology.remove(actionNext);

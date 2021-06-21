@@ -14,7 +14,7 @@ import spacesurvival.model.sound.category.SoundLoop;
 import spacesurvival.utilities.SoundUtils;
 import spacesurvival.utilities.path.SoundPath;
 import spacesurvival.utilities.SoundType;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.utilities.CommandAudioType;
 import spacesurvival.view.GUI;
 import spacesurvival.view.sound.GUISound;
@@ -75,8 +75,8 @@ public class CtrlSound implements ControllerGUI{
         this.gui.setIconBtnSwitches(this.engine.getIconStateSounds());
     }
 
-    public void setSoundLoop(final ActionGUI actionGUI){
-        this.callerAudioLoop.setSound(new SoundLoop(actionGUI.getSound()));
+    public void setSoundLoop(final LinkActionGUI linkActionGUI){
+        this.callerAudioLoop.setSound(new SoundLoop(linkActionGUI.getSound()));
     }
 
     public void setCmdAudioLoop(final CommandAudioType cmdAudioLoop){
@@ -149,19 +149,19 @@ public class CtrlSound implements ControllerGUI{
                 this.engine.getValueUnitSound(typeUnitSound) : SoundUtils.SOUND_ZERO;
     }
 
-    public void checkChangeSoundLoop(final ActionGUI actionGUI){
-        if(this.isNewLoopSound(actionGUI)) {
-            this.changeNewLoopSound(actionGUI);
+    public void checkChangeSoundLoop(final LinkActionGUI linkActionGUI){
+        if(this.isNewLoopSound(linkActionGUI)) {
+            this.changeNewLoopSound(linkActionGUI);
         }
     }
 
-    public boolean isNewLoopSound(final ActionGUI actionGUI){
-        return this.callerAudioLoop.isNewSound(actionGUI.getSound());
+    public boolean isNewLoopSound(final LinkActionGUI linkActionGUI){
+        return this.callerAudioLoop.isNewSound(linkActionGUI.getSound());
     }
 
-    public void changeNewLoopSound(final ActionGUI actionGUI){
+    public void changeNewLoopSound(final LinkActionGUI linkActionGUI){
         this.callerAudioLoop.execute(CommandAudioType.AUDIO_OFF);
-        this.callerAudioLoop.setSound(new SoundLoop(actionGUI.getSound()));
+        this.callerAudioLoop.setSound(new SoundLoop(linkActionGUI.getSound()));
         this.callerAudioLoop.changeVolume(this.isActiveLoopUnitSound() ? this  .getLoopVolume() : SoundUtils.SOUND_ZERO);
 
         this.callerAudioLoop.execute(CommandAudioType.AUDIO_ON);
@@ -169,7 +169,7 @@ public class CtrlSound implements ControllerGUI{
 
 
     @Override
-    public ActionGUI getMainAction() {
+    public LinkActionGUI getMainAction() {
         return this.engine.getMainAction();
     }
 

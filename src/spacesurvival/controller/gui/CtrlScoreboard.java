@@ -4,7 +4,7 @@ import spacesurvival.controller.gui.command.SwitchGUI;
 import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.gui.scoreboard.EngineScoreboard;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.GUI;
 import spacesurvival.view.scoreboard.GUIScoreboard;
 
@@ -44,7 +44,7 @@ public class CtrlScoreboard implements ControllerGUI {
     }
 
     @Override
-    public ActionGUI getMainAction() {
+    public LinkActionGUI getMainAction() {
         return this.engine.getMainAction();
     }
 

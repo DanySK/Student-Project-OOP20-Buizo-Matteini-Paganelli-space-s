@@ -3,9 +3,9 @@ package spacesurvival.model.gui.settings;
 import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.gui.EngineGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;
-import spacesurvival.utilities.ActionGUI;
 
 import java.awt.*;
 import java.util.*;
@@ -27,8 +27,8 @@ public class EngineSettings implements EngineGUI {
     public static final List<StateDifficult> DEFAULT_DIFFICULTLY_ACTIVE = List.of(StateDifficult.OFF,
             StateDifficult.ON, StateDifficult.OFF);
 
-    private final ActionGUI mainAction;
-    private final ActionGUI actionBack;
+    private final LinkActionGUI mainAction;
+    private final LinkActionGUI actionBack;
     private final List<UnitSettingsGUI> unitNames;
 
     private final List<SkinSpaceShip> listSkin;
@@ -40,8 +40,8 @@ public class EngineSettings implements EngineGUI {
     private Visibility visibility = Visibility.HIDDEN;
 
     public EngineSettings(){
-        this.mainAction = ActionGUI.ID_SETTING;
-        this.actionBack = ActionGUI.ID_BACK;
+        this.mainAction = LinkActionGUI.ID_SETTING;
+        this.actionBack = LinkActionGUI.ID_BACK;
 
         this.listSkin = Arrays.asList(SkinSpaceShip.values());
         this.chooseSkin = INDEX_INIT_SKIN;
@@ -54,7 +54,7 @@ public class EngineSettings implements EngineGUI {
     }
 
     @Override
-    public ActionGUI getMainAction() {
+    public LinkActionGUI getMainAction() {
         return this.mainAction;
     }
 
@@ -79,7 +79,7 @@ public class EngineSettings implements EngineGUI {
     }
 
     @Override
-    public List<ActionGUI> getLinks() {
+    public List<LinkActionGUI> getLinks() {
         return List.of(this.actionBack);
     }
 
@@ -88,7 +88,7 @@ public class EngineSettings implements EngineGUI {
         return Arrays.asList(Difficulty.values());
     }
 
-    public ActionGUI getBackLink(){
+    public LinkActionGUI getBackLink(){
         return this.actionBack;
     }
 

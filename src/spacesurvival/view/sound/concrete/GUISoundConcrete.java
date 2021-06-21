@@ -2,7 +2,7 @@ package spacesurvival.view.sound.concrete;
 
 import spacesurvival.model.gui.sound.EngineSound;
 import spacesurvival.model.gui.sound.TypeUnitSound;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.AbstractGUI;
 import spacesurvival.view.sound.GUISound;
 import spacesurvival.view.sound.utilities.ButtonSliderType;
@@ -71,7 +71,7 @@ public class GUISoundConcrete extends AbstractGUI implements GUISound {
     }
 
     @Override
-    public void setBtnBackID(final ActionGUI actionMain, final ActionGUI action) {
+    public void setBtnBackID(final LinkActionGUI actionMain, final LinkActionGUI action) {
         this.btnBack.setActionCurrent(actionMain);
         this.btnBack.setActionNext(action);
     }

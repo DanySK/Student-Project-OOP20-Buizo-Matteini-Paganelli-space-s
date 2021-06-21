@@ -1,31 +1,31 @@
 package spacesurvival.model.gui.dead;
 
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 
 public enum LinksDead {
-    MENU_BTN("Menu", ActionGUI.ID_MENU),
-    QUIT_BTN("Quit", ActionGUI.ID_QUIT);
+    MENU_BTN("Menu", LinkActionGUI.ID_MENU),
+    QUIT_BTN("Quit", LinkActionGUI.ID_QUIT);
 
     private final String name;
-    private final ActionGUI actionGUI;
+    private final LinkActionGUI linkActionGUI;
 
-    private LinksDead(final String name, final ActionGUI actionGUI){
+    private LinksDead(final String name, final LinkActionGUI linkActionGUI){
         this.name = name;
-        this.actionGUI = actionGUI;
+        this.linkActionGUI = linkActionGUI;
     }
 
     public String getName(){
         return this.name;
     }
 
-    public ActionGUI getAction() {
-        return this.actionGUI;
+    public LinkActionGUI getAction() {
+        return this.linkActionGUI;
     }
 
     @Override
     public String toString() {
         return "LinksDead{" +
                 "name='" + name + '\'' +
-                ", actionGUI=" + actionGUI +  '}';
+                ", actionGUI=" + linkActionGUI +  '}';
     }
 }

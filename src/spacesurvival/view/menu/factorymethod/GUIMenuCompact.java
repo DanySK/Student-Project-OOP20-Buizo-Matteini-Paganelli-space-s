@@ -1,6 +1,6 @@
 package spacesurvival.view.menu.factorymethod;
 
-import spacesurvival.model.gui.game.EngineGame;
+import spacesurvival.model.gui.menu.EngineMenu;
 import spacesurvival.utilities.DesignJComponent;
 import spacesurvival.view.utilities.DesignGraphics;
 import spacesurvival.view.menu.FactoryGUIMenu;
@@ -41,14 +41,14 @@ public class GUIMenuCompact implements FactoryGUIMenu {
         menu.add(FactoryGUIs.createPanelFlowUnionComponents(List.of(menu.getTxfNamePlayer(),
                 menu.getBtnActionLinks().get(nBtnUsed++))), lim);
 
-        while(nBtnUsed < EngineGame.N_BUTTONS){
+        while(nBtnUsed < EngineMenu.N_BUTTONS){
             lim.gridy++;
             menu.add(FactoryGUIs.createPanelFlowUnionComponents(List.of(menu.getBtnActionLinks().get(nBtnUsed++),
-                    nBtnUsed + 1 < EngineGame.N_BUTTONS ? menu.getBtnActionLinks().get(nBtnUsed++) : FactoryGUIs.getJComponentEmpty())), lim);
+                    nBtnUsed + 1 < EngineMenu.N_BUTTONS ? menu.getBtnActionLinks().get(nBtnUsed++) : FactoryGUIs.getJComponentEmpty())), lim);
         }
 
         nBtnUsed = 0;
-        while(nBtnUsed < EngineGame.N_BUTTONS){
+        while(nBtnUsed < EngineMenu.N_BUTTONS){
             FactoryGUIs.setIconJButtonFromRate(menu.getButton(nBtnUsed),
                     IconsButton.values()[nBtnUsed++].getPath(), 25, menu.getWidth());
         }

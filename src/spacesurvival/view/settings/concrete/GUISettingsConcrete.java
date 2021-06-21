@@ -2,7 +2,7 @@ package spacesurvival.view.settings.concrete;
 
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.gui.settings.Difficulty;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.AbstractGUI;
 import spacesurvival.view.settings.GUISettings;
 import spacesurvival.view.settings.utilities.JRadioDifficult;
@@ -79,7 +79,7 @@ public class GUISettingsConcrete extends AbstractGUI implements GUISettings {
     }
 
     @Override
-    public final void setBtnBackID(final ActionGUI mainAction, final ActionGUI action) {
+    public final void setBtnBackID(final LinkActionGUI mainAction, final LinkActionGUI action) {
         this.btnBack.setActionCurrent(mainAction);
         this.btnBack.setActionNext(action);
     }

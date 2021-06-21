@@ -1,6 +1,6 @@
 package spacesurvival.view.menu;
 
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.GUI;
 
 import java.awt.Color;
@@ -11,7 +11,7 @@ public interface GUIMenu extends GUI {
 
     void setNameButtons(List<String> listNames);
 
-    void setBtnActions(ActionGUI mainAction, List<ActionGUI> linksID);
+    void setBtnActions(LinkActionGUI mainAction, List<LinkActionGUI> linksID);
 
 
     void setFontTitleGUI(Font font);

@@ -36,6 +36,7 @@ public class Bullet extends MovableObject {
         this.damage = damage;
         this.effect = effect;
         this.originWeapon = originWeapon;
+        this.stopAnimation();
     }
 
     /**
@@ -90,6 +91,8 @@ public class Bullet extends MovableObject {
     @Override
     public void collided(final World world, final WorldEvent ev) {
         final Optional<EventType> evType = EventType.getEventFromHit(ev);
+        
+        
         if (evType.isPresent()) {
             switch (EventType.getEventFromHit(ev).get()) {
             case BORDER_EVENT:
@@ -98,6 +101,7 @@ public class Bullet extends MovableObject {
             case BULLET_EVENT:
                 final HitBulletEvent bulletEvent = (HitBulletEvent) ev;
                 final MainObject collidedObject = bulletEvent.getCollidedObject();
+                
                 if (!this.getShooter().equals(collidedObject)) {
                     if (collidedObject instanceof SpaceShipSingleton && !collidedObject.isInvincible()) {
                         world.getQueueDecreaseLife().add(collidedObject.getImpactDamage());

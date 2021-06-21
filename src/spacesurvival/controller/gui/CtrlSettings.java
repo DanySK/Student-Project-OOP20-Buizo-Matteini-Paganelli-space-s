@@ -5,7 +5,7 @@ import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.gui.settings.EngineSettings;
 import spacesurvival.model.gui.settings.SkinSpaceShip;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.GUI;
 import spacesurvival.view.settings.GUISettings;
 import spacesurvival.view.settings.utilities.JRadioDifficult;
@@ -84,7 +84,7 @@ public class CtrlSettings implements ControllerGUI {
     }
 
     @Override
-    public ActionGUI getMainAction() {
+    public LinkActionGUI getMainAction() {
         return this.engine.getMainAction();
     }
 

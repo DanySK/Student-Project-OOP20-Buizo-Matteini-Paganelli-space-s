@@ -1,6 +1,6 @@
 package spacesurvival.view.pause;
 
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.GUI;
 import spacesurvival.view.utilities.BtnAction;
 
@@ -14,7 +14,7 @@ public interface GUIPause extends GUI {
 
     void setNameButtons(List<String> listNames);
 
-    void setActionButtons(ActionGUI mainAction, List<ActionGUI> linksID);
+    void setActionButtons(LinkActionGUI mainAction, List<LinkActionGUI> linksID);
 
 
     void setFontGUITitle(Font font);

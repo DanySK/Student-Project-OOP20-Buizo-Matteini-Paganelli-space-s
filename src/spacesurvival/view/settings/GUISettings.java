@@ -2,7 +2,7 @@ package spacesurvival.view.settings;
 
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.gui.settings.Difficulty;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.GUI;
 import spacesurvival.view.settings.utilities.JRadioDifficult;
 
@@ -29,7 +29,7 @@ public interface GUISettings extends GUI {
 
     void setDifficult(Difficulty difficulty);
 
-    void setBtnBackID(ActionGUI mainAction, ActionGUI action);
+    void setBtnBackID(LinkActionGUI mainAction, LinkActionGUI action);
 
 
     void setForegroundGUI(Color color);
