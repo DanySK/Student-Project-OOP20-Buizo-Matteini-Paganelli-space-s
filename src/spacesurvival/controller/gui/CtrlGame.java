@@ -18,7 +18,6 @@ import spacesurvival.view.GUI;
 import spacesurvival.view.game.GUIGame;
 
 import java.awt.event.KeyListener;
-import java.util.LinkedList;
 import java.util.List;
 
 public class CtrlGame implements ControllerGUI {
@@ -90,6 +89,10 @@ public class CtrlGame implements ControllerGUI {
     @Override
     public final void closeGUI() {
         this.gui.close();
+    }
+    
+    public void setPauseAnimationAllObject(final boolean isPause) {
+        this.engine.setPauseAnimationAllObject(isPause);
     }
 
     public final void updateHUD() {

@@ -5,7 +5,6 @@ import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.model.World;
 import spacesurvival.model.gameobject.GameObject;
-import spacesurvival.model.gameobject.GameObjectUtils;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.utilities.dimension.Screen;
@@ -17,7 +16,6 @@ import java.util.Set;
 
 public class EngineGame implements EngineGUI {
     public static final Rectangle RECTANGLE = Screen.RECTANGLE_FULLSCREEN;
-    public static final int N_BUTTONS = 6;
 
     private final ActionGUI id;
     private final ActionGUI idPause;
@@ -66,6 +64,9 @@ public class EngineGame implements EngineGUI {
     }
     
 
+    public void setPauseAnimationAllObject(final boolean isPause) {
+        this.world.setPauseAnimationAllObject(isPause);
+    }
 
     public String getTimer() {
         return this.hud.getTimer();

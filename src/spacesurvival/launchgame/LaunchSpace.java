@@ -1,5 +1,7 @@
 package spacesurvival.launchgame;
 
+import javax.swing.SwingUtilities;
+
 import spacesurvival.controller.gui.CtrlLoading;
 import spacesurvival.factories.StaticFactoryGUI;
 import spacesurvival.model.gui.Visibility;
@@ -28,8 +30,7 @@ public final class LaunchSpace {
         engineLoop.initGame();
         ctrlLoading.turn(Visibility.HIDDEN);
 
-        engineLoop.start();
-//        SwingUtilities.invokeLater(engine::start);
+        SwingUtilities.invokeLater(engineLoop::start);
     }
 }
 

@@ -84,6 +84,12 @@ public class World {
 
         createStartingObjects();
     }
+    
+    public void setPauseAnimationAllObject(final boolean isPause) {
+        this.getAllObjects().forEach(obj -> {
+            obj.setPauseAnimation(isPause);
+        });
+    }
 
     /**
      * Create the starting objects for the first round.

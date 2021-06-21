@@ -89,12 +89,18 @@ public class CtrlGUI {
         this.managerGui.values().forEach(managerGui -> managerGui.getGUI().getBtnActionLinks().forEach(btn ->
                 btn.addActionListener(e -> {
                     System.out.println("Premuto in: " + btn.getActionCurrent() + " Vado in: " + btn.getActionNext());
+                    
                     if (this.isInPause()){
                         this.logicSwitchGame.algorithm(btn.getActionCurrent(), btn.getActionNext(),
-                        this.chronology, this.managerGui);
-                    }else {
+                                this.chronology, this.managerGui);
+                       this.ctrlGame.setPauseAnimationAllObject(true);
+                    } else {
                         this.logicSwitchMenu.algorithm(btn.getActionCurrent(), btn.getActionNext(),
-                        this.chronology, this.managerGui);
+                                this.chronology, this.managerGui);
+                    }
+                    
+                    if (this.isInGame()) {
+                        this.ctrlGame.setPauseAnimationAllObject(false);
                     }
 
                     System.out.println("list premuto dal bottone" + this.chronology);
@@ -109,10 +115,10 @@ public class CtrlGUI {
     private MouseListener getMouseListener(final ActionGUI id){
         return new MouseListener() {
             @Override
-            public void mouseClicked(MouseEvent e) { }
+            public void mouseClicked(final MouseEvent e) { }
 
             @Override
-            public void mousePressed(MouseEvent e) {
+            public void mousePressed(final MouseEvent e) {
                 if(id.getStateLevel().equals(StateLevelGUI.FOREGROUND) &&
                         CtrlGUI.this.chronology.lastElementOfList().getStateLevel().equals(StateLevelGUI.OVERLAY)){
 
@@ -160,7 +166,7 @@ public class CtrlGUI {
 
     private void startElementWhenInGame() {
         Objects.requireNonNull(this.getBtnGameFromMenu()).addActionListener(l -> {
-            this.ctrlGame.getWorld().setSkin(CtrlGUI.this.ctrlSettings.getCurrentSkin());
+            this.ctrlGame.getWorld().setSkin(this.ctrlSettings.getCurrentSkin());
             this.ctrlGame.startTimer();
             this.managerGui.values().forEach(control -> {
                 if(control.getMainAction().getStateLevel().equals(StateLevelGUI.OVERLAY)){
@@ -205,9 +211,9 @@ public class CtrlGUI {
                 btn -> btn.addActionListener(l -> {
 
                     if(btn.getActionCurrent() == ActionGUI.ID_PAUSE && btn.getActionNext() == ActionGUI.ID_BACK) {
-                        CtrlGUI.this.ctrlSound.checkChangeSoundLoop(ActionGUI.ID_GAME);
+                        this.ctrlSound.checkChangeSoundLoop(ActionGUI.ID_GAME);
                     } else {
-                        CtrlGUI.this.ctrlSound.checkChangeSoundLoop(btn.getActionNext());
+                        this.ctrlSound.checkChangeSoundLoop(btn.getActionNext());
                     }
                 })
         ));
