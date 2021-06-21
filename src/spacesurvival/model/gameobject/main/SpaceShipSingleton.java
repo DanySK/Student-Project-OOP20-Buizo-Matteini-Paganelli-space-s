@@ -34,6 +34,9 @@ import spacesurvival.utilities.gameobject.VelocityUtils;
 import spacesurvival.utilities.path.SoundPath;
 import spacesurvival.utilities.path.animation.AnimationShip;
 
+/**
+ * Singleton creation of the spaceship.
+ */
 public final class SpaceShipSingleton extends FireableObject {
 
     private List<SoundPath> soundQueue = new LinkedList<>();
@@ -78,7 +81,7 @@ public final class SpaceShipSingleton extends FireableObject {
      *
      * @param ammo the ammo taken from ship 
      */
-    public void take(final Ammo ammo) {
+    public void takeAmmo(final Ammo ammo) {
         System.out.println("PRENDO MUNIZIONI DI TIPO " + ammo.getType());
         this.getWeapon().setAmmoType(ammo.getType());
     }

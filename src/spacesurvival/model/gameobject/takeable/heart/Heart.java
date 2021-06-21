@@ -12,6 +12,9 @@ import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.utilities.path.SoundPath;
 
+/**
+ * An object which gives life to the ship.
+ */
 public class Heart extends TakeableGameObject {
 
     private HeartType type;
@@ -22,24 +25,34 @@ public class Heart extends TakeableGameObject {
         this.type = type;
     }
 
+    /**
+     * @return the heart type
+     */
     public HeartType getType() {
         return type;
     }
 
+    /**
+     * Sets the heart type.
+     * 
+     * @param type the heart type to set
+     */
     public void setType(final HeartType type) {
         this.type = type;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void collided(final World world, final WorldEvent ev) {
-        System.out.println("HEART EVENTO->" + EventType.getEventFromHit(ev));
         final Optional<EventType> evType = EventType.getEventFromHit(ev);
         if (evType.isPresent()) {
             switch (EventType.getEventFromHit(ev).get()) {
             case TAKEABLE_OBJECT_EVENT:
-                //this.pushEffect(SoundPath.PERK);
                 world.getSoundQueue().add(SoundPath.PERK);
                 world.getQueueIncreaseLife().add(this.getType().getAmount());
+                world.getShip().setStatus(this.getType().getStatus());
                 break;
             default:
                 break;

@@ -8,7 +8,7 @@ import spacesurvival.model.worldevent.WorldEvent;
  */
 public interface Collideable {
     /**
-     * This method the collision based on the world event.
+     * This method handle the collision based on the world event.
      * 
      * @param world the world instance of the game
      * @param worldEvent the event that launched this method

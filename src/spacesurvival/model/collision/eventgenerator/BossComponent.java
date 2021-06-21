@@ -2,6 +2,7 @@ package spacesurvival.model.collision.eventgenerator;
 
 import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.gameobject.fireable.Boss;
+import spacesurvival.model.gameobject.main.MainObject;
 
 import java.util.Optional;
 
@@ -9,6 +10,7 @@ import spacesurvival.model.World;
 import spacesurvival.model.collision.bounding.BoundaryCollision;
 import spacesurvival.model.collision.bounding.RectBoundingBox;
 import spacesurvival.model.collision.event.hit.HitBorderEvent;
+import spacesurvival.model.collision.event.hit.HitMainGameObject;
 
 public class BossComponent implements EventComponent {
 
@@ -27,6 +29,11 @@ public class BossComponent implements EventComponent {
         if (borderInfo.isPresent()) {
             final BoundaryCollision info = borderInfo.get();
             w.notifyWorldEvent(new HitBorderEvent(info.getWhere(), info.getEdge(), boss));
+        }
+
+        final Optional<MainObject> asteroid = w.checkCollisionWithAsteroids((RectBoundingBox) boss.getBoundingBox());
+        if (asteroid.isPresent()) {
+            w.notifyWorldEvent(new HitMainGameObject(boss, asteroid.get()));
         }
     }
 

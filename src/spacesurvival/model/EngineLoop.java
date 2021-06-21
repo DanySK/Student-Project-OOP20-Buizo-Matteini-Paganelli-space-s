@@ -59,7 +59,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
     }
 
     public SpaceShipSingleton getShip() {
-        return this.controlGame.getWorld().getShip();
+        return this.controlGame.getShip();
     }
 
     @Override

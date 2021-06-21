@@ -66,9 +66,12 @@ public class FireEnemy extends FireableObject {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
-        return "FireEnemy { " + super.toString() + " }";
+        return "FireEnemy [ " + super.toString() + "]";
     }
 
 }

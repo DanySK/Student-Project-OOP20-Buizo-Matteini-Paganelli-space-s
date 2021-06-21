@@ -59,6 +59,7 @@ public class World {
     private WorldEventListener evListener;
     private final CollisionChecker collisionChecker = new CollisionChecker();
 
+    private Thread takeableFactoryThread;
     /**
      * Create a World given a RectBoundingBox.
      * @param mainBBox the bounding box on which to base the world limits
@@ -97,7 +98,7 @@ public class World {
     public final void createStartingObjects() {
         this.addAsteroid();
         this.addChaseEnemy();
-        new Thread(() -> {
+        takeableFactoryThread = new Thread(() -> {
             while (ship.isAlive()) {
                 if (RandomUtils.RANDOM.nextBoolean()) {
                     this.addHeart();
@@ -106,9 +107,8 @@ public class World {
                 }
                 ThreadUtils.sleep(Delay.SPAWN_PERK);
             }
-        }).start();
-        //this.addHeart();
-        this.addAmmo();
+        });
+        this.addHeart();
         this.addAmmo();
     }
 
@@ -513,6 +513,13 @@ public class World {
      */
     public Set<TakeableGameObject> getHearts() {
         return hearts;
+    }
+
+    /**
+     * @return the thread which handle the creation of TakeableObject
+     */
+    public Thread getTakeableFactoryThread() {
+        return takeableFactoryThread;
     }
 
     /**

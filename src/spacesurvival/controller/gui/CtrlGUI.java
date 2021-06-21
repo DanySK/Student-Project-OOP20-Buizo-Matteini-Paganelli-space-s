@@ -66,7 +66,7 @@ public class CtrlGUI {
 
         this.linksAll();
         this.focusMenu();
-        this.startElementWhenInGame();
+        this.startElementsWhenInGame();
         this.restartGame();
     }
 
@@ -165,12 +165,13 @@ public class CtrlGUI {
         this.ctrlGame.stopTimer();
     }
 
-    private void startElementWhenInGame() {
+    private void startElementsWhenInGame() {
         Objects.requireNonNull(this.getBtnGameFromMenu()).addActionListener(l -> {
             this.ctrlGame.getWorld().setSkin(this.ctrlSettings.getCurrentSkin());
             this.ctrlGame.startTimer();
+            this.ctrlGame.getWorld().getTakeableFactoryThread().start();
             this.managerGui.values().forEach(control -> {
-                if(control.getMainAction().getStateLevel().equals(StateLevelGUI.OVERLAY)){
+                if (control.getMainAction().getStateLevel().equals(StateLevelGUI.OVERLAY)) {
                     control.getGUI().setImageBackground(Background.TRANSPARENT);
                 }
 
@@ -178,7 +179,7 @@ public class CtrlGUI {
         });
     }
 
-    private void restartGame(){
+    private void restartGame() {
         Objects.requireNonNull(this.getBtnMenuFromDead()).addActionListener(l -> {
 //            this.ctrlGame.addAllGameObjectsFromWorld();
             this.ctrlGame.restartGame();
