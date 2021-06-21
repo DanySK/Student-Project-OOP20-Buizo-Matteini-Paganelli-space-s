@@ -81,7 +81,7 @@ public class Weapon {
             final double acceleration = VelocityUtils.NO_ACCELERATION;
 
             final Bullet bullet = new Bullet(engineImage, position, new RectBoundingBox(), new BulletComponent(),
-                    velocity, acceleration, Optional.empty(), BulletUtils.NORMAL_BULLET_DAMAGE,
+                    velocity, acceleration, Optional.empty(), BulletUtils.BULLET_DAMAGE,
                     ammoType.getEffect(), this);
 
 

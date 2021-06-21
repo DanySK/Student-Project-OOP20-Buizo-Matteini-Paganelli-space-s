@@ -22,6 +22,9 @@ import spacesurvival.model.collision.event.hit.HitBorderEvent;
 import spacesurvival.model.collision.event.hit.HitMainGameObject;
 import spacesurvival.model.collision.eventgenerator.EventComponent;
 
+/**
+ * An enemy able to fire, it has more life than normal and can change the ammo type of its weapon.
+ */
 public class Boss extends FireableObject {
 
     public Boss(final EngineImage engineImage, final P2d position, final BoundingBox bb,
@@ -43,6 +46,9 @@ public class Boss extends FireableObject {
         this.setBoundingBox(RectBoundingBox.createRectBoundingBox(position, engineImage, this.getTransform()));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void collided(final World world, final WorldEvent ev) {
         final Optional<EventType> evType = EventType.getEventFromHit(ev);
@@ -69,9 +75,12 @@ public class Boss extends FireableObject {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
-        return "Boss { " + super.toString() + " }";
+        return "Boss [" + super.toString() + "]";
     }
 
 }

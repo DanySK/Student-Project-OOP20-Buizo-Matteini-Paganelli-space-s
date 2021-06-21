@@ -5,7 +5,6 @@ import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.model.World;
 import spacesurvival.model.gameobject.GameObject;
-import spacesurvival.model.gameobject.GameObjectUtils;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.utilities.ActionGUI;
 import spacesurvival.utilities.dimension.Screen;
@@ -64,8 +63,6 @@ public class EngineGame implements EngineGUI {
     public List<ActionGUI> getLinks() {
         return List.of(this.idPause);
     }
-    
-
 
     public String getTimer() {
         return this.hud.getTimer();

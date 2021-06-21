@@ -58,7 +58,7 @@ public abstract class GameObject implements Collideable {
         this.mainAnimation.setAnimating(false);
         this.effectAnimation.setAnimating(false);
     }
-
+    
     public Image getImgBody() {
         return this.mainAnimation.getImage();
     }

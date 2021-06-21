@@ -161,7 +161,11 @@ public abstract class MainObject extends MovableObject {
      */
     public void onFire() {
         while (this.status == Status.ON_FIRE) {
-            this.decreaseLife(StatusUtils.FIRE_DAMAGE);
+            if (this.getLife() - StatusUtils.FIRE_DAMAGE > 0) {
+                this.decreaseLife(StatusUtils.FIRE_DAMAGE);
+            } else {
+                this.setLife(0);
+            }
             ThreadUtils.sleep(Delay.FIRE_EFFECT);
         }
     }
