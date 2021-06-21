@@ -58,7 +58,8 @@ public class CtrlGUI {
         this.managerGui.put(this.ctrlDead.getMainAction(), this.ctrlDead);
 
 
-        this.chronology = new ListGUI<>() {{ add(FIRST_GUI); }};
+        this.chronology = new ListGUI<>();
+        this.chronology.add(FIRST_GUI);
 
         this.logicSwitchMenu = new LogicSwitchMenu();
         this.logicSwitchGame = new LogicSwitchGame();
