@@ -27,9 +27,12 @@ public class MovementKeyListener implements KeyListener {
      * @return the command list of the ship
      */
     public List<Pair<CommandKey, CommandType>> getSpaceShipCommandList() {
-        return this.commandList;
+        return new LinkedList<Pair<CommandKey, CommandType>>(this.commandList);
     }
 
+    /**
+     * Clear the current command list.
+     */
     public void clearSpaceShipCommandList() {
         this.commandList.clear();
     }
@@ -51,8 +54,8 @@ public class MovementKeyListener implements KeyListener {
     @Override
     public void keyPressed(final KeyEvent e) {
         final int pressedKeyCode = e.getKeyCode();
-        if (canHandleKey(pressedKeyCode)) {
-            final CommandKey cmd = translateKeyCode(pressedKeyCode).get();
+        if (canHandleKey(pressedKeyCode, CommandType.PRESSED)) {
+            final CommandKey cmd = translateKeyCode(pressedKeyCode, CommandType.PRESSED).get();
             this.commandList.add(new Pair<CommandKey, CommandType>(cmd, CommandType.PRESSED));
         }
     }
@@ -65,8 +68,8 @@ public class MovementKeyListener implements KeyListener {
     @Override
     public void keyReleased(final KeyEvent e) {
         final int pressedKeyCode = e.getKeyCode();
-        if (canHandleKey(pressedKeyCode)) {
-            final CommandKey cmd = translateKeyCode(pressedKeyCode).get();
+        if (canHandleKey(pressedKeyCode, CommandType.RELEASED)) {
+            final CommandKey cmd = translateKeyCode(pressedKeyCode, CommandType.RELEASED).get();
             this.commandList.add(new Pair<CommandKey, CommandType>(cmd, CommandType.RELEASED));
         }
     }
@@ -77,19 +80,20 @@ public class MovementKeyListener implements KeyListener {
      * @param currentKeyCode code to check
      * @return retur n
      */
-    private boolean canHandleKey(final int currentKeyCode) {
-        return CommandKey.getValue(currentKeyCode).isPresent();
+    private boolean canHandleKey(final int currentKeyCode, final CommandType type) {
+        return CommandKey.getValue(currentKeyCode, type).isPresent();
     }
 
     /**
      * Traduce the key code to the respective command type.
      * 
      * @param keyCode the code to be traduced
+     * @param type the type of the command to be traduced
      * @return the respective command type is present or an empty optional
      */
-    public Optional<CommandKey> translateKeyCode(final int keyCode) {
-        if (canHandleKey(keyCode)) {
-            return CommandKey.getValue(keyCode);
+    public Optional<CommandKey> translateKeyCode(final int keyCode, final CommandType type) {
+        if (canHandleKey(keyCode, type)) {
+            return CommandKey.getValue(keyCode, type);
         }
         return Optional.empty();
     }
