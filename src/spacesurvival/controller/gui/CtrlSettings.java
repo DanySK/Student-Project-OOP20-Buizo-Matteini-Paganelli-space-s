@@ -24,9 +24,6 @@ public class CtrlSettings implements ControllerGUI {
         this.engine = engine;
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
 
-        this.assignAction();
-        this.assignStrings();
-        this.assignRectangle();
         this.assignSettings();
     }
 

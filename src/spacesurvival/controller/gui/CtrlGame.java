@@ -4,6 +4,7 @@ import spacesurvival.controller.gui.command.SwitchGUI;
 import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.gui.game.EngineGame;
+import spacesurvival.model.gui.settings.SkinSpaceShip;
 import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.model.Pair;
 import spacesurvival.model.World;
@@ -297,6 +298,10 @@ public class CtrlGame implements ControllerGUI {
 
     private void addKeyListenerShip(final KeyListener keyListener) {
         this.gui.addKeyListenerSpaceShip(keyListener);
+    }
+
+    public void setSkin(final SkinSpaceShip currentSkin) {
+        this.engine.setSkin(currentSkin);
     }
 
 }

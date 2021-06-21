@@ -13,7 +13,6 @@ import spacesurvival.model.gui.StaticFactoryEngineGUI;
 public final class LaunchSpace {
 
     private LaunchSpace() {
-        
     }
 
     public static void main(final String[] args) {

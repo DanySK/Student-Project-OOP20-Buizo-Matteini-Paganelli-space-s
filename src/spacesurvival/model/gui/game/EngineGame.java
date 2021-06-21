@@ -2,6 +2,7 @@ package spacesurvival.model.gui.game;
 
 import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
+import spacesurvival.model.gui.settings.SkinSpaceShip;
 import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.model.World;
 import spacesurvival.model.gameobject.GameObject;
@@ -163,6 +164,11 @@ public class EngineGame implements EngineGUI {
 
     public void updateStateWorld() {
         this.world.updateState();
+    }
+
+    public void setSkin(final SkinSpaceShip currentSkin) {
+        this.world.setSkin(currentSkin);
+        
     }
 
 }

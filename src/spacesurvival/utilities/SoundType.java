@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * Enum rapresenting the type of sounds.
+ * Enumeration representing the type of sounds.
  *
  */
 public enum SoundType {
