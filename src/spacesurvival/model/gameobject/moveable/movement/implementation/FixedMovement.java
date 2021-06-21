@@ -1,7 +1,7 @@
-package spacesurvival.model.gameobject.movable.movement.implementation;
+package spacesurvival.model.gameobject.moveable.movement.implementation;
 
-import spacesurvival.model.gameobject.movable.MovableObject;
-import spacesurvival.model.gameobject.movable.movement.MovementLogic;
+import spacesurvival.model.gameobject.moveable.MoveableObject;
+import spacesurvival.model.gameobject.moveable.movement.MovementLogic;
 
 import java.awt.geom.AffineTransform;
 
@@ -11,7 +11,7 @@ public class FixedMovement implements MovementLogic {
      * {@inheritDoc}
      */
     @Override
-    public final void move(final MovableObject object) {
+    public final void move(final MoveableObject object) {
         if (object.isMoving()) {
             final AffineTransform at = object.getTransform();
             object.setTransform(object.getTransform());

@@ -6,8 +6,8 @@ import spacesurvival.model.common.V2d;
 import spacesurvival.model.gameobject.fireable.FireableObject;
 import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
-import spacesurvival.model.gameobject.movable.MovableObject;
-import spacesurvival.model.gameobject.movable.movement.implementation.FixedMovement;
+import spacesurvival.model.gameobject.moveable.MoveableObject;
+import spacesurvival.model.gameobject.moveable.movement.implementation.FixedMovement;
 import spacesurvival.model.worldevent.WorldEvent;
 import java.util.Optional;
 import spacesurvival.model.EngineImage;
@@ -21,7 +21,7 @@ import spacesurvival.model.collision.eventgenerator.EventComponent;
 /**
  * A bullet fired from a weapon, it has a fixed velocity and direction.
  */
-public class Bullet extends MovableObject {
+public class Bullet extends MoveableObject {
 
     private int damage;
     private Effect effect;

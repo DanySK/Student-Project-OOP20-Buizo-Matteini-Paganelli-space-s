@@ -2,8 +2,8 @@ package spacesurvival.model.gameobject.main;
 
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
-import spacesurvival.model.gameobject.movable.MovableObject;
-import spacesurvival.model.gameobject.movable.movement.MovementLogic;
+import spacesurvival.model.gameobject.moveable.MoveableObject;
+import spacesurvival.model.gameobject.moveable.movement.MovementLogic;
 import spacesurvival.utilities.Delay;
 import spacesurvival.utilities.ThreadUtils;
 import spacesurvival.utilities.gameobject.StatusUtils;
@@ -15,7 +15,7 @@ import spacesurvival.model.collision.eventgenerator.EventComponent;
 /**
  * A game object with main functionalities, including life, impact damege and status.
  */
-public abstract class MainObject extends MovableObject {
+public abstract class MainObject extends MoveableObject {
     private int life;
     private int impactDamage;
     private Status status;

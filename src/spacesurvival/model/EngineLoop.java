@@ -8,7 +8,7 @@ import spacesurvival.model.collision.event.DeadEvent;
 import spacesurvival.model.collision.event.hit.HitTakeableGameObject;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
-import spacesurvival.model.gameobject.movable.MovableObject;
+import spacesurvival.model.gameobject.moveable.MoveableObject;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.model.worldevent.WorldEventListener;
@@ -81,7 +81,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
                         this.waitForNextFrame(current);
                         lastTime = current;
                         this.render();
-                        System.out.println("Numero dei thread current -> " + Thread.getAllStackTraces().keySet().size());
+                        //System.out.println("Numero dei thread current -> " + Thread.getAllStackTraces().keySet().size());
                     }
                 }
 
@@ -188,7 +188,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
     }
 
     private void renderMovement() {
-        getWorld().getMovableObjects().forEach(MovableObject::move);
+        getWorld().getMovableObjects().forEach(MoveableObject::move);
     }
 
     public void assignTargetToEnemies() {
