@@ -127,7 +127,7 @@ public abstract class MainObject extends MovableObject {
     /**
      * Starts a thread to apply the status effect, wait for its duration and then restore status to normal.
      */
-    public void onStatus() {
+    private void onStatus() {
         switch (this.status) {
         case INVINCIBLE:
             break;
