@@ -73,12 +73,12 @@ public class EngineLoop extends Thread implements WorldEventListener {
 
                 if (this.controlGUI.isInGame()) {
                     if (!this.controlGUI.isInPause()) {
-                        //processInput();
-                        renderMovement();
-                        render();
-                        waitForNextFrame(current);
+                        this.processInput();
+                        this.renderMovement();
+                        this.updateGame();
+                        this.waitForNextFrame(current);
                         lastTime = current;
-                        updateGame();
+                        this.render();
                         System.out.println("Numero dei thread current -> " + Thread.getAllStackTraces().keySet().size());
                     }
                 }
@@ -100,6 +100,10 @@ public class EngineLoop extends Thread implements WorldEventListener {
         }
     }
 
+    private void processInput() {
+        this.checkInput();
+    }
+
     protected void waitForNextFrame(final long current) {
         final long dt = System.currentTimeMillis() - current;
         if (dt < FPS) {
@@ -109,7 +113,6 @@ public class EngineLoop extends Thread implements WorldEventListener {
 
     protected final void updateGame() {
         this.controlGame.updateStateWorld();
-        this.checkInput();
         this.checkEvents();
         this.checkSoundEffects();
         this.checkGameObjectsDead();

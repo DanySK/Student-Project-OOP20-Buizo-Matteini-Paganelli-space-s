@@ -33,6 +33,7 @@ public class Bullet extends MovableObject {
         this.damage = damage;
         this.effect = effect;
         this.originWeapon = originWeapon;
+        this.stopAnimation();
     }
 
     public int getDamage() {
