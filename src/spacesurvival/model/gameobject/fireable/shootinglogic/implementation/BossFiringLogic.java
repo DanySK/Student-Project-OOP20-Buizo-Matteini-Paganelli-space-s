@@ -40,7 +40,7 @@ public class BossFiringLogic implements FiringLogic {
         new Thread(() -> {
             while (fireableObject.isAlive()) {
                 ThreadUtils.sleep(Delay.BOSS_CHANGING_AMMO);
-                fireableObject.getWeapon().setAmmoType(AmmoType.random());
+                fireableObject.getWeapon().setAmmoType(AmmoType.randomExceptNormal());
             }
         }).start();
     }

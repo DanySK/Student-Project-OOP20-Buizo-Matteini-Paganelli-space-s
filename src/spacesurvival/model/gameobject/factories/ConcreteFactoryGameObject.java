@@ -132,7 +132,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
      */
     @Override
     public TakeableGameObject createAmmo() {
-        final AmmoType ammoType = AmmoType.random();
+        final AmmoType ammoType = AmmoType.randomExceptNormal();
         final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULLSCREEN, AnimationPerk.FIRE0);
         final P2d position = PositionUtils.generateRandomPoint();
 

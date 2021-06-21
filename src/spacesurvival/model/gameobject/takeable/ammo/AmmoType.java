@@ -1,6 +1,7 @@
 package spacesurvival.model.gameobject.takeable.ammo;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import spacesurvival.model.gameobject.fireable.weapon.Effect;
 import spacesurvival.utilities.RandomUtils;
@@ -70,8 +71,11 @@ public enum AmmoType {
     /**
      * @return a random ammo type
      */
-    public static AmmoType random()  {
-        return VALUES.get(RandomUtils.RANDOM.nextInt(SIZE));
+    public static AmmoType randomExceptNormal()  {
+        return VALUES.stream()
+                .filter(ammoType -> !ammoType.equals(NORMAL))
+                .collect(Collectors.toList())
+                .get(RandomUtils.RANDOM.nextInt(SIZE - 1));
     }
 
 }

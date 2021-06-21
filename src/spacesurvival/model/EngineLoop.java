@@ -5,11 +5,9 @@ import spacesurvival.controller.gui.CtrlGUI;
 import spacesurvival.controller.gui.CtrlGame;
 import spacesurvival.controller.gui.CtrlSound;
 import spacesurvival.model.collision.event.DeadEvent;
-import spacesurvival.model.collision.event.hit.HitTakeableGameObject;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.gameobject.moveable.MoveableObject;
-import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.utilities.path.SoundPath;
@@ -44,6 +42,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
     }
 
     public void initGame() {
+        this.controlGUI.initGUI();
         this.controlGUI.assignSoundLoop();
         this.controlGame.assignMovementListenerInShip();
         this.controlGame.setEventListenerInWorld(this);

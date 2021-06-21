@@ -1,5 +1,6 @@
 package spacesurvival.controller.gui;
 
+import spacesurvival.controller.gui.commandfocus.FocusGUI;
 import spacesurvival.controller.gui.strategy.LogicSwitchGUI;
 import spacesurvival.controller.gui.strategy.LogicSwitchGame;
 import spacesurvival.controller.gui.strategy.LogicSwitchMenu;
@@ -12,11 +13,10 @@ import spacesurvival.utilities.StateLevelGUI;
 import spacesurvival.utilities.path.Background;
 import spacesurvival.view.utilities.BtnAction;
 
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
+import java.util.Optional;
 
 public class CtrlGUI {
     public static final LinkActionGUI FIRST_GUI = LinkActionGUI.ID_MENU;
@@ -24,24 +24,24 @@ public class CtrlGUI {
     private final CtrlMenu ctrlMenu;
     private final CtrlGame ctrlGame;
     private final CtrlSettings ctrlSettings;
-    private final CtrlScoreboard ctrlScoreboard;
     private final CtrlSound ctrlSound;
     private final CtrlHelp ctrlHelp;
     private final CtrlPause ctrlPause;
     private final CtrlDead ctrlDead;
+    
+    private final ListGUI<LinkActionGUI> chronology;
 
     private final Map<LinkActionGUI, ControllerGUI> managerGui;
 
-    private final ListGUI<LinkActionGUI> chronology;
-
+    private final MouseListener fosucGUI;
     private final LogicSwitchGUI logicSwitchMenu;
     private final LogicSwitchGUI logicSwitchGame;
+    
 
     public CtrlGUI(){
         this.ctrlMenu = new CtrlMenu(StaticFactoryEngineGUI.createEngineMenu(), StaticFactoryGUI.createMenuGUI());
         this.ctrlGame = new CtrlGame(StaticFactoryEngineGUI.createEngineGame(), StaticFactoryGUI.createGameGUI());
         this.ctrlSettings = new CtrlSettings(StaticFactoryEngineGUI.createEngineSettings(), StaticFactoryGUI.createSettingsGUI());
-        this.ctrlScoreboard = new CtrlScoreboard(StaticFactoryEngineGUI.createEngineScoreboard(), StaticFactoryGUI.createScoreboardGUI());
         this.ctrlSound = new CtrlSound(StaticFactoryEngineGUI.createEngineSound(), StaticFactoryGUI.createSoundGUI());
         this.ctrlHelp = new CtrlHelp(StaticFactoryEngineGUI.createEngineHelp(), StaticFactoryGUI.createHelpGUI());
         this.ctrlPause = new CtrlPause(StaticFactoryEngineGUI.createEnginePause(), StaticFactoryGUI.createPauseGUI());
@@ -51,25 +51,56 @@ public class CtrlGUI {
         this.managerGui.put(this.ctrlMenu.getMainAction(), this.ctrlMenu);
         this.managerGui.put(this.ctrlGame.getMainAction(), this.ctrlGame);
         this.managerGui.put(this.ctrlSettings.getMainAction(), this.ctrlSettings);
-        this.managerGui.put(this.ctrlScoreboard.getMainAction(), this.ctrlScoreboard);
         this.managerGui.put(this.ctrlSound.getMainAction(), this.ctrlSound);
         this.managerGui.put(this.ctrlHelp.getMainAction(), this.ctrlHelp);
         this.managerGui.put(this.ctrlPause.getMainAction(), this.ctrlPause);
         this.managerGui.put(this.ctrlDead.getMainAction(), this.ctrlDead);
 
-
         this.chronology = new ListGUI<>();
-        this.chronology.add(FIRST_GUI);
-
+       
+        this.fosucGUI = new FocusGUI(this);
         this.logicSwitchMenu = new LogicSwitchMenu();
         this.logicSwitchGame = new LogicSwitchGame();
+    }
+    
+    public Map<LinkActionGUI, ControllerGUI> getManagerGui() {
+        return this.managerGui;
+    }
 
+    public ListGUI<LinkActionGUI> getChronology() {
+        return this.chronology;
+    }
+
+    public void initGUI() {
+        this.chronology.add(FIRST_GUI);
+        this.focusGUI();
+        this.assignAllLinkAction();
+        this.assignAllString();
+        this.assignAllRectangle();
         this.linksAll();
-        this.focusMenu();
+        
         this.startElementsWhenInGame();
         this.restartGame();
     }
-
+    
+    public void assignAllLinkAction() {
+        this.managerGui.forEach((key, value) -> {
+            value.assignAction();
+        });
+    }
+    
+    public void assignAllString() {
+        this.managerGui.forEach((key, value) -> {
+            value.assignStrings();
+        });
+    }
+    
+    public void assignAllRectangle() {
+        this.managerGui.forEach((key, value) -> {
+            value.assignRectangle();
+        });
+    }
+    
     public boolean isInGameOver(){
         return this.chronology.contains(LinkActionGUI.ID_DEAD);
     }
@@ -108,40 +139,9 @@ public class CtrlGUI {
         })));
     }
 
-    private void focusMenu(){
+    private void focusGUI(){
         this.managerGui.values().forEach(managerGui ->
-                managerGui.getGUI().addMouseListener(this.getMouseListener(managerGui.getMainAction())));
-    }
-
-    private MouseListener getMouseListener(final LinkActionGUI id){
-        return new MouseListener() {
-            @Override
-            public void mouseClicked(final MouseEvent e) { }
-
-            @Override
-            public void mousePressed(final MouseEvent e) {
-                if(id.getStateLevel().equals(StateLevelGUI.FOREGROUND) &&
-                        CtrlGUI.this.chronology.lastElementOfList().getStateLevel().equals(StateLevelGUI.OVERLAY)){
-
-                    int sizeList = chronology.size() - 1;
-                    while(chronology.get(sizeList).getStateLevel().equals(StateLevelGUI.OVERLAY) ){
-                        CtrlGUI.this.managerGui.get(chronology.get(sizeList)).turn(Visibility.HIDDEN);
-                        chronology.remove(sizeList--);
-                    }
-                    CtrlGUI.this.ctrlSound.checkChangeSoundLoop(CtrlGUI.this.getCurrentGUI());
-                    System.out.println("list" + chronology);
-                }
-            }
-
-            @Override
-            public void mouseReleased(final MouseEvent e) { }
-
-            @Override
-            public void mouseEntered(final MouseEvent e) { }
-
-            @Override
-            public void mouseExited(final MouseEvent e) { }
-        };
+                managerGui.getGUI().addMouseListener(this.fosucGUI));
     }
 
     public LinkActionGUI getCurrentGUI(){
@@ -166,59 +166,55 @@ public class CtrlGUI {
     }
 
     private void startElementsWhenInGame() {
-        Objects.requireNonNull(this.getBtnGameFromMenu()).addActionListener(l -> {
-            this.ctrlGame.getWorld().setSkin(this.ctrlSettings.getCurrentSkin());
-            this.ctrlGame.startTimer();
-            this.ctrlGame.getWorld().getTakeableFactoryThread().start();
-            this.managerGui.values().forEach(control -> {
-                if (control.getMainAction().getStateLevel().equals(StateLevelGUI.OVERLAY)) {
-                    control.getGUI().setImageBackground(Background.TRANSPARENT);
-                }
+        
+        this.getLinkBtnFromGUI(LinkActionGUI.ID_MENU, LinkActionGUI.ID_GAME).ifPresent(link -> {
+            link.addActionListener(e -> {
+                this.ctrlGame.setSkin(this.ctrlSettings.getCurrentSkin());
+                this.ctrlGame.getWorld().getTakeableFactoryThread().start();
+                this.managerGui.values().forEach(control -> {
+                    if (control.getMainAction().getStateLevel().equals(StateLevelGUI.OVERLAY)) {
+                        control.getGUI().setImageBackground(Background.TRANSPARENT);
+                    }
+                });
+            });
+        });
 
+    }
+
+    private void restartGame() {
+        this.getLinkBtnFromGUI(LinkActionGUI.ID_DEAD, LinkActionGUI.ID_MENU).ifPresent(link -> {
+            link.addActionListener(e -> {
+//              this.ctrlGame.addAllGameObjectsFromWorld();
+                this.ctrlGame.restartGame();
+                this.managerGui.values().forEach(control ->
+                        control.getGUI().setImageBackground(control.getMainAction().getBackground()));
             });
         });
     }
 
-    private void restartGame() {
-        Objects.requireNonNull(this.getBtnMenuFromDead()).addActionListener(l -> {
-//            this.ctrlGame.addAllGameObjectsFromWorld();
-            this.ctrlGame.restartGame();
-            this.managerGui.values().forEach(control ->
-                    control.getGUI().setImageBackground(control.getMainAction().getBackground()));
-        });
-
-    }
-
-
-    private BtnAction getBtnGameFromMenu(){
-        for (final BtnAction btn : this.ctrlMenu.getGUI().getBtnActionLinks()) {
-            if(btn.getActionNext() == LinkActionGUI.ID_GAME){
-                return btn;
+    private Optional<BtnAction> getLinkBtnFromGUI(final LinkActionGUI gui, final LinkActionGUI btn){
+        for (final ControllerGUI ctrl : this.managerGui.values()) {
+            if (ctrl.getMainAction().equals(gui)) {
+                for (final BtnAction link :  ctrl.getGUI().getBtnActionLinks()) {
+                    if (link.getActionNext() == btn) {
+                        return Optional.of(link);
+                    }
+                }
             }
         }
-        return null;
+        return Optional.empty();
     }
-
-    private BtnAction getBtnMenuFromDead(){
-        for (final BtnAction btn : this.ctrlDead.getGUI().getBtnActionLinks()) {
-            if(btn.getActionNext() == LinkActionGUI.ID_MENU){
-                return btn;
-            }
-        }
-        return null;
-    }
-
+    
     public void assignSoundLoop() {
         this.managerGui.values().forEach(ctrl -> ctrl.getGUI().getBtnActionLinks().forEach(
                 btn -> btn.addActionListener(l -> {
-
-                    if(btn.getActionCurrent() == LinkActionGUI.ID_PAUSE && btn.getActionNext() == LinkActionGUI.ID_BACK) {
-                        this.ctrlSound.checkChangeSoundLoop(LinkActionGUI.ID_GAME);
-                    } else {
-                        this.ctrlSound.checkChangeSoundLoop(btn.getActionNext());
-                    }
+                    this.ctrlSound.checkChangeSoundLoop(btn.getActionCurrent() == LinkActionGUI.ID_PAUSE && 
+                            btn.getActionNext() == LinkActionGUI.ID_BACK ? 
+                            btn.getActionCurrent() : btn.getActionNext());
                 })
         ));
     }
+
+
 
 }
