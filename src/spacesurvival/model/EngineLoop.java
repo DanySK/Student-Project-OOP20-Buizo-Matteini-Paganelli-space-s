@@ -5,9 +5,11 @@ import spacesurvival.controller.gui.CtrlGUI;
 import spacesurvival.controller.gui.CtrlGame;
 import spacesurvival.controller.gui.CtrlSound;
 import spacesurvival.model.collision.event.DeadEvent;
+import spacesurvival.model.collision.event.hit.HitTakeableGameObject;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.gameobject.movable.MovableObject;
+import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.utilities.path.SoundPath;
@@ -38,7 +40,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
         this.eventQueue = new LinkedList<>();
         this.controlGame = this.controlGUI.getCtrlGame();
         this.controlSound = this.controlGUI.getCtrlSound();
-        this.callerCommandShip = new CallerCommandShip(getShip());
+        this.callerCommandShip = new CallerCommandShip(this.controlGame.getShip());
     }
 
     public void initGame() {
@@ -46,6 +48,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
         this.controlGame.assignMovementListenerInShip();
         this.controlGame.setEventListenerInWorld(this);
         this.controlGame.assignWorld();
+        this.controlGame.initHUD();
         this.controlSound.setSoundLoop(this.controlGUI.getCurrentGUI());
         this.controlSound.setCmdAudioLoop(CommandAudioType.AUDIO_ON);
         this.controlGUI.startGUI();
@@ -64,7 +67,6 @@ public class EngineLoop extends Thread implements WorldEventListener {
         long lastTime = System.currentTimeMillis();
         long current = 0L;
         final int nbThreadsss = Thread.getAllStackTraces().keySet().size();
-
 
         while (true) {
             if (!this.controlGame.isGameOver()) {
@@ -100,10 +102,6 @@ public class EngineLoop extends Thread implements WorldEventListener {
         }
     }
 
-    private void processInput() {
-        this.checkInput();
-    }
-
     protected void waitForNextFrame(final long current) {
         final long dt = System.currentTimeMillis() - current;
         if (dt < FPS) {
@@ -113,9 +111,9 @@ public class EngineLoop extends Thread implements WorldEventListener {
 
     protected final void updateGame() {
         this.controlGame.updateStateWorld();
-        this.checkEvents();
-        this.checkSoundEffects();
+        this.checkEvents(); 
         this.checkGameObjectsDead();
+        this.checkSoundEffects();
         this.assignTargetToEnemies();
         this.checkScore();
         this.checkLife();
@@ -125,7 +123,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
     /**
      * Process user input.
      */
-    private void checkInput() {
+    private void processInput() {
         final List<Pair<CommandKey, CommandType>> inputUpdate = this.controlGame.getSpaceShipCommandList();
         this.controlGame.getSpaceShipCommandList().forEach(cmd -> {
             this.callerCommandShip.execute(cmd.getX());
@@ -140,7 +138,9 @@ public class EngineLoop extends Thread implements WorldEventListener {
             if (mainObject.isDead()) {
                 eventQueue.add(new DeadEvent(mainObject));
                 this.controlGame.incrScore(mainObject.getScore());
+                this.controlGame.updateScore();
             }
+            
         });
     }
 
@@ -164,6 +164,10 @@ public class EngineLoop extends Thread implements WorldEventListener {
         listIncreaseLife.forEach(this.controlGame::increaseLife);
         listDecreaseLife.forEach(this.controlGame::decreaseLife);
 
+        if (!listDecreaseLife.isEmpty() || !listIncreaseLife.isEmpty()) {
+            this.controlGame.updateNHeart();
+        }
+        
         listIncreaseLife.clear();
         listDecreaseLife.clear();
     }
@@ -173,6 +177,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
         final World world = getWorld();
         eventQueue.forEach(ev -> {
             ev.manage(world);
+            this.controlGame.updateCountEnemies();
             this.controlGame.updateRoundState();
         });
         eventQueue.clear();

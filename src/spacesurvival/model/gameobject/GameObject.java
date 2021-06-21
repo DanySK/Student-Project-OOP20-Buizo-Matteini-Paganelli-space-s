@@ -47,7 +47,6 @@ public abstract class GameObject implements Collideable {
      * @param isPause true will stop them, false will resume them
      */
     public void setPauseAnimation(final boolean isPause) {
-        System.out.println("dcddddddd   aaaaaaa -----> " + isPause);
         this.mainAnimation.setPause(isPause);
         this.effectAnimation.setPause(isPause);
     }

@@ -46,7 +46,6 @@ public class CtrlGame implements ControllerGUI {
 
     @Override
     public final void assignStrings() {
-        this.updateHUD();
         this.gui.setMaxLifeBoss(LifeUtils.BOSS_LIFE);
         this.gui.setMaxLifeShip(LifeUtils.SPACESHIP_LIFE);
     }
@@ -94,19 +93,47 @@ public class CtrlGame implements ControllerGUI {
     public void setPauseAnimationAllObject(final boolean isPause) {
         this.engine.setPauseAnimationAllObject(isPause);
     }
-
-    public final void updateHUD() {
-        this.gui.setTimer(this.engine.getTimer());
+    
+    public void updateScore() {
         this.gui.setScore(this.engine.getScore());
+    }
+    
+    public void updateRound() {
         this.gui.setRound(this.engine.getRound());
+    }
+
+    public void updateCountEnemies() {
         this.gui.setNEnemies(this.engine.getCountEnemies());
+    }
+    
+    public void updateTimer() {
+        this.gui.setTimer(this.engine.getTimer());
+    }
+    
+    public void updateBulletHUD() {
+            this.gui.setBulletHUD(this.engine.getShip().getWeapon().getAmmoType());
+
+    }
+    
+    public void updateNHeart() {
         this.gui.setNHeart(this.engine.getLives());
+    }
+    
+    public void initHUD() {
+        this.updateScore();
+        this.updateRound();
+        this.updateCountEnemies();
+        this.updateTimer();
+        this.updateBulletHUD();
+        this.updateNHeart();
+    }
+    
+    public void updateHUD() {
+        this.updateBulletHUD();
+        this.updateTimer();
         this.gui.setLifeShip(this.engine.getLifeShip());
-        //this.gui.setBulletHUD(this.engine.getShip().getWeapon().getAmmoType());
         if (this.getWorld().getBoss().isPresent()) {
             this.gui.setLifeBoss(this.engine.getLifeBoss());
-        } else {
-            this.setVisibleLifeBarBoss(false);
         }
     }
 
@@ -114,7 +141,8 @@ public class CtrlGame implements ControllerGUI {
         if (this.engine.getCountEnemies() == 0) {
             this.engine.incrRound();
             this.createNewEntities();
-            this.engine.getWorld().getBoss().ifPresent(boss -> this.setVisibleLifeBarBoss(true));
+            this.gui.setVisibleLifeBarBoss(this.engine.getWorld().getBoss().isPresent() ? true : false);
+            this.updateRound();
         }
     }
 

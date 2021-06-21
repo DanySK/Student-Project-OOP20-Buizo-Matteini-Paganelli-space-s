@@ -2,7 +2,6 @@ package spacesurvival.model.gameobject.takeable;
 
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.gameobject.GameObject;
-import spacesurvival.model.gameobject.GameObjectUtils;
 
 import java.util.List;
 

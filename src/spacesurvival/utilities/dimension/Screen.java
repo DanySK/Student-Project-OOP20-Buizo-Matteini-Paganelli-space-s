@@ -17,12 +17,12 @@ public class Screen {
 
     public static final Point POINT_ZERO = new Point(0, 0);
 
-    public static final Dimension FULLSCREEN = SystemVariables.SCREEN;
+    public static final Dimension FULLSCREEN = SystemVariables.SCREEN; 
 
     public static final int WIDTH_FULLSCREEN = (int) (FULLSCREEN.getWidth());
     public static final int HEIGHT_FULLSCREEN = (int) (FULLSCREEN.getHeight());
-    public static final double CENTER_X_FULLSCREEN = ((WIDTH_FULLSCREEN * SystemVariables.SCALE_X) / FIND_CENTER_X);
-    public static final double CENTER_Y_FULLSCREEN = ((HEIGHT_FULLSCREEN * SystemVariables.SCALE_Y) / FIND_CENTER_Y);
+    public static final double CENTER_X_FULLSCREEN = (WIDTH_FULLSCREEN * SystemVariables.SCALE_X) / FIND_CENTER_X;
+    public static final double CENTER_Y_FULLSCREEN = (HEIGHT_FULLSCREEN * SystemVariables.SCALE_Y) / FIND_CENTER_Y;
     public static final P2d POINT_CENTER_FULLSCREEN = new P2d(CENTER_X_FULLSCREEN, CENTER_Y_FULLSCREEN);
     public static final Point JAVA_POINT_CENTER_FULLSCREEN = new Point((int)POINT_CENTER_FULLSCREEN.getX(), (int)POINT_CENTER_FULLSCREEN.getY());
     public static final Rectangle RECTANGLE_FULLSCREEN = new Rectangle(POINT_ZERO, FULLSCREEN);
