@@ -34,17 +34,22 @@ public class CallerCommandShip {
     }
 
     /** 
-     * Read the passed command and execute the command on the specified concrete command. 
+     * Read the passed command and execute the command on the specified concrete command.
      * 
      * @param cmd the command to execute
      */
     public void execute(final CommandKey cmd) {
         switch (cmd) {
-        case KEY_UP:
+        case KEY_UP_PRESSED:
             cmdUp.execute(ship);
             break;
-        case KEY_W:
+        case KEY_UP_RELEASED:
+            cmdReleaseUp.execute(ship);
+            break;
+        case KEY_W_PRESSED:
             cmdUp.execute(ship);
+        case KEY_W_RELEASED:
+            cmdReleaseUp.execute(ship);
             break;
         case KEY_LEFT:
             cmdRotateLeft.execute(ship);
@@ -66,21 +71,4 @@ public class CallerCommandShip {
         }
     }
 
-    /** 
-     * Read the release event and and execute the command on the specified concrete command. 
-     * 
-     * @param cmd the command to execute
-     */
-    public void release(final CommandKey cmd) {
-        switch (cmd) {
-        case KEY_UP:
-            cmdReleaseUp.execute(ship);
-            break;
-        case KEY_W:
-            cmdReleaseUp.execute(ship);
-            break;
-        default:
-            break;
-        }
-    }
 }

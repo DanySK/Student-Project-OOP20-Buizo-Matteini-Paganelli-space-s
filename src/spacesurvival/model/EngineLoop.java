@@ -128,11 +128,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
     private void checkInput() {
         final List<Pair<CommandKey, CommandType>> inputUpdate = this.controlGame.getSpaceShipCommandList();
         this.controlGame.getSpaceShipCommandList().forEach(cmd -> {
-            if (cmd.getY().equals(CommandType.PRESSED)) {
-                this.callerCommandShip.execute(cmd.getX());
-            } else {
-                this.callerCommandShip.release(cmd.getX());
-            }
+            this.callerCommandShip.execute(cmd.getX());
         });
         inputUpdate.clear();
         this.controlGame.clearSpaceShipCommandList();
