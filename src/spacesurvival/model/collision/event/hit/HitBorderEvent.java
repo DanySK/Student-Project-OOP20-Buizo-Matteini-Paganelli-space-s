@@ -1,6 +1,5 @@
 package spacesurvival.model.collision.event.hit;
 
-
 import spacesurvival.model.World;
 import spacesurvival.model.collision.event.EventType;
 import spacesurvival.model.common.P2d;

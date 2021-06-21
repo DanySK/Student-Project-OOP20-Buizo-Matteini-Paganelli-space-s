@@ -48,6 +48,7 @@ public class CallerCommandShip {
             break;
         case KEY_W_PRESSED:
             cmdUp.execute(ship);
+            break;
         case KEY_W_RELEASED:
             cmdReleaseUp.execute(ship);
             break;
@@ -64,6 +65,9 @@ public class CallerCommandShip {
             cmdRotateRight.execute(ship);
             break;
         case KEY_SPACE_BAR:
+            cmdShot.execute(ship);
+            break;
+        case KEY_K:
             cmdShot.execute(ship);
             break;
         default:

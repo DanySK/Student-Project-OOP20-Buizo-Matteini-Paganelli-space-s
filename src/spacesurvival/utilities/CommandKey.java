@@ -29,6 +29,10 @@ public enum CommandKey {
      */
     KEY_SPACE_BAR(32, CommandType.PRESSED),
     /**
+     * Type of command to pass to the CallerCommand to let the spaceship shot.
+     */
+    KEY_K(75, CommandType.PRESSED),
+    /**
      * Type of command to pass to the CallerCommand to rotate the spaceship left.
      */
     KEY_A(65, CommandType.PRESSED),
