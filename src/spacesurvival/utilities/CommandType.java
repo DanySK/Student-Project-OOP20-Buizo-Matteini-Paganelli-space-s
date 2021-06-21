@@ -9,6 +9,10 @@ public enum CommandType {
     /**
      * Type released for user's inputs.
      */
-    RELEASED
+    RELEASED, 
+    /**
+     * Type typed for user's inputs.
+     */
+    TYPED
 
 }
