@@ -7,6 +7,7 @@ import spacesurvival.controller.gui.CtrlGUI;
 import spacesurvival.model.gui.Visibility;
 import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.utilities.StateLevelGUI;
+import spacesurvival.view.GUI;
 
 public class FocusGUI implements MouseListener{
     private final CtrlGUI control;
@@ -23,21 +24,21 @@ public class FocusGUI implements MouseListener{
 
     @Override
     public void mousePressed(final MouseEvent e) {
-        this.control.getManagerGui().values().forEach(ctrl -> {
-            final LinkActionGUI id = ctrl.getMainAction();
+        final LinkActionGUI id = control.getControllerGUIFromGUI((GUI)e.getSource()).get().getMainAction();
             
-            if(id.getStateLevel().equals(StateLevelGUI.FOREGROUND) &&
-                    this.control.getChronology().lastElementOfList().getStateLevel().equals(StateLevelGUI.OVERLAY)){
+        System.out.println("id corrente -> " + id + "il suo state Level" + id.getStateLevel());
+            
+        if(id.getStateLevel() != StateLevelGUI.OVERLAY &&
+                this.control.getChronology().lastElementOfList().getStateLevel().equals(StateLevelGUI.OVERLAY)) {
 
-                int sizeList =  this.control.getChronology().size() - 1;
-                while(this.control.getChronology().get(sizeList).getStateLevel().equals(StateLevelGUI.OVERLAY) ){
-                    this.control.getManagerGui().get( this.control.getChronology().get(sizeList)).turn(Visibility.HIDDEN);
-                    this.control.getChronology().remove(sizeList--);
-                }
-                this.control.getCtrlSound().checkChangeSoundLoop(this.control.getChronology().lastElementOfList());
-                System.out.println("list" + this.control.getChronology());
-            }  
-        });
+            int sizeList =  this.control.getChronology().size() - 1;
+            while(this.control.getChronology().get(sizeList).getStateLevel().equals(StateLevelGUI.OVERLAY) ){
+                this.control.getManagerGui().get( this.control.getChronology().get(sizeList)).turn(Visibility.HIDDEN);
+                this.control.getChronology().remove(sizeList--);
+            }
+            this.control.getCtrlSound().checkChangeSoundLoop(this.control.getChronology().lastElementOfList());
+            System.out.println("list" + this.control.getChronology());
+        }  
     }
 
     @Override

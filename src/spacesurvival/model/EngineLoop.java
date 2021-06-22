@@ -5,7 +5,6 @@ import spacesurvival.controller.gui.CtrlGUI;
 import spacesurvival.controller.gui.CtrlGame;
 import spacesurvival.controller.gui.CtrlSound;
 import spacesurvival.model.collision.event.DeadEvent;
-import spacesurvival.model.collision.event.hit.HitTakeableGameObject;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.gameobject.moveable.MoveableObject;
@@ -203,6 +202,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
     }
 
     protected void renderGameOver() {
+        System.out.println("SEIIIII MORRTOTOOOOOO");
         this.controlGUI.endGame();
         playEffect(SoundPath.GAME_OVER);
     }
