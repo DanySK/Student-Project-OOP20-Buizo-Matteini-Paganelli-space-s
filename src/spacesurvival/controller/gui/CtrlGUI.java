@@ -6,6 +6,7 @@ import spacesurvival.controller.gui.strategy.LogicSwitchGame;
 import spacesurvival.controller.gui.strategy.LogicSwitchMenu;
 import spacesurvival.controller.utilities.ListGUI;
 import spacesurvival.model.gui.StaticFactoryEngineGUI;
+import spacesurvival.view.GUI;
 import spacesurvival.view.StaticFactoryGUI;
 import spacesurvival.model.gui.Visibility;
 import spacesurvival.utilities.LinkActionGUI;
@@ -142,6 +143,15 @@ public class CtrlGUI {
     private void focusGUI(){
         this.managerGui.values().forEach(managerGui ->
                 managerGui.getGUI().addMouseListener(this.fosucGUI));
+    }
+    
+    public Optional<ControllerGUI> getControllerGUIFromGUI(final GUI gui){
+        for (final ControllerGUI ctrl : this.managerGui.values()) {
+            if(ctrl.getGUI() == gui) {
+                return Optional.of(ctrl);
+            }
+        }
+        return Optional.empty();
     }
 
     public LinkActionGUI getCurrentGUI(){

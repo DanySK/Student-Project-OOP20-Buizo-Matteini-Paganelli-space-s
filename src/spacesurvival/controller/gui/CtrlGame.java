@@ -116,9 +116,12 @@ public class CtrlGame implements ControllerGUI {
     }
     
     public void updateBulletHUD() {
-            this.gui.setBulletHUD(this.engine.getShip().getWeapon().getAmmoType());
-
+        if (this.engine.getAmmoTypeHUD() != this.engine.getAmmoTypeShip()) {
+            this.engine.assignBulletShipInHUD();
+            this.gui.setBulletHUD(this.engine.getAmmoTypeHUD());
+        }
     }
+    
     
     public void updateNHeart() {
         this.gui.setNHeart(this.engine.getLives());
@@ -134,9 +137,10 @@ public class CtrlGame implements ControllerGUI {
     }
     
     public void updateHUD() {
-        this.updateBulletHUD();
         this.updateTimer();
         this.updateLifeShip();
+        this.updateLifeBoss();
+        this.updateBulletHUD();
     }
     
     public void updateLifeShip() {

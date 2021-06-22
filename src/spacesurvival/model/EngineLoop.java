@@ -215,6 +215,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
     }
 
     protected void renderGameOver() {
+        System.out.println("SEIIIII MORRTOTOOOOOO");
         this.controlGUI.endGame();
         playEffect(SoundPath.GAME_OVER);
     }

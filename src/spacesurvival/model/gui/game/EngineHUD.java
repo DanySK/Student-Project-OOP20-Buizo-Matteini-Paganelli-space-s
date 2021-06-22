@@ -1,5 +1,7 @@
 package spacesurvival.model.gui.game;
 
+import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
+
 public class EngineHUD {
     public static final long INIT_SCORE = 0L;
     public static final int INIT_ROUND = 1;
@@ -11,6 +13,7 @@ public class EngineHUD {
     private long score;
     private int round;
     private int lives;
+    private AmmoType ammoType;
 
     public EngineHUD() {
         this.chronometer = new Chronometer();
@@ -54,10 +57,20 @@ public class EngineHUD {
     public void decreaseLives() {
         this.lives -= DECR_VALUE;
     }
+    
+    
 
 //    public boolean isGameOver(){
 //        return this.lives == DEAD;
 //    }
+
+    public AmmoType getAmmoType() {
+        return this.ammoType;
+    }
+
+    public void setAmmoType(final AmmoType ammoType) {
+        this.ammoType = ammoType;
+    }
 
     public String getTimer() {
         return this.chronometer.getTimer();

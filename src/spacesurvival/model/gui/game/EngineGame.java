@@ -7,9 +7,10 @@ import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.controller.collision.CollisionController;
 import spacesurvival.model.World;
 import spacesurvival.model.gameobject.GameObject;
-import spacesurvival.model.gameobject.fireable.Boss;
 import spacesurvival.model.gameobject.fireable.FireableObject;
+import spacesurvival.model.gameobject.fireable.weapon.Weapon;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
+import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
 import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.utilities.dimension.Screen;
 import spacesurvival.utilities.gameobject.LifeUtils;
@@ -132,10 +133,6 @@ public class EngineGame implements EngineGUI {
         this.hud.increaseLives(amount);
     }
 
-//    public boolean hasLostLife() {
-//        return this.getLives() == 0;
-//    }
-
     public void setLifeShip(final int life) {
         this.world.getShip().setLife(life);
     }
@@ -181,6 +178,26 @@ public class EngineGame implements EngineGUI {
 
     public Optional<FireableObject> getBoss() {
         return this.world.getBoss();
+    }
+    
+    public Weapon getWeaponShip() {
+        return this.getShip().getWeapon();
+    }
+    
+    public AmmoType getAmmoTypeShip() {
+        return this.getWeaponShip().getAmmoType();
+    }
+    
+    public void assignBulletShipInHUD() {
+        this.hud.setAmmoType(this.getAmmoTypeShip());
+    }
+    
+    public AmmoType getAmmoTypeHUD() {
+        return this.hud.getAmmoType();
+    }
+    
+    public void setAmmoType(final AmmoType ammoType) {
+        this.hud.setAmmoType(ammoType);
     }
 
 }
