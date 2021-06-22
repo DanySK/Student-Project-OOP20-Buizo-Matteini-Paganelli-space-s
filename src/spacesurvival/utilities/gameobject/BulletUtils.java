@@ -5,31 +5,21 @@ package spacesurvival.utilities.gameobject;
  */
 public final class BulletUtils {
 
-    public static final int INFINITY = 0;
     /**
-     * Number of special munitions available for each perk.
+     * Number of special munitions available for normal ammo type.
+     */
+    public static final int INFINITY = Integer.MAX_VALUE;
+
+    /**
+     * Number of special munitions available for each special ammo type.
      */
     public static final int SPECIAL_MUNITIONS_QUANTITY = 25;
 
     /**
-     * Damage of the normal bullet.
+     * Damage of the bullet.
      */
-    public static final int NORMAL_BULLET_DAMAGE = 25;
+    public static final int BULLET_DAMAGE = 25;
 
-    /**
-     * Damage of the fire bullet.
-     */
-    public static final int FIRE_BULLET_DAMAGE = 15;
-
-    /**
-     * Damage of the ice bullet.
-     */
-    public static final int ICE_BULLET_DAMAGE = 30;
-    
-    /**
-     * Damage of the electric bullet.
-     */
-    public static final int ELECTRIC_BULLET_DAMAGE = 20;
 
     private BulletUtils() {
     }

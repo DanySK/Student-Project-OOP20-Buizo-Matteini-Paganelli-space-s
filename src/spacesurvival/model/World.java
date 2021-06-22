@@ -18,7 +18,6 @@ import spacesurvival.model.collision.CollisionChecker;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.gameobject.Edge;
 import spacesurvival.model.gameobject.GameObject;
-import spacesurvival.model.gameobject.Status;
 import spacesurvival.model.gameobject.factories.AbstractFactoryGameObject;
 import spacesurvival.model.gameobject.factories.ConcreteFactoryGameObject;
 import spacesurvival.model.gameobject.fireable.FireableObject;
@@ -26,7 +25,8 @@ import spacesurvival.model.gameobject.fireable.weapon.Bullet;
 import spacesurvival.model.gameobject.fireable.weapon.Weapon;
 import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
-import spacesurvival.model.gameobject.movable.MovableObject;
+import spacesurvival.model.gameobject.main.Status;
+import spacesurvival.model.gameobject.moveable.MoveableObject;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
 import spacesurvival.model.worldevent.WorldEvent;
@@ -59,6 +59,7 @@ public class World {
     private WorldEventListener evListener;
     private final CollisionChecker collisionChecker = new CollisionChecker();
 
+    private Thread takeableFactoryThread;
     /**
      * Create a World given a RectBoundingBox.
      * @param mainBBox the bounding box on which to base the world limits
@@ -84,6 +85,12 @@ public class World {
 
         createStartingObjects();
     }
+    
+    public void setPauseAnimationAllObject(final boolean isPause) {
+        this.getAllObjects().forEach(obj -> {
+            obj.setPauseAnimation(isPause);
+        });
+    }
 
     /**
      * Create the starting objects for the first round.
@@ -91,7 +98,7 @@ public class World {
     public final void createStartingObjects() {
         this.addAsteroid();
         this.addChaseEnemy();
-        new Thread(() -> {
+        takeableFactoryThread = new Thread(() -> {
             while (ship.isAlive()) {
                 if (RandomUtils.RANDOM.nextBoolean()) {
                     this.addHeart();
@@ -100,10 +107,13 @@ public class World {
                 }
                 ThreadUtils.sleep(Delay.SPAWN_PERK);
             }
-        }).start();
-        //this.addHeart();
+        });
+        this.addHeart();
         this.addAmmo();
         this.addAmmo();
+        this.addAmmo();
+        this.addAmmo();
+
     }
 
     public void setEventListener(final WorldEventListener listener) {
@@ -391,7 +401,7 @@ public class World {
     }
 
 
-    public void pacmanEffect(final MovableObject object, final Edge edge) {
+    public void pacmanEffect(final MoveableObject object, final Edge edge) {
         AffineTransform newTransform = new AffineTransform();
         switch (edge) {
         case TOP:
@@ -510,6 +520,13 @@ public class World {
     }
 
     /**
+     * @return the thread which handle the creation of TakeableObject
+     */
+    public Thread getTakeableFactoryThread() {
+        return takeableFactoryThread;
+    }
+
+    /**
      * @return all main objects in the world
      */
     public Set<MainObject> getMainObjects() {
@@ -587,8 +604,8 @@ public class World {
     /**
      * @return all MoveableObjects in the world
      */
-    public Set<MovableObject> getMovableObjects() {
-        final Set<MovableObject> entities = new HashSet<>();
+    public Set<MoveableObject> getMovableObjects() {
+        final Set<MoveableObject> entities = new HashSet<>();
         entities.add(ship);
         entities.addAll(asteroids);
         entities.addAll(getAllEnemies());

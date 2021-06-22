@@ -7,7 +7,7 @@ import java.awt.Point;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 
-public class Screen {
+public final class Screen {
     private static final float PROPORTION_BIG = 0.9F;
     private static final float PROPORTION_MEDIUM = 0.6F;
     private static final float PROPORTION_MINI = 0.4F;
@@ -17,7 +17,7 @@ public class Screen {
 
     public static final Point POINT_ZERO = new Point(0, 0);
 
-    public static final Dimension FULLSCREEN = SystemVariables.SCREEN;
+    public static final Dimension FULLSCREEN = SystemVariables.SCREEN; 
 
     public static final int WIDTH_FULLSCREEN = (int) (FULLSCREEN.getWidth());
     public static final int HEIGHT_FULLSCREEN = (int) (FULLSCREEN.getHeight());
@@ -61,5 +61,8 @@ public class Screen {
 
     public static int scaleRespectTo(final int scaleOf, final int respectTo){
         return scaleOf * respectTo / 1000;
+    }
+
+    private Screen() {
     }
 }

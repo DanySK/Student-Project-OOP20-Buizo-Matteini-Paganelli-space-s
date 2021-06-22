@@ -1,9 +1,8 @@
 package spacesurvival.view.game.concrete;
 
 import spacesurvival.model.World;
-import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.AbstractGUI;
 import spacesurvival.view.game.GUIGame;
 import spacesurvival.view.game.utilities.BtnPauseID;
@@ -74,10 +73,10 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
     }
 
     @Override
-    public final void setIdButtons(final ActionGUI mainAction, final List<ActionGUI> linksID) {
-        for (final ActionGUI actionGUI : linksID) {
+    public final void setIdButtons(final LinkActionGUI mainAction, final List<LinkActionGUI> linksID) {
+        for (final LinkActionGUI linkActionGUI : linksID) {
             this.btnPause.setActionCurrent(mainAction);
-            this.btnPause.setActionNext(actionGUI);
+            this.btnPause.setActionNext(linkActionGUI);
         }
     }
 

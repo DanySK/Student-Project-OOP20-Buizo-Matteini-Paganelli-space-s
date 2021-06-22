@@ -7,8 +7,7 @@ import java.util.Optional;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
 import spacesurvival.model.gameobject.Edge;
-import spacesurvival.model.gameobject.movable.movement.MovementLogic;
-import spacesurvival.model.gameobject.Status;
+import spacesurvival.model.gameobject.moveable.movement.MovementLogic;
 import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.utilities.RandomUtils;
 import spacesurvival.utilities.path.SoundPath;
@@ -21,6 +20,9 @@ import spacesurvival.model.collision.event.hit.HitBorderEvent;
 import spacesurvival.model.collision.event.hit.HitMainGameObject;
 import spacesurvival.model.collision.eventgenerator.EventComponent;
 
+/**
+ * A neutral object with a fixed direction and velocity, which can hurt with space ship and enemies.
+ */
 public class Asteroid extends MainObject {
 
     public Asteroid(final EngineImage engineImage, final P2d position, final BoundingBox bb,
@@ -53,6 +55,7 @@ public class Asteroid extends MainObject {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void collided(final World world, final WorldEvent event) {
         final Optional<EventType> evType = EventType.getEventFromHit(event);
         if (evType.isPresent()) {
@@ -77,9 +80,12 @@ public class Asteroid extends MainObject {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
-        return "Asteroid { " + super.toString() + " }";
+        return "Asteroid [ " + super.toString() + "]";
     }
 
 }

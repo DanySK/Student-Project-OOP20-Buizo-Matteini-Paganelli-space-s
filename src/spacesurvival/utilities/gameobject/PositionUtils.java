@@ -1,13 +1,14 @@
-package spacesurvival.model.gameobject;
+package spacesurvival.utilities.gameobject;
 
 import java.awt.Dimension;
 
+import spacesurvival.model.common.P2d;
+import spacesurvival.model.gameobject.Edge;
 import spacesurvival.utilities.RandomUtils;
 import spacesurvival.utilities.SystemVariables;
 import spacesurvival.utilities.dimension.Screen;
-import spacesurvival.model.common.P2d;
 
-public final class GameObjectUtils {
+public final class PositionUtils {
 
     /**
      * Generate a random position to spawn a certain object.
@@ -51,7 +52,7 @@ public final class GameObjectUtils {
                 RandomUtils.RANDOM.nextInt((int) (Screen.HEIGHT_FULLSCREEN * SystemVariables.SCALE_Y)));
     }
 
-    private GameObjectUtils() {
-    }
 
+    private PositionUtils() {
+    }
 }

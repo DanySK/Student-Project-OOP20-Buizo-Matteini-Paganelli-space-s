@@ -4,8 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import spacesurvival.model.gameobject.Edge;
-import spacesurvival.model.gameobject.GameObjectUtils;
-import spacesurvival.model.gameobject.movable.movement.MovementLogic;
+import spacesurvival.model.gameobject.moveable.movement.MovementLogic;
 import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.utilities.path.SoundPath;
 import spacesurvival.model.common.P2d;
@@ -18,6 +17,9 @@ import spacesurvival.model.collision.event.EventType;
 import spacesurvival.model.collision.event.hit.HitBorderEvent;
 import spacesurvival.model.collision.eventgenerator.EventComponent;
 
+/**
+ * An enemy able to chase the ship, auto destroy itself when collide with an object.
+ */
 public class ChaseEnemy extends MainObject {
 
     public ChaseEnemy(final EngineImage engineImage, final P2d position, final BoundingBox bb,
@@ -58,9 +60,12 @@ public class ChaseEnemy extends MainObject {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
-        return "ChaseEnemy { " + super.toString() + " }";
+        return "ChaseEnemy [ " + super.toString() + "]";
     }
 
 }

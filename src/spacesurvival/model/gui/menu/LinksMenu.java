@@ -1,35 +1,81 @@
 package spacesurvival.model.gui.menu;
 
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 
+/**
+ * LinksMenu contains menu links with buttons
+ * 
+ *
+ */
 public enum LinksMenu {
-    START_BUTTON("Start", ActionGUI.ID_GAME),
-    SETTINGS_BUTTON("Settings", ActionGUI.ID_SETTING),
-    SCOREBOARD_BUTTON("Scoreboard", ActionGUI.ID_SCOREBOARD),
-    SOUND_BUTTON("Sound", ActionGUI.ID_SOUND),
-    HELP_BUTTON("Help", ActionGUI.ID_HELP),
-    QUIT_BUTTON("Quit", ActionGUI.ID_QUIT);
+    /**
+     * Link to GUI game 
+     */
+    START_BUTTON("Start", LinkActionGUI.ID_GAME),
+    
+    /**
+     * Link to GUI settings 
+     */
+    SETTINGS_BUTTON("Settings", LinkActionGUI.ID_SETTING),
+    
+    /**
+     * Link to GUI sound 
+     */
+    SOUND_BUTTON("Sound", LinkActionGUI.ID_SOUND),
+    
+    /**
+     * Link to GUI help 
+     */
+    HELP_BUTTON("Help", LinkActionGUI.ID_HELP),
+    
+    /**
+     * Link to quit 
+     */
+    QUIT_BUTTON("Quit", LinkActionGUI.ID_QUIT);
 
-    private final String name;
-    private final ActionGUI actionGUI;
+    /**
+     * Button text
+     */
+    private final String text;
+    
+    /**
+     * Associated link of the button
+     */
+    private final LinkActionGUI linkActionGUI;
 
-    private LinksMenu(final String name, final ActionGUI actionGUI){
-        this.name = name;
-        this.actionGUI = actionGUI;
+    /**
+     * 
+     * @param name
+     * @param linkActionGUI
+     */
+    LinksMenu(final String text, final LinkActionGUI linkActionGUI){
+        this.text = text;
+        this.linkActionGUI = linkActionGUI;
     }
 
+    /**
+     * get button text
+     * @return button text
+     */
     public String getName(){
-        return this.name;
+        return this.text;
     }
 
-    public ActionGUI getAction() {
-        return this.actionGUI;
+    /**
+     * get button text
+     * @return button text
+     */
+    public LinkActionGUI getAction() {
+        return this.linkActionGUI;
     }
 
+    /**
+     * @return description of linkMenu 
+     */
     @Override
     public String toString() {
         return "LinksMenu{" +
-                "name='" + name + '\'' +
-                ", actionGUI=" + actionGUI + '}';
+                "name='" + text + '\'' +
+                ", actionGUI=" + linkActionGUI + '}';
     }
 }

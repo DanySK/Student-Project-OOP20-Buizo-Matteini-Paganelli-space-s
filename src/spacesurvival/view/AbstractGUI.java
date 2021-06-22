@@ -1,7 +1,7 @@
 package spacesurvival.view;
 
 import spacesurvival.model.gui.Visibility;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.utilities.FactoryGUIs;
 import spacesurvival.view.utilities.JPanelImage;
 import java.awt.BorderLayout;
@@ -19,7 +19,7 @@ public abstract class AbstractGUI extends JFrame {
     private final JPanelImage panelBackground;
     private final JPanel panelForeground;
 
-    private ActionGUI mainAction;
+    private LinkActionGUI mainAction;
 
     public AbstractGUI() {
         super();
@@ -33,8 +33,8 @@ public abstract class AbstractGUI extends JFrame {
     }
 
 
-    public void setMainAction(final ActionGUI actionGUI) {
-        this.mainAction = actionGUI;
+    public void setMainAction(final LinkActionGUI linkActionGUI) {
+        this.mainAction = linkActionGUI;
     }
 
     @Override

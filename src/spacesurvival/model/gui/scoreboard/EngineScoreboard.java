@@ -2,7 +2,7 @@ package spacesurvival.model.gui.scoreboard;
 
 import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.utilities.dimension.Screen;
 
 import java.awt.*;
@@ -14,22 +14,22 @@ public class EngineScoreboard implements EngineGUI {
     public static final Rectangle RECTANGLE = Screen.RECTANGLE_MEDIUM;
     public static final String TITLE = "SCOREBOARD";
 
-    private final ActionGUI id;
-    private final ActionGUI linkBack;
+    private final LinkActionGUI id;
+    private final LinkActionGUI linkBack;
 
     private final List<NameScoreboardGUI> nameButtons;
 
     private Visibility visibility;
 
     public EngineScoreboard() {
-        this.id = ActionGUI.ID_SCOREBOARD;
-        this.linkBack = ActionGUI.ID_BACK;
+        this.id = LinkActionGUI.ID_SCOREBOARD;
+        this.linkBack = LinkActionGUI.ID_BACK;
         this.nameButtons = Arrays.asList(NameScoreboardGUI.values());
         this.visibility = Visibility.HIDDEN;
     }
 
     @Override
-    public ActionGUI getMainAction() {
+    public LinkActionGUI getMainAction() {
         return this.id;
     }
 
@@ -54,7 +54,7 @@ public class EngineScoreboard implements EngineGUI {
     }
 
     @Override
-    public List<ActionGUI> getLinks() {
+    public List<LinkActionGUI> getLinks() {
         return List.of(this.linkBack);
     }
 
@@ -63,7 +63,7 @@ public class EngineScoreboard implements EngineGUI {
         return TITLE;
     }
 
-    public ActionGUI getBackLink(){
+    public LinkActionGUI getBackLink(){
         return this.linkBack;
     }
 

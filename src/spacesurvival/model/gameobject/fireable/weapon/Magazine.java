@@ -2,11 +2,11 @@ package spacesurvival.model.gameobject.fireable.weapon;
 
 public enum Magazine {
     /**
-     * Limited magazine for thw weapon.
+     * Limited magazine for the weapon.
      */
-	LIMITED,
+    LIMITED,
     /**
-     * Unlimited magazine for thw weapon.
+     * Unlimited magazine for the weapon.
      */
-	UNLIMITED
+    UNLIMITED
 }

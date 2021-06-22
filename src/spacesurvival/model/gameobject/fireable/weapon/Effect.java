@@ -1,9 +1,10 @@
-package spacesurvival.model.gameobject;
+package spacesurvival.model.gameobject.fireable.weapon;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import spacesurvival.model.gameobject.main.Status;
 import spacesurvival.utilities.RandomUtils;
 
 public enum Effect {

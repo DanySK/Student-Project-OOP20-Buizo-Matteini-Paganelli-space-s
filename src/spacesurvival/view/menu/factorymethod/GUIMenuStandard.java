@@ -1,6 +1,6 @@
 package spacesurvival.view.menu.factorymethod;
 
-import spacesurvival.model.gui.game.EngineGame;
+import spacesurvival.model.gui.menu.EngineMenu;
 import spacesurvival.utilities.DesignJComponent;
 import spacesurvival.utilities.path.Background;
 import spacesurvival.view.utilities.DesignGraphics;
@@ -58,13 +58,13 @@ public class GUIMenuStandard implements FactoryGUIMenu {
         menu.add(FactoryGUIs.createPanelFlowUnionComponents(List.of(menu.getTxfNamePlayer(),
                 menu.getBtnActionLinks().get(nBtnUsed++))), lim);
 
-        while(nBtnUsed < EngineGame.N_BUTTONS){
+        while(nBtnUsed < EngineMenu.N_BUTTONS){
             lim.gridy++;
             menu.add(menu.getButton(nBtnUsed++), lim);
         }
 
         nBtnUsed = 0;
-        while(nBtnUsed < EngineGame.N_BUTTONS){
+        while(nBtnUsed < EngineMenu.N_BUTTONS){
             FactoryGUIs.setIconJButtonFromRate(menu.getButton(nBtnUsed),
                     IconsButton.values()[nBtnUsed++].getPath(), ScaleOf.ICON_FULL, menu.getWidth());
         }

@@ -1,7 +1,7 @@
 package spacesurvival.view.menu.concrete;
 
 import spacesurvival.model.gui.menu.EngineMenu;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.AbstractGUI;
 import spacesurvival.view.menu.GUIMenu;
 import spacesurvival.view.utilities.BtnAction;
@@ -44,7 +44,7 @@ public class GUIMenuConcrete extends AbstractGUI implements GUIMenu {
     }
 
     @Override
-    public final void setBtnActions(final ActionGUI mainAction, final List<ActionGUI> linksID) {
+    public final void setBtnActions(final LinkActionGUI mainAction, final List<LinkActionGUI> linksID) {
         for (int i = 0; i < linksID.size(); i++) {
             this.links.get(i).setActionCurrent(mainAction);
             this.links.get(i).setActionNext(linksID.get(i));

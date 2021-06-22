@@ -1,13 +1,12 @@
 package spacesurvival.model.gameobject.main;
 
 import spacesurvival.model.gameobject.Edge;
-import spacesurvival.model.gameobject.Status;
 import spacesurvival.model.gameobject.fireable.FireableObject;
 import spacesurvival.model.gameobject.fireable.shootinglogic.FiringLogic;
-import spacesurvival.model.gameobject.fireable.shootinglogic.implementation.NoFiringImpl;
+import spacesurvival.model.gameobject.fireable.shootinglogic.implementation.NoFiringLogic;
 import spacesurvival.model.gameobject.fireable.weapon.Weapon;
-import spacesurvival.model.gameobject.movable.movement.MovementLogic;
-import spacesurvival.model.gameobject.movable.movement.implementation.ControlledMovement;
+import spacesurvival.model.gameobject.moveable.movement.MovementLogic;
+import spacesurvival.model.gameobject.moveable.movement.implementation.ControlledMovement;
 import spacesurvival.model.gameobject.takeable.ammo.Ammo;
 import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.model.common.P2d;
@@ -34,6 +33,9 @@ import spacesurvival.utilities.gameobject.VelocityUtils;
 import spacesurvival.utilities.path.SoundPath;
 import spacesurvival.utilities.path.animation.AnimationShip;
 
+/**
+ * Singleton creation of the spaceship.
+ */
 public final class SpaceShipSingleton extends FireableObject {
 
     private List<SoundPath> soundQueue = new LinkedList<>();
@@ -52,7 +54,7 @@ public final class SpaceShipSingleton extends FireableObject {
             Score.SHIP,
             Optional.empty(),
             new Weapon(Optional.empty()),
-            new NoFiringImpl()
+            new NoFiringLogic()
             );
 
     /** 
@@ -78,7 +80,7 @@ public final class SpaceShipSingleton extends FireableObject {
      *
      * @param ammo the ammo taken from ship 
      */
-    public void take(final Ammo ammo) {
+    public void takeAmmo(final Ammo ammo) {
         System.out.println("PRENDO MUNIZIONI DI TIPO " + ammo.getType());
         this.getWeapon().setAmmoType(ammo.getType());
     }

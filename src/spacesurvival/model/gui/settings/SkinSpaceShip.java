@@ -8,9 +8,9 @@ import java.util.List;
 public enum SkinSpaceShip {
     SPECIAL(AnimationShip.SPECIAL0, AnimationShip.LIST_SHIP1),
     STANDARD(AnimationShip.STANDARD0, AnimationShip.LIST_SHIP2),
-    DELUXE(AnimationShip.DELUXE0, AnimationShip.LIST_SHIP1),
-    NORMAL(AnimationShip.NORMAL0, AnimationShip.LIST_SHIP1),
-    ATOMIC(AnimationShip.ATOMIC0, AnimationShip.LIST_SHIP1);
+    DELUXE(AnimationShip.DELUXE0, AnimationShip.LIST_SHIP3),
+    NORMAL(AnimationShip.NORMAL0, AnimationShip.LIST_SHIP4),
+    ATOMIC(AnimationShip.ATOMIC0, AnimationShip.LIST_SHIP5);
 
     private final String skin;
 

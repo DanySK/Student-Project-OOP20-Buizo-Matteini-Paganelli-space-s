@@ -2,9 +2,8 @@ package spacesurvival.model.gameobject.main;
 
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
-import spacesurvival.model.gameobject.Status;
-import spacesurvival.model.gameobject.movable.MovableObject;
-import spacesurvival.model.gameobject.movable.movement.MovementLogic;
+import spacesurvival.model.gameobject.moveable.MoveableObject;
+import spacesurvival.model.gameobject.moveable.movement.MovementLogic;
 import spacesurvival.utilities.Delay;
 import spacesurvival.utilities.ThreadUtils;
 import spacesurvival.utilities.gameobject.StatusUtils;
@@ -16,7 +15,7 @@ import spacesurvival.model.collision.eventgenerator.EventComponent;
 /**
  * A game object with main functionalities, including life, impact damege and status.
  */
-public abstract class MainObject extends MovableObject {
+public abstract class MainObject extends MoveableObject {
     private int life;
     private int impactDamage;
     private Status status;
@@ -127,7 +126,7 @@ public abstract class MainObject extends MovableObject {
     /**
      * Starts a thread to apply the status effect, wait for its duration and then restore status to normal.
      */
-    public void onStatus() {
+    private void onStatus() {
         switch (this.status) {
         case INVINCIBLE:
             break;
@@ -161,7 +160,11 @@ public abstract class MainObject extends MovableObject {
      */
     public void onFire() {
         while (this.status == Status.ON_FIRE) {
-            this.decreaseLife(StatusUtils.FIRE_DAMAGE);
+            if (this.getLife() - StatusUtils.FIRE_DAMAGE > 0) {
+                this.decreaseLife(StatusUtils.FIRE_DAMAGE);
+            } else {
+                this.setLife(0);
+            }
             ThreadUtils.sleep(Delay.FIRE_EFFECT);
         }
     }

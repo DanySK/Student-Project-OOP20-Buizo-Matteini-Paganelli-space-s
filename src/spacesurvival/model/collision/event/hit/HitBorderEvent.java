@@ -4,13 +4,13 @@ import spacesurvival.model.World;
 import spacesurvival.model.collision.event.EventType;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.gameobject.Edge;
-import spacesurvival.model.gameobject.movable.MovableObject;
+import spacesurvival.model.gameobject.moveable.MoveableObject;
 import spacesurvival.model.worldevent.WorldEvent;
 
 public class HitBorderEvent implements WorldEvent {
     private final P2d where;
     private final Edge edge;
-    private final MovableObject object;
+    private final MoveableObject object;
     private final EventType type = EventType.BORDER_EVENT;
 
     /**
@@ -20,7 +20,7 @@ public class HitBorderEvent implements WorldEvent {
      * @param edge represents on which edge the collision occurred
      * @param object represents the object that collided
      */
-    public HitBorderEvent(final P2d where, final Edge edge, final MovableObject object) {
+    public HitBorderEvent(final P2d where, final Edge edge, final MoveableObject object) {
         this.where = where;
         this.edge = edge;
         this.object = object;
@@ -49,7 +49,7 @@ public class HitBorderEvent implements WorldEvent {
      * 
      * @return the specified MovableGameObject
      */
-    public MovableObject getCollisionObj() {
+    public MoveableObject getCollisionObj() {
         return this.object;
     }
 

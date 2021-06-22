@@ -1,10 +1,10 @@
-package spacesurvival.model.gameobject.movable.movement.implementation;
+package spacesurvival.model.gameobject.moveable.movement.implementation;
 
 import java.awt.geom.AffineTransform;
 
 import spacesurvival.model.common.P2d;
-import spacesurvival.model.gameobject.movable.MovableObject;
-import spacesurvival.model.gameobject.movable.movement.MovementLogic;
+import spacesurvival.model.gameobject.moveable.MoveableObject;
+import spacesurvival.model.gameobject.moveable.movement.MovementLogic;
 
 public class ChasingMovement implements MovementLogic {
 
@@ -12,7 +12,7 @@ public class ChasingMovement implements MovementLogic {
      * {@inheritDoc}
      */
     @Override
-    public void move(final MovableObject object) {
+    public void move(final MoveableObject object) {
         if (object.isMoving() && object.getTarget().isPresent()) {
             final P2d target = object.getTarget().get();
             final double rightRotation = Math.toDegrees(Math.atan2(object.getPosition().getY() - target.getY(), object.getPosition().getX() - target.getX()));

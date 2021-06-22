@@ -2,12 +2,14 @@ package spacesurvival.model.collision.eventgenerator;
 
 import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.gameobject.fireable.FireEnemy;
+import spacesurvival.model.gameobject.main.MainObject;
 
 import java.util.Optional;
 import spacesurvival.model.World;
 import spacesurvival.model.collision.bounding.BoundaryCollision;
 import spacesurvival.model.collision.bounding.RectBoundingBox;
 import spacesurvival.model.collision.event.hit.HitBorderEvent;
+import spacesurvival.model.collision.event.hit.HitMainGameObject;
 
 public class FireEnemyComponent implements EventComponent {
 
@@ -26,6 +28,11 @@ public class FireEnemyComponent implements EventComponent {
         if (borderInfo.isPresent()) {
             final BoundaryCollision info = borderInfo.get();
             w.notifyWorldEvent(new HitBorderEvent(info.getWhere(), info.getEdge(), fireEnemy));
+        }
+
+        final Optional<MainObject> asteroid = w.checkCollisionWithAsteroids((RectBoundingBox) fireEnemy.getBoundingBox());
+        if (asteroid.isPresent()) {
+            w.notifyWorldEvent(new HitMainGameObject(fireEnemy, asteroid.get()));
         }
     }
 

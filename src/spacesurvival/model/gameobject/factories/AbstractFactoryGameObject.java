@@ -9,11 +9,34 @@ import spacesurvival.model.gameobject.takeable.TakeableGameObject;
  */
 public abstract class AbstractFactoryGameObject {
 
+    /**
+     * @return a new Asteroid
+     */
     public abstract MainObject createAsteroid();
+
+    /**
+     * @return a new ChaseEnemy
+     */
     public abstract MainObject createChaseEnemy();
+
+    /**
+     * @return a new FireEnemy
+     */
     public abstract FireableObject createFireEnemy();
+
+    /**
+     * @return a new Boss
+     */
     public abstract FireableObject createBoss();
+
+    /**
+     * @return a new Ammo
+     */
     public abstract TakeableGameObject createAmmo();
+
+    /**
+     * @return a new Heart
+     */
     public abstract TakeableGameObject createHeart();
 
 }

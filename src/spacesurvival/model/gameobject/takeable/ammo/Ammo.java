@@ -39,13 +39,11 @@ public class Ammo extends TakeableGameObject {
     @Override
     public void collided(final World world, final WorldEvent ev) {
         final Optional<EventType> evType = EventType.getEventFromHit(ev);
-        System.out.println("AMMO EVENTO -> " + evType);
-
         if (evType.isPresent()) {
             switch (EventType.getEventFromHit(ev).get()) {
             case TAKEABLE_OBJECT_EVENT:
                 world.getSoundQueue().add(SoundPath.PERK);
-                world.getShip().take(this);
+                world.getShip().takeAmmo(this);
                 break;
             default:
                 break;

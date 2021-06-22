@@ -1,7 +1,7 @@
 package spacesurvival.view.sound;
 
 import spacesurvival.model.gui.sound.TypeUnitSound;
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.GUI;
 import spacesurvival.view.sound.utilities.ButtonSliderType;
 import spacesurvival.view.sound.utilities.SliderType;
@@ -25,7 +25,7 @@ public interface GUISound extends GUI {
 
     void setDefaultValueSlidersSound(int value);
 
-    void setBtnBackID(ActionGUI actionMain, ActionGUI action);
+    void setBtnBackID(LinkActionGUI actionMain, LinkActionGUI action);
 
     List<ButtonSliderType> getBtnSwitches();
 

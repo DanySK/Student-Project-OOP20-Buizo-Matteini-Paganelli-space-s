@@ -1,6 +1,6 @@
 package spacesurvival.view.scoreboard.concrete;
 
-import spacesurvival.utilities.ActionGUI;
+import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.AbstractGUI;
 import spacesurvival.view.scoreboard.GUIScoreboard;
 import spacesurvival.view.utilities.BtnAction;
@@ -43,7 +43,7 @@ public class GUIScoreboardConcrete extends AbstractGUI implements GUIScoreboard 
     }
 
     @Override
-    public void setBtnBackID(final ActionGUI mainAction, final ActionGUI action) {
+    public void setBtnBackID(final LinkActionGUI mainAction, final LinkActionGUI action) {
         this.btnBack.setActionCurrent(mainAction);
         this.btnBack.setActionNext(action);
     }

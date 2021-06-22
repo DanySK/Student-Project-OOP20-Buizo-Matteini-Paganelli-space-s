@@ -97,7 +97,7 @@ public class Animation extends Thread {
         int index = 0;
 
         while (this.isAnimating) {
-            if (!this.isPause && !this.listPath.isEmpty()) {
+            if (!this.listPath.isEmpty() && !this.isPause) {
                 index = index + 1 > this.listPath.size() ? 0 : index;
                 this.body.setPath(this.listPath.get(index++));
             }
