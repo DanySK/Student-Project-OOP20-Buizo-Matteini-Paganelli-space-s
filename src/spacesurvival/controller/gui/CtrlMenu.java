@@ -22,9 +22,6 @@ public class CtrlMenu implements ControllerGUI {
         this.engine = menuEngine;
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
 
-        this.assignAction();
-        this.assignStrings();
-        this.assignRectangle();
         this.switchGUI.turn(this.engine.getVisibility());
     }
 

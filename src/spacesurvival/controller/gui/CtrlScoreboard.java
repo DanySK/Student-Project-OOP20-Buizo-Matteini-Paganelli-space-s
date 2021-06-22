@@ -19,9 +19,6 @@ public class CtrlScoreboard implements ControllerGUI {
         this.engine = engine;
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
 
-        this.assignAction();
-        this.assignStrings();
-        this.assignRectangle();
         this.switchGUI.turn(this.engine.getVisibility());
     }
 

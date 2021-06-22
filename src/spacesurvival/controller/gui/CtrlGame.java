@@ -33,9 +33,6 @@ public class CtrlGame implements ControllerGUI {
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
         this.keyListener = new MovementKeyListener();
 
-        this.assignAction();
-        this.assignStrings();
-        this.assignRectangle();
         this.switchGUI.turn(this.engine.getVisibility());
     }
 
@@ -132,10 +129,18 @@ public class CtrlGame implements ControllerGUI {
     public void updateHUD() {
         this.updateBulletHUD();
         this.updateTimer();
+        this.updateLifeShip();
+    }
+    
+    public void updateLifeShip() {
+        this.engine.setLifeShip(this.engine.getLifeShip() < 0 ? 0 : this.engine.getLifeShip()); 
         this.gui.setLifeShip(this.engine.getLifeShip());
-        if (this.getWorld().getBoss().isPresent()) {
-            this.gui.setLifeBoss(this.engine.getLifeBoss());
-        }
+    }
+    
+    public void updateLifeBoss() {
+        this.engine.getBoss().ifPresent(boss -> {
+            this.gui.setLifeBoss(boss.getLife());
+        });
     }
 
     public void updateRoundState() {

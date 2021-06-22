@@ -19,10 +19,6 @@ public class CtrlDead implements ControllerGUI{
         this.gui = gui;
 
         this.switchGUI = new SwitchGUI(engine, gui);
-
-        this.assignAction();
-        this.assignStrings();
-        this.assignRectangle();
         this.switchGUI.turn(this.engine.getVisibility());
     }
 
