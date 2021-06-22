@@ -7,6 +7,7 @@ import spacesurvival.utilities.gameobject.VelocityUtils;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
 import spacesurvival.model.gameobject.fireable.FireableObject;
+import spacesurvival.model.gameobject.moveable.Bullet;
 import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
 
 import java.awt.geom.AffineTransform;

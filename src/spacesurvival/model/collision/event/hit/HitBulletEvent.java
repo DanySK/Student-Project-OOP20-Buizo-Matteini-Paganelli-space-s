@@ -2,9 +2,8 @@ package spacesurvival.model.collision.event.hit;
 
 import spacesurvival.model.World;
 import spacesurvival.model.collision.event.EventType;
-import spacesurvival.model.gameobject.fireable.weapon.Bullet;
 import spacesurvival.model.gameobject.main.MainObject;
-
+import spacesurvival.model.gameobject.moveable.Bullet;
 import spacesurvival.model.worldevent.WorldEvent;
 
 public class HitBulletEvent implements WorldEvent {
