@@ -1,7 +1,5 @@
 package spacesurvival.model.gameobject.fireable.weapon;
 
-import spacesurvival.utilities.Delay;
-import spacesurvival.utilities.ThreadUtils;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;
 import spacesurvival.utilities.gameobject.BulletUtils;
@@ -30,7 +28,7 @@ public class Weapon {
     private int munitions;
 
     private final Set<Bullet> shootedBullets;
-    private boolean canShoot;
+    private boolean canShoot = true;
 
     /**
      * Create a weapon with normal ammo type.
@@ -77,7 +75,7 @@ public class Weapon {
      * Create a Bullet and add it to world.
      */
     public void shoot() {
-        if (owner.isPresent()) {// && this.canShoot()
+        if (owner.isPresent()) {
             final EngineImage engineImage = new EngineImage(ScaleOf.BULLET, Screen.WIDTH_FULLSCREEN, ammoType.getBulletFire());
             final P2d position = new P2d();
             final V2d velocity = VelocityUtils.BULLET_VEL;
@@ -102,14 +100,8 @@ public class Weapon {
                     setAmmoType(AmmoType.NORMAL);
                 }
             }
-
             shootedBullets.add(bullet);
-            this.canShoot(false);
             bullet.startMoving();
-            new Thread(() -> {
-                ThreadUtils.sleep(Delay.BULLET_SHOT);
-                this.canShoot(true);
-            }).start();
         }
     }
 
@@ -192,7 +184,7 @@ public class Weapon {
     }
 
     /**
-     * Allow the weapon to shoot.
+     * If parameter is true allows the weapon to shoot.
      * 
      * @param canShoot true is allowed
      */

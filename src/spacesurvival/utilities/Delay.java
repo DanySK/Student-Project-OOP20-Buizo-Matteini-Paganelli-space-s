@@ -54,7 +54,7 @@ public final class Delay {
     /**
      * The time to update weapon. 
      */
-    public static final long BULLET_SHOT = 500;
+    public static final long BULLET_SHOT = 300;
 
     private Delay() {
     }
