@@ -30,7 +30,6 @@ public final class Delay {
      */
     public static final int FIRE_EFFECT = 1000;
 
-
     /**
      * The time for perk spawning.
      */
@@ -54,7 +53,7 @@ public final class Delay {
     /**
      * The time to update weapon. 
      */
-    public static final long BULLET_SHOT = 300;
+    public static final long BULLET_SHOT = 100;
 
     private Delay() {
     }

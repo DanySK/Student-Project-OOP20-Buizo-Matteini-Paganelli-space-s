@@ -29,7 +29,7 @@ public class BossComponent implements EventComponent {
             w.notifyWorldEvent(new HitBorderEvent(info.getWhere(), info.getEdge(), boss));
         }
 
-        final Optional<MainObject> asteroid = w.getCollisionController().checkCollisionWithAsteroids(w.getAsteroids() ,(RectBoundingBox) boss.getBoundingBox());
+        final Optional<MainObject> asteroid = w.getCollisionController().checkCollisionWithAsteroids(w.getAsteroids(), (RectBoundingBox) boss.getBoundingBox());
         if (asteroid.isPresent()) {
             w.notifyWorldEvent(new HitMainGameObject(boss, asteroid.get()));
         }

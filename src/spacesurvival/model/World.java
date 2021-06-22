@@ -303,10 +303,20 @@ public class World {
         });
     }
 
+    /**
+     * Set the current collision controller.
+     * 
+     * @param collisionController
+     */
     public void setCollisionController(final CollisionController collisionController) {
        this.collisionController = collisionController;
     }
 
+    /**
+     * Return the current collision controller.
+     * 
+     * @return the current collision controller
+     */
     public CollisionController getCollisionController() {
         return this.collisionController;
     }

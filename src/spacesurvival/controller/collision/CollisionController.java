@@ -92,24 +92,6 @@ public class CollisionController {
         return Optional.empty();
     }
 
-//    public Optional<MainObject> checkCollisionWithMain(final Set<MainObject> mainObjects, final RectBoundingBox rectBoundingBox) {
-//        for (final MainObject obj: mainObjects) {
-//            if (collisionChecker.rectangleToRectangle(rectBoundingBox, (RectBoundingBox) obj.getBoundingBox())) {
-//                return Optional.of(obj);
-//            }
-//        }
-//        return Optional.empty();
-//    }
-//
-//    public Optional<FireableObject> checkCollisionWithFireable(final Set<FireableObject> fireableObjects, final RectBoundingBox rectBoundingBox){
-//        for (final FireableObject obj: fireableObjects) {
-//            if (collisionChecker.rectangleToRectangle(rectBoundingBox, (RectBoundingBox) obj.getBoundingBox())) {
-//                return Optional.of(obj);
-//            }
-//        }
-//        return Optional.empty();
-//    }
-
     public Optional<FireableObject> checkCollisionWithFireEnemies(final Set<FireableObject> fireEnemies, final RectBoundingBox rectBoundingBox) {
         for (final FireableObject obj: fireEnemies) {
             if (collisionChecker.rectangleToRectangle(rectBoundingBox, (RectBoundingBox) obj.getBoundingBox())) {
@@ -128,15 +110,6 @@ public class CollisionController {
         }
         return Optional.empty();
     }
-
-//    public Optional<TakeableGameObject> checkCollisionWithTakeable(final Set<TakeableGameObject> takeableObjects, final RectBoundingBox rectBoundingBox) {
-//        for (final TakeableGameObject obj: takeableObjects) {
-//            if (collisionChecker.rectangleToCircle(rectBoundingBox, (CircleBoundingBox) obj.getBoundingBox())) {
-//                return Optional.of(obj);
-//            }
-//        }
-//        return Optional.empty();
-//    }
 
     public Optional<TakeableGameObject> checkCollisionWithAmmo(final Set<TakeableGameObject> ammo, final RectBoundingBox rectBoundingBox) {
         for (final TakeableGameObject obj: ammo) {
