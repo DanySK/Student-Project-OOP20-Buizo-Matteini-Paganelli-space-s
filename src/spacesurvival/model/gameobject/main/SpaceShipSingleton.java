@@ -43,7 +43,7 @@ public final class SpaceShipSingleton extends FireableObject {
     // Eager and unique instance of this class for Threadsafing
     private static SpaceShipSingleton spaceShip = new SpaceShipSingleton(
             new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULLSCREEN, AnimationShip.NORMAL0),
-            Screen.POINT_CENTER_FULLSCREEN,
+            Screen.POINT_CENTER_ABSOLUTE,
             new RectBoundingBox(),
             new ShipComponent(),
             VelocityUtils.SPACESHIP_VEL,

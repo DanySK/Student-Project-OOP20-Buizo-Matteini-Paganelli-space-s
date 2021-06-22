@@ -46,6 +46,16 @@ public final class Delay {
      */
     public static final long LOADING_UPDATE = 5;
 
+    /**
+     * The time to update animation's frames. 
+     */
+    public static final long ANIMATIONS = 200;
+
+    /**
+     * The time to update weapon. 
+     */
+    public static final long BULLET_SHOT = 500;
+
     private Delay() {
     }
 }
