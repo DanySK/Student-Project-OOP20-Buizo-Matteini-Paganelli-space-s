@@ -10,7 +10,7 @@ import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.model.Pair;
 import spacesurvival.model.World;
 import spacesurvival.model.commandship.MovementKeyListener;
-import spacesurvival.model.gameobject.main.SpaceShipSingleton;
+import spacesurvival.model.gameobject.fireable.SpaceShipSingleton;
 import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.utilities.CommandKey;
 import spacesurvival.utilities.CommandType;

@@ -1,10 +1,11 @@
-package spacesurvival.model.gameobject.main;
+package spacesurvival.model.gameobject.fireable;
 
 import spacesurvival.model.gameobject.Edge;
-import spacesurvival.model.gameobject.fireable.FireableObject;
 import spacesurvival.model.gameobject.fireable.shootinglogic.FiringLogic;
 import spacesurvival.model.gameobject.fireable.shootinglogic.implementation.NoFiringLogic;
 import spacesurvival.model.gameobject.fireable.weapon.Weapon;
+import spacesurvival.model.gameobject.main.MainObject;
+import spacesurvival.model.gameobject.main.Status;
 import spacesurvival.model.gameobject.moveable.movement.MovementLogic;
 import spacesurvival.model.gameobject.moveable.movement.implementation.ControlledMovement;
 import spacesurvival.model.gameobject.takeable.ammo.Ammo;
@@ -41,7 +42,7 @@ public final class SpaceShipSingleton extends FireableObject {
     private List<SoundPath> soundQueue = new LinkedList<>();
 
     // Eager and unique instance of this class for Threadsafing
-    private static SpaceShipSingleton spaceShip = new SpaceShipSingleton(
+    private static final SpaceShipSingleton SPACESHIP = new SpaceShipSingleton(
             new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULLSCREEN, AnimationShip.NORMAL0),
             Screen.POINT_CENTER_ABSOLUTE,
             new RectBoundingBox(),
@@ -72,7 +73,7 @@ public final class SpaceShipSingleton extends FireableObject {
      * @return space ship static instance
      */
     public static SpaceShipSingleton getSpaceShip() {
-        return spaceShip;
+        return SPACESHIP;
     }
 
     /**
@@ -85,6 +86,9 @@ public final class SpaceShipSingleton extends FireableObject {
         this.getWeapon().setAmmoType(ammo.getType());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void collided(final World world, final WorldEvent ev) {
         final Optional<EventType> evType = EventType.getEventFromHit(ev);

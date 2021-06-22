@@ -1,6 +1,6 @@
 package spacesurvival.model.commandship.command;
 
-import spacesurvival.model.gameobject.main.SpaceShipSingleton;
+import spacesurvival.model.gameobject.fireable.SpaceShipSingleton;
 
 public interface CommandShip {
 

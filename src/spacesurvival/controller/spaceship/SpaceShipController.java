@@ -1,6 +1,6 @@
 package spacesurvival.controller.spaceship;
 
-import spacesurvival.model.gameobject.main.SpaceShipSingleton;
+import spacesurvival.model.gameobject.fireable.SpaceShipSingleton;
 
 
 public class SpaceShipController {

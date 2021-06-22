@@ -2,8 +2,8 @@ package spacesurvival.model.collision.eventgenerator;
 
 import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.gameobject.fireable.FireableObject;
+import spacesurvival.model.gameobject.fireable.SpaceShipSingleton;
 import spacesurvival.model.gameobject.main.MainObject;
-import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.gameobject.moveable.Bullet;
 
 import java.util.Optional;
