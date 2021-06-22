@@ -41,14 +41,10 @@ public class CtrlSound implements ControllerGUI{
         	this.callerAudioEffect.add(new CallerAudio(new SoundEffect(path)))
         );
 
-        this.assignAction();
-        this.assignStrings();
-        this.assignRectangle();
         this.assignSound();
-
         this.linksCallerAudio();
         
-        this.switchGUI.turn(this.engine.getVisibility());
+        this.turn(this.engine.getVisibility());
     }
 
     @Override

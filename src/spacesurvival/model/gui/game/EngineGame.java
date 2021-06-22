@@ -6,6 +6,8 @@ import spacesurvival.model.gui.settings.SkinSpaceShip;
 import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.model.World;
 import spacesurvival.model.gameobject.GameObject;
+import spacesurvival.model.gameobject.fireable.Boss;
+import spacesurvival.model.gameobject.fireable.FireableObject;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.utilities.dimension.Screen;
@@ -13,6 +15,7 @@ import spacesurvival.utilities.gameobject.LifeUtils;
 
 import java.awt.Rectangle;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public class EngineGame implements EngineGUI {
@@ -169,6 +172,10 @@ public class EngineGame implements EngineGUI {
     public void setSkin(final SkinSpaceShip currentSkin) {
         this.world.setSkin(currentSkin);
         
+    }
+
+    public Optional<FireableObject> getBoss() {
+        return this.world.getBoss();
     }
 
 }
