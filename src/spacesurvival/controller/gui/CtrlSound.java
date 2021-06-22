@@ -42,10 +42,9 @@ public class CtrlSound implements ControllerGUI{
         );
 
         this.assignSound();
-
         this.linksCallerAudio();
         
-        this.switchGUI.turn(this.engine.getVisibility());
+        this.turn(this.engine.getVisibility());
     }
 
     @Override
