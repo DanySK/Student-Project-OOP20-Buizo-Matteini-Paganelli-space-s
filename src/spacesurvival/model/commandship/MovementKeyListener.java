@@ -27,9 +27,7 @@ public class MovementKeyListener implements KeyListener {
      * @return the command list of the ship
      */
     public List<Pair<CommandKey, CommandType>> getSpaceShipCommandList() {
-        return this.commandList;
-
-        //return new LinkedList<Pair<CommandKey, CommandType>>(this.commandList);
+        return new LinkedList<Pair<CommandKey, CommandType>>(this.commandList);
     }
 
     /**
