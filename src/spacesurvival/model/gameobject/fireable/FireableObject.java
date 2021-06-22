@@ -10,7 +10,7 @@ import spacesurvival.model.common.V2d;
 import spacesurvival.model.gameobject.fireable.shootinglogic.FiringLogic;
 import spacesurvival.model.gameobject.fireable.weapon.Weapon;
 import spacesurvival.model.gameobject.main.MainObject;
-import spacesurvival.model.gameobject.movable.movement.MovementLogic;
+import spacesurvival.model.gameobject.moveable.movement.MovementLogic;
 
 /**
  * A main object which can fire with a weapon, having a firing logic.

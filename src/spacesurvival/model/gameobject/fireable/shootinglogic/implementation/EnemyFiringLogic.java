@@ -1,8 +1,8 @@
 package spacesurvival.model.gameobject.fireable.shootinglogic.implementation;
 
-import spacesurvival.model.gameobject.Status;
 import spacesurvival.model.gameobject.fireable.FireableObject;
 import spacesurvival.model.gameobject.fireable.shootinglogic.FiringLogic;
+import spacesurvival.model.gameobject.main.Status;
 import spacesurvival.utilities.Delay;
 import spacesurvival.utilities.ThreadUtils;
 
@@ -10,7 +10,7 @@ import spacesurvival.utilities.ThreadUtils;
  * Implement firing logic for fire enemies.
  * The object can shoot but cannot change ammo.
  */
-public class FireEnemyFiringImpl implements FiringLogic {
+public class EnemyFiringLogic implements FiringLogic {
 
     /**
      * Start the fire enemy firing every 5 seconds.

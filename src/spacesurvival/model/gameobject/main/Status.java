@@ -1,4 +1,4 @@
-package spacesurvival.model.gameobject;
+package spacesurvival.model.gameobject.main;
 
 import spacesurvival.utilities.gameobject.BulletUtils;
 import spacesurvival.utilities.gameobject.DurationUtils;

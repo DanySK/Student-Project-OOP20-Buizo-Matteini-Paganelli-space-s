@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import spacesurvival.model.gameobject.Status;
+import spacesurvival.model.gameobject.main.Status;
 import spacesurvival.utilities.RandomUtils;
 import spacesurvival.utilities.gameobject.StatusUtils;
 import spacesurvival.utilities.path.animation.AnimationPerk;

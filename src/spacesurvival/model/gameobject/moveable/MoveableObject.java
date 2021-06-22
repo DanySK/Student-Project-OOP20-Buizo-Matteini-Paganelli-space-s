@@ -1,11 +1,11 @@
-package spacesurvival.model.gameobject.movable;
+package spacesurvival.model.gameobject.moveable;
 
 import java.util.Optional;
 
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
 import spacesurvival.model.gameobject.GameObject;
-import spacesurvival.model.gameobject.movable.movement.MovementLogic;
+import spacesurvival.model.gameobject.moveable.movement.MovementLogic;
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.collision.bounding.BoundingBox;
 import spacesurvival.model.collision.eventgenerator.EventComponent;
@@ -13,7 +13,7 @@ import spacesurvival.model.collision.eventgenerator.EventComponent;
 /**
  * An object which can move, extends a basic game object and implements a logic for movement and an optional target.
  */
-public abstract class MovableObject extends GameObject {
+public abstract class MoveableObject extends GameObject {
 
     private V2d velocity;
     private double acceleration;
@@ -21,7 +21,7 @@ public abstract class MovableObject extends GameObject {
     private MovementLogic movementLogic;
     private boolean isMoving;
 
-    public MovableObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
+    public MoveableObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
             final EventComponent eventComponent, final V2d velocity, final double acceleration, final MovementLogic movementLogic,
             final Optional<P2d> target) {
         super(engineImage, position, bb, eventComponent);

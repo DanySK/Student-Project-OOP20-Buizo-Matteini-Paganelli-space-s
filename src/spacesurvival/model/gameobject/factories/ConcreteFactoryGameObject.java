@@ -6,16 +6,16 @@ import spacesurvival.model.gameobject.fireable.Boss;
 import spacesurvival.model.gameobject.fireable.FireEnemy;
 import spacesurvival.model.gameobject.fireable.FireableObject;
 import spacesurvival.model.gameobject.fireable.shootinglogic.FiringLogic;
-import spacesurvival.model.gameobject.fireable.shootinglogic.implementation.BossFiringImpl;
-import spacesurvival.model.gameobject.fireable.shootinglogic.implementation.FireEnemyFiringImpl;
+import spacesurvival.model.gameobject.fireable.shootinglogic.implementation.BossFiringLogic;
+import spacesurvival.model.gameobject.fireable.shootinglogic.implementation.EnemyFiringLogic;
 import spacesurvival.model.gameobject.fireable.weapon.Weapon;
 import spacesurvival.model.gameobject.main.Asteroid;
 import spacesurvival.model.gameobject.main.ChaseEnemy;
 import spacesurvival.model.gameobject.main.MainObject;
-import spacesurvival.model.gameobject.movable.movement.MovementLogic;
-import spacesurvival.model.gameobject.movable.movement.implementation.ChasingMovement;
-import spacesurvival.model.gameobject.movable.movement.implementation.RandomMovement;
-import spacesurvival.model.gameobject.movable.movement.implementation.FixedMovement;
+import spacesurvival.model.gameobject.moveable.movement.MovementLogic;
+import spacesurvival.model.gameobject.moveable.movement.implementation.ChasingMovement;
+import spacesurvival.model.gameobject.moveable.movement.implementation.FixedMovement;
+import spacesurvival.model.gameobject.moveable.movement.implementation.RandomMovement;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.model.gameobject.takeable.ammo.Ammo;
 import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
@@ -98,7 +98,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
         final int life = LifeUtils.FIRE_ENEMY_LIFE;
         final int impactDamage = DamageUtils.FIRE_ENEMY_DAMAGE;
         final Weapon weapon = new Weapon(Optional.empty());
-        final FiringLogic firingLogic = new FireEnemyFiringImpl();
+        final FiringLogic firingLogic = new EnemyFiringLogic();
 
         final FireEnemy fireEnemy = new FireEnemy(engineImage, position, new RectBoundingBox(), new FireEnemyComponent(), velocity,
                 acceleration, movementLogic, life, impactDamage, Score.FIRE_ENEMY, Optional.empty(), weapon, firingLogic);
@@ -119,7 +119,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
         final int life = LifeUtils.BOSS_LIFE;
         final int impactDamage = DamageUtils.BOSS_DAMAGE;
         final Weapon weapon = new Weapon(Optional.empty());
-        final FiringLogic firingLogic = new BossFiringImpl();
+        final FiringLogic firingLogic = new BossFiringLogic();
 
         final Boss boss = new Boss(engineImage, position, new RectBoundingBox(), new BossComponent(), velocity,
                 acceleration, movementLogic, life, impactDamage, Score.BOSS, Optional.empty(), weapon, firingLogic);
@@ -132,7 +132,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
      */
     @Override
     public TakeableGameObject createAmmo() {
-        final AmmoType ammoType = AmmoType.random();
+        final AmmoType ammoType = AmmoType.randomExceptNormal();
         final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULLSCREEN, AnimationPerk.FIRE0);
         final P2d position = PositionUtils.generateRandomPoint();
 

@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import spacesurvival.model.gameobject.Edge;
-import spacesurvival.model.gameobject.Status;
 import spacesurvival.model.gameobject.fireable.shootinglogic.FiringLogic;
 import spacesurvival.model.gameobject.fireable.weapon.Weapon;
 import spacesurvival.model.gameobject.main.MainObject;
-import spacesurvival.model.gameobject.movable.movement.MovementLogic;
+import spacesurvival.model.gameobject.main.Status;
+import spacesurvival.model.gameobject.moveable.movement.MovementLogic;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
 import spacesurvival.model.worldevent.WorldEvent;

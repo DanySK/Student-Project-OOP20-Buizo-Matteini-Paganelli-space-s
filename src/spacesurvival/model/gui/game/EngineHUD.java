@@ -47,7 +47,7 @@ public class EngineHUD {
         this.lives = heartShip;
     }
 
-    public void increaseLives(final int amount){
+    public void increaseLives(final int amount) {
         this.lives += amount;
     }
 
@@ -59,23 +59,23 @@ public class EngineHUD {
 //        return this.lives == DEAD;
 //    }
 
-    public String getTimer(){
+    public String getTimer() {
         return this.chronometer.getTimer();
     }
 
-    public void startTimer(){
+    public void startTimer() {
         this.chronometer.play();
     }
 
-    public void stopTimer(){
+    public void stopTimer() {
         this.chronometer.stopTimer();
     }
 
-    public void resetLives(){
+    public void resetLives() {
         this.lives = EngineHUD.INIT_HEART;
     }
 
-    public void resetTimer(){
+    public void resetTimer() {
         this.chronometer.restart();
     }
 }
