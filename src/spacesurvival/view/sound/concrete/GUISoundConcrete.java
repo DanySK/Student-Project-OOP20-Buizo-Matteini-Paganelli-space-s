@@ -7,7 +7,7 @@ import spacesurvival.view.AbstractGUI;
 import spacesurvival.view.sound.GUISound;
 import spacesurvival.view.sound.utilities.ButtonSliderType;
 import spacesurvival.view.sound.utilities.MixerSound;
-import spacesurvival.view.utilities.BtnAction;
+import spacesurvival.view.utilities.ButtonLink;
 import spacesurvival.view.sound.utilities.SliderType;
 
 import java.awt.Color;
@@ -19,17 +19,17 @@ import javax.swing.JLabel;
 public class GUISoundConcrete extends AbstractGUI implements GUISound {
     private final JLabel lbTitle;
     private final MixerSound mixerSound;
-    private final BtnAction btnBack;
+    private final ButtonLink btnBack;
 
     public GUISoundConcrete() {
         super();
         this.lbTitle = new JLabel();
         this.mixerSound = new MixerSound();
-        this.btnBack = new BtnAction();
+        this.btnBack = new ButtonLink();
     }
 
     @Override
-    public List<BtnAction> getBtnActionLinks() {
+    public List<ButtonLink> getBtnActionLinks() {
         return List.of(this.btnBack);
     }
 
@@ -72,8 +72,8 @@ public class GUISoundConcrete extends AbstractGUI implements GUISound {
 
     @Override
     public void setBtnBackID(final LinkActionGUI actionMain, final LinkActionGUI action) {
-        this.btnBack.setActionCurrent(actionMain);
-        this.btnBack.setActionNext(action);
+        this.btnBack.setCurrentLink(actionMain);
+        this.btnBack.setNextLink(action);
     }
 
     @Override
@@ -120,7 +120,7 @@ public class GUISoundConcrete extends AbstractGUI implements GUISound {
         return this.lbTitle;
     }
 
-    public BtnAction getBtnBack(){
+    public ButtonLink getBtnBack(){
         return this.btnBack;
     }
 

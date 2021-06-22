@@ -24,7 +24,7 @@ public class FocusGUI implements MouseListener{
 
     @Override
     public void mousePressed(final MouseEvent e) {
-        final LinkActionGUI id = control.getControllerGUIFromGUI((GUI)e.getSource()).get().getMainAction();
+        final LinkActionGUI id = control.getControllerGUIFromGUI((GUI)e.getSource()).get().getMainLink();
             
         System.out.println("id corrente -> " + id + "il suo state Level" + id.getStateLevel());
             

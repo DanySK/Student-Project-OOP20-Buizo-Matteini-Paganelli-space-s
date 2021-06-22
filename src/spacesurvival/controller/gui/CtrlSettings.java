@@ -19,7 +19,7 @@ public class CtrlSettings implements ControllerGUI {
 
     private final SwitchGUI switchGUI;
 
-    public CtrlSettings(final EngineSettings engine, final GUISettings gui){
+    public CtrlSettings(final EngineSettings engine, final GUISettings gui) {
         this.gui = gui;
         this.engine = engine;
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
@@ -28,13 +28,13 @@ public class CtrlSettings implements ControllerGUI {
     }
 
     @Override
-    public void assignAction() {
-        this.gui.setMainAction(this.engine.getMainAction());
-        this.gui.setBtnBackID(this.engine.getMainAction(), this.engine.getBackLink());
+    public void assignLinks() {
+        this.gui.setMainAction(this.engine.getMainLink());
+        this.gui.setBtnBackID(this.engine.getMainLink(), this.engine.getBackLink());
     }
 
     @Override
-    public void assignStrings() {
+    public void assignTexts() {
         this.gui.setTitleGUI(this.engine.getTitleGUI());
         this.gui.setUnitNames(this.engine.getListNameUnit());
         this.gui.setNameBtnBack(this.engine.getNameBtnBack());
@@ -55,7 +55,7 @@ public class CtrlSettings implements ControllerGUI {
 
     private ActionListener changeSkin(){
         return e -> {
-            final JButton btn = (JButton)e.getSource();
+            final JButton btn = (JButton) e.getSource();
             CtrlSettings.this.changeSkinWithDir(btn.getText());
             CtrlSettings.this.gui.setSkinSpaceShip(CtrlSettings.this.engine.getEngineSkinShip());
         };
@@ -63,7 +63,7 @@ public class CtrlSettings implements ControllerGUI {
 
     private ActionListener changeDifficult(){
         return e -> {
-            JRadioDifficult radio = (JRadioDifficult)e.getSource();
+            JRadioDifficult radio = (JRadioDifficult) e.getSource();
             CtrlSettings.this.engine.setDifficult(radio.getDifficulty());
         };
     }
@@ -81,8 +81,8 @@ public class CtrlSettings implements ControllerGUI {
     }
 
     @Override
-    public LinkActionGUI getMainAction() {
-        return this.engine.getMainAction();
+    public LinkActionGUI getMainLink() {
+        return this.engine.getMainLink();
     }
 
     @Override

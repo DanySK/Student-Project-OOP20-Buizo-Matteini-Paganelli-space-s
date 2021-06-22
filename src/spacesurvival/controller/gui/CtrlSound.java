@@ -48,13 +48,13 @@ public class CtrlSound implements ControllerGUI{
     }
 
     @Override
-    public void assignAction() {
-        this.gui.setMainAction(this.engine.getMainAction());
-        this.gui.setBtnBackID(this.engine.getMainAction(), this.engine.getBackLink());
+    public void assignLinks() {
+        this.gui.setMainAction(this.engine.getMainLink());
+        this.gui.setBtnBackID(this.engine.getMainLink(), this.engine.getBackLink());
     }
 
     @Override
-    public void assignStrings() {
+    public void assignTexts() {
         this.gui.setTitleGUI(this.engine.getTitle());
         this.gui.setNameButtonBack(this.engine.getNameBack());
     }
@@ -165,8 +165,8 @@ public class CtrlSound implements ControllerGUI{
 
 
     @Override
-    public LinkActionGUI getMainAction() {
-        return this.engine.getMainAction();
+    public LinkActionGUI getMainLink() {
+        return this.engine.getMainLink();
     }
 
     @Override

@@ -44,7 +44,7 @@ public class EngineSound implements EngineGUI {
     }
 
     @Override
-    public LinkActionGUI getMainAction() {
+    public LinkActionGUI getMainLink() {
         return id;
     }
 

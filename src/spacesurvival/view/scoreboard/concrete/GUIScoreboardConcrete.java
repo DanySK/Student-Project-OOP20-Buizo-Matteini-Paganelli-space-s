@@ -3,7 +3,7 @@ package spacesurvival.view.scoreboard.concrete;
 import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.AbstractGUI;
 import spacesurvival.view.scoreboard.GUIScoreboard;
-import spacesurvival.view.utilities.BtnAction;
+import spacesurvival.view.utilities.ButtonLink;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +17,7 @@ public class GUIScoreboardConcrete extends AbstractGUI implements GUIScoreboard 
     private final JButton btnSearch;
     private final List scoreboard;
     private final JScrollPane scrollerScoreboard;
-    private final BtnAction btnBack;
+    private final ButtonLink btnBack;
 
     public GUIScoreboardConcrete(){
         super();
@@ -26,11 +26,11 @@ public class GUIScoreboardConcrete extends AbstractGUI implements GUIScoreboard 
         this.btnSearch = new JButton();
         this.scoreboard = new List();
         this.scrollerScoreboard = new JScrollPane(scoreboard);
-        this.btnBack = new BtnAction();
+        this.btnBack = new ButtonLink();
     }
 
     @Override
-    public java.util.List<BtnAction> getBtnActionLinks() {
+    public java.util.List<ButtonLink> getBtnActionLinks() {
         return java.util.List.of(this.btnBack);
     }
 
@@ -44,8 +44,8 @@ public class GUIScoreboardConcrete extends AbstractGUI implements GUIScoreboard 
 
     @Override
     public void setBtnBackID(final LinkActionGUI mainAction, final LinkActionGUI action) {
-        this.btnBack.setActionCurrent(mainAction);
-        this.btnBack.setActionNext(action);
+        this.btnBack.setCurrentLink(mainAction);
+        this.btnBack.setNextLink(action);
     }
 
     @Override

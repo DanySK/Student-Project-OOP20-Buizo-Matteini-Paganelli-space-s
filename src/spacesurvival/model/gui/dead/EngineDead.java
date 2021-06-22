@@ -28,7 +28,7 @@ public class EngineDead implements EngineGUI {
     }
 
     @Override
-    public LinkActionGUI getMainAction() {
+    public LinkActionGUI getMainLink() {
         return this.mainAction;
     }
 

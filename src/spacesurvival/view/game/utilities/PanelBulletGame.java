@@ -29,7 +29,6 @@ public class PanelBulletGame extends JPanel {
         this.world.get().getAllBullets().forEach(bullets -> {
             g2d.setTransform(bullets.getTransform());
             g2d.drawImage(bullets.getImgBody(), 0, 0, null);
-            g2d.drawImage(bullets.getImgEffect(), 0, 0, null);
         });
     }
 

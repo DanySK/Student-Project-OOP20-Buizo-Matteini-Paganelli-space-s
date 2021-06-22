@@ -15,7 +15,7 @@ public interface EngineGUI {
      * 
      * @return the main action of type ActionGUI.
      */
-    LinkActionGUI getMainAction();
+    LinkActionGUI getMainLink();
 
     /**
      * Return the rectangle represent the GUI.
@@ -27,7 +27,7 @@ public interface EngineGUI {
     /**
      * Return the state of the visibility of the GUI.
      * 
-     * @return a Visibility enum
+     * @return a Visibility enumeration.
      */
     Visibility getVisibility();
 

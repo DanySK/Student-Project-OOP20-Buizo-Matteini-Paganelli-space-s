@@ -37,13 +37,13 @@ public class CtrlGame implements ControllerGUI {
     }
 
     @Override
-    public void assignAction() {
-        this.gui.setMainAction(this.engine.getMainAction());
-        this.gui.setIdButtons(this.engine.getMainAction(), this.engine.getLinks());
+    public void assignLinks() {
+        this.gui.setMainAction(this.engine.getMainLink());
+        this.gui.setIdButtons(this.engine.getMainLink(), this.engine.getLinks());
     }
 
     @Override
-    public final void assignStrings() {
+    public final void assignTexts() {
         this.gui.setMaxLifeBoss(LifeUtils.BOSS_LIFE);
         this.gui.setMaxLifeShip(LifeUtils.SPACESHIP_LIFE);
     }
@@ -54,8 +54,8 @@ public class CtrlGame implements ControllerGUI {
     }
 
     @Override
-    public final LinkActionGUI getMainAction() {
-        return this.engine.getMainAction();
+    public final LinkActionGUI getMainLink() {
+        return this.engine.getMainLink();
     }
 
     @Override

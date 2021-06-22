@@ -1,7 +1,7 @@
 package spacesurvival.view.pause.factorymethod;
 
 import spacesurvival.model.gui.pause.EnginePause;
-import spacesurvival.view.utilities.DesignGraphics;
+import spacesurvival.view.utilities.GraphicsUtils;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.view.pause.FactoryGUIPause;
 import spacesurvival.view.pause.GUIPause;
@@ -17,12 +17,12 @@ public class GUIPauseStandard implements FactoryGUIPause {
     public GUIPause create() {
         final GUIPauseConcrete concrete = new GUIPauseConcrete();
 
-        concrete.setFontGUITitle(DesignGraphics.getFontForTitle(DesignGraphics.SIZE_FONT_H1));
+        concrete.setFontGUITitle(GraphicsUtils.getFontForTitle(GraphicsUtils.SIZE_FONT_H2));
 
-        concrete.setForegroundGUI(DesignGraphics.COLOR_4);
-        concrete.setFontButtons(DesignGraphics.FONT_MEDIUM_STANDARD);
+        concrete.setForegroundGUI(GraphicsUtils.COLOR_4);
+        concrete.setFontButtons(GraphicsUtils.FONT_STANDARD_H5);
 
-        concrete.setBorder(DesignGraphics.COLOR_4, FactoryGUIs.MIN_INSET);
+        concrete.setBorder(GraphicsUtils.COLOR_4, FactoryGUIs.INSET_H4);
 
         this.createGraphics(concrete);
 
@@ -32,13 +32,13 @@ public class GUIPauseStandard implements FactoryGUIPause {
     private void createGraphics(final GUIPauseConcrete concrete){
         concrete.setLayout(new BorderLayout());
 
-        concrete.getBtnActionLinks().forEach(FactoryGUIs::setTransparentDesignJButton);
+        concrete.getBtnActionLinks().forEach(FactoryGUIs::setTransparentJButton);
 
         concrete.getBtnActionLinks().forEach(btn -> btn.setFocusable(false));
         concrete.add(FactoryGUIs.encapsulatesInPanelFlow(concrete.getLbTitle()), BorderLayout.NORTH);
 
         concrete.add(FactoryGUIs.createPanelGridBagUnionComponentsVertical(concrete.getBtnActionLinks(),
-                FactoryGUIs.MEDIUM_INSET), BorderLayout.CENTER);
+                FactoryGUIs.INSET_H3), BorderLayout.CENTER);
 
         for (int i = 0; i < concrete.getBtnActionLinks().size(); i++){
             FactoryGUIs.setIconJButtonFromRate(concrete.getActionBtn(i), IconsButton.values()[i].getPath(),

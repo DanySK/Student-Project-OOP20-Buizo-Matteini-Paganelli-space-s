@@ -23,13 +23,13 @@ public class CtrlHelp implements ControllerGUI {
     }
 
     @Override
-    public void assignAction() {
-        this.gui.setMainAction(this.engine.getMainAction());
-        this.gui.setActionBtnBack(this.engine.getMainAction(), this.engine.getBackLink());
+    public void assignLinks() {
+        this.gui.setMainAction(this.engine.getMainLink());
+        this.gui.setActionBtnBack(this.engine.getMainLink(), this.engine.getBackLink());
     }
 
     @Override
-    public void assignStrings() {
+    public void assignTexts() {
         this.gui.setTitleGUI(this.engine.getTitle());
         this.gui.setNameUnit(this.engine.getListNameUnits());
         this.gui.setBtnNames(this.engine.getListNameButtons());
@@ -44,8 +44,8 @@ public class CtrlHelp implements ControllerGUI {
 
 
     @Override
-    public LinkActionGUI getMainAction() {
-        return this.engine.getMainAction();
+    public LinkActionGUI getMainLink() {
+        return this.engine.getMainLink();
     }
 
     @Override

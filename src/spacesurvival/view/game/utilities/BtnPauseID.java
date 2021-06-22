@@ -3,13 +3,13 @@ package spacesurvival.view.game.utilities;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;
 import spacesurvival.utilities.path.Icon;
-import spacesurvival.view.utilities.BtnAction;
+import spacesurvival.view.utilities.ButtonLink;
 import spacesurvival.view.utilities.FactoryGUIs;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class BtnPauseID extends BtnAction implements MouseListener{
+public class BtnPauseID extends ButtonLink implements MouseListener{
     private final String pathIconEnter;
     private final String pathIconExit;
 

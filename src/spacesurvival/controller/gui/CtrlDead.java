@@ -24,13 +24,13 @@ public class CtrlDead implements ControllerGUI{
 
 
     @Override
-    public void assignAction() {
-        this.gui.setMainAction(this.engine.getMainAction());
-        this.gui.setBtnActions(this.engine.getMainAction(), this.engine.getLinks());
+    public void assignLinks() {
+        this.gui.setMainAction(this.engine.getMainLink());
+        this.gui.setBtnActions(this.engine.getMainLink(), this.engine.getLinks());
     }
 
     @Override
-    public void assignStrings() {
+    public void assignTexts() {
         this.gui.setTitleGUI(this.engine.getTitleGUI());
         this.gui.setNameButtons(this.engine.getListNameLinks());
     }
@@ -41,8 +41,8 @@ public class CtrlDead implements ControllerGUI{
     }
 
     @Override
-    public LinkActionGUI getMainAction() {
-        return this.engine.getMainAction();
+    public LinkActionGUI getMainLink() {
+        return this.engine.getMainLink();
     }
 
     @Override

@@ -13,7 +13,7 @@ import spacesurvival.view.help.factorymethod.GUIHelpStandard;
 import spacesurvival.view.help.FactoryGUIHelp;
 import spacesurvival.view.help.GUIHelp;
 import spacesurvival.view.menu.factorymethod.GUIMenuStandard;
-import spacesurvival.view.menu.FactoryGUIMenu;
+import spacesurvival.view.menu.FactoryGuiMenu;
 import spacesurvival.view.menu.GUIMenu;
 import spacesurvival.view.pause.FactoryGUIPause;
 import spacesurvival.view.pause.GUIPause;
@@ -29,45 +29,43 @@ import spacesurvival.view.sound.GUISound;
 import spacesurvival.view.sound.factorymethod.GUISoundStandard;
 
 /**
- * StaticFactoryGUI create GUIs from their individual factories
- *
+ * StaticFactoryGUI create GUIs from their individual factories.
  */
-public class StaticFactoryGUI {
+public final class StaticFactoryGUI {
+    private StaticFactoryGUI() {
+    }
 
     /**
-     * Create a loading gui from the factory
+     * Create a loading GUI from the factory.
      *
-     * @return loading gui
+     * @return loading GUI.
      */
-    public static GUILoading createLoading(){
+    public static GUILoading createLoading() {
         FactoryGUILoading factoryGUILoading = new GUILoadingStandard();
         return factoryGUILoading.create();
     }
 
     /**
-     * Create a menu gui from the factory
-     *
-     * @return menu gui
+     * Create a menu GUI from the factory.
+     * @return menu GUI.
      */
-    public static GUIMenu createMenuGUI(){
-        FactoryGUIMenu menuGUI = new GUIMenuStandard();
-        return menuGUI.createGUI();
+    public static GUIMenu createMenuGUI() {
+        FactoryGuiMenu menuGUI = new GUIMenuStandard();
+        return menuGUI.createGui();
     }
 
     /**
-     * Create a scoreboard gui from the factory
-     *
-     * @return scoreboard gui
+     * Create a scoreboard GUI from the factory.
+     * @return scoreboard GUI.
      */
-    public static GUIScoreboard createScoreboardGUI(){
+    public static GUIScoreboard createScoreboardGUI() {
         FactoryGUIScoreboard scoreboardGUI = new GUIScoreboardStandard();
         return scoreboardGUI.createGUI();
     }
 
     /**
-     * Create a settings gui from the factory
-     *
-     * @return settings gui
+     * Create a settings GUI from the factory.
+     * @return settings GUI.
      */
     public static GUISettings createSettingsGUI() {
         FactoryGUISettings settingsGUI = new GUISettingsStandard();
@@ -75,53 +73,47 @@ public class StaticFactoryGUI {
     }
 
     /**
-     * Create a help gui from the factory
-     *
-     * @return help gui
+     * Create a help GUI from the factory.
+     * @return help GUI.
      */
-    public static GUIHelp createHelpGUI(){
+    public static GUIHelp createHelpGUI() {
         FactoryGUIHelp helpGUI = new GUIHelpStandard();
         return helpGUI.create();
     }
 
     /**
-     * Create a sound gui from the factory
-     *
-     * @return sound gui
+     * Create a sound GUI from the factory.
+     * @return sound GUI.
      */
-    public static GUISound createSoundGUI(){
+    public static GUISound createSoundGUI() {
         FactoryGUISound soundGUI = new GUISoundStandard();
         return soundGUI.create();
     }
 
     /**
-     * Create a game gui from the factory
-     *
-     * @return game gui
+     * Create a game GUI from the factory.
+     * @return game GUI.
      */
-    public static GUIGame createGameGUI(){
+    public static GUIGame createGameGUI() {
         FactoryGUIGame gameGUI = new GUIGameStandard();
         return gameGUI.create();
     }
 
     /**
-     * Create a pause gui from the factory
-     *
-     * @return pause gui
+     * Create a pause GUI from the factory.
+     * @return pause GUI.
      */
-    public static GUIPause createPauseGUI(){
+    public static GUIPause createPauseGUI() {
         FactoryGUIPause pauseGUI = new GUIPauseStandard();
         return pauseGUI.create();
     }
 
     /**
-     * Create a dead gui from the factory
-     *
-     * @return dead gui
+     * Create a dead GUI from the factory.
+     * @return dead GUI.
      */
-    public static GUIDead createDeadGUI(){
+    public static GUIDead createDeadGUI() {
         FactoryGUIDead deadGUI = new GUIDeadStandard();
         return deadGUI.create();
     }
-
 }

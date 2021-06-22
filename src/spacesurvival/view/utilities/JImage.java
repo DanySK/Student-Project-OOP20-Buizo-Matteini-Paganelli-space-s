@@ -11,6 +11,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 
+/**
+ * 
+ * @author buizo
+ *
+ */
 public class JImage extends JComponent {
     private static final long serialVersionUID = -2971663994387728066L;
     private int width, height;

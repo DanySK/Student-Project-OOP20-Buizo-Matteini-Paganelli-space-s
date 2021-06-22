@@ -2,7 +2,7 @@ package spacesurvival.view.pause;
 
 import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.GUI;
-import spacesurvival.view.utilities.BtnAction;
+import spacesurvival.view.utilities.ButtonLink;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface GUIPause extends GUI {
 
-    BtnAction getActionBtn(int ind);
+    ButtonLink getActionBtn(int ind);
 
     void setNameButtons(List<String> listNames);
 

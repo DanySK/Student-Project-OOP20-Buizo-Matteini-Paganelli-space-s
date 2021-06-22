@@ -8,7 +8,7 @@ import spacesurvival.view.settings.GUISettings;
 import spacesurvival.view.settings.utilities.JRadioDifficult;
 import spacesurvival.view.settings.utilities.PanelDifficult;
 import spacesurvival.view.settings.utilities.PanelSkin;
-import spacesurvival.view.utilities.BtnAction;
+import spacesurvival.view.utilities.ButtonLink;
 import spacesurvival.view.utilities.FactoryGUIs;
 
 import java.awt.Color;
@@ -24,18 +24,18 @@ public class GUISettingsConcrete extends AbstractGUI implements GUISettings {
     private final JLabel lbTitle;
     private final PanelSkin panelSkin;
     private final PanelDifficult panelDifficult;
-    private final BtnAction btnBack;
+    private final ButtonLink btnBack;
 
     public GUISettingsConcrete() {
         super();
         this.lbTitle = new JLabel();
         this.panelSkin = new PanelSkin();
         this.panelDifficult = new PanelDifficult();
-        this.btnBack = new BtnAction();
+        this.btnBack = new ButtonLink();
     }
 
     @Override
-    public final List<BtnAction> getBtnActionLinks() {
+    public final List<ButtonLink> getBtnActionLinks() {
         return List.of(this.btnBack);
     }
 
@@ -80,8 +80,8 @@ public class GUISettingsConcrete extends AbstractGUI implements GUISettings {
 
     @Override
     public final void setBtnBackID(final LinkActionGUI mainAction, final LinkActionGUI action) {
-        this.btnBack.setActionCurrent(mainAction);
-        this.btnBack.setActionNext(action);
+        this.btnBack.setCurrentLink(mainAction);
+        this.btnBack.setNextLink(action);
     }
 
 
@@ -119,7 +119,7 @@ public class GUISettingsConcrete extends AbstractGUI implements GUISettings {
     @Override
     public final void setTransparentComponent() {
         this.panelSkin.setTransparentButton();
-        FactoryGUIs.setTransparentDesignJButton(this.btnBack);
+        FactoryGUIs.setTransparentJButton(this.btnBack);
     }
 
 
@@ -127,7 +127,7 @@ public class GUISettingsConcrete extends AbstractGUI implements GUISettings {
         return this.lbTitle;
     }
 
-    public final BtnAction getBtnBack() {
+    public final ButtonLink getBtnBack() {
         return this.btnBack;
     }
 

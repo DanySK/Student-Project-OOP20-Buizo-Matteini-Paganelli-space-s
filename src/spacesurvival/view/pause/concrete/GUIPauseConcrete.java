@@ -4,7 +4,7 @@ import spacesurvival.model.gui.pause.EnginePause;
 import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.AbstractGUI;
 import spacesurvival.view.pause.GUIPause;
-import spacesurvival.view.utilities.BtnAction;
+import spacesurvival.view.utilities.ButtonLink;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,23 +14,23 @@ import java.util.stream.Stream;
 
 public class GUIPauseConcrete extends AbstractGUI implements GUIPause {
     private final JLabel lbTitle;
-    private final List<BtnAction> links;
+    private final List<ButtonLink> links;
 
     public GUIPauseConcrete(){
         super();
         this.lbTitle = new JLabel();
-        this.links = Stream.generate(BtnAction::new)
+        this.links = Stream.generate(ButtonLink::new)
                 .limit(EnginePause.N_BUTTONS).collect(Collectors.toList());
     }
 
     @Override
-    public List<BtnAction> getBtnActionLinks() {
+    public List<ButtonLink> getBtnActionLinks() {
         return this.links;
     }
 
 
     @Override
-    public BtnAction getActionBtn(int ind) {
+    public ButtonLink getActionBtn(int ind) {
         return this.links.get(ind);
     }
 
@@ -44,8 +44,8 @@ public class GUIPauseConcrete extends AbstractGUI implements GUIPause {
     @Override
     public void setActionButtons(final LinkActionGUI mainAction, final List<LinkActionGUI> linksID) {
         for(int i = 0; i < linksID.size(); i++){
-            this.links.get(i).setActionCurrent(mainAction);
-            this.links.get(i).setActionNext(linksID.get(i));
+            this.links.get(i).setCurrentLink(mainAction);
+            this.links.get(i).setNextLink(linksID.get(i));
         }
     }
 

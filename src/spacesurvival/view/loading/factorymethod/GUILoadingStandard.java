@@ -1,6 +1,6 @@
 package spacesurvival.view.loading.factorymethod;
 
-import spacesurvival.view.utilities.DesignGraphics;
+import spacesurvival.view.utilities.GraphicsUtils;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;
 import spacesurvival.utilities.path.Background;
@@ -18,8 +18,8 @@ public class GUILoadingStandard implements FactoryGUILoading {
     public GUILoading create() {
         GUILoadingConcrete concrete = new GUILoadingConcrete();
         concrete.setImageBackground(Background.LOADING);
-        concrete.setFontLbtitle(DesignGraphics.getFontForTitle(DesignGraphics.SIZE_FONT_H0));
-        concrete.setForegroundGUI(DesignGraphics.COLOR_4);
+        concrete.setFontLbtitle(GraphicsUtils.getFontForTitle(GraphicsUtils.SIZE_FONT_H1));
+        concrete.setForegroundGUI(GraphicsUtils.COLOR_4);
 
 
         graphics(concrete);
@@ -38,13 +38,13 @@ public class GUILoadingStandard implements FactoryGUILoading {
 
         JPanel panel = FactoryGUIs.encapsulatesInPanelFlow(concrete.getProgressBar());
         FlowLayout flow = (FlowLayout) panel.getLayout();
-        flow.setVgap(FactoryGUIs.EXTREME_INSET);
+        flow.setVgap(FactoryGUIs.INSET_H0);
 
 
         concrete.add(FactoryGUIs.encapsulateInPanelBorderOrientation(panel, BorderLayout.SOUTH),
                 BorderLayout.CENTER);
 
-        concrete.getProgressBar().setForeground(DesignGraphics.COLOR_4);
+        concrete.getProgressBar().setForeground(GraphicsUtils.COLOR_4);
 
         concrete.getProgressBar().setPreferredSize(new Dimension(
                 Screen.scaleRespectTo(ScaleOf.WIDTH_BAR_LOADING, Screen.WIDTH_FULLSCREEN),

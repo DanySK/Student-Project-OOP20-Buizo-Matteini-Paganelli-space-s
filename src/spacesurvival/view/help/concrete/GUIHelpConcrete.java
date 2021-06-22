@@ -6,7 +6,7 @@ import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.AbstractGUI;
 import spacesurvival.view.help.GUIHelp;
 import spacesurvival.view.help.utilities.UnitHelp;
-import spacesurvival.view.utilities.BtnAction;
+import spacesurvival.view.utilities.ButtonLink;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,26 +18,26 @@ import java.util.stream.Stream;
 public class GUIHelpConcrete extends AbstractGUI implements GUIHelp {
     private final JLabel lbTitle;
     private final List<UnitHelp> unitHelps;
-    private final BtnAction btnBack;
+    private final ButtonLink btnBack;
 
     public GUIHelpConcrete() {
         super();
         this.lbTitle = new JLabel();
-        this.btnBack = new BtnAction();
+        this.btnBack = new ButtonLink();
         this.unitHelps = Stream.generate(UnitHelp::new)
                 .limit(EngineHelp.N_UNIT).collect(Collectors.toList());
     }
 
     @Override
-    public List<BtnAction> getBtnActionLinks() {
+    public List<ButtonLink> getBtnActionLinks() {
         return List.of(this.btnBack);
     }
 
 
     @Override
     public void setActionBtnBack(final LinkActionGUI mainAction, final LinkActionGUI intoID) {
-        this.btnBack.setActionCurrent(mainAction);
-        this.btnBack.setActionNext(intoID);
+        this.btnBack.setCurrentLink(mainAction);
+        this.btnBack.setNextLink(intoID);
     }
 
     @Override
@@ -90,7 +90,7 @@ public class GUIHelpConcrete extends AbstractGUI implements GUIHelp {
         return this.lbTitle;
     }
 
-    public BtnAction getBtnBack(){
+    public ButtonLink getBtnBack(){
         return this.btnBack;
     }
 

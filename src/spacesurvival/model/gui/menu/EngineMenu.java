@@ -17,12 +17,12 @@ public class EngineMenu implements EngineGUI {
      * Dimension of the menu GUI.
      */
     public static final Rectangle RECTANGLE = Screen.RECTANGLE_FULLSCREEN;
-    
+
     /**
      * Title of the menu GUI.
      */
     public static final String TITLE = "SPACE SURVIVAL";
-    
+
     /**
      * Number of buttons of the menu GUI.
      */
@@ -33,7 +33,9 @@ public class EngineMenu implements EngineGUI {
 
     private Visibility visibility;
 
-    
+    /**
+     * Constructor for a GUI menu template.
+     */
     public EngineMenu() {
         this.mainAction = LinkActionGUI.ID_MENU;
         this.linkButtons = Arrays.asList(LinksMenu.values());
@@ -44,7 +46,7 @@ public class EngineMenu implements EngineGUI {
      * {@inheritDoc}
      */
     @Override
-    public LinkActionGUI getMainAction() {
+    public LinkActionGUI getMainLink() {
         return this.mainAction;
     }
 
@@ -109,5 +111,14 @@ public class EngineMenu implements EngineGUI {
                 .map(LinksMenu::getName)
                 .collect(Collectors.toList());
     }
+
+    /**
+     * Return descriptions of menu engine.
+     */
+    @Override
+    public String toString() {
+        return "EngineMenu [mainAction=" + mainAction + ", linkButtons=" + linkButtons + ", visibility=" + visibility + "]";
+    }
+
 }
 

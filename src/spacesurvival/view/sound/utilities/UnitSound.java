@@ -25,7 +25,7 @@ public class UnitSound extends JPanel {
     }
 
     private void graphics() {
-        FactoryGUIs.setTransparentDesignJButton(this.btnSwitch);
+        FactoryGUIs.setTransparentJButton(this.btnSwitch);
         FactoryGUIs.setDefaultJSlider(this.sliderSound);
         super.add(FactoryGUIs.encapsulatesInPanelFlow(this.lbTitle), BorderLayout.NORTH);
         super.add(FactoryGUIs.createPanelFlowUnionComponents(java.util.List.of(this.btnSwitch, this.sliderSound)), BorderLayout.CENTER);

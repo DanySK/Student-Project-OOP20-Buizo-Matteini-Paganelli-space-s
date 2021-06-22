@@ -16,7 +16,7 @@ import spacesurvival.view.game.utilities.RoundTimer;
 import spacesurvival.view.game.utilities.Score;
 import spacesurvival.view.game.utilities.logicColor.LogicColorBoss;
 import spacesurvival.view.game.utilities.logicColor.LogicColorShip;
-import spacesurvival.view.utilities.BtnAction;
+import spacesurvival.view.utilities.ButtonLink;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -62,7 +62,7 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
     }
 
     @Override
-    public final List<BtnAction> getBtnActionLinks() {
+    public final List<ButtonLink> getBtnActionLinks() {
         return List.of(this.btnPause);
     }
 
@@ -75,8 +75,8 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
     @Override
     public final void setIdButtons(final LinkActionGUI mainAction, final List<LinkActionGUI> linksID) {
         for (final LinkActionGUI linkActionGUI : linksID) {
-            this.btnPause.setActionCurrent(mainAction);
-            this.btnPause.setActionNext(linkActionGUI);
+            this.btnPause.setCurrentLink(mainAction);
+            this.btnPause.setNextLink(linkActionGUI);
         }
     }
 

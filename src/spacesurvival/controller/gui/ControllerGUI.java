@@ -13,15 +13,15 @@ public interface ControllerGUI {
     /**
      * Assign the links from the model to the GUI.
      */
-    void assignAction();
+    void assignLinks();
 
     /**
      * Assign the texts from the modem to the GUI.
      */
-    void assignStrings();
+    void assignTexts();
 
     /**
-     * Assign the rect angle from the modem to the GUI.
+     * Assign the rectangle angle from the modem to the GUI.
      */
     void assignRectangle();
 
@@ -29,7 +29,7 @@ public interface ControllerGUI {
      * Get my linkAction. 
      * @return my linkAction.
      */
-    LinkActionGUI getMainAction();
+    LinkActionGUI getMainLink();
 
     /**
      * Get my GUI.
@@ -51,6 +51,7 @@ public interface ControllerGUI {
 
     /**
      * Set visibility of my GUI.
+     * @param visibility for visibility.
      */
     void turn(Visibility visibility);
 
@@ -60,7 +61,7 @@ public interface ControllerGUI {
     void changeVisibility();
 
     /**
-     * Close my JFrame
+     * Close my JFrame.
      */
     void closeGUI();
 }
