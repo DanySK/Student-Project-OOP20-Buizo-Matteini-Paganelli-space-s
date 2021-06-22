@@ -51,6 +51,8 @@ public interface ControllerGUI {
 
     /**
      * Set visibility of my GUI.
+     * 
+     * @param visibility the visibility to set
      */
     void turn(Visibility visibility);
 
@@ -60,7 +62,7 @@ public interface ControllerGUI {
     void changeVisibility();
 
     /**
-     * Close my JFrame
+     * Close my JFrame.
      */
     void closeGUI();
 }

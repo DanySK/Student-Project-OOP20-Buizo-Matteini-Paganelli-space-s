@@ -74,6 +74,13 @@ public class CollisionController {
         return Optional.empty();
     }
 
+    /**
+     * Check the collision with asteroids.
+     * 
+     * @param asteroids the set of asteroids
+     * @param rectBoundingBox the rect bounding box to check
+     * @return an optional of the object if the collision occurred, empty if not.
+     */
     public Optional<MainObject> checkCollisionWithAsteroids(final Set<MainObject> asteroids, final RectBoundingBox rectBoundingBox) {
         for (final MainObject obj: asteroids) {
             if (collisionChecker.rectangleToCircle(rectBoundingBox, (CircleBoundingBox) obj.getBoundingBox())) {
@@ -83,6 +90,13 @@ public class CollisionController {
         return Optional.empty();
     }
 
+    /**
+     * Check the collision with chase enemies.
+     * 
+     * @param chaseEnemies the set of chase enemies
+     * @param rectBoundingBox the rect bounding box to check
+     * @return an optional of the object if the collision occurred, empty if not.
+     */
     public Optional<MainObject> checkCollisionWithChaseEnemies(final Set<MainObject> chaseEnemies, final RectBoundingBox rectBoundingBox) {
         for (final MainObject obj: chaseEnemies) {
             if (collisionChecker.rectangleToRectangle(rectBoundingBox, (RectBoundingBox) obj.getBoundingBox())) {
@@ -92,6 +106,13 @@ public class CollisionController {
         return Optional.empty();
     }
 
+    /**
+     * Check the collision with fire enemies.
+     * 
+     * @param fireEnemies the set of fire enemies
+     * @param rectBoundingBox the rect bounding box to check
+     * @return an optional of the object if the collision occurred, empty if not.
+     */
     public Optional<FireableObject> checkCollisionWithFireEnemies(final Set<FireableObject> fireEnemies, final RectBoundingBox rectBoundingBox) {
         for (final FireableObject obj: fireEnemies) {
             if (collisionChecker.rectangleToRectangle(rectBoundingBox, (RectBoundingBox) obj.getBoundingBox())) {
@@ -101,6 +122,13 @@ public class CollisionController {
         return Optional.empty();
     }
 
+    /**
+     * Check the collision with boss.
+     * 
+     * @param boss the boss
+     * @param rectBoundingBox the rect bounding box to check
+     * @return an optional of the object if the collision occurred, empty if not.
+     */
     public Optional<FireableObject> checkCollisionWithBoss(final Optional<FireableObject> boss, final RectBoundingBox rectBoundingBox) {
         if (boss.isPresent()) {
             final RectBoundingBox bossBoundingBox = (RectBoundingBox) boss.get().getBoundingBox();
@@ -111,6 +139,13 @@ public class CollisionController {
         return Optional.empty();
     }
 
+    /**
+     * Check the collision with pickable ammo.
+     * 
+     * @param ammo the set of the ammos
+     * @param rectBoundingBox the rect bounding box to check
+     * @return an optional of the object if the collision occurred, empty if not.
+     */
     public Optional<TakeableGameObject> checkCollisionWithAmmo(final Set<TakeableGameObject> ammo, final RectBoundingBox rectBoundingBox) {
         for (final TakeableGameObject obj: ammo) {
             if (collisionChecker.rectangleToCircle(rectBoundingBox, (CircleBoundingBox) obj.getBoundingBox())) {
@@ -120,6 +155,13 @@ public class CollisionController {
         return Optional.empty();
     }
 
+    /**
+     * Check the collision with pickable heart.
+     * 
+     * @param hearts the set of hearts
+     * @param rectBoundingBox the rect bounding box to check
+     * @return an optional of the object if the collision occurred, empty if not.
+     */
     public Optional<TakeableGameObject> checkCollisionWithHearts(final Set<TakeableGameObject> hearts, final RectBoundingBox rectBoundingBox) {
         for (final TakeableGameObject obj: hearts) {
             if (collisionChecker.rectangleToCircle(rectBoundingBox, (CircleBoundingBox) obj.getBoundingBox())) {

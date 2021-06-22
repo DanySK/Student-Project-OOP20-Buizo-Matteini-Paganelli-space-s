@@ -90,19 +90,19 @@ public class CtrlGame implements ControllerGUI {
     public final void closeGUI() {
         this.gui.close();
     }
-    
+
     public CollisionController getControllerCollision() {
         return this.controlCollision;
     }
-    
+
     public void setPauseAnimationAllObject(final boolean isPause) {
         this.engine.setPauseAnimationAllObject(isPause);
     }
-    
+
     public void updateScore() {
         this.gui.setScore(this.engine.getScore());
     }
-    
+
     public void updateRound() {
         this.gui.setRound(this.engine.getRound());
     }
@@ -110,23 +110,22 @@ public class CtrlGame implements ControllerGUI {
     public void updateCountEnemies() {
         this.gui.setNEnemies(this.engine.getCountEnemies());
     }
-    
+
     public void updateTimer() {
         this.gui.setTimer(this.engine.getTimer());
     }
-    
+
     public void updateBulletHUD() {
         if (this.engine.getAmmoTypeHUD() != this.engine.getAmmoTypeShip()) {
             this.engine.assignBulletShipInHUD();
             this.gui.setBulletHUD(this.engine.getAmmoTypeHUD());
         }
     }
-    
-    
+
     public void updateNHeart() {
         this.gui.setNHeart(this.engine.getLives());
     }
-    
+
     public void initHUD() {
         this.updateScore();
         this.updateRound();
@@ -135,19 +134,19 @@ public class CtrlGame implements ControllerGUI {
         this.updateBulletHUD();
         this.updateNHeart();
     }
-    
+
     public void updateHUD() {
         this.updateTimer();
         this.updateLifeShip();
         this.updateLifeBoss();
         this.updateBulletHUD();
     }
-    
+
     public void updateLifeShip() {
         this.engine.setLifeShip(this.engine.getLifeShip() < 0 ? 0 : this.engine.getLifeShip()); 
         this.gui.setLifeShip(this.engine.getLifeShip());
     }
-    
+
     public void updateLifeBoss() {
         this.engine.getBoss().ifPresent(boss -> {
             this.gui.setLifeBoss(boss.getLife());

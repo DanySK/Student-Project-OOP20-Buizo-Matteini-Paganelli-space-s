@@ -29,7 +29,7 @@ public class CtrlGUI {
     private final CtrlHelp ctrlHelp;
     private final CtrlPause ctrlPause;
     private final CtrlDead ctrlDead;
-    
+
     private final ListGUI<LinkActionGUI> chronology;
 
     private final Map<LinkActionGUI, ControllerGUI> managerGui;
@@ -37,9 +37,9 @@ public class CtrlGUI {
     private final MouseListener fosucGUI;
     private final LogicSwitchGUI logicSwitchMenu;
     private final LogicSwitchGUI logicSwitchGame;
-    
 
-    public CtrlGUI(){
+
+    public CtrlGUI() {
         this.ctrlMenu = new CtrlMenu(StaticFactoryEngineGUI.createEngineMenu(), StaticFactoryGUI.createMenuGUI());
         this.ctrlGame = new CtrlGame(StaticFactoryEngineGUI.createEngineGame(), StaticFactoryGUI.createGameGUI());
         this.ctrlSettings = new CtrlSettings(StaticFactoryEngineGUI.createEngineSettings(), StaticFactoryGUI.createSettingsGUI());
@@ -58,12 +58,12 @@ public class CtrlGUI {
         this.managerGui.put(this.ctrlDead.getMainAction(), this.ctrlDead);
 
         this.chronology = new ListGUI<>();
-       
+
         this.fosucGUI = new FocusGUI(this);
         this.logicSwitchMenu = new LogicSwitchMenu();
         this.logicSwitchGame = new LogicSwitchGame();
     }
-    
+
     public Map<LinkActionGUI, ControllerGUI> getManagerGui() {
         return this.managerGui;
     }
@@ -79,29 +79,29 @@ public class CtrlGUI {
         this.assignAllString();
         this.assignAllRectangle();
         this.linksAll();
-        
+
         this.startElementsWhenInGame();
         this.restartGame();
     }
-    
+
     public void assignAllLinkAction() {
         this.managerGui.forEach((key, value) -> {
             value.assignAction();
         });
     }
-    
+
     public void assignAllString() {
         this.managerGui.forEach((key, value) -> {
             value.assignStrings();
         });
     }
-    
+
     public void assignAllRectangle() {
         this.managerGui.forEach((key, value) -> {
             value.assignRectangle();
         });
     }
-    
+
     public boolean isInGameOver(){
         return this.chronology.contains(LinkActionGUI.ID_DEAD);
     }
@@ -121,8 +121,7 @@ public class CtrlGUI {
     private void linksAll(){
         this.managerGui.values().forEach(managerGui -> managerGui.getGUI().getBtnActionLinks().forEach(btn ->
                 btn.addActionListener(e -> {
-                    System.out.println("Premuto in: " + btn.getActionCurrent() + " Vado in: " + btn.getActionNext());
-                    
+
                     if (this.isInPause()){
                         this.logicSwitchGame.algorithm(btn.getActionCurrent(), btn.getActionNext(),
                                 this.chronology, this.managerGui);
@@ -131,7 +130,7 @@ public class CtrlGUI {
                         this.logicSwitchMenu.algorithm(btn.getActionCurrent(), btn.getActionNext(),
                                 this.chronology, this.managerGui);
                     }
-                    
+
                     if (this.isInGame()) {
                         this.ctrlGame.setPauseAnimationAllObject(false);
                     }
@@ -144,7 +143,7 @@ public class CtrlGUI {
         this.managerGui.values().forEach(managerGui ->
                 managerGui.getGUI().addMouseListener(this.fosucGUI));
     }
-    
+
     public Optional<ControllerGUI> getControllerGUIFromGUI(final GUI gui){
         for (final ControllerGUI ctrl : this.managerGui.values()) {
             if(ctrl.getGUI() == gui) {
@@ -176,7 +175,7 @@ public class CtrlGUI {
     }
 
     private void startElementsWhenInGame() {
-        
+
         this.getLinkBtnFromGUI(LinkActionGUI.ID_MENU, LinkActionGUI.ID_GAME).ifPresent(link -> {
             link.addActionListener(e -> {
                 this.ctrlGame.setSkin(this.ctrlSettings.getCurrentSkin());
@@ -194,7 +193,6 @@ public class CtrlGUI {
     private void restartGame() {
         this.getLinkBtnFromGUI(LinkActionGUI.ID_DEAD, LinkActionGUI.ID_MENU).ifPresent(link -> {
             link.addActionListener(e -> {
-//              this.ctrlGame.addAllGameObjectsFromWorld();
                 this.ctrlGame.restartGame();
                 this.managerGui.values().forEach(control ->
                         control.getGUI().setImageBackground(control.getMainAction().getBackground()));
@@ -214,7 +212,7 @@ public class CtrlGUI {
         }
         return Optional.empty();
     }
-    
+
     public void assignSoundLoop() {
         this.managerGui.values().forEach(ctrl -> ctrl.getGUI().getBtnActionLinks().forEach(
                 btn -> btn.addActionListener(l -> {
@@ -224,7 +222,4 @@ public class CtrlGUI {
                 })
         ));
     }
-
-
-
 }

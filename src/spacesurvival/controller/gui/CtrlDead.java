@@ -8,7 +8,7 @@ import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.GUI;
 import spacesurvival.view.dead.GUIDead;
 
-public class CtrlDead implements ControllerGUI{
+public class CtrlDead implements ControllerGUI {
     private final EngineDead engine;
     private final GUIDead gui;
 
