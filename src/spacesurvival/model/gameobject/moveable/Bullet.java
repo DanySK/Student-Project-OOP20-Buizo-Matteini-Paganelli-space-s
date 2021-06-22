@@ -1,12 +1,13 @@
 
-package spacesurvival.model.gameobject.fireable.weapon;
+package spacesurvival.model.gameobject.moveable;
 
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
 import spacesurvival.model.gameobject.fireable.FireableObject;
+import spacesurvival.model.gameobject.fireable.weapon.Effect;
+import spacesurvival.model.gameobject.fireable.weapon.Weapon;
 import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
-import spacesurvival.model.gameobject.moveable.MoveableObject;
 import spacesurvival.model.gameobject.moveable.movement.implementation.FixedMovement;
 import spacesurvival.model.worldevent.WorldEvent;
 import java.util.Optional;
@@ -90,8 +91,6 @@ public class Bullet extends MoveableObject {
     @Override
     public void collided(final World world, final WorldEvent ev) {
         final Optional<EventType> evType = EventType.getEventFromHit(ev);
-        
-        
         if (evType.isPresent()) {
             switch (EventType.getEventFromHit(ev).get()) {
             case BORDER_EVENT:
@@ -100,7 +99,6 @@ public class Bullet extends MoveableObject {
             case BULLET_EVENT:
                 final HitBulletEvent bulletEvent = (HitBulletEvent) ev;
                 final MainObject collidedObject = bulletEvent.getCollidedObject();
-                
                 if (!this.getShooter().equals(collidedObject)) {
                     if (collidedObject instanceof SpaceShipSingleton && !collidedObject.isInvincible()) {
                         world.getQueueDecreaseLife().add(collidedObject.getImpactDamage());
