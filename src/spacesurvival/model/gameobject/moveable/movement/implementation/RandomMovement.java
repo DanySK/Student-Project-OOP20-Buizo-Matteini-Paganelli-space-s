@@ -17,8 +17,8 @@ public class RandomMovement implements MovementLogic {
      */
     @Override
     public void move(final MoveableObject moveableObject) {
-        if (moveableObject.isMoving() && moveableObject.getTarget().isPresent()) {
-            final P2d target = moveableObject.getTarget().get();
+        if (moveableObject.isMoving() && moveableObject.getTargetPosition().isPresent()) {
+            final P2d target = moveableObject.getTargetPosition().get();
             final double rightRotation = Math.toDegrees(Math.atan2(moveableObject.getPosition().getY() - target.getY(),
                     moveableObject.getPosition().getX() - target.getX()));
             final double complementary = 180 - (rightRotation * -1);

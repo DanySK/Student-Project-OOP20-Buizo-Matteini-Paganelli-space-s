@@ -230,11 +230,11 @@ public class EngineLoop extends Thread implements WorldEventListener {
      */
     public void assignTargetToEnemies() {
         getWorld().getAllEnemies().forEach(enemy -> {
-            final AffineTransform trans = new AffineTransform();
-            trans.setTransform(getShip().getTransform());
-            trans.translate(getShip().getWidth() / 2, getShip().getHeight() / 2);
-            final P2d target = new P2d(trans.getTranslateX(), trans.getTranslateY());
-            enemy.setTarget(Optional.of(target));
+            final AffineTransform shipTransform = new AffineTransform();
+            shipTransform.setTransform(getShip().getTransform());
+            shipTransform.translate(getShip().getWidth() / 2, getShip().getHeight() / 2);
+            final P2d shipPosition = new P2d(shipTransform.getTranslateX(), shipTransform.getTranslateY());
+            enemy.setTargetPosition(Optional.of(shipPosition));
         });
     }
 

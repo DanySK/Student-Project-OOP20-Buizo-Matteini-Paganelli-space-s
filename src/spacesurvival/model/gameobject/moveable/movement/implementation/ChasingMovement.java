@@ -13,8 +13,8 @@ public class ChasingMovement implements MovementLogic {
      */
     @Override
     public void move(final MoveableObject object) {
-        if (object.isMoving() && object.getTarget().isPresent()) {
-            final P2d target = object.getTarget().get();
+        if (object.isMoving() && object.getTargetPosition().isPresent()) {
+            final P2d target = object.getTargetPosition().get();
             final double rightRotation = Math.toDegrees(Math.atan2(object.getPosition().getY() - target.getY(), object.getPosition().getX() - target.getX()));
             final double complementary = 180 - (rightRotation * -1);
             final double newAngle = 90 + complementary;
