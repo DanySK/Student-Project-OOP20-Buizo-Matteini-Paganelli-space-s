@@ -492,21 +492,21 @@ public class World {
      * @return the optional of boss
      */
     public Optional<FireableObject> getBoss() {
-        return boss;
+        return this.boss;
     }
 
     /**
      * @return all ammo in the world
      */
     public Set<TakeableGameObject> getAmmo() {
-        return ammo;
+        return this.ammo;
     }
 
     /**
      * @return all hearts in the world
      */
     public Set<TakeableGameObject> getHearts() {
-        return hearts;
+        return this.hearts;
     }
 
     /**
@@ -656,6 +656,9 @@ public class World {
         return this.boss.get().getLife();
     }
 
+    /**
+     * @return return the list of effect to play.
+     */
     public List<SoundPath> getSoundQueue() {
         return this.soundQueue;
     }

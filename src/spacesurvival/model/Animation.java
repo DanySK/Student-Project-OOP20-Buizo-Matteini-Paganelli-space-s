@@ -3,6 +3,8 @@ package spacesurvival.model;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
+
+import spacesurvival.utilities.Delay;
 import spacesurvival.utilities.ThreadUtils;
 
 public class Animation extends Thread {
@@ -21,7 +23,7 @@ public class Animation extends Thread {
     public EngineImage getBody() {
         return this.body;
     }
-    
+
     public void setBody(final EngineImage body) {
         this.body = body;
     }
@@ -95,13 +97,11 @@ public class Animation extends Thread {
         int index = 0;
 
         while (this.isAnimating) {
-            final long current = System.currentTimeMillis();
             if (!this.isPause && !this.listPath.isEmpty()) {
                 index = index + 1 > this.listPath.size() ? 0 : index;
                 this.body.setPath(this.listPath.get(index++));
             }
-
-            waitForNextFrame(current);
+            ThreadUtils.sleep(Delay.ANIMATIONS);
         }
     }
 

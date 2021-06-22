@@ -1,5 +1,7 @@
 package spacesurvival.model.gameobject.fireable.weapon;
 
+import spacesurvival.utilities.Delay;
+import spacesurvival.utilities.ThreadUtils;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;
 import spacesurvival.utilities.gameobject.BulletUtils;
@@ -28,6 +30,7 @@ public class Weapon {
     private int munitions;
 
     private final Set<Bullet> shootedBullets;
+    private boolean canShoot;
 
     /**
      * Create a weapon with normal ammo type.
@@ -74,7 +77,7 @@ public class Weapon {
      * Create a Bullet and add it to world.
      */
     public void shoot() {
-        if (owner.isPresent()) {
+        if (owner.isPresent()) {// && this.canShoot()
             final EngineImage engineImage = new EngineImage(ScaleOf.BULLET, Screen.WIDTH_FULLSCREEN, ammoType.getBulletFire());
             final P2d position = new P2d();
             final V2d velocity = VelocityUtils.BULLET_VEL;
@@ -88,7 +91,6 @@ public class Weapon {
             final AffineTransform newTransform = new AffineTransform();
             newTransform.setTransform(owner.get().getTransform());
 
-            //newTransform.setTransform(owner.getTransform());
             final double bulletX = owner.get().getWidth() / 2 - bullet.getWidth() / 2;
             final double bulletY = -owner.get().getHeight() / 2;
             newTransform.translate(bulletX, bulletY);
@@ -102,7 +104,12 @@ public class Weapon {
             }
 
             shootedBullets.add(bullet);
+            this.canShoot(false);
             bullet.startMoving();
+            new Thread(() -> {
+                ThreadUtils.sleep(Delay.BULLET_SHOT);
+                this.canShoot(true);
+            }).start();
         }
     }
 
@@ -182,6 +189,24 @@ public class Weapon {
      */
     public Set<Bullet> getShootedBullets() {
         return shootedBullets;
+    }
+
+    /**
+     * Allow the weapon to shoot.
+     * 
+     * @param canShoot true is allowed
+     */
+    public void canShoot(final boolean canShoot) {
+        this.canShoot = canShoot;
+    }
+
+    /**
+     * Return true if weapon is allowed to shoot.
+     * 
+     * @return true if weapon can shoot
+     */
+    public boolean canShoot() {
+        return this.canShoot;
     }
 
 }
