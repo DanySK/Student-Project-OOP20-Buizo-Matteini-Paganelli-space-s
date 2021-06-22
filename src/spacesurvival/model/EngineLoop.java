@@ -140,9 +140,10 @@ public class EngineLoop extends Thread implements WorldEventListener {
      */
     private void processInput() {
         final Iterator<Pair<CommandKey, CommandType>> inputIterator = this.controlGame.getSpaceShipCommandList().iterator();
-        inputIterator.forEachRemaining(cmd -> {
-            this.callerCommandShip.execute(cmd.getX());
-        });
+
+        while (inputIterator.hasNext()) {
+            this.callerCommandShip.execute(inputIterator.next().getX());
+        }
         this.controlGame.clearSpaceShipCommandList();
     }
 
