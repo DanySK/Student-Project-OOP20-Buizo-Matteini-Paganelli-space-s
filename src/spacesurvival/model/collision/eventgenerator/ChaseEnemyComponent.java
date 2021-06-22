@@ -23,14 +23,13 @@ public class ChaseEnemyComponent implements EventComponent {
     public void update(final GameObject abstractObj, final World w) {
         final ChaseEnemy chaseEnemy = (ChaseEnemy) abstractObj;
         final RectBoundingBox boundingBox = w.getMainBBox();
-        final Optional<BoundaryCollision> borderInfo = w.checkCollisionWithBoundaries(chaseEnemy.getPosition(), boundingBox);
+        final Optional<BoundaryCollision> borderInfo = w.getCollisionController().checkCollisionWithBoundaries(chaseEnemy.getPosition(), boundingBox);
 
         if (borderInfo.isPresent()) {
             final BoundaryCollision info = borderInfo.get();
             w.notifyWorldEvent(new HitBorderEvent(info.getWhere(), info.getEdge(), chaseEnemy));
         }
-
-        final Optional<MainObject> asteroid = w.checkCollisionWithAsteroids((RectBoundingBox) chaseEnemy.getBoundingBox());
+        final Optional<MainObject> asteroid = w.getCollisionController().checkCollisionWithAsteroids(w.getAsteroids(), (RectBoundingBox) chaseEnemy.getBoundingBox());
         if (asteroid.isPresent()) {
             w.notifyWorldEvent(new HitMainGameObject(chaseEnemy, asteroid.get()));
         }

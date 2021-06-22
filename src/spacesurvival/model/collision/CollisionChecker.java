@@ -25,7 +25,7 @@ public class CollisionChecker {
      * @param rbb2 second RectBoundingBox to check
      * @return true if the two RectBoundingboxes collide
      */
-    public boolean testRectangleToRectangle(final RectBoundingBox rbb1, final RectBoundingBox rbb2) {
+    public boolean rectangleToRectangle(final RectBoundingBox rbb1, final RectBoundingBox rbb2) {
         final Rectangle2D rectangle1 = new Rectangle2D.Double(0, 0, rbb1.getWidth(), rbb1.getHeight());
         final AffineTransform rectTransform1 = new AffineTransform();
         rectTransform1.setTransform(rbb1.getTransform());
@@ -45,7 +45,7 @@ public class CollisionChecker {
      * @param cbb CircleBoundingBox to check
      * @return true if the two RectBoundingboxes collide
      */
-    public boolean testRectangleToCircle(final RectBoundingBox rbb, final CircleBoundingBox cbb) {
+    public boolean rectangleToCircle(final RectBoundingBox rbb, final CircleBoundingBox cbb) {
 
         final Rectangle2D rectangle = new Rectangle2D.Double(0, 0, rbb.getWidth(), rbb.getHeight());
         final AffineTransform rectTransform = new AffineTransform();

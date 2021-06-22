@@ -14,6 +14,7 @@ import spacesurvival.model.collision.bounding.BoundaryCollision;
 import spacesurvival.model.collision.bounding.CircleBoundingBox;
 import spacesurvival.model.collision.bounding.RectBoundingBox;
 import spacesurvival.model.gui.settings.SkinSpaceShip;
+import spacesurvival.controller.collision.CollisionController;
 import spacesurvival.model.collision.CollisionChecker;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.gameobject.Edge;
@@ -35,7 +36,6 @@ import spacesurvival.utilities.Delay;
 import spacesurvival.utilities.RandomUtils;
 import spacesurvival.utilities.SystemVariables;
 import spacesurvival.utilities.ThreadUtils;
-import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;
 import spacesurvival.utilities.path.SoundPath;
 
@@ -57,9 +57,8 @@ public class World {
     private SpaceShipSingleton ship;
     private final RectBoundingBox mainBBox;
     private WorldEventListener evListener;
-    private final CollisionChecker collisionChecker = new CollisionChecker();
-
     private Thread takeableFactoryThread;
+    private CollisionController collisionController;
     /**
      * Create a World given a RectBoundingBox.
      * @param mainBBox the bounding box on which to base the world limits
@@ -85,7 +84,7 @@ public class World {
 
         createStartingObjects();
     }
-    
+
     public void setPauseAnimationAllObject(final boolean isPause) {
         this.getAllObjects().forEach(obj -> {
             obj.setPauseAnimation(isPause);
@@ -304,103 +303,121 @@ public class World {
         });
     }
 
+    public void setCollisionController(final CollisionController collisionController) {
+       this.collisionController = collisionController;
+    }
+
+    public CollisionController getCollisionController() {
+        return this.collisionController;
+    }
     /**
      * Check if an object has collided with a border.
      * @param pos 
      * @param box 
      * @return Optional<BoundaryCollision> which contain all info of collision
      */
-    public Optional<BoundaryCollision> checkCollisionWithBoundaries(final P2d pos, final RectBoundingBox box) {
-        final P2d ul = box.getULCorner();
-        final P2d br = box.getBRCorner();
+//    public Optional<BoundaryCollision> checkCollisionWithBoundaries(final P2d pos, final RectBoundingBox box) {
+//        final P2d ul = box.getULCorner();
+//        final P2d br = box.getBRCorner();
+//
+//        final double xShip = pos.getX();
+//        final double yShip = pos.getY();
+//
+//        final double tollerance = ScaleOf.GAME_OBJECT;
+//        if (yShip < ul.getY() - tollerance) {
+//            return Optional.of(new BoundaryCollision(Edge.TOP, new P2d(xShip, ul.getY())));
+//        } else if (yShip > br.getY() + tollerance) {
+//            return Optional.of(new BoundaryCollision(Edge.BOTTOM, new P2d(pos.getX(), br.getY())));
+//        } else if (xShip > br.getX() + tollerance) {
+//            return Optional.of(new BoundaryCollision(Edge.RIGHT, new P2d(br.getX(), pos.getY())));
+//        } else if (xShip < ul.getX() - tollerance) {
+//            return Optional.of(new BoundaryCollision(Edge.LEFT, new P2d(ul.getX(), pos.getY())));
+//        } else {
+//            return Optional.empty();
+//        }
+//    }
 
-        final double xShip = pos.getX();
-        final double yShip = pos.getY();
+    /**
+     * Check the collision with the ship.
+     * 
+     * @param rectBoundingBox the rect bounding box to check
+     * @return
+     */
+//    public Optional<SpaceShipSingleton> checkCollisionWithShip(final RectBoundingBox rectBoundingBox) {
+//        if (collisionChecker.testRectangleToRectangle(rectBoundingBox, (RectBoundingBox) ship.getBoundingBox())) {
+//            return Optional.of(this.ship);
+//        }
+//        return Optional.empty();
+//    }
+//
+//    public Optional<SpaceShipSingleton> checkCollisionWithShip(final CircleBoundingBox circleBoundingBox) {
+//        if (collisionChecker.testRectangleToCircle((RectBoundingBox) ship.getBoundingBox(), circleBoundingBox)) {
+//            return Optional.of(this.ship);
+//        }
+//        return Optional.empty();
+//    }
+//
+//    public Optional<MainObject> checkCollisionWithAsteroids(final RectBoundingBox rectBoundingBox) {
+//        for (final MainObject obj: asteroids) {
+//            if (collisionChecker.testRectangleToCircle(rectBoundingBox, (CircleBoundingBox) obj.getBoundingBox())) {
+//                return Optional.of(obj);
+//            }
+//        }
+//        return Optional.empty();
+//    }
+//
+//    public Optional<MainObject> checkCollisionWithChaseEnemies(final RectBoundingBox rectBoundingBox) {
+//        for (final MainObject obj: chaseEnemies) {
+//            if (collisionChecker.testRectangleToRectangle(rectBoundingBox, (RectBoundingBox) obj.getBoundingBox())) {
+//                return Optional.of(obj);
+//            }
+//        }
+//        return Optional.empty();
+//    }
+//
+//    public Optional<FireableObject> checkCollisionWithFireEnemies(final RectBoundingBox rectBoundingBox) {
+//        for (final FireableObject obj: fireEnemies) {
+//            if (collisionChecker.testRectangleToRectangle(rectBoundingBox, (RectBoundingBox) obj.getBoundingBox())) {
+//                return Optional.of(obj);
+//            }
+//        }
+//        return Optional.empty();
+//    }
+//
+//    public Optional<FireableObject> checkCollisionWithBoss(final RectBoundingBox rectBoundingBox) {
+//        if (boss.isPresent()) {
+//            final RectBoundingBox bossBoundingBox = (RectBoundingBox) boss.get().getBoundingBox();
+//            if (collisionChecker.testRectangleToRectangle(rectBoundingBox, bossBoundingBox)) {
+//                return this.boss;
+//            }
+//        }
+//        return Optional.empty();
+//    }
+//
+//    public Optional<TakeableGameObject> checkCollisionWithAmmo(final RectBoundingBox rectBoundingBox) {
+//        for (final TakeableGameObject obj: ammo) {
+//            if (collisionChecker.testRectangleToCircle(rectBoundingBox, (CircleBoundingBox) obj.getBoundingBox())) {
+//                return Optional.of(obj);
+//            }
+//        }
+//        return Optional.empty();
+//    }
+//
+//    public Optional<TakeableGameObject> checkCollisionWithHearts(final RectBoundingBox rectBoundingBox) {
+//        for (final TakeableGameObject obj: hearts) {
+//            if (collisionChecker.testRectangleToCircle(rectBoundingBox, (CircleBoundingBox) obj.getBoundingBox())) {
+//                return Optional.of(obj);
+//            }
+//        }
+//        return Optional.empty();
+//    }
 
-        final double tollerance = ScaleOf.GAME_OBJECT;
-        if (yShip < ul.getY() - tollerance) {
-            return Optional.of(new BoundaryCollision(Edge.TOP, new P2d(xShip, ul.getY())));
-        } else if (yShip > br.getY() + tollerance) {
-            return Optional.of(new BoundaryCollision(Edge.BOTTOM, new P2d(pos.getX(), br.getY())));
-        } else if (xShip > br.getX() + tollerance) {
-            return Optional.of(new BoundaryCollision(Edge.RIGHT, new P2d(br.getX(), pos.getY())));
-        } else if (xShip < ul.getX() - tollerance) {
-            return Optional.of(new BoundaryCollision(Edge.LEFT, new P2d(ul.getX(), pos.getY())));
-        } else {
-            return Optional.empty();
-        }
-    }
-
-    public Optional<SpaceShipSingleton> checkCollisionWithShip(final RectBoundingBox rectBoundingBox) {
-        if (collisionChecker.testRectangleToRectangle(rectBoundingBox, (RectBoundingBox) ship.getBoundingBox())) {
-            return Optional.of(this.ship);
-        }
-        return Optional.empty();
-    }
-
-    public Optional<SpaceShipSingleton> checkCollisionWithShip(final CircleBoundingBox circleBoundingBox) {
-        if (collisionChecker.testRectangleToCircle((RectBoundingBox) ship.getBoundingBox(), circleBoundingBox)) {
-            return Optional.of(this.ship);
-        }
-        return Optional.empty();
-    }
-
-    public Optional<MainObject> checkCollisionWithAsteroids(final RectBoundingBox rectBoundingBox) {
-        for (final MainObject obj: asteroids) {
-            if (collisionChecker.testRectangleToCircle(rectBoundingBox, (CircleBoundingBox) obj.getBoundingBox())) {
-                return Optional.of(obj);
-            }
-        }
-        return Optional.empty();
-    }
-
-    public Optional<MainObject> checkCollisionWithChaseEnemies(final RectBoundingBox rectBoundingBox) {
-        for (final MainObject obj: chaseEnemies) {
-            if (collisionChecker.testRectangleToRectangle(rectBoundingBox, (RectBoundingBox) obj.getBoundingBox())) {
-                return Optional.of(obj);
-            }
-        }
-        return Optional.empty();
-    }
-
-    public Optional<FireableObject> checkCollisionWithFireEnemies(final RectBoundingBox rectBoundingBox) {
-        for (final FireableObject obj: fireEnemies) {
-            if (collisionChecker.testRectangleToRectangle(rectBoundingBox, (RectBoundingBox) obj.getBoundingBox())) {
-                return Optional.of(obj);
-            }
-        }
-        return Optional.empty();
-    }
-
-    public Optional<FireableObject> checkCollisionWithBoss(final RectBoundingBox rectBoundingBox) {
-        if (boss.isPresent()) {
-            final RectBoundingBox bossBoundingBox = (RectBoundingBox) boss.get().getBoundingBox();
-            if (collisionChecker.testRectangleToRectangle(rectBoundingBox, bossBoundingBox)) {
-                return this.boss;
-            }
-        }
-        return Optional.empty();
-    }
-
-    public Optional<TakeableGameObject> checkCollisionWithAmmo(final RectBoundingBox rectBoundingBox) {
-        for (final TakeableGameObject obj: ammo) {
-            if (collisionChecker.testRectangleToCircle(rectBoundingBox, (CircleBoundingBox) obj.getBoundingBox())) {
-                return Optional.of(obj);
-            }
-        }
-        return Optional.empty();
-    }
-
-    public Optional<TakeableGameObject> checkCollisionWithHearts(final RectBoundingBox rectBoundingBox) {
-        for (final TakeableGameObject obj: hearts) {
-            if (collisionChecker.testRectangleToCircle(rectBoundingBox, (CircleBoundingBox) obj.getBoundingBox())) {
-                return Optional.of(obj);
-            }
-        }
-        return Optional.empty();
-    }
-
-
+    /**
+     * Pacman Effect for the movable gameobject passed.
+     * 
+     * @param object the gameobject 
+     * @param edge edge where the collision with boundaries occurred
+     */
     public void pacmanEffect(final MoveableObject object, final Edge edge) {
         AffineTransform newTransform = new AffineTransform();
         switch (edge) {

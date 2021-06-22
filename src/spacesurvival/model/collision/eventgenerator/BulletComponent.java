@@ -28,32 +28,32 @@ public class BulletComponent implements EventComponent {
         final RectBoundingBox boundingBox = w.getMainBBox();
         final RectBoundingBox bulletBoundingBox = (RectBoundingBox) bullet.getBoundingBox();
 
-        final Optional<BoundaryCollision> borderInfo = w.checkCollisionWithBoundaries(bullet.getPosition(), boundingBox);
+        final Optional<BoundaryCollision> borderInfo = w.getCollisionController().checkCollisionWithBoundaries(bullet.getPosition(), boundingBox);
         if (borderInfo.isPresent()) {
             w.notifyWorldEvent(new HitBorderEvent(borderInfo.get().getWhere(), borderInfo.get().getEdge(), bullet));
         }
 
-        final Optional<SpaceShipSingleton> ship = w.checkCollisionWithShip(bulletBoundingBox);
+        final Optional<SpaceShipSingleton> ship = w.getCollisionController().checkCollisionWithShip(w.getShip(), bulletBoundingBox);
         if (ship.isPresent()) {
             w.notifyWorldEvent(new HitBulletEvent(bullet, ship.get()));
         }
 
-        final Optional<MainObject> asteroid = w.checkCollisionWithAsteroids(bulletBoundingBox);
+        final Optional<MainObject> asteroid = w.getCollisionController().checkCollisionWithAsteroids(w.getAsteroids(), bulletBoundingBox);
         if (asteroid.isPresent()) {
             w.notifyWorldEvent(new HitBulletEvent(bullet, asteroid.get()));
         }
 
-        final Optional<MainObject> chaseEnemy = w.checkCollisionWithChaseEnemies(bulletBoundingBox);
+        final Optional<MainObject> chaseEnemy = w.getCollisionController().checkCollisionWithChaseEnemies(w.getChaseEnemies(), bulletBoundingBox);
         if (chaseEnemy.isPresent()) {
             w.notifyWorldEvent(new HitBulletEvent(bullet, chaseEnemy.get()));
         }
 
-        final Optional<FireableObject> fireEnemy = w.checkCollisionWithFireEnemies(bulletBoundingBox);
+        final Optional<FireableObject> fireEnemy = w.getCollisionController().checkCollisionWithFireEnemies(w.getFireEnemies(), bulletBoundingBox);
         if (fireEnemy.isPresent()) {
             w.notifyWorldEvent(new HitBulletEvent(bullet, fireEnemy.get()));
         }
 
-        final Optional<FireableObject> boss = w.checkCollisionWithBoss(bulletBoundingBox);
+        final Optional<FireableObject> boss = w.getCollisionController().checkCollisionWithBoss(w.getBoss(), bulletBoundingBox);
         if (boss.isPresent()) {
             w.notifyWorldEvent(new HitBulletEvent(bullet, boss.get()));
         }

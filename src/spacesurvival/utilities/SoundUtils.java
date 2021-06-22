@@ -28,7 +28,7 @@ public final class SoundUtils {
     public static final int SOUND_ZERO = 0;
 
     /**
-     *  Max Sound
+     *  Max Sound.
      */
     public static final float MAX_SOUND = 100.0f;
 

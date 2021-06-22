@@ -1,5 +1,6 @@
 package spacesurvival.controller.gui;
 
+import spacesurvival.controller.collision.CollisionController;
 import spacesurvival.controller.gui.command.SwitchGUI;
 import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
@@ -17,7 +18,6 @@ import spacesurvival.utilities.RoundUtils;
 import spacesurvival.utilities.gameobject.LifeUtils;
 import spacesurvival.view.GUI;
 import spacesurvival.view.game.GUIGame;
-
 import java.awt.event.KeyListener;
 import java.util.List;
 
@@ -26,12 +26,15 @@ public class CtrlGame implements ControllerGUI {
     private final GUIGame gui;
     private final SwitchGUI switchGUI;
     private final MovementKeyListener keyListener;
+    private final CollisionController controlCollision;
 
     public CtrlGame(final EngineGame engine, final GUIGame gui) {
         this.engine = engine;
         this.gui = gui;
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
         this.keyListener = new MovementKeyListener();
+        this.controlCollision = new CollisionController();
+        this.engine.setCollisionController(this.controlCollision);
 
         this.switchGUI.turn(this.engine.getVisibility());
     }
@@ -86,6 +89,10 @@ public class CtrlGame implements ControllerGUI {
     @Override
     public final void closeGUI() {
         this.gui.close();
+    }
+    
+    public CollisionController getControllerCollision() {
+        return this.controlCollision;
     }
     
     public void setPauseAnimationAllObject(final boolean isPause) {
@@ -245,23 +252,11 @@ public class CtrlGame implements ControllerGUI {
     }
 
     public final void decreaseLife(final int damage) {
-        //final int effectDamage = this.damageOverFlow(damage) ? this.engine.getLifeShip() : damage;
-        //30 VITA  e  40 DANNO
-        System.out.println("VITA " + getShip().getLife());
-        System.out.println("DANNO " + damage);
         if (this.damageOverFlow(damage) && this.hasLivesShip()) {
-            System.out.println("RESETTO E DECREMENTO");
             this.engine.resetLifeShip();
             this.engine.decreaseLives();
-            System.out.println("VITA RESETTATA" + getShip().getLife());
-            System.out.println("VITE RIMASTE" + this.engine.getLives());
-
         } else {
             this.engine.decreaseLifeShip(damage);
-//            if (this.hasLivesShip() && this.engine.getLifeShip() == 0) {
-//                this.engine.resetLifeShip();
-//                this.engine.decreaseLives();
-//            }
         }
     }
 

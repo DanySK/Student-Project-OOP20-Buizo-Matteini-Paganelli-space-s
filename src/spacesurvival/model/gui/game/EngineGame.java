@@ -4,6 +4,7 @@ import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.gui.settings.SkinSpaceShip;
 import spacesurvival.model.worldevent.WorldEventListener;
+import spacesurvival.controller.collision.CollisionController;
 import spacesurvival.model.World;
 import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.gameobject.fireable.Boss;
@@ -65,6 +66,10 @@ public class EngineGame implements EngineGUI {
     @Override
     public List<LinkActionGUI> getLinks() {
         return List.of(this.idPause);
+    }
+
+    public void setCollisionController(final CollisionController collisionController) {
+        this.world.setCollisionController(collisionController);
     }
 
     public void setPauseAnimationAllObject(final boolean isPause) {

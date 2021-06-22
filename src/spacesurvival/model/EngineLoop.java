@@ -1,11 +1,13 @@
 package spacesurvival.model;
 
 import spacesurvival.controller.CallerCommandShip;
+import spacesurvival.controller.collision.CollisionController;
 import spacesurvival.controller.gui.CtrlGUI;
 import spacesurvival.controller.gui.CtrlGame;
 import spacesurvival.controller.gui.CtrlSound;
 import spacesurvival.model.collision.event.DeadEvent;
 import spacesurvival.model.common.P2d;
+import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.gameobject.moveable.MoveableObject;
 import spacesurvival.model.worldevent.WorldEvent;
@@ -19,6 +21,7 @@ import java.awt.geom.AffineTransform;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public class EngineLoop extends Thread implements WorldEventListener {
     /**
@@ -29,6 +32,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
     private final CtrlGUI controlGUI;
     private final CtrlGame controlGame;
     private final CtrlSound controlSound;
+    //private final CollisionController controlollision = new CollisionController();
     private final CallerCommandShip callerCommandShip;
 
     private final List<WorldEvent> eventQueue;
@@ -139,9 +143,18 @@ public class EngineLoop extends Thread implements WorldEventListener {
                 this.controlGame.incrScore(mainObject.getScore());
                 this.controlGame.updateScore();
             }
-            
         });
     }
+
+//    protected void checkCollisions() {
+////        getWorld().getSoundQueue().addAll(getShip().getSoundQueue());
+////        getWorld().getSoundQueue().forEach(this::playEffect);
+////        getWorld().getSoundQueue().clear();
+////        getShip().getSoundQueue().clear();
+//        //this.controlGame.updateCollision();
+//        final Set<GameObject> allObject = getWorld().getAllObjects();
+//        allObject.forEach(this.controlGame::updateCollision);
+//    }
 
     protected void checkSoundEffects() {
         getWorld().getSoundQueue().addAll(getShip().getSoundQueue());
@@ -166,7 +179,6 @@ public class EngineLoop extends Thread implements WorldEventListener {
         if (!listDecreaseLife.isEmpty() || !listIncreaseLife.isEmpty()) {
             this.controlGame.updateNHeart();
         }
-        
         listIncreaseLife.clear();
         listDecreaseLife.clear();
     }
