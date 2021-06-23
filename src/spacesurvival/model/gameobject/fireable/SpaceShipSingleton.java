@@ -54,7 +54,7 @@ public final class SpaceShipSingleton extends FireableObject {
             DamageUtils.SPACESHIP_DAMAGE,
             Score.SHIP,
             Optional.empty(),
-            new Weapon(Optional.empty()),
+            new Weapon(),
             new NoFiringLogic()
             );
 

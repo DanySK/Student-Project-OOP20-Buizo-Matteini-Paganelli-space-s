@@ -23,7 +23,7 @@ import spacesurvival.model.collision.eventgenerator.BulletComponent;
  * This class allows to a FireableObject to fire.
  */
 public class Weapon {
-    private Optional<FireableObject> owner;
+    private FireableObject owner;
     private AmmoType ammoType;
     private Magazine magazine;
     private int munitions;
@@ -32,11 +32,21 @@ public class Weapon {
     private boolean canShoot = true;
 
     /**
+     * Create a weapon with normal ammo type and without owner.
+     */
+    public Weapon() {
+        this.ammoType = AmmoType.NORMAL;
+        this.magazine =  Magazine.UNLIMITED;
+        this.munitions = BulletUtils.INFINITY;
+        this.shootedBullets = new HashSet<>();
+    }
+
+    /**
      * Create a weapon with normal ammo type.
      * 
      * @param owner the owner of weapon
      */
-    public Weapon(final Optional<FireableObject> owner) {
+    public Weapon(final FireableObject owner) {
         this.ammoType = AmmoType.NORMAL;
         this.magazine =  Magazine.UNLIMITED;
         this.munitions = BulletUtils.INFINITY;
@@ -50,7 +60,7 @@ public class Weapon {
      * @param ammoType the ammo type of bullets fired from the weapon 
      * @param owner the owner of weapon
      */
-    public Weapon(final AmmoType ammoType, final Optional<FireableObject> owner) {
+    public Weapon(final AmmoType ammoType, final FireableObject owner) {
         this.owner = owner;
         this.ammoType = ammoType;
 
@@ -76,40 +86,38 @@ public class Weapon {
      * Create a Bullet and add it to world.
      */
     public void shoot() {
-        if (owner.isPresent()) {
-            final EngineImage engineImage = new EngineImage(ScaleOf.BULLET, Screen.WIDTH_FULLSCREEN, ammoType.getBulletFire());
-            final P2d position = new P2d();
-            final V2d velocity = VelocityUtils.BULLET_VEL;
-            final double acceleration = VelocityUtils.NO_ACCELERATION;
+        final EngineImage engineImage = new EngineImage(ScaleOf.BULLET, Screen.WIDTH_FULLSCREEN, ammoType.getBulletFire());
+        final P2d position = new P2d();
+        final V2d velocity = VelocityUtils.BULLET_VEL;
+        final double acceleration = VelocityUtils.NO_ACCELERATION;
 
-            final Bullet bullet = new Bullet(engineImage, position, new RectBoundingBox(), new BulletComponent(),
-                    velocity, acceleration, Optional.empty(), BulletUtils.BULLET_DAMAGE,
-                    ammoType.getEffect());
+        final Bullet bullet = new Bullet(engineImage, position, new RectBoundingBox(), new BulletComponent(),
+                velocity, acceleration, Optional.empty(), BulletUtils.BULLET_DAMAGE,
+                ammoType.getEffect(), this);
 
 
-            final AffineTransform newTransform = new AffineTransform();
-            newTransform.setTransform(owner.get().getTransform());
+        final AffineTransform newTransform = new AffineTransform();
+        newTransform.setTransform(owner.getTransform());
 
-            final double bulletX = owner.get().getWidth() / 2 - bullet.getWidth() / 2;
-            final double bulletY = -owner.get().getHeight() / 2;
-            newTransform.translate(bulletX, bulletY);
-            bullet.setTransform(newTransform);
+        final double bulletX = owner.getWidth() / 2 - bullet.getWidth() / 2;
+        final double bulletY = -owner.getHeight() / 2;
+        newTransform.translate(bulletX, bulletY);
+        bullet.setTransform(newTransform);
 
-            if (magazine == Magazine.LIMITED) {
-                munitions--;
-                if (munitions == 0) {
-                    setAmmoType(AmmoType.NORMAL);
-                }
+        if (magazine == Magazine.LIMITED) {
+            munitions--;
+            if (munitions == 0) {
+                setAmmoType(AmmoType.NORMAL);
             }
-            shootedBullets.add(bullet);
-            bullet.startMoving();
         }
+        shootedBullets.add(bullet);
+        bullet.startMoving();
     }
 
     /**
      * @return the owner of the weapon.
      */
-    public Optional<FireableObject> getOwner() {
+    public FireableObject getOwner() {
         return owner;
     }
 
@@ -118,7 +126,7 @@ public class Weapon {
      * 
      * @param owner the owner to set.
      */
-    public void setOwner(final Optional<FireableObject> owner) {
+    public void setOwner(final FireableObject owner) {
         this.owner = owner;
     }
 

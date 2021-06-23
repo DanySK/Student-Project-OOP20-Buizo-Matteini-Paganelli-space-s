@@ -10,13 +10,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import spacesurvival.model.collision.bounding.BoundaryCollision;
-import spacesurvival.model.collision.bounding.CircleBoundingBox;
 import spacesurvival.model.collision.bounding.RectBoundingBox;
 import spacesurvival.model.gui.settings.SkinSpaceShip;
 import spacesurvival.controller.collision.CollisionController;
-import spacesurvival.model.collision.CollisionChecker;
-import spacesurvival.model.common.P2d;
 import spacesurvival.model.gameobject.Edge;
 import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.gameobject.factories.AbstractFactoryGameObject;
@@ -40,7 +36,9 @@ import spacesurvival.utilities.dimension.Screen;
 import spacesurvival.utilities.path.SoundPath;
 
 public class World {
+
     private AbstractFactoryGameObject factoryGameObject = new ConcreteFactoryGameObject();
+    private Thread takeableFactoryThread;
 
     private final Set<MainObject> asteroids = new HashSet<>();
     private final Set<MainObject> chaseEnemies = new HashSet<>();
@@ -57,7 +55,6 @@ public class World {
     private SpaceShipSingleton ship;
     private final RectBoundingBox mainBBox;
     private WorldEventListener evListener;
-    private Thread takeableFactoryThread;
     private CollisionController collisionController;
     /**
      * Create a World given a RectBoundingBox.
@@ -66,7 +63,7 @@ public class World {
     public World(final RectBoundingBox mainBBox) {
         this.ship = SpaceShipSingleton.getSpaceShip();
         this.ship.startMoving();
-        this.ship.setWeapon(new Weapon(AmmoType.NORMAL, Optional.of(ship)));
+        this.ship.setWeapon(new Weapon(AmmoType.NORMAL, ship));
         this.mainBBox = mainBBox;
 
         createStartingObjects();
@@ -79,7 +76,7 @@ public class World {
     public World(final Rectangle rectangle) {
         this.ship = SpaceShipSingleton.getSpaceShip();
         this.ship.startMoving();
-        this.ship.setWeapon(new Weapon(AmmoType.NORMAL, Optional.of(ship)));
+        this.ship.setWeapon(new Weapon(AmmoType.NORMAL, ship));
         this.mainBBox = new RectBoundingBox(rectangle);
 
         createStartingObjects();
