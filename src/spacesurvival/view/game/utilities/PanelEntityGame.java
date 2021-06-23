@@ -3,6 +3,7 @@ package spacesurvival.view.game.utilities;
 import spacesurvival.model.World;
 import spacesurvival.model.collision.bounding.CircleBoundingBox;
 import spacesurvival.model.gameobject.GameObject;
+import spacesurvival.model.EngineImage;
 import spacesurvival.model.EngineLoop;
 import spacesurvival.model.Pair;
 import spacesurvival.model.gameobject.fireable.Boss;
@@ -10,6 +11,8 @@ import spacesurvival.model.gameobject.fireable.SpaceShipSingleton;
 import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.utilities.ThreadUtils;
+import spacesurvival.utilities.dimension.Screen;
+import spacesurvival.utilities.path.Background;
 import spacesurvival.view.game.utilities.commandlife.CallerLife;
 import spacesurvival.view.game.utilities.logicColor.LogicColorShip;
 
@@ -18,16 +21,20 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 import java.util.Optional;
 import java.util.Set;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class PanelEntityGame extends JPanel {
@@ -44,8 +51,9 @@ public class PanelEntityGame extends JPanel {
 
     public PanelEntityGame() {
         super(); 
-        super.setOpaque(false);
+        super.setOpaque(true);
 
+        //super.setBackground(Background.TRANSPARENT);
         this.gameObjects = new HashMap<>();
         this.world = Optional.empty();
 
@@ -58,7 +66,12 @@ public class PanelEntityGame extends JPanel {
 
     @Override
     public final void paintComponent(final Graphics g) {
+        
         super.paintComponent(g);
+        //final EngineImage engineImage = new EngineImage(Background.TRANSPARENT, Screen.WIDTH_FULLSCREEN, Screen.HEIGHT_FULLSCREEN);
+ 
+        //g.drawImage(engineImage.getImage(), 0, 0, null);
+       
         final Graphics2D g2d = (Graphics2D) g;
 
         final Iterator<Entry<GameObject, Pair<Image, Image>>> entitiesIterator = this.gameObjects.entrySet().iterator();
