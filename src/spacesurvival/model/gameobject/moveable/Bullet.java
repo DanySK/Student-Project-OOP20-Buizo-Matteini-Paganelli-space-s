@@ -93,10 +93,10 @@ public class Bullet extends MoveableObject {
         final Optional<EventType> evType = EventType.getEventFromHit(ev);
         if (evType.isPresent()) {
             switch (EventType.getEventFromHit(ev).get()) {
-            case BORDER_EVENT:
+            case HIT_BORDER:
                 world.removeBullet(this);
                 break;
-            case BULLET_EVENT:
+            case HIT_BULLET:
                 final HitBulletEvent bulletEvent = (HitBulletEvent) ev;
                 final MainObject collidedObject = bulletEvent.getCollidedObject();
                 final Optional<FireableObject> shooter = world.getShooterFromBullet(this);

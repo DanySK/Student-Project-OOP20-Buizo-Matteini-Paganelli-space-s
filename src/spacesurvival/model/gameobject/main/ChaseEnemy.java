@@ -44,12 +44,12 @@ public class ChaseEnemy extends MainObject {
         final Optional<EventType> evType = EventType.getEventFromHit(ev);
         if (evType.isPresent()) {
             switch (EventType.getEventFromHit(ev).get()) {
-            case BORDER_EVENT:
+            case HIT_BORDER:
                 final HitBorderEvent hitEvent = (HitBorderEvent) ev;
                 final Edge edge = hitEvent.getEdge();
                 world.pacmanEffect(this, edge);
                 break;
-            case MAIN_GAME_OBJECT_EVENT:
+            case HIT_MAIN_OBJECT:
             case DEAD_EVENT:
                 world.getSoundQueue().add(SoundPath.ENEMY_EXPL);
                 world.removeChaseEnemy(this); 

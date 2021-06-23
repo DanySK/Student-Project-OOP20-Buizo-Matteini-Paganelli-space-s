@@ -9,7 +9,7 @@ import spacesurvival.model.worldevent.WorldEvent;
 public class HitBulletEvent implements WorldEvent {
     private final Bullet bullet;
     private final MainObject collidedObject;
-    private final EventType type = EventType.BULLET_EVENT;
+    private final EventType type = EventType.HIT_BULLET;
 
     /**
      * Constructor for new HitBulletEvent, generated after the collision to notify the world.

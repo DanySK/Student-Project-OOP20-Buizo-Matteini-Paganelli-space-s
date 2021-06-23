@@ -8,7 +8,7 @@ import spacesurvival.model.World;
 import spacesurvival.model.collision.bounding.BoundaryCollision;
 import spacesurvival.model.collision.bounding.RectBoundingBox;
 import spacesurvival.model.collision.event.hit.HitBorderEvent;
-import spacesurvival.model.collision.event.hit.HitMainGameObject;
+import spacesurvival.model.collision.event.hit.HitMainObject;
 
 public class BossComponent implements EventComponent {
 
@@ -31,7 +31,7 @@ public class BossComponent implements EventComponent {
 
         final Optional<MainObject> asteroid = w.getCollisionController().checkCollisionWithAsteroids(w.getAsteroids(), (RectBoundingBox) boss.getBoundingBox());
         if (asteroid.isPresent()) {
-            w.notifyWorldEvent(new HitMainGameObject(boss, asteroid.get()));
+            w.notifyWorldEvent(new HitMainObject(boss, asteroid.get()));
         }
     }
 

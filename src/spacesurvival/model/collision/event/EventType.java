@@ -7,21 +7,21 @@ import spacesurvival.model.worldevent.WorldEvent;
 public enum EventType {
 
     /**
-     * Represent the HitAmmoEvent.
+     * Represent the HitBorderEvent.
      */
-    BORDER_EVENT,
+    HIT_BORDER,
     /**
-     * Represent the HitAmmoEvent.
+     * Represent the HitBulletEvent.
      */
-    BULLET_EVENT,
+    HIT_BULLET,
     /**
-     * Represent the HitAmmoEvent.
+     * Represent the HitMainObjectEvent.
      */
-    MAIN_GAME_OBJECT_EVENT,
+    HIT_MAIN_OBJECT,
     /**
-     * Represent the HitAmmoEvent.
+     * Represent the HitTakeableEvent.
      */
-    TAKEABLE_OBJECT_EVENT,
+    HIT_TAKEABLE_OBJECT,
     /**
      * Represent the Dead Event.
      */
@@ -38,7 +38,7 @@ public enum EventType {
     }
 
     /**
-     * Return the corresponding EventType for thw EorldEvent passed.
+     * Return the corresponding EventType for the WorldEvent passed.
      * 
      * @param event the event to check
      * @return an optional of EventType if the passed WorldEvent exists or an empty optional
