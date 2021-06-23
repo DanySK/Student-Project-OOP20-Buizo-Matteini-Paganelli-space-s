@@ -17,7 +17,7 @@ import spacesurvival.model.gui.sound.EngineSound;
 public class StaticFactoryEngineGUI {
 
     /**
-     * Create a model of the loading gui
+     * Create a model of the loading gui.
      *
      * @return loading gui model
      */
@@ -26,7 +26,7 @@ public class StaticFactoryEngineGUI {
     }
 
     /**
-     * Create a model of the game gui
+     * Create a model of the game gui.
      *
      * @return game gui model
      */
@@ -35,7 +35,7 @@ public class StaticFactoryEngineGUI {
     }
 
     /**
-     * Create a model of the menu gui
+     * Create a model of the menu gui.
      *
      * @return menu gui model
      */
@@ -44,7 +44,7 @@ public class StaticFactoryEngineGUI {
     }
 
     /**
-     * Create a model of the settings gui
+     * Create a model of the settings gui.
      *
      * @return settings gui model
      */
@@ -53,7 +53,7 @@ public class StaticFactoryEngineGUI {
     }
 
     /**
-     * Create a model of the scoreboard gui
+     * Create a model of the scoreboard gui.
      *
      * @return scoreboard gui model
      */
@@ -62,7 +62,7 @@ public class StaticFactoryEngineGUI {
     }
 
     /**
-     * Create a model of the sound gui
+     * Create a model of the sound gui.
      *
      * @return sound gui model
      */
@@ -71,7 +71,7 @@ public class StaticFactoryEngineGUI {
     }
 
     /**
-     * Create a model of the help gui
+     * Create a model of the help gui.
      *
      * @return help gui model
      */
@@ -80,7 +80,7 @@ public class StaticFactoryEngineGUI {
     }
 
     /**
-     * Create a model of the pause gui
+     * Create a model of the pause gui.
      *
      * @return pause gui model
      */
@@ -89,7 +89,7 @@ public class StaticFactoryEngineGUI {
     }
 
     /**
-     * Create a model of the dead gui
+     * Create a model of the dead gui.
      *
      * @return dead gui model
      */

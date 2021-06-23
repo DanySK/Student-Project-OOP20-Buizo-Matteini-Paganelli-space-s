@@ -38,6 +38,9 @@ public class ChaseEnemy extends MainObject {
         this.setBoundingBox(RectBoundingBox.createRectBoundingBox(position, engineImage, this.getTransform()));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void collided(final World world, final WorldEvent ev) {
         System.out.println("gestisco chase enemy e evento" + EventType.getEventFromHit(ev));
