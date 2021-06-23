@@ -24,26 +24,26 @@ public class CollisionController {
 
     /**
      * Check if an object has collided with a border.
-     * @param pos 
-     * @param box 
+     * @param position 
+     * @param rectBoundingBox 
      * @return Optional<BoundaryCollision> which contain all info of collision
      */
-    public Optional<BoundaryCollision> checkWithBoundaries(final P2d pos, final RectBoundingBox box) {
-        final P2d ul = box.getULCorner();
-        final P2d br = box.getBRCorner();
+    public Optional<BoundaryCollision> checkWithBoundaries(final P2d position, final RectBoundingBox rectBoundingBox) {
+        final P2d ul = rectBoundingBox.getULCorner();
+        final P2d br = rectBoundingBox.getBRCorner();
 
-        final double xShip = pos.getX();
-        final double yShip = pos.getY();
+        final double xShip = position.getX();
+        final double yShip = position.getY();
 
         final double tollerance = ScaleOf.GAME_OBJECT;
         if (yShip < ul.getY() - tollerance) {
             return Optional.of(new BoundaryCollision(Edge.TOP, new P2d(xShip, ul.getY())));
         } else if (yShip > br.getY() + tollerance) {
-            return Optional.of(new BoundaryCollision(Edge.BOTTOM, new P2d(pos.getX(), br.getY())));
+            return Optional.of(new BoundaryCollision(Edge.BOTTOM, new P2d(position.getX(), br.getY())));
         } else if (xShip > br.getX() + tollerance) {
-            return Optional.of(new BoundaryCollision(Edge.RIGHT, new P2d(br.getX(), pos.getY())));
+            return Optional.of(new BoundaryCollision(Edge.RIGHT, new P2d(br.getX(), position.getY())));
         } else if (xShip < ul.getX() - tollerance) {
-            return Optional.of(new BoundaryCollision(Edge.LEFT, new P2d(ul.getX(), pos.getY())));
+            return Optional.of(new BoundaryCollision(Edge.LEFT, new P2d(ul.getX(), position.getY())));
         } else {
             return Optional.empty();
         }

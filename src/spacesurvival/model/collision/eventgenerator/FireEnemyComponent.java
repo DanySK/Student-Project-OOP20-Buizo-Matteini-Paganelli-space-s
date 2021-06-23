@@ -9,7 +9,7 @@ import spacesurvival.model.World;
 import spacesurvival.model.collision.bounding.BoundaryCollision;
 import spacesurvival.model.collision.bounding.RectBoundingBox;
 import spacesurvival.model.collision.event.hit.HitBorderEvent;
-import spacesurvival.model.collision.event.hit.HitMainGameObject;
+import spacesurvival.model.collision.event.hit.HitMainObject;
 
 public class FireEnemyComponent implements EventComponent {
 
@@ -32,7 +32,7 @@ public class FireEnemyComponent implements EventComponent {
 
         final Optional<MainObject> asteroid = w.getCollisionController().checkWithAsteroids(w.getAsteroids(), (RectBoundingBox) fireEnemy.getBoundingBox());
         if (asteroid.isPresent()) {
-            w.notifyWorldEvent(new HitMainGameObject(fireEnemy, asteroid.get()));
+            w.notifyWorldEvent(new HitMainObject(fireEnemy, asteroid.get()));
         }
     }
 

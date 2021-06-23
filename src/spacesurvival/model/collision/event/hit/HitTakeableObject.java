@@ -5,16 +5,16 @@ import spacesurvival.model.collision.event.EventType;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.model.worldevent.WorldEvent;
 
-public class HitTakeableGameObject implements WorldEvent {
+public class HitTakeableObject implements WorldEvent {
     private final TakeableGameObject collidedObject;
-    private final EventType type = EventType.TAKEABLE_OBJECT_EVENT;
+    private final EventType type = EventType.HIT_TAKEABLE_OBJECT;
 
     /**
      * Constructor for new HitTakeableGameObject, generated after the collision with TakeableGameObject to notify the world.
      * 
      * @param collidedObject the TakeableGameObject representing the takeable game object
      */
-    public HitTakeableGameObject(final TakeableGameObject collidedObject) {
+    public HitTakeableObject(final TakeableGameObject collidedObject) {
         this.collidedObject = collidedObject;
     }
 

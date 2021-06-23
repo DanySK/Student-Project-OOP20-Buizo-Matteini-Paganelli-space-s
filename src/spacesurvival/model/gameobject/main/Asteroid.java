@@ -17,7 +17,7 @@ import spacesurvival.model.collision.bounding.BoundingBox;
 import spacesurvival.model.collision.bounding.CircleBoundingBox;
 import spacesurvival.model.collision.event.EventType;
 import spacesurvival.model.collision.event.hit.HitBorderEvent;
-import spacesurvival.model.collision.event.hit.HitMainGameObject;
+import spacesurvival.model.collision.event.hit.HitMainObject;
 import spacesurvival.model.collision.eventgenerator.EventComponent;
 
 /**
@@ -60,13 +60,13 @@ public class Asteroid extends MainObject {
         final Optional<EventType> evType = EventType.getEventFromHit(event);
         if (evType.isPresent()) {
             switch (EventType.getEventFromHit(event).get()) {
-            case BORDER_EVENT:
+            case HIT_BORDER:
                 final HitBorderEvent hitEvent = (HitBorderEvent) event;
                 final Edge edge = hitEvent.getEdge();
                 world.pacmanEffect(this, edge);
                 break;
-            case MAIN_GAME_OBJECT_EVENT:
-                final HitMainGameObject mainEvent = (HitMainGameObject) event;
+            case HIT_MAIN_OBJECT:
+                final HitMainObject mainEvent = (HitMainObject) event;
                 final MainObject collidedObj = mainEvent.getObject();
                 world.damageObject(this, collidedObj.getImpactDamage(), Status.INVINCIBLE);
                 break;

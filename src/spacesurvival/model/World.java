@@ -458,6 +458,22 @@ public class World {
     }
 
     /**
+     * Return the FireableObject which has fired a specific bullet.
+     * 
+     * @param bullet the bullet whose shooter you want to find
+     * @return the shooter of a bullet.
+     */
+    public Optional<FireableObject> getShooterFromBullet(final Bullet bullet) {
+        Optional<FireableObject> bulletShooter = Optional.empty();
+        for (final FireableObject fireableObject : this.getFireableObjects()) {
+            if (fireableObject.getWeapon().getShootedBullets().contains(bullet)) {
+                bulletShooter = Optional.of(fireableObject);
+            }
+        }
+        return bulletShooter;
+    }
+
+    /**
      * @return the thread which handle the creation of TakeableObject
      */
     public Thread getTakeableFactoryThread() {
@@ -551,6 +567,20 @@ public class World {
             entities.add(boss.get());
         }
         entities.addAll(getAllBullets());
+
+        return entities;
+    }
+
+    /**
+     * @return all MoveableObjects in the world
+     */
+    public Set<FireableObject> getFireableObjects() {
+        final Set<FireableObject> entities = new HashSet<>();
+        entities.add(ship);
+        entities.addAll(getFireEnemies());
+        if (boss.isPresent()) {
+            entities.add(boss.get());
+        }
 
         return entities;
     }

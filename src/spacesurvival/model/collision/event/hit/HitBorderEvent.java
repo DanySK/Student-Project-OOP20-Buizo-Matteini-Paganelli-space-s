@@ -11,7 +11,7 @@ public class HitBorderEvent implements WorldEvent {
     private final P2d where;
     private final Edge edge;
     private final MoveableObject object;
-    private final EventType type = EventType.BORDER_EVENT;
+    private final EventType type = EventType.HIT_BORDER;
 
     /**
      * Constructor for new HitBorderEvent, generated after the collision with a border to notify the world.
