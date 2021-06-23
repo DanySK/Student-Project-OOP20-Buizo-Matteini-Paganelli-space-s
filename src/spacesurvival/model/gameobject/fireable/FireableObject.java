@@ -22,9 +22,9 @@ public abstract class FireableObject extends MainObject {
 
     public FireableObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
             final EventComponent phys, final V2d velocity, final double acceleration, final MovementLogic movementLogic,
-            final int life, final int impactDamage, final int score, final Optional<P2d> target, final Weapon weapon,
+            final int life, final int impactDamage, final int score, final Optional<P2d> targetPosition, final Weapon weapon,
             final FiringLogic firingLogic) {
-        super(engineImage, position, bb, phys, velocity, acceleration, movementLogic, life, impactDamage, score, target);
+        super(engineImage, position, bb, phys, velocity, acceleration, movementLogic, life, impactDamage, score, targetPosition);
         this.weapon = weapon;
         this.firingLogic = firingLogic;
     }

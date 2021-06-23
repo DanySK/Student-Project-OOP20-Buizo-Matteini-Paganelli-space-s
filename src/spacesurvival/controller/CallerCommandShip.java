@@ -6,7 +6,7 @@ import spacesurvival.model.commandship.command.implementation.RotateLeft;
 import spacesurvival.model.commandship.command.implementation.RotateRight;
 import spacesurvival.model.commandship.command.implementation.Up;
 import spacesurvival.model.commandship.command.implementation.UpRelease;
-import spacesurvival.model.gameobject.main.SpaceShipSingleton;
+import spacesurvival.model.gameobject.fireable.SpaceShipSingleton;
 import spacesurvival.utilities.CommandKey;
 
 public class CallerCommandShip {

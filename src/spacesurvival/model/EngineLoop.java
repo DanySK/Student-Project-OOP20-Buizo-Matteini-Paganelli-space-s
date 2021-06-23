@@ -6,7 +6,7 @@ import spacesurvival.controller.gui.CtrlGame;
 import spacesurvival.controller.gui.CtrlSound;
 import spacesurvival.model.collision.event.DeadEvent;
 import spacesurvival.model.common.P2d;
-import spacesurvival.model.gameobject.main.SpaceShipSingleton;
+import spacesurvival.model.gameobject.fireable.SpaceShipSingleton;
 import spacesurvival.model.gameobject.moveable.MoveableObject;
 import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.model.worldevent.WorldEventListener;
@@ -229,11 +229,11 @@ public class EngineLoop extends Thread implements WorldEventListener {
      */
     public void assignTargetToEnemies() {
         getWorld().getAllEnemies().forEach(enemy -> {
-            final AffineTransform trans = new AffineTransform();
-            trans.setTransform(getShip().getTransform());
-            trans.translate(getShip().getWidth() / 2, getShip().getHeight() / 2);
-            final P2d target = new P2d(trans.getTranslateX(), trans.getTranslateY());
-            enemy.setTarget(Optional.of(target));
+            final AffineTransform shipTransform = new AffineTransform();
+            shipTransform.setTransform(getShip().getTransform());
+            shipTransform.translate(getShip().getWidth() / 2, getShip().getHeight() / 2);
+            final P2d shipPosition = new P2d(shipTransform.getTranslateX(), shipTransform.getTranslateY());
+            enemy.setTargetPosition(Optional.of(shipPosition));
         });
     }
 
