@@ -70,8 +70,8 @@ public enum CommandKey {
      * @param type  CommandType rapresenting the type of the command
      * @return the specific CommanType or an empty optional 
      */
-    public static Optional<CommandKey> getValue(final Integer value, final CommandType type) {
-        return Stream.of(CommandKey.values()).filter(cmd -> cmd.getKeyCode().equals(value) && cmd.getType().equals(type)).findFirst();
+    public static Optional<CommandKey> getValue(final int value, final CommandType type) {
+        return Stream.of(CommandKey.values()).filter(cmd -> cmd.getKeyCode() == value && cmd.getType().equals(type)).findFirst();
     }
 
     /**
@@ -79,7 +79,7 @@ public enum CommandKey {
      * 
      * @return the specific key code
      */
-    public Integer getKeyCode() {
+    public int getKeyCode() {
         return this.keyCode;
     }
 

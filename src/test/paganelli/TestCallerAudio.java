@@ -31,7 +31,7 @@ public class TestCallerAudio {
     public void testResetTiming() {
         final CallerAudio caller = new CallerAudio(new SoundLoop(SoundPath.GAME));
         caller.execute(CommandAudioType.RESET_TIMING);
-        final Long currentTiming = caller.getSound().getClip().get().getMicrosecondPosition();
+        final Long currentTiming = caller.getSound().getClip().getMicrosecondPosition();
         final Long expectedTiming = 0L;
         assertEquals(expectedTiming, currentTiming);
     }

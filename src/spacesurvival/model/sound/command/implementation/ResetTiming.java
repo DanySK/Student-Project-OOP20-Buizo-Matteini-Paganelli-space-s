@@ -11,6 +11,6 @@ public class ResetTiming implements CommandAudio {
      * 
      */
     public void execute(final Sound sound) {
-        sound.getClip().get().setMicrosecondPosition(0);
+        sound.getClip().setMicrosecondPosition(0);
     }
 }
