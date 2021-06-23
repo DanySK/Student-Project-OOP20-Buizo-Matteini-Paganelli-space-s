@@ -214,9 +214,7 @@ public class CtrlGUI {
     public void assignSoundLoop() {
         this.managerGui.values().forEach(ctrl -> ctrl.getGUI().getBtnActionLinks().forEach(
                 btn -> btn.addActionListener(l -> {
-                    this.ctrlSound.checkChangeSoundLoop(btn.getCurrentLink() == LinkActionGUI.ID_PAUSE 
-                            && btn.getNextLink() == LinkActionGUI.ID_BACK 
-                            ? LinkActionGUI.ID_GAME : btn.getNextLink());
+                    this.ctrlSound.checkChangeSoundLoop(btn.getNextLink());
                 })
         ));
     }

@@ -27,6 +27,16 @@ import javax.swing.WindowConstants;
 public final class FactoryGUIs {
 
     /**
+     * Min value for progress bar.
+     */
+    public static final int MIN_PROGRESS = 0;
+
+    /**
+     * Min value for progress bar.
+     */
+    public static final int MAX_PROGRESS = 0;
+
+    /**
      * Step index.
      */
     public static final int STEP_INDEX = 1;

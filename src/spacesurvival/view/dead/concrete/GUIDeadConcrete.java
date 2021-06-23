@@ -12,11 +12,17 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.swing.JLabel;
 
+/**
+ * Implement every element the dead GUI must have.
+ */
 public class GUIDeadConcrete extends AbstractGUI implements GUIDead {
+    private static final long serialVersionUID = -517918898273724798L;
+    private final JLabel lbTitleDead;
+    private final List<ButtonLink> links;
 
-    final private JLabel lbTitleDead;
-    final private List<ButtonLink> links;
-
+    /**
+     * Constructor of all dead GUI items.
+     */
     public GUIDeadConcrete() {
         super();
         this.lbTitleDead = new JLabel();
@@ -24,19 +30,27 @@ public class GUIDeadConcrete extends AbstractGUI implements GUIDead {
                 .limit(EngineDead.N_BUTTONS).collect(Collectors.toList());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<ButtonLink> getBtnActionLinks() {
         return this.links;
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void setNameButtons(final List<String> listNames) {
+    public void setTextButtons(final List<String> listNames) {
         for (int i = 0; i < listNames.size(); i++) {
             this.links.get(i).setText(listNames.get(i));
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setBtnActions(final LinkActionGUI mainAction, final List<LinkActionGUI> actions) {
         for (int i = 0; i < actions.size(); i++) {
@@ -45,33 +59,53 @@ public class GUIDeadConcrete extends AbstractGUI implements GUIDead {
         }
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setFontTitleGUI(final Font font) {
         this.lbTitleDead.setFont(font);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setTitleGUI(final String titleGUI) {
         this.lbTitleDead.setText(titleGUI);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setForegroundTitle(final Color color) {
         this.lbTitleDead.setForeground(color);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setFontGUI(final Font font) {
         this.links.forEach(link -> link.setFont(font));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setForegroundGUI(final Color color) {
         this.links.forEach(link -> link.setForeground(color));
     }
 
-    public JLabel getLbTitleDead() {
+    /**
+     * Get label for title dead GUI.
+     * 
+     * @return label for title.
+     */
+    public JLabel getLabelTitle() {
         return this.lbTitleDead;
     }
+
 }

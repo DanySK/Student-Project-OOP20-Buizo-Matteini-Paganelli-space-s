@@ -19,6 +19,7 @@ public final class LaunchSpace {
 
         final CtrlLoading ctrlLoading = new CtrlLoading(StaticFactoryEngineGui.createLoading(),
                 StaticFactoryGUI.createLoading());
+        ctrlLoading.initLoading();
         ctrlLoading.start();
 
         final EngineLoop engineLoop = new EngineLoop();
