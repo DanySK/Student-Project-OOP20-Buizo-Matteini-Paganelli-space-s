@@ -1,12 +1,13 @@
 
-package spacesurvival.model.gameobject.fireable.weapon;
+package spacesurvival.model.gameobject.moveable;
 
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
 import spacesurvival.model.gameobject.fireable.FireableObject;
+import spacesurvival.model.gameobject.fireable.SpaceShipSingleton;
+import spacesurvival.model.gameobject.fireable.weapon.Effect;
+import spacesurvival.model.gameobject.fireable.weapon.Weapon;
 import spacesurvival.model.gameobject.main.MainObject;
-import spacesurvival.model.gameobject.main.SpaceShipSingleton;
-import spacesurvival.model.gameobject.moveable.MoveableObject;
 import spacesurvival.model.gameobject.moveable.movement.implementation.FixedMovement;
 import spacesurvival.model.worldevent.WorldEvent;
 import java.util.Optional;
@@ -25,16 +26,16 @@ public class Bullet extends MoveableObject {
 
     private int damage;
     private Effect effect;
-    private final Weapon originWeapon;
+    //private final Weapon originWeapon;
 
     public Bullet(final EngineImage engineImage, final P2d position, final BoundingBox bb, final EventComponent eventComponent,
             final V2d velocity, final double acceleration, final Optional<P2d> target, final int damage,
-            final Effect effect, final Weapon originWeapon) {
+            final Effect effect) {
         super(engineImage, position, bb, eventComponent, velocity, acceleration, new FixedMovement(), target);
         this.setBoundingBox(RectBoundingBox.createRectBoundingBox(position, engineImage, this.getTransform()));
         this.damage = damage;
         this.effect = effect;
-        this.originWeapon = originWeapon;
+        //this.originWeapon = originWeapon;
         this.stopAnimation();
     }
 
@@ -70,19 +71,19 @@ public class Bullet extends MoveableObject {
         this.effect = effect;
     }
 
-    /**
-     * @return the weapon from which the bullet was fired
-     */
-    public Weapon getOriginWeapon() {
-        return originWeapon;
-    }
-
-    /**
-     * @return the FireableObject which has fired the bullet
-     */
-    public FireableObject getShooter() {
-        return this.originWeapon.getOwner().get();
-    }
+//    /**
+//     * @return the weapon from which the bullet was fired
+//     */
+//    public Weapon getOriginWeapon() {
+//        return originWeapon;
+//    }
+//
+//    /**
+//     * @return the FireableObject which has fired the bullet
+//     */
+//    public FireableObject getShooter() {
+//        return this.originWeapon.getOwner().get();
+//    }
 
     /**
      * {@inheritDoc}
@@ -90,18 +91,17 @@ public class Bullet extends MoveableObject {
     @Override
     public void collided(final World world, final WorldEvent ev) {
         final Optional<EventType> evType = EventType.getEventFromHit(ev);
-        
-        
         if (evType.isPresent()) {
             switch (EventType.getEventFromHit(ev).get()) {
-            case BORDER_EVENT:
+            case HIT_BORDER:
                 world.removeBullet(this);
                 break;
-            case BULLET_EVENT:
+            case HIT_BULLET:
                 final HitBulletEvent bulletEvent = (HitBulletEvent) ev;
                 final MainObject collidedObject = bulletEvent.getCollidedObject();
-                
-                if (!this.getShooter().equals(collidedObject)) {
+                final Optional<FireableObject> shooter = world.getShooterFromBullet(this);
+                if (shooter.isEmpty() || !shooter.get().equals(collidedObject)) {
+                //if (!this.getShooter().equals(collidedObject)) {
                     if (collidedObject instanceof SpaceShipSingleton && !collidedObject.isInvincible()) {
                         world.getQueueDecreaseLife().add(collidedObject.getImpactDamage());
                         collidedObject.setStatus(this.getEffect().getStatus());

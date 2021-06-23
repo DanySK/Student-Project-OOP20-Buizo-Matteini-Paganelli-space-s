@@ -17,17 +17,17 @@ import java.util.List;
 public class EngineSound implements EngineGUI {
 
     /**
-     * Dimension of the rectangle for the gui.
+     * Dimension of the rectangle for the GUI.
      */
     public static final Rectangle RECTANGLE = Screen.RECTANGLE_MEDIUM;
 
     /**
-     * Title of the gui.
+     * Title of the GUI.
      */
     public static final String TITLE = "SOUND";
 
     /**
-     * Number of unit of sound of the gui.
+     * Number of unit of sound of the GUI.
      */
     public static final int N_UNIT_SOUND = 2;
 
@@ -36,8 +36,12 @@ public class EngineSound implements EngineGUI {
 
     private final EngineMixerSound mixerSound;
 
+    
     private Visibility visibility;
 
+    /**
+     * 
+     */
     public EngineSound() {
         this.id = LinkActionGUI.ID_SOUND;
         this.idBack = LinkActionGUI.ID_BACK;
@@ -46,31 +50,49 @@ public class EngineSound implements EngineGUI {
         this.visibility = Visibility.HIDDEN;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LinkActionGUI getMainLink() {
         return id;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Rectangle getRectangle() {
         return RECTANGLE;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Visibility getVisibility() {
         return this.visibility;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setVisibility(final Visibility visibility) {
         this.visibility = visibility;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isVisible() {
         return this.visibility.isVisible();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<LinkActionGUI> getLinks() {
         return List.of(this.idBack);

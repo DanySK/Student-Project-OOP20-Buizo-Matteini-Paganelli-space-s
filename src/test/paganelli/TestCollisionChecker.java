@@ -24,7 +24,7 @@ public class TestCollisionChecker {
 
         final CollisionChecker checker = new CollisionChecker();
 
-        assertTrue(checker.testRectangleToRectangle(rbb1, rbb2));
+        assertTrue(checker.rectangleToRectangle(rbb1, rbb2));
 
     }
 
@@ -43,7 +43,7 @@ public class TestCollisionChecker {
         final RectBoundingBox rbb2 = new RectBoundingBox(new P2d(11, 0), new P2d(20, 10), cbbTransform);
         final CollisionChecker checker = new CollisionChecker();
 
-        assertFalse(checker.testRectangleToRectangle(rbb1, rbb2));
+        assertFalse(checker.rectangleToRectangle(rbb1, rbb2));
 
     }
 
@@ -65,7 +65,7 @@ public class TestCollisionChecker {
 
         final CollisionChecker checker = new CollisionChecker();
 
-        assertTrue(checker.testRectangleToRectangle(rbb1, rbb2));
+        assertTrue(checker.rectangleToRectangle(rbb1, rbb2));
     }
 
     /**
@@ -84,7 +84,7 @@ public class TestCollisionChecker {
         final CircleBoundingBox cbb1 = new CircleBoundingBox(new P2d(xTranslation, yTranslation), 10, new AffineTransform());
         final CollisionChecker checker = new CollisionChecker();
 
-        assertTrue(checker.testRectangleToCircle(rbb1, cbb1));
+        assertTrue(checker.rectangleToCircle(rbb1, cbb1));
     }
 
     /**
@@ -105,7 +105,7 @@ public class TestCollisionChecker {
 
         final CollisionChecker checker = new CollisionChecker();
 
-        assertFalse(checker.testRectangleToCircle(rbb1, cbb2));
+        assertFalse(checker.rectangleToCircle(rbb1, cbb2));
     }
 
 

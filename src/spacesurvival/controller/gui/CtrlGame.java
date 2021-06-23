@@ -1,5 +1,6 @@
 package spacesurvival.controller.gui;
 
+import spacesurvival.controller.collision.CollisionController;
 import spacesurvival.controller.gui.command.SwitchGUI;
 import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
@@ -9,7 +10,7 @@ import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.model.Pair;
 import spacesurvival.model.World;
 import spacesurvival.model.commandship.MovementKeyListener;
-import spacesurvival.model.gameobject.main.SpaceShipSingleton;
+import spacesurvival.model.gameobject.fireable.SpaceShipSingleton;
 import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.utilities.CommandKey;
 import spacesurvival.utilities.CommandType;
@@ -17,7 +18,6 @@ import spacesurvival.utilities.RoundUtils;
 import spacesurvival.utilities.gameobject.LifeUtils;
 import spacesurvival.view.GUI;
 import spacesurvival.view.game.GUIGame;
-
 import java.awt.event.KeyListener;
 import java.util.List;
 
@@ -26,12 +26,15 @@ public class CtrlGame implements ControllerGUI {
     private final GUIGame gui;
     private final SwitchGUI switchGUI;
     private final MovementKeyListener keyListener;
+    private final CollisionController controlCollision;
 
     public CtrlGame(final EngineGame engine, final GUIGame gui) {
         this.engine = engine;
         this.gui = gui;
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
         this.keyListener = new MovementKeyListener();
+        this.controlCollision = new CollisionController();
+        this.engine.setCollisionController(this.controlCollision);
 
         this.switchGUI.turn(this.engine.getVisibility());
     }
@@ -87,15 +90,19 @@ public class CtrlGame implements ControllerGUI {
     public final void closeGUI() {
         this.gui.close();
     }
-    
+
+    public CollisionController getControllerCollision() {
+        return this.controlCollision;
+    }
+
     public void setPauseAnimationAllObject(final boolean isPause) {
         this.engine.setPauseAnimationAllObject(isPause);
     }
-    
+
     public void updateScore() {
         this.gui.setScore(this.engine.getScore());
     }
-    
+
     public void updateRound() {
         this.gui.setRound(this.engine.getRound());
     }
@@ -103,23 +110,22 @@ public class CtrlGame implements ControllerGUI {
     public void updateCountEnemies() {
         this.gui.setNEnemies(this.engine.getCountEnemies());
     }
-    
+
     public void updateTimer() {
         this.gui.setTimer(this.engine.getTimer());
     }
-    
+
     public void updateBulletHUD() {
         if (this.engine.getAmmoTypeHUD() != this.engine.getAmmoTypeShip()) {
             this.engine.assignBulletShipInHUD();
             this.gui.setBulletHUD(this.engine.getAmmoTypeHUD());
         }
     }
-    
-    
+
     public void updateNHeart() {
         this.gui.setNHeart(this.engine.getLives());
     }
-    
+
     public void initHUD() {
         this.updateScore();
         this.updateRound();
@@ -128,19 +134,19 @@ public class CtrlGame implements ControllerGUI {
         this.updateBulletHUD();
         this.updateNHeart();
     }
-    
+
     public void updateHUD() {
         this.updateTimer();
         this.updateLifeShip();
         this.updateLifeBoss();
         this.updateBulletHUD();
     }
-    
+
     public void updateLifeShip() {
         this.engine.setLifeShip(this.engine.getLifeShip() < 0 ? 0 : this.engine.getLifeShip()); 
         this.gui.setLifeShip(this.engine.getLifeShip());
     }
-    
+
     public void updateLifeBoss() {
         this.engine.getBoss().ifPresent(boss -> {
             this.gui.setLifeBoss(boss.getLife());
@@ -249,23 +255,11 @@ public class CtrlGame implements ControllerGUI {
     }
 
     public final void decreaseLife(final int damage) {
-        //final int effectDamage = this.damageOverFlow(damage) ? this.engine.getLifeShip() : damage;
-        //30 VITA  e  40 DANNO
-        System.out.println("VITA " + getShip().getLife());
-        System.out.println("DANNO " + damage);
         if (this.damageOverFlow(damage) && this.hasLivesShip()) {
-            System.out.println("RESETTO E DECREMENTO");
             this.engine.resetLifeShip();
             this.engine.decreaseLives();
-            System.out.println("VITA RESETTATA" + getShip().getLife());
-            System.out.println("VITE RIMASTE" + this.engine.getLives());
-
         } else {
             this.engine.decreaseLifeShip(damage);
-//            if (this.hasLivesShip() && this.engine.getLifeShip() == 0) {
-//                this.engine.resetLifeShip();
-//                this.engine.decreaseLives();
-//            }
         }
     }
 

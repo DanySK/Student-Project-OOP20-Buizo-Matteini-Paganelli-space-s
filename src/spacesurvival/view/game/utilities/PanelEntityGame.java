@@ -6,8 +6,8 @@ import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.EngineLoop;
 import spacesurvival.model.Pair;
 import spacesurvival.model.gameobject.fireable.Boss;
+import spacesurvival.model.gameobject.fireable.SpaceShipSingleton;
 import spacesurvival.model.gameobject.main.MainObject;
-import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.utilities.ThreadUtils;
 import spacesurvival.view.game.utilities.commandlife.CallerLife;
@@ -20,7 +20,11 @@ import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import java.util.Optional;
 import java.util.Set;
 
@@ -35,16 +39,16 @@ public class PanelEntityGame extends JPanel {
     public static final int HEIGHT_LIFE = 5;
     public static final int DIFFERENCE_HEIGHT_LIFE_BAR = Math.abs(HEIGHT_LIFE_BAR - HEIGHT_LIFE);
 
-    private final Map<GameObject, Pair<Image, Image>> gameObjects;
+    private volatile Map<GameObject, Pair<Image, Image>> gameObjects;
     private Optional<World> world;
 
     public PanelEntityGame() {
         super(); 
         super.setOpaque(false);
-        
+
         this.gameObjects = new HashMap<>();
         this.world = Optional.empty();
-        
+
         new Thread(PanelEntityGame.this::runUpdateGameObjects).start();
     }
 
@@ -56,12 +60,17 @@ public class PanelEntityGame extends JPanel {
     public final void paintComponent(final Graphics g) {
         super.paintComponent(g);
         final Graphics2D g2d = (Graphics2D) g;
-        this.gameObjects.entrySet().forEach(entity -> {
+
+        final Iterator<Entry<GameObject, Pair<Image, Image>>> entitiesIterator = this.gameObjects.entrySet().iterator();
+
+        while (entitiesIterator.hasNext()) {
+            final Entry<GameObject, Pair<Image, Image>> entity = entitiesIterator.next();
             g2d.setTransform(getCorrectAffineTransformFromBoundingBox(entity.getKey())); 
             g2d.drawImage(entity.getValue().getX(), 0, 0, null);
             g2d.drawImage(entity.getValue().getY(), 0, 0, null);
             this.assignLifeBar(entity.getKey(), g2d);
-        });
+        }
+
     }
 
     private void drawLifeBar(final Graphics2D g2d, final GameObject gameObject) {

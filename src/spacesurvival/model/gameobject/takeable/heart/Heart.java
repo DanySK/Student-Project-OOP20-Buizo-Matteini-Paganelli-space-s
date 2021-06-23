@@ -49,7 +49,7 @@ public class Heart extends TakeableGameObject {
         final Optional<EventType> evType = EventType.getEventFromHit(ev);
         if (evType.isPresent()) {
             switch (EventType.getEventFromHit(ev).get()) {
-            case TAKEABLE_OBJECT_EVENT:
+            case HIT_TAKEABLE_OBJECT:
                 world.getSoundQueue().add(SoundPath.PERK);
                 world.getQueueIncreaseLife().add(this.getType().getAmount());
                 world.getShip().setStatus(this.getType().getStatus());

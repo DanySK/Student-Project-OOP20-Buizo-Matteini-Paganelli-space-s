@@ -4,11 +4,12 @@ import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.gui.settings.SkinSpaceShip;
 import spacesurvival.model.worldevent.WorldEventListener;
+import spacesurvival.controller.collision.CollisionController;
 import spacesurvival.model.World;
 import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.gameobject.fireable.FireableObject;
+import spacesurvival.model.gameobject.fireable.SpaceShipSingleton;
 import spacesurvival.model.gameobject.fireable.weapon.Weapon;
-import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
 import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.utilities.dimension.Screen;
@@ -66,6 +67,10 @@ public class EngineGame implements EngineGUI {
     @Override
     public List<LinkActionGUI> getLinks() {
         return List.of(this.idPause);
+    }
+
+    public void setCollisionController(final CollisionController collisionController) {
+        this.world.setCollisionController(collisionController);
     }
 
     public void setPauseAnimationAllObject(final boolean isPause) {

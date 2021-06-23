@@ -51,7 +51,8 @@ public interface ControllerGUI {
 
     /**
      * Set visibility of my GUI.
-     * @param visibility for visibility.
+     * 
+     * @param visibility the visibility to set
      */
     void turn(Visibility visibility);
 

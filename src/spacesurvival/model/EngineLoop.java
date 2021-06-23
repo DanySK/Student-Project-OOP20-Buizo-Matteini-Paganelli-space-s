@@ -6,7 +6,7 @@ import spacesurvival.controller.gui.CtrlGame;
 import spacesurvival.controller.gui.CtrlSound;
 import spacesurvival.model.collision.event.DeadEvent;
 import spacesurvival.model.common.P2d;
-import spacesurvival.model.gameobject.main.SpaceShipSingleton;
+import spacesurvival.model.gameobject.fireable.SpaceShipSingleton;
 import spacesurvival.model.gameobject.moveable.MoveableObject;
 import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.model.worldevent.WorldEventListener;
@@ -16,6 +16,7 @@ import spacesurvival.utilities.CommandKey;
 import spacesurvival.utilities.CommandType;
 import spacesurvival.utilities.ThreadUtils;
 import java.awt.geom.AffineTransform;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -41,6 +42,9 @@ public class EngineLoop extends Thread implements WorldEventListener {
         this.callerCommandShip = new CallerCommandShip(this.controlGame.getShip());
     }
 
+    /**
+     * Init the game and starts all loops and listeners.
+     */
     public void initGame() {
         this.controlGUI.initGUI();
         this.controlGUI.assignSoundLoop();
@@ -53,10 +57,20 @@ public class EngineLoop extends Thread implements WorldEventListener {
         this.controlGUI.startGUI();
     }
 
+    /**
+     * Return the world from the control game.
+     * 
+     * @return the current World
+     */
     public World getWorld() {
         return this.controlGame.getWorld();
     }
 
+    /**
+     * Return the ship from the control game.
+     * 
+     * @return the current Ship
+     */
     public SpaceShipSingleton getShip() {
         return this.controlGame.getShip();
     }
@@ -65,12 +79,10 @@ public class EngineLoop extends Thread implements WorldEventListener {
     public void run() {
         long lastTime = System.currentTimeMillis();
         long current = 0L;
-        final int nbThreadsss = Thread.getAllStackTraces().keySet().size();
 
         while (true) {
             if (!this.controlGame.isGameOver()) {
                 current = System.currentTimeMillis();
-                final int elapsed = (int) (current - lastTime);
 
                 if (this.controlGUI.isInGame()) {
                     if (!this.controlGUI.isInPause()) {
@@ -80,27 +92,28 @@ public class EngineLoop extends Thread implements WorldEventListener {
                         this.waitForNextFrame(current);
                         lastTime = current;
                         this.render();
-                        //System.out.println("Numero dei thread current -> " + Thread.getAllStackTraces().keySet().size());
                     }
                 }
-
                 if (this.controlGUI.isInGame() || !this.controlGUI.isInPause()) {
                     waitForNextFrame(current);
                     lastTime = current;
                 }
             } else {
                 renderGameOver();
-
                 while (this.controlGUI.isInGameOver()) {
                     waitForNextFrame(current);
                     lastTime = current;
                 }
-
             }
 
         }
     }
 
+    /**
+     * Wait for the next frame to line up game events and states.
+     * 
+     * @param current
+     */
     protected void waitForNextFrame(final long current) {
         final long dt = System.currentTimeMillis() - current;
         if (dt < FPS) {
@@ -108,6 +121,9 @@ public class EngineLoop extends Thread implements WorldEventListener {
         }
     }
 
+    /**
+     * Updates all events and game states.
+     */
     protected final void updateGame() {
         this.controlGame.updateStateWorld();
         this.checkEvents(); 
@@ -123,14 +139,17 @@ public class EngineLoop extends Thread implements WorldEventListener {
      * Process user input.
      */
     private void processInput() {
-        final List<Pair<CommandKey, CommandType>> inputUpdate = this.controlGame.getSpaceShipCommandList();
-        this.controlGame.getSpaceShipCommandList().forEach(cmd -> {
-            this.callerCommandShip.execute(cmd.getX());
-        });
-        inputUpdate.clear();
+        final Iterator<Pair<CommandKey, CommandType>> inputIterator = this.controlGame.getSpaceShipCommandList().iterator();
+
+        while (inputIterator.hasNext()) {
+            this.callerCommandShip.execute(inputIterator.next().getX());
+        }
         this.controlGame.clearSpaceShipCommandList();
     }
 
+    /**
+     * Check current game objects and their dead.
+     */
     private void checkGameObjectsDead() {
         final World world = this.getWorld();
         world.getMainObjects().forEach(mainObject -> {
@@ -142,6 +161,9 @@ public class EngineLoop extends Thread implements WorldEventListener {
         });
     }
 
+    /**
+     * Check all sound effects and and starts them.
+     */
     protected void checkSoundEffects() {
         getWorld().getSoundQueue().addAll(getShip().getSoundQueue());
         getWorld().getSoundQueue().forEach(this::playEffect);
@@ -149,12 +171,18 @@ public class EngineLoop extends Thread implements WorldEventListener {
         getShip().getSoundQueue().clear();
     }
 
+    /**
+     * Check the current score and its changing.
+     */
     protected void checkScore() {
         final List<Integer> scoreUpdate = getWorld().getQueueScore();
         scoreUpdate.forEach(this.controlGame::incrScore);
         scoreUpdate.clear();
     }
 
+    /**
+     * Check the current life and its changing.
+     */
     protected void checkLife() {
         final List<Integer> listIncreaseLife = getWorld().getQueueIncreaseLife();
         final List<Integer> listDecreaseLife = getWorld().getQueueDecreaseLife();
@@ -165,12 +193,14 @@ public class EngineLoop extends Thread implements WorldEventListener {
         if (!listDecreaseLife.isEmpty() || !listIncreaseLife.isEmpty()) {
             this.controlGame.updateNHeart();
         }
-        
         listIncreaseLife.clear();
         listDecreaseLife.clear();
     }
 
 
+    /**
+     * Check events of the game notified to the world.
+     */
     protected void checkEvents() {
         final World world = getWorld();
         eventQueue.forEach(ev -> {
@@ -181,37 +211,55 @@ public class EngineLoop extends Thread implements WorldEventListener {
         eventQueue.clear();
     }
 
+    /**
+     * Repaint world and all game objects graphic.
+     */
     protected final void render() {
         this.controlGame.repaintWorld();
     }
 
+    /**
+     * Render the movement of all MoveableObject of the world.
+     */
     private void renderMovement() {
         getWorld().getMovableObjects().forEach(MoveableObject::move);
     }
 
+    /**
+     * Method called for assign targets to enemies.
+     */
     public void assignTargetToEnemies() {
         getWorld().getAllEnemies().forEach(enemy -> {
-            final AffineTransform trans = new AffineTransform();
-            trans.setTransform(getShip().getTransform());
-            trans.translate(getShip().getWidth() / 2, getShip().getHeight() / 2);
-            final P2d target = new P2d(trans.getTranslateX(), trans.getTranslateY());
-            enemy.setTarget(Optional.of(target));
-
-            //enemy.setTarget(Optional.of(this.controlGame.getShip().getPosition()));
+            final AffineTransform shipTransform = new AffineTransform();
+            shipTransform.setTransform(getShip().getTransform());
+            shipTransform.translate(getShip().getWidth() / 2, getShip().getHeight() / 2);
+            final P2d shipPosition = new P2d(shipTransform.getTranslateX(), shipTransform.getTranslateY());
+            enemy.setTargetPosition(Optional.of(shipPosition));
         });
     }
 
+    /**
+     * Render game over screen.
+     */
     protected void renderGameOver() {
-        System.out.println("SEIIIII MORRTOTOOOOOO");
         this.controlGUI.endGame();
         playEffect(SoundPath.GAME_OVER);
     }
 
-    @Override
+    /**
+     * Notify the event to the world.
+     * 
+     * @param ev the event of type WorldEvent
+     */
     public void notifyEvent(final WorldEvent ev) {
         eventQueue.add(ev);
     }
 
+    /**
+     * Play a sound from world.
+     * 
+     * @param soundPath the SoundPath of the sound to play.
+     */
     private void playEffect(final SoundPath soundPath) {
         this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CommandAudioType.RESET_TIMING);
         this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CommandAudioType.AUDIO_ON);

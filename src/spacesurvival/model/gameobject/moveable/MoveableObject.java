@@ -17,17 +17,17 @@ public abstract class MoveableObject extends GameObject {
 
     private V2d velocity;
     private double acceleration;
-    private Optional<P2d> target;
+    private Optional<P2d> targetPosition;
     private MovementLogic movementLogic;
     private boolean isMoving;
 
     public MoveableObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
             final EventComponent eventComponent, final V2d velocity, final double acceleration, final MovementLogic movementLogic,
-            final Optional<P2d> target) {
+            final Optional<P2d> targetPosition) {
         super(engineImage, position, bb, eventComponent);
         this.velocity = velocity;
         this.acceleration = acceleration;
-        this.target = target;
+        this.targetPosition = targetPosition;
         this.movementLogic = movementLogic;
     }
 
@@ -117,21 +117,19 @@ public abstract class MoveableObject extends GameObject {
     }
 
     /**
-     * Return the target position of Enemy.
-     *
-     * @return the target position of Enemy
+     * @return the optional of target position
      */
-    public Optional<P2d> getTarget() {
-        return target;
+    public Optional<P2d> getTargetPosition() {
+        return targetPosition;
     }
 
     /**
      * Sets the target position of Enemy.
      *
-     * @param target the new target position
+     * @param targetPosition the new target position
      */
-    public void setTarget(final Optional<P2d> target) {
-        this.target = target;
+    public void setTargetPosition(final Optional<P2d> targetPosition) {
+        this.targetPosition = targetPosition;
     }
 
     /**
@@ -139,7 +137,7 @@ public abstract class MoveableObject extends GameObject {
      */
     @Override
     public String toString() {
-        return "MovableObject [velocity=" + velocity + ", acceleration=" + acceleration + ", target=" + target
+        return "MovableObject [velocity=" + velocity + ", acceleration=" + acceleration + ", target=" + targetPosition
                 + ", movementLogic=" + movementLogic + ", isMoving=" + isMoving + super.toString() + "]";
     }
 

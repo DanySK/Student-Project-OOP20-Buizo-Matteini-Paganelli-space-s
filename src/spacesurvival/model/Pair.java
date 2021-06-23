@@ -14,15 +14,29 @@ public class Pair<X, Y> {
         this.y = y;
     }
 
+    /**
+     * Return the X type of the pair.
+     * 
+     * @return x the element of the pair of type X
+     */
     public X getX() {
         return this.x;
     }
 
+    /**
+     * Return the Y type of the pair.
+     * 
+     * @return y the element of the pair of type Y
+     */
     public Y getY() {
         return this.y;
     }
 
-    @Override
+    /**
+     * Return an hash code of the current pair.
+     * 
+     * @return the hash integer
+     */
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -31,7 +45,12 @@ public class Pair<X, Y> {
         return result;
         }
 
-    @Override
+    /**
+     * Method equal for pair type.
+     * 
+     * @param obj the object to compare
+     * @return true if equals
+     */
     public boolean equals(final Object obj) {
         if (this == obj) {
             return true;
@@ -42,7 +61,7 @@ public class Pair<X, Y> {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Pair other = (Pair) obj;
+        final Pair<?, ?> other = (Pair<?, ?>) obj;
         if (x == null) {
             if (other.x != null) {
                 return false;
@@ -60,7 +79,11 @@ public class Pair<X, Y> {
         return true;
     }
 
-    @Override
+    /**
+     * Return a describing string of the pair.
+     * 
+     * @return the representing string
+     */
     public String toString() {
         return "Pair [x=" + x + ", y=" + y + "]";
     }

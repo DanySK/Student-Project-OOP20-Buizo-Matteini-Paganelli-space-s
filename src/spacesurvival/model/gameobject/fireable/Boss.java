@@ -19,7 +19,7 @@ import spacesurvival.model.collision.bounding.BoundingBox;
 import spacesurvival.model.collision.bounding.RectBoundingBox;
 import spacesurvival.model.collision.event.EventType;
 import spacesurvival.model.collision.event.hit.HitBorderEvent;
-import spacesurvival.model.collision.event.hit.HitMainGameObject;
+import spacesurvival.model.collision.event.hit.HitMainObject;
 import spacesurvival.model.collision.eventgenerator.EventComponent;
 
 /**
@@ -54,14 +54,14 @@ public class Boss extends FireableObject {
         final Optional<EventType> evType = EventType.getEventFromHit(ev);
         if (evType.isPresent()) {
             switch (EventType.getEventFromHit(ev).get()) {
-            case BORDER_EVENT:
+            case HIT_BORDER:
                 final HitBorderEvent hitBorderEvent = (HitBorderEvent) ev;
                 final Edge edge = hitBorderEvent.getEdge();
                 world.getSoundQueue().add(SoundPath.WALL_COLLISION);
                 world.pacmanEffect(this, edge);
                 break;
-            case MAIN_GAME_OBJECT_EVENT:
-                final HitMainGameObject mainEvent = (HitMainGameObject) ev;
+            case HIT_MAIN_OBJECT:
+                final HitMainObject mainEvent = (HitMainObject) ev;
                 final MainObject collidedObj = mainEvent.getObject();
                 world.damageObject(this, collidedObj.getImpactDamage(), Status.INVINCIBLE);
                 break;

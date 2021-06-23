@@ -1,9 +1,9 @@
 package spacesurvival.model.commandship.command.implementation;
 
-import spacesurvival.model.gameobject.main.SpaceShipSingleton;
 import spacesurvival.utilities.gameobject.VelocityUtils;
 import spacesurvival.model.commandship.command.CommandShip;
 import spacesurvival.model.common.V2d;
+import spacesurvival.model.gameobject.fireable.SpaceShipSingleton;
 
 public class Up implements CommandShip {
 

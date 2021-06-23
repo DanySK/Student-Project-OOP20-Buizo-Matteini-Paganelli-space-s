@@ -9,7 +9,7 @@ import spacesurvival.model.World;
 import spacesurvival.model.collision.bounding.BoundaryCollision;
 import spacesurvival.model.collision.bounding.RectBoundingBox;
 import spacesurvival.model.collision.event.hit.HitBorderEvent;
-import spacesurvival.model.collision.event.hit.HitMainGameObject;
+import spacesurvival.model.collision.event.hit.HitMainObject;
 
 public class FireEnemyComponent implements EventComponent {
 
@@ -23,16 +23,16 @@ public class FireEnemyComponent implements EventComponent {
     public void update(final GameObject abstractObj, final World w) {
         final FireEnemy fireEnemy = (FireEnemy) abstractObj;
         final RectBoundingBox boundingBox = w.getMainBBox();
-        final Optional<BoundaryCollision> borderInfo = w.checkCollisionWithBoundaries(fireEnemy.getPosition(), boundingBox);
+        final Optional<BoundaryCollision> borderInfo = w.getCollisionController().checkCollisionWithBoundaries(fireEnemy.getPosition(), boundingBox);
 
         if (borderInfo.isPresent()) {
             final BoundaryCollision info = borderInfo.get();
             w.notifyWorldEvent(new HitBorderEvent(info.getWhere(), info.getEdge(), fireEnemy));
         }
 
-        final Optional<MainObject> asteroid = w.checkCollisionWithAsteroids((RectBoundingBox) fireEnemy.getBoundingBox());
+        final Optional<MainObject> asteroid = w.getCollisionController().checkCollisionWithAsteroids(w.getAsteroids(), (RectBoundingBox) fireEnemy.getBoundingBox());
         if (asteroid.isPresent()) {
-            w.notifyWorldEvent(new HitMainGameObject(fireEnemy, asteroid.get()));
+            w.notifyWorldEvent(new HitMainObject(fireEnemy, asteroid.get()));
         }
     }
 

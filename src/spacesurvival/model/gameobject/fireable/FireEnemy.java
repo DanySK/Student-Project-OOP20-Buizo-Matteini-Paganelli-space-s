@@ -12,13 +12,14 @@ import spacesurvival.model.gameobject.moveable.movement.MovementLogic;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
 import spacesurvival.model.worldevent.WorldEvent;
+import spacesurvival.utilities.path.SoundPath;
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.World;
 import spacesurvival.model.collision.bounding.BoundingBox;
 import spacesurvival.model.collision.bounding.RectBoundingBox;
 import spacesurvival.model.collision.event.EventType;
 import spacesurvival.model.collision.event.hit.HitBorderEvent;
-import spacesurvival.model.collision.event.hit.HitMainGameObject;
+import spacesurvival.model.collision.event.hit.HitMainObject;
 import spacesurvival.model.collision.eventgenerator.EventComponent;
 
 /**
@@ -53,17 +54,18 @@ public class FireEnemy extends FireableObject {
         final Optional<EventType> evType = EventType.getEventFromHit(ev);
         if (evType.isPresent()) {
             switch (EventType.getEventFromHit(ev).get()) {
-            case BORDER_EVENT:
+            case HIT_BORDER:
                 final HitBorderEvent hitEvent = (HitBorderEvent) ev;
                 final Edge edge = hitEvent.getEdge();
                 world.pacmanEffect(this, edge);
                 break;
-            case MAIN_GAME_OBJECT_EVENT:
-                final HitMainGameObject mainEvent = (HitMainGameObject) ev;
-                final MainObject collidedObj = mainEvent.getObject();
+            case HIT_MAIN_OBJECT:
+                final HitMainObject mainEvent = (HitMainObject) ev;
+                final MainObject collidedObj = mainEvent.getCollidedObject();
                 world.damageObject(this, collidedObj.getImpactDamage(), Status.INVINCIBLE);
                 break;
             case DEAD_EVENT:
+                world.getSoundQueue().add(SoundPath.ENEMY_EXPL);
                 world.removeFireEnemy(this);
                 break;
             default:
