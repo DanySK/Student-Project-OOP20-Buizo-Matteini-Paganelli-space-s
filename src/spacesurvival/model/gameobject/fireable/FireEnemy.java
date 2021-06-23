@@ -12,6 +12,7 @@ import spacesurvival.model.gameobject.moveable.movement.MovementLogic;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
 import spacesurvival.model.worldevent.WorldEvent;
+import spacesurvival.utilities.path.SoundPath;
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.World;
 import spacesurvival.model.collision.bounding.BoundingBox;
@@ -60,10 +61,11 @@ public class FireEnemy extends FireableObject {
                 break;
             case HIT_MAIN_OBJECT:
                 final HitMainObject mainEvent = (HitMainObject) ev;
-                final MainObject collidedObj = mainEvent.getObject();
+                final MainObject collidedObj = mainEvent.getCollidedObject();
                 world.damageObject(this, collidedObj.getImpactDamage(), Status.INVINCIBLE);
                 break;
             case DEAD_EVENT:
+                world.getSoundQueue().add(SoundPath.ENEMY_EXPL);
                 world.removeFireEnemy(this);
                 break;
             default:

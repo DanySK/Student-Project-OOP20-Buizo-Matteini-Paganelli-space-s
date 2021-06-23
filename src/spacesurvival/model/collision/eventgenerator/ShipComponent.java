@@ -45,7 +45,7 @@ public class ShipComponent implements EventComponent {
             w.notifyWorldEvent(new HitMainObject(ship, chaseEnemy.get()));
         }
 
-        final Optional<FireableObject> fireEnemy = w.getCollisionController().checkCollisionWithFireEnemies(w.getFireEnemies(),shipBoundingBox);
+        final Optional<FireableObject> fireEnemy = w.getCollisionController().checkCollisionWithFireEnemies(w.getFireEnemies(), shipBoundingBox);
         if (fireEnemy.isPresent()) {
             w.notifyWorldEvent(new HitMainObject(ship, fireEnemy.get()));
         }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import spacesurvival.model.gameobject.Edge;
+import spacesurvival.model.gameobject.fireable.SpaceShipSingleton;
 import spacesurvival.model.gameobject.moveable.movement.MovementLogic;
 import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.utilities.path.SoundPath;
@@ -15,6 +16,7 @@ import spacesurvival.model.collision.bounding.BoundingBox;
 import spacesurvival.model.collision.bounding.RectBoundingBox;
 import spacesurvival.model.collision.event.EventType;
 import spacesurvival.model.collision.event.hit.HitBorderEvent;
+import spacesurvival.model.collision.event.hit.HitMainObject;
 import spacesurvival.model.collision.eventgenerator.EventComponent;
 
 /**
@@ -45,11 +47,15 @@ public class ChaseEnemy extends MainObject {
         if (evType.isPresent()) {
             switch (EventType.getEventFromHit(ev).get()) {
             case HIT_BORDER:
-                final HitBorderEvent hitEvent = (HitBorderEvent) ev;
-                final Edge edge = hitEvent.getEdge();
+                final HitBorderEvent hitBorderEvent = (HitBorderEvent) ev;
+                final Edge edge = hitBorderEvent.getEdge();
                 world.pacmanEffect(this, edge);
                 break;
             case HIT_MAIN_OBJECT:
+                final HitMainObject hitMainObject = (HitMainObject) ev;
+                final MainObject collidedObj = hitMainObject.getCollidedObject();
+                world.damageObject(this, collidedObj.getImpactDamage(), Status.INVINCIBLE);
+                break;
             case DEAD_EVENT:
                 world.getSoundQueue().add(SoundPath.ENEMY_EXPL);
                 world.removeChaseEnemy(this); 
