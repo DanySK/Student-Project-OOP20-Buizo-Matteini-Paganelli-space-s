@@ -17,8 +17,8 @@ public class RandomMovementLogic implements MovementLogic {
      */
     @Override
     public void move(final MoveableObject moveableObject) {
-        if (moveableObject.isMoving() && moveableObject.getTargetPosition().isPresent()) {
-            final P2d target = moveableObject.getTargetPosition().get();
+        if (moveableObject.isMoving() && moveableObject.getTargetPosition() != null) {
+            final P2d target = moveableObject.getTargetPosition();
             final double rightRotation = Math.toDegrees(Math.atan2(moveableObject.getPosition().getY() - target.getY(),
                     moveableObject.getPosition().getX() - target.getX()));
             final double complementary = 180 - (rightRotation * -1);
@@ -58,6 +58,9 @@ public class RandomMovementLogic implements MovementLogic {
         moveableObject.setVelocity(newVelocity);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return "DistantMovement";
