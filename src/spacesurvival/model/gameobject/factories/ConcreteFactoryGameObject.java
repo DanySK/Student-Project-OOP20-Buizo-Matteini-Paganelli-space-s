@@ -13,9 +13,9 @@ import spacesurvival.model.gameobject.main.Asteroid;
 import spacesurvival.model.gameobject.main.ChaseEnemy;
 import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.gameobject.moveable.movement.MovementLogic;
-import spacesurvival.model.gameobject.moveable.movement.implementation.ChasingMovement;
-import spacesurvival.model.gameobject.moveable.movement.implementation.FixedMovement;
-import spacesurvival.model.gameobject.moveable.movement.implementation.RandomMovement;
+import spacesurvival.model.gameobject.moveable.movement.implementation.ChasingMovementLogic;
+import spacesurvival.model.gameobject.moveable.movement.implementation.FixedMovementLogic;
+import spacesurvival.model.gameobject.moveable.movement.implementation.RandomMovementLogic;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.model.gameobject.takeable.ammo.Ammo;
 import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
@@ -59,7 +59,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
         final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULLSCREEN, AnimationAsteroid.ASTEROID1);
         final P2d position = PositionUtils.generateSpawnPoint(engineImage.getSize());
         final V2d velocity = VelocityUtils.ASTEROID_VEL;
-        final MovementLogic movementLogic = new FixedMovement();
+        final MovementLogic movementLogic = new FixedMovementLogic();
         final int life = LifeUtils.ASTEROID_LIFE;
         final int impactDamage = DamageUtils.ASTEROID_DAMAGE;
 
@@ -75,7 +75,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
         final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULLSCREEN, AnimationChase.POOH0);
         final P2d position = PositionUtils.generateSpawnPoint(engineImage.getSize());
         final V2d velocity = VelocityUtils.CHASE_ENEMY_VEL;
-        final MovementLogic movementLogic = new ChasingMovement();
+        final MovementLogic movementLogic = new ChasingMovementLogic();
         final int life = LifeUtils.CHASE_ENEMY_LIFE;
         final int impactDamage = DamageUtils.CHASE_ENEMY_DAMAGE;
 
@@ -91,7 +91,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
         final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULLSCREEN, AnimationChase.CHASE0);
         final P2d position = PositionUtils.generateSpawnPoint(engineImage.getSize());
         final V2d velocity = VelocityUtils.FIRE_ENEMY_VEL;
-        final MovementLogic movementLogic = new RandomMovement();
+        final MovementLogic movementLogic = new RandomMovementLogic();
         final int life = LifeUtils.FIRE_ENEMY_LIFE;
         final int impactDamage = DamageUtils.FIRE_ENEMY_DAMAGE;
         final Weapon weapon = new Weapon();
@@ -111,7 +111,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
         final EngineImage engineImage = new EngineImage(ScaleOf.BOSS, Screen.WIDTH_FULLSCREEN, AnimationBoss.BOSS0);
         final P2d position = PositionUtils.generateSpawnPoint(engineImage.getSize());
         final V2d velocity = VelocityUtils.BOSS_VEL;
-        final MovementLogic movementLogic = new RandomMovement();
+        final MovementLogic movementLogic = new RandomMovementLogic();
         final int life = LifeUtils.BOSS_LIFE;
         final int impactDamage = DamageUtils.BOSS_DAMAGE;
         final Weapon weapon = new Weapon();

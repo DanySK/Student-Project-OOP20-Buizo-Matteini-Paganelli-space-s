@@ -8,7 +8,7 @@ import spacesurvival.model.gameobject.fireable.SpaceShipSingleton;
 import spacesurvival.model.gameobject.fireable.weapon.Effect;
 import spacesurvival.model.gameobject.fireable.weapon.Weapon;
 import spacesurvival.model.gameobject.main.MainObject;
-import spacesurvival.model.gameobject.moveable.movement.implementation.FixedMovement;
+import spacesurvival.model.gameobject.moveable.movement.implementation.FixedMovementLogic;
 import spacesurvival.model.worldevent.WorldEvent;
 import java.util.Optional;
 import spacesurvival.model.EngineImage;
@@ -31,7 +31,7 @@ public class Bullet extends MoveableObject {
     public Bullet(final EngineImage engineImage, final P2d position, final BoundingBox bb, final EventComponent eventComponent,
             final V2d velocity, final double acceleration, final Optional<P2d> target, final int damage,
             final Effect effect, final Weapon originWeapon) {
-        super(engineImage, position, bb, eventComponent, velocity, acceleration, new FixedMovement(), target);
+        super(engineImage, position, bb, eventComponent, velocity, acceleration, new FixedMovementLogic(), target);
         this.setBoundingBox(RectBoundingBox.createRectBoundingBox(position, engineImage, this.getTransform()));
         this.damage = damage;
         this.effect = effect;

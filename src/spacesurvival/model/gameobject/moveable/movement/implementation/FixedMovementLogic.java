@@ -5,7 +5,7 @@ import spacesurvival.model.gameobject.moveable.movement.MovementLogic;
 
 import java.awt.geom.AffineTransform;
 
-public class FixedMovement implements MovementLogic {
+public class FixedMovementLogic implements MovementLogic {
 
     /**
      * {@inheritDoc}

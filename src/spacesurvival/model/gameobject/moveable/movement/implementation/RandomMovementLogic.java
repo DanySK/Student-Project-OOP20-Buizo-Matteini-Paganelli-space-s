@@ -10,7 +10,7 @@ import spacesurvival.model.gameobject.moveable.movement.MovementLogic;
 import spacesurvival.utilities.Delay;
 import spacesurvival.utilities.ThreadUtils;
 
-public class RandomMovement implements MovementLogic {
+public class RandomMovementLogic implements MovementLogic {
 
     /**
      * {@inheritDoc}
