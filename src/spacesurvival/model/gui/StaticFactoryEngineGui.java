@@ -89,7 +89,6 @@ public final class StaticFactoryEngineGui {
 
     /**
      * Create a model of the dead GUI.
-     *
      * @return dead GUI model.
      */
     public static EngineDead createEngineDead() {

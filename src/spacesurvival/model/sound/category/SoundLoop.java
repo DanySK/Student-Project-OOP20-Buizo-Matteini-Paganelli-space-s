@@ -34,7 +34,7 @@ public class SoundLoop extends Sound {
      */
     protected void playSound(final double volume) {
         setVolume(volume);
-        super.getClip().get().loop(Clip.LOOP_CONTINUOUSLY);
-        super.getClip().get().start();
+        super.getClip().loop(Clip.LOOP_CONTINUOUSLY);
+        super.getClip().start();
     }
 }

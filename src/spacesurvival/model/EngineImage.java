@@ -10,11 +10,17 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+/**
+ * 
+ */
 public class EngineImage {
     private String path;
     private int width, height;
     private int scaleOf, respectTo;
 
+    /**
+     * 
+     */
     public EngineImage() {
         this.path = "";
         this.width = 0;
@@ -23,25 +29,50 @@ public class EngineImage {
         this.respectTo = 0;
     }
 
+    /**
+     * 
+     * @param path
+     */
     public EngineImage(final String path) {
         this();
         this.path = path;
     }
 
+    /**
+     * 
+     * @param path
+     * @param width
+     * @param height
+     */
     public EngineImage(final String path, final int width, final int height) {
         this(path);
         this.setSize(width, height);
     }
 
+    /**
+     * 
+     * @param path
+     * @param dimension
+     */
     public EngineImage(final String path, final Dimension dimension) {
         this(path, dimension.width, dimension.height);
     }
 
+    /**
+     * 
+     * @param scaleOf
+     * @param respectTo
+     * @param path
+     */
     public EngineImage(final int scaleOf, final int respectTo, final String path) {
         this(path);
         this.setScale(scaleOf, respectTo);
     }
 
+    /**
+     * 
+     * @param engineImage
+     */
     public EngineImage(final EngineImage engineImage) {
         this.path = engineImage.path;
         this.setScale(engineImage.getScaleOf(), engineImage.getRespectTo());
