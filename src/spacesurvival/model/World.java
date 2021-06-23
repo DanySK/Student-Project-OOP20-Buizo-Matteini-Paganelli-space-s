@@ -74,6 +74,7 @@ public class World {
 
     /**
      * Create a World given a Rectangle.
+     * 
      * @param rectangle the rectangle on which to base the world limits
      */
     public World(final Rectangle rectangle) {
@@ -85,6 +86,11 @@ public class World {
         createStartingObjects();
     }
 
+    /**
+     * Pause animations if true is passed.
+     * 
+     * @param isPause the boolean representing the state of the pause
+     */
     public void setPauseAnimationAllObject(final boolean isPause) {
         this.getAllObjects().forEach(obj -> {
             obj.setPauseAnimation(isPause);
@@ -115,6 +121,7 @@ public class World {
 
     }
 
+    
     public void setEventListener(final WorldEventListener listener) {
         evListener = listener;
     }
@@ -392,6 +399,11 @@ public class World {
         }
     }
 
+    /**
+     * Notify the world that an WorldEvent occurred.
+     * 
+     * @param ev the WorldEvent event
+     */
     public void notifyWorldEvent(final WorldEvent ev) {
         evListener.notifyEvent(ev);
     }

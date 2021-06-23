@@ -23,13 +23,13 @@ public class BossComponent implements EventComponent {
         final Boss boss = (Boss) abstractObj;
         final RectBoundingBox boundingBox = w.getMainBBox();
 
-        final Optional<BoundaryCollision> borderInfo =  w.getCollisionController().checkCollisionWithBoundaries(boss.getPosition(), boundingBox);
+        final Optional<BoundaryCollision> borderInfo =  w.getCollisionController().checkWithBoundaries(boss.getPosition(), boundingBox);
         if (borderInfo.isPresent()) {
             final BoundaryCollision info = borderInfo.get();
             w.notifyWorldEvent(new HitBorderEvent(info.getWhere(), info.getEdge(), boss));
         }
 
-        final Optional<MainObject> asteroid = w.getCollisionController().checkCollisionWithAsteroids(w.getAsteroids(), (RectBoundingBox) boss.getBoundingBox());
+        final Optional<MainObject> asteroid = w.getCollisionController().checkWithAsteroids(w.getAsteroids(), (RectBoundingBox) boss.getBoundingBox());
         if (asteroid.isPresent()) {
             w.notifyWorldEvent(new HitMainGameObject(boss, asteroid.get()));
         }
