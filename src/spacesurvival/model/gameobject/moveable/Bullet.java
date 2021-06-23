@@ -26,16 +26,16 @@ public class Bullet extends MoveableObject {
 
     private int damage;
     private Effect effect;
-    private final Weapon originWeapon;
+    //private final Weapon originWeapon;
 
     public Bullet(final EngineImage engineImage, final P2d position, final BoundingBox bb, final EventComponent eventComponent,
             final V2d velocity, final double acceleration, final Optional<P2d> target, final int damage,
-            final Effect effect, final Weapon originWeapon) {
+            final Effect effect) {
         super(engineImage, position, bb, eventComponent, velocity, acceleration, new FixedMovement(), target);
         this.setBoundingBox(RectBoundingBox.createRectBoundingBox(position, engineImage, this.getTransform()));
         this.damage = damage;
         this.effect = effect;
-        this.originWeapon = originWeapon;
+        //this.originWeapon = originWeapon;
         this.stopAnimation();
     }
 
@@ -71,19 +71,19 @@ public class Bullet extends MoveableObject {
         this.effect = effect;
     }
 
-    /**
-     * @return the weapon from which the bullet was fired
-     */
-    public Weapon getOriginWeapon() {
-        return originWeapon;
-    }
-
-    /**
-     * @return the FireableObject which has fired the bullet
-     */
-    public FireableObject getShooter() {
-        return this.originWeapon.getOwner().get();
-    }
+//    /**
+//     * @return the weapon from which the bullet was fired
+//     */
+//    public Weapon getOriginWeapon() {
+//        return originWeapon;
+//    }
+//
+//    /**
+//     * @return the FireableObject which has fired the bullet
+//     */
+//    public FireableObject getShooter() {
+//        return this.originWeapon.getOwner().get();
+//    }
 
     /**
      * {@inheritDoc}
@@ -99,7 +99,9 @@ public class Bullet extends MoveableObject {
             case BULLET_EVENT:
                 final HitBulletEvent bulletEvent = (HitBulletEvent) ev;
                 final MainObject collidedObject = bulletEvent.getCollidedObject();
-                if (!this.getShooter().equals(collidedObject)) {
+                final Optional<FireableObject> shooter = world.getShooterFromBullet(this);
+                if (shooter.isEmpty() || !shooter.get().equals(collidedObject)) {
+                //if (!this.getShooter().equals(collidedObject)) {
                     if (collidedObject instanceof SpaceShipSingleton && !collidedObject.isInvincible()) {
                         world.getQueueDecreaseLife().add(collidedObject.getImpactDamage());
                         collidedObject.setStatus(this.getEffect().getStatus());

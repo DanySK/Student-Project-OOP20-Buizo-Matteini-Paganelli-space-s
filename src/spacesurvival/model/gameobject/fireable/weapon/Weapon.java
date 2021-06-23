@@ -84,7 +84,7 @@ public class Weapon {
 
             final Bullet bullet = new Bullet(engineImage, position, new RectBoundingBox(), new BulletComponent(),
                     velocity, acceleration, Optional.empty(), BulletUtils.BULLET_DAMAGE,
-                    ammoType.getEffect(), this);
+                    ammoType.getEffect());
 
 
             final AffineTransform newTransform = new AffineTransform();
