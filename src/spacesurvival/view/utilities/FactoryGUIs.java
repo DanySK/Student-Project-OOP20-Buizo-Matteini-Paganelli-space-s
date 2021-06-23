@@ -34,7 +34,7 @@ public final class FactoryGUIs {
     /**
      * Min value for progress bar.
      */
-    public static final int MAX_PROGRESS = 0;
+    public static final int MAX_PROGRESS = 100;
 
     /**
      * Step index.

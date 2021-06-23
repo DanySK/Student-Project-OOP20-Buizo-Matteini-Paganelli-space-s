@@ -122,7 +122,7 @@ public class CtrlGUI {
     private void linksAll(){
         this.managerGui.values().forEach(managerGui -> managerGui.getGUI().getBtnActionLinks().forEach(btn ->
                 btn.addActionListener(e -> {
-                    if (this.isInPause()){
+                    if (this.isInPause()) {
                         this.logicSwitchGame.algorithm(btn.getCurrentLink(), btn.getNextLink(),
                                 this.chronology, this.managerGui);
                        this.ctrlGame.setPauseAnimationAllObject(true);
@@ -151,7 +151,7 @@ public class CtrlGUI {
         return Optional.empty();
     }
 
-    public LinkActionGUI getCurrentGUI(){
+    public Optional<LinkActionGUI> getCurrentGUI(){
         return this.chronology.lastElementOfList();
     }
 
@@ -164,8 +164,10 @@ public class CtrlGUI {
     }
 
     public void endGame(){
-        this.managerGui.get(this.chronology.lastElementOfList()).turn(Visibility.HIDDEN);
-        this.chronology.remove(this.chronology.lastElementOfList());
+        
+        this.chronology.lastElementOfList().ifPresent(link -> this.managerGui.get(link).turn(Visibility.HIDDEN));
+        this.chronology.lastElementOfList().ifPresent( this.chronology::remove);
+        
         this.chronology.add(LinkActionGUI.ID_DEAD);
         this.managerGui.get(LinkActionGUI.ID_DEAD).turn(Visibility.VISIBLE);
 

@@ -4,7 +4,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class AnimationAsteroid {
-    public static final String MAIN_FOLDER = "gameObjects";
+    public static final String MAIN_FOLDER = "gameobject";
     public static final String ASTEROID  = "asteroid";
 
     public static final String ASTEROID0 = Paths.get(MAIN_FOLDER, ASTEROID, "asteroid.png").toString();

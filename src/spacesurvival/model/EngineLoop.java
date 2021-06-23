@@ -52,7 +52,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
         this.controlGame.setEventListenerInWorld(this);
         this.controlGame.assignWorld();
         this.controlGame.initHUD();
-        this.controlSound.setSoundLoop(this.controlGUI.getCurrentGUI());
+        this.controlGUI.getCurrentGUI().ifPresent(link -> this.controlSound.setSoundLoop(link));
         this.controlSound.setCmdAudioLoop(CommandAudioType.AUDIO_ON);
         this.controlGUI.startGUI();
     }

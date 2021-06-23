@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;
 import spacesurvival.utilities.path.Background;
-import spacesurvival.view.loading.FactoryGUILoading;
+import spacesurvival.view.loading.FactoryGuiLoading;
 import spacesurvival.view.loading.GUILoading;
 import spacesurvival.view.loading.concrete.GUILoadingConcrete;
 import spacesurvival.view.utilities.FactoryGUIs;
@@ -19,7 +19,7 @@ import spacesurvival.view.utilities.FactoryGUIs;
 /**
  * Implements the creation of the compact loading GUI.
  */
-public class GUILoadingStandard implements FactoryGUILoading {
+public class GuiLoadingStandard implements FactoryGuiLoading {
 
     /**
      * {@inheritDoc}
@@ -30,6 +30,7 @@ public class GUILoadingStandard implements FactoryGUILoading {
         concrete.setImageBackground(Background.LOADING);
         concrete.setFontTitleGUI(GraphicsLayoutUtils.getFontForTitle(GraphicsLayoutUtils.SIZE_FONT_H1));
         concrete.setForegroundGUI(GraphicsLayoutUtils.COLOR_4);
+
 
         graphics(concrete);
         return concrete;

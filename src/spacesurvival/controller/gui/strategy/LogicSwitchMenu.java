@@ -24,14 +24,14 @@ public class LogicSwitchMenu implements LogicSwitchGUI {
 
             case ID_BACK:
                 manager.get(actionCurrent).turn(Visibility.HIDDEN);
-                chronology.remove(chronology.lastElementOfList());
+                chronology.lastElementOfList().ifPresent(chronology::remove);
                 break;
+            case ID_QUIT: 
+                manager.values().forEach(ControllerGUI::closeGUI);
 
-            case ID_QUIT: this.quit(); break;
-
+                break;
             default:
                 chronology.add(actionNext);
-                manager.get(actionNext).turn(Visibility.VISIBLE);
                 break;
         }
     }

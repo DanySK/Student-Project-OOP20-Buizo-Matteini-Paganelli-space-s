@@ -6,7 +6,7 @@ public final class Background {
     /** 
      * Path for loading background.
      */
-    public static final String LOADING = Paths.get(MainFolder.BACKGROUND, "load.jpg").toString();
+    public static final String LOADING = Paths.get(MainFolder.BACKGROUND, "load.png").toString();
     /** 
      * Path for main background.
      */

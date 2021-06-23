@@ -133,7 +133,7 @@ public final class GraphicsLayoutUtils {
     /**
      * Path font for title menu.
      */
-    public static final String PATH_FONT_TITLE = Path.of(MainFolder.FONT, "mainFont.ttf").toString();
+    public static final String PATH_FONT_TITLE = Path.of(MainFolder.FONT, "main.ttf").toString();
 
     /**
      * Path font for game.
@@ -143,7 +143,7 @@ public final class GraphicsLayoutUtils {
     /**
      * Path font for end game.
      */
-    public static final String PATH_FONT_END_GAME = Path.of(MainFolder.FONT, "CHILLER.TTF").toString();
+    public static final String PATH_FONT_END_GAME = Path.of(MainFolder.FONT, "chiller.ttf").toString();
 
     /**
      * Get font title menu from size.

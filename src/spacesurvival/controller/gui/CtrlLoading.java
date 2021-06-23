@@ -14,12 +14,12 @@ public class CtrlLoading extends Thread implements ControllerGUI {
     /**
      * Loading duration.
      */
-    public static final int DURATION_LOADIN = 2000;
+    public static final int DURATION_LOADIN = 2000 / ThreadUtils.MEDIUM_SLEEP;
 
     /**
      * Step of loading.
      */
-    public static final int STEP_TIMING = 20;
+    public static final int STEP_TIMING = 20 / ThreadUtils.MEDIUM_SLEEP;
 
     private final GUILoading gui;
     private final EngineLoading engine;
@@ -80,14 +80,13 @@ public class CtrlLoading extends Thread implements ControllerGUI {
         while (!this.engine.isLoad()) {
             this.engine.incrLoading();
 
-            System.out.println("sdgthrhdgaerwgwsg -> " + this.engine.getLoading());
             this.gui.setLoading(this.engine.getLoading() / STEP_TIMING);
 
             if (this.engine.getLoading() >= DURATION_LOADIN) {
                 this.engine.load();
             }
 
-            ThreadUtils.sleep(1);
+            ThreadUtils.sleep(ThreadUtils.MEDIUM_SLEEP);
         }
 
     }

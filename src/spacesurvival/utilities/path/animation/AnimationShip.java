@@ -5,7 +5,7 @@ import java.util.List;
 
 public class AnimationShip {
 
-    public static final String MAIN_FOLDER = "gameObjects";
+    public static final String MAIN_FOLDER = "gameobject";
     public static final String SHIP_FOLDER = "spaceship";
 
     public static final String TYPE_SHIP_1 = "ship1";

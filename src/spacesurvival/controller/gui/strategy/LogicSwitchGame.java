@@ -14,7 +14,7 @@ public class LogicSwitchGame implements LogicSwitchGUI {
 
         switch (actionNext) {
             case ID_PAUSE:
-                if (chronology.lastElementOfList() != LinkActionGUI.ID_PAUSE) {
+                if (chronology.lastElementOfList().get() != LinkActionGUI.ID_PAUSE) {
                     chronology.add(actionNext);
                 } else {
                     chronology.remove(actionNext);
@@ -24,11 +24,15 @@ public class LogicSwitchGame implements LogicSwitchGUI {
 
             case ID_BACK:
                     manager.get(actionCurrent).turn(Visibility.HIDDEN);
-                    chronology.remove(chronology.lastElementOfList());
-                    manager.get(chronology.lastElementOfList()).turn(Visibility.VISIBLE);
+                    chronology.lastElementOfList().ifPresent(chronology::remove);
+                    chronology.lastElementOfList().ifPresent(link -> manager.get(link).turn(Visibility.VISIBLE));
+                break;
+            case ID_QUIT: 
+                Syste
+                manager.values().forEach(ControllerGUI::closeGUI);
+            
                 break;
 
-            case ID_QUIT: quit(); break;
 
             default:
                 chronology.add(actionNext);
