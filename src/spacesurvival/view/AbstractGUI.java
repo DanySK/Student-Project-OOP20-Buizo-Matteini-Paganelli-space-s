@@ -22,7 +22,7 @@ public abstract class AbstractGUI extends JFrame {
     private final JPanel panelForeground;
 
 
-    @SuppressWarnings("unused")
+    @SuppressWarnings({ "unused", "PMD.SingularField" })
     private LinkActionGUI mainAction;
 
     /**

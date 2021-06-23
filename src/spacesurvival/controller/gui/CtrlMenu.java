@@ -17,9 +17,14 @@ public class CtrlMenu implements ControllerGUI {
 
     private final SwitchGUI switchGUI;
 
-    public CtrlMenu(final EngineMenu menuEngine, final GUIMenu menuGUI){
-        this.gui = menuGUI;
-        this.engine = menuEngine;
+    /**
+     * Create a control menu GUI with its model and view.
+     * @param engine of model.
+     * @param gui of view.
+     */
+    public CtrlMenu(final EngineMenu engine, final GUIMenu gui) {
+        this.engine = engine;
+        this.gui = gui;
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
 
         this.switchGUI.turn(this.engine.getVisibility());
@@ -29,7 +34,7 @@ public class CtrlMenu implements ControllerGUI {
      * {@inheritDoc}
      */
     @Override
-    public void assignLinks(){
+    public void assignLinks() {
         this.gui.setMainAction(this.engine.getMainLink());
         this.gui.setBtnActions(this.engine.getMainLink(), this.engine.getLinks());
     }
@@ -38,7 +43,7 @@ public class CtrlMenu implements ControllerGUI {
      * {@inheritDoc}
      */
     @Override
-    public void assignTexts(){
+    public void assignTexts() {
         this.gui.setTitleGUI(this.engine.getTitleGUI());
         this.gui.setTextButtons(this.engine.getListNameLinks());
     }
@@ -47,7 +52,7 @@ public class CtrlMenu implements ControllerGUI {
      * {@inheritDoc}
      */
     @Override
-    public void assignRectangle(){
+    public void assignRectangle() {
         this.gui.setBounds(this.engine.getRectangle());
     }
 
@@ -87,7 +92,7 @@ public class CtrlMenu implements ControllerGUI {
      * {@inheritDoc}
      */
     @Override
-    public void turn(final Visibility visibility){
+    public void turn(final Visibility visibility) {
         this.switchGUI.turn(visibility);
     }
 
@@ -105,5 +110,13 @@ public class CtrlMenu implements ControllerGUI {
     @Override
     public void closeGUI() {
         this.gui.close();
+    }
+
+    /**
+     * Describes the control via its engine and view.
+     */
+    @Override
+    public String toString() {
+        return "CtrlMenu [gui=" + gui + ", engine=" + engine + ", switchGUI=" + switchGUI + "]";
     }
 }

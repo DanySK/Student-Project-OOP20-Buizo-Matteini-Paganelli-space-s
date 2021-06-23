@@ -26,31 +26,38 @@ import javax.swing.WindowConstants;
  */
 public final class FactoryGUIs {
 
-    private FactoryGUIs() {
-    }
+    /**
+     * Step index.
+     */
+    public static final int STEP_INDEX = 1;
 
     /**
-     * Inset size H0.
+     * Size thickness H0.
+     */
+    public static final int THICKNESS_H0 = 3;
+
+    /**
+     * Insets size H0.
      */
     public static final int INSET_H0 = 100;
 
     /**
-     * Inset size H1.
+     * Insets size H1.
      */
     public static final int INSET_H1 = 80;
 
     /**
-     * Inset size H2.
+     * Insets size H2.
      */
     public static final int INSET_H2 = 10;
 
     /**
-     * Inset size H3.
+     * Insets size H3.
      */
     public static final int INSET_H3 = 5;
 
     /**
-     * Inset size H4.
+     * Insets size H4.
      */
     public static final int INSET_H4 = 3;
 
@@ -129,12 +136,12 @@ public final class FactoryGUIs {
     }
 
     /**
-     * Encapsulate vertically a list of component in JPanel.
+     * Vertical encapsulation a list of component in JPanel.
      * @param components is list of component.
      * @param inset 
-     * @return
+     * @return encapsulate
      */
-    public static JPanel createPanelGridBagUnionComponentsVertical(final List<? extends  Component> components, final int inset){
+    public static JPanel createPanelGridBagUnionComponentsVertical(final List<? extends  Component> components, final int inset) {
         final JPanel encapsulate = FactoryGUIs.createPanelTransparent(new GridBagLayout());
         final GridBagConstraints limit = createGBConstraintsBase();
         limit.insets = new Insets(inset / 2, inset, inset / 2, inset);
@@ -147,11 +154,11 @@ public final class FactoryGUIs {
     }
 
     /**
-     * 
-     * @param components
-     * @param bottom
-     * @param left
-     * @return
+     * Vertical encapsulation a list of component in JPanel with layout GridBag and insets left-bottom.
+     * @param components is list of component.
+     * @param bottom insets bottom.
+     * @param left insets left.
+     * @return encapsulate is JPanel with components.
      */
     public static JPanel createPanelGridBagUnionComponentsVerticalInsetExternalSX(final List<? extends JComponent> components, final int bottom, final int left) {
         final JPanel encapsulate = FactoryGUIs.createPanelTransparent(new GridBagLayout());
@@ -171,10 +178,10 @@ public final class FactoryGUIs {
     }
 
     /**
-     * 
-     * @param components
-     * @param inset
-     * @return
+     * Horizontal encapsulation a list of component in JPanel with layout GridBag and insets.
+     * @param components is list of component.
+     * @param inset is size of insets.
+     * @return encapsulate is JPanel with components
      */
     public static JPanel createPanelGridBagUnionComponentsHorizontal(final List<? extends  JComponent> components, final int inset) {
         final JPanel encapsulate =  FactoryGUIs.createPanelTransparent(new GridBagLayout());
@@ -188,30 +195,48 @@ public final class FactoryGUIs {
         return encapsulate;
     }
 
-    public static void resetGridBagConstraints(final GridBagConstraints lim) {
-        lim.ipadx = 0;
-        lim.ipady = 0;
-        lim.gridx = 0;
-        lim.gridy = 0;
+    /**
+     * Reset parameters of GridBagConstraints.
+     * @param gridBagConstraints separator in Layout.
+     */
+    public static void resetGridBagConstraints(final GridBagConstraints gridBagConstraints) {
+        gridBagConstraints.ipadx = 0;
+        gridBagConstraints.ipady = 0;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
     }
 
+    /**
+     * Create GridBagConstraints with fill.
+     * @param fill
+     * @return gridBaag with fill.
+     */
     public static GridBagConstraints createGBConstraintFill(final int fill) {
-        final GridBagConstraints lim = new GridBagConstraints();
-        lim.insets = new Insets(FactoryGUIs.INSET_H4, FactoryGUIs.INSET_H4, FactoryGUIs.INSET_H4, FactoryGUIs.INSET_H4);
-        FactoryGUIs.resetGridBagConstraints(lim);
-        lim.fill = fill;
-        return lim;
+        final GridBagConstraints gridBaag = new GridBagConstraints();
+        gridBaag.insets = new Insets(FactoryGUIs.INSET_H4, FactoryGUIs.INSET_H4, FactoryGUIs.INSET_H4, FactoryGUIs.INSET_H4);
+        FactoryGUIs.resetGridBagConstraints(gridBaag);
+        gridBaag.fill = fill;
+        return gridBaag;
     }
 
+    /**
+     * Create default GridBagConstraints. 
+     * @return default GridBagConstraints.
+     */
     public static GridBagConstraints createGBConstraintsBase() {
         return FactoryGUIs.createGBConstraintFill(GridBagConstraints.HORIZONTAL);
     }
 
+    /**
+     * Create template GridBagConstraints for title.
+     * @param separationTitle is size to separate from title.
+     * @return gridBaag is template GridBagConstraints for title.
+     */
     public static GridBagConstraints createGBConstraintsWithSpaceTitle(final int separationTitle) {
-        final GridBagConstraints lim = FactoryGUIs.createGBConstraintFill(GridBagConstraints.HORIZONTAL);
+        final GridBagConstraints gridBaag = FactoryGUIs.createGBConstraintFill(GridBagConstraints.HORIZONTAL);
 
-        lim.ipady = separationTitle;
-        return lim;
+        gridBaag.ipady = separationTitle;
+        return gridBaag;
     }
 
     /**
@@ -290,6 +315,9 @@ public final class FactoryGUIs {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setUndecorated(true);
         frame.setResizable(false);
-        frame.setBackground(GraphicsUtils.COLOR_OPACITY_BLACK);
+        frame.setBackground(GraphicsLayoutUtils.COLOR_OPACITY_BLACK);
+    }
+
+    private FactoryGUIs() {
     }
 }

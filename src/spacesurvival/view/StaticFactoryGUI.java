@@ -41,7 +41,7 @@ public final class StaticFactoryGUI {
      * @return loading GUI.
      */
     public static GUILoading createLoading() {
-        FactoryGUILoading factoryGUILoading = new GUILoadingStandard();
+        final FactoryGUILoading factoryGUILoading = new GUILoadingStandard();
         return factoryGUILoading.create();
     }
 
@@ -50,7 +50,7 @@ public final class StaticFactoryGUI {
      * @return menu GUI.
      */
     public static GUIMenu createMenuGUI() {
-        FactoryGuiMenu menuGUI = new GUIMenuStandard();
+        final FactoryGuiMenu menuGUI = new GUIMenuStandard();
         return menuGUI.createGui();
     }
 
@@ -59,7 +59,7 @@ public final class StaticFactoryGUI {
      * @return scoreboard GUI.
      */
     public static GUIScoreboard createScoreboardGUI() {
-        FactoryGUIScoreboard scoreboardGUI = new GUIScoreboardStandard();
+        final FactoryGUIScoreboard scoreboardGUI = new GUIScoreboardStandard();
         return scoreboardGUI.createGUI();
     }
 
@@ -68,7 +68,7 @@ public final class StaticFactoryGUI {
      * @return settings GUI.
      */
     public static GUISettings createSettingsGUI() {
-        FactoryGUISettings settingsGUI = new GUISettingsStandard();
+        final FactoryGUISettings settingsGUI = new GUISettingsStandard();
         return settingsGUI.create();
     }
 
@@ -77,7 +77,7 @@ public final class StaticFactoryGUI {
      * @return help GUI.
      */
     public static GUIHelp createHelpGUI() {
-        FactoryGUIHelp helpGUI = new GUIHelpStandard();
+        final FactoryGUIHelp helpGUI = new GUIHelpStandard();
         return helpGUI.create();
     }
 
@@ -86,7 +86,7 @@ public final class StaticFactoryGUI {
      * @return sound GUI.
      */
     public static GUISound createSoundGUI() {
-        FactoryGUISound soundGUI = new GUISoundStandard();
+        final FactoryGUISound soundGUI = new GUISoundStandard();
         return soundGUI.create();
     }
 
@@ -95,7 +95,7 @@ public final class StaticFactoryGUI {
      * @return game GUI.
      */
     public static GUIGame createGameGUI() {
-        FactoryGUIGame gameGUI = new GUIGameStandard();
+        final FactoryGUIGame gameGUI = new GUIGameStandard();
         return gameGUI.create();
     }
 
@@ -104,7 +104,7 @@ public final class StaticFactoryGUI {
      * @return pause GUI.
      */
     public static GUIPause createPauseGUI() {
-        FactoryGUIPause pauseGUI = new GUIPauseStandard();
+        final FactoryGUIPause pauseGUI = new GUIPauseStandard();
         return pauseGUI.create();
     }
 
@@ -113,7 +113,7 @@ public final class StaticFactoryGUI {
      * @return dead GUI.
      */
     public static GUIDead createDeadGUI() {
-        FactoryGUIDead deadGUI = new GUIDeadStandard();
+        final FactoryGUIDead deadGUI = new GUIDeadStandard();
         return deadGUI.create();
     }
 }

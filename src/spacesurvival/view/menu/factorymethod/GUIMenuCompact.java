@@ -3,7 +3,7 @@ package spacesurvival.view.menu.factorymethod;
 import spacesurvival.model.gui.menu.EngineMenu;
 import spacesurvival.utilities.DesignJComponent;
 import spacesurvival.utilities.dimension.ScaleOf;
-import spacesurvival.view.utilities.GraphicsUtils;
+import spacesurvival.view.utilities.GraphicsLayoutUtils;
 import spacesurvival.view.menu.FactoryGuiMenu;
 import spacesurvival.view.menu.GUIMenu;
 import spacesurvival.view.menu.concrete.GUIMenuConcrete;
@@ -27,9 +27,9 @@ public class GUIMenuCompact implements FactoryGuiMenu {
     public GUIMenu createGui() {
         final GUIMenuConcrete menuConcrete = new GUIMenuConcrete();
 
-        menuConcrete.setFontGUI(GraphicsUtils.FONT_STANDARD_H5);
-        menuConcrete.setForegroundGUI(GraphicsUtils.COLOR_4);
-        menuConcrete.setFontTitleGUI(GraphicsUtils.getFontForTitle(GraphicsUtils.SIZE_FONT_H2));
+        menuConcrete.setFontGUI(GraphicsLayoutUtils.FONT_STANDARD_H5);
+        menuConcrete.setForegroundGUI(GraphicsLayoutUtils.COLOR_4);
+        menuConcrete.setFontTitleGUI(GraphicsLayoutUtils.getFontForTitle(GraphicsLayoutUtils.SIZE_FONT_H2));
         menuConcrete.setColumnsNamePlayer(DesignJComponent.SIZE_COLUMNS_TEXT);
         this.createGraphics(menuConcrete);
         return menuConcrete;
@@ -56,7 +56,8 @@ public class GUIMenuCompact implements FactoryGuiMenu {
         while (nBtnUsed < EngineMenu.N_BUTTONS) {
             lim.gridy++;
             menu.add(FactoryGUIs.createPanelFlowUnionComponents(List.of(menu.getBtnActionLinks().get(nBtnUsed++),
-                    nBtnUsed + 1 < EngineMenu.N_BUTTONS ? menu.getBtnActionLinks().get(nBtnUsed++) : FactoryGUIs.getJComponentEmpty())), lim);
+                    nBtnUsed + FactoryGUIs.STEP_INDEX < EngineMenu.N_BUTTONS 
+                    ? menu.getBtnActionLinks().get(nBtnUsed++) : FactoryGUIs.getJComponentEmpty())), lim);
         }
 
         nBtnUsed = 0;

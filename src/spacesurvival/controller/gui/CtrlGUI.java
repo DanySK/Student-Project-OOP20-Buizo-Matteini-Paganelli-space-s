@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.Optional;
 
 public class CtrlGUI {
+
     public static final LinkActionGUI FIRST_GUI = LinkActionGUI.ID_MENU;
 
     private final CtrlMenu ctrlMenu;

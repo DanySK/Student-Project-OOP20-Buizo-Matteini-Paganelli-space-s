@@ -4,7 +4,7 @@ import spacesurvival.model.gui.scoreboard.EngineScoreboard;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.path.Background;
 import spacesurvival.utilities.path.Icon;
-import spacesurvival.view.utilities.GraphicsUtils;
+import spacesurvival.view.utilities.GraphicsLayoutUtils;
 import spacesurvival.view.scoreboard.FactoryGUIScoreboard;
 import spacesurvival.view.scoreboard.GUIScoreboard;
 import spacesurvival.view.scoreboard.concrete.GUIScoreboardConcrete;
@@ -19,11 +19,11 @@ public class GUIScoreboardStandard implements FactoryGUIScoreboard {
     @Override
     public GUIScoreboard createGUI() {
         final GUIScoreboardConcrete scoreboardConcrete = new GUIScoreboardConcrete();
-        scoreboardConcrete.setFontLbTitle(GraphicsUtils.getFontForTitle(GraphicsUtils.SIZE_FONT_H2));
-        scoreboardConcrete.getTxtSearchName().setColumns(GraphicsUtils.SIZE_COLUMNS_TEXT);
-        scoreboardConcrete.setFontGUI(GraphicsUtils.FONT_STANDARD_H5);
-        scoreboardConcrete.setForegroundGUI(GraphicsUtils.COLOR_4);
-        scoreboardConcrete.setBorder(GraphicsUtils.COLOR_4, 3);
+        scoreboardConcrete.setFontLbTitle(GraphicsLayoutUtils.getFontForTitle(GraphicsLayoutUtils.SIZE_FONT_H2));
+        scoreboardConcrete.getTxtSearchName().setColumns(GraphicsLayoutUtils.SIZE_COLUMNS_TEXT);
+        scoreboardConcrete.setFontGUI(GraphicsLayoutUtils.FONT_STANDARD_H5);
+        scoreboardConcrete.setForegroundGUI(GraphicsLayoutUtils.COLOR_4);
+        scoreboardConcrete.setBorder(GraphicsLayoutUtils.COLOR_4, 3);
         scoreboardConcrete.setImageBackground(Background.MAIN);
         this.createGraphics(scoreboardConcrete);
         return scoreboardConcrete;

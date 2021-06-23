@@ -3,7 +3,7 @@ package spacesurvival.view.menu.factorymethod;
 import spacesurvival.model.gui.menu.EngineMenu;
 import spacesurvival.utilities.DesignJComponent;
 import spacesurvival.utilities.path.Background;
-import spacesurvival.view.utilities.GraphicsUtils;
+import spacesurvival.view.utilities.GraphicsLayoutUtils;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.view.menu.FactoryGuiMenu;
 import spacesurvival.view.menu.GUIMenu;
@@ -27,9 +27,9 @@ public class GUIMenuStandard implements FactoryGuiMenu {
     @Override
     public GUIMenu createGui() {
         final GUIMenuConcrete menuConcrete = new GUIMenuConcrete();
-        menuConcrete.setFontGUI(GraphicsUtils.FONT_STANDARD_H5);
-        menuConcrete.setForegroundGUI(GraphicsUtils.COLOR_4);
-        menuConcrete.setFontTitleGUI(GraphicsUtils.getFontForTitle(GraphicsUtils.SIZE_FONT_H2));
+        menuConcrete.setFontGUI(GraphicsLayoutUtils.FONT_STANDARD_H5);
+        menuConcrete.setForegroundGUI(GraphicsLayoutUtils.COLOR_4);
+        menuConcrete.setFontTitleGUI(GraphicsLayoutUtils.getFontForTitle(GraphicsLayoutUtils.SIZE_FONT_H2));
         menuConcrete.setColumnsNamePlayer(DesignJComponent.SIZE_COLUMNS_TEXT);
         menuConcrete.setImageBackground(Background.MAIN);
 

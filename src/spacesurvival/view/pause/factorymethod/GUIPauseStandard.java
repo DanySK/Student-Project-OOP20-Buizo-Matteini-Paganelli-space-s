@@ -1,7 +1,7 @@
 package spacesurvival.view.pause.factorymethod;
 
 import spacesurvival.model.gui.pause.EnginePause;
-import spacesurvival.view.utilities.GraphicsUtils;
+import spacesurvival.view.utilities.GraphicsLayoutUtils;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.view.pause.FactoryGUIPause;
 import spacesurvival.view.pause.GUIPause;
@@ -17,12 +17,12 @@ public class GUIPauseStandard implements FactoryGUIPause {
     public GUIPause create() {
         final GUIPauseConcrete concrete = new GUIPauseConcrete();
 
-        concrete.setFontGUITitle(GraphicsUtils.getFontForTitle(GraphicsUtils.SIZE_FONT_H2));
+        concrete.setFontGUITitle(GraphicsLayoutUtils.getFontForTitle(GraphicsLayoutUtils.SIZE_FONT_H2));
 
-        concrete.setForegroundGUI(GraphicsUtils.COLOR_4);
-        concrete.setFontButtons(GraphicsUtils.FONT_STANDARD_H5);
+        concrete.setForegroundGUI(GraphicsLayoutUtils.COLOR_4);
+        concrete.setFontButtons(GraphicsLayoutUtils.FONT_STANDARD_H5);
 
-        concrete.setBorder(GraphicsUtils.COLOR_4, FactoryGUIs.INSET_H4);
+        concrete.setBorder(GraphicsLayoutUtils.COLOR_4, FactoryGUIs.INSET_H4);
 
         this.createGraphics(concrete);
 

@@ -13,13 +13,6 @@ public class ButtonLink extends JButton {
     private LinkActionGUI actionNext;
 
     /**
-     * Builds a link button.
-     */
-    public ButtonLink() {
-        super();
-    }
-
-    /**
      * Get the link of the button it belongs to.
      * @return LinkActionGUI current link.
      */

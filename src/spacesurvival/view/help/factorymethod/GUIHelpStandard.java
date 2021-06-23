@@ -8,7 +8,7 @@ import spacesurvival.utilities.DesignJComponent;
 import spacesurvival.view.help.concrete.GUIHelpConcrete;
 import spacesurvival.view.help.FactoryGUIHelp;
 import spacesurvival.view.help.GUIHelp;
-import spacesurvival.view.utilities.GraphicsUtils;
+import spacesurvival.view.utilities.GraphicsLayoutUtils;
 import spacesurvival.view.utilities.FactoryGUIs;
 
 import java.awt.*;
@@ -19,10 +19,10 @@ public class GUIHelpStandard implements FactoryGUIHelp {
     @Override
     public GUIHelp create(){
         GUIHelpConcrete helpGUIConcrete = new GUIHelpConcrete();
-        helpGUIConcrete.setFontTitleGUI(GraphicsUtils.getFontForTitle(GraphicsUtils.SIZE_FONT_H2));
-        helpGUIConcrete.setFontGUI(GraphicsUtils.FONT_STANDARD_H5);
-        helpGUIConcrete.setForegroundGUI(GraphicsUtils.COLOR_4);
-        helpGUIConcrete.setBorder(GraphicsUtils.COLOR_4, 3);
+        helpGUIConcrete.setFontTitleGUI(GraphicsLayoutUtils.getFontForTitle(GraphicsLayoutUtils.SIZE_FONT_H2));
+        helpGUIConcrete.setFontGUI(GraphicsLayoutUtils.FONT_STANDARD_H5);
+        helpGUIConcrete.setForegroundGUI(GraphicsLayoutUtils.COLOR_4);
+        helpGUIConcrete.setBorder(GraphicsLayoutUtils.COLOR_4, 3);
         helpGUIConcrete.setImageBackground(Background.MAIN);
         this.createGraphics(helpGUIConcrete);
         return helpGUIConcrete;

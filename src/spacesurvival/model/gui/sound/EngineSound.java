@@ -7,10 +7,13 @@ import spacesurvival.utilities.SoundUtils;
 import spacesurvival.utilities.dimension.Screen;
 import spacesurvival.utilities.LinkActionGUI;
 
-import java.awt.*;
+import java.awt.Rectangle;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Implements the model for the sound GUI.
+ */
 public class EngineSound implements EngineGUI {
 
     /**

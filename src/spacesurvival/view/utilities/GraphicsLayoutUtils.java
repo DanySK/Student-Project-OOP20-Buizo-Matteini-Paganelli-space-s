@@ -2,19 +2,18 @@ package spacesurvival.view.utilities;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
+import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 
 import spacesurvival.utilities.path.MainFolder;
 
 /**
- * Implementation of graphics utilities.
+ * Implementation of graphics layout utilities.
  */
-public final class GraphicsUtils {
-
-    private GraphicsUtils() {
-    }
+public final class GraphicsLayoutUtils {
 
     /**
      * Round text.
@@ -159,7 +158,7 @@ public final class GraphicsUtils {
             myFont = myFont.deriveFont(Font.PLAIN, size);
             final GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(myFont);
-        } catch (Exception e) {
+        } catch (IOException | FontFormatException e) {
             System.err.println("Path font no found");
         }
 
@@ -179,7 +178,7 @@ public final class GraphicsUtils {
             myFont = myFont.deriveFont(Font.PLAIN, size);
             final GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(myFont);
-        } catch (Exception e) {
+        } catch (IOException | FontFormatException e) {
             System.err.println("Path font no found");
         }
 
@@ -199,10 +198,12 @@ public final class GraphicsUtils {
             myFont = myFont.deriveFont(Font.PLAIN, size);
             final GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(myFont);
-        } catch (Exception e) {
+        } catch (IOException | FontFormatException e) {
             System.err.println("Path font no found");
         }
         return myFont;
     }
 
+    private GraphicsLayoutUtils() {
+    }
 }

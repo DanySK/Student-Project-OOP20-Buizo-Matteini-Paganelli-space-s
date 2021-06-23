@@ -6,7 +6,7 @@ import spacesurvival.utilities.path.Background;
 import spacesurvival.view.dead.FactoryGUIDead;
 import spacesurvival.view.dead.GUIDead;
 import spacesurvival.view.dead.concrete.GUIDeadConcrete;
-import spacesurvival.view.utilities.GraphicsUtils;
+import spacesurvival.view.utilities.GraphicsLayoutUtils;
 import spacesurvival.view.utilities.FactoryGUIs;
 
 
@@ -15,8 +15,8 @@ public class GUIDeadStandard implements FactoryGUIDead {
     public GUIDead create() {
         final GUIDeadConcrete concrete = new GUIDeadConcrete();
 
-        concrete.setFontTitleGUI(GraphicsUtils.getFontForDead(GraphicsUtils.SIZE_FONT_H0));
-        concrete.setFontGUI(GraphicsUtils.getFontForDead(GraphicsUtils.SIZE_FONT_H2));
+        concrete.setFontTitleGUI(GraphicsLayoutUtils.getFontForDead(GraphicsLayoutUtils.SIZE_FONT_H0));
+        concrete.setFontGUI(GraphicsLayoutUtils.getFontForDead(GraphicsLayoutUtils.SIZE_FONT_H2));
         concrete.setForegroundTitle(Color.RED);
         concrete.setForegroundGUI(Color.RED);
         concrete.setImageBackground(Background.DEAD2);
