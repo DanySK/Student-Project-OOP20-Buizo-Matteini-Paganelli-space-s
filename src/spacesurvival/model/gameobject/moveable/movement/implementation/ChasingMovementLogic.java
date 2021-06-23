@@ -6,7 +6,7 @@ import spacesurvival.model.common.P2d;
 import spacesurvival.model.gameobject.moveable.MoveableObject;
 import spacesurvival.model.gameobject.moveable.movement.MovementLogic;
 
-public class ChasingMovement implements MovementLogic {
+public class ChasingMovementLogic implements MovementLogic {
 
     /**
      * {@inheritDoc}

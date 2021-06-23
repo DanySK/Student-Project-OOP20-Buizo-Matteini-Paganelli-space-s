@@ -7,7 +7,7 @@ import spacesurvival.model.gameobject.moveable.MoveableObject;
 import spacesurvival.model.gameobject.moveable.movement.MovementLogic;
 import spacesurvival.utilities.gameobject.VelocityUtils;
 
-public class ControlledMovement implements MovementLogic {
+public class ControlledMovementLogic implements MovementLogic {
 
     /**
      * {@inheritDoc}

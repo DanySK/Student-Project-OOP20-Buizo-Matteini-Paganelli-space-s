@@ -7,7 +7,7 @@ import spacesurvival.model.gameobject.fireable.weapon.Weapon;
 import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.gameobject.main.Status;
 import spacesurvival.model.gameobject.moveable.movement.MovementLogic;
-import spacesurvival.model.gameobject.moveable.movement.implementation.ControlledMovement;
+import spacesurvival.model.gameobject.moveable.movement.implementation.ControlledMovementLogic;
 import spacesurvival.model.gameobject.takeable.ammo.Ammo;
 import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.model.common.P2d;
@@ -49,12 +49,12 @@ public final class SpaceShipSingleton extends FireableObject {
             new ShipComponent(),
             VelocityUtils.SPACESHIP_VEL,
             VelocityUtils.SPACESHIP_ACCELERATION,
-            new ControlledMovement(),
+            new ControlledMovementLogic(),
             LifeUtils.SPACESHIP_LIFE,
             DamageUtils.SPACESHIP_DAMAGE,
             Score.SHIP,
             Optional.empty(),
-            new Weapon(Optional.empty()),
+            new Weapon(),
             new NoFiringLogic()
             );
 

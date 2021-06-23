@@ -13,9 +13,9 @@ import spacesurvival.model.gameobject.main.Asteroid;
 import spacesurvival.model.gameobject.main.ChaseEnemy;
 import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.gameobject.moveable.movement.MovementLogic;
-import spacesurvival.model.gameobject.moveable.movement.implementation.ChasingMovement;
-import spacesurvival.model.gameobject.moveable.movement.implementation.FixedMovement;
-import spacesurvival.model.gameobject.moveable.movement.implementation.RandomMovement;
+import spacesurvival.model.gameobject.moveable.movement.implementation.ChasingMovementLogic;
+import spacesurvival.model.gameobject.moveable.movement.implementation.FixedMovementLogic;
+import spacesurvival.model.gameobject.moveable.movement.implementation.RandomMovementLogic;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.model.gameobject.takeable.ammo.Ammo;
 import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
@@ -57,10 +57,9 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
     @Override
     public MainObject createAsteroid() {
         final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULLSCREEN, AnimationAsteroid.ASTEROID1);
-        //final P2d position = GameObjectUtils.generateRandomPoint();
         final P2d position = PositionUtils.generateSpawnPoint(engineImage.getSize());
         final V2d velocity = VelocityUtils.ASTEROID_VEL;
-        final MovementLogic movementLogic = new FixedMovement();
+        final MovementLogic movementLogic = new FixedMovementLogic();
         final int life = LifeUtils.ASTEROID_LIFE;
         final int impactDamage = DamageUtils.ASTEROID_DAMAGE;
 
@@ -74,10 +73,9 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
     @Override
     public MainObject createChaseEnemy() {
         final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULLSCREEN, AnimationChase.POOH0);
-        //final P2d position = GameObjectUtils.generateRandomPoint();
         final P2d position = PositionUtils.generateSpawnPoint(engineImage.getSize());
         final V2d velocity = VelocityUtils.CHASE_ENEMY_VEL;
-        final MovementLogic movementLogic = new ChasingMovement();
+        final MovementLogic movementLogic = new ChasingMovementLogic();
         final int life = LifeUtils.CHASE_ENEMY_LIFE;
         final int impactDamage = DamageUtils.CHASE_ENEMY_DAMAGE;
 
@@ -91,18 +89,17 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
     @Override
     public FireableObject createFireEnemy() {
         final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULLSCREEN, AnimationChase.CHASE0);
-        //final P2d position = GameObjectUtils.generateRandomPoint();
         final P2d position = PositionUtils.generateSpawnPoint(engineImage.getSize());
         final V2d velocity = VelocityUtils.FIRE_ENEMY_VEL;
-        final MovementLogic movementLogic = new RandomMovement();
+        final MovementLogic movementLogic = new RandomMovementLogic();
         final int life = LifeUtils.FIRE_ENEMY_LIFE;
         final int impactDamage = DamageUtils.FIRE_ENEMY_DAMAGE;
-        final Weapon weapon = new Weapon(Optional.empty());
+        final Weapon weapon = new Weapon();
         final FiringLogic firingLogic = new EnemyFiringLogic();
 
         final FireEnemy fireEnemy = new FireEnemy(engineImage, position, new RectBoundingBox(), new FireEnemyComponent(), velocity,
                 acceleration, movementLogic, life, impactDamage, Score.FIRE_ENEMY, Optional.empty(), weapon, firingLogic);
-        fireEnemy.setWeapon(new Weapon(AmmoType.NORMAL, Optional.of(fireEnemy)));
+        fireEnemy.setWeapon(new Weapon(AmmoType.NORMAL, fireEnemy));
         return fireEnemy;
     }
 
@@ -112,18 +109,17 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
     @Override
     public FireableObject createBoss() {
         final EngineImage engineImage = new EngineImage(ScaleOf.BOSS, Screen.WIDTH_FULLSCREEN, AnimationBoss.BOSS0);
-        //final P2d position = GameObjectUtils.generateRandomPoint();
         final P2d position = PositionUtils.generateSpawnPoint(engineImage.getSize());
         final V2d velocity = VelocityUtils.BOSS_VEL;
-        final MovementLogic movementLogic = new RandomMovement();
+        final MovementLogic movementLogic = new RandomMovementLogic();
         final int life = LifeUtils.BOSS_LIFE;
         final int impactDamage = DamageUtils.BOSS_DAMAGE;
-        final Weapon weapon = new Weapon(Optional.empty());
+        final Weapon weapon = new Weapon();
         final FiringLogic firingLogic = new BossFiringLogic();
 
         final Boss boss = new Boss(engineImage, position, new RectBoundingBox(), new BossComponent(), velocity,
                 acceleration, movementLogic, life, impactDamage, Score.BOSS, Optional.empty(), weapon, firingLogic);
-        boss.setWeapon(new Weapon(AmmoType.NORMAL, Optional.of(boss)));
+        boss.setWeapon(new Weapon(AmmoType.NORMAL, boss));
         return boss;
     }
 
