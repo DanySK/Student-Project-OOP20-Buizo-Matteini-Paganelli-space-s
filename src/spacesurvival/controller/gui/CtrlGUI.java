@@ -5,7 +5,7 @@ import spacesurvival.controller.gui.strategy.LogicSwitchGUI;
 import spacesurvival.controller.gui.strategy.LogicSwitchGame;
 import spacesurvival.controller.gui.strategy.LogicSwitchMenu;
 import spacesurvival.controller.utilities.ListGUI;
-import spacesurvival.model.gui.StaticFactoryEngineGUI;
+import spacesurvival.model.gui.StaticFactoryEngineGui;
 import spacesurvival.view.GUI;
 import spacesurvival.view.StaticFactoryGUI;
 import spacesurvival.model.gui.Visibility;
@@ -41,13 +41,13 @@ public class CtrlGUI {
 
 
     public CtrlGUI() {
-        this.ctrlMenu = new CtrlMenu(StaticFactoryEngineGUI.createEngineMenu(), StaticFactoryGUI.createMenuGUI());
-        this.ctrlGame = new CtrlGame(StaticFactoryEngineGUI.createEngineGame(), StaticFactoryGUI.createGameGUI());
-        this.ctrlSettings = new CtrlSettings(StaticFactoryEngineGUI.createEngineSettings(), StaticFactoryGUI.createSettingsGUI());
-        this.ctrlSound = new CtrlSound(StaticFactoryEngineGUI.createEngineSound(), StaticFactoryGUI.createSoundGUI());
-        this.ctrlHelp = new CtrlHelp(StaticFactoryEngineGUI.createEngineHelp(), StaticFactoryGUI.createHelpGUI());
-        this.ctrlPause = new CtrlPause(StaticFactoryEngineGUI.createEnginePause(), StaticFactoryGUI.createPauseGUI());
-        this.ctrlDead = new CtrlDead(StaticFactoryEngineGUI.createEngineDead(), StaticFactoryGUI.createDeadGUI());
+        this.ctrlMenu = new CtrlMenu(StaticFactoryEngineGui.createEngineMenu(), StaticFactoryGUI.createMenuGUI());
+        this.ctrlGame = new CtrlGame(StaticFactoryEngineGui.createEngineGame(), StaticFactoryGUI.createGameGUI());
+        this.ctrlSettings = new CtrlSettings(StaticFactoryEngineGui.createEngineSettings(), StaticFactoryGUI.createSettingsGUI());
+        this.ctrlSound = new CtrlSound(StaticFactoryEngineGui.createEngineSound(), StaticFactoryGUI.createSoundGUI());
+        this.ctrlHelp = new CtrlHelp(StaticFactoryEngineGui.createEngineHelp(), StaticFactoryGUI.createHelpGUI());
+        this.ctrlPause = new CtrlPause(StaticFactoryEngineGui.createEnginePause(), StaticFactoryGUI.createPauseGUI());
+        this.ctrlDead = new CtrlDead(StaticFactoryEngineGui.createEngineDead(), StaticFactoryGUI.createDeadGUI());
 
         this.managerGui = new HashMap<>();
         this.managerGui.put(this.ctrlMenu.getMainLink(), this.ctrlMenu);

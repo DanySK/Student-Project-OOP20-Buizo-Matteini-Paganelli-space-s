@@ -1,17 +1,25 @@
 package spacesurvival.view.scoreboard.concrete;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.List;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+
 import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.AbstractGUI;
 import spacesurvival.view.scoreboard.GUIScoreboard;
 import spacesurvival.view.utilities.ButtonLink;
 
-import javax.swing.*;
-import java.awt.*;
-
-
+/**
+ * Implement every element the scoreboard GUI must have.
+ */
 public class GUIScoreboardConcrete extends AbstractGUI implements GUIScoreboard {
     private static final long serialVersionUID = -108440081332913533L;
-    
+
     private final JLabel lbTitle;
     private final JTextField txtSearchName;
     private final JButton btnSearch;
@@ -19,7 +27,10 @@ public class GUIScoreboardConcrete extends AbstractGUI implements GUIScoreboard 
     private final JScrollPane scrollerScoreboard;
     private final ButtonLink btnBack;
 
-    public GUIScoreboardConcrete(){
+    /**
+     * Constructor of all scoreboard GUI items.
+     */
+    public GUIScoreboardConcrete() {
         super();
         this.lbTitle = new JLabel();
         this.txtSearchName = new JTextField();
@@ -29,38 +40,55 @@ public class GUIScoreboardConcrete extends AbstractGUI implements GUIScoreboard 
         this.btnBack = new ButtonLink();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public java.util.List<ButtonLink> getBtnActionLinks() {
         return java.util.List.of(this.btnBack);
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void setNameButtons(final java.util.List<String> listName) {
-        for(int i = 0; i < listName.size(); i++){
+    public void setTextButtons(final java.util.List<String> listName) {
+        for (int i = 0; i < listName.size(); i++) {
             this.getButton().get(i).setText(listName.get(i));
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setBtnBackID(final LinkActionGUI mainAction, final LinkActionGUI action) {
         this.btnBack.setCurrentLink(mainAction);
         this.btnBack.setNextLink(action);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void setTitleGUI(final String title){
+    public void setTitleGUI(final String title) {
         this.lbTitle.setText(title);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void setFontGUI(final Font font){
+    public void setFontGUI(final Font font) {
         this.txtSearchName.setFont(font);
         this.btnSearch.setFont(font);
         this.scoreboard.setFont(font);
         this.btnBack.setFont(font);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setForegroundGUI(final Color color) {
         this.lbTitle.setForeground(color);
@@ -69,39 +97,66 @@ public class GUIScoreboardConcrete extends AbstractGUI implements GUIScoreboard 
         this.btnBack.setForeground(color);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void setFontLbTitle(final Font font){
+    public void setFontTitleGUI(final Font font) {
         this.lbTitle.setFont(font);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public java.util.List<JButton> getButton() {
         return java.util.List.of(this.btnSearch, this.btnBack);
     }
 
+    /**
+     * Get JLabel for title GUI.
+     * @return JLabel.
+     */
     public JLabel getLbTitle() {
-        return lbTitle;
+        return this.lbTitle;
     }
 
+    /**
+     * Get JTextField where put name for search in scoreboard.
+     * @return JTextField.
+     */
     public JTextField getTxtSearchName() {
-        return txtSearchName;
+        return this.txtSearchName;
     }
 
+    /**
+     * Get back button.
+     * @return JButton for init search in scoreboard.
+     */
     public JButton getBtnSearch() {
-        return btnSearch;
+        return this.btnSearch;
     }
 
+    /**
+     * Get list of scoreboard.
+     * @return list of scoreboard.
+     */
     public List getScoreboard() {
         return this.scoreboard;
     }
 
-    public JScrollPane getScrollerScoreboard(){
+    /**
+     * Get JScrollPane of scoreboard.
+     * @return JScrollPane of scoreboard.
+     */
+    public JScrollPane getScrollerScoreboard() {
         return this.scrollerScoreboard;
     }
 
-    public JButton getBtnBack() {
-        return btnBack;
+    /**
+     * Get back link button.
+     * @return ButtonLink for link back.
+     */
+    public ButtonLink getBtnBack() {
+        return this.btnBack;
     }
-
-
-
 }

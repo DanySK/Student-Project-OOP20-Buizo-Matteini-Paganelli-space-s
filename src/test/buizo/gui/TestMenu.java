@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import spacesurvival.controller.gui.CtrlMenu;
-import spacesurvival.model.gui.StaticFactoryEngineGUI;
+import spacesurvival.model.gui.StaticFactoryEngineGui;
 import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.gui.menu.EngineMenu;
 import spacesurvival.view.StaticFactoryGUI;
@@ -16,7 +16,7 @@ public class TestMenu {
 
     @Test
     public void testLinkMenu() {
-        final EngineMenu engine = StaticFactoryEngineGUI.createEngineMenu();
+        final EngineMenu engine = StaticFactoryEngineGui.createEngineMenu();
         final GUIMenu gui = StaticFactoryGUI.createMenuGUI();
         final CtrlMenu controller = new CtrlMenu(engine, gui);
 
@@ -32,19 +32,19 @@ public class TestMenu {
 
     @Test
     public void testTextMenu() {
-        final EngineMenu engine = StaticFactoryEngineGUI.createEngineMenu();
+        final EngineMenu engine = StaticFactoryEngineGui.createEngineMenu();
         final GUIMenu gui = StaticFactoryGUI.createMenuGUI();
         final CtrlMenu controller = new CtrlMenu(engine, gui);
 
         controller.assignTexts();
         for (int i = 0; i < EngineMenu.N_BUTTONS; i++) {
-            assertEquals(gui.getBtnActionLinks().get(i).getText(), engine.getListNameLinks().get(i));
+            assertEquals(gui.getBtnActionLinks().get(i).getText(), engine.getListTextLinks().get(i));
         }
     }
 
     @Test
     public void testVisibilityMenu() {
-        final EngineMenu engine = StaticFactoryEngineGUI.createEngineMenu();
+        final EngineMenu engine = StaticFactoryEngineGui.createEngineMenu();
         final GUIMenu gui = StaticFactoryGUI.createMenuGUI();
         final CtrlMenu controller = new CtrlMenu(engine, gui);
 

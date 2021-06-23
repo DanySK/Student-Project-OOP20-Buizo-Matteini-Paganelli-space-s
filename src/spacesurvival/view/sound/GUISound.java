@@ -5,7 +5,8 @@ import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.GUI;
 import spacesurvival.view.sound.utilities.ButtonSliderType;
 import spacesurvival.view.sound.utilities.SliderType;
-import java.awt.Color;
+import spacesurvival.view.utilities.GraphicsText;
+
 import java.awt.Font;
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +14,7 @@ import java.util.Optional;
 /**
  * Interface that implements the sound functionalities.
  */
-public interface GUISound extends GUI {
+public interface GUISound extends GUI, GraphicsText {
 
     /**
      * Set text a back button.
@@ -61,10 +62,10 @@ public interface GUISound extends GUI {
 
     /**
      * Set linkAction a back buttonLink.
-     * @param actionMain is linkAction a current GUI.
+     * @param mainAction is linkAction a current GUI.
      * @param linkAction for link previous GUI.
      */
-    void setBtnBackID(LinkActionGUI actionMain, LinkActionGUI linkAction);
+    void setActionBtnBack(LinkActionGUI mainAction, LinkActionGUI linkAction);
 
     /**
      * Get a list of switches button.
@@ -79,32 +80,9 @@ public interface GUISound extends GUI {
     void setIconBtnSwitches(List<String> path);
 
     /**
-     * Set color foreground GUI.
-     * @param color for foreground.
-     */
-    void setForegroundGUI(Color color);
-
-    /**
-     * Set font title GUI.
-     * @param font for title.
-     */
-    void setFontGUITitle(Font font);
-
-    /**
-     * Set font GUI, all unit sound. 
-     * @param font for GUI.
-     */
-    void setFontGUI(Font font);
-
-    /**
      * Set font spacing slider.
      * @param font for spacing slider.
      */
     void setFontSpacingSlider(Font font);
 
-    /**
-     * Set title GUI.
-     * @param title for GUI.
-     */
-    void setTitleGUI(String title);
 }

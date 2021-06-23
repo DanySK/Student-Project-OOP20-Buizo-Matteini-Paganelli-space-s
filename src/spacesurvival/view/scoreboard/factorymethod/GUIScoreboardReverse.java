@@ -6,15 +6,22 @@ import spacesurvival.view.scoreboard.GUIScoreboard;
 import spacesurvival.view.scoreboard.concrete.GUIScoreboardConcrete;
 import spacesurvival.view.utilities.FactoryGUIs;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
 
+import javax.swing.JPanel;
+
+/**
+ * Implements the creation of the standard scoreboard menu GUI.
+ */
 public class GUIScoreboardReverse implements FactoryGUIScoreboard {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public GUIScoreboard createGUI() {
         final GUIScoreboardConcrete scoreboardConcrete = new GUIScoreboardConcrete();
-        scoreboardConcrete.setFontLbTitle(GraphicsLayoutUtils.getFontForTitle(GraphicsLayoutUtils.SIZE_FONT_H2));
+        scoreboardConcrete.setFontTitleGUI(GraphicsLayoutUtils.getFontForTitle(GraphicsLayoutUtils.SIZE_FONT_H2));
         scoreboardConcrete.getTxtSearchName().setColumns(GraphicsLayoutUtils.SIZE_COLUMNS_TEXT);
         scoreboardConcrete.setFontGUI(GraphicsLayoutUtils.FONT_STANDARD_H5);
         scoreboardConcrete.setForegroundGUI(GraphicsLayoutUtils.COLOR_4);
@@ -23,6 +30,11 @@ public class GUIScoreboardReverse implements FactoryGUIScoreboard {
         return scoreboardConcrete;
     }
 
+    /**
+     * Create graphics reverse scoreboard GUI.
+     * 
+     * @param scoreboard to create the graphics.
+     */
     private void createGraphics(final GUIScoreboardConcrete scoreboardConcrete) {
         scoreboardConcrete.setLayout(new BorderLayout());
 
@@ -30,7 +42,7 @@ public class GUIScoreboardReverse implements FactoryGUIScoreboard {
                 BorderLayout.NORTH);
         scoreboardConcrete.add(scoreboardConcrete.getBtnBack(), BorderLayout.SOUTH);
 
-        final JPanel panelScore = new JPanel(new BorderLayout()) {{ setOpaque(false); }};
+        final JPanel panelScore = FactoryGUIs.createPanelTransparent(new BorderLayout());
 
         panelScore.add(FactoryGUIs.createPanelFlowUnionComponents(java.util.List.of(scoreboardConcrete.getTxtSearchName(),
                 scoreboardConcrete.getBtnSearch())), BorderLayout.SOUTH);

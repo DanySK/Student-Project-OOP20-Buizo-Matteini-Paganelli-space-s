@@ -5,7 +5,7 @@ package spacesurvival.view.menu;
  */
 public interface FactoryGuiMenu {
     /**
-     * Create a menu GUI.
+     * Create a graphics's menu GUI.
      * @return menu GUI.
      */
     GUIMenu createGui();

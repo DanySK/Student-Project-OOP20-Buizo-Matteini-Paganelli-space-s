@@ -6,7 +6,7 @@ package spacesurvival.view.sound;
 public interface FactoryGUISound {
 
     /**
-     * Create a sound GUI.
+     * Create a graphics's sound GUI.
      * @return sound GUI.
      */
     GUISound create();

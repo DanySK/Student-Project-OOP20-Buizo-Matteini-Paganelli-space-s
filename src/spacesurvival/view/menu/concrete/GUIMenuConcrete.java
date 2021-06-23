@@ -109,6 +109,7 @@ public class GUIMenuConcrete extends AbstractGUI implements GUIMenu {
 
     /**
      * Get a link button in the list by index.
+     * 
      * @param ind is index for list.
      * @return link button.
      */
@@ -118,14 +119,16 @@ public class GUIMenuConcrete extends AbstractGUI implements GUIMenu {
 
     /**
      * Get label for title menu GUI.
+     * 
      * @return label for title.
      */
-    public final JLabel getLbTitle() {
+    public final JLabel getLabelTitle() {
         return this.lbTitle;
     }
 
     /**
      * Get JTextField for player name text.
+     * 
      * @return JTextField for player name text. 
      */
     public final JTextField getTxfNamePlayer() {
@@ -133,7 +136,7 @@ public class GUIMenuConcrete extends AbstractGUI implements GUIMenu {
     }
 
     /**
-     * Return descriptions of menu GUI concrete.
+     * Descriptions of menu GUI concrete.
      */
     @Override
     public String toString() {

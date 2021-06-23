@@ -8,7 +8,7 @@ import spacesurvival.model.gui.Visibility;
 import spacesurvival.utilities.Delay;
 import spacesurvival.utilities.ThreadUtils;
 import spacesurvival.model.EngineLoop;
-import spacesurvival.model.gui.StaticFactoryEngineGUI;
+import spacesurvival.model.gui.StaticFactoryEngineGui;
 
 public final class LaunchSpace {
 
@@ -17,7 +17,7 @@ public final class LaunchSpace {
 
     public static void main(final String[] args) {
 
-        final CtrlLoading ctrlLoading = new CtrlLoading(StaticFactoryEngineGUI.createLoading(),
+        final CtrlLoading ctrlLoading = new CtrlLoading(StaticFactoryEngineGui.createLoading(),
                 StaticFactoryGUI.createLoading());
         ctrlLoading.start();
 

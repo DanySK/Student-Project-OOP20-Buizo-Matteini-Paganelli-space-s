@@ -5,7 +5,8 @@ import spacesurvival.view.utilities.JImage;
 
 import javax.imageio.ImageIO;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -14,7 +15,7 @@ public class EngineImage {
     private int width, height;
     private int scaleOf, respectTo;
 
-    public EngineImage(){
+    public EngineImage() {
         this.path = "";
         this.width = 0;
         this.height = 0;
@@ -22,10 +23,9 @@ public class EngineImage {
         this.respectTo = 0;
     }
 
-    public EngineImage(final String path){
+    public EngineImage(final String path) {
         this();
         this.path = path;
-        this.setSize(EngineImage.getSizeFromImage(path));
     }
 
     public EngineImage(final String path, final int width, final int height) {
@@ -42,7 +42,7 @@ public class EngineImage {
         this.setScale(scaleOf, respectTo);
     }
 
-    public EngineImage(final EngineImage engineImage){
+    public EngineImage(final EngineImage engineImage) {
         this.path = engineImage.path;
         this.setScale(engineImage.getScaleOf(), engineImage.getRespectTo());
     }
@@ -87,7 +87,7 @@ public class EngineImage {
     public int getScaleOf() {
         return this.scaleOf;
     }
-    
+
     /**
      * Set the image's scale.
      * 
@@ -96,7 +96,7 @@ public class EngineImage {
     public void setScaleOf(final int scaleOf) {
         this.setScale(scaleOf, this.respectTo);
     }
-    
+
     /**
      * Set the image's scale respect to other scale.
      * 
@@ -110,10 +110,18 @@ public class EngineImage {
         this.setSize(sizeScale);
     }
 
-    public int getRespectTo(){
+    /**
+     * 
+     * @return
+     */
+    public int getRespectTo() {
         return this.respectTo;
     }
-    
+
+    /**
+     * 
+     * @param respectTo
+     */
     public void setRespectTo(final int respectTo) {
         this.setScale(this.scaleOf, respectTo);
     }

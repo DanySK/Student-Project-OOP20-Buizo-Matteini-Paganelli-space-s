@@ -105,7 +105,7 @@ public class GUISoundConcrete extends AbstractGUI implements GUISound {
      * {@inheritDoc}
      */
     @Override
-    public void setBtnBackID(final LinkActionGUI actionMain, final LinkActionGUI action) {
+    public void setActionBtnBack(final LinkActionGUI actionMain, final LinkActionGUI action) {
         this.btnBack.setCurrentLink(actionMain);
         this.btnBack.setNextLink(action);
     }
@@ -140,7 +140,7 @@ public class GUISoundConcrete extends AbstractGUI implements GUISound {
      * {@inheritDoc}
      */
     @Override
-    public void setFontGUITitle(final Font font) {
+    public void setFontTitleGUI(final Font font) {
         this.lbTitle.setFont(font);
     }
 
@@ -200,4 +200,5 @@ public class GUISoundConcrete extends AbstractGUI implements GUISound {
     public String toString() {
         return "GUISoundConcrete [lbTitle=" + lbTitle + ", mixerSound=" + mixerSound + ", btnBack=" + btnBack + "]";
     }
+
 }

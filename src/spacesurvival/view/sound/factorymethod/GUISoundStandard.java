@@ -20,7 +20,7 @@ public class GUISoundStandard implements FactoryGUISound {
     @Override
     public GUISound create() {
         final GUISoundConcrete soundGUI = new GUISoundConcrete();
-        soundGUI.setFontGUITitle(GraphicsLayoutUtils.getFontForTitle(GraphicsLayoutUtils.SIZE_FONT_H2));
+        soundGUI.setFontTitleGUI(GraphicsLayoutUtils.getFontForTitle(GraphicsLayoutUtils.SIZE_FONT_H2));
         soundGUI.setFontGUI(GraphicsLayoutUtils.FONT_STANDARD_H5);
         soundGUI.setFontSpacingSlider(GraphicsLayoutUtils.FONT_STANDARD_H6);
         soundGUI.setForegroundGUI(GraphicsLayoutUtils.COLOR_4);
@@ -33,6 +33,8 @@ public class GUISoundStandard implements FactoryGUISound {
 
     /**
      * Create graphics standard sound GUI.
+     * 
+     * @param soundGUI to create the graphics.
      */
     private void graphics(final GUISoundConcrete soundGUI) {
         soundGUI.setLayout(new BorderLayout());

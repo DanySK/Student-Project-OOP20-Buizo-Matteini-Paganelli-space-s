@@ -45,7 +45,7 @@ public class CtrlMenu implements ControllerGUI {
     @Override
     public void assignTexts() {
         this.gui.setTitleGUI(this.engine.getTitleGUI());
-        this.gui.setTextButtons(this.engine.getListNameLinks());
+        this.gui.setTextButtons(this.engine.getListTextLinks());
     }
 
     /**

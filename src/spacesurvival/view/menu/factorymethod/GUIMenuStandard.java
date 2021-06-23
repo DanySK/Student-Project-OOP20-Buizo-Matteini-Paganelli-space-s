@@ -17,7 +17,6 @@ import java.util.List;
 
 /**
  * Implements the creation of the standard menu GUI.
- *
  */
 public class GUIMenuStandard implements FactoryGuiMenu {
 
@@ -39,13 +38,15 @@ public class GUIMenuStandard implements FactoryGuiMenu {
 
     /**
      * Create graphics standard menu GUI.
+     * 
+     * @param menu to create the graphics.
      */
     private void createGraphics(final GUIMenuConcrete menu) {
         menu.setLayout(new GridBagLayout());
         int nBtnUsed = 0;
 
         final GridBagConstraints lim = FactoryGUIs.createGBConstraintsWithSpaceTitle(DesignJComponent.SIZE_SPACE_TITLE);
-        menu.add(menu.getLbTitle(), lim);
+        menu.add(menu.getLabelTitle(), lim);
 
         FactoryGUIs.resetGridBagConstraints(lim);
         lim.gridy++;

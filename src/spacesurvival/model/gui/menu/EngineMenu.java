@@ -34,7 +34,7 @@ public class EngineMenu implements EngineGUI {
     private Visibility visibility;
 
     /**
-     * Constructor for a GUI menu template.
+     * Constructor for a GUI menu model.
      */
     public EngineMenu() {
         this.mainAction = LinkActionGUI.ID_MENU;
@@ -106,7 +106,7 @@ public class EngineMenu implements EngineGUI {
      * 
      * @return a list of link's name
      */
-    public List<String> getListNameLinks() {
+    public List<String> getListTextLinks() {
         return this.linkButtons.stream()
                 .map(LinksMenu::getName)
                 .collect(Collectors.toList());

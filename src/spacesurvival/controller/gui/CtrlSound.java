@@ -64,7 +64,7 @@ public class CtrlSound implements ControllerGUI {
     @Override
     public void assignLinks() {
         this.gui.setMainAction(this.engine.getMainLink());
-        this.gui.setBtnBackID(this.engine.getMainLink(), this.engine.getBackLink());
+        this.gui.setActionBtnBack(this.engine.getMainLink(), this.engine.getBackLink());
     }
 
     /**
@@ -73,7 +73,7 @@ public class CtrlSound implements ControllerGUI {
     @Override
     public void assignTexts() {
         this.gui.setTitleGUI(this.engine.getTitle());
-        this.gui.setTextButtonBack(this.engine.getNameBack());
+        this.gui.setTextButtonBack(this.engine.getTextBtnBack());
     }
 
     /**
@@ -145,8 +145,8 @@ public class CtrlSound implements ControllerGUI {
      */
     private void assignSound() {
         this.gui.setTypeUnitSound(this.engine.getListTypeUnitSound());
-        this.gui.setTitleUnitSound(this.engine.getListNameSlider());
-        this.gui.setValueMixerSound(this.engine.getDefaultValueSound());
+        this.gui.setTitleUnitSound(this.engine.getListTextSlider());
+        this.gui.setValueMixerSound(SoundUtils.DEFAULT_VALUE_SOUND);
         this.gui.setIconBtnSwitches(this.engine.getIconStateSounds());
     }
 
