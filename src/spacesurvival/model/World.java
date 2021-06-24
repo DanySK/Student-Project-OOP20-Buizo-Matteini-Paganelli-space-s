@@ -113,11 +113,20 @@ public class World {
 
     }
 
-    
+    /**
+     * Set the WorldEventListener to the World.
+     * 
+     * @param listener the WorldEventListener to link
+     */
     public void setEventListener(final WorldEventListener listener) {
         evListener = listener;
     }
 
+    /**
+     * Set the passed SpaceShipSingleton to the World.
+     * 
+     * @param ship the SpaceShipSingleton to set
+     */
     public void setShip(final SpaceShipSingleton ship) {
         this.ship = ship;
     }
@@ -359,14 +368,29 @@ public class World {
         object.setTransform(newTransform);
     }
 
+    /**
+     * Return the score queue to increase or decrease.
+     * 
+     * @return the current score queue
+     */
     public List<Integer> getQueueScore() {
         return this.queueScore;
     }
 
+    /**
+     * Return the queue life to increase.
+     * 
+     * @return the current increase life queue
+     */
     public List<Integer> getQueueIncreaseLife() {
         return this.queueIncreaseLife;
     }
 
+    /**
+     * Return the queue life to decrease.
+     * 
+     * @return the current decrease life queue
+     */
     public List<Integer> getQueueDecreaseLife() {
         return this.queueDecreaseLife;
     }
@@ -380,14 +404,12 @@ public class World {
      */
     public void damageObject(final MainObject object, final int damage, final Status status) {
         if (!object.isInvincible()) {
-            System.out.println(object.getClass() + " HA RICEVUTO  " + damage + " DANNI");
             if (object.getLife() - damage <= 0) {
                 object.setLife(0);
             } else {
                 object.decreaseLife(damage);
                 object.setStatus(status);
             }
-            System.out.println("VITA RIMASTA " + object.getLife());
         }
     }
 

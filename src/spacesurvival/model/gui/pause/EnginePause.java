@@ -5,12 +5,15 @@ import spacesurvival.model.gui.Visibility;
 import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.utilities.dimension.Screen;
 
-import java.awt.*;
+import java.awt.Rectangle;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class EnginePause implements EngineGUI{
+/**
+ * Implements the model for the pause GUI.
+ */
+public class EnginePause implements EngineGUI {
     /**
      * Dimension of the pause GUI.
      */
@@ -22,56 +25,86 @@ public class EnginePause implements EngineGUI{
     /**
      * Dimension of the pause GUI.
      */
-    public static final int N_BUTTONS = 4;
+    public static final int N_BUTTONS = LinksPause.values().length;
 
     private final LinkActionGUI mainAction;
     private final List<LinksPause>  linkButtons;
 
     private Visibility visibility;
 
-    public EnginePause(){
+    /**
+     * Constructor for a GUI pause model.
+     */
+    public EnginePause() {
         this.mainAction = LinkActionGUI.ID_PAUSE;
         this.linkButtons = Arrays.asList(LinksPause.values());
         this.visibility = Visibility.HIDDEN;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LinkActionGUI getMainLink() {
         return this.mainAction;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Rectangle getRectangle() {
         return RECTANGLE;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Visibility getVisibility() {
         return this.visibility;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setVisibility(final Visibility state) {
         this.visibility = state;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isVisible() {
         return this.visibility.isVisible();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<LinkActionGUI> getLinks() {
         return this.linkButtons.stream().map(LinksPause::getIdGUI).collect(Collectors.toList());
     }
 
-
-    public String getTitleGUI(){
+    /**
+     * Return the title of the pause GUI.
+     * 
+     * @return a string representing the pause GUI title
+     */
+    public String getTitleGUI() {
         return TITLE;
     }
 
-    public List<String> getListName(){
-        return this.linkButtons.stream().map(LinksPause::getName).collect(Collectors.toList());
+    /**
+     * Return a list of link's text.
+     * 
+     * @return a list of link's text.
+     */
+    public List<String> getListText() {
+        return this.linkButtons.stream().map(LinksPause::getText).collect(Collectors.toList());
     }
 
 

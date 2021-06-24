@@ -8,6 +8,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Rectangle;
+
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -96,7 +97,9 @@ public abstract class AbstractGUI extends JFrame {
      * Close the GUI and destroyed JFrame.
      */
     public void close() {
-        super.dispose();
+//        this.setVisible(false);
+//        this.dispose();
+        System.exit(0);
     }
 
 }

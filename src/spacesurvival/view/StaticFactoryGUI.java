@@ -3,9 +3,9 @@ package spacesurvival.view;
 import spacesurvival.view.dead.FactoryGUIDead;
 import spacesurvival.view.dead.GUIDead;
 import spacesurvival.view.dead.factorymethod.GUIDeadStandard;
-import spacesurvival.view.loading.FactoryGUILoading;
+import spacesurvival.view.loading.FactoryGuiLoading;
 import spacesurvival.view.loading.GUILoading;
-import spacesurvival.view.loading.factorymethod.GUILoadingStandard;
+import spacesurvival.view.loading.factorymethod.GuiLoadingStandard;
 import spacesurvival.view.game.FactoryGUIGame;
 import spacesurvival.view.game.GUIGame;
 import spacesurvival.view.game.factorymethod.GUIGameStandard;
@@ -41,7 +41,7 @@ public final class StaticFactoryGUI {
      * @return loading GUI.
      */
     public static GUILoading createLoading() {
-        final FactoryGUILoading factoryGUILoading = new GUILoadingStandard();
+        final FactoryGuiLoading factoryGUILoading = new GuiLoadingStandard();
         return factoryGUILoading.create();
     }
 

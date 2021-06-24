@@ -41,8 +41,8 @@ public enum LinksMenu {
     private final LinkActionGUI linkActionGUI;
 
     /**
-     * 
-     * @param name
+     * Create link for menu GUI to a other GUI.
+     * @param name other GUI.
      * @param linkActionGUI
      */
     LinksMenu(final String text, final LinkActionGUI linkActionGUI) {
@@ -51,15 +51,15 @@ public enum LinksMenu {
     }
 
     /**
-     * get button text.
+     * Get button text.
      * @return button text.
      */
-    public String getName() {
+    public String getText() {
         return this.text;
     }
 
     /**
-     * get button text.
+     * Get button text.
      * @return button text.
      */
     public LinkActionGUI getAction() {
@@ -67,7 +67,7 @@ public enum LinksMenu {
     }
 
     /**
-     * @return description of linkMenu 
+     * Description of linkMenu. 
      */
     @Override
     public String toString() {

@@ -5,101 +5,153 @@ import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.gui.loading.EngineLoading;
 import spacesurvival.utilities.LinkActionGUI;
+import spacesurvival.utilities.ThreadUtils;
 import spacesurvival.view.GUI;
 import spacesurvival.view.loading.GUILoading;
 
 
-public class CtrlLoading extends Thread implements ControllerGUI{
+public class CtrlLoading extends Thread implements ControllerGUI {
+    /**
+     * Loading duration.
+     */
+    public static final int DURATION_LOADIN = 2000 / ThreadUtils.MEDIUM_SLEEP;
+
+    /**
+     * Step of loading.
+     */
+    public static final int STEP_TIMING = 20 / ThreadUtils.MEDIUM_SLEEP;
+
     private final GUILoading gui;
     private final EngineLoading engine;
 
     private final SwitchGUI switchGUI;
 
-    public CtrlLoading(final EngineLoading engine, final GUILoading gui){
+    /**
+     * Create a control loading GUI with its model and view.
+     * @param engine of model.
+     * @param gui of view.
+     */
+    public CtrlLoading(final EngineLoading engine, final GUILoading gui) { 
         this.engine = engine;
         this.gui = gui;
 
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
-        this.turn(Visibility.VISIBLE);
+        this.turn(this.engine.getVisibility());
     }
 
+    /**
+     * Initialize loading GUI.
+     */
+    public void initLoading() {
+        this.assignLinks();
+        this.assignTexts();
+        this.assignRectangle();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void assignLinks() {
-
+        this.gui.setMainAction(this.engine.getMainLink());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void assignTexts() {
-
+        this.gui.setTitleGUI(this.engine.getTitleGUI());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void assignRectangle() {
-
+        this.gui.setBounds(this.engine.getRectangle());
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void run() {
-        super.run();
-        while(!this.engine.isLoad()){
+        while (!this.engine.isLoad()) {
             this.engine.incrLoading();
-            this.gui.setLoading(this.engine.getLoading() / 20);
 
-            if(this.engine.getLoading() >= 2000){
+            this.gui.setLoading(this.engine.getLoading() / STEP_TIMING);
+
+            if (this.engine.getLoading() >= DURATION_LOADIN) {
                 this.engine.load();
             }
 
-            this.sleep(1);
+            ThreadUtils.sleep(ThreadUtils.MEDIUM_SLEEP);
         }
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public LinkActionGUI getMainLink(){
+    public LinkActionGUI getMainLink() {
         return this.engine.getMainLink();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public GUI getGUI() {
         return this.gui;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public EngineGUI getEngine() {
         return this.engine;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isVisibility() {
         return this.engine.isVisible();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void turn(Visibility visibility) {
+    public void turn(final Visibility visibility) {
         this.switchGUI.turn(visibility);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void changeVisibility() {
         this.switchGUI.changeVisibility();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void closeGUI() {
         this.gui.close();
     }
 
-
-    public boolean isLoad(){
+    /**
+     * Get the GUI has finished loading.
+     * @return boolean if loading.
+     */
+    public boolean isLoad() {
         return this.engine.isLoad();
-    }
-
-    private void sleep(final int millis){
-        try {
-            Thread.sleep(millis);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }

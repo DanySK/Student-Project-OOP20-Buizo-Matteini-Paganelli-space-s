@@ -25,19 +25,19 @@ public class Heart extends JPanel {
         this.add(this.nHeart);
     }
 
-    public void setFontAll(final Font font){
+    public void setFontAll(final Font font) {
         this.nHeart.setFont(font);
     }
 
-    public void setForegroundAll(final Color color){
+    public void setForegroundAll(final Color color) {
         this.nHeart.setForeground(color);
     }
 
-    public void setnHeart(final int n){
+    public void setnHeart(final int n) {
         this.nHeart.setText("x" + n);
     }
 
-    public void setnHeart(final String n){
+    public void setnHeart(final String n) {
         this.nHeart.setText("x" + n);
     }
 

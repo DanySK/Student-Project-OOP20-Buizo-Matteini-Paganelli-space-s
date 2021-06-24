@@ -222,4 +222,12 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
         this.bullet.setBulletImage(ammoType.getBulletHud());
     }
 
+    @Override
+    public void setFontTitleGUI(final Font font) {
+    }
+
+    @Override
+    public void setTitleGUI(final String title) {
+    }
+
 }

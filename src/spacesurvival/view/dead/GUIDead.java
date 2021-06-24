@@ -2,26 +2,34 @@ package spacesurvival.view.dead;
 
 import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.GUI;
+import spacesurvival.view.utilities.GraphicsText;
+
 import java.awt.Color;
-import java.awt.Font;
 import java.util.List;
 
-public interface GUIDead extends GUI {
+/**
+ * Interface that implements the dead functionalities.
+ */
+public interface GUIDead extends GUI, GraphicsText {
 
-    void setNameButtons(List<String> listNames);
+    /**
+     * Set text all text button.
+     * 
+     * @param listText a list of text.
+     */
+    void setTextButtons(List<String> listText);
 
-    void setBtnActions(LinkActionGUI mainAction, List<LinkActionGUI> actions);
+    /**
+     * Set linkAction a back buttonLink.
+     * 
+     * @param mainAction is linkAction a current GUI.
+     * @param linkAction for link previous GUI.
+     */
+    void setBtnActions(LinkActionGUI mainAction, List<LinkActionGUI> linkAction);
 
-
-    void setFontTitleGUI(Font font);
-
-    void setTitleGUI(String title);
-
+    /**
+     * Set foreground color of title.
+     * @param color
+     */
     void setForegroundTitle(Color color);
-
-    void setFontGUI(Font font);
-
-    void setForegroundGUI(Color color);
-
-    void setBorder(Color color, int thickness);
 }

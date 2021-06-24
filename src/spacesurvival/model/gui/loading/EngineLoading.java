@@ -12,48 +12,84 @@ public class EngineLoading implements EngineGUI {
      * Rectangle representing the full screen.
      */
     public static final Rectangle RECTANGLE = Screen.RECTANGLE_FULLSCREEN;
-    private final LinkActionGUI id;
+
+    /**
+     * Title of the loading GUI.
+     */
+    public static final String TITLE = "SPACE SURVIVAL";
+
+    private final LinkActionGUI mainAction;
 
     private int loading;
     private boolean load;
 
     private Visibility visibility;
 
+    /**
+     * Constructor for a GUI loading model.
+     */
     public EngineLoading() {
-        this.id = LinkActionGUI.ID_LOADING;
+        this.mainAction = LinkActionGUI.ID_LOADING;
         this.loading = 0;
         this.load = false;
-        this.visibility = Visibility.HIDDEN;
+        this.visibility = Visibility.VISIBLE;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LinkActionGUI getMainLink() {
-        return this.id;
+        return this.mainAction;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Rectangle getRectangle() {
-        return null;
+        return RECTANGLE;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Visibility getVisibility() {
         return this.visibility;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setVisibility(final Visibility state) {
         this.visibility = state;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isVisible() {
         return this.visibility.isVisible();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<LinkActionGUI> getLinks() {
         return List.of();
+    }
+
+    /**
+     * Return the title of the loading GUI.
+     * 
+     * @return a string representing the loading GUI title
+     */
+    public String getTitleGUI() {
+        return TITLE;
     }
 
     /**
