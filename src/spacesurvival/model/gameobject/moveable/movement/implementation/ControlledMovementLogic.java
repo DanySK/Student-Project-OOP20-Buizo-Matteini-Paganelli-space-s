@@ -26,6 +26,9 @@ public class ControlledMovementLogic implements MovementLogic {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return "ControlledMovement";

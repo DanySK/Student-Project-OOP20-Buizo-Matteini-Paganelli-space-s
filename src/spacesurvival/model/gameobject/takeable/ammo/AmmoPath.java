@@ -6,9 +6,21 @@ import spacesurvival.utilities.path.bullet.BulletFire;
 import spacesurvival.utilities.path.bullet.BulletHUD;
 
 public enum AmmoPath {
+    /**
+     * Path to the normal ammo.
+     */
     NORMAL(Weapon.NORMAL, BulletHUD.NORMAL, BulletFire.NORMAL, ""),
+    /**
+     * Path to the fire ammo.
+     */
     FIRE(Weapon.FIRE, BulletHUD.FIRE, BulletFire.FIRE, AnimationPerk.FIRE0),
+    /**
+     * Path to the electric ammo.
+     */
     ELECTRIC(Weapon.ELECTRIC, BulletHUD.ELECTRIC, BulletFire.ELECTRIC, AnimationPerk.ELECTRIC0),
+    /**
+     * Path to the ice ammo.
+     */
     ICE(Weapon.ICE, BulletHUD.ICE, BulletFire.ICE, AnimationPerk.ICE0);
 
     private final String imagePath;
@@ -38,6 +50,4 @@ public enum AmmoPath {
     public String getBulletInit() {
         return this.bulletInit;
     }
-    
-    
 }

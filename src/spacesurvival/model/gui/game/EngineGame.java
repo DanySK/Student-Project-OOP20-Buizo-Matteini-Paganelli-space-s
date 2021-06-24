@@ -14,7 +14,6 @@ import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
 import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.utilities.dimension.Screen;
 import spacesurvival.utilities.gameobject.LifeUtils;
-
 import java.awt.Rectangle;
 import java.util.List;
 import java.util.Optional;
@@ -25,10 +24,8 @@ public class EngineGame implements EngineGUI {
 
     private final LinkActionGUI id;
     private final LinkActionGUI idPause;
-
     private final World world;
     private final EngineHUD hud;
-
     private Visibility visibility;
 
     public EngineGame() {
