@@ -72,14 +72,13 @@ public class PanelEntityGame extends JPanel {
 
         this.gameObjects.entrySet().forEach(entity -> {
             g2d.setTransform(getCorrectAffineTransformFromBoundingBox(entity.getKey())); 
-          g2d.drawImage(entity.getValue().getX(), 0, 0, null);
-          g2d.drawImage(entity.getValue().getY(), 0, 0, null);
-          this.assignLifeBar(entity.getKey(), g2d);
+            g2d.drawImage(entity.getValue().getX(), 0, 0, null);
+            g2d.drawImage(entity.getValue().getY(), 0, 0, null);
+            this.assignLifeBar(entity.getKey(), g2d);
         });
         
         this.world.get().getAllBullets().forEach(bullet -> {
             g2d.setTransform(bullet.getTransform());
-            System.out.println(bullet.getImgBody());
             g2d.drawImage(bullet.getImgBody(), 0, 0, null);
         });
 

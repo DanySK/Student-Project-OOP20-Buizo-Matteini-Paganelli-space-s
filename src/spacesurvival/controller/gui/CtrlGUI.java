@@ -15,6 +15,7 @@ import spacesurvival.utilities.path.Background;
 import spacesurvival.view.utilities.ButtonLink;
 
 import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -121,7 +122,7 @@ public class CtrlGUI {
     }
 
     private void linksAll() {
-        this.managerGui.values().forEach(managerGui -> managerGui.getGUI().getBtnActionLinks().forEach(btn ->
+        this.managerGui.values().forEach(controllerGui -> controllerGui.getGUI().getBtnActionLinks().forEach(btn ->
                 btn.addActionListener(e -> {
                     System.out.println("mI TORNA QUESTOOOOOO" + this.isInPause());
                     System.out.println("Premuto in: " + btn.getCurrentLink() + " Vado in: " + btn.getNextLink());
@@ -137,8 +138,12 @@ public class CtrlGUI {
 //                    if (this.isInGame()) {
 //                        this.ctrlGame.setPauseAnimationAllObject(false);
 //                    }
+                    if (btn.getNextLink().equals(LinkActionGUI.ID_QUIT)) {
+                        this.managerGui.values().forEach(controller -> controller.closeGUI());
+                        this.ctrlGame.closeGUI();
+
+                    }
      
-                    
                     if (this.isInPause()){
                         this.logicSwitchGame.algorithm(btn.getCurrentLink(), btn.getNextLink(),
                                 this.chronology, this.managerGui);

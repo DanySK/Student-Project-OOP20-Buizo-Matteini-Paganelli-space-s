@@ -54,24 +54,6 @@ public class EngineLoop extends Thread implements WorldEventListener {
     }
 
     /**
-     * Return the world from the control game.
-     * 
-     * @return the current World
-     */
-    public World getWorld() {
-        return this.controlGame.getWorld();
-    }
-
-    /**
-     * Return the ship from the control game.
-     * 
-     * @return the current Ship
-     */
-    public SpaceShipSingleton getShip() {
-        return this.controlGame.getShip();
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -149,7 +131,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
      * Check current game objects and their dead.
      */
     private void checkGameObjectsDead() {
-        final World world = this.getWorld();
+        final World world = this.controlGame.getWorld();
         world.getMainObjects().forEach(mainObject -> {
             if (mainObject.isDead()) {
                 eventQueue.add(new DeadEvent(mainObject));
@@ -163,17 +145,17 @@ public class EngineLoop extends Thread implements WorldEventListener {
      * Check all sound effects and and starts them.
      */
     protected void checkSoundEffects() {
-        getWorld().getSoundQueue().addAll(getShip().getSoundQueue());
-        getWorld().getSoundQueue().forEach(this::playEffect);
-        getWorld().getSoundQueue().clear();
-        getShip().getSoundQueue().clear();
+        this.controlGame.getWorld().getSoundQueue().addAll(this.controlGame.getShip().getSoundQueue());
+        this.controlGame.getWorld().getSoundQueue().forEach(this::playEffect);
+        this.controlGame.getWorld().getSoundQueue().clear();
+        this.controlGame.getShip().getSoundQueue().clear();
     }
 
     /**
      * Check the current score and its changing.
      */
     protected void checkScore() {
-        final List<Integer> scoreUpdate = getWorld().getQueueScore();
+        final List<Integer> scoreUpdate = this.controlGame.getWorld().getQueueScore();
         scoreUpdate.forEach(this.controlGame::incrScore);
         scoreUpdate.clear();
     }
@@ -182,8 +164,8 @@ public class EngineLoop extends Thread implements WorldEventListener {
      * Check the current life and its changing.
      */
     protected void checkLife() {
-        final List<Integer> listIncreaseLife = getWorld().getQueueIncreaseLife();
-        final List<Integer> listDecreaseLife = getWorld().getQueueDecreaseLife();
+        final List<Integer> listIncreaseLife = this.controlGame.getWorld().getQueueIncreaseLife();
+        final List<Integer> listDecreaseLife = this.controlGame.getWorld().getQueueDecreaseLife();
 
         listIncreaseLife.forEach(this.controlGame::increaseLife);
         listDecreaseLife.forEach(this.controlGame::decreaseLife);
@@ -200,7 +182,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
      * Check events of the game notified to the world.
      */
     protected void checkEvents() {
-        final World world = getWorld();
+        final World world = this.controlGame.getWorld();
         eventQueue.forEach(ev -> {
             ev.manage(world);
             this.controlGame.updateCountEnemies();
@@ -220,17 +202,18 @@ public class EngineLoop extends Thread implements WorldEventListener {
      * Render the movement of all MoveableObject of the world.
      */
     private void renderMovement() {
-        getWorld().getMovableObjects().forEach(MoveableObject::move);
+        this.controlGame.getWorld().getMovableObjects().forEach(MoveableObject::move);
     }
 
     /**
      * Method called for assign targets to enemies.
      */
     public void assignTargetToEnemies() {
-        getWorld().getAllEnemies().forEach(enemy -> {
+        this.controlGame.getWorld().getAllEnemies().forEach(enemy -> {
+            final SpaceShipSingleton ship = this.controlGame.getShip();
             final AffineTransform shipTransform = new AffineTransform();
-            shipTransform.setTransform(getShip().getTransform());
-            shipTransform.translate(getShip().getWidth() / 2, getShip().getHeight() / 2);
+            shipTransform.setTransform(ship.getTransform());
+            shipTransform.translate(ship.getWidth() / 2, ship.getHeight() / 2);
             final P2d shipPosition = new P2d(shipTransform.getTranslateX(), shipTransform.getTranslateY());
             enemy.setTargetPosition(shipPosition);
         });
