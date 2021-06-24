@@ -23,14 +23,14 @@ public class FireEnemyComponent implements EventComponent {
     public void update(final GameObject abstractObj, final World w) {
         final FireEnemy fireEnemy = (FireEnemy) abstractObj;
         final RectBoundingBox boundingBox = w.getMainBBox();
-        final Optional<BoundaryCollision> borderInfo = w.getCollisionController().checkCollisionWithBoundaries(fireEnemy.getPosition(), boundingBox);
+        final Optional<BoundaryCollision> borderInfo = w.getCollisionController().checkWithBoundaries(fireEnemy.getPosition(), boundingBox);
 
         if (borderInfo.isPresent()) {
             final BoundaryCollision info = borderInfo.get();
             w.notifyWorldEvent(new HitBorderEvent(info.getWhere(), info.getEdge(), fireEnemy));
         }
 
-        final Optional<MainObject> asteroid = w.getCollisionController().checkCollisionWithAsteroids(w.getAsteroids(), (RectBoundingBox) fireEnemy.getBoundingBox());
+        final Optional<MainObject> asteroid = w.getCollisionController().checkWithAsteroids(w.getAsteroids(), (RectBoundingBox) fireEnemy.getBoundingBox());
         if (asteroid.isPresent()) {
             w.notifyWorldEvent(new HitMainObject(fireEnemy, asteroid.get()));
         }

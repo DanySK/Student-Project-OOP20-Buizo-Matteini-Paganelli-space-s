@@ -36,7 +36,7 @@ public class EnginePause implements EngineGUI{
     }
 
     @Override
-    public LinkActionGUI getMainAction() {
+    public LinkActionGUI getMainLink() {
         return this.mainAction;
     }
 

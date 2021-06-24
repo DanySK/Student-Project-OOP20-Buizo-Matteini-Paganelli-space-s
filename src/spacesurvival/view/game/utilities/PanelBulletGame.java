@@ -12,7 +12,7 @@ public class PanelBulletGame extends JPanel {
 
     public PanelBulletGame(){
         super();
-        super.setOpaque(false);
+        super.setOpaque(true);
 
         this.world = Optional.empty();
     }
@@ -24,12 +24,12 @@ public class PanelBulletGame extends JPanel {
     @Override
     public final void paintComponent(final Graphics g) {
         super.paintComponent(g);
+        
         final Graphics2D g2d = (Graphics2D) g;
 
         this.world.get().getAllBullets().forEach(bullets -> {
             g2d.setTransform(bullets.getTransform());
             g2d.drawImage(bullets.getImgBody(), 0, 0, null);
-            g2d.drawImage(bullets.getImgEffect(), 0, 0, null);
         });
     }
 

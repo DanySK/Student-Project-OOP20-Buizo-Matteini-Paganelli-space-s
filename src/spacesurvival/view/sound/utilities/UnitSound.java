@@ -10,11 +10,18 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * Implements a sound unit for controlling the user's view part, associating a typerSlider to the components. 
+ */
 public class UnitSound extends JPanel {
+    private static final long serialVersionUID = 1L;
     private final JLabel lbTitle;
     private final SliderType sliderSound;
     private final ButtonSliderType btnSwitch;
 
+    /**
+     * Builds a sound unit by initializing its components and graphics's components.
+     */
     public UnitSound() {
         super(new BorderLayout());
         super.setOpaque(false);
@@ -24,8 +31,11 @@ public class UnitSound extends JPanel {
         this.graphics();
     }
 
+    /**
+     * Create graphics's component of the unit sound.
+     */
     private void graphics() {
-        FactoryGUIs.setTransparentDesignJButton(this.btnSwitch);
+        FactoryGUIs.setTransparentJButton(this.btnSwitch);
         FactoryGUIs.setDefaultJSlider(this.sliderSound);
         super.add(FactoryGUIs.encapsulatesInPanelFlow(this.lbTitle), BorderLayout.NORTH);
         super.add(FactoryGUIs.createPanelFlowUnionComponents(java.util.List.of(this.btnSwitch, this.sliderSound)), BorderLayout.CENTER);

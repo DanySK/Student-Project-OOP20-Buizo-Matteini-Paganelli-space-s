@@ -13,41 +13,61 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-
+/**
+ * Implements the basis for each GUI.
+ */
 public abstract class AbstractGUI extends JFrame {
     private static final long serialVersionUID = -4633648377297371296L;
     private final JPanelImage panelBackground;
     private final JPanel panelForeground;
 
+
+    @SuppressWarnings({ "unused", "PMD.SingularField" })
     private LinkActionGUI mainAction;
 
+    /**
+     * Constructor for basis GUI.
+     */
     public AbstractGUI() {
         super();
         this.panelBackground = new JPanelImage();
         this.panelForeground = FactoryGUIs.createPanelTransparent(new BorderLayout());
-
         super.setContentPane(this.panelBackground);
         super.setGlassPane(this.panelForeground);
-
         FactoryGUIs.setDefaultJFrame(this);
     }
 
-
+    /**
+     * Sets the link identifier of the GUI.
+     * @param linkActionGUI link identifier.
+     */
     public void setMainAction(final LinkActionGUI linkActionGUI) {
         this.mainAction = linkActionGUI;
     }
 
-    @Override
-    public void setBounds(final Rectangle screen){
-        super.setBounds(screen);
-        this.panelBackground.setBounds(screen);
-        this.panelForeground.setBounds(screen);
+    /**
+     * Set the boundaries from a rectangle.
+     * @param rectangle for borders.
+     */
+    public void setBounds(final Rectangle rectangle) {
+        super.setBounds(rectangle);
+        this.panelBackground.setBounds(rectangle);
+        this.panelForeground.setBounds(rectangle);
     }
 
+    /**
+     * Set background image.
+     * @param path of image.
+     */
     public void setImageBackground(final String path) {
         this.panelBackground.setImage(path, super.getSize());
     }
 
+    /**
+     * Set the border color and thickness.
+     * @param color for border.
+     * @param thickness for border.
+     */
     public void setBorder(final Color color, final int thickness) {
         final Border lobstered = BorderFactory.createLoweredBevelBorder();
         final Border line = BorderFactory.createLineBorder(color, thickness);
@@ -55,18 +75,28 @@ public abstract class AbstractGUI extends JFrame {
         this.panelBackground.setBorder(BorderFactory.createCompoundBorder(lobstered, line));
     }
 
-
+    /**
+     * Add items to the foreground panel from an index.
+     * @param component added.
+     * @param index for added.
+     */
     public void addFrontPanel(final Component component, final String index) {
         this.panelForeground.add(component, index);
     }
 
+    /**
+     * Set visibility of the foreground panel of the GUI.
+     * @param visible for visibility panel.
+     */
     public void visibleForegroundPanel(final Visibility visible) {
         this.panelForeground.setVisible(visible.isVisible());
-
     }
 
+    /**
+     * Close the GUI and destroyed JFrame.
+     */
     public void close() {
-        System.exit(0);
+        super.dispose();
     }
 
 }

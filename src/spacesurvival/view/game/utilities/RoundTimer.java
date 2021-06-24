@@ -1,6 +1,6 @@
 package spacesurvival.view.game.utilities;
 
-import spacesurvival.view.utilities.DesignGraphics;
+import spacesurvival.view.utilities.GraphicsLayoutUtils;
 import spacesurvival.view.utilities.FactoryGUIs;
 
 import javax.swing.*;
@@ -15,8 +15,8 @@ public class RoundTimer extends JPanel {
         super();
         super.setOpaque(false);
 
-        this.timer = new JLabel(DesignGraphics.INIT_TIMER_STRING);
-        this.stringRound = new JLabel(DesignGraphics.ROUND_STRING);
+        this.timer = new JLabel(GraphicsLayoutUtils.INIT_TIMER_STRING);
+        this.stringRound = new JLabel(GraphicsLayoutUtils.ROUND_STRING);
         this.round = new JLabel();
 
         super.add(FactoryGUIs.encapsulatesInPanelFlow(this.timer));

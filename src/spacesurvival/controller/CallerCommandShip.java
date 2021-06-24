@@ -20,7 +20,7 @@ public class CallerCommandShip {
 
 
     /** 
-     * Contructor for CallerCommand, inizialize a new CallerCommand for the spaceship.
+     * Constructor for CallerCommand, initialize a new CallerCommand for the spaceship.
      * 
      * @param ship ship on which to execute the commands.
      */

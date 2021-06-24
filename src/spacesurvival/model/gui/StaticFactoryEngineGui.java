@@ -11,89 +11,90 @@ import spacesurvival.model.gui.settings.EngineSettings;
 import spacesurvival.model.gui.sound.EngineSound;
 
 /**
- * StaticFactoryEngineGUI create gui models
- *
+ * StaticFactoryEngineGUI. create GUI model.
  */
-public class StaticFactoryEngineGUI {
+public final class StaticFactoryEngineGui {
 
     /**
-     * Create a model of the loading gui
+     * Create a model of the loading GUI.
      *
-     * @return loading gui model
+     * @return loading GUI model.
      */
     public static EngineLoading createLoading() {
         return new EngineLoading();
     }
 
     /**
-     * Create a model of the game gui
+     * Create a model of the game GUI.
      *
-     * @return game gui model
+     * @return game GUI model.
      */
     public static EngineGame createEngineGame() {
         return new EngineGame();
     }
 
     /**
-     * Create a model of the menu gui
+     * Create a model of the menu GUI.
      *
-     * @return menu gui model
+     * @return menu GUI model.
      */
     public static EngineMenu createEngineMenu() {
         return new EngineMenu();
     }
 
     /**
-     * Create a model of the settings gui
+     * Create a model of the settings GUI.
      *
-     * @return settings gui model
+     * @return settings GUI model.
      */
     public static EngineSettings createEngineSettings() {
         return new EngineSettings();
     }
 
     /**
-     * Create a model of the scoreboard gui
+     * Create a model of the scoreboard GUI.
      *
-     * @return scoreboard gui model
+     * @return scoreboard GUI model.
      */
     public static EngineScoreboard createEngineScoreboard() {
         return new EngineScoreboard();
     }
 
     /**
-     * Create a model of the sound gui
+     * Create a model of the sound GUI.
      *
-     * @return sound gui model
+     * @return sound GUI model.
      */
     public static EngineSound createEngineSound() {
         return new EngineSound();
     }
 
     /**
-     * Create a model of the help gui
+     * Create a model of the help GUI.
      *
-     * @return help gui model
+     * @return help GUI model
      */
     public static EngineHelp createEngineHelp() {
         return new EngineHelp();
     }
 
     /**
-     * Create a model of the pause gui
+     * Create a model of the pause GUI.
      *
-     * @return pause gui model
+     * @return pause GUI model.
      */
     public static EnginePause createEnginePause() {
         return new EnginePause();
     }
 
     /**
-     * Create a model of the dead gui
-     *
-     * @return dead gui model
+     * Create a model of the dead GUI.
+     * @return dead GUI model.
      */
     public static EngineDead createEngineDead() {
         return new EngineDead();
+    }
+
+    private StaticFactoryEngineGui() {
     }
 }

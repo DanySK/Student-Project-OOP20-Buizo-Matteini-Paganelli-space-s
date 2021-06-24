@@ -3,27 +3,38 @@ package spacesurvival.view.help;
 import spacesurvival.model.EngineImage;
 import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.GUI;
+import spacesurvival.view.utilities.GraphicsText;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.util.List;
 
-public interface GUIHelp extends GUI {
+/**
+ * Interface that implements the help functionalities.
+ */
+public interface GUIHelp extends GUI, GraphicsText {
 
-    void setActionBtnBack(LinkActionGUI mainAction, LinkActionGUI intoID);
+    /**
+     * Set linkAction a back buttonLink.
+     * @param mainAction is linkAction a current GUI.
+     * @param linkAction for link previous GUI.
+     */
+    void setActionBtnBack(LinkActionGUI mainAction, LinkActionGUI linkAction);
 
-    void setNameUnit(List<String> listName);
+    /**
+     * Set text a all units help.
+     * @param listName a list of text.
+     */
+    void setTextUnit(List<String> listName);
 
-    void setBtnNames(List<String> listName);
+    /**
+     * Set text all text button.
+     * @param listName a list of text.
+     */
+    void setBtnText(List<String> listName);
 
-    void addNameAndIconInUnit(String panelName, List<EngineImage> pathImg);
-
-
-    void setTitleGUI(String title);
-
-    void setForegroundGUI(Color color);
-
-    void setFontTitleGUI(Font font);
-
-    void setFontGUI(Font font);
+    /**
+     * Set text and image to unit help.
+     * @param panelText is text of unit help.
+     * @param pathImg a list of image for unit help.
+     */
+    void addTextAndIconInUnit(String panelText, List<EngineImage> pathImg);
 }

@@ -27,7 +27,7 @@ public class EngineLoading implements EngineGUI {
     }
 
     @Override
-    public LinkActionGUI getMainAction() {
+    public LinkActionGUI getMainLink() {
         return this.id;
     }
 

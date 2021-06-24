@@ -2,24 +2,25 @@ package spacesurvival.view.scoreboard;
 
 import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.GUI;
+import spacesurvival.view.utilities.GraphicsText;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.util.List;
 
-public interface GUIScoreboard extends GUI {
+/**
+ * Interface that implements the Scoreboard functionalities.
+ */
+public interface GUIScoreboard extends GUI, GraphicsText {
 
-    void setNameButtons(List<String> listName);
+    /**
+     * Set text a all units help.
+     * @param listName a list of text.
+     */
+    void setTextButtons(List<String> listName);
 
-    void setBtnBackID(LinkActionGUI mainAction, LinkActionGUI action);
-
-
-    void setTitleGUI(String title);
-
-    void setFontGUI(Font font);
-
-    void setForegroundGUI(Color color);
-
-    void setFontLbTitle(Font font);
-
+    /**
+     * Set linkAction a back buttonLink.
+     * @param mainAction is linkAction a current GUI.
+     * @param linkAction for link previous GUI.
+     */
+    void setBtnBackID(LinkActionGUI mainAction, LinkActionGUI linkAction);
 }

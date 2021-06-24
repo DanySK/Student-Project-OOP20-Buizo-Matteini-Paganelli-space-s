@@ -5,14 +5,14 @@ import spacesurvival.controller.gui.strategy.LogicSwitchGUI;
 import spacesurvival.controller.gui.strategy.LogicSwitchGame;
 import spacesurvival.controller.gui.strategy.LogicSwitchMenu;
 import spacesurvival.controller.utilities.ListGUI;
-import spacesurvival.model.gui.StaticFactoryEngineGUI;
+import spacesurvival.model.gui.StaticFactoryEngineGui;
 import spacesurvival.view.GUI;
 import spacesurvival.view.StaticFactoryGUI;
 import spacesurvival.model.gui.Visibility;
 import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.utilities.StateLevelGUI;
 import spacesurvival.utilities.path.Background;
-import spacesurvival.view.utilities.BtnAction;
+import spacesurvival.view.utilities.ButtonLink;
 
 import java.awt.event.MouseListener;
 import java.util.HashMap;
@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.Optional;
 
 public class CtrlGUI {
+
     public static final LinkActionGUI FIRST_GUI = LinkActionGUI.ID_MENU;
 
     private final CtrlMenu ctrlMenu;
@@ -40,22 +41,22 @@ public class CtrlGUI {
 
 
     public CtrlGUI() {
-        this.ctrlMenu = new CtrlMenu(StaticFactoryEngineGUI.createEngineMenu(), StaticFactoryGUI.createMenuGUI());
-        this.ctrlGame = new CtrlGame(StaticFactoryEngineGUI.createEngineGame(), StaticFactoryGUI.createGameGUI());
-        this.ctrlSettings = new CtrlSettings(StaticFactoryEngineGUI.createEngineSettings(), StaticFactoryGUI.createSettingsGUI());
-        this.ctrlSound = new CtrlSound(StaticFactoryEngineGUI.createEngineSound(), StaticFactoryGUI.createSoundGUI());
-        this.ctrlHelp = new CtrlHelp(StaticFactoryEngineGUI.createEngineHelp(), StaticFactoryGUI.createHelpGUI());
-        this.ctrlPause = new CtrlPause(StaticFactoryEngineGUI.createEnginePause(), StaticFactoryGUI.createPauseGUI());
-        this.ctrlDead = new CtrlDead(StaticFactoryEngineGUI.createEngineDead(), StaticFactoryGUI.createDeadGUI());
+        this.ctrlMenu = new CtrlMenu(StaticFactoryEngineGui.createEngineMenu(), StaticFactoryGUI.createMenuGUI());
+        this.ctrlGame = new CtrlGame(StaticFactoryEngineGui.createEngineGame(), StaticFactoryGUI.createGameGUI());
+        this.ctrlSettings = new CtrlSettings(StaticFactoryEngineGui.createEngineSettings(), StaticFactoryGUI.createSettingsGUI());
+        this.ctrlSound = new CtrlSound(StaticFactoryEngineGui.createEngineSound(), StaticFactoryGUI.createSoundGUI());
+        this.ctrlHelp = new CtrlHelp(StaticFactoryEngineGui.createEngineHelp(), StaticFactoryGUI.createHelpGUI());
+        this.ctrlPause = new CtrlPause(StaticFactoryEngineGui.createEnginePause(), StaticFactoryGUI.createPauseGUI());
+        this.ctrlDead = new CtrlDead(StaticFactoryEngineGui.createEngineDead(), StaticFactoryGUI.createDeadGUI());
 
         this.managerGui = new HashMap<>();
-        this.managerGui.put(this.ctrlMenu.getMainAction(), this.ctrlMenu);
-        this.managerGui.put(this.ctrlGame.getMainAction(), this.ctrlGame);
-        this.managerGui.put(this.ctrlSettings.getMainAction(), this.ctrlSettings);
-        this.managerGui.put(this.ctrlSound.getMainAction(), this.ctrlSound);
-        this.managerGui.put(this.ctrlHelp.getMainAction(), this.ctrlHelp);
-        this.managerGui.put(this.ctrlPause.getMainAction(), this.ctrlPause);
-        this.managerGui.put(this.ctrlDead.getMainAction(), this.ctrlDead);
+        this.managerGui.put(this.ctrlMenu.getMainLink(), this.ctrlMenu);
+        this.managerGui.put(this.ctrlGame.getMainLink(), this.ctrlGame);
+        this.managerGui.put(this.ctrlSettings.getMainLink(), this.ctrlSettings);
+        this.managerGui.put(this.ctrlSound.getMainLink(), this.ctrlSound);
+        this.managerGui.put(this.ctrlHelp.getMainLink(), this.ctrlHelp);
+        this.managerGui.put(this.ctrlPause.getMainLink(), this.ctrlPause);
+        this.managerGui.put(this.ctrlDead.getMainLink(), this.ctrlDead);
 
         this.chronology = new ListGUI<>();
 
@@ -86,13 +87,13 @@ public class CtrlGUI {
 
     public void assignAllLinkAction() {
         this.managerGui.forEach((key, value) -> {
-            value.assignAction();
+            value.assignLinks();
         });
     }
 
     public void assignAllString() {
         this.managerGui.forEach((key, value) -> {
-            value.assignStrings();
+            value.assignTexts();
         });
     }
 
@@ -121,21 +122,18 @@ public class CtrlGUI {
     private void linksAll(){
         this.managerGui.values().forEach(managerGui -> managerGui.getGUI().getBtnActionLinks().forEach(btn ->
                 btn.addActionListener(e -> {
-
                     if (this.isInPause()){
-                        this.logicSwitchGame.algorithm(btn.getActionCurrent(), btn.getActionNext(),
+                        this.logicSwitchGame.algorithm(btn.getCurrentLink(), btn.getNextLink(),
                                 this.chronology, this.managerGui);
                        this.ctrlGame.setPauseAnimationAllObject(true);
                     } else {
-                        this.logicSwitchMenu.algorithm(btn.getActionCurrent(), btn.getActionNext(),
+                        this.logicSwitchMenu.algorithm(btn.getCurrentLink(), btn.getNextLink(),
                                 this.chronology, this.managerGui);
                     }
 
                     if (this.isInGame()) {
                         this.ctrlGame.setPauseAnimationAllObject(false);
                     }
-
-                    System.out.println("list premuto dal bottone" + this.chronology);
         })));
     }
 
@@ -181,7 +179,7 @@ public class CtrlGUI {
                 this.ctrlGame.setSkin(this.ctrlSettings.getCurrentSkin());
                 this.ctrlGame.getWorld().getTakeableFactoryThread().start();
                 this.managerGui.values().forEach(control -> {
-                    if (control.getMainAction().getStateLevel().equals(StateLevelGUI.OVERLAY)) {
+                    if (control.getMainLink().getStateLevel().equals(StateLevelGUI.OVERLAY)) {
                         control.getGUI().setImageBackground(Background.TRANSPARENT);
                     }
                 });
@@ -195,16 +193,16 @@ public class CtrlGUI {
             link.addActionListener(e -> {
                 this.ctrlGame.restartGame();
                 this.managerGui.values().forEach(control ->
-                        control.getGUI().setImageBackground(control.getMainAction().getBackground()));
+                        control.getGUI().setImageBackground(control.getMainLink().getBackground()));
             });
         });
     }
 
-    private Optional<BtnAction> getLinkBtnFromGUI(final LinkActionGUI gui, final LinkActionGUI btn){
+    private Optional<ButtonLink> getLinkBtnFromGUI(final LinkActionGUI gui, final LinkActionGUI btn){
         for (final ControllerGUI ctrl : this.managerGui.values()) {
-            if (ctrl.getMainAction().equals(gui)) {
-                for (final BtnAction link :  ctrl.getGUI().getBtnActionLinks()) {
-                    if (link.getActionNext() == btn) {
+            if (ctrl.getMainLink().equals(gui)) {
+                for (final ButtonLink link :  ctrl.getGUI().getBtnActionLinks()) {
+                    if (link.getNextLink() == btn) {
                         return Optional.of(link);
                     }
                 }
@@ -216,9 +214,9 @@ public class CtrlGUI {
     public void assignSoundLoop() {
         this.managerGui.values().forEach(ctrl -> ctrl.getGUI().getBtnActionLinks().forEach(
                 btn -> btn.addActionListener(l -> {
-                    this.ctrlSound.checkChangeSoundLoop(btn.getActionCurrent() == LinkActionGUI.ID_PAUSE && 
-                            btn.getActionNext() == LinkActionGUI.ID_BACK ? 
-                            btn.getActionCurrent() : btn.getActionNext());
+                    this.ctrlSound.checkChangeSoundLoop(btn.getCurrentLink() == LinkActionGUI.ID_PAUSE 
+                            && btn.getNextLink() == LinkActionGUI.ID_BACK 
+                            ? LinkActionGUI.ID_GAME : btn.getNextLink());
                 })
         ));
     }

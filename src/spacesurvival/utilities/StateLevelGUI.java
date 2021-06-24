@@ -13,6 +13,4 @@ public enum StateLevelGUI {
      * Nothing state for the GUI.
      */
     NOTHING;
-    
-    
 }

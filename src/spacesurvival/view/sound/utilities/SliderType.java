@@ -1,15 +1,14 @@
 package spacesurvival.view.sound.utilities;
 
 import spacesurvival.model.gui.sound.TypeUnitSound;
-import java.util.Objects;
 import javax.swing.JSlider;
 
+/**
+ * Implement a slider extending from JSlider by adding a typeSlider recognition parameter.
+ */
 public class SliderType extends JSlider {
+    private static final long serialVersionUID = 1L;
     private TypeUnitSound typeSlider;
-
-    public SliderType() {
-        super();
-    }
 
     /**
      * Return the type of the slider.
@@ -29,23 +28,9 @@ public class SliderType extends JSlider {
         this.typeSlider = typeSlider;
     }
 
-    @Override
-    public boolean equals(final Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        final SliderType that = (SliderType) o;
-        return typeSlider == that.typeSlider;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(typeSlider);
-    }
-
+    /**
+     * Describes SliderType from the associated typeSlider.
+     */
     @Override
     public String toString() {
         return "SliderType{" 

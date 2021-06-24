@@ -2,27 +2,31 @@ package spacesurvival.view.menu;
 
 import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.GUI;
+import spacesurvival.view.utilities.GraphicsText;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.util.List;
 
-public interface GUIMenu extends GUI {
+/**
+ * Interface that implements the menu functionalities.
+ */
+public interface GUIMenu extends GUI, GraphicsText {
 
-    void setNameButtons(List<String> listNames);
+    /**
+     * Sets the texts of the menu GUI buttons.
+     * @param listNames is list text buttons.
+     */
+    void setTextButtons(List<String> listNames);
 
+    /**
+     * Sets menu links to other GUIs.
+     * @param mainAction is connection of the current GUI.
+     * @param linksID is connection of the current GUI.
+     */
     void setBtnActions(LinkActionGUI mainAction, List<LinkActionGUI> linksID);
 
-
-    void setFontTitleGUI(Font font);
-
-    void setTitleGUI(String title);
-
-    void setFontGUI(Font font);
-
-    void setForegroundGUI(Color color);
-
-    void setBorder(Color color, int thickness);
-
+    /**
+     * Set the space of the JTextField.
+     * @param sizeColumn for space JTextField.
+     */
     void setColumnsNamePlayer(int sizeColumn);
 }

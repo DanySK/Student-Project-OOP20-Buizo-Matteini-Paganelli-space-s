@@ -16,14 +16,22 @@ public class FocusGUI implements MouseListener {
         this.control = controll;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void mouseClicked(final MouseEvent e) {
         // TODO Auto-generated method stub
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void mousePressed(final MouseEvent e) {
-        final LinkActionGUI id = control.getControllerGUIFromGUI((GUI) e.getSource()).get().getMainAction();
+
+        final LinkActionGUI id = control.getControllerGUIFromGUI((GUI) e.getSource()).get().getMainLink();
+
         if (id.getStateLevel() != StateLevelGUI.OVERLAY 
                 && this.control.getChronology().lastElementOfList().getStateLevel().equals(StateLevelGUI.OVERLAY)) {
 
@@ -37,16 +45,25 @@ public class FocusGUI implements MouseListener {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void mouseReleased(final MouseEvent e) {
         // TODO Auto-generated method stub
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void mouseEntered(final MouseEvent e) {
         // TODO Auto-generated method stub
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void mouseExited(final MouseEvent e) {
         // TODO Auto-generated method stub

@@ -7,7 +7,7 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import spacesurvival.view.utilities.DesignGraphics;
+import spacesurvival.view.utilities.GraphicsLayoutUtils;
 import spacesurvival.view.utilities.FactoryGUIs;
 
 public class Score extends JPanel {
@@ -17,11 +17,11 @@ public class Score extends JPanel {
     public Score(){
         super(new FlowLayout()); {{ setOpaque(false); }}
 
-        this.stringScore = new JLabel(DesignGraphics.SCORE_STRING);
+        this.stringScore = new JLabel(GraphicsLayoutUtils.SCORE_STRING);
         this.score = new JLabel();
 
         super.add(FactoryGUIs.createPanelGridBagUnionComponentsHorizontal(java.util.List.of(
-                this.stringScore, this.score), FactoryGUIs.MAX_INSET));
+                this.stringScore, this.score), FactoryGUIs.INSET_H2));
     }
 
     public void setScore(final long score) {

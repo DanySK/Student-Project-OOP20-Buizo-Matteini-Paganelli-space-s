@@ -3,7 +3,7 @@ package spacesurvival.view.loading.concrete;
 import spacesurvival.view.AbstractGUI;
 import spacesurvival.view.loading.GUILoading;
 import spacesurvival.view.loading.utilities.LoadingBar;
-import spacesurvival.view.utilities.BtnAction;
+import spacesurvival.view.utilities.ButtonLink;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +20,7 @@ public class GUILoadingConcrete extends AbstractGUI implements GUILoading {
     }
 
     @Override
-    public List<BtnAction> getBtnActionLinks() {
+    public List<ButtonLink> getBtnActionLinks() {
         return List.of();
     }
 

@@ -3,7 +3,6 @@ package spacesurvival.model.sound;
 import spacesurvival.utilities.SoundUtils;
 import spacesurvival.utilities.path.SoundPath;
 import java.io.IOException;
-import java.util.Optional;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -13,7 +12,8 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public abstract class Sound {
     private AudioInputStream audioInputStream;
-    private Optional<Clip> clip = Optional.empty();
+    //private Optional<Clip> clip = Optional.empty();
+    private Clip clip;
     private SoundPath soundPath;
     private double volume;
     private boolean isPlaying;
@@ -46,7 +46,7 @@ public abstract class Sound {
         try {
             audioInputStream = AudioSystem.getAudioInputStream(ClassLoader.getSystemResource(sound.getPath()));
             setClip(AudioSystem.getClip());
-            getClip().get().open(audioInputStream);
+            getClip().open(audioInputStream);
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
         }
@@ -75,7 +75,7 @@ public abstract class Sound {
      * 
      * @return clip of the current sound.
      */
-    public Optional<Clip> getClip() {
+    public Clip getClip() {
         return this.clip;
     }
 
@@ -85,7 +85,7 @@ public abstract class Sound {
      * @param clip that will be set in the sound.
      */
     private void setClip(final Clip clip) {
-        this.clip = Optional.of(clip);
+        this.clip = clip;
     }
 
     /** 
@@ -104,7 +104,7 @@ public abstract class Sound {
      */
     public void setVolume(final double volume) {
         this.volume = volume;
-        final FloatControl gain = (FloatControl) getClip().get().getControl(FloatControl.Type.MASTER_GAIN);
+        final FloatControl gain = (FloatControl) getClip().getControl(FloatControl.Type.MASTER_GAIN);
         final float dB = (float) (Math.log(volume) / Math.log(10) * SoundUtils.AMPLITUDE_MULTIPLICATOR_FACTOR);
 
         gain.setValue(dB);
@@ -124,7 +124,7 @@ public abstract class Sound {
      * 
      */
     public void stopClip() {
-        this.clip.get().stop();
+        this.clip.stop();
         try {
             audioInputStream.close();
         } catch (IOException e) {

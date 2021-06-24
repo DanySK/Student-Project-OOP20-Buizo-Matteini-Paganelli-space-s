@@ -1,6 +1,6 @@
 package spacesurvival.view.game.utilities;
 
-import spacesurvival.view.utilities.DesignGraphics;
+import spacesurvival.view.utilities.GraphicsLayoutUtils;
 import spacesurvival.view.utilities.FactoryGUIs;
 
 import javax.swing.*;
@@ -14,12 +14,12 @@ public class CounterEnemies extends JPanel {
         super(new FlowLayout());
         super.setOpaque(false);
 
-        this.stringEnemies = new JLabel(DesignGraphics.ENEMIES_STRING);
+        this.stringEnemies = new JLabel(GraphicsLayoutUtils.ENEMIES_STRING);
         this.counter = new JLabel();
 
         super.add(FactoryGUIs.createPanelGridBagUnionComponentsVertical(java.util.List.of(
                 this.stringEnemies, FactoryGUIs.encapsulatesInPanelFlow(this.counter)),
-                FactoryGUIs.MEDIUM_INSET));
+                FactoryGUIs.INSET_H3));
     }
 
     public void setCounter(final long count){

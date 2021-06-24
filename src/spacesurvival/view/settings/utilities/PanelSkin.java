@@ -54,8 +54,8 @@ public class PanelSkin extends JPanel {
     }
 
     public void setTransparentButton(){
-        FactoryGUIs.setTransparentDesignJButton(this.btSX);
-        FactoryGUIs.setTransparentDesignJButton(this.btDX);
+        FactoryGUIs.setTransparentJButton(this.btSX);
+        FactoryGUIs.setTransparentJButton(this.btDX);
     }
 
     public void setPnImage(final String pathImage){

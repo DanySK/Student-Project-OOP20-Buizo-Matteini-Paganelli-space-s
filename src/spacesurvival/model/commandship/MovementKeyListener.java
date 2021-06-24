@@ -34,8 +34,6 @@ public class MovementKeyListener implements KeyListener {
      * Clear the current command list.
      */
     public void clearSpaceShipCommandList() {
-        //this.commandList.clear();
-        //this.commandList = new LinkedList<>();
         this.commandList.clear();
     }
 

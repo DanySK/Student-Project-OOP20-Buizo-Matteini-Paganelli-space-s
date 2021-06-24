@@ -4,31 +4,43 @@ import spacesurvival.model.gui.scoreboard.EngineScoreboard;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.path.Background;
 import spacesurvival.utilities.path.Icon;
-import spacesurvival.view.utilities.DesignGraphics;
+import spacesurvival.view.utilities.GraphicsLayoutUtils;
 import spacesurvival.view.scoreboard.FactoryGUIScoreboard;
 import spacesurvival.view.scoreboard.GUIScoreboard;
 import spacesurvival.view.scoreboard.concrete.GUIScoreboardConcrete;
 import spacesurvival.view.utilities.FactoryGUIs;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
 import java.util.List;
 
+import javax.swing.JPanel;
+
+/**
+ * Implements the creation of the standard scoreboard menu GUI.
+ */
 public class GUIScoreboardStandard implements FactoryGUIScoreboard {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public GUIScoreboard createGUI() {
         final GUIScoreboardConcrete scoreboardConcrete = new GUIScoreboardConcrete();
-        scoreboardConcrete.setFontLbTitle(DesignGraphics.getFontForTitle(DesignGraphics.SIZE_FONT_H1));
-        scoreboardConcrete.getTxtSearchName().setColumns(DesignGraphics.SIZE_COLUMNS_TEXT);
-        scoreboardConcrete.setFontGUI(DesignGraphics.FONT_MEDIUM_STANDARD);
-        scoreboardConcrete.setForegroundGUI(DesignGraphics.COLOR_4);
-        scoreboardConcrete.setBorder(DesignGraphics.COLOR_4, 3);
+        scoreboardConcrete.setFontTitleGUI(GraphicsLayoutUtils.getFontForTitle(GraphicsLayoutUtils.SIZE_FONT_H2));
+        scoreboardConcrete.getTxtSearchName().setColumns(GraphicsLayoutUtils.SIZE_COLUMNS_TEXT);
+        scoreboardConcrete.setFontGUI(GraphicsLayoutUtils.FONT_STANDARD_H5);
+        scoreboardConcrete.setForegroundGUI(GraphicsLayoutUtils.COLOR_4);
+        scoreboardConcrete.setBorder(GraphicsLayoutUtils.COLOR_4, 3);
         scoreboardConcrete.setImageBackground(Background.MAIN);
         this.createGraphics(scoreboardConcrete);
         return scoreboardConcrete;
     }
 
+    /**
+     * Create graphics standard scoreboard GUI.
+     * 
+     * @param scoreboard to create the graphics.
+     */
     private void createGraphics(final GUIScoreboardConcrete scoreboardConcrete) {
         scoreboardConcrete.setLayout(new BorderLayout());
 
@@ -38,15 +50,16 @@ public class GUIScoreboardStandard implements FactoryGUIScoreboard {
         scoreboardConcrete.add(FactoryGUIs.encapsulatesInPanelFlow(scoreboardConcrete.getBtnBack()),
                 BorderLayout.SOUTH);
 
-        FactoryGUIs.setTransparentDesignJButton(scoreboardConcrete.getBtnSearch());
-        FactoryGUIs.setTransparentDesignJButton(scoreboardConcrete.getBtnBack());
+        FactoryGUIs.setTransparentJButton(scoreboardConcrete.getBtnSearch());
+        FactoryGUIs.setTransparentJButton(scoreboardConcrete.getBtnBack());
 
         FactoryGUIs.setIconJButtonFromRate(scoreboardConcrete.getBtnSearch(), Icon.SEARCH,
                 ScaleOf.ICON_MEDIUM, EngineScoreboard.RECTANGLE.width);
         FactoryGUIs.setIconJButtonFromRate(scoreboardConcrete.getBtnBack(), Icon.BACK,
                 ScaleOf.ICON_MEDIUM, EngineScoreboard.RECTANGLE.width);
 
-        final JPanel panelScore = new JPanel(new BorderLayout()) {{ setOpaque(false); }};
+        final JPanel panelScore = FactoryGUIs.createPanelTransparent(new BorderLayout());
+
 
         panelScore.add(FactoryGUIs.createPanelFlowUnionComponents(List.of(scoreboardConcrete.getTxtSearchName(),
                 scoreboardConcrete.getBtnSearch())), BorderLayout.NORTH);

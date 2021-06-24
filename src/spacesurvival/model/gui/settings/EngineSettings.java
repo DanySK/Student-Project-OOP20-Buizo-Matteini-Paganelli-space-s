@@ -15,7 +15,7 @@ import java.util.stream.IntStream;
 
 public class EngineSettings implements EngineGUI {
     public static final Rectangle RECTANGLE = Screen.RECTANGLE_MEDIUM;
-    public static final String TITLE = "SETTING";
+    public static final String TITLE = "SETTINGS";
 
     public static final String DIR_SX = "<";
     public static final String DIR_DX = ">";
@@ -54,7 +54,7 @@ public class EngineSettings implements EngineGUI {
     }
 
     @Override
-    public LinkActionGUI getMainAction() {
+    public LinkActionGUI getMainLink() {
         return this.mainAction;
     }
 

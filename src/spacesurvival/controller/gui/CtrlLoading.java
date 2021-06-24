@@ -24,12 +24,12 @@ public class CtrlLoading extends Thread implements ControllerGUI{
     }
 
     @Override
-    public void assignAction() {
+    public void assignLinks() {
 
     }
 
     @Override
-    public void assignStrings() {
+    public void assignTexts() {
 
     }
 
@@ -56,8 +56,8 @@ public class CtrlLoading extends Thread implements ControllerGUI{
     }
 
     @Override
-    public LinkActionGUI getMainAction(){
-        return this.engine.getMainAction();
+    public LinkActionGUI getMainLink(){
+        return this.engine.getMainLink();
     }
 
     @Override

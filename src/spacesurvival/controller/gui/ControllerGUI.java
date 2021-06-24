@@ -13,15 +13,15 @@ public interface ControllerGUI {
     /**
      * Assign the links from the model to the GUI.
      */
-    void assignAction();
+    void assignLinks();
 
     /**
      * Assign the texts from the modem to the GUI.
      */
-    void assignStrings();
+    void assignTexts();
 
     /**
-     * Assign the rect angle from the modem to the GUI.
+     * Assign the rectangle angle from the modem to the GUI.
      */
     void assignRectangle();
 
@@ -29,7 +29,7 @@ public interface ControllerGUI {
      * Get my linkAction. 
      * @return my linkAction.
      */
-    LinkActionGUI getMainAction();
+    LinkActionGUI getMainLink();
 
     /**
      * Get my GUI.
