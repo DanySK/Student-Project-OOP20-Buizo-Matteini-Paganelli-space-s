@@ -549,7 +549,10 @@ public class World {
     public Set<Bullet> getAllBullets() {
         final HashSet<Bullet> allBullets = new HashSet<>();
         allBullets.addAll(getShipBullets());
-        this.fireEnemies.forEach(fireEnemy -> {
+//        this.fireEnemies.forEach(fireEnemy -> {
+//            allBullets.addAll(getFireEnemyBullets(fireEnemy));
+//        });
+        this.fireEnemies.stream().forEach(fireEnemy -> {
             allBullets.addAll(getFireEnemyBullets(fireEnemy));
         });
         allBullets.addAll(getBossBullets());
