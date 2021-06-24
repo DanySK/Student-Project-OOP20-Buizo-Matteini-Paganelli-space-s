@@ -5,7 +5,7 @@ import spacesurvival.controller.collision.CollisionController;
 import spacesurvival.controller.gui.command.SwitchGUI;
 import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
-import spacesurvival.model.gui.game.EngineGame;
+import spacesurvival.model.gui.game.Engine;
 import spacesurvival.model.gui.settings.SkinSpaceShip;
 import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.model.Pair;
@@ -23,14 +23,14 @@ import java.awt.event.KeyListener;
 import java.util.List;
 
 public class CtrlGame implements ControllerGUI, Controller {
-    private final EngineGame engine;
+    private final Engine engine;
     private final GUIGame gui;
     private final SwitchGUI switchGUI;
     private final MovementKeyListener keyListener;
     private final CollisionController controlCollision;
     private final CallerCommandShip callerCommandShip;
 
-    public CtrlGame(final EngineGame engine, final GUIGame gui) {
+    public CtrlGame(final Engine engine, final GUIGame gui) {
         this.engine = engine;
         this.gui = gui;
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
@@ -470,7 +470,7 @@ public class CtrlGame implements ControllerGUI, Controller {
      * {@inheritDoc}
      */
     @Override
-    public final void incrScore(final long score) {
+    public final void incrScore(final int score) {
         this.engine.incrScore(score);
     }
 

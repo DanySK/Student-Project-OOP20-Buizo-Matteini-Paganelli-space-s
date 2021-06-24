@@ -18,7 +18,7 @@ import javax.swing.border.Border;
  * Implements the basis for each GUI.
  */
 public abstract class AbstractGUI extends JFrame {
-    private static final long serialVersionUID = -4633648377297371296L;
+    private static final long serialVersionUID = 1L;
     private final JPanelImage panelBackground;
     private final JPanel panelForeground;
     private LinkActionGUI mainAction;

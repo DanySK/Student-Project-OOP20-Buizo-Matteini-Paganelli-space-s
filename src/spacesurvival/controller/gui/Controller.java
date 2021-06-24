@@ -221,7 +221,7 @@ public interface Controller {
      *
      *@param score the score to increase.
      */
-    void incrScore(long score);
+    void incrScore(int score);
 
     /**
      * Decrease the life of the SpaceShipSingleton of the passed damage.
