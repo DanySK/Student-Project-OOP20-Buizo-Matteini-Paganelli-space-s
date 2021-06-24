@@ -5,9 +5,9 @@ import java.util.List;
 
 import spacesurvival.controller.CallerCommandShip;
 import spacesurvival.controller.collision.CollisionController;
-import spacesurvival.model.Pair;
 import spacesurvival.model.World;
 import spacesurvival.model.commandship.MovementKeyListener;
+import spacesurvival.model.common.Pair;
 import spacesurvival.model.gameobject.fireable.SpaceShipSingleton;
 import spacesurvival.model.gui.settings.SkinSpaceShip;
 import spacesurvival.model.worldevent.WorldEventListener;

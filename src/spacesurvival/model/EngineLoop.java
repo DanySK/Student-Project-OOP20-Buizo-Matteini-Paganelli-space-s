@@ -9,6 +9,7 @@ import spacesurvival.controller.gui.CtrlGame;
 import spacesurvival.controller.gui.CtrlSound;
 import spacesurvival.model.collision.event.DeadEvent;
 import spacesurvival.model.common.P2d;
+import spacesurvival.model.common.Pair;
 import spacesurvival.model.gameobject.fireable.SpaceShipSingleton;
 import spacesurvival.model.gameobject.moveable.MoveableObject;
 import spacesurvival.model.worldevent.WorldEvent;

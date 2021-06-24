@@ -1,4 +1,4 @@
-package spacesurvival.model;
+package spacesurvival.model.common;
 /*
  * A standard generic Pair<X,Y>, with getters, hashCode, equals, and toString well implemented. 
  */

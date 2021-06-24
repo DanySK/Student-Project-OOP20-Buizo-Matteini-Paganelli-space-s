@@ -2,9 +2,9 @@ package spacesurvival.view.game.utilities;
 
 import spacesurvival.model.World;
 import spacesurvival.model.collision.bounding.CircleBoundingBox;
+import spacesurvival.model.common.Pair;
 import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.EngineLoop;
-import spacesurvival.model.Pair;
 import spacesurvival.model.gameobject.fireable.Boss;
 import spacesurvival.model.gameobject.fireable.SpaceShipSingleton;
 import spacesurvival.model.gameobject.main.MainObject;
