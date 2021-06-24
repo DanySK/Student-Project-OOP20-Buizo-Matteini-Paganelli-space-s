@@ -96,7 +96,8 @@ public abstract class AbstractGUI extends JFrame {
     public void close() {
 //        this.setVisible(false);
 //        this.dispose();
-        System.exit(0);
+        //System.exit(0);
+        Runtime.getRuntime().halt(0);
     }
 
 }
