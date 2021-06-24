@@ -72,7 +72,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
      */
     @Override
     public MainObject createChaseEnemy() {
-        final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULLSCREEN, AnimationChase.POOH0);
+        final EngineImage engineImage = new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULLSCREEN, AnimationChase.CHASE1);
         final P2d position = PositionUtils.generateSpawnPoint(engineImage.getSize());
         final V2d velocity = VelocityUtils.CHASE_ENEMY_VEL;
         final MovementLogic movementLogic = new ChasingMovementLogic();
@@ -80,7 +80,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
         final int impactDamage = DamageUtils.CHASE_ENEMY_DAMAGE;
 
         return new ChaseEnemy(engineImage, position, new RectBoundingBox(), new ChaseEnemyComponent(), velocity,
-                acceleration, movementLogic, life, impactDamage, Score.CHASE_ENEMY, Optional.empty(), AnimationChase.LIST_POOH);
+                acceleration, movementLogic, life, impactDamage, Score.CHASE_ENEMY, Optional.empty(), AnimationChase.LIST_CHASE);
     }
 
     /**
