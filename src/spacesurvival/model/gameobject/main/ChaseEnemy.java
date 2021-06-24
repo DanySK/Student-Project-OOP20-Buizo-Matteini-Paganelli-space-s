@@ -44,7 +44,6 @@ public class ChaseEnemy extends MainObject {
      */
     @Override
     public void collided(final World world, final WorldEvent ev) {
-        System.out.println("gestisco chase enemy e evento" + EventType.getEventFromHit(ev));
         final Optional<EventType> evType = EventType.getEventFromHit(ev);
         if (evType.isPresent()) {
             switch (EventType.getEventFromHit(ev).get()) {

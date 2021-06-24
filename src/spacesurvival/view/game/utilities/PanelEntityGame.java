@@ -3,7 +3,6 @@ package spacesurvival.view.game.utilities;
 import spacesurvival.model.World;
 import spacesurvival.model.collision.bounding.CircleBoundingBox;
 import spacesurvival.model.gameobject.GameObject;
-import spacesurvival.model.EngineImage;
 import spacesurvival.model.EngineLoop;
 import spacesurvival.model.Pair;
 import spacesurvival.model.gameobject.fireable.Boss;
@@ -11,8 +10,6 @@ import spacesurvival.model.gameobject.fireable.SpaceShipSingleton;
 import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.utilities.ThreadUtils;
-import spacesurvival.utilities.dimension.Screen;
-import spacesurvival.utilities.path.Background;
 import spacesurvival.view.game.utilities.commandlife.CallerLife;
 import spacesurvival.view.game.utilities.logicColor.LogicColorShip;
 
@@ -21,9 +18,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -32,9 +26,6 @@ import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class PanelEntityGame extends JPanel {
@@ -52,7 +43,7 @@ public class PanelEntityGame extends JPanel {
     public PanelEntityGame() {
         super(); 
         super.setOpaque(true);
-
+        super.setBackground(new Color(3, 88, 149));
         //super.setBackground(Background.TRANSPARENT);
         this.gameObjects = new HashMap<>();
         this.world = Optional.empty();
@@ -66,11 +57,10 @@ public class PanelEntityGame extends JPanel {
 
     @Override
     public final void paintComponent(final Graphics g) {
-        
         super.paintComponent(g);
-        //final EngineImage engineImage = new EngineImage(Background.TRANSPARENT, Screen.WIDTH_FULLSCREEN, Screen.HEIGHT_FULLSCREEN);
- 
-        //g.drawImage(engineImage.getImage(), 0, 0, null);
+//        final EngineImage engineImage = new EngineImage(Background.DEAD1, Screen.WIDTH_FULLSCREEN, Screen.HEIGHT_FULLSCREEN);
+// 
+//        g.drawImage(engineImage.getImage(), 0, 0, null);
        
         final Graphics2D g2d = (Graphics2D) g;
 
@@ -83,6 +73,12 @@ public class PanelEntityGame extends JPanel {
             g2d.drawImage(entity.getValue().getY(), 0, 0, null);
             this.assignLifeBar(entity.getKey(), g2d);
         }
+        
+        this.world.get().getAllBullets().forEach(bullet -> {
+            g2d.setTransform(bullet.getTransform());
+            System.out.println(bullet.getImgBody());
+            g2d.drawImage(bullet.getImgBody(), 0, 0, null);
+        });
 
     }
 
@@ -126,7 +122,6 @@ public class PanelEntityGame extends JPanel {
     private void updateGameObjects() {
         this.putObjectFromWorld();
         this.deletGameObject();
-
     }
 
     private void putObjectFromWorld() {
