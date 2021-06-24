@@ -20,10 +20,7 @@ public class LogicSwitchGame implements LogicSwitchGUI {
     @Override
     public void algorithm(final LinkActionGUI actionCurrent, final LinkActionGUI actionNext,
                           final ListGUI<LinkActionGUI> chronology, final Map<LinkActionGUI, ControllerGUI> manager) {
-        System.out.println(actionNext);
-        System.out.println("ciaooooooooooooooooooooooooooo");
         switch (actionNext) {
-        
             case ID_PAUSE:
                 System.out.println("CI PASSO");
                 if (chronology.lastElementOfList().get() != LinkActionGUI.ID_PAUSE) {
