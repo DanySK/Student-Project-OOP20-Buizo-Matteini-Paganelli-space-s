@@ -7,7 +7,6 @@ import spacesurvival.model.gameobject.moveable.movement.MovementLogic;
 import spacesurvival.utilities.Delay;
 import spacesurvival.utilities.ThreadUtils;
 import spacesurvival.utilities.gameobject.StatusUtils;
-import java.util.Optional;
 import spacesurvival.model.EngineImage;
 import spacesurvival.model.collision.bounding.BoundingBox;
 import spacesurvival.model.collision.eventgenerator.EventComponent;
@@ -23,7 +22,7 @@ public abstract class MainObject extends MoveableObject {
 
     public MainObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
             final EventComponent phys, final V2d velocity, final double acceleration, final MovementLogic movementLogic, final int life,
-            final int impactDamage, final int score, final Optional<P2d> targetPosition) {
+            final int impactDamage, final int score, final P2d targetPosition) {
         super(engineImage, position, bb, phys, velocity, acceleration, movementLogic, targetPosition);
         this.life = life;
         this.impactDamage = impactDamage;
@@ -109,7 +108,6 @@ public abstract class MainObject extends MoveableObject {
      */
     public void setStatus(final Status status) {
         if (!this.status.equals(status)) {
-            System.out.println("STATUS   " + status);
             this.status = status;
             super.setEffectAnimation(status.getAnimation());
             this.onStatus();

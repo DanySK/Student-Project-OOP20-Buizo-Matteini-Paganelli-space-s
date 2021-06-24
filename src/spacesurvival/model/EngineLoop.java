@@ -19,7 +19,6 @@ import java.awt.geom.AffineTransform;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 
 public class EngineLoop extends Thread implements WorldEventListener {
     /**
@@ -75,6 +74,9 @@ public class EngineLoop extends Thread implements WorldEventListener {
         return this.controlGame.getShip();
     }
 
+    /**
+     * Starts the main loop of the game.
+     */
     @Override
     public void run() {
         long lastTime = System.currentTimeMillis();
@@ -233,7 +235,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
             shipTransform.setTransform(getShip().getTransform());
             shipTransform.translate(getShip().getWidth() / 2, getShip().getHeight() / 2);
             final P2d shipPosition = new P2d(shipTransform.getTranslateX(), shipTransform.getTranslateY());
-            enemy.setTargetPosition(Optional.of(shipPosition));
+            enemy.setTargetPosition(shipPosition);
         });
     }
 

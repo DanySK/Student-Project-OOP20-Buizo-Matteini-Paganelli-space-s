@@ -29,7 +29,7 @@ public class Bullet extends MoveableObject {
     private final Weapon originWeapon;
 
     public Bullet(final EngineImage engineImage, final P2d position, final BoundingBox bb, final EventComponent eventComponent,
-            final V2d velocity, final double acceleration, final Optional<P2d> target, final int damage,
+            final V2d velocity, final double acceleration, final P2d target, final int damage,
             final Effect effect, final Weapon originWeapon) {
         super(engineImage, position, bb, eventComponent, velocity, acceleration, new FixedMovementLogic(), target);
         this.setBoundingBox(RectBoundingBox.createRectBoundingBox(position, engineImage, this.getTransform()));

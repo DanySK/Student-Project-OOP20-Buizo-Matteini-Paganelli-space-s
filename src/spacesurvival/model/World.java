@@ -110,11 +110,6 @@ public class World {
                 ThreadUtils.sleep(Delay.SPAWN_PERK);
             }
         });
-        this.addHeart();
-        this.addAmmo();
-        this.addAmmo();
-        this.addAmmo();
-        this.addAmmo();
 
     }
 
@@ -326,9 +321,9 @@ public class World {
     }
 
     /**
-     * Pacman Effect for the movable gameobject passed.
+     * Pacman Effect for the movable game object passed.
      * 
-     * @param object the gameobject 
+     * @param object the game object to move
      * @param edge edge where the collision with boundaries occurred
      */
     public void pacmanEffect(final MoveableObject object, final Edge edge) {

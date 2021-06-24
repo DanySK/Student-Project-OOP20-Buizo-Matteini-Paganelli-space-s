@@ -60,8 +60,7 @@ public abstract class GameObject implements Collideable {
     }
 
     /**
-     * 
-     * @return
+     * @return current image of main animation
      */
     public Image getImgBody() {
         return this.mainAnimation.getImage();
@@ -69,7 +68,7 @@ public abstract class GameObject implements Collideable {
 
     /**
      * 
-     * @return
+     * @return current image of efect animation
      */
     public Image getImgEffect() {
         return this.effectAnimation.getImage();
@@ -141,7 +140,11 @@ public abstract class GameObject implements Collideable {
           this.boundingBox = boundingBox;
     }
 
-
+    /**
+     * Sets a new EngineImage to the object.
+     * 
+     * @param engineImage
+     */
     public void setEngineImage(final EngineImage engineImage) {
         this.mainAnimation.setBody(engineImage);
     }
@@ -162,8 +165,13 @@ public abstract class GameObject implements Collideable {
         this.eventComponent = eventComponent;
     }
 
-    public void updateEvents(final World w) {
-        eventComponent.update(this, w);
+    /**
+     * Check and update all events affecting game object.
+     * 
+     * @param world the world which contains each game object
+     */
+    public void updateEvents(final World world) {
+        eventComponent.update(this, world);
     }
 
     /**

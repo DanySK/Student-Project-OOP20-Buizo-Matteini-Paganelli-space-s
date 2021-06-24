@@ -12,7 +12,6 @@ import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
 
 import java.awt.geom.AffineTransform;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 import spacesurvival.model.EngineImage;
@@ -92,7 +91,7 @@ public class Weapon {
         final double acceleration = VelocityUtils.NO_ACCELERATION;
 
         final Bullet bullet = new Bullet(engineImage, position, new RectBoundingBox(), new BulletComponent(),
-                velocity, acceleration, Optional.empty(), BulletUtils.BULLET_DAMAGE,
+                velocity, acceleration, null, BulletUtils.BULLET_DAMAGE,
                 ammoType.getEffect(), this);
 
 

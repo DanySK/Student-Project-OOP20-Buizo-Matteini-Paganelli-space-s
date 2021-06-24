@@ -1,7 +1,5 @@
 package spacesurvival.model.gameobject.factories;
 
-import java.util.Optional;
-
 import spacesurvival.model.gameobject.fireable.Boss;
 import spacesurvival.model.gameobject.fireable.FireEnemy;
 import spacesurvival.model.gameobject.fireable.FireableObject;
@@ -64,7 +62,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
         final int impactDamage = DamageUtils.ASTEROID_DAMAGE;
 
         return new Asteroid(engineImage, position, new CircleBoundingBox(), new AsteroidComponent(), velocity,
-                acceleration,  movementLogic, life, impactDamage, Score.ASTEROID, Optional.empty(), AnimationAsteroid.LIST_ASTEROID);
+                acceleration,  movementLogic, life, impactDamage, Score.ASTEROID, null, AnimationAsteroid.LIST_ASTEROID);
     }
 
     /**
@@ -80,7 +78,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
         final int impactDamage = DamageUtils.CHASE_ENEMY_DAMAGE;
 
         return new ChaseEnemy(engineImage, position, new RectBoundingBox(), new ChaseEnemyComponent(), velocity,
-                acceleration, movementLogic, life, impactDamage, Score.CHASE_ENEMY, Optional.empty(), AnimationChase.LIST_CHASE);
+                acceleration, movementLogic, life, impactDamage, Score.CHASE_ENEMY, null, AnimationChase.LIST_CHASE);
     }
 
     /**
@@ -98,7 +96,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
         final FiringLogic firingLogic = new EnemyFiringLogic();
 
         final FireEnemy fireEnemy = new FireEnemy(engineImage, position, new RectBoundingBox(), new FireEnemyComponent(), velocity,
-                acceleration, movementLogic, life, impactDamage, Score.FIRE_ENEMY, Optional.empty(), weapon, firingLogic);
+                acceleration, movementLogic, life, impactDamage, Score.FIRE_ENEMY, null, weapon, firingLogic);
         fireEnemy.setWeapon(new Weapon(AmmoType.NORMAL, fireEnemy));
         return fireEnemy;
     }
@@ -118,7 +116,7 @@ public class ConcreteFactoryGameObject extends AbstractFactoryGameObject {
         final FiringLogic firingLogic = new BossFiringLogic();
 
         final Boss boss = new Boss(engineImage, position, new RectBoundingBox(), new BossComponent(), velocity,
-                acceleration, movementLogic, life, impactDamage, Score.BOSS, Optional.empty(), weapon, firingLogic);
+                acceleration, movementLogic, life, impactDamage, Score.BOSS, null, weapon, firingLogic);
         boss.setWeapon(new Weapon(AmmoType.NORMAL, boss));
         return boss;
     }

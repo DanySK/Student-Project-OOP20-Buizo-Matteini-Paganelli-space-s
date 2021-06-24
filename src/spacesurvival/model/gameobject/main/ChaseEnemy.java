@@ -25,7 +25,7 @@ public class ChaseEnemy extends MainObject {
 
     public ChaseEnemy(final EngineImage engineImage, final P2d position, final BoundingBox bb,
             final EventComponent phys, final V2d velocity, final double acceleration, final MovementLogic movementLogic,
-            final int life, final int impactDamage, final int score, final Optional<P2d> target, final List<String> animation) {
+            final int life, final int impactDamage, final int score, final P2d target, final List<String> animation) {
         super(engineImage, position, bb, phys, velocity, acceleration, movementLogic, life, impactDamage, score, target);
 
         this.setBoundingBox(RectBoundingBox.createRectBoundingBox(position, engineImage, this.getTransform()));
@@ -34,7 +34,7 @@ public class ChaseEnemy extends MainObject {
 
     public ChaseEnemy(final EngineImage engineImage, final P2d position, final BoundingBox bb,
             final EventComponent phys, final V2d velocity, final double acceleration, final MovementLogic movementLogic,
-            final int life, final int impactDamage, final int score, final Optional<P2d> target) {
+            final int life, final int impactDamage, final int score, final P2d target) {
         super(engineImage, position, bb, phys, velocity, acceleration, movementLogic, life, impactDamage, score, target);
         this.setBoundingBox(RectBoundingBox.createRectBoundingBox(position, engineImage, this.getTransform()));
     }
