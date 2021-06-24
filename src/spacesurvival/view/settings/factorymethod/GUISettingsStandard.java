@@ -44,8 +44,7 @@ public class GUISettingsStandard implements FactoryGUISettings {
         JPanel panelContainPanel = new JPanel(new GridBagLayout()) {{ setOpaque(false); }};
 
         panelContainPanel.add(FactoryGUIs.createPanelGridBagUnionComponentsVertical(List.of(
-                FactoryGUIs.encapsulatesInPanelFlow(concreteSettings.getPanelSkin()),
-                concreteSettings.getPanelDifficult()), DesignJComponent.SETTINGS_INSET), lim);
+                FactoryGUIs.encapsulatesInPanelFlow(concreteSettings.getPanelSkin())), DesignJComponent.SETTINGS_INSET), lim);
 
         concreteSettings.add(panelContainPanel, BorderLayout.CENTER);
     }

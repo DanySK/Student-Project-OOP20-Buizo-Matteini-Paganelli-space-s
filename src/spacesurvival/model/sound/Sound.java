@@ -3,7 +3,6 @@ package spacesurvival.model.sound;
 import spacesurvival.utilities.SoundUtils;
 import spacesurvival.utilities.path.SoundPath;
 import java.io.IOException;
-import java.util.Optional;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
