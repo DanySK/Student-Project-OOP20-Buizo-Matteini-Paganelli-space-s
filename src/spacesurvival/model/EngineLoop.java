@@ -74,6 +74,9 @@ public class EngineLoop extends Thread implements WorldEventListener {
         return this.controlGame.getShip();
     }
 
+    /**
+     * Starts the main loop of the game.
+     */
     @Override
     public void run() {
         long lastTime = System.currentTimeMillis();

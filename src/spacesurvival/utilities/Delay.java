@@ -31,9 +31,9 @@ public final class Delay {
     public static final int FIRE_EFFECT = 1000;
 
     /**
-     * The time for perk spawning.
+     * The time for bonus spawning.
      */
-    public static final int SPAWN_PERK = 30_000;
+    public static final int SPAWN_PERK = 60_000;
 
     /**
      * The time for waiting.

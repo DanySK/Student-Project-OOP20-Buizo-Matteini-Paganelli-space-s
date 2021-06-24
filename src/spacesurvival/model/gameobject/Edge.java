@@ -6,6 +6,9 @@ import java.util.List;
 
 import spacesurvival.utilities.RandomUtils;
 
+/**
+ * Contains the types of screen borders.
+ */
 public enum Edge {
     /**
      * Left edge of game screen.

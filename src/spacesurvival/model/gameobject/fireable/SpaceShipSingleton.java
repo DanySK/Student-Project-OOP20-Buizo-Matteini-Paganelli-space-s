@@ -41,7 +41,7 @@ public final class SpaceShipSingleton extends FireableObject {
 
     private List<SoundPath> soundQueue = new LinkedList<>();
 
-    // Eager and unique instance of this class for Threadsafing
+    // Eager and unique instance of this class to make it Thread-safe
     private static final SpaceShipSingleton SPACESHIP = new SpaceShipSingleton(
             new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULLSCREEN, AnimationShip.NORMAL0),
             Screen.POINT_CENTER_ABSOLUTE,
@@ -117,10 +117,18 @@ public final class SpaceShipSingleton extends FireableObject {
         }
     }
 
+    /**
+     * @return a list of SoundPath that will be added queued in the World.
+     */
     public List<SoundPath> getSoundQueue() {
         return soundQueue;
     }
 
+    /**
+     * Sets a new queue of sounds to be played.
+     * 
+     * @param soundQueue the new list of sounds
+     */
     public void setSoundQueue(final List<SoundPath> soundQueue) {
         this.soundQueue = soundQueue;
     }

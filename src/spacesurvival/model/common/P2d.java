@@ -28,8 +28,8 @@ public class P2d implements java.io.Serializable {
     /**
      * P2d constructor, initialize x and y fields equals to the passed x and y.
      *
-     * @param x coordinate that will be setted
-     * @param y coordinate that will be setted
+     * @param x coordinate that will be set
+     * @param y coordinate that will be set
      */
     public P2d(final double x, final double y) {
         this.x = x;
@@ -103,8 +103,6 @@ public class P2d implements java.io.Serializable {
     }
 
     /**
-     * Return a string describing the vector.
-     * 
      * @return a string describing the vector
      */
     @Override
