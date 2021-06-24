@@ -107,16 +107,15 @@ public class Chronometer extends Thread {
      */
     public void run() {
         while (true){
-                if (this.play) {
-                    this.incrSecond();
-                    this.check();
-                    this.pause(1000);
-                }
-                this.timer = this.makeFormatTimer(
-                        this.controlFormat(this.hours),
-                        this.controlFormat(this.minutes),
-                        this.controlFormat(this.seconds), ":");
+            if (this.play) {
+                this.incrSecond();
+                this.check();
+                this.pause(1000);
             }
-
+            this.timer = this.makeFormatTimer(
+                    this.controlFormat(this.hours),
+                    this.controlFormat(this.minutes),
+                    this.controlFormat(this.seconds), ":");
+        }
     }
 }
