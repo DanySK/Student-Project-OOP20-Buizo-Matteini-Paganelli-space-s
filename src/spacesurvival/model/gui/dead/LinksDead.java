@@ -2,30 +2,56 @@ package spacesurvival.model.gui.dead;
 
 import spacesurvival.utilities.LinkActionGUI;
 
+/**
+ * LinksMenu contains dead links with buttons.
+ */
 public enum LinksDead {
+    /**
+     * Link to GUI Menu.
+     */
     MENU_BTN("Menu", LinkActionGUI.ID_MENU),
+
+    /**
+     * Link to GUI Quit.
+     */
     QUIT_BTN("Quit", LinkActionGUI.ID_QUIT);
 
-    private final String name;
+    private final String text;
     private final LinkActionGUI linkActionGUI;
 
-    private LinksDead(final String name, final LinkActionGUI linkActionGUI){
-        this.name = name;
+    /**
+     * Create link for menu GUI to a other GUI.
+     * @param name other GUI.
+     * @param linkActionGUI
+     */
+    LinksDead(final String text, final LinkActionGUI linkActionGUI) {
+        this.text = text;
         this.linkActionGUI = linkActionGUI;
     }
 
-    public String getName(){
-        return this.name;
+    /**
+     * Get button text.
+     * @return button text.
+     */
+    public String getText() {
+        return this.text;
     }
 
+    /**
+     * Get button text.
+     * @return button text.
+     */
     public LinkActionGUI getAction() {
         return this.linkActionGUI;
     }
 
+    /**
+     * Description of linkDead.
+     */
     @Override
     public String toString() {
-        return "LinksDead{" +
-                "name='" + name + '\'' +
-                ", actionGUI=" + linkActionGUI +  '}';
+        return "LinksDead{"
+                + "name='" + text + '\'' 
+                + ", actionGUI=" + linkActionGUI +  '}';
     }
 }

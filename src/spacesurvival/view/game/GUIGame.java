@@ -6,6 +6,7 @@ import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.GUI;
 import spacesurvival.view.game.utilities.PanelBulletGame;
 import spacesurvival.view.game.utilities.PanelEntityGame;
+import spacesurvival.view.utilities.GraphicsText;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -13,7 +14,7 @@ import java.awt.Rectangle;
 import java.awt.event.KeyListener;
 import java.util.List;
 
-public interface GUIGame extends GUI {
+public interface GUIGame extends GUI, GraphicsText {
 
     void setMaxLifeShip(int maxLife);
 
@@ -51,11 +52,7 @@ public interface GUIGame extends GUI {
 
     void setLifeBoss(int lifeShip);
 
-    void setFontGUI(Font font);
-
     void setFontLifeBars(Font font);
-
-    void setForegroundGUI(Color color);
 
     void setBackgroundLifeBars(Color color);
 }

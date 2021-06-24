@@ -173,21 +173,21 @@ public class EngineGame implements EngineGUI {
 
     public void setSkin(final SkinSpaceShip currentSkin) {
         this.world.setSkin(currentSkin);
-        
+
     }
 
     public Optional<FireableObject> getBoss() {
         return this.world.getBoss();
     }
-    
+
     public Weapon getWeaponShip() {
         return this.getShip().getWeapon();
     }
-    
+
     public AmmoType getAmmoTypeShip() {
         return this.getWeaponShip().getAmmoType();
     }
-    
+
     public void assignBulletShipInHUD() {
         this.hud.setAmmoType(this.getAmmoTypeShip());
     }

@@ -3,28 +3,40 @@ package spacesurvival.view.pause;
 import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.GUI;
 import spacesurvival.view.utilities.ButtonLink;
+import spacesurvival.view.utilities.GraphicsText;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.util.List;
 
-public interface GUIPause extends GUI {
+public interface GUIPause extends GUI, GraphicsText {
 
+    /**
+     * Get ButtonLink from index.
+     * 
+     * @param ind for index.
+     * @return ButtonLink from index.
+     */
     ButtonLink getActionBtn(int ind);
 
-    void setNameButtons(List<String> listNames);
+    /**
+     * Set text all buttons.
+     * 
+     * @param listText a list of text.
+     */
+    void setTextButtons(List<String> listText);
 
-    void setActionButtons(LinkActionGUI mainAction, List<LinkActionGUI> linksID);
+    /**
+     * Set LinkActionGUI a all button.
+     * 
+     * @param mainAction of current GUI.
+     * @param links a links of other GUI.
+     */
+    void setLinkActionButtons(LinkActionGUI mainAction, List<LinkActionGUI> links);
 
-
-    void setFontGUITitle(Font font);
-
-    void setTitleGUI(String title);
-
-    void setForegroundGUI(Color color);
-
-    void setFontButtons(Font font);
-
+    /**
+     * Set backgrouds's buttons.
+     * @param color that set background buttons.
+     */
     void setBackgroundButtons(Color color);
 
 }

@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 /**
- * 
+ * Implements model for image.
  */
 public class EngineImage {
     private String path;
@@ -19,7 +19,7 @@ public class EngineImage {
     private int scaleOf, respectTo;
 
     /**
-     * 
+     * Create empty engimeImage.
      */
     public EngineImage() {
         this.path = "";
@@ -30,8 +30,8 @@ public class EngineImage {
     }
 
     /**
-     * 
-     * @param path
+     * Create engineImage from path.
+     * @param path for image.
      */
     public EngineImage(final String path) {
         this();
@@ -39,10 +39,10 @@ public class EngineImage {
     }
 
     /**
-     * 
-     * @param path
-     * @param width
-     * @param height
+     * Create engineImage from path and dimension.
+     * @param path for image.
+     * @param width for dimension.
+     * @param height for dimension.
      */
     public EngineImage(final String path, final int width, final int height) {
         this(path);
@@ -50,19 +50,19 @@ public class EngineImage {
     }
 
     /**
-     * 
-     * @param path
-     * @param dimension
+     * Create engineImage from path and dimension.
+     * @param path for image.
+     * @param dimension for size. 
      */
     public EngineImage(final String path, final Dimension dimension) {
         this(path, dimension.width, dimension.height);
     }
 
     /**
-     * 
-     * @param scaleOf
-     * @param respectTo
-     * @param path
+     * Create engineImage from path and scale of respect to.
+     * @param scaleOf parameter to scale the image.
+     * @param respectTo parameter from which to scale
+     * @param path for image.
      */
     public EngineImage(final int scaleOf, final int respectTo, final String path) {
         this(path);
@@ -70,6 +70,7 @@ public class EngineImage {
     }
 
     /**
+     * Get EngineImage for image.
      * 
      * @param engineImage
      */
@@ -80,6 +81,7 @@ public class EngineImage {
 
     /**
      * Return the images's path.
+     * 
      * @return a path string 
      */
     public String getPath() {
@@ -97,6 +99,7 @@ public class EngineImage {
 
     /**
      * Return the images's width.
+     * 
      * @return return the images's width
      */
     public int getWidth() {
@@ -105,6 +108,7 @@ public class EngineImage {
 
     /**
      * Return the images's height.
+     * 
      * @return return the images's height
      */
     public int getHeight() {
@@ -113,6 +117,7 @@ public class EngineImage {
 
     /**
      * Return the images's scale.
+     * 
      * @return return the images's scale
      */
     public int getScaleOf() {
@@ -142,16 +147,17 @@ public class EngineImage {
     }
 
     /**
-     * 
-     * @return
+     * Get parameter from which to scale.
+     * @return respectTo.
      */
     public int getRespectTo() {
         return this.respectTo;
     }
 
     /**
+     * Set parameter from which to scale.
      * 
-     * @param respectTo
+     * @param respectTo for scale.
      */
     public void setRespectTo(final int respectTo) {
         this.setScale(this.scaleOf, respectTo);
@@ -208,10 +214,17 @@ public class EngineImage {
                 + ", scaleOf=" + scaleOf + ", respectTo=" + respectTo + '}';
     }
 
-
+    /**
+     *  Return a Dimension from an image path and dimension scale.
+     * @param path of image.
+     * @param scaleOf for scale image.
+     * @param respectTo parameter from which to scale.
+     * @return dimension from image and dimension.
+     */
     public static Dimension getSizeImageFromScale(final String path, final int scaleOf, final int respectTo) {
         final Dimension dimension = new Dimension();
         try {
+            System.out.println(path);
             final BufferedImage img = ImageIO.read(ClassLoader.getSystemResource(path));
             dimension.width = (respectTo * scaleOf) / 1000;
             dimension.height = (img.getHeight() * dimension.width) / img.getWidth();

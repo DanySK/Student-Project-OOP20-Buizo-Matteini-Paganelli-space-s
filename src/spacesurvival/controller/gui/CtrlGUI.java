@@ -75,7 +75,7 @@ public class CtrlGUI {
 
     public void initGUI() {
         this.chronology.add(FIRST_GUI);
-        this.focusGUI();
+        //this.focusGUI();
         this.assignAllLinkAction();
         this.assignAllString();
         this.assignAllRectangle();
@@ -119,9 +119,25 @@ public class CtrlGUI {
         this.managerGui.get(FIRST_GUI).turn(Visibility.VISIBLE);
     }
 
-    private void linksAll(){
+    private void linksAll() {
         this.managerGui.values().forEach(managerGui -> managerGui.getGUI().getBtnActionLinks().forEach(btn ->
                 btn.addActionListener(e -> {
+                    System.out.println("mI TORNA QUESTOOOOOO" + this.isInPause());
+                    System.out.println("Premuto in: " + btn.getCurrentLink() + " Vado in: " + btn.getNextLink());
+//                    if (this.isInPause()) {
+//                        this.logicSwitchGame.algorithm(btn.getCurrentLink(), btn.getNextLink(),
+//                                this.chronology, this.managerGui);
+//                      // this.ctrlGame.setPauseAnimationAllObject(true);
+//                    } else {
+//                        this.logicSwitch  Menu.algorithm(btn.getCurrentLink(), btn.getNextLink(),
+//                                this.chronology, this.managerGui);
+//                    }
+
+//                    if (this.isInGame()) {
+//                        this.ctrlGame.setPauseAnimationAllObject(false);
+//                    }
+     
+                    
                     if (this.isInPause()){
                         this.logicSwitchGame.algorithm(btn.getCurrentLink(), btn.getNextLink(),
                                 this.chronology, this.managerGui);
@@ -130,7 +146,7 @@ public class CtrlGUI {
                         this.logicSwitchMenu.algorithm(btn.getCurrentLink(), btn.getNextLink(),
                                 this.chronology, this.managerGui);
                     }
-
+                    
                     if (this.isInGame()) {
                         this.ctrlGame.setPauseAnimationAllObject(false);
                     }
@@ -142,7 +158,7 @@ public class CtrlGUI {
                 managerGui.getGUI().addMouseListener(this.fosucGUI));
     }
 
-    public Optional<ControllerGUI> getControllerGUIFromGUI(final GUI gui){
+    public Optional<ControllerGUI> getControllerGUIFromGUI(final GUI gui) {
         for (final ControllerGUI ctrl : this.managerGui.values()) {
             if(ctrl.getGUI() == gui) {
                 return Optional.of(ctrl);
@@ -151,7 +167,7 @@ public class CtrlGUI {
         return Optional.empty();
     }
 
-    public LinkActionGUI getCurrentGUI(){
+    public Optional<LinkActionGUI> getCurrentGUI() {
         return this.chronology.lastElementOfList();
     }
 
@@ -164,8 +180,10 @@ public class CtrlGUI {
     }
 
     public void endGame(){
-        this.managerGui.get(this.chronology.lastElementOfList()).turn(Visibility.HIDDEN);
-        this.chronology.remove(this.chronology.lastElementOfList());
+        
+        this.chronology.lastElementOfList().ifPresent(link -> this.managerGui.get(link).turn(Visibility.HIDDEN));
+        this.chronology.lastElementOfList().ifPresent(this.chronology::remove);
+        
         this.chronology.add(LinkActionGUI.ID_DEAD);
         this.managerGui.get(LinkActionGUI.ID_DEAD).turn(Visibility.VISIBLE);
 
@@ -173,7 +191,6 @@ public class CtrlGUI {
     }
 
     private void startElementsWhenInGame() {
-
         this.getLinkBtnFromGUI(LinkActionGUI.ID_MENU, LinkActionGUI.ID_GAME).ifPresent(link -> {
             link.addActionListener(e -> {
                 this.ctrlGame.setSkin(this.ctrlSettings.getCurrentSkin());
@@ -214,9 +231,7 @@ public class CtrlGUI {
     public void assignSoundLoop() {
         this.managerGui.values().forEach(ctrl -> ctrl.getGUI().getBtnActionLinks().forEach(
                 btn -> btn.addActionListener(l -> {
-                    this.ctrlSound.checkChangeSoundLoop(btn.getCurrentLink() == LinkActionGUI.ID_PAUSE 
-                            && btn.getNextLink() == LinkActionGUI.ID_BACK 
-                            ? LinkActionGUI.ID_GAME : btn.getNextLink());
+                    this.ctrlSound.checkChangeSoundLoop(btn.getNextLink());
                 })
         ));
     }

@@ -37,7 +37,7 @@ public class PanelEntityGame extends JPanel {
     public static final int HEIGHT_LIFE = 5;
     public static final int DIFFERENCE_HEIGHT_LIFE_BAR = Math.abs(HEIGHT_LIFE_BAR - HEIGHT_LIFE);
 
-    private volatile Map<GameObject, Pair<Image, Image>> gameObjects;
+    private Map<GameObject, Pair<Image, Image>> gameObjects;
     private Optional<World> world;
 
     public PanelEntityGame() {
@@ -60,15 +60,22 @@ public class PanelEntityGame extends JPanel {
         super.paintComponent(g);
         final Graphics2D g2d = (Graphics2D) g;
 
-        final Iterator<Entry<GameObject, Pair<Image, Image>>> entitiesIterator = this.gameObjects.entrySet().iterator();
+//        final Iterator<Entry<GameObject, Pair<Image, Image>>> entitiesIterator = this.gameObjects.entrySet().iterator();
+//
+//        while (entitiesIterator.hasNext()) {
+//            final Entry<GameObject, Pair<Image, Image>> entity = entitiesIterator.next();
+//            g2d.setTransform(getCorrectAffineTransformFromBoundingBox(entity.getKey())); 
+//            g2d.drawImage(entity.getValue().getX(), 0, 0, null);
+//            g2d.drawImage(entity.getValue().getY(), 0, 0, null);
+//            this.assignLifeBar(entity.getKey(), g2d);
+//        }
 
-        while (entitiesIterator.hasNext()) {
-            final Entry<GameObject, Pair<Image, Image>> entity = entitiesIterator.next();
+        this.gameObjects.entrySet().forEach(entity -> {
             g2d.setTransform(getCorrectAffineTransformFromBoundingBox(entity.getKey())); 
-            g2d.drawImage(entity.getValue().getX(), 0, 0, null);
-            g2d.drawImage(entity.getValue().getY(), 0, 0, null);
-            this.assignLifeBar(entity.getKey(), g2d);
-        }
+          g2d.drawImage(entity.getValue().getX(), 0, 0, null);
+          g2d.drawImage(entity.getValue().getY(), 0, 0, null);
+          this.assignLifeBar(entity.getKey(), g2d);
+        });
         
         this.world.get().getAllBullets().forEach(bullet -> {
             g2d.setTransform(bullet.getTransform());

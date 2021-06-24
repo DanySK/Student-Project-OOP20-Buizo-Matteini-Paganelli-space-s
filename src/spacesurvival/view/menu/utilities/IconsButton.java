@@ -2,9 +2,8 @@ package spacesurvival.view.menu.utilities;
 
 import spacesurvival.utilities.path.Icon;
 
-
 /*
- * Implements enumeration of icons for the menu 
+ * Implements enumeration of icons for the menu.
  */
 public enum IconsButton {
     /**

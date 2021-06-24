@@ -1,24 +1,34 @@
 package spacesurvival.view.loading.factorymethod;
 
 import spacesurvival.view.utilities.GraphicsLayoutUtils;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+
+import javax.swing.JPanel;
+
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;
 import spacesurvival.utilities.path.Background;
-import spacesurvival.view.loading.FactoryGUILoading;
+import spacesurvival.view.loading.FactoryGuiLoading;
 import spacesurvival.view.loading.GUILoading;
 import spacesurvival.view.loading.concrete.GUILoadingConcrete;
 import spacesurvival.view.utilities.FactoryGUIs;
 
-import javax.swing.*;
-import java.awt.*;
+/**
+ * Implements the creation of the compact loading GUI.
+ */
+public class GuiLoadingStandard implements FactoryGuiLoading {
 
-public class GUILoadingStandard implements FactoryGUILoading {
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public GUILoading create() {
-        GUILoadingConcrete concrete = new GUILoadingConcrete();
+        final GUILoadingConcrete concrete = new GUILoadingConcrete();
         concrete.setImageBackground(Background.LOADING);
-        concrete.setFontLbtitle(GraphicsLayoutUtils.getFontForTitle(GraphicsLayoutUtils.SIZE_FONT_H1));
+        concrete.setFontTitleGUI(GraphicsLayoutUtils.getFontForTitle(GraphicsLayoutUtils.SIZE_FONT_H1));
         concrete.setForegroundGUI(GraphicsLayoutUtils.COLOR_4);
 
 
@@ -26,18 +36,23 @@ public class GUILoadingStandard implements FactoryGUILoading {
         return concrete;
     }
 
+    /**
+     * Create graphics compact menu GUI.
+     * 
+     * @param concrete loading to create the graphics.
+     */
     private void graphics(final GUILoadingConcrete concrete) {
         concrete.setLayout(new BorderLayout());
 
-        JPanel panel1 = FactoryGUIs.encapsulatesInPanelFlow(concrete.getLbTitle());
-        FlowLayout flow1 = (FlowLayout) panel1.getLayout();
+        final JPanel panel1 = FactoryGUIs.encapsulatesInPanelFlow(concrete.getLbTitle());
+        final FlowLayout flow1 = (FlowLayout) panel1.getLayout();
         flow1.setVgap(FactoryGUIs.INSET_H1);
 
         concrete.add(panel1, BorderLayout.NORTH);
 
 
-        JPanel panel = FactoryGUIs.encapsulatesInPanelFlow(concrete.getProgressBar());
-        FlowLayout flow = (FlowLayout) panel.getLayout();
+        final JPanel panel = FactoryGUIs.encapsulatesInPanelFlow(concrete.getProgressBar());
+        final FlowLayout flow = (FlowLayout) panel.getLayout();
         flow.setVgap(FactoryGUIs.INSET_H0);
 
 

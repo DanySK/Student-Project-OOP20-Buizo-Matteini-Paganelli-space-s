@@ -33,7 +33,7 @@ public class JPanelImage extends JPanel {
     public void setImage(final String path, final Dimension dimension) {
         this.icon.setImage(JImage.getImageFromPath(path));
         JImage.resizeImageIcon(this.icon, dimension);
-        super.repaint();
+        this.repaint();
     }
 
     /**

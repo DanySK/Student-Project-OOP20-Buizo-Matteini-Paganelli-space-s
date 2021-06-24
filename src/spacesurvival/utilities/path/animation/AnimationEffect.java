@@ -35,7 +35,7 @@ public final class AnimationEffect {
     /** 
      * Path of life up effect type folder.
      */
-    public static final String LIFE_UP = "lifeUp";
+    public static final String LIFE_UP = "lifeup";
     
     /** 
      * Path of normal effect type folder.
@@ -495,42 +495,42 @@ public final class AnimationEffect {
     /** 
      * 1° frame path life up effect.
      */
-    public static final String LIFE_UP0 = Paths.get(MainFolder.EFFECT, LIFE_UP, "lifeUp.png").toString();
+    public static final String LIFE_UP0 = Paths.get(MainFolder.EFFECT, LIFE_UP, "lifeup.png").toString();
     
     /** 
      * 2° frame path life up effect.
      */
-    public static final String LIFE_UP1 = Paths.get(MainFolder.EFFECT, LIFE_UP, "lifeUp_1.png").toString();
+    public static final String LIFE_UP1 = Paths.get(MainFolder.EFFECT, LIFE_UP, "lifeup_1.png").toString();
     
     /** 
      * 3° frame path life up effect.
      */
-    public static final String LIFE_UP2 = Paths.get(MainFolder.EFFECT, LIFE_UP, "lifeUp_2.png").toString();
+    public static final String LIFE_UP2 = Paths.get(MainFolder.EFFECT, LIFE_UP, "lifeup_2.png").toString();
     
     /** 
      * 4° frame path life up effect.
      */
-    public static final String LIFE_UP3 = Paths.get(MainFolder.EFFECT, LIFE_UP, "lifeUp_3.png").toString();
+    public static final String LIFE_UP3 = Paths.get(MainFolder.EFFECT, LIFE_UP, "lifeup_3.png").toString();
     
     /** 
      * 5° frame path life up effect.
      */
-    public static final String LIFE_UP4 = Paths.get(MainFolder.EFFECT, LIFE_UP, "lifeUp_4.png").toString();
+    public static final String LIFE_UP4 = Paths.get(MainFolder.EFFECT, LIFE_UP, "lifeup_4.png").toString();
     
     /** 
      * 6° frame path life up effect.
      */
-    public static final String LIFE_UP5 = Paths.get(MainFolder.EFFECT, LIFE_UP, "lifeUp_5.png").toString();
+    public static final String LIFE_UP5 = Paths.get(MainFolder.EFFECT, LIFE_UP, "lifeup_5.png").toString();
     
     /** 
      * 7° frame path life up effect.
      */
-    public static final String LIFE_UP6 = Paths.get(MainFolder.EFFECT, LIFE_UP, "lifeUp_6.png").toString();
+    public static final String LIFE_UP6 = Paths.get(MainFolder.EFFECT, LIFE_UP, "lifeup_6.png").toString();
     
     /** 
      * 8° frame path life up effect.
      */
-    public static final String LIFE_UP7 = Paths.get(MainFolder.EFFECT, LIFE_UP, "lifeUp_7.png").toString();
+    public static final String LIFE_UP7 = Paths.get(MainFolder.EFFECT, LIFE_UP, "lifeup_7.png").toString();
 
     /** 
      * Sequence frame for life up effect.

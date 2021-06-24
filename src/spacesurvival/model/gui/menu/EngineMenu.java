@@ -102,13 +102,13 @@ public class EngineMenu implements EngineGUI {
     }
 
     /**
-     * Return a list of link's name.
+     * Return a list of link's text.
      * 
-     * @return a list of link's name
+     * @return a list of link's text.
      */
     public List<String> getListTextLinks() {
         return this.linkButtons.stream()
-                .map(LinksMenu::getName)
+                .map(LinksMenu::getText)
                 .collect(Collectors.toList());
     }
 

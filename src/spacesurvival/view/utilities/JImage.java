@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.net.URL;
+
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -198,5 +199,6 @@ public class JImage extends JComponent {
     public static Image getImageFromPath(final String path) {
         final URL imgURI = ClassLoader.getSystemResource(path);
         return new ImageIcon(imgURI).getImage();
+        //return new ImageIcon(ClassLoader.getSystemResource(path)).getImage();
     }
 }

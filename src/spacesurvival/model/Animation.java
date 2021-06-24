@@ -7,12 +7,19 @@ import java.util.List;
 import spacesurvival.utilities.Delay;
 import spacesurvival.utilities.ThreadUtils;
 
+/**
+ * Implement an animation model that extends a thread.
+ */
 public class Animation extends Thread {
     private List<String> listPath;
     private boolean isAnimating;
     private boolean isPause;
     private EngineImage body;
 
+    /**
+     * Create animation from engineImage.
+     * @param body is engineImage.
+     */
     public Animation(final EngineImage body) {
         this.listPath = new ArrayList<>();
         this.isAnimating = true;
@@ -20,10 +27,18 @@ public class Animation extends Thread {
         this.body = body;
     }
 
+    /**
+     * Get engineImage of animation.
+     * @return EngineImage is a engine for image.
+     */
     public EngineImage getBody() {
         return this.body;
     }
 
+    /**
+     * Set engineImage of animation.
+     * @param body is a new engineImage for image.
+     */
     public void setBody(final EngineImage body) {
         this.body = body;
     }
@@ -91,7 +106,9 @@ public class Animation extends Thread {
         return this.body.getImage();
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void run() {
         int index = 0;

@@ -14,6 +14,7 @@ public interface GUIHelp extends GUI, GraphicsText {
 
     /**
      * Set linkAction a back buttonLink.
+     * 
      * @param mainAction is linkAction a current GUI.
      * @param linkAction for link previous GUI.
      */
@@ -21,18 +22,21 @@ public interface GUIHelp extends GUI, GraphicsText {
 
     /**
      * Set text a all units help.
+     * 
      * @param listName a list of text.
      */
     void setTextUnit(List<String> listName);
 
     /**
      * Set text all text button.
+     * 
      * @param listName a list of text.
      */
     void setBtnText(List<String> listName);
 
     /**
      * Set text and image to unit help.
+     * 
      * @param panelText is text of unit help.
      * @param pathImg a list of image for unit help.
      */

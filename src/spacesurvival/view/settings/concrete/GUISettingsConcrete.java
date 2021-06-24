@@ -1,12 +1,9 @@
 package spacesurvival.view.settings.concrete;
 
 import spacesurvival.model.EngineImage;
-import spacesurvival.model.gui.settings.Difficulty;
 import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.AbstractGUI;
 import spacesurvival.view.settings.GUISettings;
-import spacesurvival.view.settings.utilities.JRadioDifficult;
-import spacesurvival.view.settings.utilities.PanelDifficult;
 import spacesurvival.view.settings.utilities.PanelSkin;
 import spacesurvival.view.utilities.ButtonLink;
 import spacesurvival.view.utilities.FactoryGUIs;
@@ -23,14 +20,12 @@ public class GUISettingsConcrete extends AbstractGUI implements GUISettings {
 
     private final JLabel lbTitle;
     private final PanelSkin panelSkin;
-    private final PanelDifficult panelDifficult;
     private final ButtonLink btnBack;
 
     public GUISettingsConcrete() {
         super();
         this.lbTitle = new JLabel();
         this.panelSkin = new PanelSkin();
-        this.panelDifficult = new PanelDifficult();
         this.btnBack = new ButtonLink();
     }
 
@@ -45,25 +40,15 @@ public class GUISettingsConcrete extends AbstractGUI implements GUISettings {
         return List.of(this.panelSkin.getBtSX(), this.panelSkin.getBtDX());
     }
 
-    @Override
-    public final List<JRadioDifficult> getRadioBtnUnitDifficult() {
-        return this.panelDifficult.getDifficult();
-    }
 
     @Override
-    public final void setUnitNames(final List<String> listName) {
+    public final void setUnitsTitle(final List<String> listName) {
         int i = 0;
-        this.panelSkin.setLbTitle(listName.get(i++));
-        this.panelDifficult.setTitle(listName.get(i));
+        this.panelSkin.setLabelTitle(listName.get(i++));
     }
 
     @Override
-    public final void setDifficultNames(final List<Difficulty> listDifficult) {
-        this.panelDifficult.setDifficultNames(listDifficult);
-    }
-
-    @Override
-    public final void setNameBtnBack(final String nameBtnBack) {
+    public final void setTextBtnBack(final String nameBtnBack) {
         this.btnBack.setText(nameBtnBack);
     }
 
@@ -71,11 +56,6 @@ public class GUISettingsConcrete extends AbstractGUI implements GUISettings {
     public final void setSkinSpaceShip(final EngineImage imageEngine) {
         this.panelSkin.setPnImage(imageEngine.getPath());
         this.panelSkin.setRateImg(imageEngine.getScaleOf(), imageEngine.getRespectTo());
-    }
-
-    @Override
-    public final void setDifficult(final Difficulty difficulty) {
-        this.panelDifficult.setDifficult(difficulty);
     }
 
     @Override
@@ -89,25 +69,22 @@ public class GUISettingsConcrete extends AbstractGUI implements GUISettings {
     public final void setForegroundGUI(final Color color) {
         this.lbTitle.setForeground(color);
         this.panelSkin.setAllForeground(color);
-        this.panelDifficult.setAllForeground(color);
         this.btnBack.setForeground(color);
     }
 
     @Override
-    public final void setFontGUITitle(final Font font) {
+    public final void setFontTitleGUI(final Font font) {
         this.lbTitle.setFont(font);
     }
 
     @Override
     public final void setFontTitleUnit(final Font font) {
-        this.panelSkin.setFontLbTitle(font);
-        this.panelDifficult.setFontTitleDifficult(font);
+        this.panelSkin.setFontLabelTitle(font);
         this.btnBack.setFont(font);
     }
 
     @Override
-    public final void setFontUnit(final Font font) {
-        this.panelDifficult.setFontGroupRadioButton(font);
+    public final void setFontGUI(final Font font) {
         this.panelSkin.setFontButtons(font);
     }
 
@@ -134,11 +111,5 @@ public class GUISettingsConcrete extends AbstractGUI implements GUISettings {
     public final PanelSkin getPanelSkin() {
         return this.panelSkin;
     }
-
-    public final PanelDifficult getPanelDifficult() {
-        return this.panelDifficult;
-    }
-
-
 
 }

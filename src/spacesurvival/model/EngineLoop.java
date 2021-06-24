@@ -1,6 +1,9 @@
 package spacesurvival.model;
 
-import spacesurvival.controller.CallerCommandShip;
+import java.awt.geom.AffineTransform;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import spacesurvival.controller.gui.CtrlGUI;
 import spacesurvival.controller.gui.CtrlGame;
 import spacesurvival.controller.gui.CtrlSound;
@@ -15,10 +18,6 @@ import spacesurvival.utilities.CommandAudioType;
 import spacesurvival.utilities.CommandKey;
 import spacesurvival.utilities.CommandType;
 import spacesurvival.utilities.ThreadUtils;
-import java.awt.geom.AffineTransform;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 
 public class EngineLoop extends Thread implements WorldEventListener {
     /**
@@ -29,8 +28,6 @@ public class EngineLoop extends Thread implements WorldEventListener {
     private final CtrlGUI controlGUI;
     private final CtrlGame controlGame;
     private final CtrlSound controlSound;
-    private final CallerCommandShip callerCommandShip;
-
     private final List<WorldEvent> eventQueue;
 
     public EngineLoop() {
@@ -38,7 +35,6 @@ public class EngineLoop extends Thread implements WorldEventListener {
         this.eventQueue = new LinkedList<>();
         this.controlGame = this.controlGUI.getCtrlGame();
         this.controlSound = this.controlGUI.getCtrlSound();
-        this.callerCommandShip = new CallerCommandShip(this.controlGame.getShip());
     }
 
     /**
@@ -51,7 +47,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
         this.controlGame.setEventListenerInWorld(this);
         this.controlGame.assignWorld();
         this.controlGame.initHUD();
-        this.controlSound.setSoundLoop(this.controlGUI.getCurrentGUI());
+        this.controlGUI.getCurrentGUI().ifPresent(link -> this.controlSound.setSoundLoop(link));
         this.controlSound.setCmdAudioLoop(CommandAudioType.AUDIO_ON);
         this.controlGUI.startGUI();
     }
@@ -75,7 +71,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
     }
 
     /**
-     * Starts the main loop of the game.
+     * {@inheritDoc}
      */
     @Override
     public void run() {
@@ -143,7 +139,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
     private void processInput() {
         final Iterator<Pair<CommandKey, CommandType>> inputIterator = this.controlGame.getSpaceShipCommandList().iterator();
         while (inputIterator.hasNext()) {
-            this.callerCommandShip.execute(inputIterator.next().getX());
+            this.controlGame.executeOnShip(inputIterator.next().getX());
         }
         this.controlGame.clearSpaceShipCommandList();
     }
