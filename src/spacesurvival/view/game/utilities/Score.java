@@ -14,7 +14,7 @@ public class Score extends JPanel {
     private final JLabel stringScore;
     private final JLabel score;
 
-    public Score(){
+    public Score() {
         super(new FlowLayout()); {{ setOpaque(false); }}
 
         this.stringScore = new JLabel(GraphicsLayoutUtils.SCORE_STRING);

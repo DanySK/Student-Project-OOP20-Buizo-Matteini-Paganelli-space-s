@@ -123,7 +123,7 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
     }
 
     @Override
-    public final void setNEnemies(final long count) {
+    public final void setNEnemies(final int count) {
         this.counterEnemies.setCounter(count);
     }
 

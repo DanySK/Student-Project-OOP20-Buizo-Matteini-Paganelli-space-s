@@ -134,8 +134,8 @@ public class CtrlSettings implements ControllerGUI {
     private ActionListener changeSkin() {
         return e -> {
             final JButton btn = (JButton) e.getSource();
-            CtrlSettings.this.changeSkinWithDir(btn.getText());
-            CtrlSettings.this.gui.setSkinSpaceShip(CtrlSettings.this.engine.getEngineSkinShip());
+            this.changeSkinWithDir(btn.getText());
+            this.gui.setSkinSpaceShip(this.engine.getEngineSkinShip());
         };
     }
 

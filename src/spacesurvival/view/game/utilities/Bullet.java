@@ -33,10 +33,20 @@ public class Bullet extends JPanel {
         super.add(this.bulletImage);
     }
 
+    /**
+     * Set the image in the HUD for the type of ammo.
+     * 
+     * @param ammoTypeImagePath path image for the ammo icon
+     */
     public void setAmmoTypeImage(final String ammoTypeImagePath) {
         this.ammoTypeImage.setImage(ammoTypeImagePath);
     }
 
+    /**
+     * Set the image in the HUD for the type of bullet.
+     * 
+     * @param bulletImagePath path image for the bullet icon
+     */
     public void setBulletImage(final String bulletImagePath) {
         this.bulletImage.setImage(bulletImagePath);
     }

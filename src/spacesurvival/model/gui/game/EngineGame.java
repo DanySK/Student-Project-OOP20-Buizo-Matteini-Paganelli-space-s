@@ -94,7 +94,7 @@ public class EngineGame implements EngineGUI {
         return this.hud.getRound();
     }
 
-    public long getCountEnemies() {
+    public int getCountEnemies() {
         return this.world.getCountEnemies();
     }
 

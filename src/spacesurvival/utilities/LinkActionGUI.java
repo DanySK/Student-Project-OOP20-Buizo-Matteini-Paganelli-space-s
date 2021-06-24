@@ -23,7 +23,7 @@ public enum LinkActionGUI {
     private final String background;
     private final StateLevelGUI level;
 
-    LinkActionGUI(final int id, final String name, final SoundPath sound, final String background, final StateLevelGUI level){
+    LinkActionGUI(final int id, final String name, final SoundPath sound, final String background, final StateLevelGUI level) {
         this.id = id;
         this.name = name;
         this.sound = sound;

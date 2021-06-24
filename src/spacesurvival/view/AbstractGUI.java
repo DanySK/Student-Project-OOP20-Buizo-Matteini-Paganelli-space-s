@@ -21,9 +21,6 @@ public abstract class AbstractGUI extends JFrame {
     private static final long serialVersionUID = -4633648377297371296L;
     private final JPanelImage panelBackground;
     private final JPanel panelForeground;
-
-
-    @SuppressWarnings({ "unused", "PMD.SingularField" })
     private LinkActionGUI mainAction;
 
     /**

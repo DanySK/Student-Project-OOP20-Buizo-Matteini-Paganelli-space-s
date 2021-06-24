@@ -9,7 +9,7 @@ import spacesurvival.view.utilities.FactoryGUIs;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class BtnPauseID extends ButtonLink implements MouseListener{
+public class BtnPauseID extends ButtonLink implements MouseListener {
     private final String pathIconEnter;
     private final String pathIconExit;
 
@@ -42,5 +42,5 @@ public class BtnPauseID extends ButtonLink implements MouseListener{
     public void mousePressed(final MouseEvent e) { }
 
     @Override
-    public void mouseReleased(MouseEvent e) { }
+    public void mouseReleased(final MouseEvent e) { }
 }

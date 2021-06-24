@@ -106,7 +106,7 @@ public class Chronometer extends Thread {
      * Run the chronometer.
      */
     public void run() {
-        while (true){
+        while (true) {
                 if (this.play) {
                     this.incrSecond();
                     this.check();

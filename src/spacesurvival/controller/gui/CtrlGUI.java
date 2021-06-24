@@ -23,13 +23,14 @@ public class CtrlGUI {
 
     public static final LinkActionGUI FIRST_GUI = LinkActionGUI.ID_MENU;
 
-    private final CtrlMenu ctrlMenu;
+
     private final CtrlGame ctrlGame;
     private final CtrlSettings ctrlSettings;
     private final CtrlSound ctrlSound;
     private final CtrlHelp ctrlHelp;
     private final CtrlPause ctrlPause;
     private final CtrlDead ctrlDead;
+    private final CtrlMenu ctrlMenu;
 
     private final ListGUI<LinkActionGUI> chronology;
 
@@ -146,7 +147,6 @@ public class CtrlGUI {
                         this.logicSwitchMenu.algorithm(btn.getCurrentLink(), btn.getNextLink(),
                                 this.chronology, this.managerGui);
                     }
-                    
                     if (this.isInGame()) {
                         this.ctrlGame.setPauseAnimationAllObject(false);
                     }
@@ -180,10 +180,8 @@ public class CtrlGUI {
     }
 
     public void endGame(){
-        
         this.chronology.lastElementOfList().ifPresent(link -> this.managerGui.get(link).turn(Visibility.HIDDEN));
         this.chronology.lastElementOfList().ifPresent(this.chronology::remove);
-        
         this.chronology.add(LinkActionGUI.ID_DEAD);
         this.managerGui.get(LinkActionGUI.ID_DEAD).turn(Visibility.VISIBLE);
 
@@ -215,7 +213,7 @@ public class CtrlGUI {
         });
     }
 
-    private Optional<ButtonLink> getLinkBtnFromGUI(final LinkActionGUI gui, final LinkActionGUI btn){
+    private Optional<ButtonLink> getLinkBtnFromGUI(final LinkActionGUI gui, final LinkActionGUI btn) {
         for (final ControllerGUI ctrl : this.managerGui.values()) {
             if (ctrl.getMainLink().equals(gui)) {
                 for (final ButtonLink link :  ctrl.getGUI().getBtnActionLinks()) {
