@@ -6,8 +6,18 @@ import spacesurvival.utilities.LinkActionGUI;
 
 import java.util.Map;
 
-
+/**
+ * Implement functions for GUI switching logic.
+ */
 public interface LogicSwitchGUI {
+    /**
+     * Function logic for change GUI.
+     * 
+     * @param actionCurrent is current GUI.
+     * @param actionNext is next GUI.
+     * @param chronology is a list of sequence GUI.
+     * @param control is each control GUI.
+     */
     void algorithm(LinkActionGUI actionCurrent, LinkActionGUI actionNext,
-                   ListGUI<LinkActionGUI> listLinkActionGUI, Map<LinkActionGUI, ControllerGUI> control);
+                   ListGUI<LinkActionGUI> chronology, Map<LinkActionGUI, ControllerGUI> control);
 }

@@ -1,46 +1,60 @@
 package spacesurvival.view.settings;
 
 import spacesurvival.model.EngineImage;
-import spacesurvival.model.gui.settings.Difficulty;
 import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.GUI;
-import spacesurvival.view.settings.utilities.JRadioDifficult;
+import spacesurvival.view.utilities.GraphicsText;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.util.List;
 
 import javax.swing.JButton;
 
-public interface GUISettings extends GUI {
+/**
+ * Interface that implements the settings functionalities.
+ */
+public interface GUISettings extends GUI, GraphicsText {
 
+    /**
+     * Get buttons of skin component.
+     * @return List<JButton>.
+     */
     List<JButton> getBtnUnitSkin();
 
-    List<JRadioDifficult> getRadioBtnUnitDifficult();
+    /**
+     * Set texts of unit settings.
+     * @param listName is a list of text.
+     */
+    void setUnitsTitle(List<String> listName);
 
+    /**
+     * Set the text back button.
+     * @param nameBtnBack is text for button.
+     */
+    void setTextBtnBack(String nameBtnBack);
 
-    void setUnitNames(List<String> listName);
-
-    void setDifficultNames(List<Difficulty> listDifficult);
-
-    void setNameBtnBack(String nameBtnBack);
-
+    /**
+     * Set engine image for skin component.
+     * @param imageEngine is a model for image's skin.
+     */
     void setSkinSpaceShip(EngineImage imageEngine);
 
-    void setDifficult(Difficulty difficulty);
+    /**
+     * Set linkAction a back buttonLink.
+     * 
+     * @param mainAction is linkAction a current GUI.
+     * @param linkAction for link previous GUI.
+     */
+    void setBtnBackID(LinkActionGUI mainAction, LinkActionGUI linkAction);
 
-    void setBtnBackID(LinkActionGUI mainAction, LinkActionGUI action);
-
-
-    void setForegroundGUI(Color color);
-
-    void setFontGUITitle(Font font);
-
+    /**
+     * Set font for title of unit settings.
+     * @param font for title of unit settings.
+     */
     void setFontTitleUnit(Font font);
 
-    void setFontUnit(Font font);
-
-    void setTitleGUI(String title);
-
+    /**
+     * Set transparent component's settings.
+     */
     void setTransparentComponent();
 }

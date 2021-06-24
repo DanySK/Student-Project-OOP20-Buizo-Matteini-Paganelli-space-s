@@ -27,7 +27,6 @@ public final class LaunchSpace {
         }
 
         engineLoop.initGame();
-        ctrlLoading.closeGUI();
         ctrlLoading.turn(Visibility.HIDDEN);
 
         engineLoop.start();

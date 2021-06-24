@@ -75,6 +75,9 @@ public class EngineLoop extends Thread implements WorldEventListener {
         return this.controlGame.getShip();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void run() {
         long lastTime = System.currentTimeMillis();

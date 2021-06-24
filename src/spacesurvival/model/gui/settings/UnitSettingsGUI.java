@@ -1,16 +1,28 @@
 package spacesurvival.model.gui.settings;
 
+/**
+ *  Enumeration of units of settings.
+ */
 public enum UnitSettingsGUI {
-    UNIT_SKIN("Skin"),
-    UNIT_DIFFICULT("Difficult");
-
+    /**
+     * Unit skin.
+     */
+    UNIT_SKIN("Skin");
     private String title;
 
-    private UnitSettingsGUI(final String title){
+    /**
+     * Implement enumeration of unit of setting with title.
+     * @param title
+     */
+    UnitSettingsGUI(final String title) {
         this.title = title;
     }
 
-    public String getTitle(){
+    /**
+     * Get title unit of setting.
+     * @return title of unit setting.
+     */
+    public String getTitle() {
         return this.title;
     }
 }

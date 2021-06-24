@@ -9,9 +9,9 @@ import java.util.Optional;
  */
 public class ListGUI<X> extends ArrayList<X> {
     private static final long serialVersionUID = 5136994274042052762L;
-    
+
     /**
-     * Get last element of the List
+     * Get last element of the List.
      * @return Optional<X>
      */
     public Optional<X> lastElementOfList() {
@@ -20,7 +20,7 @@ public class ListGUI<X> extends ArrayList<X> {
     }
 
     /**
-     * Get penultimate element of the List
+     * Get penultimate element of the List.
      * @return Optional<X>
      */
     public Optional<X> penultimateElementOfList() {

@@ -36,8 +36,6 @@ public abstract class AbstractGUI extends JFrame {
         super.setContentPane(this.panelBackground);
         super.setGlassPane(this.panelForeground);
         FactoryGUIs.setDefaultJFrame(this);
-        
-        
     }
 
     /**
@@ -101,7 +99,6 @@ public abstract class AbstractGUI extends JFrame {
     public void close() {
         this.setVisible(false);
         this.dispose();
-       
     }
 
 }

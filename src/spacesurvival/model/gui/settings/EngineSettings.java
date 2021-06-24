@@ -7,25 +7,44 @@ import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.dimension.Screen;
 
-import java.awt.*;
-import java.util.*;
+import java.awt.Rectangle;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
+/**
+ * Implements the model for the settings GUI.
+ */
 public class EngineSettings implements EngineGUI {
+    /**
+     * Dimension of the setting GUI.
+     */
     public static final Rectangle RECTANGLE = Screen.RECTANGLE_MEDIUM;
-    public static final String TITLE = "SETTING";
 
+    /**
+     * Title of the setting GUI.
+     */
+    public static final String TITLE = "SETTINGS";
+
+    /**
+     * Left direction text for button.
+     */
     public static final String DIR_SX = "<";
-    public static final String DIR_DX = ">";
-    public static final int INDEX_INIT_SKIN = 0;
-    public static final int STEP_INDEX_SKIN = 1;
 
-    public static final int INDEX_INTI_DIFFICULT = 0;
-    public static final int FIRST_DIFFICULT_ON = 0;
-    public static final List<StateDifficult> DEFAULT_DIFFICULTLY_ACTIVE = List.of(StateDifficult.OFF,
-            StateDifficult.ON, StateDifficult.OFF);
+    /**
+     * Right direction text for button.
+     */
+    public static final String DIR_DX = ">";
+
+    /**
+     * Starting skin index.
+     */
+    public static final int INDEX_INIT_SKIN = 0;
+
+    /**
+     * Step for change skin.
+     */
+    public static final int STEP_INDEX_SKIN = 1;
 
     private final LinkActionGUI mainAction;
     private final LinkActionGUI actionBack;
@@ -35,11 +54,12 @@ public class EngineSettings implements EngineGUI {
     private final EngineImage skin;
     private int chooseSkin;
 
-    private final Map<Difficulty, StateDifficult> difficult;
-
     private Visibility visibility = Visibility.HIDDEN;
 
-    public EngineSettings(){
+    /**
+     * Constructor for a GUI settings model.
+     */
+    public EngineSettings() {
         this.mainAction = LinkActionGUI.ID_SETTING;
         this.actionBack = LinkActionGUI.ID_BACK;
 
@@ -48,96 +68,119 @@ public class EngineSettings implements EngineGUI {
         this.skin = new EngineImage(ScaleOf.ICON_SKIN, (int) RECTANGLE.getWidth(), this.listSkin.get(chooseSkin).getSkin());
 
         this.unitNames = List.of(UnitSettingsGUI.values());
-
-        this.difficult = IntStream.range(INDEX_INTI_DIFFICULT, Difficulty.values().length).boxed()
-                .collect(Collectors.toMap(i -> Difficulty.values()[i], DEFAULT_DIFFICULTLY_ACTIVE::get));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LinkActionGUI getMainLink() {
         return this.mainAction;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Rectangle getRectangle() {
         return RECTANGLE;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Visibility getVisibility() {
         return this.visibility;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setVisibility(final Visibility visibility) {
         this.visibility = visibility;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isVisible() {
         return this.visibility.isVisible();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<LinkActionGUI> getLinks() {
         return List.of(this.actionBack);
     }
 
-
-    public List<Difficulty> getListDifficult(){
-        return Arrays.asList(Difficulty.values());
-    }
-
-    public LinkActionGUI getBackLink(){
+    /**
+     * Get back button link.
+     * @return LinkActionGUI.
+     */
+    public LinkActionGUI getBackLink() {
         return this.actionBack;
     }
 
+    /**
+     * Return the title of the settings GUI.
+     * 
+     * @return a string representing the settings GUI title
+     */
     public String getTitleGUI() {
         return TITLE;
     }
 
-    public List<String> getListNameUnit(){
+    /**
+     * List of text for units settings.
+     * @return List<String>.
+     */
+    public List<String> getListTextUnit() {
         return this.unitNames.stream().map(UnitSettingsGUI::getTitle).collect(Collectors.toList());
     }
 
-    public String getNameBtnBack(){
+    /**
+     * Get text for back button.
+     * @return text of button.
+     */
+    public String getTextBtnBack() {
         return this.actionBack.getIdName();
     }
 
-    public SkinSpaceShip getSkinShip(){
+    /**
+     * Get skin spaceship.
+     * @return SkinSpaceShip.
+     */
+    public SkinSpaceShip getSkinShip() {
         return this.listSkin.get(this.chooseSkin);
     }
 
+    /**
+     * Get engineImage of skin.
+     * @return EngineImage.
+     */
     public EngineImage getEngineSkinShip() {
         this.skin.setPath(this.listSkin.get(this.chooseSkin).getSkin());
         return this.skin;
     }
 
-    public void changeSkinDx(){
-        this.chooseSkin = this.chooseSkin + STEP_INDEX_SKIN < SkinSpaceShip.values().length ?
-                this.chooseSkin + STEP_INDEX_SKIN : INDEX_INIT_SKIN;
+    /**
+     * Change skin direction right.
+     */
+    public void changeSkinDx() {
+        this.chooseSkin = this.chooseSkin + STEP_INDEX_SKIN < SkinSpaceShip.values().length 
+                ? this.chooseSkin + STEP_INDEX_SKIN : INDEX_INIT_SKIN;
     }
 
-    public void changeSkinSx(){
-        this.chooseSkin = this.chooseSkin - STEP_INDEX_SKIN >= INDEX_INIT_SKIN ?
-                this.chooseSkin - STEP_INDEX_SKIN : SkinSpaceShip.values().length - STEP_INDEX_SKIN;
-    }
-
-    public Difficulty getDifficultActivate(){
-        return this.difficult.entrySet().stream()
-                .filter(e -> e.getValue().equals(StateDifficult.ON))
-                .map(Map.Entry::getKey)
-                .collect(Collectors.toList()).get(FIRST_DIFFICULT_ON);
-    }
-
-    public void setDifficult(final Difficulty difficultyState) {
-        this.resetDifficultlyOFF();
-        this.difficult.entrySet().stream()
-                .filter(e -> e.getKey().equals(difficultyState))
-                .forEach(e -> e.setValue(StateDifficult.ON));
-    }
-
-    private void resetDifficultlyOFF(){
-        this.difficult.entrySet().forEach(e -> e.setValue(StateDifficult.OFF));
+    /**
+     * Change skin direction left.
+     */
+    public void changeSkinSx() {
+        this.chooseSkin = this.chooseSkin - STEP_INDEX_SKIN >= INDEX_INIT_SKIN 
+                ? this.chooseSkin - STEP_INDEX_SKIN : SkinSpaceShip.values().length - STEP_INDEX_SKIN;
     }
 }

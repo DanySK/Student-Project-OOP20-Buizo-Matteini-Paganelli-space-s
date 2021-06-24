@@ -119,21 +119,21 @@ public class CtrlGUI {
         this.managerGui.get(FIRST_GUI).turn(Visibility.VISIBLE);
     }
 
-    private void linksAll(){
+    private void linksAll() {
         this.managerGui.values().forEach(managerGui -> managerGui.getGUI().getBtnActionLinks().forEach(btn ->
                 btn.addActionListener(e -> {
                     if (this.isInPause()) {
                         this.logicSwitchGame.algorithm(btn.getCurrentLink(), btn.getNextLink(),
                                 this.chronology, this.managerGui);
-                       this.ctrlGame.setPauseAnimationAllObject(true);
+//                       this.ctrlGame.setPauseAnimationAllObject(true);
                     } else {
                         this.logicSwitchMenu.algorithm(btn.getCurrentLink(), btn.getNextLink(),
                                 this.chronology, this.managerGui);
                     }
 
-                    if (this.isInGame()) {
-                        this.ctrlGame.setPauseAnimationAllObject(false);
-                    }
+//                    if (this.isInGame()) {
+//                        this.ctrlGame.setPauseAnimationAllObject(false);
+//                    }
         })));
     }
 

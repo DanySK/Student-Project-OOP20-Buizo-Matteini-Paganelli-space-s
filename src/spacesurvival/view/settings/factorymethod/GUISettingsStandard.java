@@ -11,18 +11,27 @@ import spacesurvival.view.settings.GUISettings;
 import spacesurvival.view.settings.concrete.GUISettingsConcrete;
 import spacesurvival.view.utilities.FactoryGUIs;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.util.List;
 
+import javax.swing.JPanel;
+
+/**
+ * Implements the creation of the compact settings GUI.
+ */
 public class GUISettingsStandard implements FactoryGUISettings {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public GUISettings create() {
         final GUISettingsConcrete concreteSettings = new GUISettingsConcrete();
-        concreteSettings.setFontGUITitle(GraphicsLayoutUtils.getFontForTitle(GraphicsLayoutUtils.SIZE_FONT_H2));
+        concreteSettings.setFontTitleGUI(GraphicsLayoutUtils.getFontForTitle(GraphicsLayoutUtils.SIZE_FONT_H2));
         concreteSettings.setFontTitleUnit(GraphicsLayoutUtils.FONT_STANDARD_H4);
-        concreteSettings.setFontUnit(GraphicsLayoutUtils.FONT_STANDARD_H5);
+        concreteSettings.setFontGUI(GraphicsLayoutUtils.FONT_STANDARD_H5);
         concreteSettings.setForegroundGUI(GraphicsLayoutUtils.COLOR_4);
         concreteSettings.setBorder(GraphicsLayoutUtils.COLOR_4, 3);
         concreteSettings.setImageBackground(Background.MAIN);
@@ -30,6 +39,11 @@ public class GUISettingsStandard implements FactoryGUISettings {
         return concreteSettings;
     }
 
+    /**
+     * Create graphics compact settings GUI.
+     * 
+     * @param concreteSettings is a settings GUI to create the graphics.
+     */
     private void createGraphics(final GUISettingsConcrete concreteSettings) {
         concreteSettings.setLayout(new BorderLayout());
 
@@ -40,12 +54,12 @@ public class GUISettingsStandard implements FactoryGUISettings {
                 ScaleOf.ICON_MEDIUM, EngineSettings.RECTANGLE.width);
         concreteSettings.setTransparentComponent();
 
-        GridBagConstraints lim = FactoryGUIs.createGBConstraintsBase();
-        JPanel panelContainPanel = new JPanel(new GridBagLayout()) {{ setOpaque(false); }};
+        final GridBagConstraints lim = FactoryGUIs.createGBConstraintsBase();
+
+        final JPanel panelContainPanel = FactoryGUIs.createPanelTransparent(new GridBagLayout());
 
         panelContainPanel.add(FactoryGUIs.createPanelGridBagUnionComponentsVertical(List.of(
-                FactoryGUIs.encapsulatesInPanelFlow(concreteSettings.getPanelSkin()),
-                concreteSettings.getPanelDifficult()), DesignJComponent.SETTINGS_INSET), lim);
+                FactoryGUIs.encapsulatesInPanelFlow(concreteSettings.getPanelSkin())), DesignJComponent.SETTINGS_INSET), lim);
 
         concreteSettings.add(panelContainPanel, BorderLayout.CENTER);
     }
