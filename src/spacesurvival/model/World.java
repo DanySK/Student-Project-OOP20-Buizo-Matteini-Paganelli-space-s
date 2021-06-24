@@ -385,14 +385,12 @@ public class World {
      */
     public void damageObject(final MainObject object, final int damage, final Status status) {
         if (!object.isInvincible()) {
-            System.out.println(object.getClass() + " HA RICEVUTO  " + damage + " DANNI");
             if (object.getLife() - damage <= 0) {
                 object.setLife(0);
             } else {
                 object.decreaseLife(damage);
                 object.setStatus(status);
             }
-            System.out.println("VITA RIMASTA " + object.getLife());
         }
     }
 

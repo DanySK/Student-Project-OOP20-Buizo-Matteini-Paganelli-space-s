@@ -66,12 +66,7 @@ public class PanelEntityGame extends JPanel {
 
     @Override
     public final void paintComponent(final Graphics g) {
-        
         super.paintComponent(g);
-        //final EngineImage engineImage = new EngineImage(Background.TRANSPARENT, Screen.WIDTH_FULLSCREEN, Screen.HEIGHT_FULLSCREEN);
- 
-        //g.drawImage(engineImage.getImage(), 0, 0, null);
-       
         final Graphics2D g2d = (Graphics2D) g;
 
         final Iterator<Entry<GameObject, Pair<Image, Image>>> entitiesIterator = this.gameObjects.entrySet().iterator();
