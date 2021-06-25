@@ -2,6 +2,9 @@ package spacesurvival.utilities.gameobject;
 
 import spacesurvival.model.common.V2d;
 
+/**
+ * Utils for velocity.
+ */
 public final class VelocityUtils {
 
     /**

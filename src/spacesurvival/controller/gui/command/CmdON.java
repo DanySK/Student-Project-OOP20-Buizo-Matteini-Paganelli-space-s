@@ -4,7 +4,7 @@ import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
 
 /**
- * Implements the ON command of the engine status visibility.
+ * Command On for the GUI.
  */
 public class CmdON implements CmdEngine {
 

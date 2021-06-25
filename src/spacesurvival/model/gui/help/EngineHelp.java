@@ -118,7 +118,7 @@ public class EngineHelp implements EngineGUI {
 
     /**
      * Get a list of text for title help unit.
-     * @return List<String> a list of text for title help
+     * @return List of String a list of text for title help
      */
     public List<String> getListTitleUnits() {
         return this.listNameUnits.stream().map(UnitsHelp::getTitle).collect(Collectors.toList());
@@ -126,7 +126,7 @@ public class EngineHelp implements EngineGUI {
 
     /**
      * Get a list of text for buttons.
-     * @return List<String> a list of text.
+     * @return List of String  a list of text.
      */
     public List<String> getListTextButtons() {
         return this.listName;
@@ -135,7 +135,7 @@ public class EngineHelp implements EngineGUI {
     /**
      * Get a list of engineImage for image from title help unit.
      * @param unitTItle for search engineImage.
-     * @return List<EngineImage> a list of engineImage.
+     * @return List of EngineImage a list of engineImage.
      */
     public List<EngineImage> getPathIconUnit(final String unitTItle) {
         return this.listNameUnits.stream().filter(unit -> unit.getTitle().contentEquals(unitTItle))

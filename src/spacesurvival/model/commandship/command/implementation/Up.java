@@ -5,6 +5,9 @@ import spacesurvival.model.commandship.command.CommandShip;
 import spacesurvival.model.common.V2d;
 import spacesurvival.model.gameobject.fireable.SpaceShipSingleton;
 
+/**
+ * Implementation for up command.
+ */
 public class Up implements CommandShip {
 
     /** 

@@ -93,7 +93,7 @@ public class MixerSound extends JPanel {
 
     /**
      * Get all Slider from mixer.
-     * @return List<SliderType>.
+     * @return List of SliderType.
      */
     public List<SliderType> getSliders() {
         return this.sdlSounds.stream().map(UnitSound::getSliderSound)
@@ -110,7 +110,7 @@ public class MixerSound extends JPanel {
 
     /**
      * Get all ButtonSliderType from mixer.
-     * @return List<ButtonSliderType>
+     * @return List of ButtonSliderType
      */
     public List<ButtonSliderType> getBtnSwitches() {
         return this.sdlSounds.stream().map(UnitSound::getBtnSwitch).collect(Collectors.toList());

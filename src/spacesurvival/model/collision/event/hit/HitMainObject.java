@@ -5,6 +5,9 @@ import spacesurvival.model.collision.event.EventType;
 import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.worldevent.WorldEvent;
 
+/**
+ * Hit event for the main object type.
+ */
 public class HitMainObject implements WorldEvent {
     private final MainObject object;
     private final MainObject collidedObject;

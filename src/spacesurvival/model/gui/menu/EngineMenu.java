@@ -30,7 +30,6 @@ public class EngineMenu implements EngineGUI {
 
     private final LinkActionGUI mainAction;
     private final List<LinksMenu> linkButtons;
-
     private String namePlayer;
 
     private Visibility visibility;

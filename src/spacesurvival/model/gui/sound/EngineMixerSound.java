@@ -96,7 +96,7 @@ public class EngineMixerSound {
     /**
      * Get a list of of sound unit.
      * 
-     * @return List<TypeUnitSound> a list of TypeUnitSound
+     * @return List of TypeUnitSound a list of TypeUnitSound
      */
     public List<TypeUnitSound> getListTypeUnitsSound() {
         return this.listTypeUnitSound;
@@ -104,7 +104,7 @@ public class EngineMixerSound {
 
     /**
      * Get a list of text of sound unit.
-     * @return List<String> of text of sound unit.
+     * @return List of String of text of sound unit.
      */
     public List<String> getTextUnitsSound() {
         return this.listTypeUnitSound.stream().map(TypeUnitSound::getNameUnitSound).collect(Collectors.toList());
@@ -112,7 +112,7 @@ public class EngineMixerSound {
 
     /**
      * Get a list of path of state of sound unit.
-     * @return List<String> of path of state of sound unit.
+     * @return List of String of path of state of sound unit.
      */
     public List<String> getPathsIconState() {
         return this.listTypeUnitSound.stream()

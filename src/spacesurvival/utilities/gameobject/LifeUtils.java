@@ -1,5 +1,8 @@
 package spacesurvival.utilities.gameobject;
 
+/**
+ * Utils for life.
+ */
 public final class LifeUtils {
 
     /**

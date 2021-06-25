@@ -11,7 +11,6 @@ import spacesurvival.utilities.path.SoundPath;
 
 /**
  * CallerAudio is the caller to manage the audio. 
- *
  */
 public class CallerAudio {
     private final CommandAudio cmdAudioOn;

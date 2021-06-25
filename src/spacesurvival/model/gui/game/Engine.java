@@ -133,7 +133,8 @@ public interface Engine extends EngineGUI {
     void restartGame();
     /**
      * Return all alive objects.
-     * @return
+     * 
+     * @return a set composed by all alive GameObjects
      */
     Set<GameObject> getAllObjects();
     /**
@@ -161,7 +162,7 @@ public interface Engine extends EngineGUI {
     /**
      * Return the boss, if present.
      * 
-     * @return an Optional<FireableGameObject> empty if there isn't a boss
+     * @return an Optional of FireableGameObject empty if there isn't a boss
      */
     Optional<FireableObject> getBoss();
     /**

@@ -21,6 +21,9 @@ import spacesurvival.utilities.CommandKey;
 import spacesurvival.utilities.CommandType;
 import spacesurvival.utilities.ThreadUtils;
 
+/**
+ * Main loop used to process input, update elements and render them to the view.
+ */
 public class EngineLoop extends Thread implements WorldEventListener {
     /**
      * Frames per second of the game.
@@ -30,9 +33,11 @@ public class EngineLoop extends Thread implements WorldEventListener {
     private final ManagerControllerGUI controlGUI;
     private final ControllerGame controlGame;
     private final ControllerSound controlSound;
-
     private final List<WorldEvent> eventQueue;
 
+    /**
+     * Construction for engine loop initializing the control gui, the control sound and the control game.
+     */
     public EngineLoop() {
         this.controlGUI = new ManagerControllerGUI();
         this.eventQueue = new LinkedList<>();
@@ -58,11 +63,11 @@ public class EngineLoop extends Thread implements WorldEventListener {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("unused")
     @Override
     public void run() {
         long lastTime = System.currentTimeMillis();
         long current = 0L;
-
         while (true) {
             if (!this.controlGame.isGameOver()) {
                 current = System.currentTimeMillis();
@@ -76,20 +81,20 @@ public class EngineLoop extends Thread implements WorldEventListener {
                         lastTime = current;
                         this.render();
                     }
-                }
-                if (this.controlGUI.isInGame() || !this.controlGUI.isInPause()) {
+                } else if (this.controlGUI.isInGame() || !this.controlGUI.isInPause()) {
                     waitForNextFrame(current);
-                    lastTime = current;
                 }
             } else {
                 renderGameOver();
                 while (this.controlGUI.isInGameOver()) {
                     waitForNextFrame(current);
-                    lastTime = current;
                 }
             }
-
         }
+    }
+
+    private void f() {
+
     }
 
     /**

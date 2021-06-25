@@ -23,6 +23,10 @@ import spacesurvival.view.game.GUIGame;
 import java.awt.event.KeyListener;
 import java.util.List;
 
+/**
+ * The controller of the game, impeìlementing the Controller and the Controller GUI.
+ *
+ */
 public class ControllerGame implements ControllerGUI, Controller {
     private final Engine engine;
     private final GUIGame gui;
@@ -242,6 +246,9 @@ public class ControllerGame implements ControllerGUI, Controller {
         this.gui.setLifeShip(this.engine.getLifeShip());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void checkIfPresentBoss() {
         this.gui.setVisibleLifeBarBoss(this.engine.getBoss().isPresent());
     }
@@ -504,6 +511,10 @@ public class ControllerGame implements ControllerGUI, Controller {
         this.engine.setSkin(currentSkin);
     }
 
+    /**
+     * Set the name of the player.
+     * @param namePlayer
+     */
     public void setNamePlayer(final String namePlayer) {
         this.gui.setNamePlayer(namePlayer);
     }

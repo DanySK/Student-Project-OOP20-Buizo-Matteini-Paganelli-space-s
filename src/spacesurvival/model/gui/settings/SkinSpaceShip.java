@@ -57,7 +57,7 @@ public enum SkinSpaceShip {
 
     /**
      * Get animation.
-     * @return List<String> a list of animation.
+     * @return List String a list of animation.
      */
     public List<String> getAnimation() {
         return this.animation;

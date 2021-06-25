@@ -1,5 +1,8 @@
 package spacesurvival.utilities.gameobject;
 
+/**
+ * Utils for status.
+ */
 public final class StatusUtils {
 
     /**

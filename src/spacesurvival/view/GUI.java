@@ -22,7 +22,7 @@ public interface GUI {
 
     /**
      * Get list link button for other GUIs. 
-     * @return List<ButtonLink> list link button.
+     * @return List of ButtonLink
      */
     List<ButtonLink> getBtnActionLinks();
 

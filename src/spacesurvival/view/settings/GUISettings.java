@@ -17,7 +17,7 @@ public interface GUISettings extends GUI, GraphicsText {
 
     /**
      * Get buttons of skin component.
-     * @return List<JButton>.
+     * @return List of JButton.
      */
     List<JButton> getBtnUnitSkin();
 

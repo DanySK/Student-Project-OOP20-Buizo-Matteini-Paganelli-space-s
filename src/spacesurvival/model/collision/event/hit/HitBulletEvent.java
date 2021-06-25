@@ -6,6 +6,9 @@ import spacesurvival.model.gameobject.main.MainObject;
 import spacesurvival.model.gameobject.moveable.Bullet;
 import spacesurvival.model.worldevent.WorldEvent;
 
+/**
+ * Hit event for the bullet type.
+ */
 public class HitBulletEvent implements WorldEvent {
     private final Bullet bullet;
     private final MainObject collidedObject;

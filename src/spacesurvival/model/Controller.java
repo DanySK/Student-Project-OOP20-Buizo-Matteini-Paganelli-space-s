@@ -12,6 +12,9 @@ import spacesurvival.model.worldevent.WorldEventListener;
 import spacesurvival.utilities.CommandKey;
 import spacesurvival.utilities.CommandType;
 
+/**
+ * Controller interface.
+ */
 public interface Controller {
 
     /**

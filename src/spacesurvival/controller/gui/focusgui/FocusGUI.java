@@ -28,7 +28,6 @@ public class FocusGUI implements MouseListener {
      */
     @Override
     public void mouseClicked(final MouseEvent e) {
-        // TODO Auto-generated method stub
     }
 
     /**
@@ -56,7 +55,6 @@ public class FocusGUI implements MouseListener {
      */
     @Override
     public void mouseReleased(final MouseEvent e) {
-        // TODO Auto-generated method stub
     }
 
     /**
@@ -64,7 +62,6 @@ public class FocusGUI implements MouseListener {
      */
     @Override
     public void mouseEntered(final MouseEvent e) {
-        // TODO Auto-generated method stub
     }
 
     /**
@@ -72,7 +69,6 @@ public class FocusGUI implements MouseListener {
      */
     @Override
     public void mouseExited(final MouseEvent e) {
-        // TODO Auto-generated method stub
     }
 
 }

@@ -27,7 +27,7 @@ import java.util.Optional;
 
 public class ManagerControllerGUI {
     /**
-     * 
+     * Is First GUI enter for Game.
      */
     public static final LinkActionGUI FIRST_GUI = LinkActionGUI.LINK_MENU;
 
@@ -35,8 +35,11 @@ public class ManagerControllerGUI {
     private final ControllerGame ctrlGame;
     private final ControllerSettings ctrlSettings;
     private final ControllerSound ctrlSound;
+    @SuppressWarnings("PMD.SingularField")
     private final ControllerHelp ctrlHelp;
+    @SuppressWarnings("PMD.SingularField")
     private final ControllerPause ctrlPause;
+    @SuppressWarnings("PMD.SingularField")
     private final ControllerDead ctrlDead;
 
     private final List<LinkActionGUI> chronology;
@@ -69,14 +72,25 @@ public class ManagerControllerGUI {
         this.managerVisibility = new ManagerVisibility(this);
     }
 
+    /**
+     * Get manaegerGui contains all controller GUI.
+     * @return manaegerGui.
+     */
     public Map<LinkActionGUI, ControllerGUI> getManagerGui() {
         return this.managerGui;
     }
 
+    /**
+     * Get list of chronology of GUI.
+     * @return chronology of GUI.
+     */
     public List<LinkActionGUI> getChronology() {
         return this.chronology;
     }
 
+    /**
+     * Initialize GUIs.
+     */
     public void initGUI() {
         this.chronology.add(FIRST_GUI);
         this.focusGUI();
@@ -89,37 +103,51 @@ public class ManagerControllerGUI {
         this.restartGame();
     }
 
-    public void assignAllLinkAction() {
+    private void assignAllLinkAction() {
         this.managerGui.forEach((key, value) -> {
             value.assignLinks();
         });
     }
 
-    public void assignAllString() {
+    private void assignAllString() {
         this.managerGui.forEach((key, value) -> {
             value.assignTexts();
         });
     }
 
-    public void assignAllRectangle() {
+    private void assignAllRectangle() {
         this.managerGui.forEach((key, value) -> {
             value.assignBounds();
         });
     }
-
-    public boolean isInGameOver(){
+    /**
+     * Get if chronology contain Link_DEAD.
+     * @return boolean, if chronology contain Link_DEAD.
+     */
+    public boolean isInGameOver() {
         return this.chronology.contains(LinkActionGUI.LINK_DEAD);
     }
 
-    public boolean isInGame(){
+    /**
+     * Get if chronology contain Link_GAME.
+     * @return boolean, if chronology contain Link_GAME.
+     */
+    public boolean isInGame() {
         return this.chronology.contains(LinkActionGUI.LINK_GAME);
     }
 
-    public boolean isInPause(){
+    /**
+     * Get if chronology contain Link_pause.
+     * @return boolean, if chronology contain Link_pause.
+     */
+    public boolean isInPause() {
         return this.chronology.contains(LinkActionGUI.LINK_PAUSE);
     }
 
-    public void startGUI(){
+    /**
+     * Start first GUI.
+     */
+    public void startGUI() {
         this.managerGui.get(FIRST_GUI).turn(Visibility.VISIBLE);
     }
 
@@ -145,29 +173,49 @@ public class ManagerControllerGUI {
                 managerGui.getGUI().addMouseListener(this.fosucGUI));
     }
 
+    /**
+     * Get Optional of controllerGUI from GUI.
+     * @param gui for search.
+     * @return Optional of ControllerGUI.
+     */
     public Optional<ControllerGUI> getControllerGUIFromGUI(final GUI gui) {
         for (final ControllerGUI ctrl : this.managerGui.values()) {
-            if(ctrl.getGUI() == gui) {
+            if (ctrl.getGUI().equals(gui)) {
                 return Optional.of(ctrl);
             }
         }
         return Optional.empty();
     }
 
+    /**
+     * Get linkAction of current GUI.
+     * @return LinkActionGUI.
+     */
     public Optional<LinkActionGUI> getCurrentGUI() {
         final int lastIndex = 1;
         return Optional.of(this.chronology.get(this.chronology.size() - lastIndex));
     }
 
+    /**
+     * Get controllerGame.
+     * @return ControllerGame.
+     */
     public ControllerGame getCtrlGame() {
         return this.ctrlGame;
     }
 
+    /**
+     * Get controllerSound.
+     * @return ControllerSound.
+     */
     public ControllerSound getCtrlSound() {
         return this.ctrlSound;
     }
 
-    public void endGame(){
+    /**
+     * Method for andGame.
+     */
+    public void endGame() {
         this.getCurrentGUI().ifPresent(link -> this.managerGui.get(link).turn(Visibility.HIDDEN));
         this.getCurrentGUI().ifPresent(this.chronology::remove);
         this.chronology.add(LinkActionGUI.LINK_DEAD);
@@ -215,12 +263,16 @@ public class ManagerControllerGUI {
         return Optional.empty();
     }
 
+    /**
+     * Assign sound loop when change GUI.
+     */
     public void assignSoundLoop() {
         this.managerGui.values().forEach(ctrl -> ctrl.getGUI().getBtnActionLinks().forEach(
                 btn -> btn.addActionListener(l -> {
                     this.ctrlSound.checkChangeSoundLoop(
                             btn.getCurrentLink().equals(LinkActionGUI.LINK_PAUSE) 
-                            && btn.getNextLink().equals(LinkActionGUI.LINK_BACK) ? LinkActionGUI.LINK_GAME : btn.getNextLink());
+                            && btn.getNextLink().equals(LinkActionGUI.LINK_BACK) 
+                            ? LinkActionGUI.LINK_GAME : btn.getNextLink());
                 })
         ));
     }

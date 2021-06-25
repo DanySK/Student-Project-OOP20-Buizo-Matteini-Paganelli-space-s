@@ -7,6 +7,9 @@ import spacesurvival.model.gameobject.fireable.weapon.Effect;
 import spacesurvival.utilities.RandomUtils;
 import spacesurvival.utilities.path.animation.AnimationPerk;
 
+/**
+ * Utils for Ammo type.
+ */
 public enum AmmoType {
     /**
      * It has no effect on the harmed object.

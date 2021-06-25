@@ -26,7 +26,7 @@ public class CollisionController {
      * Check if an object has collided with a border.
      * @param position 
      * @param rectBoundingBox 
-     * @return Optional<BoundaryCollision> which contain all info of collision
+     * @return Optional of BoundaryCollision which contain all info of collision
      */
     public Optional<BoundaryCollision> checkWithBoundaries(final P2d position, final RectBoundingBox rectBoundingBox) {
         final P2d ul = rectBoundingBox.getULCorner();

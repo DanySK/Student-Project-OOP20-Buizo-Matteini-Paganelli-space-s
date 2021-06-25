@@ -4,6 +4,9 @@ import java.util.Optional;
 import java.util.stream.Stream;
 import spacesurvival.model.worldevent.WorldEvent;
 
+/**
+ * Event Type
+ */
 public enum EventType {
 
     /**

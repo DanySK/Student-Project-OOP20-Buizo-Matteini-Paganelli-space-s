@@ -124,7 +124,7 @@ public class EngineSound implements EngineGUI {
     /**
      * Get a list of text for unit sound.
      * 
-     * @return List<String> a list of text for unit sound.
+     * @return List of String  a list of text for unit sound.
      */
     public List<String> getListTextSlider() {
         return this.mixerSound.getTextUnitsSound();
@@ -133,7 +133,7 @@ public class EngineSound implements EngineGUI {
     /**
      * Get a list of TypeUnitSound of unit sound.
      * 
-     * @return List<TypeUnitSound> a list of TypeUnitSound.
+     * @return List of TypeUnitSound a list of TypeUnitSound.
      */
     public List<TypeUnitSound> getListTypeUnitSound() {
         return this.mixerSound.getListTypeUnitsSound();
@@ -220,7 +220,7 @@ public class EngineSound implements EngineGUI {
     /**
      * Get a list of String of path image of unit sound.
      * 
-     * @return List<String> a list of path image
+     * @return List of string of path image
      */
     public List<String> getIconStateSounds() {
         return this.mixerSound.getPathsIconState();

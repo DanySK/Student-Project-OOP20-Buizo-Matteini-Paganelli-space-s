@@ -58,7 +58,7 @@ public enum UnitsHelp {
     /**
      * Get a list of engineImage.
      * 
-     * @return List<EngineImage> a list of engineImage.
+     * @return List of EngineImage a list of engineImage.
      */
     public List<EngineImage> getPathFiles() {
         return this.pathFiles;

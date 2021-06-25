@@ -20,7 +20,7 @@ public interface MovementLogic {
      * 
      * @param moveableObject object which has to initiate moving
      */
-    default void startMoving(MoveableObject moveableObject) {
+    default void startMoving(final MoveableObject moveableObject) {
         moveableObject.setMoving(true);
     }
 
@@ -30,7 +30,7 @@ public interface MovementLogic {
      * 
      * @param moveableObject object which has to initiate moving
      */
-    default void stopMoving(MoveableObject moveableObject) {
+    default void stopMoving(final MoveableObject moveableObject) {
         moveableObject.setMoving(false);
     }
 }
