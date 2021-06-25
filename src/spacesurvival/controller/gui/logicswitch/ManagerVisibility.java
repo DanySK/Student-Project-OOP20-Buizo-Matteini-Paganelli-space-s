@@ -1,5 +1,6 @@
 package spacesurvival.controller.gui.logicswitch;
 
+import spacesurvival.controller.gui.ControllerGUI;
 import spacesurvival.controller.gui.ManagerControllerGUI;
 import spacesurvival.model.gui.Visibility;
 import spacesurvival.utilities.LinkActionGUI;
@@ -37,7 +38,7 @@ public class ManagerVisibility implements LogicSwitchGUI {
             .ifPresent(link -> this.managerControllerGUI.getChronology().remove(link));
             break;
         case LINK_QUIT:
-            this.managerControllerGUI.getManagerGui().values().forEach(control -> control.closeGUI());
+            this.managerControllerGUI.getManagerGui().values().forEach(ControllerGUI::closeGUI);
             break;
         default:
             this.managerControllerGUI.getChronology().add(actionNext);
@@ -69,7 +70,7 @@ public class ManagerVisibility implements LogicSwitchGUI {
                 .ifPresent(link -> this.managerControllerGUI.getManagerGui().get(link).turn(Visibility.VISIBLE));
             break;
         case LINK_QUIT:
-            this.managerControllerGUI.getManagerGui().values().forEach(control -> control.closeGUI());
+            this.managerControllerGUI.getManagerGui().values().forEach(ControllerGUI::closeGUI);
             break;
         default:
             this.managerControllerGUI.getChronology().add(actionNext);

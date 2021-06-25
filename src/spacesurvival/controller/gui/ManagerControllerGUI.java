@@ -104,21 +104,15 @@ public class ManagerControllerGUI {
     }
 
     private void assignAllLinkAction() {
-        this.managerGui.forEach((key, value) -> {
-            value.assignLinks();
-        });
+        this.managerGui.forEach((key, value) -> value.assignLinks());
     }
 
     private void assignAllString() {
-        this.managerGui.forEach((key, value) -> {
-            value.assignTexts();
-        });
+        this.managerGui.forEach((key, value) -> value.assignTexts());
     }
 
     private void assignAllRectangle() {
-        this.managerGui.forEach((key, value) -> {
-            value.assignBounds();
-        });
+        this.managerGui.forEach((key, value) -> value.assignBounds());
     }
     /**
      * Get if chronology contain Link_DEAD.
@@ -225,29 +219,25 @@ public class ManagerControllerGUI {
     }
 
     private void startElementsWhenInGame() {
-        this.getLinkBtnFromGUI(LinkActionGUI.LINK_MENU, LinkActionGUI.LINK_GAME).ifPresent(link -> {
-            link.addActionListener(e -> {
-                this.ctrlGame.setNamePlayer(this.ctrlMenu.getNamePlayer());
-                this.ctrlGame.setSkin(this.ctrlSettings.getCurrentSkin());
-                this.ctrlGame.getWorld().getTakeableFactoryThread().start();
-                this.managerGui.values().forEach(control -> {
-                    if (control.getMainLink().getStateLevel().equals(StateLevelGUI.OVERLAY)) {
-                        control.getGUI().setImageBackground(Background.TRANSPARENT);
-                    }
-                });
+        this.getLinkBtnFromGUI(LinkActionGUI.LINK_MENU, LinkActionGUI.LINK_GAME).ifPresent(link -> link.addActionListener(e -> {
+            this.ctrlGame.setNamePlayer(this.ctrlMenu.getNamePlayer());
+            this.ctrlGame.setSkin(this.ctrlSettings.getCurrentSkin());
+            this.ctrlGame.getWorld().getTakeableFactoryThread().start();
+            this.managerGui.values().forEach(control -> {
+                if (control.getMainLink().getStateLevel().equals(StateLevelGUI.OVERLAY)) {
+                    control.getGUI().setImageBackground(Background.TRANSPARENT);
+                }
             });
-        });
+        }));
 
     }
 
     private void restartGame() {
-        this.getLinkBtnFromGUI(LinkActionGUI.LINK_DEAD, LinkActionGUI.LINK_MENU).ifPresent(link -> {
-            link.addActionListener(e -> {
-                this.ctrlGame.restartGame();
-                this.managerGui.values().forEach(control ->
-                        control.getGUI().setImageBackground(control.getMainLink().getBackground()));
-            });
-        });
+        this.getLinkBtnFromGUI(LinkActionGUI.LINK_DEAD, LinkActionGUI.LINK_MENU).ifPresent(link -> link.addActionListener(e -> {
+            this.ctrlGame.restartGame();
+            this.managerGui.values().forEach(control ->
+                    control.getGUI().setImageBackground(control.getMainLink().getBackground()));
+        }));
     }
 
     private Optional<ButtonLink> getLinkBtnFromGUI(final LinkActionGUI gui, final LinkActionGUI btn) {
@@ -268,12 +258,10 @@ public class ManagerControllerGUI {
      */
     public void assignSoundLoop() {
         this.managerGui.values().forEach(ctrl -> ctrl.getGUI().getBtnActionLinks().forEach(
-                btn -> btn.addActionListener(l -> {
-                    this.ctrlSound.checkChangeSoundLoop(
-                            btn.getCurrentLink().equals(LinkActionGUI.LINK_PAUSE) 
-                            && btn.getNextLink().equals(LinkActionGUI.LINK_BACK) 
-                            ? LinkActionGUI.LINK_GAME : btn.getNextLink());
-                })
+                btn -> btn.addActionListener(l -> this.ctrlSound.checkChangeSoundLoop(
+                        btn.getCurrentLink().equals(LinkActionGUI.LINK_PAUSE)
+                        && btn.getNextLink().equals(LinkActionGUI.LINK_BACK)
+                        ? LinkActionGUI.LINK_GAME : btn.getNextLink()))
         ));
     }
 }

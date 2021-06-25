@@ -45,7 +45,8 @@ public class CircleBoundingBox implements BoundingBox {
      */
     public static BoundingBox createCircleBoundingBox(final P2d position,
             final EngineImage engineImage, final AffineTransform transform) {
-        return new CircleBoundingBox(position, engineImage.getWidth() / 2, transform);
+        final int half = 2;
+        return new CircleBoundingBox(position, engineImage.getWidth() / half, transform);
     }
 
     /**

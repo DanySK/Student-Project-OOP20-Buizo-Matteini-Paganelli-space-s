@@ -242,7 +242,7 @@ public class ControllerGame implements ControllerGUI, Controller {
      */
     @Override
     public void updateLifeShip() {
-        this.engine.setLifeShip(this.engine.getLifeShip() < 0 ? 0 : this.engine.getLifeShip()); 
+        this.engine.setLifeShip(Math.max(this.engine.getLifeShip(), 0));
         this.gui.setLifeShip(this.engine.getLifeShip());
     }
 
@@ -258,9 +258,7 @@ public class ControllerGame implements ControllerGUI, Controller {
      */
     @Override
     public void updateLifeBoss() {
-        this.engine.getBoss().ifPresent(boss -> {
-            this.gui.setLifeBoss(boss.getLife());
-        });
+        this.engine.getBoss().ifPresent(boss -> this.gui.setLifeBoss(boss.getLife()));
     }
 
     /**

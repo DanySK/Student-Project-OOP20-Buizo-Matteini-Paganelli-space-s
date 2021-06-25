@@ -224,7 +224,6 @@ public class EngineImage {
     public static Dimension getSizeImageFromScale(final String path, final int scaleOf, final int respectTo) {
         final Dimension dimension = new Dimension();
         try {
-            System.out.println(path);
             final BufferedImage img = ImageIO.read(ClassLoader.getSystemResource(path));
             dimension.width = (respectTo * scaleOf) / 1000;
             dimension.height = (img.getHeight() * dimension.width) / img.getWidth();

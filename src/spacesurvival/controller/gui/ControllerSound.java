@@ -211,22 +211,20 @@ public class ControllerSound implements ControllerGUI {
      * @param type for search Slider.
      */
     public void setChangeListenerSliderFromType(final TypeUnitSound type) {
-        this.gui.getSliderTypeofMixer(type).ifPresent(slider -> {
-            slider.addChangeListener(l -> {
-                final Optional<ButtonSliderType> btnType = this.gui.getBtnSwitch(type);
-                final JSlider sld = (JSlider) l.getSource();
+        this.gui.getSliderTypeofMixer(type).ifPresent(slider -> slider.addChangeListener(l -> {
+            final Optional<ButtonSliderType> btnType = this.gui.getBtnSwitch(type);
+            final JSlider sld = (JSlider) l.getSource();
 
-                this.engine.setValueUnitSound(type, sld.getValue());
-                this.engine.setStateUnitSound(type, this.isVolumeZero(type) ? StateSlider.OFF : StateSlider.ON);
-                btnType.ifPresent(btn -> FactoryGUIs.setIconJButtonFromRate(btn, this.engine.getEngineImageUnitSound(type)));
+            this.engine.setValueUnitSound(type, sld.getValue());
+            this.engine.setStateUnitSound(type, this.isVolumeZero(type) ? StateSlider.OFF : StateSlider.ON);
+            btnType.ifPresent(btn -> FactoryGUIs.setIconJButtonFromRate(btn, this.engine.getEngineImageUnitSound(type)));
 
-                if (type.equals(TypeUnitSound.SLIDER_BACKGROUND)) {
-                    this.callerAudioLoop.changeVolume(this.engine.getValueUnitSound(type));
-                } else if (type.equals(TypeUnitSound.SLIDER_EFFECT)) {
-                    this.callerAudioEffect.forEach(callerAudioEffect -> callerAudioEffect.changeVolume(this.engine.getValueUnitSound(type)));
-                }
-            });
-        });
+            if (type.equals(TypeUnitSound.SLIDER_BACKGROUND)) {
+                this.callerAudioLoop.changeVolume(this.engine.getValueUnitSound(type));
+            } else if (type.equals(TypeUnitSound.SLIDER_EFFECT)) {
+                this.callerAudioEffect.forEach(callerAudioEffect -> callerAudioEffect.changeVolume(this.engine.getValueUnitSound(type)));
+            }
+        }));
     }
 
     /**
@@ -234,20 +232,18 @@ public class ControllerSound implements ControllerGUI {
      * @param type for search button.
      */
     public void setActionListenerChangeSwitchSoundFromType(final TypeUnitSound type) {
-        this.gui.getBtnSwitch(type).ifPresent(btn -> {
-            btn.addActionListener(l -> {
-                final ButtonSliderType btnType = (ButtonSliderType) l.getSource();
+        this.gui.getBtnSwitch(type).ifPresent(btn -> btn.addActionListener(l -> {
+            final ButtonSliderType btnType = (ButtonSliderType) l.getSource();
 
-                this.engine.changeStateUnitSound(type);
-                FactoryGUIs.setIconJButtonFromRate(btnType, this.engine.getEngineImageUnitSound(type));
+            this.engine.changeStateUnitSound(type);
+            FactoryGUIs.setIconJButtonFromRate(btnType, this.engine.getEngineImageUnitSound(type));
 
-                if (type.equals(TypeUnitSound.SLIDER_BACKGROUND)) {
-                    this.callerAudioLoop.changeVolume(this.getValueIfActive(btnType.getTypeSlider()));
-                } else if (type.equals(TypeUnitSound.SLIDER_EFFECT)) {
-                    this.callerAudioEffect.forEach(callerAudioEffect -> callerAudioEffect.changeVolume(this.getValueIfActive(btnType.getTypeSlider())));
-                }
-            });
-        });
+            if (type.equals(TypeUnitSound.SLIDER_BACKGROUND)) {
+                this.callerAudioLoop.changeVolume(this.getValueIfActive(btnType.getTypeSlider()));
+            } else if (type.equals(TypeUnitSound.SLIDER_EFFECT)) {
+                this.callerAudioEffect.forEach(callerAudioEffect -> callerAudioEffect.changeVolume(this.getValueIfActive(btnType.getTypeSlider())));
+            }
+        }));
     }
 
     /**
