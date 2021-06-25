@@ -32,9 +32,9 @@ public class EngineLoop extends Thread implements WorldEventListener {
 
     private final ManagerControllerGUI controlGUI;
     private final ControllerGame controlGame;
-    private final ControllerSound controlSound;  
+    private final ControllerSound controlSound;
     private final List<WorldEvent> eventQueue;
-    
+
     /**
      * Construction for engine loop initializing the control gui, the control sound and the control game.
      */

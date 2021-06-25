@@ -5,7 +5,7 @@ import java.util.stream.Stream;
 import spacesurvival.model.worldevent.WorldEvent;
 
 /**
- * Event Type
+ * Event Type.
  */
 public enum EventType {
 
@@ -29,16 +29,6 @@ public enum EventType {
      * Represent the Dead Event.
      */
     DEAD_EVENT;
-
-    private EventType type;
-
-    /**
-     * Return the current EventType.
-     * @return the current EventType
-     */
-    public EventType getType() {
-        return this.type;
-    }
 
     /**
      * Return the corresponding EventType for the WorldEvent passed.
