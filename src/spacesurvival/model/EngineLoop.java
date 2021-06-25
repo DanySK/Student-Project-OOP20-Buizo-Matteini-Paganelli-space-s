@@ -64,7 +64,6 @@ public class EngineLoop extends Thread implements WorldEventListener {
      * {@inheritDoc}
      */
     @SuppressWarnings("unused")
-    @Override
     public void run() {
         long lastTime = System.currentTimeMillis();
         long current = 0L;
@@ -91,10 +90,6 @@ public class EngineLoop extends Thread implements WorldEventListener {
                 }
             }
         }
-    }
-
-    private void f() {
-
     }
 
     /**
