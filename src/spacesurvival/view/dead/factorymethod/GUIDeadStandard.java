@@ -2,6 +2,8 @@ package spacesurvival.view.dead.factorymethod;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.util.List;
+
 import spacesurvival.utilities.path.Background;
 import spacesurvival.view.dead.FactoryGUIDead;
 import spacesurvival.view.dead.GUIDead;
@@ -33,7 +35,8 @@ public class GUIDeadStandard implements FactoryGUIDead {
 
         concrete.add(FactoryGUIs.encapsulatesInPanelFlow(concrete.getLabelTitle()), BorderLayout.CENTER);
 
-        concrete.add(FactoryGUIs.createPanelGridBagUnionComponentsHorizontal(concrete.getBtnActionLinks(),
+        final int lastBtn = 1;
+        concrete.add(FactoryGUIs.createPanelGridBagUnionComponentsHorizontal(List.of(concrete.getBtnActionLinks().get(lastBtn)),
                 FactoryGUIs.INSET_H1),
                 BorderLayout.SOUTH);
 
