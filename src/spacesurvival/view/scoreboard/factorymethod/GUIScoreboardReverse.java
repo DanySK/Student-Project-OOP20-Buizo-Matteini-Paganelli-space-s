@@ -3,7 +3,7 @@ package spacesurvival.view.scoreboard.factorymethod;
 import spacesurvival.view.utilities.GraphicsLayoutUtils;
 import spacesurvival.view.scoreboard.FactoryGUIScoreboard;
 import spacesurvival.view.scoreboard.GUIScoreboard;
-import spacesurvival.view.scoreboard.concrete.GUIScoreboardConcrete;
+import spacesurvival.view.scoreboard.concrete.ConcreteScoreboardGUI;
 import spacesurvival.view.utilities.FactoryGUIs;
 
 import java.awt.BorderLayout;
@@ -19,23 +19,13 @@ public class GUIScoreboardReverse implements FactoryGUIScoreboard {
      * {@inheritDoc}
      */
     @Override
-    public GUIScoreboard createGUI() {
-        final GUIScoreboardConcrete scoreboardConcrete = new GUIScoreboardConcrete();
+    public GUIScoreboard create() {
+        final ConcreteScoreboardGUI scoreboardConcrete = new ConcreteScoreboardGUI();
         scoreboardConcrete.setFontTitleGUI(GraphicsLayoutUtils.getFontForTitle(GraphicsLayoutUtils.SIZE_FONT_H2));
         scoreboardConcrete.getTxtSearchName().setColumns(GraphicsLayoutUtils.SIZE_COLUMNS_TEXT);
         scoreboardConcrete.setFontGUI(GraphicsLayoutUtils.FONT_STANDARD_H5);
         scoreboardConcrete.setForegroundGUI(GraphicsLayoutUtils.COLOR_4);
 
-        this.createGraphics(scoreboardConcrete);
-        return scoreboardConcrete;
-    }
-
-    /**
-     * Create graphics reverse scoreboard GUI.
-     * 
-     * @param scoreboard to create the graphics.
-     */
-    private void createGraphics(final GUIScoreboardConcrete scoreboardConcrete) {
         scoreboardConcrete.setLayout(new BorderLayout());
 
         scoreboardConcrete.add(FactoryGUIs.encapsulatesInPanelFlow(scoreboardConcrete.getLbTitle()),
@@ -51,9 +41,7 @@ public class GUIScoreboardReverse implements FactoryGUIScoreboard {
                 scoreboardConcrete.getScoreboard()), BorderLayout.CENTER);
 
         scoreboardConcrete.add(panelScore, BorderLayout.CENTER);
-
-
+        return scoreboardConcrete;
     }
-
 
 }

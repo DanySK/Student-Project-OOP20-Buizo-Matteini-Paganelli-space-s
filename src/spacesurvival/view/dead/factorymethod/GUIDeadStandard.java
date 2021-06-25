@@ -5,7 +5,7 @@ import java.awt.Color;
 import spacesurvival.utilities.path.Background;
 import spacesurvival.view.dead.FactoryGUIDead;
 import spacesurvival.view.dead.GUIDead;
-import spacesurvival.view.dead.concrete.GUIDeadConcrete;
+import spacesurvival.view.dead.concrete.ConcreteDeadGUI;
 import spacesurvival.view.utilities.GraphicsLayoutUtils;
 import spacesurvival.view.utilities.FactoryGUIs;
 
@@ -19,7 +19,7 @@ public class GUIDeadStandard implements FactoryGUIDead {
      */
     @Override
     public GUIDead create() {
-        final GUIDeadConcrete concrete = new GUIDeadConcrete();
+        final ConcreteDeadGUI concrete = new ConcreteDeadGUI();
 
         concrete.setFontTitleGUI(GraphicsLayoutUtils.getFontForDead(GraphicsLayoutUtils.SIZE_FONT_H0));
         concrete.setFontGUI(GraphicsLayoutUtils.getFontForDead(GraphicsLayoutUtils.SIZE_FONT_H2));
@@ -27,17 +27,6 @@ public class GUIDeadStandard implements FactoryGUIDead {
         concrete.setForegroundGUI(Color.RED);
         concrete.setImageBackground(Background.DEAD2);
 
-        this.createGraphics(concrete);
-
-        return concrete;
-    }
-
-    /**
-     * Create graphics compact dead GUI.
-     * 
-     * @param dead to create the graphics.
-     */
-    private void createGraphics(final GUIDeadConcrete concrete) {
         concrete.setLayout(new BorderLayout());
 
         concrete.getBtnActionLinks().forEach(FactoryGUIs::setTransparentJButton);
@@ -47,5 +36,8 @@ public class GUIDeadStandard implements FactoryGUIDead {
         concrete.add(FactoryGUIs.createPanelGridBagUnionComponentsHorizontal(concrete.getBtnActionLinks(),
                 FactoryGUIs.INSET_H1),
                 BorderLayout.SOUTH);
+
+        return concrete;
     }
+
 }

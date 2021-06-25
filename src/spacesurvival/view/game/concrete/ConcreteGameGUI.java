@@ -24,7 +24,7 @@ import java.awt.Rectangle;
 import java.awt.event.KeyListener;
 import java.util.List;
 
-public class GUIGameConcrete extends AbstractGUI implements GUIGame {
+public class ConcreteGameGUI extends AbstractGUI implements GUIGame {
     private static final long serialVersionUID = 1588822389694751549L;
 
     private final Score score;
@@ -40,7 +40,7 @@ public class GUIGameConcrete extends AbstractGUI implements GUIGame {
     private final PanelEntityGame entityPanel;
     private final PanelBulletGame bulletPanel;
 
-    public GUIGameConcrete() {
+    public ConcreteGameGUI() {
         super();
         this.entityPanel = new PanelEntityGame();
         this.bulletPanel = new PanelBulletGame();

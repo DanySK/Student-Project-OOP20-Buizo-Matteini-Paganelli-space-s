@@ -7,7 +7,7 @@ import spacesurvival.view.utilities.GraphicsLayoutUtils;
 import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.view.pause.FactoryGUIPause;
 import spacesurvival.view.pause.GUIPause;
-import spacesurvival.view.pause.concrete.GUIPauseConcrete;
+import spacesurvival.view.pause.concrete.ConcretePauseGUI;
 import spacesurvival.view.pause.utilities.IconsButton;
 import spacesurvival.view.utilities.FactoryGUIs;
 
@@ -21,7 +21,7 @@ public class GUIPauseStandard implements FactoryGUIPause {
      */
     @Override
     public GUIPause create() {
-        final GUIPauseConcrete concrete = new GUIPauseConcrete();
+        final ConcretePauseGUI concrete = new ConcretePauseGUI();
 
         concrete.setFontTitleGUI(GraphicsLayoutUtils.getFontForTitle(GraphicsLayoutUtils.SIZE_FONT_H2));
 
@@ -30,17 +30,6 @@ public class GUIPauseStandard implements FactoryGUIPause {
 
         concrete.setBorder(GraphicsLayoutUtils.COLOR_4, FactoryGUIs.INSET_H4);
 
-        this.createGraphics(concrete);
-
-        return concrete;
-    }
-
-    /**
-     * Create graphics compact pause GUI.
-     * 
-     * @param pause to create the graphics.
-     */
-    private void createGraphics(final GUIPauseConcrete concrete) {
         concrete.setLayout(new BorderLayout());
 
         concrete.getBtnActionLinks().forEach(FactoryGUIs::setTransparentJButton);
@@ -56,5 +45,7 @@ public class GUIPauseStandard implements FactoryGUIPause {
                     ScaleOf.ICON_SMALL, EnginePause.RECTANGLE.width);
         }
 
+        return concrete;
     }
+
 }

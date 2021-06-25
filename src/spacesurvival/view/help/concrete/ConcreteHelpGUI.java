@@ -20,7 +20,7 @@ import javax.swing.JLabel;
 /**
  * Implement every element the help GUI must have.
  */
-public class GUIHelpConcrete extends AbstractGUI implements GUIHelp {
+public class ConcreteHelpGUI extends AbstractGUI implements GUIHelp {
     private static final long serialVersionUID = 243122553613571377L;
     private final JLabel lbTitle;
     private final List<UnitHelp> unitHelps;
@@ -29,7 +29,7 @@ public class GUIHelpConcrete extends AbstractGUI implements GUIHelp {
     /**
      * Constructor of all help GUI items.
      */
-    public GUIHelpConcrete() {
+    public ConcreteHelpGUI() {
         super();
         this.lbTitle = new JLabel();
         this.btnBack = new ButtonLink();

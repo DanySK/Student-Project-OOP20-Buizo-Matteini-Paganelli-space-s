@@ -3,31 +3,31 @@ package spacesurvival.controller.gui;
 import spacesurvival.controller.gui.command.SwitchGUI;
 import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
-import spacesurvival.model.gui.pause.EnginePause;
+import spacesurvival.model.gui.menu.EngineMenu;
 import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.GUI;
-import spacesurvival.view.pause.GUIPause;
+import spacesurvival.view.menu.GUIMenu;
 
 /**
- * Implements the controller for the pause GUI.
+ * Implements the controller for the menu GUI.
  */
-public class CtrlPause implements ControllerGUI {
-    private final EnginePause engine;
-    private final GUIPause gui;
+public class ControllerMenu implements ControllerGUI {
+    private final GUIMenu gui;
+    private final EngineMenu engine;
 
     private final SwitchGUI switchGUI;
 
     /**
-     * Create a control pause GUI with its model and view.
+     * Create a control menu GUI with its model and view.
      * @param engine of model.
      * @param gui of view.
      */
-    public CtrlPause(final EnginePause engine, final GUIPause gui) {
+    public ControllerMenu(final EngineMenu engine, final GUIMenu gui) {
         this.engine = engine;
         this.gui = gui;
-
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
-        this.turn(this.engine.getVisibility());
+
+        this.switchGUI.turn(this.engine.getVisibility());
     }
 
     /**
@@ -36,7 +36,7 @@ public class CtrlPause implements ControllerGUI {
     @Override
     public void assignLinks() {
         this.gui.setMainAction(this.engine.getMainLink());
-        this.gui.setLinkActionButtons(this.engine.getMainLink(), this.engine.getLinks());
+        this.gui.setBtnActions(this.engine.getMainLink(), this.engine.getLinks());
     }
 
     /**
@@ -45,14 +45,14 @@ public class CtrlPause implements ControllerGUI {
     @Override
     public void assignTexts() {
         this.gui.setTitleGUI(this.engine.getTitleGUI());
-        this.gui.setTextButtons(this.engine.getListText());
+        this.gui.setTextButtons(this.engine.getListTextLinks());
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void assignRectangle() {
+    public void assignBounds() {
         this.gui.setBounds(this.engine.getRectangle());
     }
 
@@ -110,5 +110,13 @@ public class CtrlPause implements ControllerGUI {
     @Override
     public void closeGUI() {
         this.gui.close();
+    }
+
+    /**
+     * Describes the control via its engine and view.
+     */
+    @Override
+    public String toString() {
+        return "CtrlMenu [gui=" + gui + ", engine=" + engine + ", switchGUI=" + switchGUI + "]";
     }
 }

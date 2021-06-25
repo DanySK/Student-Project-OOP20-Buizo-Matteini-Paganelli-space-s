@@ -3,32 +3,49 @@ package spacesurvival.controller.gui;
 import spacesurvival.controller.gui.command.SwitchGUI;
 import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
-import spacesurvival.model.gui.help.EngineHelp;
+import spacesurvival.model.gui.loading.EngineLoading;
 import spacesurvival.utilities.LinkActionGUI;
+import spacesurvival.utilities.ThreadUtils;
 import spacesurvival.view.GUI;
-import spacesurvival.view.help.GUIHelp;
+import spacesurvival.view.loading.GUILoading;
 
-/**
- * Implements the controller for the help GUI.
- */
-public class CtrlHelp implements ControllerGUI {
-    private final GUIHelp gui;
-    private final EngineHelp engine;
+
+public class ControllerLoading extends Thread implements ControllerGUI {
+    /**
+     * Loading duration.
+     */
+    public static final int DURATION_LOADIN = 2000 / ThreadUtils.MEDIUM_SLEEP;
+
+    /**
+     * Step of loading.
+     */
+    public static final int STEP_TIMING = 20 / ThreadUtils.MEDIUM_SLEEP;
+
+    private final GUILoading gui;
+    private final EngineLoading engine;
 
     private final SwitchGUI switchGUI;
 
     /**
-     * Create a control help GUI with its model and view.
-     * 
+     * Create a control loading GUI with its model and view.
      * @param engine of model.
      * @param gui of view.
      */
-    public CtrlHelp(final EngineHelp engine, final GUIHelp gui) {
+    public ControllerLoading(final EngineLoading engine, final GUILoading gui) { 
         this.engine = engine;
         this.gui = gui;
-        this.switchGUI = new SwitchGUI(this.engine, this.gui);
 
-        this.switchGUI.turn(this.engine.getVisibility());
+        this.switchGUI = new SwitchGUI(this.engine, this.gui);
+        this.turn(this.engine.getVisibility());
+    }
+
+    /**
+     * Initialize loading GUI.
+     */
+    public void initLoading() {
+        this.assignLinks();
+        this.assignTexts();
+        this.assignBounds();
     }
 
     /**
@@ -37,7 +54,6 @@ public class CtrlHelp implements ControllerGUI {
     @Override
     public void assignLinks() {
         this.gui.setMainAction(this.engine.getMainLink());
-        this.gui.setActionBtnBack(this.engine.getMainLink(), this.engine.getBackLink());
     }
 
     /**
@@ -45,19 +61,34 @@ public class CtrlHelp implements ControllerGUI {
      */
     @Override
     public void assignTexts() {
-        this.gui.setTitleGUI(this.engine.getTitle());
-        this.gui.setTextUnit(this.engine.getListTitleUnits());
-        this.gui.setBtnText(this.engine.getListTextButtons());
-        this.engine.getListTitleUnits().forEach(nameUnit ->
-                this.gui.addTextAndIconInUnit(nameUnit, this.engine.getPathIconUnit(nameUnit)));
+        this.gui.setTitleGUI(this.engine.getTitleGUI());
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void assignRectangle() {
+    public void assignBounds() {
         this.gui.setBounds(this.engine.getRectangle());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void run() {
+        while (!this.engine.isLoad()) {
+            this.engine.incrLoading();
+
+            this.gui.setLoading(this.engine.getLoading() / STEP_TIMING);
+
+            if (this.engine.getLoading() >= DURATION_LOADIN) {
+                this.engine.load();
+            }
+
+            ThreadUtils.sleep(ThreadUtils.MEDIUM_SLEEP);
+        }
+
     }
 
     /**
@@ -117,13 +148,10 @@ public class CtrlHelp implements ControllerGUI {
     }
 
     /**
-     * {@inheritDoc}
+     * Get the GUI has finished loading.
+     * @return boolean if loading.
      */
-    @Override
-    public String toString() {
-        return "CtrlHelp{" 
-                + "gui=" + gui 
-                + ", engine=" + engine 
-                + ", switchGUI=" + switchGUI + '}';
+    public boolean isLoad() {
+        return this.engine.isLoad();
     }
 }

@@ -61,7 +61,7 @@ public interface GUI {
      * Set visibility of the foreground panel of the GUI.
      * @param visible for visibility panel.
      */
-    void visibleForegroundPanel(Visibility visible);
+    void setVisibleGlassPanel(Visibility visible);
 
     /**
      * Close the GUI and destroyed JFrame.

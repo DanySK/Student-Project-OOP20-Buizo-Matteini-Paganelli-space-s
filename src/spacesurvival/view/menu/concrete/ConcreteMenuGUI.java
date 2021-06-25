@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 /**
  * Implement every element the menu GUI must have.
  */
-public class GUIMenuConcrete extends AbstractGUI implements GUIMenu {
+public class ConcreteMenuGUI extends AbstractGUI implements GUIMenu {
     private static final long serialVersionUID = 1L;
 
     private final JLabel lbTitle;
@@ -28,7 +28,7 @@ public class GUIMenuConcrete extends AbstractGUI implements GUIMenu {
    /**
     * Constructor of all menu GUI items.
     */
-   public GUIMenuConcrete() {
+   public ConcreteMenuGUI() {
         super();
         this.lbTitle = new JLabel();
         this.txfNamePlayer = new JTextField();

@@ -9,12 +9,12 @@ public enum LinksDead {
     /**
      * Link to GUI Menu.
      */
-    MENU_BTN("Menu", LinkActionGUI.ID_MENU),
+    MENU_BTN("Menu", LinkActionGUI.LINK_MENU),
 
     /**
      * Link to GUI Quit.
      */
-    QUIT_BTN("Quit", LinkActionGUI.ID_QUIT);
+    QUIT_BTN("Quit", LinkActionGUI.LINK_QUIT);
 
     private final String text;
     private final LinkActionGUI linkActionGUI;

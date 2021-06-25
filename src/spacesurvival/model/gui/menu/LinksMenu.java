@@ -8,27 +8,27 @@ public enum LinksMenu {
     /**
      * Link to GUI game.
      */
-    START_BUTTON("Start", LinkActionGUI.ID_GAME),
+    START_BUTTON("Start", LinkActionGUI.LINK_GAME),
 
     /**
      * Link to GUI settings.
      */
-    SETTINGS_BUTTON("Settings", LinkActionGUI.ID_SETTING),
+    SETTINGS_BUTTON("Settings", LinkActionGUI.LINK_SETTING),
 
     /**
      * Link to GUI sound.
      */
-    SOUND_BUTTON("Sound", LinkActionGUI.ID_SOUND),
+    SOUND_BUTTON("Sound", LinkActionGUI.LINK_SOUND),
 
     /**
      * Link to GUI help.
      */
-    HELP_BUTTON("Help", LinkActionGUI.ID_HELP),
+    HELP_BUTTON("Help", LinkActionGUI.LINK_HELP),
 
     /**
      * Link to quit.
      */
-    QUIT_BUTTON("Quit", LinkActionGUI.ID_QUIT);
+    QUIT_BUTTON("Quit", LinkActionGUI.LINK_QUIT);
 
     /**
      * Button text.

@@ -13,14 +13,14 @@ import spacesurvival.model.gui.sound.EngineSound;
 /**
  * StaticFactoryEngineGUI. create GUI model.
  */
-public final class StaticFactoryEngineGui {
+public final class StaticFactoryEngineGUI {
 
     /**
      * Create a model of the loading GUI.
      *
      * @return loading GUI model.
      */
-    public static EngineLoading createLoading() {
+    public static EngineLoading createEngineLoading() {
         return new EngineLoading();
     }
 
@@ -95,6 +95,6 @@ public final class StaticFactoryEngineGui {
         return new EngineDead();
     }
 
-    private StaticFactoryEngineGui() {
+    private StaticFactoryEngineGUI() {
     }
 }

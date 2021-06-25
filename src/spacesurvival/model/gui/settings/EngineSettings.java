@@ -60,8 +60,8 @@ public class EngineSettings implements EngineGUI {
      * Constructor for a GUI settings model.
      */
     public EngineSettings() {
-        this.mainAction = LinkActionGUI.ID_SETTING;
-        this.actionBack = LinkActionGUI.ID_BACK;
+        this.mainAction = LinkActionGUI.LINK_SETTING;
+        this.actionBack = LinkActionGUI.LINK_BACK;
 
         this.listSkin = Arrays.asList(SkinSpaceShip.values());
         this.chooseSkin = INDEX_INIT_SKIN;

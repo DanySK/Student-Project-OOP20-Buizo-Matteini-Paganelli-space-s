@@ -32,8 +32,8 @@ public class EngineGame implements EngineGUI {
     private Visibility visibility;
 
     public EngineGame() {
-        this.id = LinkActionGUI.ID_GAME;
-        this.idPause = LinkActionGUI.ID_PAUSE;
+        this.id = LinkActionGUI.LINK_GAME;
+        this.idPause = LinkActionGUI.LINK_PAUSE;
         this.world = new World(RECTANGLE);
         this.hud = new EngineHUD();
         this.visibility = Visibility.HIDDEN;

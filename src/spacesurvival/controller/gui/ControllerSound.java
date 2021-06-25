@@ -28,7 +28,7 @@ import spacesurvival.view.utilities.FactoryGUIs;
 /**
  * Implements the controller for the sound GUI.
  */
-public class CtrlSound implements ControllerGUI {
+public class ControllerSound implements ControllerGUI {
     private final GUISound gui;
     private final EngineSound engine;
 
@@ -41,7 +41,7 @@ public class CtrlSound implements ControllerGUI {
      * @param engine of model.
      * @param gui of view.
      */
-    public CtrlSound(final EngineSound engine, final GUISound gui) {
+    public ControllerSound(final EngineSound engine, final GUISound gui) {
         this.engine = engine;
         this.gui = gui;
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
@@ -80,7 +80,7 @@ public class CtrlSound implements ControllerGUI {
      * {@inheritDoc}
      */
     @Override
-    public void assignRectangle() {
+    public void assignBounds() {
         this.gui.setBounds(this.engine.getRectangle());
     }
 

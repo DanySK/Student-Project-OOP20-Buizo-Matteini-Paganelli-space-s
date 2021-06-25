@@ -13,12 +13,12 @@ import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
 
-public class GUILoadingConcrete extends AbstractGUI implements GUILoading {
+public class ConcreteLoadingGUI extends AbstractGUI implements GUILoading {
     private static final long serialVersionUID = 7233089560220623525L;
     private final JLabel lbTitle;
     private final JProgressBar progressBar;
 
-    public GUILoadingConcrete() {
+    public ConcreteLoadingGUI() {
         super();
         this.lbTitle = new JLabel();
         this.progressBar = new JProgressBar(SwingConstants.HORIZONTAL, 

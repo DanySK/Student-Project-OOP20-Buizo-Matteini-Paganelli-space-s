@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 /**
  * Implement every element the dead GUI must have.
  */
-public class GUIDeadConcrete extends AbstractGUI implements GUIDead {
+public class ConcreteDeadGUI extends AbstractGUI implements GUIDead {
     private static final long serialVersionUID = -517918898273724798L;
     private final JLabel lbTitleDead;
     private final List<ButtonLink> links;
@@ -23,7 +23,7 @@ public class GUIDeadConcrete extends AbstractGUI implements GUIDead {
     /**
      * Constructor of all dead GUI items.
      */
-    public GUIDeadConcrete() {
+    public ConcreteDeadGUI() {
         super();
         this.lbTitleDead = new JLabel();
         this.links = Stream.generate(ButtonLink::new)

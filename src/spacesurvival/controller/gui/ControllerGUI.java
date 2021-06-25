@@ -21,9 +21,9 @@ public interface ControllerGUI {
     void assignTexts();
 
     /**
-     * Assign the rectangle angle from the modem to the GUI.
+     * Assign the bounds from the modem to the GUI.
      */
-    void assignRectangle();
+    void assignBounds();
 
     /**
      * Get my linkAction. 

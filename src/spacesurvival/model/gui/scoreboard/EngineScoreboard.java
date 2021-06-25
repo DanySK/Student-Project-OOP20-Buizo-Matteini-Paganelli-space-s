@@ -35,8 +35,8 @@ public class EngineScoreboard implements EngineGUI {
      * Constructor for a GUI scoreboard model.
      */
     public EngineScoreboard() {
-        this.id = LinkActionGUI.ID_SCOREBOARD;
-        this.linkBack = LinkActionGUI.ID_BACK;
+        this.id = LinkActionGUI.LINK_SCOREBOARD;
+        this.linkBack = LinkActionGUI.LINK_BACK;
         this.nameButtons = Arrays.asList(NameScoreboardGUI.values());
         this.visibility = Visibility.HIDDEN;
     }

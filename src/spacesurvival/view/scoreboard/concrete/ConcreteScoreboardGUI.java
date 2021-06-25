@@ -17,7 +17,7 @@ import spacesurvival.view.utilities.ButtonLink;
 /**
  * Implement every element the scoreboard GUI must have.
  */
-public class GUIScoreboardConcrete extends AbstractGUI implements GUIScoreboard {
+public class ConcreteScoreboardGUI extends AbstractGUI implements GUIScoreboard {
     private static final long serialVersionUID = -108440081332913533L;
 
     private final JLabel lbTitle;
@@ -30,7 +30,7 @@ public class GUIScoreboardConcrete extends AbstractGUI implements GUIScoreboard 
     /**
      * Constructor of all scoreboard GUI items.
      */
-    public GUIScoreboardConcrete() {
+    public ConcreteScoreboardGUI() {
         super();
         this.lbTitle = new JLabel();
         this.txtSearchName = new JTextField();

@@ -13,7 +13,7 @@ import spacesurvival.utilities.dimension.Screen;
 import spacesurvival.utilities.path.Background;
 import spacesurvival.view.game.FactoryGUIGame;
 import spacesurvival.view.game.GUIGame;
-import spacesurvival.view.game.concrete.GUIGameConcrete;
+import spacesurvival.view.game.concrete.ConcreteGameGUI;
 import spacesurvival.view.utilities.GraphicsLayoutUtils;
 import spacesurvival.view.utilities.FactoryGUIs;
 
@@ -28,23 +28,13 @@ public class GUIGameStandard implements FactoryGUIGame {
      */
     @Override
     public GUIGame create() {
-        final GUIGameConcrete concreteGame = new GUIGameConcrete();
+        final ConcreteGameGUI concreteGame = new ConcreteGameGUI();
         concreteGame.setImageBackground(Background.GAME);
         concreteGame.setFontGUI(GraphicsLayoutUtils.getFontForGame(GraphicsLayoutUtils.SIZE_FONT_H3));
         concreteGame.setFontLifeBars(GraphicsLayoutUtils.getFontForGame(GraphicsLayoutUtils.SIZE_FONT_H6));
         concreteGame.setBackgroundLifeBars(GraphicsLayoutUtils.COLOR_OPACITY_BLACK);
         concreteGame.setForegroundGUI(GraphicsLayoutUtils.COLOR_4);
 
-        this.graphics(concreteGame);
-        return concreteGame;
-    }
-
-    /**
-     * Create graphics standard concreteGame GUI.
-     * 
-     * @param concreteGame to create the graphics.
-     */
-    private void graphics(final GUIGameConcrete concreteGame) {
         FactoryGUIs.setTransparentJButton(concreteGame.getBtnPause());
 
         final JPanel panelNorth = FactoryGUIs.createPanelTransparent(new GridLayout());
@@ -85,10 +75,12 @@ public class GUIGameStandard implements FactoryGUIGame {
 
         concreteGame.addFrontPanel(panelNorth, BorderLayout.NORTH);
         concreteGame.addFrontPanel(panelSouth, BorderLayout.SOUTH);
-        concreteGame.visibleForegroundPanel(Visibility.VISIBLE);
+        concreteGame.setVisibleGlassPanel(Visibility.VISIBLE);
 
         concreteGame.setLayout(null);
         concreteGame.add(concreteGame.getPanelEntity());
         concreteGame.add(concreteGame.getPanelBullet());
+
+        return concreteGame;
     }
 }

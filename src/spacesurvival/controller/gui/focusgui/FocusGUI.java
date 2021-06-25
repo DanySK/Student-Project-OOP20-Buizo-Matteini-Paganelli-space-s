@@ -1,18 +1,18 @@
-package spacesurvival.controller.gui.commandfocus;
+package spacesurvival.controller.gui.focusgui;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import spacesurvival.controller.gui.CtrlGUI;
+import spacesurvival.controller.gui.ManagerControllerGUI;
 import spacesurvival.model.gui.Visibility;
 import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.utilities.StateLevelGUI;
 import spacesurvival.view.GUI;
 
 public class FocusGUI implements MouseListener {
-    private final CtrlGUI control;
+    private final ManagerControllerGUI control;
 
-    public FocusGUI(final CtrlGUI controll) {
+    public FocusGUI(final ManagerControllerGUI controll) {
         this.control = controll;
     }
 
@@ -32,7 +32,7 @@ public class FocusGUI implements MouseListener {
         final LinkActionGUI id = control.getControllerGUIFromGUI((GUI) e.getSource()).get().getMainLink();
         final int indexDifferent = 1;
 
-        if (id.getStateLevel() != StateLevelGUI.OVERLAY 
+        if (id.getStateLevel() != StateLevelGUI.FOREGROUND 
                 && this.control.getChronology().lastElementOfList().get().getStateLevel().equals(StateLevelGUI.OVERLAY)) {
 
             int sizeList =  this.control.getChronology().size() - indexDifferent;
@@ -40,7 +40,7 @@ public class FocusGUI implements MouseListener {
                 this.control.getManagerGui().get(this.control.getChronology().get(sizeList)).turn(Visibility.HIDDEN);
                 this.control.getChronology().remove(sizeList--);
             }
-            
+
             this.control.getChronology().lastElementOfList().ifPresent(link -> this.control.getCtrlSound().checkChangeSoundLoop(link));
             System.out.println("list" + this.control.getChronology());
         }

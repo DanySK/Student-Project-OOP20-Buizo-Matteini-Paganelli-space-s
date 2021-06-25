@@ -39,8 +39,8 @@ public class EngineSound implements EngineGUI {
      * Create a model for the GUI sound.
      */
     public EngineSound() {
-        this.id = LinkActionGUI.ID_SOUND;
-        this.idBack = LinkActionGUI.ID_BACK;
+        this.id = LinkActionGUI.LINK_SOUND;
+        this.idBack = LinkActionGUI.LINK_BACK;
         this.mixerSound = new EngineMixerSound(Arrays.asList(TypeUnitSound.values()));
 
         this.visibility = Visibility.HIDDEN;

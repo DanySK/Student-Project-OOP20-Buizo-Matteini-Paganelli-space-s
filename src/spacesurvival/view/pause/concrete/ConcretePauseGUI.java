@@ -17,7 +17,7 @@ import javax.swing.JLabel;
 /**
  * Implement every element the pause GUI must have.
  */
-public class GUIPauseConcrete extends AbstractGUI implements GUIPause {
+public class ConcretePauseGUI extends AbstractGUI implements GUIPause {
     private static final long serialVersionUID = 3292682835050526269L;
     private final JLabel lbTitle;
     private final List<ButtonLink> links;
@@ -25,7 +25,7 @@ public class GUIPauseConcrete extends AbstractGUI implements GUIPause {
     /**
      * Constructor of all pause GUI items.
      */
-    public GUIPauseConcrete() {
+    public ConcretePauseGUI() {
         super();
         this.lbTitle = new JLabel();
         this.links = Stream.generate(ButtonLink::new)

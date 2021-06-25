@@ -37,7 +37,7 @@ public class EngineMenu implements EngineGUI {
      * Constructor for a GUI menu model.
      */
     public EngineMenu() {
-        this.mainAction = LinkActionGUI.ID_MENU;
+        this.mainAction = LinkActionGUI.LINK_MENU;
         this.linkButtons = Arrays.asList(LinksMenu.values());
         this.visibility = Visibility.HIDDEN;
     }

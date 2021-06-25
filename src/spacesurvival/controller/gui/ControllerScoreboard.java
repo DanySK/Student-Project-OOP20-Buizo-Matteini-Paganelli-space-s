@@ -3,31 +3,31 @@ package spacesurvival.controller.gui;
 import spacesurvival.controller.gui.command.SwitchGUI;
 import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
-import spacesurvival.model.gui.dead.EngineDead;
+import spacesurvival.model.gui.scoreboard.EngineScoreboard;
 import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.GUI;
-import spacesurvival.view.dead.GUIDead;
+import spacesurvival.view.scoreboard.GUIScoreboard;
 
 /**
- * Implements the controller for the dead GUI.
+ * Implements the controller for the Scoreboard GUI.
  */
-public class CtrlDead implements ControllerGUI {
-    private final EngineDead engine;
-    private final GUIDead gui;
+public class ControllerScoreboard implements ControllerGUI {
+    private final GUIScoreboard gui;
+    private final EngineScoreboard engine;
 
     private final SwitchGUI switchGUI;
 
     /**
-     * Create a control dead GUI with its model and view.
+     * Create a control Scoreboard GUI with its model and view.
      * @param engine of model.
      * @param gui of view.
      */
-    public CtrlDead(final EngineDead engine, final GUIDead gui) {
-        this.engine = engine;
+    public ControllerScoreboard(final EngineScoreboard engine, final GUIScoreboard gui) {
         this.gui = gui;
+        this.engine = engine;
+        this.switchGUI = new SwitchGUI(this.engine, this.gui);
 
-        this.switchGUI = new SwitchGUI(engine, gui);
-        this.turn(this.engine.getVisibility());
+        this.switchGUI.turn(this.engine.getVisibility());
     }
 
     /**
@@ -36,7 +36,7 @@ public class CtrlDead implements ControllerGUI {
     @Override
     public void assignLinks() {
         this.gui.setMainAction(this.engine.getMainLink());
-        this.gui.setBtnActions(this.engine.getMainLink(), this.engine.getLinks());
+        this.gui.setBtnBackID(this.engine.getMainLink(), this.engine.getBackLink());
     }
 
     /**
@@ -45,14 +45,14 @@ public class CtrlDead implements ControllerGUI {
     @Override
     public void assignTexts() {
         this.gui.setTitleGUI(this.engine.getTitleGUI());
-        this.gui.setTextButtons(this.engine.getListTextLinks());
+        this.gui.setTextButtons(this.engine.getListText());
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void assignRectangle() {
+    public void assignBounds() {
         this.gui.setBounds(this.engine.getRectangle());
     }
 
@@ -111,4 +111,5 @@ public class CtrlDead implements ControllerGUI {
     public void closeGUI() {
         this.gui.close();
     }
+
 }

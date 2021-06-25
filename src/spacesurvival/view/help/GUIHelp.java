@@ -23,16 +23,16 @@ public interface GUIHelp extends GUI, GraphicsText {
     /**
      * Set text a all units help.
      * 
-     * @param listName a list of text.
+     * @param listText a list of text.
      */
-    void setTextUnit(List<String> listName);
+    void setTextUnit(List<String> listText);
 
     /**
      * Set text all text button.
      * 
-     * @param listName a list of text.
+     * @param listText a list of text.
      */
-    void setBtnText(List<String> listName);
+    void setBtnText(List<String> listText);
 
     /**
      * Set text and image to unit help.

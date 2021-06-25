@@ -9,22 +9,22 @@ public enum LinksPause {
     /**
      * Link to GUI game.
      */
-    RESUME_BUTTON("Resume", LinkActionGUI.ID_GAME),
+    RESUME_BUTTON("Resume", LinkActionGUI.LINK_GAME),
 
     /**
      * Link to GUI sound.
      */
-    SOUND_BUTTON("Sound", LinkActionGUI.ID_SOUND),
+    SOUND_BUTTON("Sound", LinkActionGUI.LINK_SOUND),
 
     /**
      * Link to GUI help.
      */
-    HELP_BUTTON("Help", LinkActionGUI.ID_HELP),
+    HELP_BUTTON("Help", LinkActionGUI.LINK_HELP),
 
     /**
      * Link to GUI quit.
      */
-    QUIT_BUTTON("Quit", LinkActionGUI.ID_QUIT);
+    QUIT_BUTTON("Quit", LinkActionGUI.LINK_QUIT);
 
     private final String text;
     private final LinkActionGUI linkActionGUI;

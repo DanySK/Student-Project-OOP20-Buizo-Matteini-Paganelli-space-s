@@ -38,7 +38,7 @@ public class EngineDead implements EngineGUI {
      * Constructor for a GUI dead model.
      */
     public EngineDead() {
-        this.mainAction = LinkActionGUI.ID_DEAD;
+        this.mainAction = LinkActionGUI.LINK_DEAD;
 
         this.linkButtons = Arrays.asList(LinksDead.values());
         this.visibility = Visibility.HIDDEN;

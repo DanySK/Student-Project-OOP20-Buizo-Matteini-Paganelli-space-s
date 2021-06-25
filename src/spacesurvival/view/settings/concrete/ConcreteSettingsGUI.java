@@ -15,14 +15,14 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-public class GUISettingsConcrete extends AbstractGUI implements GUISettings {
+public class ConcreteSettingsGUI extends AbstractGUI implements GUISettings {
     private static final long serialVersionUID = 1L;
 
     private final JLabel lbTitle;
     private final PanelSkin panelSkin;
     private final ButtonLink btnBack;
 
-    public GUISettingsConcrete() {
+    public ConcreteSettingsGUI() {
         super();
         this.lbTitle = new JLabel();
         this.panelSkin = new PanelSkin();

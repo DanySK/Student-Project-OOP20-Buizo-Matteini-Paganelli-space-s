@@ -16,7 +16,7 @@ import javax.swing.JButton;
 /**
  * Implements the controller for the settings GUI.
  */
-public class CtrlSettings implements ControllerGUI {
+public class ControllerSettings implements ControllerGUI {
     private final GUISettings gui;
     private final EngineSettings engine;
 
@@ -27,7 +27,7 @@ public class CtrlSettings implements ControllerGUI {
      * @param engine of model.
      * @param gui of view.
      */
-    public CtrlSettings(final EngineSettings engine, final GUISettings gui) {
+    public ControllerSettings(final EngineSettings engine, final GUISettings gui) {
         this.gui = gui;
         this.engine = engine;
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
@@ -58,7 +58,7 @@ public class CtrlSettings implements ControllerGUI {
      * {@inheritDoc}
      */
     @Override
-    public void assignRectangle() {
+    public void assignBounds() {
         this.gui.setBounds(this.engine.getRectangle());
     }
 
@@ -134,8 +134,8 @@ public class CtrlSettings implements ControllerGUI {
     private ActionListener changeSkin() {
         return e -> {
             final JButton btn = (JButton) e.getSource();
-            CtrlSettings.this.changeSkinWithDir(btn.getText());
-            CtrlSettings.this.gui.setSkinSpaceShip(CtrlSettings.this.engine.getEngineSkinShip());
+            ControllerSettings.this.changeSkinWithDir(btn.getText());
+            ControllerSettings.this.gui.setSkinSpaceShip(ControllerSettings.this.engine.getEngineSkinShip());
         };
     }
 

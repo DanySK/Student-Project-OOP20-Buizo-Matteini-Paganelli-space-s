@@ -1,9 +1,9 @@
 package spacesurvival.model;
 
 import spacesurvival.controller.CallerCommandShip;
-import spacesurvival.controller.gui.CtrlGUI;
-import spacesurvival.controller.gui.CtrlGame;
-import spacesurvival.controller.gui.CtrlSound;
+import spacesurvival.controller.gui.ManagerControllerGUI;
+import spacesurvival.controller.gui.ControllerGame;
+import spacesurvival.controller.gui.ControllerSound;
 import spacesurvival.model.collision.event.DeadEvent;
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.gameobject.fireable.SpaceShipSingleton;
@@ -27,15 +27,15 @@ public class EngineLoop extends Thread implements WorldEventListener {
      */
     public static final int FPS = 30;
 
-    private final CtrlGUI controlGUI;
-    private final CtrlGame controlGame;
-    private final CtrlSound controlSound;
+    private final ManagerControllerGUI controlGUI;
+    private final ControllerGame controlGame;
+    private final ControllerSound controlSound;
     private final CallerCommandShip callerCommandShip;
 
     private final List<WorldEvent> eventQueue;
 
     public EngineLoop() {
-        this.controlGUI = new CtrlGUI();
+        this.controlGUI = new ManagerControllerGUI();
         this.eventQueue = new LinkedList<>();
         this.controlGame = this.controlGUI.getCtrlGame();
         this.controlSound = this.controlGUI.getCtrlSound();

@@ -20,7 +20,7 @@ import javax.swing.JLabel;
 /**
  * Implement every element the sound GUI must have.
  */
-public class GUISoundConcrete extends AbstractGUI implements GUISound {
+public class ConcreteSoundGUI extends AbstractGUI implements GUISound {
     private static final long serialVersionUID = 2236900141738077423L;
 
     private final JLabel lbTitle;
@@ -30,7 +30,7 @@ public class GUISoundConcrete extends AbstractGUI implements GUISound {
     /**
      * builds the sound GUI with all the components.
      */
-    public GUISoundConcrete() {
+    public ConcreteSoundGUI() {
         super();
         this.lbTitle = new JLabel();
         this.mixerSound = new MixerSound();

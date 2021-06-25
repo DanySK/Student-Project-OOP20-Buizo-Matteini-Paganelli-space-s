@@ -3,28 +3,29 @@ package spacesurvival.controller.gui;
 import spacesurvival.controller.gui.command.SwitchGUI;
 import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
-import spacesurvival.model.gui.scoreboard.EngineScoreboard;
+import spacesurvival.model.gui.help.EngineHelp;
 import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.view.GUI;
-import spacesurvival.view.scoreboard.GUIScoreboard;
+import spacesurvival.view.help.GUIHelp;
 
 /**
- * Implements the controller for the Scoreboard GUI.
+ * Implements the controller for the help GUI.
  */
-public class CtrlScoreboard implements ControllerGUI {
-    private final GUIScoreboard gui;
-    private final EngineScoreboard engine;
+public class ControllerHelp implements ControllerGUI {
+    private final GUIHelp gui;
+    private final EngineHelp engine;
 
     private final SwitchGUI switchGUI;
 
     /**
-     * Create a control Scoreboard GUI with its model and view.
+     * Create a control help GUI with its model and view.
+     * 
      * @param engine of model.
      * @param gui of view.
      */
-    public CtrlScoreboard(final EngineScoreboard engine, final GUIScoreboard gui) {
-        this.gui = gui;
+    public ControllerHelp(final EngineHelp engine, final GUIHelp gui) {
         this.engine = engine;
+        this.gui = gui;
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
 
         this.switchGUI.turn(this.engine.getVisibility());
@@ -36,7 +37,7 @@ public class CtrlScoreboard implements ControllerGUI {
     @Override
     public void assignLinks() {
         this.gui.setMainAction(this.engine.getMainLink());
-        this.gui.setBtnBackID(this.engine.getMainLink(), this.engine.getBackLink());
+        this.gui.setActionBtnBack(this.engine.getMainLink(), this.engine.getBackLink());
     }
 
     /**
@@ -44,15 +45,18 @@ public class CtrlScoreboard implements ControllerGUI {
      */
     @Override
     public void assignTexts() {
-        this.gui.setTitleGUI(this.engine.getTitleGUI());
-        this.gui.setTextButtons(this.engine.getListText());
+        this.gui.setTitleGUI(this.engine.getTitle());
+        this.gui.setTextUnit(this.engine.getListTitleUnits());
+        this.gui.setBtnText(this.engine.getListTextButtons());
+        this.engine.getListTitleUnits().forEach(nameUnit ->
+                this.gui.addTextAndIconInUnit(nameUnit, this.engine.getPathIconUnit(nameUnit)));
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void assignRectangle() {
+    public void assignBounds() {
         this.gui.setBounds(this.engine.getRectangle());
     }
 
@@ -112,4 +116,14 @@ public class CtrlScoreboard implements ControllerGUI {
         this.gui.close();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "CtrlHelp{" 
+                + "gui=" + gui 
+                + ", engine=" + engine 
+                + ", switchGUI=" + switchGUI + '}';
+    }
 }

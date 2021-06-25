@@ -1,24 +1,24 @@
-package test.buizo.gui;
+package test.buizo;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import spacesurvival.controller.gui.CtrlMenu;
-import spacesurvival.model.gui.StaticFactoryEngineGui;
+import spacesurvival.controller.gui.ControllerMenu;
+import spacesurvival.model.gui.StaticFactoryEngineGUI;
 import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.gui.menu.EngineMenu;
-import spacesurvival.view.StaticFactoryGUI;
 import spacesurvival.view.menu.GUIMenu;
+import spacesurvival.view.menu.factorymethod.GUIMenuStandard;
 
 public class TestMenu {
 
     @Test
     public void testLinkMenu() {
-        final EngineMenu engine = StaticFactoryEngineGui.createEngineMenu();
-        final GUIMenu gui = StaticFactoryGUI.createMenuGUI();
-        final CtrlMenu controller = new CtrlMenu(engine, gui);
+        final EngineMenu engine = StaticFactoryEngineGUI.createEngineMenu();
+        final GUIMenu gui = new GUIMenuStandard().create();
+        final ControllerMenu controller = new ControllerMenu(engine, gui);
 
         controller.assignLinks();
         assertEquals(controller.getMainLink(), engine.getMainLink());
@@ -32,9 +32,9 @@ public class TestMenu {
 
     @Test
     public void testTextMenu() {
-        final EngineMenu engine = StaticFactoryEngineGui.createEngineMenu();
-        final GUIMenu gui = StaticFactoryGUI.createMenuGUI();
-        final CtrlMenu controller = new CtrlMenu(engine, gui);
+        final EngineMenu engine = StaticFactoryEngineGUI.createEngineMenu();
+        final GUIMenu gui = new GUIMenuStandard().create();
+        final ControllerMenu controller = new ControllerMenu(engine, gui);
 
         controller.assignTexts();
         for (int i = 0; i < EngineMenu.N_BUTTONS; i++) {
@@ -44,9 +44,9 @@ public class TestMenu {
 
     @Test
     public void testVisibilityMenu() {
-        final EngineMenu engine = StaticFactoryEngineGui.createEngineMenu();
-        final GUIMenu gui = StaticFactoryGUI.createMenuGUI();
-        final CtrlMenu controller = new CtrlMenu(engine, gui);
+        final EngineMenu engine = StaticFactoryEngineGUI.createEngineMenu();
+        final GUIMenu gui = new GUIMenuStandard().create();
+        final ControllerMenu controller = new ControllerMenu(engine, gui);
 
         controller.turn(Visibility.VISIBLE);
 

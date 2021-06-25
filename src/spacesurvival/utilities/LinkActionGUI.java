@@ -3,36 +3,82 @@ package spacesurvival.utilities;
 import spacesurvival.utilities.path.Background;
 import spacesurvival.utilities.path.SoundPath;
 
-
+/**
+ *
+ */
 public enum LinkActionGUI {
-    ID_MENU(0, "Menu", SoundPath.MENU, Background.MAIN, StateLevelGUI.FOREGROUND),
-    ID_GAME(1, "Game", SoundPath.GAME, Background.GAME, StateLevelGUI.FOREGROUND),
-    ID_SETTING(2, "Settings", SoundPath.MENU, Background.MAIN, StateLevelGUI.OVERLAY),
-    ID_SCOREBOARD(3, "Scoreboard", SoundPath.MENU, Background.MAIN, StateLevelGUI.OVERLAY),
-    ID_SOUND(4, "Sound", SoundPath.MENU, Background.MAIN, StateLevelGUI.OVERLAY),
-    ID_HELP(5, "Help", SoundPath.MENU, Background.MAIN, StateLevelGUI.OVERLAY),
-    ID_QUIT(6, "Quit", SoundPath.MENU, Background.MAIN, StateLevelGUI.NOTHING),
-    ID_PAUSE(7, "Pause", SoundPath.MENU, Background.MAIN, StateLevelGUI.OVERLAY),
-    ID_LOADING(8, "Loading", SoundPath.MENU, Background.MAIN, StateLevelGUI.FOREGROUND),
-    ID_BACK(9, "Back", SoundPath.MENU, Background.MAIN, StateLevelGUI.NOTHING),
-    ID_DEAD(10, "Dead", SoundPath.MENU, Background.DEAD2, StateLevelGUI.FOREGROUND);
+    /**
+     * Link menu.
+     */
+    LINK_MENU("Menu", SoundPath.MENU, Background.MAIN, StateLevelGUI.FOREGROUND),
 
-    private final int id;
+    /**
+     * Link game.
+     */
+    LINK_GAME("Game", SoundPath.GAME, Background.GAME, StateLevelGUI.FOREGROUND),
+
+    /**
+     * Link Settings.
+     */
+    LINK_SETTING("Settings", SoundPath.MENU, Background.MAIN, StateLevelGUI.OVERLAY),
+
+    /**
+     * Link Scoreboard.
+     */
+    LINK_SCOREBOARD("Scoreboard", SoundPath.MENU, Background.MAIN, StateLevelGUI.OVERLAY),
+
+    /**
+     * Link Sound.
+     */
+    LINK_SOUND("Sound", SoundPath.MENU, Background.MAIN, StateLevelGUI.OVERLAY),
+
+    /**
+     * Link Help.
+     */
+    LINK_HELP("Help", SoundPath.MENU, Background.MAIN, StateLevelGUI.OVERLAY),
+
+    /**
+     * Link Quit.
+     */
+    LINK_QUIT("Quit", SoundPath.MENU, Background.MAIN, StateLevelGUI.NOTHING),
+
+    /**
+     * Link Pause.
+     */
+    LINK_PAUSE("Pause", SoundPath.MENU, Background.MAIN, StateLevelGUI.OVERLAY),
+
+    /**
+     * Link Loading.
+     */
+    LINK_LOADING("Loading", SoundPath.MENU, Background.MAIN, StateLevelGUI.FOREGROUND),
+
+    /**
+     * Link Back.
+     */
+    LINK_BACK("Back", SoundPath.MENU, Background.MAIN, StateLevelGUI.NOTHING),
+
+    /**
+     * Link Dead.
+     */
+    LINK_DEAD("Dead", SoundPath.MENU, Background.DEAD2, StateLevelGUI.FOREGROUND);
+
     private final String name;
     private final SoundPath sound;
     private final String background;
     private final StateLevelGUI level;
 
-    LinkActionGUI(final int id, final String name, final SoundPath sound, final String background, final StateLevelGUI level){
-        this.id = id;
+    /**
+     * 
+     * @param name
+     * @param sound
+     * @param background
+     * @param level
+     */
+    LinkActionGUI(final String name, final SoundPath sound, final String background, final StateLevelGUI level) {
         this.name = name;
         this.sound = sound;
         this.level = level;
         this.background = background;
-    }
-
-    public int getIdInt() {
-        return this.id;
     }
 
     public String getIdName() {
@@ -53,10 +99,6 @@ public enum LinkActionGUI {
 
     @Override
     public String toString() {
-        return "IdGUI{"
-                + "id=" 
-                + id 
-                + ", name='" + name + '\'' 
-                + '}';
+        return "LinkActionGUI: " + "[" + this.name + "]";
     }
 }

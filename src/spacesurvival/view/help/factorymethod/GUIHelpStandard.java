@@ -7,7 +7,7 @@ import spacesurvival.utilities.dimension.ScaleOf;
 import spacesurvival.utilities.path.Background;
 import spacesurvival.utilities.path.Icon;
 import spacesurvival.utilities.DesignJComponent;
-import spacesurvival.view.help.concrete.GUIHelpConcrete;
+import spacesurvival.view.help.concrete.ConcreteHelpGUI;
 import spacesurvival.view.help.FactoryGUIHelp;
 import spacesurvival.view.help.GUIHelp;
 import spacesurvival.view.utilities.GraphicsLayoutUtils;
@@ -23,22 +23,13 @@ public class GUIHelpStandard implements FactoryGUIHelp {
      */
     @Override
     public GUIHelp create() {
-        final GUIHelpConcrete helpGUIConcrete = new GUIHelpConcrete();
-        helpGUIConcrete.setFontTitleGUI(GraphicsLayoutUtils.getFontForTitle(GraphicsLayoutUtils.SIZE_FONT_H2));
-        helpGUIConcrete.setFontGUI(GraphicsLayoutUtils.FONT_STANDARD_H5);
-        helpGUIConcrete.setForegroundGUI(GraphicsLayoutUtils.COLOR_4);
-        helpGUIConcrete.setBorder(GraphicsLayoutUtils.COLOR_4, 3);
-        helpGUIConcrete.setImageBackground(Background.MAIN);
-        this.createGraphics(helpGUIConcrete);
-        return helpGUIConcrete;
-    }
+        final ConcreteHelpGUI helpConcrete = new ConcreteHelpGUI();
+        helpConcrete.setFontTitleGUI(GraphicsLayoutUtils.getFontForTitle(GraphicsLayoutUtils.SIZE_FONT_H2));
+        helpConcrete.setFontGUI(GraphicsLayoutUtils.FONT_STANDARD_H5);
+        helpConcrete.setForegroundGUI(GraphicsLayoutUtils.COLOR_4);
+        helpConcrete.setBorder(GraphicsLayoutUtils.COLOR_4, 3);
+        helpConcrete.setImageBackground(Background.MAIN);
 
-    /**
-     * Create graphics standard helpConcrete GUI.
-     * 
-     * @param helpConcrete to create the graphics.
-     */
-    private void createGraphics(final GUIHelpConcrete helpConcrete) {
         helpConcrete.setLayout(new BorderLayout());
 
         helpConcrete.add(FactoryGUIs.encapsulatesInPanelFlow(helpConcrete.getLabelTitle()), BorderLayout.NORTH);
@@ -51,5 +42,7 @@ public class GUIHelpStandard implements FactoryGUIHelp {
         FactoryGUIs.setTransparentJButton(helpConcrete.getBtnBack());
         FactoryGUIs.setIconJButtonFromRate(helpConcrete.getBtnBack(), Icon.BACK,
                 ScaleOf.ICON_MEDIUM, EngineHelp.RECTANGLE.width);
+        return helpConcrete;
     }
+
 }

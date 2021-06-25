@@ -3,7 +3,7 @@ package spacesurvival.view.loading;
 /**
  * Implements the function that creates the graphics's loading GUI.
  */
-public interface FactoryGuiLoading {
+public interface FactoryGUILoading {
 
     /**
      * Create a graphics's loading GUI.

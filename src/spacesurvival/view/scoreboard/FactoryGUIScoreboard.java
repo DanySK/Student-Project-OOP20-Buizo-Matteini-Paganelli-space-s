@@ -8,5 +8,5 @@ public interface FactoryGUIScoreboard {
      * Create a graphics's scoreboard GUI.
      * @return scoreboard GUI.
      */
-    GUIScoreboard createGUI();
+    GUIScoreboard create();
 }

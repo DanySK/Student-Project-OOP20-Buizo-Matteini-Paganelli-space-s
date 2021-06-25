@@ -22,13 +22,10 @@ public class SwitchGUI {
         this.gui = gui;
     }
 
-    public void setGui(final GUI gui) {
-        this.gui = gui;
-    }
-    public void setEngine(final EngineGUI engine) {
-        this.engine = engine;
-    }
-
+    /**
+     * 
+     * @param visibility
+     */
     public void turn(final Visibility visibility) {
         switch (visibility) {
             case HIDDEN: this.offCmdEngine.execute(engine).execute(gui); break;
@@ -37,19 +34,14 @@ public class SwitchGUI {
         }
     }
 
+    /**
+     * 
+     */
     public void changeVisibility() {
         if (this.engine.isVisible()) {
             this.offCmdEngine.execute(engine).execute(gui);
         } else {
             this.onCmdEngine.execute(engine).execute(gui);
         }
-    }
-
-    public void turnOnGUI(final EngineGUI engine, final GUI gui) {
-        this.onCmdEngine.execute(engine).execute(gui);
-    }
-
-    public void turnOffGUI(final EngineGUI engine, final GUI gui) {
-        this.offCmdEngine.execute(engine).execute(gui);
     }
 }

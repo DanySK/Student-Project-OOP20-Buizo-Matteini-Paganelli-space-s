@@ -18,15 +18,15 @@ public interface GUIGame extends GUI, GraphicsText {
 
     void setMaxLifeShip(int maxLife);
 
-    void setMaxLifeBoss(int maxLife);
+    void setMaxLifeBoss(int maxBoss);
 
     void setBulletHUD(AmmoType ammoType);
 
     void setVisibleLifeBarBoss(boolean visible);
 
-    void setBoundsGame(Rectangle screen);
-
     void setTimer(String timer);
+
+    void setBoundsGame(Rectangle rectangle);
 
     void setIdButtons(LinkActionGUI mainAction, List<LinkActionGUI> linksID);
 
@@ -50,7 +50,7 @@ public interface GUIGame extends GUI, GraphicsText {
 
     void setLifeShip(int lifeShip);
 
-    void setLifeBoss(int lifeShip);
+    void setLifeBoss(int lifeBoss);
 
     void setFontLifeBars(Font font);
 

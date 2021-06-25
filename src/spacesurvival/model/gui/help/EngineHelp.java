@@ -43,8 +43,8 @@ public class EngineHelp implements EngineGUI {
      * Constructor for a GUI help model.
      */
     public EngineHelp() {
-        this.mainAction = LinkActionGUI.ID_HELP;
-        this.actionBack = LinkActionGUI.ID_BACK;
+        this.mainAction = LinkActionGUI.LINK_HELP;
+        this.actionBack = LinkActionGUI.LINK_BACK;
         this.listName = List.of(DesignJComponent.STRING_BACK_BUTTON);
         this.listNameUnits = Arrays.asList(UnitsHelp.values());
         this.visibility = Visibility.HIDDEN;

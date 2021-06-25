@@ -30,18 +30,18 @@ public class ButtonLink extends JButton {
 
     /**
      * Set the link of the button it belongs to.
-     * @param currentGUIID current link.
+     * @param currentActionGUI current link.
      */
-    public void setCurrentLink(final LinkActionGUI currentGUIID) {
-        this.actionCurrent = currentGUIID;
+    public void setCurrentLink(final LinkActionGUI currentActionGUI) {
+        this.actionCurrent = currentActionGUI;
     }
 
     /**
      * Set the link of the button it belongs to.
-     * @param linkActionGUINext next link.
+     * @param nextActionGUI next link.
      */
-    public void setNextLink(final LinkActionGUI linkActionGUINext) {
-        this.actionNext = linkActionGUINext;
+    public void setNextLink(final LinkActionGUI nextActionGUI) {
+        this.actionNext = nextActionGUI;
     }
 
     /**

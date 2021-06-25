@@ -1,13 +1,18 @@
 package spacesurvival.controller.gui;
 
-import spacesurvival.controller.gui.commandfocus.FocusGUI;
-import spacesurvival.controller.gui.strategy.LogicSwitchGUI;
-import spacesurvival.controller.gui.strategy.LogicSwitchGame;
-import spacesurvival.controller.gui.strategy.LogicSwitchMenu;
+import spacesurvival.controller.gui.focusgui.FocusGUI;
+import spacesurvival.controller.gui.logicswitch.LogicSwitchGUI;
+import spacesurvival.controller.gui.logicswitch.ManagerVibility;
 import spacesurvival.controller.utilities.ListGUI;
-import spacesurvival.model.gui.StaticFactoryEngineGui;
+import spacesurvival.model.gui.StaticFactoryEngineGUI;
 import spacesurvival.view.GUI;
-import spacesurvival.view.StaticFactoryGUI;
+import spacesurvival.view.dead.factorymethod.GUIDeadStandard;
+import spacesurvival.view.game.factorymethod.GUIGameStandard;
+import spacesurvival.view.help.factorymethod.GUIHelpStandard;
+import spacesurvival.view.menu.factorymethod.GUIMenuStandard;
+import spacesurvival.view.pause.factorymethod.GUIPauseStandard;
+import spacesurvival.view.settings.factorymethod.GUISettingsStandard;
+import spacesurvival.view.sound.factorymethod.GUISoundStandard;
 import spacesurvival.model.gui.Visibility;
 import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.utilities.StateLevelGUI;
@@ -19,35 +24,34 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class CtrlGUI {
+public class ManagerControllerGUI {
+    /**
+     * 
+     */
+    public static final LinkActionGUI FIRST_GUI = LinkActionGUI.LINK_MENU;
 
-    public static final LinkActionGUI FIRST_GUI = LinkActionGUI.ID_MENU;
-
-    private final CtrlMenu ctrlMenu;
-    private final CtrlGame ctrlGame;
-    private final CtrlSettings ctrlSettings;
-    private final CtrlSound ctrlSound;
-    private final CtrlHelp ctrlHelp;
-    private final CtrlPause ctrlPause;
-    private final CtrlDead ctrlDead;
+    private final ControllerMenu ctrlMenu;
+    private final ControllerGame ctrlGame;
+    private final ControllerSettings ctrlSettings;
+    private final ControllerSound ctrlSound;
+    private final ControllerHelp ctrlHelp;
+    private final ControllerPause ctrlPause;
+    private final ControllerDead ctrlDead;
 
     private final ListGUI<LinkActionGUI> chronology;
-
     private final Map<LinkActionGUI, ControllerGUI> managerGui;
 
+    private final LogicSwitchGUI managerVisibility;
     private final MouseListener fosucGUI;
-    private final LogicSwitchGUI logicSwitchMenu;
-    private final LogicSwitchGUI logicSwitchGame;
 
-
-    public CtrlGUI() {
-        this.ctrlMenu = new CtrlMenu(StaticFactoryEngineGui.createEngineMenu(), StaticFactoryGUI.createMenuGUI());
-        this.ctrlGame = new CtrlGame(StaticFactoryEngineGui.createEngineGame(), StaticFactoryGUI.createGameGUI());
-        this.ctrlSettings = new CtrlSettings(StaticFactoryEngineGui.createEngineSettings(), StaticFactoryGUI.createSettingsGUI());
-        this.ctrlSound = new CtrlSound(StaticFactoryEngineGui.createEngineSound(), StaticFactoryGUI.createSoundGUI());
-        this.ctrlHelp = new CtrlHelp(StaticFactoryEngineGui.createEngineHelp(), StaticFactoryGUI.createHelpGUI());
-        this.ctrlPause = new CtrlPause(StaticFactoryEngineGui.createEnginePause(), StaticFactoryGUI.createPauseGUI());
-        this.ctrlDead = new CtrlDead(StaticFactoryEngineGui.createEngineDead(), StaticFactoryGUI.createDeadGUI());
+    public ManagerControllerGUI() {
+        this.ctrlMenu = new ControllerMenu(StaticFactoryEngineGUI.createEngineMenu(), new GUIMenuStandard().create());
+        this.ctrlGame = new ControllerGame(StaticFactoryEngineGUI.createEngineGame(), new GUIGameStandard().create());
+        this.ctrlSettings = new ControllerSettings(StaticFactoryEngineGUI.createEngineSettings(), new GUISettingsStandard().create());
+        this.ctrlSound = new ControllerSound(StaticFactoryEngineGUI.createEngineSound(), new GUISoundStandard().create());
+        this.ctrlHelp = new ControllerHelp(StaticFactoryEngineGUI.createEngineHelp(), new GUIHelpStandard().create());
+        this.ctrlPause = new ControllerPause(StaticFactoryEngineGUI.createEnginePause(), new GUIPauseStandard().create());
+        this.ctrlDead = new ControllerDead(StaticFactoryEngineGUI.createEngineDead(), new GUIDeadStandard().create());
 
         this.managerGui = new HashMap<>();
         this.managerGui.put(this.ctrlMenu.getMainLink(), this.ctrlMenu);
@@ -61,8 +65,7 @@ public class CtrlGUI {
         this.chronology = new ListGUI<>();
 
         this.fosucGUI = new FocusGUI(this);
-        this.logicSwitchMenu = new LogicSwitchMenu();
-        this.logicSwitchGame = new LogicSwitchGame();
+        this.managerVisibility = new ManagerVibility(this.chronology, this.managerGui);
     }
 
     public Map<LinkActionGUI, ControllerGUI> getManagerGui() {
@@ -99,20 +102,20 @@ public class CtrlGUI {
 
     public void assignAllRectangle() {
         this.managerGui.forEach((key, value) -> {
-            value.assignRectangle();
+            value.assignBounds();
         });
     }
 
     public boolean isInGameOver(){
-        return this.chronology.contains(LinkActionGUI.ID_DEAD);
+        return this.chronology.contains(LinkActionGUI.LINK_DEAD);
     }
 
     public boolean isInGame(){
-        return this.chronology.contains(LinkActionGUI.ID_GAME);
+        return this.chronology.contains(LinkActionGUI.LINK_GAME);
     }
 
     public boolean isInPause(){
-        return this.chronology.contains(LinkActionGUI.ID_PAUSE);
+        return this.chronology.contains(LinkActionGUI.LINK_PAUSE);
     }
 
     public void startGUI(){
@@ -123,21 +126,19 @@ public class CtrlGUI {
         this.managerGui.values().forEach(managerGui -> managerGui.getGUI().getBtnActionLinks().forEach(btn ->
                 btn.addActionListener(e -> {
                     if (this.isInPause()) {
-                        this.logicSwitchGame.algorithm(btn.getCurrentLink(), btn.getNextLink(),
-                                this.chronology, this.managerGui);
-//                       this.ctrlGame.setPauseAnimationAllObject(true);
+                        this.managerVisibility.algorithmSwitchNormal(btn.getCurrentLink(), btn.getNextLink());
+                       this.ctrlGame.setPauseAnimationAllObject(true);
                     } else {
-                        this.logicSwitchMenu.algorithm(btn.getCurrentLink(), btn.getNextLink(),
-                                this.chronology, this.managerGui);
+                        this.managerVisibility.algorithmSwitchGame(btn.getCurrentLink(), btn.getNextLink());
                     }
 
-//                    if (this.isInGame()) {
-//                        this.ctrlGame.setPauseAnimationAllObject(false);
-//                    }
+                    if (this.isInGame()) {
+                        this.ctrlGame.setPauseAnimationAllObject(false);
+                    }
         })));
     }
 
-    private void focusGUI(){
+    private void focusGUI() {
         this.managerGui.values().forEach(managerGui ->
                 managerGui.getGUI().addMouseListener(this.fosucGUI));
     }
@@ -155,11 +156,11 @@ public class CtrlGUI {
         return this.chronology.lastElementOfList();
     }
 
-    public CtrlGame getCtrlGame() {
+    public ControllerGame getCtrlGame() {
         return this.ctrlGame;
     }
 
-    public CtrlSound getCtrlSound() {
+    public ControllerSound getCtrlSound() {
         return this.ctrlSound;
     }
 
@@ -168,15 +169,15 @@ public class CtrlGUI {
         this.chronology.lastElementOfList().ifPresent(link -> this.managerGui.get(link).turn(Visibility.HIDDEN));
         this.chronology.lastElementOfList().ifPresent( this.chronology::remove);
         
-        this.chronology.add(LinkActionGUI.ID_DEAD);
-        this.managerGui.get(LinkActionGUI.ID_DEAD).turn(Visibility.VISIBLE);
+        this.chronology.add(LinkActionGUI.LINK_DEAD);
+        this.managerGui.get(LinkActionGUI.LINK_DEAD).turn(Visibility.VISIBLE);
 
         this.ctrlGame.stopTimer();
     }
 
     private void startElementsWhenInGame() {
 
-        this.getLinkBtnFromGUI(LinkActionGUI.ID_MENU, LinkActionGUI.ID_GAME).ifPresent(link -> {
+        this.getLinkBtnFromGUI(LinkActionGUI.LINK_MENU, LinkActionGUI.LINK_GAME).ifPresent(link -> {
             link.addActionListener(e -> {
                 this.ctrlGame.setSkin(this.ctrlSettings.getCurrentSkin());
                 this.ctrlGame.getWorld().getTakeableFactoryThread().start();
@@ -191,7 +192,7 @@ public class CtrlGUI {
     }
 
     private void restartGame() {
-        this.getLinkBtnFromGUI(LinkActionGUI.ID_DEAD, LinkActionGUI.ID_MENU).ifPresent(link -> {
+        this.getLinkBtnFromGUI(LinkActionGUI.LINK_DEAD, LinkActionGUI.LINK_MENU).ifPresent(link -> {
             link.addActionListener(e -> {
                 this.ctrlGame.restartGame();
                 this.managerGui.values().forEach(control ->

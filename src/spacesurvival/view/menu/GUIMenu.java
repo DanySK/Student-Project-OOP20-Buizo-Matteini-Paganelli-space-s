@@ -20,9 +20,9 @@ public interface GUIMenu extends GUI, GraphicsText {
     /**
      * Sets menu links to other GUIs.
      * @param mainAction is connection of the current GUI.
-     * @param linksID is connection of the current GUI.
+     * @param linksAction is connection of the current GUI.
      */
-    void setBtnActions(LinkActionGUI mainAction, List<LinkActionGUI> linksID);
+    void setBtnActions(LinkActionGUI mainAction, List<LinkActionGUI> linksAction);
 
     /**
      * Set the space of the JTextField.

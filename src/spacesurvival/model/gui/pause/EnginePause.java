@@ -36,7 +36,7 @@ public class EnginePause implements EngineGUI {
      * Constructor for a GUI pause model.
      */
     public EnginePause() {
-        this.mainAction = LinkActionGUI.ID_PAUSE;
+        this.mainAction = LinkActionGUI.LINK_PAUSE;
         this.linkButtons = Arrays.asList(LinksPause.values());
         this.visibility = Visibility.HIDDEN;
     }

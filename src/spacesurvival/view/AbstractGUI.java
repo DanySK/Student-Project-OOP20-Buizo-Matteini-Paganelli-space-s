@@ -20,7 +20,7 @@ import javax.swing.border.Border;
 public abstract class AbstractGUI extends JFrame {
     private static final long serialVersionUID = -4633648377297371296L;
     private final JPanelImage panelBackground;
-    private final JPanel panelForeground;
+    private final JPanel panelGlass;
 
 
     @SuppressWarnings({ "unused", "PMD.SingularField" })
@@ -32,9 +32,9 @@ public abstract class AbstractGUI extends JFrame {
     public AbstractGUI() {
         super();
         this.panelBackground = new JPanelImage();
-        this.panelForeground = FactoryGUIs.createPanelTransparent(new BorderLayout());
+        this.panelGlass = FactoryGUIs.createPanelTransparent(new BorderLayout());
         super.setContentPane(this.panelBackground);
-        super.setGlassPane(this.panelForeground);
+        super.setGlassPane(this.panelGlass);
         FactoryGUIs.setDefaultJFrame(this);
     }
 
@@ -53,7 +53,7 @@ public abstract class AbstractGUI extends JFrame {
     public void setBounds(final Rectangle rectangle) {
         super.setBounds(rectangle);
         this.panelBackground.setBounds(rectangle);
-        this.panelForeground.setBounds(rectangle);
+        this.panelGlass.setBounds(rectangle);
     }
 
     /**
@@ -82,15 +82,15 @@ public abstract class AbstractGUI extends JFrame {
      * @param index for added.
      */
     public void addFrontPanel(final Component component, final String index) {
-        this.panelForeground.add(component, index);
+        this.panelGlass.add(component, index);
     }
 
     /**
      * Set visibility of the foreground panel of the GUI.
      * @param visible for visibility panel.
      */
-    public void visibleForegroundPanel(final Visibility visible) {
-        this.panelForeground.setVisible(visible.isVisible());
+    public void setVisibleGlassPanel(final Visibility visible) {
+        this.panelGlass.setVisible(visible.isVisible());
     }
 
     /**

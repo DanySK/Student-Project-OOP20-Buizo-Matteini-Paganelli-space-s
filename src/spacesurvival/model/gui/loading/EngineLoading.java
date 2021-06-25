@@ -29,7 +29,7 @@ public class EngineLoading implements EngineGUI {
      * Constructor for a GUI loading model.
      */
     public EngineLoading() {
-        this.mainAction = LinkActionGUI.ID_LOADING;
+        this.mainAction = LinkActionGUI.LINK_LOADING;
         this.loading = 0;
         this.load = false;
         this.visibility = Visibility.VISIBLE;

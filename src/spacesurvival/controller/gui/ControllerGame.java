@@ -21,14 +21,14 @@ import spacesurvival.view.game.GUIGame;
 import java.awt.event.KeyListener;
 import java.util.List;
 
-public class CtrlGame implements ControllerGUI {
+public class ControllerGame implements ControllerGUI {
     private final EngineGame engine;
     private final GUIGame gui;
     private final SwitchGUI switchGUI;
     private final MovementKeyListener keyListener;
     private final CollisionController controlCollision;
 
-    public CtrlGame(final EngineGame engine, final GUIGame gui) {
+    public ControllerGame(final EngineGame engine, final GUIGame gui) {
         this.engine = engine;
         this.gui = gui;
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
@@ -52,7 +52,7 @@ public class CtrlGame implements ControllerGUI {
     }
 
     @Override
-    public final void assignRectangle() {
+    public final void assignBounds() {
         this.gui.setBoundsGame(this.engine.getRectangle());
     }
 
@@ -132,6 +132,7 @@ public class CtrlGame implements ControllerGUI {
         this.updateCountEnemies();
         this.updateTimer();
         this.updateBulletHUD();
+        this.checkIfPresentBoss();
         this.updateNHeart();
     }
 
@@ -145,6 +146,10 @@ public class CtrlGame implements ControllerGUI {
     public void updateLifeShip() {
         this.engine.setLifeShip(this.engine.getLifeShip() < 0 ? 0 : this.engine.getLifeShip()); 
         this.gui.setLifeShip(this.engine.getLifeShip());
+    }
+
+    public void checkIfPresentBoss() {
+        this.gui.setVisibleLifeBarBoss(this.engine.getBoss().isPresent());
     }
 
     public void updateLifeBoss() {

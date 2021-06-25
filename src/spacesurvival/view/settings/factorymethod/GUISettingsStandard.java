@@ -8,7 +8,7 @@ import spacesurvival.utilities.DesignJComponent;
 import spacesurvival.view.utilities.GraphicsLayoutUtils;
 import spacesurvival.view.settings.FactoryGUISettings;
 import spacesurvival.view.settings.GUISettings;
-import spacesurvival.view.settings.concrete.GUISettingsConcrete;
+import spacesurvival.view.settings.concrete.ConcreteSettingsGUI;
 import spacesurvival.view.utilities.FactoryGUIs;
 
 import java.awt.BorderLayout;
@@ -28,23 +28,14 @@ public class GUISettingsStandard implements FactoryGUISettings {
      */
     @Override
     public GUISettings create() {
-        final GUISettingsConcrete concreteSettings = new GUISettingsConcrete();
+        final ConcreteSettingsGUI concreteSettings = new ConcreteSettingsGUI();
         concreteSettings.setFontTitleGUI(GraphicsLayoutUtils.getFontForTitle(GraphicsLayoutUtils.SIZE_FONT_H2));
         concreteSettings.setFontTitleUnit(GraphicsLayoutUtils.FONT_STANDARD_H4);
         concreteSettings.setFontGUI(GraphicsLayoutUtils.FONT_STANDARD_H5);
         concreteSettings.setForegroundGUI(GraphicsLayoutUtils.COLOR_4);
         concreteSettings.setBorder(GraphicsLayoutUtils.COLOR_4, 3);
         concreteSettings.setImageBackground(Background.MAIN);
-        this.createGraphics(concreteSettings);
-        return concreteSettings;
-    }
 
-    /**
-     * Create graphics compact settings GUI.
-     * 
-     * @param concreteSettings is a settings GUI to create the graphics.
-     */
-    private void createGraphics(final GUISettingsConcrete concreteSettings) {
         concreteSettings.setLayout(new BorderLayout());
 
         concreteSettings.add(FactoryGUIs.encapsulatesInPanelFlow(concreteSettings.getLbTitle()), BorderLayout.NORTH);
@@ -62,5 +53,6 @@ public class GUISettingsStandard implements FactoryGUISettings {
                 FactoryGUIs.encapsulatesInPanelFlow(concreteSettings.getPanelSkin())), DesignJComponent.SETTINGS_INSET), lim);
 
         concreteSettings.add(panelContainPanel, BorderLayout.CENTER);
+        return concreteSettings;
     }
 }
