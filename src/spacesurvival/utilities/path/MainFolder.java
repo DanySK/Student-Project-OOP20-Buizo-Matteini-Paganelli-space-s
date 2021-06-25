@@ -20,7 +20,7 @@ public final class MainFolder {
     /** 
      * Path to game objects folder.
      */
-    public static final String GAME_OBJECT = "gameobject";
+    public static final String GAME_OBJECT = "gameObjects";
     /** 
      * Path to icon folder.
      */

@@ -1,6 +1,6 @@
 package spacesurvival.model.gui.game;
 
-public class Chronometer extends Thread{
+public class Chronometer extends Thread {
     private String timer;
 
     private int seconds;
@@ -8,55 +8,84 @@ public class Chronometer extends Thread{
     private int hours;
 
     private boolean play;
+    private static final int STEP = 60;
 
-    public Chronometer(){
+    public Chronometer() {
         super();
         this.timer = "00:00:00";
         this.play = false;
         this.start();
     }
 
-    public void restart(){
+    /**
+     * Restart the timer.
+     */
+    public void restart() {
         this.seconds = 0;
         this.minutes = 0;
         this.hours = 0;
         this.timer = "00:00:00";
     }
 
-    public String getTimer(){
+    /**
+     * Return a String representing the timer.
+     * 
+     * @return a string representing the current time passed between the start of the game
+     */
+    public String getTimer() {
         return this.timer;
     }
 
-    public void play(){
+    /**
+     * Play the chronometer.
+     * 
+     */
+    public void play() {
         this.play = true;
     }
 
-    public void stopTimer(){
+    /**
+     * Stop the chronometer.
+     * 
+     */
+    public void stopTimer() {
         this.play = false;
     }
 
-    public boolean isPlay(){
+    /**
+     * Return true if the chronometer is running.
+     * 
+     * @return true if is playing
+     * 
+     */
+    public boolean isPlaying() {
         return this.play;
     }
 
 
-    private void incrSecond(){
+    /**
+     * Increment the seconds.
+     */
+    private void incrSecond() {
         this.seconds++;
     }
 
-    private void control60(){
-        if(this.seconds == 60) {
+    /**
+     * Check the accuracy of the time, if sixty seconds add a minute and same for the hours.
+     */
+    private void check() {
+        if (this.seconds == STEP) {
             this.seconds = 0;
             this.minutes++;
         }
 
-        if(this.minutes == 60) {
+        if (this.minutes == STEP) {
             this.minutes = 0;
             this.hours++;
         }
     }
 
-    private String controlFormat(final int number){
+    private String controlFormat(final int number) {
         return number < 10 ? "0" + number : Integer.toString(number);
     }
 
@@ -65,7 +94,7 @@ public class Chronometer extends Thread{
     }
 
 
-    private void pause(final int millis){
+    private void pause(final int millis) {
         try {
             sleep(millis);
         } catch (InterruptedException e) {
@@ -73,19 +102,20 @@ public class Chronometer extends Thread{
         }
     }
 
-    @Override
-    public void run(){
-        while(true){
-                if (this.play) {
-                    this.incrSecond();
-                    this.control60();
-                    this.pause(1000);
-                }
-                this.timer = this.makeFormatTimer(
-                        this.controlFormat(this.hours),
-                        this.controlFormat(this.minutes),
-                        this.controlFormat(this.seconds), ":");
+    /**
+     * Run the chronometer.
+     */
+    public void run() {
+        while (true){
+            if (this.play) {
+                this.incrSecond();
+                this.check();
+                this.pause(1000);
             }
-
+            this.timer = this.makeFormatTimer(
+                    this.controlFormat(this.hours),
+                    this.controlFormat(this.minutes),
+                    this.controlFormat(this.seconds), ":");
+        }
     }
 }

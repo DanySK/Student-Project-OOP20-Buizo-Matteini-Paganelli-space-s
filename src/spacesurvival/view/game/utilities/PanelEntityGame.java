@@ -23,8 +23,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 import java.util.Optional;
 import java.util.Set;
 
@@ -39,13 +37,14 @@ public class PanelEntityGame extends JPanel {
     public static final int HEIGHT_LIFE = 5;
     public static final int DIFFERENCE_HEIGHT_LIFE_BAR = Math.abs(HEIGHT_LIFE_BAR - HEIGHT_LIFE);
 
-    private volatile Map<GameObject, Pair<Image, Image>> gameObjects;
+    private Map<GameObject, Pair<Image, Image>> gameObjects;
     private Optional<World> world;
 
     public PanelEntityGame() {
         super(); 
-        super.setOpaque(false);
-
+        super.setOpaque(true);
+        super.setBackground(new Color(3, 88, 149));
+        //super.setBackground(Background.TRANSPARENT);
         this.gameObjects = new HashMap<>();
         this.world = Optional.empty();
 
@@ -61,15 +60,27 @@ public class PanelEntityGame extends JPanel {
         super.paintComponent(g);
         final Graphics2D g2d = (Graphics2D) g;
 
-        final Iterator<Entry<GameObject, Pair<Image, Image>>> entitiesIterator = this.gameObjects.entrySet().iterator();
+//        final Iterator<Entry<GameObject, Pair<Image, Image>>> entitiesIterator = this.gameObjects.entrySet().iterator();
+//
+//        while (entitiesIterator.hasNext()) {
+//            final Entry<GameObject, Pair<Image, Image>> entity = entitiesIterator.next();
+//            g2d.setTransform(getCorrectAffineTransformFromBoundingBox(entity.getKey())); 
+//            g2d.drawImage(entity.getValue().getX(), 0, 0, null);
+//            g2d.drawImage(entity.getValue().getY(), 0, 0, null);
+//            this.assignLifeBar(entity.getKey(), g2d);
+//        }
 
-        while (entitiesIterator.hasNext()) {
-            final Entry<GameObject, Pair<Image, Image>> entity = entitiesIterator.next();
+        this.gameObjects.entrySet().forEach(entity -> {
             g2d.setTransform(getCorrectAffineTransformFromBoundingBox(entity.getKey())); 
             g2d.drawImage(entity.getValue().getX(), 0, 0, null);
             g2d.drawImage(entity.getValue().getY(), 0, 0, null);
             this.assignLifeBar(entity.getKey(), g2d);
-        }
+        });
+        
+        this.world.get().getAllBullets().forEach(bullet -> {
+            g2d.setTransform(bullet.getTransform());
+            g2d.drawImage(bullet.getImgBody(), 0, 0, null);
+        });
 
     }
 
@@ -113,7 +124,6 @@ public class PanelEntityGame extends JPanel {
     private void updateGameObjects() {
         this.putObjectFromWorld();
         this.deletGameObject();
-
     }
 
     private void putObjectFromWorld() {

@@ -11,6 +11,7 @@ public class PlaySound implements CommandAudio {
      * 
      */
     public void execute(final Sound sound) {
+        System.out.println("SUONO:  " + sound);
         sound.startClip();
     }
 }

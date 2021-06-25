@@ -36,6 +36,9 @@ public class Ammo extends TakeableGameObject {
         this.type = type;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void collided(final World world, final WorldEvent ev) {
         final Optional<EventType> evType = EventType.getEventFromHit(ev);

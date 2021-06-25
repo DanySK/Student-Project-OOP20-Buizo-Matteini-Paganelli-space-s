@@ -41,7 +41,7 @@ public final class SpaceShipSingleton extends FireableObject {
 
     private List<SoundPath> soundQueue = new LinkedList<>();
 
-    // Eager and unique instance of this class for Threadsafing
+    // Eager and unique instance of this class to make it Thread-safe
     private static final SpaceShipSingleton SPACESHIP = new SpaceShipSingleton(
             new EngineImage(ScaleOf.GAME_OBJECT, Screen.WIDTH_FULLSCREEN, AnimationShip.NORMAL0),
             Screen.POINT_CENTER_ABSOLUTE,
@@ -53,7 +53,7 @@ public final class SpaceShipSingleton extends FireableObject {
             LifeUtils.SPACESHIP_LIFE,
             DamageUtils.SPACESHIP_DAMAGE,
             Score.SHIP,
-            Optional.empty(),
+            null,
             new Weapon(),
             new NoFiringLogic()
             );
@@ -63,7 +63,7 @@ public final class SpaceShipSingleton extends FireableObject {
     */
     private SpaceShipSingleton(final EngineImage engineImage, final P2d position, final BoundingBox bb,
             final EventComponent phys, final V2d velocity, final double acceleration, final MovementLogic movementLogic, final int life,
-            final int impactDamage, final int score, final Optional<P2d> target, final Weapon weapon,
+            final int impactDamage, final int score, final P2d target, final Weapon weapon,
             final FiringLogic firingLogic) {
         super(engineImage, position, bb, phys, velocity, acceleration, movementLogic, life, impactDamage, score, target, weapon, firingLogic);
         this.setBoundingBox(RectBoundingBox.createRectBoundingBox(position, engineImage, this.getTransform()));
@@ -117,10 +117,18 @@ public final class SpaceShipSingleton extends FireableObject {
         }
     }
 
+    /**
+     * @return a list of SoundPath that will be added queued in the World.
+     */
     public List<SoundPath> getSoundQueue() {
         return soundQueue;
     }
 
+    /**
+     * Sets a new queue of sounds to be played.
+     * 
+     * @param soundQueue the new list of sounds
+     */
     public void setSoundQueue(final List<SoundPath> soundQueue) {
         this.soundQueue = soundQueue;
     }

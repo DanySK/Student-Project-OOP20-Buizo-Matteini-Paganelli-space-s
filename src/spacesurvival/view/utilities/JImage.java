@@ -6,6 +6,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.net.URL;
+
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -195,6 +197,11 @@ public class JImage extends JComponent {
      * @return Image from path.
      */
     public static Image getImageFromPath(final String path) {
-        return new ImageIcon(ClassLoader.getSystemResource(path)).getImage();
+        System.out.println("PATH   " + path);
+        final URL imgURL = ClassLoader.getSystemResource(path);
+        System.out.println("URL    " + imgURL);
+
+        return new ImageIcon(imgURL).getImage();
+        //return new ImageIcon(ClassLoader.getSystemResource(path)).getImage();
     }
 }

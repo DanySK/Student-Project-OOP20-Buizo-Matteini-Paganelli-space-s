@@ -104,7 +104,7 @@ public class ConcreteGameGUI extends AbstractGUI implements GUIGame {
     @Override
     public final void repaintGameObjects() {
         this.entityPanel.repaint();
-        this.bulletPanel.repaint();
+        //this.bulletPanel.repaint();
     }
 
     @Override

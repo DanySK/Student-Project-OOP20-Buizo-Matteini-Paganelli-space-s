@@ -1,7 +1,5 @@
 package spacesurvival.model.gameobject.moveable;
 
-import java.util.Optional;
-
 import spacesurvival.model.common.P2d;
 import spacesurvival.model.common.V2d;
 import spacesurvival.model.gameobject.GameObject;
@@ -17,13 +15,13 @@ public abstract class MoveableObject extends GameObject {
 
     private V2d velocity;
     private double acceleration;
-    private Optional<P2d> targetPosition;
+    private P2d targetPosition;
     private MovementLogic movementLogic;
     private boolean isMoving;
 
     public MoveableObject(final EngineImage engineImage, final P2d position, final BoundingBox bb,
             final EventComponent eventComponent, final V2d velocity, final double acceleration, final MovementLogic movementLogic,
-            final Optional<P2d> targetPosition) {
+            final P2d targetPosition) {
         super(engineImage, position, bb, eventComponent);
         this.velocity = velocity;
         this.acceleration = acceleration;
@@ -119,7 +117,7 @@ public abstract class MoveableObject extends GameObject {
     /**
      * @return the optional of target position
      */
-    public Optional<P2d> getTargetPosition() {
+    public P2d getTargetPosition() {
         return targetPosition;
     }
 
@@ -128,7 +126,7 @@ public abstract class MoveableObject extends GameObject {
      *
      * @param targetPosition the new target position
      */
-    public void setTargetPosition(final Optional<P2d> targetPosition) {
+    public void setTargetPosition(final P2d targetPosition) {
         this.targetPosition = targetPosition;
     }
 

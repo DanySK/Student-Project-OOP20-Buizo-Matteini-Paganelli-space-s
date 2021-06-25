@@ -20,7 +20,6 @@ public class EngineSettings implements EngineGUI {
      * Dimension of the setting GUI.
      */
     public static final Rectangle RECTANGLE = Screen.RECTANGLE_MEDIUM;
-
     /**
      * Title of the setting GUI.
      */

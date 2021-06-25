@@ -1,5 +1,6 @@
 package spacesurvival.controller.gui;
 
+import spacesurvival.controller.CallerCommandShip;
 import spacesurvival.controller.collision.CollisionController;
 import spacesurvival.controller.gui.command.SwitchGUI;
 import spacesurvival.model.gui.EngineGUI;
@@ -21,12 +22,13 @@ import spacesurvival.view.game.GUIGame;
 import java.awt.event.KeyListener;
 import java.util.List;
 
-public class ControllerGame implements ControllerGUI {
+public class ControllerGame implements ControllerGUI, Controller {
     private final EngineGame engine;
     private final GUIGame gui;
     private final SwitchGUI switchGUI;
     private final MovementKeyListener keyListener;
     private final CollisionController controlCollision;
+    private final CallerCommandShip callerCommandShip;
 
     public ControllerGame(final EngineGame engine, final GUIGame gui) {
         this.engine = engine;
@@ -35,6 +37,7 @@ public class ControllerGame implements ControllerGUI {
         this.keyListener = new MovementKeyListener();
         this.controlCollision = new CollisionController();
         this.engine.setCollisionController(this.controlCollision);
+        this.callerCommandShip = new CallerCommandShip(getShip());
 
         this.switchGUI.turn(this.engine.getVisibility());
     }
@@ -69,6 +72,16 @@ public class ControllerGame implements ControllerGUI {
     @Override
     public final EngineGUI getEngine() {
         return this.engine;
+    }
+    
+    @Override
+    public CallerCommandShip getCallerShip() {
+        return this.callerCommandShip;
+    }
+    
+    @Override
+    public void executeOnShip(final CommandKey cmd) {
+        this.callerCommandShip.execute(cmd);        
     }
 
     @Override
@@ -230,7 +243,7 @@ public class ControllerGame implements ControllerGUI {
         this.engine.setEventListenerInWorld(worldEventListener);
     }
 
-    private MovementKeyListener getMovementKeyListener() {
+    public MovementKeyListener getMovementKeyListener() {
         return this.keyListener;
     }
 
@@ -284,11 +297,11 @@ public class ControllerGame implements ControllerGUI {
         this.engine.increaseLives(amount);
     }
 
-    private boolean damageOverFlow(final int damage) {
+    public boolean damageOverFlow(final int damage) {
         return this.engine.getLifeShip() - damage <= 0;
     }
 
-    private boolean hasLivesShip() {
+    public boolean hasLivesShip() {
         return this.engine.getLives() > 0;
     }
 
@@ -304,7 +317,7 @@ public class ControllerGame implements ControllerGUI {
         this.engine.updateStateWorld();
     }
 
-    private void addKeyListenerShip(final KeyListener keyListener) {
+    public void addKeyListenerShip(final KeyListener keyListener) {
         this.gui.addKeyListenerSpaceShip(keyListener);
     }
 

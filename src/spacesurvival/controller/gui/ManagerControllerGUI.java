@@ -124,7 +124,7 @@ public class ManagerControllerGUI {
     }
 
     private void linksAll() {
-        this.managerGui.values().forEach(managerGui -> managerGui.getGUI().getBtnActionLinks().forEach(btn ->
+        this.managerGui.values().forEach(controllerGui -> controllerGui.getGUI().getBtnActionLinks().forEach(btn ->
                 btn.addActionListener(e -> {
                     if (this.isInPause()) {
                         this.managerVisibility.algorithmSwitchGame(btn.getCurrentLink(), btn.getNextLink());
@@ -144,7 +144,7 @@ public class ManagerControllerGUI {
                 managerGui.getGUI().addMouseListener(this.fosucGUI));
     }
 
-    public Optional<ControllerGUI> getControllerGUIFromGUI(final GUI gui){
+    public Optional<ControllerGUI> getControllerGUIFromGUI(final GUI gui) {
         for (final ControllerGUI ctrl : this.managerGui.values()) {
             if(ctrl.getGUI() == gui) {
                 return Optional.of(ctrl);
@@ -167,7 +167,6 @@ public class ManagerControllerGUI {
     }
 
     public void endGame(){
-        
         this.getCurrentGUI().ifPresent(link -> this.managerGui.get(link).turn(Visibility.HIDDEN));
         this.getCurrentGUI().ifPresent( this.chronology::remove);
         

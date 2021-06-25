@@ -7,6 +7,9 @@ import java.util.List;
 import spacesurvival.model.gameobject.main.Status;
 import spacesurvival.utilities.RandomUtils;
 
+/**
+ * Contains all possible effects applicable to game objects.
+ */
 public enum Effect {
     /**
      * Effect that causes normal status.
