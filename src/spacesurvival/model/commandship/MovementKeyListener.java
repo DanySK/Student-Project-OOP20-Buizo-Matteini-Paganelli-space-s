@@ -5,7 +5,8 @@ import java.awt.event.KeyListener;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import spacesurvival.model.Pair;
+
+import spacesurvival.model.common.Pair;
 import spacesurvival.utilities.CommandKey;
 import spacesurvival.utilities.CommandType;
 

@@ -19,11 +19,11 @@ import javax.swing.border.Border;
  * Implements the basis for each GUI.
  */
 public abstract class AbstractGUI extends JFrame {
-    private static final long serialVersionUID = -4633648377297371296L;
+    private static final long serialVersionUID = 1L;
     private final JPanelImage panelBackground;
+
     private final JPanel panelGlass;
-
-
+   
     @SuppressWarnings({ "unused", "PMD.SingularField" })
     private LinkActionGUI mainAction;
 
@@ -98,11 +98,7 @@ public abstract class AbstractGUI extends JFrame {
      * Close the GUI and destroyed JFrame.
      */
     public void close() {
-//        this.setVisible(false);
-//        this.dispose();
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-
-        //System.exit(0);
     }
 
 }

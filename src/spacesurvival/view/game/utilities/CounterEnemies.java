@@ -7,10 +7,14 @@ import javax.swing.*;
 import java.awt.*;
 
 public class CounterEnemies extends JPanel {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     private final JLabel stringEnemies;
     private final JLabel counter;
 
-    public CounterEnemies(){
+    public CounterEnemies() {
         super(new FlowLayout());
         super.setOpaque(false);
 
@@ -22,19 +26,39 @@ public class CounterEnemies extends JPanel {
                 FactoryGUIs.INSET_H3));
     }
 
-    public void setCounter(final long count){
-        this.counter.setText(Long.toString(count));
+    /**
+     * Set the counter of enemies in HUD from int parameter.
+     * 
+     * @param count the int representing the number of current enemies
+     */
+    public void setCounter(final int count) {
+        this.counter.setText(Integer.toString(count));
     }
 
-    public void setCounter(final String count){
+    /**
+     * Set the counter of enemies in HUD from string parameter.
+     * 
+     * @param count the string representing the number of current enemies
+     */
+    public void setCounter(final String count) {
         this.counter.setText(count);
     }
 
+    /**
+     * Set the font to all the HUD.
+     * 
+     * @param font to set
+     */
     public void setFontAll(final Font font) {
         this.stringEnemies.setFont(font);
         this.counter.setFont(font);
     }
 
+    /**
+     * Set the foreground color of the text to all the HUD.
+     * 
+     * @param color to set
+     */
     public void setForegroundAll(final Color color) {
         this.stringEnemies.setForeground(color);
         this.counter.setForeground(color);

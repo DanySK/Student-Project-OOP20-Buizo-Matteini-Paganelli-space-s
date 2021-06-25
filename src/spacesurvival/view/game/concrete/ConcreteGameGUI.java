@@ -25,7 +25,7 @@ import java.awt.event.KeyListener;
 import java.util.List;
 
 public class ConcreteGameGUI extends AbstractGUI implements GUIGame {
-    private static final long serialVersionUID = 1588822389694751549L;
+    private static final long serialVersionUID = 1L;
 
     private final Score score;
     private final RoundTimer roundTimer;
@@ -123,7 +123,7 @@ public class ConcreteGameGUI extends AbstractGUI implements GUIGame {
     }
 
     @Override
-    public final void setNEnemies(final long count) {
+    public final void setNEnemies(final int count) {
         this.counterEnemies.setCounter(count);
     }
 

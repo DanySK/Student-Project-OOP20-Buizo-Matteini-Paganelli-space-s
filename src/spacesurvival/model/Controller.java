@@ -1,13 +1,11 @@
-package spacesurvival.controller.gui;
+package spacesurvival.model;
 
 import java.awt.event.KeyListener;
 import java.util.List;
-
 import spacesurvival.controller.CallerCommandShip;
 import spacesurvival.controller.collision.CollisionController;
-import spacesurvival.model.Pair;
-import spacesurvival.model.World;
 import spacesurvival.model.commandship.MovementKeyListener;
+import spacesurvival.model.common.Pair;
 import spacesurvival.model.gameobject.fireable.SpaceShipSingleton;
 import spacesurvival.model.gui.settings.SkinSpaceShip;
 import spacesurvival.model.worldevent.WorldEventListener;
@@ -221,7 +219,7 @@ public interface Controller {
      *
      *@param score the score to increase.
      */
-    void incrScore(long score);
+    void incrScore(int score);
 
     /**
      * Decrease the life of the SpaceShipSingleton of the passed damage.

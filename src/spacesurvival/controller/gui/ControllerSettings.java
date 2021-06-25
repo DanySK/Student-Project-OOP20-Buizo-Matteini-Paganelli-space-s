@@ -134,8 +134,8 @@ public class ControllerSettings implements ControllerGUI {
     private ActionListener changeSkin() {
         return e -> {
             final JButton btn = (JButton) e.getSource();
-            ControllerSettings.this.changeSkinWithDir(btn.getText());
-            ControllerSettings.this.gui.setSkinSpaceShip(ControllerSettings.this.engine.getEngineSkinShip());
+            this.changeSkinWithDir(btn.getText());
+            this.gui.setSkinSpaceShip(this.engine.getEngineSkinShip());
         };
     }
 

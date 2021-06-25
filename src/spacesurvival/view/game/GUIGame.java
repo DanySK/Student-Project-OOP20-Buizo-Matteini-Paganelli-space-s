@@ -46,7 +46,7 @@ public interface GUIGame extends GUI, GraphicsText {
 
     void setRound(int round);
 
-    void setNEnemies(long count);
+    void setNEnemies(int count);
 
     void setNHeart(int nHeart);
 

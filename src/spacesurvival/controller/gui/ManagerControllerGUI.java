@@ -128,6 +128,7 @@ public class ManagerControllerGUI {
                 btn.addActionListener(e -> {
                     if (this.isInPause()) {
                         this.managerVisibility.algorithmSwitchGame(btn.getCurrentLink(), btn.getNextLink());
+
                        this.ctrlGame.setPauseAnimationAllObject(true);
                     } else {
                         this.managerVisibility.algorithmSwitchNormal(btn.getCurrentLink(), btn.getNextLink());
@@ -202,7 +203,7 @@ public class ManagerControllerGUI {
         });
     }
 
-    private Optional<ButtonLink> getLinkBtnFromGUI(final LinkActionGUI gui, final LinkActionGUI btn){
+    private Optional<ButtonLink> getLinkBtnFromGUI(final LinkActionGUI gui, final LinkActionGUI btn) {
         for (final ControllerGUI ctrl : this.managerGui.values()) {
             if (ctrl.getMainLink().equals(gui)) {
                 for (final ButtonLink link :  ctrl.getGUI().getBtnActionLinks()) {

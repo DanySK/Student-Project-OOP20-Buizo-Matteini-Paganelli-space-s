@@ -638,7 +638,7 @@ public class World {
     /**
      * @return the number of enemies in the world
      */
-    public long getCountEnemies() {
+    public int getCountEnemies() {
         return this.fireEnemies.size() 
                 + this.chaseEnemies.size() 
                 + (this.boss.isPresent() ? 1 : 0);

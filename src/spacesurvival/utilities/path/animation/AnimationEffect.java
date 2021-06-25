@@ -5,7 +5,7 @@ import spacesurvival.utilities.path.MainFolder;
 import java.util.List;
 
 public final class AnimationEffect {
-    
+
     /** 
      * Path of burn effect type folder.
      */
@@ -108,7 +108,6 @@ public final class AnimationEffect {
     public static final List<String> LIST_ELECTRIC = List.of(ELECTRIC0, ELECTRIC1, ELECTRIC2, ELECTRIC3, ELECTRIC4, ELECTRIC5,
             ELECTRIC6, ELECTRIC7, ELECTRIC8, ELECTRIC9, ELECTRIC10, ELECTRIC11);
 
-    
     /** 
      * 1° frame path healed effect.
      */
@@ -142,9 +141,8 @@ public final class AnimationEffect {
     /** 
      * Sequence frame for healed effect.
      */
-    public static final List<String> LIST_HEALED = List.of(HEALED0, HEALED1, HEALED2, HEALED3, HEALED4,HEALED5);
+    public static final List<String> LIST_HEALED = List.of(HEALED0, HEALED1, HEALED2, HEALED3, HEALED4, HEALED5);
 
-    
     /** 
      * 1° frame path burn effect.
      */
@@ -249,9 +247,8 @@ public final class AnimationEffect {
      * Sequence frame for burn effect.
      */
     public static final List<String> LIST_BURN = List.of(BURN0, BURN1, BURN2, BURN3, BURN4, BURN5, BURN6, BURN7, BURN8,
-            BURN9, BURN10, BURN11, BURN12, BURN13, BURN14, BURN15, BURN16, BURN17, BURN18,BURN19);
+            BURN9, BURN10, BURN11, BURN12, BURN13, BURN14, BURN15, BURN16, BURN17, BURN18, BURN19);
 
-    
     /** 
      * 1° frame path invincible effect.
      */
@@ -545,7 +542,7 @@ public final class AnimationEffect {
      * Sequence frame for normal effect.
      */
     public static final List<String> LIST_NORMAL = List.of(NORMAL0);
-    
+
     /** 
      * Empty constructor.
      */

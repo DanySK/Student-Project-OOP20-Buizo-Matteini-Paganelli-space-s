@@ -2,7 +2,6 @@ package spacesurvival.utilities.dimension;
 
 import spacesurvival.model.common.P2d;
 import spacesurvival.utilities.SystemVariables;
-
 import java.awt.Point;
 import java.awt.Dimension;
 import java.awt.Rectangle;

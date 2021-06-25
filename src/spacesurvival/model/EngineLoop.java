@@ -10,6 +10,7 @@ import spacesurvival.controller.gui.ControllerGame;
 import spacesurvival.controller.gui.ControllerSound;
 import spacesurvival.model.collision.event.DeadEvent;
 import spacesurvival.model.common.P2d;
+import spacesurvival.model.common.Pair;
 import spacesurvival.model.gameobject.fireable.SpaceShipSingleton;
 import spacesurvival.model.gameobject.moveable.MoveableObject;
 import spacesurvival.model.worldevent.WorldEvent;
@@ -107,6 +108,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
      * Updates all events and game states.
      */
     protected final void updateGame() {
+        this.controlGame.startTimer();
         this.controlGame.updateStateWorld();
         this.checkEvents(); 
         this.checkGameObjectsDead();
@@ -146,6 +148,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
      * Check all sound effects and and starts them.
      */
     protected void checkSoundEffects() {
+        System.out.println(this.controlGame.getShip().getSoundQueue());
         this.controlGame.getWorld().getSoundQueue().addAll(this.controlGame.getShip().getSoundQueue());
         this.controlGame.getWorld().getSoundQueue().forEach(this::playEffect);
         this.controlGame.getWorld().getSoundQueue().clear();

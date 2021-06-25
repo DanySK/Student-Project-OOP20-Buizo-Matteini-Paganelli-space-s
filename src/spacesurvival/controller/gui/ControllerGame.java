@@ -5,12 +5,13 @@ import spacesurvival.controller.collision.CollisionController;
 import spacesurvival.controller.gui.command.SwitchGUI;
 import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
-import spacesurvival.model.gui.game.EngineGame;
+import spacesurvival.model.gui.game.Engine;
 import spacesurvival.model.gui.settings.SkinSpaceShip;
 import spacesurvival.model.worldevent.WorldEventListener;
-import spacesurvival.model.Pair;
+import spacesurvival.model.Controller;
 import spacesurvival.model.World;
 import spacesurvival.model.commandship.MovementKeyListener;
+import spacesurvival.model.common.Pair;
 import spacesurvival.model.gameobject.fireable.SpaceShipSingleton;
 import spacesurvival.utilities.LinkActionGUI;
 import spacesurvival.utilities.CommandKey;
@@ -23,14 +24,14 @@ import java.awt.event.KeyListener;
 import java.util.List;
 
 public class ControllerGame implements ControllerGUI, Controller {
-    private final EngineGame engine;
+    private final Engine engine;
     private final GUIGame gui;
     private final SwitchGUI switchGUI;
     private final MovementKeyListener keyListener;
     private final CollisionController controlCollision;
     private final CallerCommandShip callerCommandShip;
 
-    public ControllerGame(final EngineGame engine, final GUIGame gui) {
+    public ControllerGame(final Engine engine, final GUIGame gui) {
         this.engine = engine;
         this.gui = gui;
         this.switchGUI = new SwitchGUI(this.engine, this.gui);
@@ -42,92 +43,156 @@ public class ControllerGame implements ControllerGUI, Controller {
         this.switchGUI.turn(this.engine.getVisibility());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void assignLinks() {
         this.gui.setMainAction(this.engine.getMainLink());
         this.gui.setIdButtons(this.engine.getMainLink(), this.engine.getLinks());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void assignTexts() {
         this.gui.setMaxLifeBoss(LifeUtils.BOSS_LIFE);
         this.gui.setMaxLifeShip(LifeUtils.SPACESHIP_LIFE);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void assignBounds() {
         this.gui.setBoundsGame(this.engine.getRectangle());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final LinkActionGUI getMainLink() {
         return this.engine.getMainLink();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final GUI getGUI() {
         return this.gui;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final EngineGUI getEngine() {
         return this.engine;
     }
-    
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CallerCommandShip getCallerShip() {
         return this.callerCommandShip;
     }
-    
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void executeOnShip(final CommandKey cmd) {
-        this.callerCommandShip.execute(cmd);        
+        this.callerCommandShip.execute(cmd);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final boolean isVisibility() {
         return this.engine.isVisible();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void turn(final Visibility visibility) {
         this.switchGUI.turn(visibility);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void changeVisibility() {
         this.switchGUI.changeVisibility();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void closeGUI() {
         this.gui.close();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public CollisionController getControllerCollision() {
         return this.controlCollision;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void setPauseAnimationAllObject(final boolean isPause) {
         this.engine.setPauseAnimationAllObject(isPause);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void updateScore() {
         this.gui.setScore(this.engine.getScore());
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void updateRound() {
         this.gui.setRound(this.engine.getRound());
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void updateCountEnemies() {
         this.gui.setNEnemies(this.engine.getCountEnemies());
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void updateTimer() {
         this.gui.setTimer(this.engine.getTimer());
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void updateBulletHUD() {
         if (this.engine.getAmmoTypeHUD() != this.engine.getAmmoTypeShip()) {
             this.engine.assignBulletShipInHUD();
@@ -135,10 +200,18 @@ public class ControllerGame implements ControllerGUI, Controller {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void updateNHeart() {
         this.gui.setNHeart(this.engine.getLives());
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void initHUD() {
         this.updateScore();
         this.updateRound();
@@ -149,6 +222,10 @@ public class ControllerGame implements ControllerGUI, Controller {
         this.updateNHeart();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void updateHUD() {
         this.updateTimer();
         this.updateLifeShip();
@@ -156,6 +233,10 @@ public class ControllerGame implements ControllerGUI, Controller {
         this.updateBulletHUD();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void updateLifeShip() {
         this.engine.setLifeShip(this.engine.getLifeShip() < 0 ? 0 : this.engine.getLifeShip()); 
         this.gui.setLifeShip(this.engine.getLifeShip());
@@ -165,12 +246,20 @@ public class ControllerGame implements ControllerGUI, Controller {
         this.gui.setVisibleLifeBarBoss(this.engine.getBoss().isPresent());
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void updateLifeBoss() {
         this.engine.getBoss().ifPresent(boss -> {
             this.gui.setLifeBoss(boss.getLife());
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void updateRoundState() {
         if (this.engine.getCountEnemies() == 0) {
             this.engine.incrRound();
@@ -180,10 +269,18 @@ public class ControllerGame implements ControllerGUI, Controller {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void setVisibleLifeBarBoss(final boolean visible) {
         this.gui.setVisibleLifeBarBoss(visible);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public final void createNewEntities() {
         int asteroidsNumber = this.engine.getRound() * RoundUtils.ASTEROID_INCREMENT_PER_ROUND;
         if (asteroidsNumber > RoundUtils.MAX_ASTEROID_PER_ROUND) {
@@ -217,61 +314,107 @@ public class ControllerGame implements ControllerGUI, Controller {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public final void assignWorld() {
         this.gui.setWorld(this.engine.getWorld());
         this.engine.getWorld().getBoss().ifPresent(boss -> this.setVisibleLifeBarBoss(true));
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public final void startTimer() {
         this.engine.startTimer();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public final void stopTimer() {
         this.engine.stopTimer();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public final World getWorld() {
         return this.engine.getWorld();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public final SpaceShipSingleton getShip() {
         return this.engine.getShip();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public final void setEventListenerInWorld(final WorldEventListener worldEventListener) {
         this.engine.setEventListenerInWorld(worldEventListener);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public MovementKeyListener getMovementKeyListener() {
         return this.keyListener;
     }
 
     /**
-     * Return the command list of the ship composed by the input key code and the command type.
-     * 
-     * @return the command list of the ship
+     * {@inheritDoc}
      */
+    @Override
     public List<Pair<CommandKey, CommandType>> getSpaceShipCommandList() {
         return this.keyListener.getSpaceShipCommandList();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void clearSpaceShipCommandList() {
         this.keyListener.clearSpaceShipCommandList();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public final void assignMovementListenerInShip() {
         this.addKeyListenerShip(this.getMovementKeyListener());
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public final boolean isGameOver() {
         return this.engine.isGameOver();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public final void restartGame() {
         this.engine.restartGame();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public final void decreaseLife(final int damage) {
         if (this.damageOverFlow(damage) && this.hasLivesShip()) {
             this.engine.resetLifeShip();
@@ -281,6 +424,10 @@ public class ControllerGame implements ControllerGUI, Controller {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public final void increaseLife(final int healAmount) {
         final int totalLife = this.getShip().getLife() + healAmount;
         int newLife = totalLife % LifeUtils.SPACESHIP_LIFE;
@@ -293,34 +440,66 @@ public class ControllerGame implements ControllerGUI, Controller {
         increaseLives(newLives);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public final void increaseLives(final int amount) {
         this.engine.increaseLives(amount);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public boolean damageOverFlow(final int damage) {
         return this.engine.getLifeShip() - damage <= 0;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public boolean hasLivesShip() {
         return this.engine.getLives() > 0;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public final void repaintWorld() {
         this.gui.repaintGameObjects();
     }
 
-    public final void incrScore(final long score) {
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public final void incrScore(final int score) {
         this.engine.incrScore(score);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void updateStateWorld() {
         this.engine.updateStateWorld();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void addKeyListenerShip(final KeyListener keyListener) {
         this.gui.addKeyListenerSpaceShip(keyListener);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void setSkin(final SkinSpaceShip currentSkin) {
         this.engine.setSkin(currentSkin);
     }

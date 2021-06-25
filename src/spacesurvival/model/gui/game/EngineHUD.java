@@ -3,14 +3,14 @@ package spacesurvival.model.gui.game;
 import spacesurvival.model.gameobject.takeable.ammo.AmmoType;
 
 public class EngineHUD {
-    public static final long INIT_SCORE = 0L;
+    public static final int INIT_SCORE = 0;
     public static final int INIT_ROUND = 1;
     public static final int INIT_HEART = 3;
     public static final int DECR_VALUE = 1;
     public static final int DEAD = 0;
 
     private final Chronometer chronometer;
-    private long score;
+    private int score;
     private int round;
     private int lives;
     private AmmoType ammoType;
@@ -22,7 +22,7 @@ public class EngineHUD {
         this.lives = INIT_HEART;
     }
 
-    public long getScore() {
+    public int getScore() {
         return this.score;
     }
 
@@ -57,12 +57,6 @@ public class EngineHUD {
     public void decreaseLives() {
         this.lives -= DECR_VALUE;
     }
-    
-    
-
-//    public boolean isGameOver(){
-//        return this.lives == DEAD;
-//    }
 
     public AmmoType getAmmoType() {
         return this.ammoType;
