@@ -23,6 +23,10 @@ import spacesurvival.view.game.GUIGame;
 import java.awt.event.KeyListener;
 import java.util.List;
 
+/**
+ * The controller of the game, impeìlementing the Controller and the Controller GUI.
+ *
+ */
 public class ControllerGame implements ControllerGUI, Controller {
     private final Engine engine;
     private final GUIGame gui;
