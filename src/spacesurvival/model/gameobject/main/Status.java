@@ -7,8 +7,7 @@ import spacesurvival.utilities.path.animation.AnimationEffect;
 import java.util.List;
 
 /**
- * 
- * Enum of possible status
+ * All types of possible status.
  */
 public enum Status {
     /**
