@@ -11,18 +11,25 @@ import spacesurvival.view.utilities.GraphicsLayoutUtils;
 import spacesurvival.view.utilities.FactoryGUIs;
 
 public class Score extends JPanel {
+    private String namePlayer;
     private final JLabel stringScore;
     private final JLabel score;
 
-    public Score(){
+    public Score() {
         super(new FlowLayout()); {{ setOpaque(false); }}
-
+        this.namePlayer = " ";
         this.stringScore = new JLabel(GraphicsLayoutUtils.SCORE_STRING);
         this.score = new JLabel();
 
         super.add(FactoryGUIs.createPanelGridBagUnionComponentsHorizontal(java.util.List.of(
                 this.stringScore, this.score), FactoryGUIs.INSET_H2));
     }
+    
+    public void setNamePlayer(final String namePlayer) {
+        this.namePlayer = namePlayer;
+        this.stringScore.setText(namePlayer + " " + GraphicsLayoutUtils.SCORE_STRING);
+    }
+    
 
     public void setScore(final long score) {
         this.score.setText(Long.toString(score));

@@ -143,4 +143,12 @@ public class ConcreteMenuGUI extends AbstractGUI implements GUIMenu {
         return "GUIMenuConcrete [lbTitle=" + lbTitle + ", txfNamePlayer=" + txfNamePlayer + ", links=" + links + "]";
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getTextNamePalyer() {
+        return this.txfNamePlayer.getText();
+    }
+
 }

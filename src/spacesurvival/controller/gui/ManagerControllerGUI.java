@@ -3,7 +3,6 @@ package spacesurvival.controller.gui;
 import spacesurvival.controller.gui.focusgui.FocusGUI;
 import spacesurvival.controller.gui.logicswitch.LogicSwitchGUI;
 import spacesurvival.controller.gui.logicswitch.ManagerVibility;
-import spacesurvival.controller.utilities.ListGUI;
 import spacesurvival.model.gui.StaticFactoryEngineGUI;
 import spacesurvival.view.GUI;
 import spacesurvival.view.dead.factorymethod.GUIDeadStandard;
@@ -20,6 +19,8 @@ import spacesurvival.utilities.path.Background;
 import spacesurvival.view.utilities.ButtonLink;
 
 import java.awt.event.MouseListener;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -38,7 +39,7 @@ public class ManagerControllerGUI {
     private final ControllerPause ctrlPause;
     private final ControllerDead ctrlDead;
 
-    private final ListGUI<LinkActionGUI> chronology;
+    private final List<LinkActionGUI> chronology;
     private final Map<LinkActionGUI, ControllerGUI> managerGui;
 
     private final LogicSwitchGUI managerVisibility;
@@ -62,17 +63,17 @@ public class ManagerControllerGUI {
         this.managerGui.put(this.ctrlPause.getMainLink(), this.ctrlPause);
         this.managerGui.put(this.ctrlDead.getMainLink(), this.ctrlDead);
 
-        this.chronology = new ListGUI<>();
+        this.chronology = new ArrayList<>();
 
         this.fosucGUI = new FocusGUI(this);
-        this.managerVisibility = new ManagerVibility(this.chronology, this.managerGui);
+        this.managerVisibility = new ManagerVibility(this);
     }
 
     public Map<LinkActionGUI, ControllerGUI> getManagerGui() {
         return this.managerGui;
     }
 
-    public ListGUI<LinkActionGUI> getChronology() {
+    public List<LinkActionGUI> getChronology() {
         return this.chronology;
     }
 
@@ -152,8 +153,9 @@ public class ManagerControllerGUI {
         return Optional.empty();
     }
 
-    public Optional<LinkActionGUI> getCurrentGUI(){
-        return this.chronology.lastElementOfList();
+    public Optional<LinkActionGUI> getCurrentGUI() {
+        final int lastIndex = 1;
+        return Optional.of(this.chronology.get(this.chronology.size() - lastIndex));
     }
 
     public ControllerGame getCtrlGame() {
@@ -166,8 +168,8 @@ public class ManagerControllerGUI {
 
     public void endGame(){
         
-        this.chronology.lastElementOfList().ifPresent(link -> this.managerGui.get(link).turn(Visibility.HIDDEN));
-        this.chronology.lastElementOfList().ifPresent( this.chronology::remove);
+        this.getCurrentGUI().ifPresent(link -> this.managerGui.get(link).turn(Visibility.HIDDEN));
+        this.getCurrentGUI().ifPresent( this.chronology::remove);
         
         this.chronology.add(LinkActionGUI.LINK_DEAD);
         this.managerGui.get(LinkActionGUI.LINK_DEAD).turn(Visibility.VISIBLE);
@@ -176,9 +178,9 @@ public class ManagerControllerGUI {
     }
 
     private void startElementsWhenInGame() {
-
         this.getLinkBtnFromGUI(LinkActionGUI.LINK_MENU, LinkActionGUI.LINK_GAME).ifPresent(link -> {
             link.addActionListener(e -> {
+                this.ctrlGame.setNamePlayer(this.ctrlMenu.getNamePlayer());
                 this.ctrlGame.setSkin(this.ctrlSettings.getCurrentSkin());
                 this.ctrlGame.getWorld().getTakeableFactoryThread().start();
                 this.managerGui.values().forEach(control -> {
@@ -217,11 +219,9 @@ public class ManagerControllerGUI {
     public void assignSoundLoop() {
         this.managerGui.values().forEach(ctrl -> ctrl.getGUI().getBtnActionLinks().forEach(
                 btn -> btn.addActionListener(l -> {
-                    if(btn.getCurrentLink() == LinkActionGUI.LINK_PAUSE && btn.getNextLink() == LinkActionGUI.LINK_BACK) {
-                        this.ctrlSound.checkChangeSoundLoop(LinkActionGUI.LINK_GAME);
-                    } else {
-                        this.ctrlSound.checkChangeSoundLoop(btn.getNextLink());
-                    }
+                    this.ctrlSound.checkChangeSoundLoop(
+                            btn.getCurrentLink().equals(LinkActionGUI.LINK_PAUSE) 
+                            && btn.getNextLink().equals(LinkActionGUI.LINK_BACK) ? LinkActionGUI.LINK_GAME : btn.getNextLink());
                 })
         ));
     }

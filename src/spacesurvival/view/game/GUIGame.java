@@ -33,6 +33,8 @@ public interface GUIGame extends GUI, GraphicsText {
     PanelEntityGame getPanelEntity();
 
     PanelBulletGame getPanelBullet();
+    
+    void setNamePlayer(String namePlayer);
 
     void setWorld(World world);
 

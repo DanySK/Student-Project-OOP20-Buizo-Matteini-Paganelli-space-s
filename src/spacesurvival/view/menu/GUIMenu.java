@@ -29,4 +29,10 @@ public interface GUIMenu extends GUI, GraphicsText {
      * @param sizeColumn for space JTextField.
      */
     void setColumnsNamePlayer(int sizeColumn);
+    
+    /**
+     * Get text of name' player.
+     * @return text of name' player.
+     */
+    String getTextNamePalyer();
 }

@@ -119,4 +119,13 @@ public class ControllerMenu implements ControllerGUI {
     public String toString() {
         return "CtrlMenu [gui=" + gui + ", engine=" + engine + ", switchGUI=" + switchGUI + "]";
     }
+
+    /**
+     * Get text name's Player.
+     * @return text of name's player.
+     */
+    public String getNamePlayer() {
+        this.engine.setNamePlayer(this.gui.getTextNamePalyer());
+        return this.engine.getNamePlayer();
+    }
 }

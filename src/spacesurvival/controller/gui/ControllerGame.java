@@ -312,4 +312,8 @@ public class ControllerGame implements ControllerGUI {
         this.engine.setSkin(currentSkin);
     }
 
+    public void setNamePlayer(final String namePlayer) {
+        this.gui.setNamePlayer(namePlayer);
+    }
+
 }

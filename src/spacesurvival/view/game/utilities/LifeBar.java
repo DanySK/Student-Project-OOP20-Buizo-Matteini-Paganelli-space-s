@@ -16,11 +16,14 @@ public class LifeBar extends JProgressBar {
         this.logicColor = logicColor;
     }
 
+    /**
+     * Set value of progress bar.
+     * @param life
+     */
     public void setLife(final int life) {
         super.setValue(life);
         super.setForeground(this.logicColor.setColor(LifeUtils.SPACESHIP_LIFE, life));
-    }
-
+    } 
 
     @Override
     public String getString() {

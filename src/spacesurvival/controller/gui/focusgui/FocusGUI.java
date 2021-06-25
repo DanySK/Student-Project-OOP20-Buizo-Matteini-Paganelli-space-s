@@ -33,7 +33,7 @@ public class FocusGUI implements MouseListener {
         final int indexDifferent = 1;
 
         if(id.getStateLevel().equals(StateLevelGUI.FOREGROUND) &&
-                this.control.getChronology().lastElementOfList().get().getStateLevel().equals(StateLevelGUI.OVERLAY)){
+                this.control.getCurrentGUI().get().getStateLevel().equals(StateLevelGUI.OVERLAY)){
 
             int sizeList = this.control.getChronology().size() - indexDifferent;
             while(this.control.getChronology().get(sizeList).getStateLevel().equals(StateLevelGUI.OVERLAY) ){

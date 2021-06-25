@@ -173,7 +173,11 @@ public class ConcreteGameGUI extends AbstractGUI implements GUIGame {
         this.lifeBoss.setBackground(color);
     }
 
-
+    @Override
+    public void setNamePlayer(final String namePlayer) {
+        this.score.setNamePlayer(namePlayer);
+    }
+    
     public LifeBar getLifeBoss() {
         return this.lifeBoss;
     }
