@@ -49,7 +49,7 @@ public class ControllerGame implements ControllerGUI, Controller {
     @Override
     public void assignLinks() {
         this.gui.setMainAction(this.engine.getMainLink());
-        this.gui.setIdButtons(this.engine.getMainLink(), this.engine.getLinks());
+        this.gui.setBtnActions(this.engine.getMainLink(), this.engine.getLinks());
     }
 
     /**
@@ -186,7 +186,7 @@ public class ControllerGame implements ControllerGUI, Controller {
      */
     @Override
     public void updateTimer() {
-        this.gui.setTimer(this.engine.getTimer());
+        this.gui.setTextTimer(this.engine.getTimer());
     }
 
     /**

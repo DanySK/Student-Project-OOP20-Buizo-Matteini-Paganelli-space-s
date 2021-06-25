@@ -4,10 +4,17 @@ import spacesurvival.controller.gui.ManagerControllerGUI;
 import spacesurvival.model.gui.Visibility;
 import spacesurvival.utilities.LinkActionGUI;
 
-public class ManagerVibility implements LogicSwitchGUI {
+/**
+ * Implement the different logics for changing GUI.
+ */
+public class ManagerVisibility implements LogicSwitchGUI {
     private final ManagerControllerGUI managerControllerGUI;
 
-    public ManagerVibility(final ManagerControllerGUI managerControllerGUI) {
+    /**
+     * Initialize focus from ManagerControllerGUI.
+     * @param managerControllerGUI is a ManagerControllerGUI.
+     */
+    public ManagerVisibility(final ManagerControllerGUI managerControllerGUI) {
         this.managerControllerGUI = managerControllerGUI;
     }
 
@@ -24,14 +31,14 @@ public class ManagerVibility implements LogicSwitchGUI {
             this.managerControllerGUI.getChronology().remove(actionCurrent);
             this.managerControllerGUI.getManagerGui().get(actionCurrent).turn(Visibility.HIDDEN);
             break;
-
         case LINK_BACK:
             this.managerControllerGUI.getManagerGui().get(actionCurrent).turn(Visibility.HIDDEN);
             this.managerControllerGUI.getCurrentGUI()
             .ifPresent(link -> this.managerControllerGUI.getChronology().remove(link));
-  
             break;
-
+        case LINK_QUIT:
+            this.managerControllerGUI.getManagerGui().values().forEach(control -> control.closeGUI());
+            break;
         default:
             this.managerControllerGUI.getChronology().add(actionNext);
             this.managerControllerGUI.getManagerGui().get(actionNext).turn(Visibility.VISIBLE);
@@ -45,7 +52,7 @@ public class ManagerVibility implements LogicSwitchGUI {
     @Override
     public void algorithmSwitchGame(final LinkActionGUI actionCurrent, final LinkActionGUI actionNext) {
         switch (actionNext) {
-        case LINK_PAUSE:            
+        case LINK_PAUSE:
             if (!this.managerControllerGUI.getCurrentGUI().get().equals(LinkActionGUI.LINK_PAUSE)) {
                 this.managerControllerGUI.getChronology().add(actionNext);
             } else {
@@ -55,21 +62,21 @@ public class ManagerVibility implements LogicSwitchGUI {
             this.managerControllerGUI.getManagerGui().get(actionNext).changeVisibility(); break;
 
         case LINK_BACK:
-                
             this.managerControllerGUI.getManagerGui().get(actionCurrent).turn(Visibility.HIDDEN);
             this.managerControllerGUI.getCurrentGUI()
                 .ifPresent(link -> this.managerControllerGUI.getChronology().remove(link));
-            
             this.managerControllerGUI.getCurrentGUI()
                 .ifPresent(link -> this.managerControllerGUI.getManagerGui().get(link).turn(Visibility.VISIBLE));
             break;
-
+        case LINK_QUIT:
+            this.managerControllerGUI.getManagerGui().values().forEach(control -> control.closeGUI());
+            break;
         default:
             this.managerControllerGUI.getChronology().add(actionNext);
             this.managerControllerGUI.getManagerGui().get(actionNext).turn(Visibility.VISIBLE);
             this.managerControllerGUI.getManagerGui().get(actionCurrent).turn(Visibility.HIDDEN);
             break;
-    }
+        }
 
     }
 }

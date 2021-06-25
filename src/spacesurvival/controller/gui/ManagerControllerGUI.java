@@ -2,7 +2,7 @@ package spacesurvival.controller.gui;
 
 import spacesurvival.controller.gui.focusgui.FocusGUI;
 import spacesurvival.controller.gui.logicswitch.LogicSwitchGUI;
-import spacesurvival.controller.gui.logicswitch.ManagerVibility;
+import spacesurvival.controller.gui.logicswitch.ManagerVisibility;
 import spacesurvival.model.gui.StaticFactoryEngineGUI;
 import spacesurvival.view.GUI;
 import spacesurvival.view.dead.factorymethod.GUIDeadStandard;
@@ -66,7 +66,7 @@ public class ManagerControllerGUI {
         this.chronology = new ArrayList<>();
 
         this.fosucGUI = new FocusGUI(this);
-        this.managerVisibility = new ManagerVibility(this);
+        this.managerVisibility = new ManagerVisibility(this);
     }
 
     public Map<LinkActionGUI, ControllerGUI> getManagerGui() {
@@ -169,8 +169,7 @@ public class ManagerControllerGUI {
 
     public void endGame(){
         this.getCurrentGUI().ifPresent(link -> this.managerGui.get(link).turn(Visibility.HIDDEN));
-        this.getCurrentGUI().ifPresent( this.chronology::remove);
-        
+        this.getCurrentGUI().ifPresent(this.chronology::remove);
         this.chronology.add(LinkActionGUI.LINK_DEAD);
         this.managerGui.get(LinkActionGUI.LINK_DEAD).turn(Visibility.VISIBLE);
 

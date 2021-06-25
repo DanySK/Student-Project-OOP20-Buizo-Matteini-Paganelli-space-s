@@ -79,7 +79,6 @@ public class GUIGameStandard implements FactoryGUIGame {
 
         concreteGame.setLayout(null);
         concreteGame.add(concreteGame.getPanelEntity());
-        concreteGame.add(concreteGame.getPanelBullet());
 
         return concreteGame;
     }

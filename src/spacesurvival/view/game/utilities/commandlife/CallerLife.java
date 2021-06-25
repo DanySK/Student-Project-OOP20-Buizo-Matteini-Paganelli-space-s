@@ -13,48 +13,55 @@ import spacesurvival.view.game.utilities.commandlife.command.LifeAsteroid;
 import spacesurvival.view.game.utilities.commandlife.command.LifeBoss;
 import spacesurvival.view.game.utilities.commandlife.command.LifeChase;
 import spacesurvival.view.game.utilities.commandlife.command.LifeFireEnemy;
-import spacesurvival.view.game.utilities.logicColor.LogicColor;
+import spacesurvival.view.game.utilities.logiccolor.LogicColor;
 
+/**
+ * Implement a command caller to get gameObject life and to draw.
+ */
 public class CallerLife {
     private final LogicColor logicColor;
-    private final Graphics2D g2d;
-    private final MainObject gameObject;
-    
+
     private final CommandLife commandBoss;
     private final CommandLife commandChase;
     private final CommandLife commandFire;
     private final CommandLife commandAsteroid;
-    
-    
-    public CallerLife(final MainObject gameObject, final LogicColor logicColor, final Graphics2D g2d) {
+
+    /**
+     * Initialize the commands to get size life of gameObject and set logic for to draw color life.
+     * @param logicColor
+     */
+    public CallerLife(final LogicColor logicColor) {
         this.logicColor = logicColor;
-        this.gameObject = gameObject;
-        this.g2d = g2d;
-      
+
         this.commandBoss = new LifeBoss();
         this.commandChase = new LifeChase();
         this.commandFire = new LifeFireEnemy();
         this.commandAsteroid = new LifeAsteroid();
     }
-    
-    public void drawLife() {
-        if (this.gameObject instanceof ChaseEnemy) {
-            this.g2d.setColor(this.logicColor.setColor(LifeUtils.CHASE_ENEMY_LIFE, this.gameObject.getLife()));
+
+    /**
+     * 
+     * @param gameObject
+     * @param g2d
+     */
+    public void executeDrawLife(final MainObject gameObject, final Graphics2D g2d) {
+        if (gameObject instanceof ChaseEnemy) {
+            g2d.setColor(this.logicColor.getColor(LifeUtils.CHASE_ENEMY_LIFE, gameObject.getLife()));
             g2d.fillRect(PanelEntityGame.ANCHOR_X_LIFE_BAR, (int) gameObject.getSize().getHeight() + PanelEntityGame.DIFFERENCE_HEIGHT_LIFE_BAR,
                     this.commandChase.execute(gameObject), PanelEntityGame.HEIGHT_LIFE);
 
-        } else if (this.gameObject instanceof Asteroid) {
-            this.g2d.setColor(this.logicColor.setColor(LifeUtils.ASTEROID_LIFE, this.gameObject.getLife()));
+        } else if (gameObject instanceof Asteroid) {
+           g2d.setColor(this.logicColor.getColor(LifeUtils.ASTEROID_LIFE, gameObject.getLife()));
             g2d.fillRect(PanelEntityGame.ANCHOR_X_LIFE_BAR, (int) gameObject.getSize().getHeight() + PanelEntityGame.DIFFERENCE_HEIGHT_LIFE_BAR,
                     this.commandAsteroid.execute(gameObject), PanelEntityGame.HEIGHT_LIFE);
 
-        } else if (this.gameObject instanceof Boss) {
-            this.g2d.setColor(this.logicColor.setColor(LifeUtils.BOSS_LIFE, this.gameObject.getLife()));
+        } else if (gameObject instanceof Boss) {
+           g2d.setColor(this.logicColor.getColor(LifeUtils.BOSS_LIFE, gameObject.getLife()));
             g2d.fillRect(PanelEntityGame.ANCHOR_X_LIFE_BAR, (int) gameObject.getSize().getHeight() + PanelEntityGame.DIFFERENCE_HEIGHT_LIFE_BAR,
                     this.commandBoss.execute(gameObject), PanelEntityGame.HEIGHT_LIFE);
 
-        } else if (this.gameObject instanceof FireEnemy) {
-            this.g2d.setColor(this.logicColor.setColor(LifeUtils.FIRE_ENEMY_LIFE, this.gameObject.getLife()));
+        } else if (gameObject instanceof FireEnemy) {
+           g2d.setColor(this.logicColor.getColor(LifeUtils.FIRE_ENEMY_LIFE, gameObject.getLife()));
             g2d.fillRect(PanelEntityGame.ANCHOR_X_LIFE_BAR, (int) gameObject.getSize().getHeight() + PanelEntityGame.DIFFERENCE_HEIGHT_LIFE_BAR,
                     this.commandFire.execute(gameObject), PanelEntityGame.HEIGHT_LIFE);
         }

@@ -1,10 +1,16 @@
-package spacesurvival.view.game.utilities.logicColor;
+package spacesurvival.view.game.utilities.logiccolor;
 
 import java.awt.Color;
 
+/**
+ * Logic color for life's spaceShip.
+ */
 public class LogicColorShip implements LogicColor {
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public Color setColor(final int maxLife, final int value) {
+    public Color getColor(final int maxLife, final int value) {
         final double maxColValue = 255;
 
         final double redValue = (value > ((double) maxLife / 2) ? 1 - 2 * (value - ((double) maxLife / 2)) / maxLife : 1.0) * maxColValue;

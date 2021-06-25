@@ -3,6 +3,9 @@ package spacesurvival.controller.gui.command;
 import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
 
+/**
+ * Implements the ON command of the engine status visibility.
+ */
 public class CmdON implements CmdEngine {
 
     /**

@@ -6,7 +6,6 @@ import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Path;
 
 import spacesurvival.utilities.path.MainFolder;
 
@@ -34,6 +33,11 @@ public final class GraphicsLayoutUtils {
      * Timer initialization text.
      */
     public static final String INIT_TIMER_STRING = "00:00:00";
+
+    /**
+     * Timer initialization text.
+     */
+    public static final String INIT_HEART_STRING = "x3";
 
     /**
      * Size font H0.
@@ -131,6 +135,11 @@ public final class GraphicsLayoutUtils {
     public static final Color COLOR_OPACITY_BLACK = new Color(0, 0, 0, 80);
 
     /**
+     * Color for background game.
+     */
+    public static final Color BACKGROUND_GAME_COLOR = new Color(3, 88, 149);
+
+    /**
      * Path font for title menu.
      */
     public static final String PATH_FONT_TITLE = MainFolder.FONT + "/main.ttf";
@@ -146,12 +155,13 @@ public final class GraphicsLayoutUtils {
     public static final String PATH_FONT_END_GAME = MainFolder.FONT + "/chiller.ttf";
 
     /**
-     * Get font title menu from size.
-     * @param size for font.
-     * @return myFont title menu.
+     * Method for get Font from path.
+     * @param size for dimension font.
+     * @param pathFont is path of font.
+     * @return Font for text.
      */
-    public static Font getFontForTitle(final int size) {
-        final URL fontUrl = ClassLoader.getSystemResource(PATH_FONT_TITLE);
+    public static Font getFontFromPath(final int size, final String pathFont) {
+        final URL fontUrl = ClassLoader.getSystemResource(pathFont);
         Font myFont = null;
         try {
             myFont = Font.createFont(Font.TRUETYPE_FONT, fontUrl.openStream());
@@ -163,6 +173,15 @@ public final class GraphicsLayoutUtils {
         }
 
         return myFont;
+    }
+
+    /**
+     * Get font title menu from size.
+     * @param size for font.
+     * @return myFont title menu.
+     */
+    public static Font getFontForTitle(final int size) {
+        return getFontFromPath(size, PATH_FONT_TITLE);
     }
 
     /**
@@ -171,18 +190,8 @@ public final class GraphicsLayoutUtils {
      * @return myFont game.
      */
     public static Font getFontForGame(final int size) {
-        final URL fontUrl = ClassLoader.getSystemResource(PATH_FONT_GAME);
-        Font myFont = null;
-        try {
-            myFont = Font.createFont(Font.TRUETYPE_FONT, fontUrl.openStream());
-            myFont = myFont.deriveFont(Font.PLAIN, size);
-            final GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(myFont);
-        } catch (IOException | FontFormatException e) {
-            System.err.println("Path font no found");
-        }
+        return getFontFromPath(size, PATH_FONT_GAME);
 
-        return myFont;
     }
 
     /**
@@ -191,17 +200,7 @@ public final class GraphicsLayoutUtils {
      * @return myFont end game. 
      */
     public static Font getFontForDead(final int size) {
-        final URL fontUrl = ClassLoader.getSystemResource(PATH_FONT_END_GAME);
-        Font myFont = null;
-        try {
-            myFont = Font.createFont(Font.TRUETYPE_FONT, fontUrl.openStream());
-            myFont = myFont.deriveFont(Font.PLAIN, size);
-            final GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(myFont);
-        } catch (IOException | FontFormatException e) {
-            System.err.println("Path font no found");
-        }
-        return myFont;
+        return getFontFromPath(size, PATH_FONT_END_GAME);
     }
 
     private GraphicsLayoutUtils() {

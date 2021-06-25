@@ -38,7 +38,7 @@ public class GUISettingsStandard implements FactoryGUISettings {
 
         concreteSettings.setLayout(new BorderLayout());
 
-        concreteSettings.add(FactoryGUIs.encapsulatesInPanelFlow(concreteSettings.getLbTitle()), BorderLayout.NORTH);
+        concreteSettings.add(FactoryGUIs.encapsulatesInPanelFlow(concreteSettings.getLabeTitle()), BorderLayout.NORTH);
         concreteSettings.add(FactoryGUIs.encapsulatesInPanelFlow(concreteSettings.getBtnBack()), BorderLayout.SOUTH);
 
         FactoryGUIs.setIconJButtonFromRate(concreteSettings.getBtnBack(), Icon.BACK,

@@ -1,19 +1,27 @@
 package spacesurvival.view.game.utilities;
 
 import spacesurvival.view.utilities.GraphicsLayoutUtils;
+
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 import spacesurvival.view.utilities.FactoryGUIs;
 
-import javax.swing.*;
-import java.awt.*;
-
+/**
+ * Implement a component view for enemy counting.
+ */
 public class CounterEnemies extends JPanel {
-    /**
-     * 
-     */
     private static final long serialVersionUID = 1L;
     private final JLabel stringEnemies;
     private final JLabel counter;
 
+    /**
+     * Initialize and create all graphics components.
+     */
     public CounterEnemies() {
         super(new FlowLayout());
         super.setOpaque(false);
