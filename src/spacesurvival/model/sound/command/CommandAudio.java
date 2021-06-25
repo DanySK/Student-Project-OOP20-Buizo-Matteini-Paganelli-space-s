@@ -2,6 +2,9 @@ package spacesurvival.model.sound.command;
 
 import spacesurvival.model.sound.Sound;
 
+/**
+ * Command Audio for the sound.
+ */
 public interface CommandAudio {
 
     /** 
