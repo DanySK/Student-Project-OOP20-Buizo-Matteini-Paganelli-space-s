@@ -197,7 +197,10 @@ public class JImage extends JComponent {
      * @return Image from path.
      */
     public static Image getImageFromPath(final String path) {
+        System.out.println("PATH   " + path);
         final URL imgURI = ClassLoader.getSystemResource(path);
+        System.out.println("URL    " + path);
+
         return new ImageIcon(imgURI).getImage();
         //return new ImageIcon(ClassLoader.getSystemResource(path)).getImage();
     }
