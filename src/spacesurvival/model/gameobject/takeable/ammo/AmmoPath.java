@@ -6,7 +6,7 @@ import spacesurvival.utilities.path.bullet.BulletFire;
 import spacesurvival.utilities.path.bullet.BulletHUD;
 
 /**
- * Ammo path
+ * Ammo path.
  *
  */
 public enum AmmoPath {
