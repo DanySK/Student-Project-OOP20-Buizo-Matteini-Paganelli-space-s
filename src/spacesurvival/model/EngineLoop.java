@@ -241,6 +241,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
      * @param soundPath the SoundPath of the sound to play.
      */
     private void playEffect(final SoundPath soundPath) {
+        System.out.println(soundPath);
         this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CommandAudioType.RESET_TIMING);
         this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CommandAudioType.AUDIO_ON);
     }
