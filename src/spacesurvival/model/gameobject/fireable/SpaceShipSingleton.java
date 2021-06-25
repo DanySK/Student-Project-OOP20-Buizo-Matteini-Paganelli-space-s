@@ -82,7 +82,6 @@ public final class SpaceShipSingleton extends FireableObject {
      * @param ammo the ammo taken from ship 
      */
     public void takeAmmo(final Ammo ammo) {
-        System.out.println("PRENDO MUNIZIONI DI TIPO " + ammo.getType());
         this.getWeapon().setAmmoType(ammo.getType());
     }
 

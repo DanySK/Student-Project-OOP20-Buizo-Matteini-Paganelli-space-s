@@ -33,7 +33,7 @@ public final class Delay {
     /**
      * The time for bonus spawning.
      */
-    public static final int SPAWN_PERK = 60_000;
+    public static final int SPAWN_PERK = 40_000;
 
     /**
      * The time for waiting.

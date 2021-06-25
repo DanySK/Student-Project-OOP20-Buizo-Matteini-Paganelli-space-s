@@ -8,9 +8,9 @@ import spacesurvival.utilities.ThreadUtils;
 import spacesurvival.model.EngineLoop;
 import spacesurvival.model.gui.StaticFactoryEngineGUI;
 
-public final class LaunchSpace {
+public final class SpaceSurvival {
 
-    private LaunchSpace() {
+    private SpaceSurvival() {
     }
 
     public static void main(final String[] args) {
@@ -30,7 +30,6 @@ public final class LaunchSpace {
         ctrlLoading.turn(Visibility.HIDDEN);
 
         engineLoop.start();
-//        SwingUtilities.invokeLater(engineLoop::start);
     }
 }
 

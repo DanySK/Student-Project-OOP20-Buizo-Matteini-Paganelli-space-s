@@ -148,7 +148,6 @@ public class EngineLoop extends Thread implements WorldEventListener {
      * Check all sound effects and and starts them.
      */
     protected void checkSoundEffects() {
-        System.out.println(this.controlGame.getShip().getSoundQueue());
         this.controlGame.getWorld().getSoundQueue().addAll(this.controlGame.getShip().getSoundQueue());
         this.controlGame.getWorld().getSoundQueue().forEach(this::playEffect);
         this.controlGame.getWorld().getSoundQueue().clear();
@@ -246,7 +245,6 @@ public class EngineLoop extends Thread implements WorldEventListener {
      * @param soundPath the SoundPath of the sound to play.
      */
     private void playEffect(final SoundPath soundPath) {
-        System.out.println(soundPath);
         this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CommandAudioType.RESET_TIMING);
         this.controlSound.getCallerAudioEffectFromSoundPath(soundPath).get().execute(CommandAudioType.AUDIO_ON);
     }
