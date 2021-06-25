@@ -32,15 +32,14 @@ public class ManagerVibility implements LogicSwitchGUI {
 
         case LINK_BACK:
             managerGui.get(actionCurrent).turn(Visibility.HIDDEN);
-            chronology.lastElementOfList().ifPresent(chronology::remove);
+            chronology.remove(chronology.lastElementOfList().get());
             break;
-        case LINK_QUIT: 
-            managerGui.values().forEach(ControllerGUI::closeGUI);
-            break;
+
         default:
             chronology.add(actionNext);
+            managerGui.get(actionNext).turn(Visibility.VISIBLE);
             break;
-    }
+        }
     }
 
     /**
@@ -56,15 +55,12 @@ public class ManagerVibility implements LogicSwitchGUI {
                 chronology.remove(actionNext);
             }
 
-            managerGui.get(actionNext).changeVisibility(); 
-            break;
+            managerGui.get(actionNext).changeVisibility(); break;
+
         case LINK_BACK:
             managerGui.get(actionCurrent).turn(Visibility.HIDDEN);
-                chronology.lastElementOfList().ifPresent(chronology::remove);
-                chronology.lastElementOfList().ifPresent(link -> managerGui.get(link).turn(Visibility.VISIBLE));
-            break;
-        case LINK_QUIT: 
-            managerGui.values().forEach(ControllerGUI::closeGUI);
+                chronology.remove(chronology.lastElementOfList().get());
+                managerGui.get(chronology.lastElementOfList().get()).turn(Visibility.VISIBLE);
             break;
 
         default:
@@ -72,7 +68,7 @@ public class ManagerVibility implements LogicSwitchGUI {
             managerGui.get(actionNext).turn(Visibility.VISIBLE);
             managerGui.get(actionCurrent).turn(Visibility.HIDDEN);
             break;
-        }
+    }
 
     }
 }

@@ -32,16 +32,15 @@ public class FocusGUI implements MouseListener {
         final LinkActionGUI id = control.getControllerGUIFromGUI((GUI) e.getSource()).get().getMainLink();
         final int indexDifferent = 1;
 
-        if (id.getStateLevel() != StateLevelGUI.FOREGROUND 
-                && this.control.getChronology().lastElementOfList().get().getStateLevel().equals(StateLevelGUI.OVERLAY)) {
+        if(id.getStateLevel().equals(StateLevelGUI.FOREGROUND) &&
+                this.control.getChronology().lastElementOfList().get().getStateLevel().equals(StateLevelGUI.OVERLAY)){
 
-            int sizeList =  this.control.getChronology().size() - indexDifferent;
-            while (this.control.getChronology().get(sizeList).getStateLevel().equals(StateLevelGUI.OVERLAY)) {
+            int sizeList = this.control.getChronology().size() - indexDifferent;
+            while(this.control.getChronology().get(sizeList).getStateLevel().equals(StateLevelGUI.OVERLAY) ){
                 this.control.getManagerGui().get(this.control.getChronology().get(sizeList)).turn(Visibility.HIDDEN);
                 this.control.getChronology().remove(sizeList--);
             }
-
-            this.control.getChronology().lastElementOfList().ifPresent(link -> this.control.getCtrlSound().checkChangeSoundLoop(link));
+            this.control.getCtrlSound().checkChangeSoundLoop(this.control.getCurrentGUI().get());
             System.out.println("list" + this.control.getChronology());
         }
     }

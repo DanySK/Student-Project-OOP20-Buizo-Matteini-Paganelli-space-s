@@ -9,7 +9,7 @@ public enum LinksPause {
     /**
      * Link to GUI game.
      */
-    RESUME_BUTTON("Resume", LinkActionGUI.LINK_GAME),
+    RESUME_BUTTON("Resume", LinkActionGUI.LINK_BACK),
 
     /**
      * Link to GUI sound.

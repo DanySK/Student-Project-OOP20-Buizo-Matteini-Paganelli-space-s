@@ -126,10 +126,10 @@ public class ManagerControllerGUI {
         this.managerGui.values().forEach(managerGui -> managerGui.getGUI().getBtnActionLinks().forEach(btn ->
                 btn.addActionListener(e -> {
                     if (this.isInPause()) {
-                        this.managerVisibility.algorithmSwitchNormal(btn.getCurrentLink(), btn.getNextLink());
+                        this.managerVisibility.algorithmSwitchGame(btn.getCurrentLink(), btn.getNextLink());
                        this.ctrlGame.setPauseAnimationAllObject(true);
                     } else {
-                        this.managerVisibility.algorithmSwitchGame(btn.getCurrentLink(), btn.getNextLink());
+                        this.managerVisibility.algorithmSwitchNormal(btn.getCurrentLink(), btn.getNextLink());
                     }
 
                     if (this.isInGame()) {
@@ -217,7 +217,11 @@ public class ManagerControllerGUI {
     public void assignSoundLoop() {
         this.managerGui.values().forEach(ctrl -> ctrl.getGUI().getBtnActionLinks().forEach(
                 btn -> btn.addActionListener(l -> {
-                    this.ctrlSound.checkChangeSoundLoop(btn.getNextLink());
+                    if(btn.getCurrentLink() == LinkActionGUI.LINK_PAUSE && btn.getNextLink() == LinkActionGUI.LINK_BACK) {
+                        this.ctrlSound.checkChangeSoundLoop(LinkActionGUI.LINK_GAME);
+                    } else {
+                        this.ctrlSound.checkChangeSoundLoop(btn.getNextLink());
+                    }
                 })
         ));
     }
