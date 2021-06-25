@@ -4,6 +4,9 @@ import spacesurvival.model.commandship.command.CommandShip;
 import spacesurvival.model.gameobject.fireable.SpaceShipSingleton;
 import spacesurvival.utilities.gameobject.VelocityUtils;
 
+/**
+ * Implementation for up release command.
+ */
 public class UpRelease implements CommandShip {
 
     /** 

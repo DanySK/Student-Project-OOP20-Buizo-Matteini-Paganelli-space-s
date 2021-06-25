@@ -21,6 +21,9 @@ import spacesurvival.utilities.CommandKey;
 import spacesurvival.utilities.CommandType;
 import spacesurvival.utilities.ThreadUtils;
 
+/**
+ * Main loop used to process input, update elements and render them to the view.
+ */
 public class EngineLoop extends Thread implements WorldEventListener {
     /**
      * Frames per second of the game.
@@ -29,10 +32,12 @@ public class EngineLoop extends Thread implements WorldEventListener {
 
     private final ManagerControllerGUI controlGUI;
     private final ControllerGame controlGame;
-    private final ControllerSound controlSound;
-
+    private final ControllerSound controlSound;  
     private final List<WorldEvent> eventQueue;
-
+    
+    /**
+     * Construction for engine loop initializing the control gui, the control sound and the control game.
+     */
     public EngineLoop() {
         this.controlGUI = new ManagerControllerGUI();
         this.eventQueue = new LinkedList<>();

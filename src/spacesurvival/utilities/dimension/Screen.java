@@ -6,6 +6,9 @@ import java.awt.Point;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 
+/**
+ * Utils for manage Screen.
+ */
 public final class Screen {
     private static final float PROPORTION_BIG = 0.9F;
     private static final float PROPORTION_MEDIUM = 0.6F;

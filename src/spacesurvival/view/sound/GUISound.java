@@ -69,7 +69,7 @@ public interface GUISound extends GUI, GraphicsText {
 
     /**
      * Get a list of switches button.
-     * @return List<ButtonSliderType>
+     * @return List of ButtonSliderType
      */
     List<ButtonSliderType> getBtnSwitches();
 

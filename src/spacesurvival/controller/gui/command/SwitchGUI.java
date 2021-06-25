@@ -3,7 +3,9 @@ package spacesurvival.controller.gui.command;
 import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
 import spacesurvival.view.GUI;
-
+/**
+ * Switch GUI.
+ */
 public class SwitchGUI {
     private final CmdEngine onCmdEngine;
     private final CmdEngine offCmdEngine;

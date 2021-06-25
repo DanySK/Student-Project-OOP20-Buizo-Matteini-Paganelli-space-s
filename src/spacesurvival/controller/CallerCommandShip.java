@@ -9,6 +9,9 @@ import spacesurvival.model.commandship.command.implementation.UpRelease;
 import spacesurvival.model.gameobject.fireable.SpaceShipSingleton;
 import spacesurvival.utilities.CommandKey;
 
+/**
+ * Caller command for the ship.
+ */
 public class CallerCommandShip {
     private final CommandShip cmdUp;
     private final CommandShip cmdReleaseUp;

@@ -5,6 +5,9 @@ import spacesurvival.model.collision.event.EventType;
 import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.model.worldevent.WorldEvent;
 
+/**
+ * Hit event for the takeable type.
+ */
 public class HitTakeableObject implements WorldEvent {
     private final TakeableGameObject collidedObject;
     private final EventType type = EventType.HIT_TAKEABLE_OBJECT;

@@ -7,6 +7,9 @@ import spacesurvival.model.gameobject.Edge;
 import spacesurvival.model.gameobject.moveable.MoveableObject;
 import spacesurvival.model.worldevent.WorldEvent;
 
+/**
+ * Hit event for the border type.
+ */
 public class HitBorderEvent implements WorldEvent {
     private final P2d where;
     private final Edge edge;
@@ -64,7 +67,7 @@ public class HitBorderEvent implements WorldEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void manage(final World world) {

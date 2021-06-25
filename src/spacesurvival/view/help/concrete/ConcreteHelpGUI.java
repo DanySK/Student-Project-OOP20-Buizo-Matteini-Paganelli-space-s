@@ -137,7 +137,7 @@ public class ConcreteHelpGUI extends AbstractGUI implements GUIHelp {
 
     /**
      * Get a list of unit help.
-     * @return List<UnitHelp> is a list of unit help.
+     * @return List of UnitHelp
      */
     public List<UnitHelp> getUnitHelps() {
         return this.unitHelps;

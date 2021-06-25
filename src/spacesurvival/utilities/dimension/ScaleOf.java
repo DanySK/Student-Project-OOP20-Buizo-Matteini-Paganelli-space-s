@@ -2,6 +2,9 @@ package spacesurvival.utilities.dimension;
 
 import spacesurvival.utilities.SystemVariables;
 
+/**
+ *ScaleOf class for representing all objects with correct dimension.
+ */
 public final class ScaleOf {
 
     /**

@@ -3,6 +3,9 @@ package spacesurvival.controller.gui.command;
 import spacesurvival.model.gui.EngineGUI;
 import spacesurvival.model.gui.Visibility;
 
+/**
+ * Command Off for the GUI.
+ */
 public class CmdOFF implements CmdEngine {
 
     /**

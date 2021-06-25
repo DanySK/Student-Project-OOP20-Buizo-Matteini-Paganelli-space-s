@@ -10,6 +10,9 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+/**
+ * Abstract class Sound.
+ */
 public abstract class Sound {
     private AudioInputStream audioInputStream;
     //private Optional<Clip> clip = Optional.empty();

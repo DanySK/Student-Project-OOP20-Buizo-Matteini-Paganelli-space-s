@@ -4,6 +4,9 @@ import spacesurvival.model.World;
 import spacesurvival.model.gameobject.GameObject;
 import spacesurvival.model.worldevent.WorldEvent;
 
+/**
+ * Dead event.
+ */
 public class DeadEvent implements WorldEvent {
     private final GameObject obj;
     private final EventType type = EventType.DEAD_EVENT;

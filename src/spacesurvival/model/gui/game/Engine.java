@@ -162,7 +162,7 @@ public interface Engine extends EngineGUI {
     /**
      * Return the boss, if present.
      * 
-     * @return an Optional<FireableGameObject> empty if there isn't a boss
+     * @return an Optional of FireableGameObject empty if there isn't a boss
      */
     Optional<FireableObject> getBoss();
     /**

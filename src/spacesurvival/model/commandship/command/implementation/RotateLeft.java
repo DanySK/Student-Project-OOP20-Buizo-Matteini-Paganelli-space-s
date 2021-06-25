@@ -6,6 +6,9 @@ import spacesurvival.model.commandship.command.CommandShip;
 import spacesurvival.model.gameobject.fireable.SpaceShipSingleton;
 import spacesurvival.utilities.gameobject.VelocityUtils;
 
+/**
+ * Implementation for rotate left command.
+ */
 public class RotateLeft implements CommandShip {
 
     /** 

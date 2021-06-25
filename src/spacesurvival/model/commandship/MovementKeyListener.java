@@ -10,7 +10,9 @@ import spacesurvival.model.common.Pair;
 import spacesurvival.utilities.CommandKey;
 import spacesurvival.utilities.CommandType;
 
-
+/**
+ * Movement Key Listener for keyboard input.
+ */
 public class MovementKeyListener implements KeyListener {
 
     private final List<Pair<CommandKey, CommandType>> commandList;

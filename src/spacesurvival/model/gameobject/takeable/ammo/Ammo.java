@@ -11,6 +11,9 @@ import spacesurvival.model.gameobject.takeable.TakeableGameObject;
 import spacesurvival.model.worldevent.WorldEvent;
 import spacesurvival.utilities.path.SoundPath;
 
+/**
+ * Ammo class.
+ */
 public class Ammo extends TakeableGameObject {
 
     private AmmoType type;

@@ -1,5 +1,8 @@
 package spacesurvival.utilities.gameobject;
 
+/**
+ * Utils for damage.
+ */
 public final class DamageUtils {
 
     /**

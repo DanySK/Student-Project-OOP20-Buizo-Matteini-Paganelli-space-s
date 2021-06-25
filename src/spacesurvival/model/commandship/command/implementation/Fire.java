@@ -6,6 +6,9 @@ import spacesurvival.utilities.Delay;
 import spacesurvival.utilities.ThreadUtils;
 import spacesurvival.utilities.path.SoundPath;
 
+/**
+ * Implementation for fire command.
+ */
 public class Fire implements CommandShip {
     /**
      * Fires the shot from the ship's weapon if it is present.

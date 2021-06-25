@@ -8,6 +8,9 @@ import spacesurvival.utilities.RandomUtils;
 import spacesurvival.utilities.SystemVariables;
 import spacesurvival.utilities.dimension.Screen;
 
+/**
+ * Utils for position.
+ */
 public final class PositionUtils {
 
     /**

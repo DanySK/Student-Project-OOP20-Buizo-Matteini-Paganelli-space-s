@@ -136,7 +136,7 @@ public class EngineSettings implements EngineGUI {
 
     /**
      * List of text for units settings.
-     * @return List<String>.
+     * @return List String.
      */
     public List<String> getListTextUnit() {
         return this.unitNames.stream().map(UnitSettingsGUI::getTitle).collect(Collectors.toList());
