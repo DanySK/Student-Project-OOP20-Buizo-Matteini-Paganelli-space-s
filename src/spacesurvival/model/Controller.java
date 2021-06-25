@@ -1,11 +1,9 @@
-package spacesurvival.controller.gui;
+package spacesurvival.model;
 
 import java.awt.event.KeyListener;
 import java.util.List;
-
 import spacesurvival.controller.CallerCommandShip;
 import spacesurvival.controller.collision.CollisionController;
-import spacesurvival.model.World;
 import spacesurvival.model.commandship.MovementKeyListener;
 import spacesurvival.model.common.Pair;
 import spacesurvival.model.gameobject.fireable.SpaceShipSingleton;

@@ -25,7 +25,7 @@ import java.awt.event.KeyListener;
 import java.util.List;
 
 public class GUIGameConcrete extends AbstractGUI implements GUIGame {
-    private static final long serialVersionUID = 1588822389694751549L;
+    private static final long serialVersionUID = 1L;
 
     private final Score score;
     private final RoundTimer roundTimer;

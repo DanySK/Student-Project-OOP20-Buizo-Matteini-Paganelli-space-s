@@ -8,6 +8,7 @@ import spacesurvival.model.gui.Visibility;
 import spacesurvival.model.gui.game.Engine;
 import spacesurvival.model.gui.settings.SkinSpaceShip;
 import spacesurvival.model.worldevent.WorldEventListener;
+import spacesurvival.model.Controller;
 import spacesurvival.model.World;
 import spacesurvival.model.commandship.MovementKeyListener;
 import spacesurvival.model.common.Pair;

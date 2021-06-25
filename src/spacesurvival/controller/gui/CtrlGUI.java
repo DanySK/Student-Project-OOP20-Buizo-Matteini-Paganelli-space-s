@@ -15,7 +15,6 @@ import spacesurvival.utilities.path.Background;
 import spacesurvival.view.utilities.ButtonLink;
 
 import java.awt.event.MouseListener;
-import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -23,7 +22,6 @@ import java.util.Optional;
 public class CtrlGUI {
 
     public static final LinkActionGUI FIRST_GUI = LinkActionGUI.ID_MENU;
-
 
     private final CtrlGame ctrlGame;
     private final CtrlSettings ctrlSettings;
@@ -124,8 +122,6 @@ public class CtrlGUI {
     private void linksAll() {
         this.managerGui.values().forEach(controllerGui -> controllerGui.getGUI().getBtnActionLinks().forEach(btn ->
                 btn.addActionListener(e -> {
-                    System.out.println("mI TORNA QUESTOOOOOO" + this.isInPause());
-                    System.out.println("Premuto in: " + btn.getCurrentLink() + " Vado in: " + btn.getNextLink());
 //                    if (this.isInPause()) {
 //                        this.logicSwitchGame.algorithm(btn.getCurrentLink(), btn.getNextLink(),
 //                                this.chronology, this.managerGui);

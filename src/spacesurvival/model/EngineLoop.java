@@ -106,6 +106,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
      * Updates all events and game states.
      */
     protected final void updateGame() {
+        this.controlGame.startTimer();
         this.controlGame.updateStateWorld();
         this.checkEvents(); 
         this.checkGameObjectsDead();
@@ -145,6 +146,7 @@ public class EngineLoop extends Thread implements WorldEventListener {
      * Check all sound effects and and starts them.
      */
     protected void checkSoundEffects() {
+        System.out.println(this.controlGame.getShip().getSoundQueue());
         this.controlGame.getWorld().getSoundQueue().addAll(this.controlGame.getShip().getSoundQueue());
         this.controlGame.getWorld().getSoundQueue().forEach(this::playEffect);
         this.controlGame.getWorld().getSoundQueue().clear();

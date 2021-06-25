@@ -12,6 +12,8 @@ public class Chronometer extends Thread {
 
     public Chronometer() {
         super();
+        System.out.println("CRONOMETRO");
+
         this.timer = "00:00:00";
         this.play = false;
         this.start();
