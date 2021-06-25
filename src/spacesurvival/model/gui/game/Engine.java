@@ -133,7 +133,8 @@ public interface Engine extends EngineGUI {
     void restartGame();
     /**
      * Return all alive objects.
-     * @return
+     * 
+     * @return a set composed by all alive GameObjects
      */
     Set<GameObject> getAllObjects();
     /**

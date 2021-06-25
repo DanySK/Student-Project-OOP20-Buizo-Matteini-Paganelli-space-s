@@ -30,7 +30,6 @@ public class EngineMenu implements EngineGUI {
 
     private final LinkActionGUI mainAction;
     private final List<LinksMenu> linkButtons;
-    
     private String namePlayer;
 
     private Visibility visibility;
@@ -114,7 +113,7 @@ public class EngineMenu implements EngineGUI {
                 .map(LinksMenu::getText)
                 .collect(Collectors.toList());
     }
-    
+
     /**
      * Set text of name's player.
      * @param namePlayer is a text for name player.
@@ -122,7 +121,7 @@ public class EngineMenu implements EngineGUI {
     public void setNamePlayer(final String namePlayer) {
         this.namePlayer = namePlayer;
     }
-    
+
     /**
      * Get text of name's player.
      * @return name's player.

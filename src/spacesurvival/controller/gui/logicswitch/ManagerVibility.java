@@ -29,7 +29,6 @@ public class ManagerVibility implements LogicSwitchGUI {
             this.managerControllerGUI.getManagerGui().get(actionCurrent).turn(Visibility.HIDDEN);
             this.managerControllerGUI.getCurrentGUI()
             .ifPresent(link -> this.managerControllerGUI.getChronology().remove(link));
-  
             break;
 
         default:
@@ -45,7 +44,7 @@ public class ManagerVibility implements LogicSwitchGUI {
     @Override
     public void algorithmSwitchGame(final LinkActionGUI actionCurrent, final LinkActionGUI actionNext) {
         switch (actionNext) {
-        case LINK_PAUSE:            
+        case LINK_PAUSE:
             if (!this.managerControllerGUI.getCurrentGUI().get().equals(LinkActionGUI.LINK_PAUSE)) {
                 this.managerControllerGUI.getChronology().add(actionNext);
             } else {
@@ -55,11 +54,9 @@ public class ManagerVibility implements LogicSwitchGUI {
             this.managerControllerGUI.getManagerGui().get(actionNext).changeVisibility(); break;
 
         case LINK_BACK:
-                
             this.managerControllerGUI.getManagerGui().get(actionCurrent).turn(Visibility.HIDDEN);
             this.managerControllerGUI.getCurrentGUI()
                 .ifPresent(link -> this.managerControllerGUI.getChronology().remove(link));
-            
             this.managerControllerGUI.getCurrentGUI()
                 .ifPresent(link -> this.managerControllerGUI.getManagerGui().get(link).turn(Visibility.VISIBLE));
             break;

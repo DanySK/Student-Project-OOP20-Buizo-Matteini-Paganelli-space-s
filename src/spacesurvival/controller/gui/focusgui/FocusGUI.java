@@ -21,7 +21,6 @@ public class FocusGUI implements MouseListener {
      */
     @Override
     public void mouseClicked(final MouseEvent e) {
-        // TODO Auto-generated method stub
     }
 
     /**
@@ -32,11 +31,11 @@ public class FocusGUI implements MouseListener {
         final LinkActionGUI id = control.getControllerGUIFromGUI((GUI) e.getSource()).get().getMainLink();
         final int indexDifferent = 1;
 
-        if(id.getStateLevel().equals(StateLevelGUI.FOREGROUND) &&
-                this.control.getCurrentGUI().get().getStateLevel().equals(StateLevelGUI.OVERLAY)){
+        if (id.getStateLevel().equals(StateLevelGUI.FOREGROUND) 
+                && this.control.getCurrentGUI().get().getStateLevel().equals(StateLevelGUI.OVERLAY)) {
 
             int sizeList = this.control.getChronology().size() - indexDifferent;
-            while(this.control.getChronology().get(sizeList).getStateLevel().equals(StateLevelGUI.OVERLAY) ){
+            while (this.control.getChronology().get(sizeList).getStateLevel().equals(StateLevelGUI.OVERLAY)) {
                 this.control.getManagerGui().get(this.control.getChronology().get(sizeList)).turn(Visibility.HIDDEN);
                 this.control.getChronology().remove(sizeList--);
             }
@@ -50,7 +49,6 @@ public class FocusGUI implements MouseListener {
      */
     @Override
     public void mouseReleased(final MouseEvent e) {
-        // TODO Auto-generated method stub
     }
 
     /**
@@ -58,7 +56,6 @@ public class FocusGUI implements MouseListener {
      */
     @Override
     public void mouseEntered(final MouseEvent e) {
-        // TODO Auto-generated method stub
     }
 
     /**
@@ -66,7 +63,6 @@ public class FocusGUI implements MouseListener {
      */
     @Override
     public void mouseExited(final MouseEvent e) {
-        // TODO Auto-generated method stub
     }
 
 }
