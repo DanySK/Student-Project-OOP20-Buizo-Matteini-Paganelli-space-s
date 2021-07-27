@@ -83,7 +83,6 @@ public class PanelEntityGame extends JPanel {
      * Repaint all game component.
      */
     @Override
-    @SuppressWarnings("PMD.EmptyCatchBlock")
     public final void paintComponent(final Graphics g) {
         super.paintComponent(g);
         final Graphics2D g2d = (Graphics2D) g;

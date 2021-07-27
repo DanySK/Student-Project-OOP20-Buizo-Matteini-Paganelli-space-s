@@ -35,11 +35,8 @@ public class ManagerControllerGUI {
     private final ControllerGame ctrlGame;
     private final ControllerSettings ctrlSettings;
     private final ControllerSound ctrlSound;
-    @SuppressWarnings("PMD.SingularField")
     private final ControllerHelp ctrlHelp;
-    @SuppressWarnings("PMD.SingularField")
     private final ControllerPause ctrlPause;
-    @SuppressWarnings("PMD.SingularField")
     private final ControllerDead ctrlDead;
 
     private final List<LinkActionGUI> chronology;

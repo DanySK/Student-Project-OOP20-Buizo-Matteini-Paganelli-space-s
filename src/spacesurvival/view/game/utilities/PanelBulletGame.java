@@ -11,7 +11,6 @@ import java.util.Optional;
  */
 public class PanelBulletGame extends JPanel {
     private static final long serialVersionUID = -7694414073000255484L;
-    @SuppressWarnings("unused")
     private Optional<World> world;
 
     /**
